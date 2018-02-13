@@ -1,0 +1,1040 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AtumMonitor.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TREE_ICON           BITMAP  DISCARDABLE     "res\\bitmap2.bmp"
+IDB_BITMAP_CHECK_IMAGE  BITMAP  DISCARDABLE     "CheckImage.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CHECKITEMDIALOG DIALOG DISCARDABLE  0, 0, 396, 223
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,288,202,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,339,202,50,14
+    CONTROL         "Custom1",IDD_CHECKITEMDIALOG,"MFCGridCtrl",WS_BORDER,7,
+                    110,382,81
+    LTEXT           "NEW_DATA",IDC_STATIC,7,10,38,9
+    LTEXT           "OLD_DATA",IDC_STATIC,7,100,36,9
+    CONTROL         "Custom1",IDD_CHECKITEMDIALOG2,"MFCGridCtrl",WS_BORDER,7,
+                    20,382,75
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CHECKITEMDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 389
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 216
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_IMPORT_EXCELFILE DIALOG DISCARDABLE  0, 0, 291, 477
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 10, "Microsoft Sans Serif"
+BEGIN
+    EDITTEXT        IDC_SELECT_EXCELFILE,22,19,222,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Search",IDC_EXCELFILE_SEARCH,246,19,26,13
+    PUSHBUTTON      "Insert DB",IDC_INSERT_DB,126,206,41,12
+    EDITTEXT        IDC_DB_TABLES,24,320,241,109,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,124,464,41,12
+    GROUPBOX        "Select ExcelFile",IDC_STATIC,16,7,259,30
+    GROUPBOX        "ExcelFile Result",IDC_STATIC,16,40,259,129
+    GROUPBOX        "Select DB",IDC_STATIC,16,178,259,44
+    GROUPBOX        "DB Result",IDC_STATIC,16,302,259,135
+    LTEXT           "Tables",IDC_STATIC,25,311,25,9
+    LTEXT           "RecordCount",IDC_STATIC,143,310,44,8
+    CONTROL         "Custom1",IDC_EXCELFILE_TABLES,"MFCGridCtrl",WS_BORDER,
+                    20,49,250,116
+    COMBOBOX        IDC_SELECT_DB,20,191,247,171,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    GROUPBOX        "Progress State",IDC_STATIC,16,229,259,68
+    LTEXT           "TableName :",IDC_STATIC,22,284,42,9
+    EDITTEXT        IDC_TABLENAME,65,284,97,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    LTEXT           "",IDC_STATIC,185,308,22,8
+    CONTROL         "Progress1",IDC_RECORDPROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,25,242,240,14
+    CONTROL         "Progress2",IDC_TOTALPROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,25,263,240,17
+END
+
+IDD_CLIENTFTPUPDATEMANAGER_DIALOG DIALOGEX 0, 0, 400, 167
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ClientFTPUpdateManager"
+FONT 9, "??", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_FOLDER_TO_ZIP,107,19,268,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_FOLDER_TO_ZIP_SELECT,377,19,13,14
+    EDITTEXT        IDC_EDIT_OUTPUT_FOLDER,107,35,268,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_OUTPUT_FOLDER_SELECT,377,35,13,14
+    EDITTEXT        IDC_EDIT_START_VERSION,107,51,77,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_END_VERSION,247,51,77,14,ES_AUTOHSCROLL
+    CONTROL         "Compress using zip file of before version",
+                    IDC_CHECK_USE_PREVIOUS_ZIP_FILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,86,144,14
+    COMBOBOX        IDC_COMBO_COMPRESS_LEVEL,354,87,22,100,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Archive Folder",IDC_BUTTON_ZIP_FOLDER,289,111,101,14
+    LTEXT           "Source directory(Unzip files):",
+                    IDC_STATIC_FOLDER_TO_ZIP,12,21,95,8
+    LTEXT           "Output directory(Zip files):",
+                    IDC_STATIC_TARGET_ZIP_FOLDER,22,38,85,8
+    GROUPBOX        "Archive Folder",IDC_STATIC_ZIP_FOLDER,7,7,386,122
+    CONTROL         "Progress1",IDC_PROGRESS_GLOBAL,"msctls_progress32",
+                    WS_BORDER,7,154,386,6
+    LTEXT           "",IDC_STATIC_PROGRESS_TEXT,7,132,386,10,0,
+                    WS_EX_STATICEDGE
+    LTEXT           "Start Version:",IDC_STATIC_START_VERSION,62,53,44,8
+    LTEXT           "End Version:",IDC_STATIC_END_VERSION,204,53,41,8
+    LTEXT           "Compress Level:",IDC_STATIC_COMPRESS_LEVEL,296,89,56,8
+    EDITTEXT        IDC_EDIT_VERSION_LIST_FILE_NAME,107,68,217,14,
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Version list file name:",IDC_STATIC,35,70,71,8
+    LTEXT           "",IDC_STATIC_VERSION_FILE_FULL_PATH,7,143,386,10,0,
+                    WS_EX_STATICEDGE
+END
+
+IDD_FIELD_SERVER_DLG DIALOG DISCARDABLE  0, 0, 164, 80
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Server"
+FONT 10, "??"
+BEGIN
+    EDITTEXT        IDC_EDIT2,56,34,56,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,75,59,37,14
+    PUSHBUTTON      "Cancel",IDCANCEL,120,59,37,14
+    LTEXT           "IP Address:",IDC_IP_ADDR,14,13,37,11
+    LTEXT           "Port:",IDC_PORT_NUM,14,35,37,11
+    COMBOBOX        IDC_COMBO_SELECT_SERVER_IP,56,12,96,61,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DIALOG_MAPBLOCKINFO DIALOG DISCARDABLE  0, 0, 405, 394
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Map Block Info"
+FONT 10, "??"
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,23,391,364,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    CTEXT           "Character:",IDC_STATIC_CHARACTER,7,9,42,8
+    EDITTEXT        IDC_EDIT_CHARACTER,51,7,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    CTEXT           "Monster:",IDC_STATIC_MONSTER,96,9,38,8
+    EDITTEXT        IDC_EDIT_MONSTER,134,7,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "Item:",IDC_STATIC_ITEM,182,9,27,8
+    EDITTEXT        IDC_EDIT_ITEM,212,7,36,12,ES_RIGHT | ES_AUTOHSCROLL
+END
+
+IDD_DLG_NEWSERVERGROUP DIALOG DISCARDABLE  0, 0, 159, 49
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New Server Group"
+FONT 10, "??"
+BEGIN
+    EDITTEXT        IDC_EDIT_GROUPNAME,78,4,74,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,28,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,102,27,50,14
+    LTEXT           "Server Group Name :",IDC_STATIC_LABEL,7,7,69,8
+END
+
+IDD_DLG_PRE_USER_COUNT DIALOG DISCARDABLE  0, 0, 146, 49
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Limite User Count"
+FONT 10, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,28,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,89,28,50,14
+    LTEXT           "Set Limit User Count:",IDC_STATIC,7,9,66,10
+    EDITTEXT        IDC_EDIT_USER_COUNT,74,7,66,14,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_SQL_READER DIALOG DISCARDABLE  0, 0, 364, 402
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SQL Reader"
+FONT 10, "???"
+BEGIN
+    DEFPUSHBUTTON   "Create Code",IDOK,307,7,50,14
+    EDITTEXT        IDC_EDIT_OUTPUT_CODE,7,26,350,369,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_EDIT_INFO_SQL_FILE_PATH,41,7,199,12,ES_AUTOHSCROLL
+    LTEXT           "SQL File:",IDC_STATIC_INPUT_SQL_FILE,7,7,32,12,
+                    SS_CENTERIMAGE
+    CONTROL         "CBArray",IDC_CBARRAY_CHECKBOX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,262,7,42,14
+END
+
+IDD_DIALOG_ADMIN_COMMAND DIALOG DISCARDABLE  0, 0, 390, 374
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Admin Command"
+FONT 10, "±¼¸²"
+BEGIN
+    EDITTEXT        IDC_EDIT_COMMAND,84,7,299,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Excute DbgOut",IDC_BUTTON_EXEC_DBOUT,273,25,52,12
+    DEFPUSHBUTTON   "OK",IDOK,326,25,28,12
+    PUSHBUTTON      "Cancel",IDCANCEL,355,25,28,12
+    LTEXT           "DbgOut Path:",IDC_STATIC_COMMENT,41,27,41,8
+    EDITTEXT        IDC_EDIT_DBGOUT_BIN,84,25,187,12,ES_AUTOHSCROLL
+    LTEXT           "Administrator Command:",IDC_STATIC_COMMAND,7,9,76,8
+    EDITTEXT        IDC_EDIT_CMD_OUT,7,43,376,324,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | WS_VSCROLL
+END
+
+IDD_DIALOG_SERVER_DB_CONNECTION DIALOG DISCARDABLE  0, 0, 171, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SpaceCowboy - Connect to Server and DB"
+FONT 9, "±¼¸²"
+BEGIN
+    COMBOBOX        IDC_COMBO_SERVER_SBC,65,11,91,69,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_UID_SERVER_SBC,65,33,91,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PWD_SERVER_SBC,65,55,91,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_UID_DB_SBC,65,77,91,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PWD_DB_SBC,65,99,91,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Connect",IDC_BUTTON_CONNECT_SBC,33,127,50,14
+    PUSHBUTTON      "Cancel",IDC_BUTTON_CANCEL_SBC,87,127,50,14
+    LTEXT           "Server Login ID:",IDC_STATIC,10,33,52,12,SS_CENTERIMAGE
+    LTEXT           "ServerGroup:",IDC_STATIC,19,11,43,12,SS_CENTERIMAGE
+    LTEXT           "Password:",IDC_STATIC,27,55,35,12,SS_CENTERIMAGE
+    LTEXT           "DB Login ID:",IDC_STATIC,22,77,40,12,SS_CENTERIMAGE
+    LTEXT           "Password:",IDC_STATIC,27,99,35,12,SS_CENTERIMAGE
+END
+
+IDD_ZIPFILE_DIALOG DIALOG DISCARDABLE  0, 0, 163, 199
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ATUM Zipper"
+FONT 9, "??"
+BEGIN
+    EDITTEXT        IDC_EDIT_TARGETFILE,46,7,110,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TARGETDIR,46,23,110,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENCODESTR,46,39,110,13,ES_AUTOHSCROLL
+    CONTROL         "Encoding",IDC_CHECK_ENCODE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,57,46,10
+    PUSHBUTTON      "AddFile",IDC_BUTTON_AddFile,7,71,46,14
+    PUSHBUTTON      "DelFile",IDC_BUTTON_Delete,58,71,46,14
+    PUSHBUTTON      "Make",IDC_BUTTON_Make,109,71,46,14
+    LISTBOX         IDC_LIST_FILEPATH,7,91,149,69,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Progress1",IDC_PROGRESS_MAKE,"msctls_progress32",
+                    PBS_SMOOTH,7,169,149,10
+    RTEXT           "Number of Files: 0",IDC_STATIC_NUMBER,65,184,90,8
+    LTEXT           "TargetFile:",IDC_STATIC,7,9,34,10
+    LTEXT           "TargetDir:",IDC_STATIC,7,25,34,10
+    LTEXT           "EncodeStr:",IDC_STATIC,7,41,36,10
+END
+
+IDD_DLG_SET_MGAME_EVENT_TYPE DIALOG DISCARDABLE  0, 0, 180, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set MGame Event Type"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,45,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,123,45,50,14
+    COMBOBOX        IDC_COMBO_EVENT_TYPE,9,16,162,30,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Select EventType",IDC_STATIC,6,2,168,31
+END
+
+IDD_DLG_SET_CITYWAR_TIME DIALOG DISCARDABLE  0, 0, 203, 96
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set CityWar Time"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,45,75,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,108,75,50,14
+    CONTROL         "DateTimePicker1",IDC_DATEPICKER_DEFAULT,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,85,33,48,
+                    12
+    CONTROL         "DateTimePicker1",IDC_DATEPICKER_SETTING,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,85,51,48,
+                    12
+    CONTROL         "DateTimePicker1",IDC_TIMEPICKER_DEFAULT,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,135,33,58,12
+    CONTROL         "DateTimePicker1",IDC_TIMEPICKER_SETTING,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,135,51,58,12
+    LTEXT           "Default CityWar Time :",IDC_STATIC,10,36,73,8
+    LTEXT           "Setting CityWar Time :",IDC_STATIC,10,54,73,8
+    LTEXT           "CityWar MapIndex :",IDC_STATIC,19,12,64,8
+    EDITTEXT        IDC_EDIT_CITYWAR_MAPINDEX,85,10,65,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_INFO_GEN DIALOG DISCARDABLE  0, 0, 246, 57
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "InfoGenerator"
+FONT 10, "±¼¸²"
+BEGIN
+    DEFPUSHBUTTON   "omi.tex Generate",IDC_BUTTON_IG_ALL,7,7,232,15
+    EDITTEXT        IDC_EDIT_INFO_OUTPUT_PATH,60,30,179,12,ES_AUTOHSCROLL
+    LTEXT           "output file path:",IDC_STATIC_OUTPUT_PATH,9,30,48,12,
+                    SS_CENTERIMAGE
+END
+
+IDD_DIALOG_SELECT_SERVER DIALOGEX 0, 0, 295, 315
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Server"
+FONT 10, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,92,294,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,152,294,50,14
+    COMBOBOX        IDC_COMBO_SERVER_LIST,11,23,274,219,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "1. Select Server",IDC_STATIC,2,7,289,35
+    GROUPBOX        "2. Select Language",IDC_STATIC,2,43,289,203
+    GROUPBOX        "3. Localization config files directory path",IDC_STATIC,
+                    2,252,289,34
+    LTEXT           "Language Type :",IDC_STATIC,8,56,53,8
+    EDITTEXT        IDC_EDIT_LANG_INFO,63,73,225,169,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AtumMonitor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "AtumMonitor Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_DIALOG_DBG_PARAM DIALOG DISCARDABLE  0, 0, 187, 86
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 10, "±¼¸²"
+BEGIN
+    EDITTEXT        IDC_EDIT_INT1,42,7,39,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_INT2,42,22,39,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FLAOT1,42,37,39,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FLOAT2,42,52,39,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STRING,42,67,138,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,24,50,14
+    LTEXT           "Int 1:",IDC_STATIC_INT1,7,9,34,12
+    LTEXT           "Int 2:",IDC_STATIC_INT2,7,24,34,12
+    LTEXT           "Float 1:",IDC_STATIC_FLOAT1,7,39,34,12
+    LTEXT           "Float 2:",IDC_STATIC_FLAOT2,7,54,34,12
+    LTEXT           "String:",IDC_STATIC_STRING,7,69,34,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_IMPORT_EXCELFILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 288
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 470
+    END
+
+    IDD_CLIENTFTPUPDATEMANAGER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 393
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_FIELD_SERVER_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 157
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 73
+    END
+
+    IDD_DIALOG_MAPBLOCKINFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 398
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 387
+    END
+
+    IDD_DLG_NEWSERVERGROUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_DLG_PRE_USER_COUNT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 139
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_DIALOG_SQL_READER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 357
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 395
+    END
+
+    IDD_DIALOG_ADMIN_COMMAND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 383
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 367
+    END
+
+    IDD_DIALOG_SERVER_DB_CONNECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 142
+    END
+
+    IDD_ZIPFILE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 156
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_DLG_SET_MGAME_EVENT_TYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 173
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_DLG_SET_CITYWAR_TIME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 89
+    END
+
+    IDD_INFO_GEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 239
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_DIALOG_SELECT_SERVER, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 292
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 308
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_DIALOG_DBG_PARAM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 79
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_TRAY MENU DISCARDABLE 
+BEGIN
+    POPUP "TrayMenu"
+    BEGIN
+        MENUITEM "Open SCMonitor",              ID_MENU_TRAY_ACTIVE
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_MENU_TRAY_EXIT
+    END
+END
+
+IDR_TREE_CONTEXT_MENU_FIELD MENU DISCARDABLE 
+BEGIN
+    POPUP "level1"
+    BEGIN
+        MENUITEM "Connect",                     ID_TCM_CONNECT_FIELD
+    END
+    POPUP "level2"
+    BEGIN
+        MENUITEM "Get # of clients",            ID_TCM_NUM_CLIENTS_FIELD
+        MENUITEM "Ping",                        ID_TCM_PING_FIELD
+        MENUITEM "Print DBG MSG",               ID_TCM_PRINT_DBG
+        MENUITEM "Chage Bandwidth Flag",        ID_TCM_CHANGE_BANDWIDTHFLAG_FIELD
+
+        MENUITEM "Set Msg Print Level",         ID_TCM_SET_MSG_PRINT_LEVEL_FIELD
+
+        MENUITEM "Get Character Info",          ID_TCM_GET_CHARACTER_INFO_FIELD
+        , GRAYED
+        MENUITEM "Get User/Monser Count",       ID_TCM_GET_USER_MONSTER_COUNT
+
+        MENUITEM "Reload Item Info",            ID_TCM_RELOAD_ITEM_INFO_FIELD
+
+        MENUITEM "Reload Quest Info",           ID_TCM_RELOAD_QUEST_INFO_FIELD
+
+        MENUITEM "Reset NPC Server",            ID_TCM_RESET_NPC_CONNECTION_FIELD
+
+        MENUITEM SEPARATOR
+        MENUITEM "Disconnect",                  ID_TCM_DISCONNECT_FIELD
+        MENUITEM SEPARATOR
+    END
+    POPUP "level3"
+    BEGIN
+        MENUITEM "Print Map",                   ID_TCM_PRINTMAP_FIELD
+        MENUITEM "Save Map Block Info",         ID_TCM_MAPBLOCKINFO_FIELD
+        MENUITEM "Get User Count",              ID_TCM_GET_USER_COUNTS_FIELD
+        MENUITEM SEPARATOR
+        MENUITEM "Enable Channel",              ID_TCM_FIELD_ENABLE_CHANNEL
+        MENUITEM "Disable Channel",             ID_TCM_FIELD_DISABLE_CHANNEL
+        MENUITEM SEPARATOR
+        MENUITEM "Change CityWar Time",         ID_TCM_FIELD_CITYWAR_CHANGE_TIME
+
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New Server Group\tCtrl+N",   ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "Client FTP Update Manager",   ID_CLIENT_FTP_UPDATE_MANAGER
+        MENUITEM "InfoGenerator",               ID_INFO_GEN
+        MENUITEM "SQLReader",                   ID_SQL_READER
+        MENUITEM "Tex File Generator(Atum Zipper)", ID_ZIP_FILE_GEN
+        POPUP "Notice Sound File..."
+        BEGIN
+            MENUITEM "Set Notice Sound File Path",  ID_TOOLS_SET_NOTICE_FILE_PATH
+
+            MENUITEM "Stop - Notice PlaySound",     ID_TOOLS_STOP_NOTICE_PLAYSOUND
+
+        END
+        MENUITEM "Import ExcelFile",            ID_IMPORT_EXCELFILE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About AtumMonitor...",       ID_APP_ABOUT
+    END
+END
+
+IDR_TREE_CONTEXT_MENU_NPC MENU DISCARDABLE 
+BEGIN
+    POPUP "level1"
+    BEGIN
+        MENUITEM "Connect",                     ID_TCM_CONNECT_NPC
+    END
+    POPUP "level2"
+    BEGIN
+        MENUITEM "Ping",                        ID_TCM_PING_NPC
+        MENUITEM "Chage Bandwidth Flag",        ID_TCM_CHANGE_BANDWIDTHFLAG_NPC
+
+        MENUITEM "Set Msg Print Level",         ID_TCM_SET_MSG_PRINT_LEVEL_NPC
+
+        MENUITEM SEPARATOR
+    END
+    POPUP "level3"
+    BEGIN
+        MENUITEM "Print Map",                   ID_TCM_PRINTMAP_NPC
+        MENUITEM "Save Map Block Info",         ID_TCM_MAPBLOCKINFO_NPC
+        MENUITEM "Get User Count",              ID_TCM_GET_USER_COUNTS_NPC
+        MENUITEM "Set Limit Monster Count",     ID_TCM_NPC_SET_LIMIT_MONSTER_COUNT
+
+    END
+END
+
+IDR_TREE_CONTEXT_MENU_PRE MENU DISCARDABLE 
+BEGIN
+    POPUP "level1"
+    BEGIN
+        MENUITEM "Connect",                     ID_TCM_CONNECT_PRE
+    END
+    POPUP "level2"
+    BEGIN
+        MENUITEM "Get # of clients",            ID_TCM_NUM_CLIENTS_PRE
+        MENUITEM "Ping",                        ID_TCM_PING_PRE
+        MENUITEM "Reload Version Info",         ID_TCM_RELOAD_VERSION_INFO_PRE
+
+        MENUITEM "Reload Blocked Accounts",     ID_TCM_RELOAD_BLOCKED_ACCOUNT_PRE
+
+        MENUITEM "Chage Bandwidth Flag",        ID_TCM_CHANGE_BANDWIDTHFLAG_PRE
+
+        MENUITEM SEPARATOR
+        MENUITEM "Set Msg Print Level",         ID_TCM_SET_MSG_PRINT_LEVEL_PRE
+
+        MENUITEM "Set MGameEventType",          ID_TCM_SET_MGAME_EVENT
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM "Disconnect",                  ID_TCM_DISCONNECT_PRE
+    END
+    POPUP "level3"
+    BEGIN
+        MENUITEM "Get Server Group Info",       ID_TCM_GET_SERVER_GROUP_INFO_PRE
+
+        MENUITEM "Set Limit User Count",        ID_TCM_PRE_SET_LIMIT_USER_COUNT
+
+        MENUITEM "Change Enable Server Group",  ID_TCM_PRE_CHANGE_ENABLE_SERVER_GROUP
+
+        MENUITEM SEPARATOR
+    END
+END
+
+IDR_TREE_CONTEXT_MENU_IM MENU DISCARDABLE 
+BEGIN
+    POPUP "level1"
+    BEGIN
+        MENUITEM "Connect",                     ID_TCM_CONNECT_IM
+    END
+    POPUP "level2"
+    BEGIN
+        MENUITEM "Get # of clients",            ID_TCM_NUM_CLIENTS_IM
+        MENUITEM "Ping",                        ID_TCM_PING_IM
+        MENUITEM "Print DBG MSG",               ID_TCM_PRINT_DBG_IM
+        MENUITEM "Chage Bandwidth Flag",        ID_TCM_CHANGE_BANDWIDTHFLAG_IM
+
+        MENUITEM "Set Msg Print Level",         ID_TCM_SET_MSG_PRINT_LEVEL_IM
+
+        MENUITEM "Get User Count",              ID_TCM_GET_USER_COUNTS_IM
+        MENUITEM SEPARATOR
+    END
+END
+
+IDR_TREE_CONTEXT_MENU_ROOT MENU DISCARDABLE 
+BEGIN
+    POPUP "level1"
+    BEGIN
+        MENUITEM "Rename",                      ID_TCM_RENAME_ROOT
+        MENUITEM "Delete",                      ID_TCM_DELETE_ROOT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CLIENTFTPUPDATEMANAGER_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0030, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0032, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0033, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0034, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_COMPRESS_LEVEL, 0x403, 2, 0
+0x0039, 
+    0
+END
+
+IDD_DLG_SET_MGAME_EVENT_TYPE DLGINIT
+BEGIN
+    IDC_COMBO_EVENT_TYPE, 0x403, 21, 0
+0x474d, 0x4d41, 0x5f45, 0x5645, 0x4e45, 0x5f54, 0x4f4e, 0x455f, 0x4556, 
+0x544e, "\000" 
+    IDC_COMBO_EVENT_TYPE, 0x403, 33, 0
+0x474d, 0x4d41, 0x5f45, 0x5645, 0x4e45, 0x5f54, 0x504f, 0x4e45, 0x425f, 
+0x5445, 0x5f41, 0x5441, 0x4554, 0x444e, 0x4e41, 0x4543, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\AtumMonitor.ico"
+IDR_ATUMMOTYPE          ICON    DISCARDABLE     "res\\AtumMonitorDoc.ico"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,3,4,5
+ PRODUCTVERSION 1,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Masangsoft\0"
+            VALUE "FileDescription", "SpaceCowboyMonitor MFC Application\0"
+            VALUE "FileVersion", "0, 3, 4, 5\0"
+            VALUE "InternalName", "SpaceCowboyMonitor\0"
+            VALUE "LegalCopyright", "Copyright (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "SpaceCowboyMonitor.EXE\0"
+            VALUE "PrivateBuild", "5150-0001\0"
+            VALUE "ProductName", "SpaceCowboyMonitor Application\0"
+            VALUE "ProductVersion", "1, 0, 1, 0\0"
+            VALUE "SpecialBuild", "20100420\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_VIEW_LARGEICON
+    BUTTON      ID_VIEW_SMALLICON
+    BUTTON      ID_VIEW_LIST
+    BUTTON      ID_VIEW_DETAILS
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "AtumMonitor\n\nAtumMo\n\n\nAtumMonitor.Document\nAtumMo Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "SpaceCowboy Monitor"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+    ID_VIEW_AUTOARRANGE     "Arrange icons on a grid."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_SMALLICON       "Display items by using small icons.\nSmall Icons"
+    ID_VIEW_LARGEICON       "Display items by using large icons.\nLarge Icons"
+    ID_VIEW_LIST            "Displays items in a list.\nList"
+    ID_VIEW_DETAILS         "Displays detailed information about each item in the window.\nDetails"
+    ID_VIEW_LINEUP          "Arranges icons in a grid."
+    ID_VIEW_BYNAME          "Sorts the icons alphabetically."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\AtumMonitor.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

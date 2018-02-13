@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "baseclasses", "baseclasses.vcxproj", "{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Unicode|Win32 = Debug Unicode|Win32
+		Debug|Win32 = Debug|Win32
+		Release Unicode|Win32 = Release Unicode|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug Unicode|Win32.ActiveCfg = Debug Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug Unicode|Win32.Build.0 = Debug Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug Unicode|Win32.Deploy.0 = Debug Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug|Win32.Build.0 = Debug|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Debug|Win32.Deploy.0 = Debug|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release Unicode|Win32.ActiveCfg = Release Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release Unicode|Win32.Build.0 = Release Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release Unicode|Win32.Deploy.0 = Release Unicode|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release|Win32.ActiveCfg = Release|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release|Win32.Build.0 = Release|Win32
+		{B8117508-B4C6-4D5E-B5B3-3F6402B2E919}.Release|Win32.Deploy.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

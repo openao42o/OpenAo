@@ -1,0 +1,3 @@
+#define DEVX
+#define COLLCHECKLAG
+#define FPSIMPROVEMENTS

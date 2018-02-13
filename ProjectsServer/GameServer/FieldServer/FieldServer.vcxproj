@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="D_DevX|Win32">
+      <Configuration>D_DevX</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DevX_Arena|Win32">
+      <Configuration>R_DevX_Arena</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DevX|Win32">
+      <Configuration>R_DevX</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_Wiki_Arena|Win32">
+      <Configuration>R_Wiki_Arena</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="TEST|Win32">
+      <Configuration>TEST</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{497E6D24-998E-47A4-8AB4-26F912964C25}</ProjectGuid>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Server/Debug/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Debug</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Server/Release/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Server/Release/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+    <TargetName>A$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Server/Test/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Server/Release/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+    <TargetName>ArenaFieldServer</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ATUM_FIELD_SERVER;_ATUM_SERVER;_DEBUG;WIN32;_WINDOWS;_ATUM_LOAD_TEST;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\FieldServer___Win32_D_Wikigames_Eng\FieldServer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\FieldServer___Win32_D_Wikigames_Eng\FieldServer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libci.lib</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;d3dx9.lib;odbc32.lib;odbccp32.lib;QuestLoaderLibD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CROSSFEEDING;_GODMODE;_AUTO_DGA;_NATION_BUFFS;NDEBUG;_ATUM_FIELD_SERVER;WIN32;_WINDOWS;_ATUM_SERVER;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;d3dx9.lib;odbc32.lib;odbccp32.lib;QuestLoaderLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>libci.lib</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARENA;_WARRIOR_GIVE_PLAYTIME_ITEM;_AUTO_COH;_CROSSFEEDING;_GODMODE;_AUTO_DGA;_NATION_BUFFS;NDEBUG;_ATUM_FIELD_SERVER;WIN32;_WINDOWS;_ATUM_SERVER;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;d3dx9.lib;odbc32.lib;odbccp32.lib;QuestLoaderLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>libci.lib</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WARRIOR_GIVE_PLAYTIME_ITEM;_AUTO_COH;_CROSSFEEDING;_GODMODE;_AUTO_DGA;_NATION_BUFFS;NDEBUG;_ATUM_FIELD_SERVER;WIN32;_WINDOWS;_ATUM_SERVER;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\FieldServer___Win32_R_Wikigames_Eng\FieldServer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;d3dx9.lib;odbc32.lib;odbccp32.lib;QuestLoaderLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>libci.lib</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level1</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_ATUM_FIELD_SERVER;WIN32;_WINDOWS;_ATUM_SERVER;_ATUM_LOAD_TEST;WIKIGAMES_ENG;ARENA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\FieldServer___Win32_R_Wikigames_Eng_Arena\FieldServer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\FieldServer___Win32_R_Wikigames_Eng_Arena\FieldServer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;d3dx9.lib;odbc32.lib;odbccp32.lib;QuestLoaderLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <IgnoreSpecificDefaultLibraries>libci.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Common\CipherRA.cpp" />
+    <ClCompile Include="..\..\..\Common\GlobalFunc.cpp" />
+    <ClCompile Include="..\..\..\Common\IOCP.cpp" />
+    <ClCompile Include="..\..\..\Common\IOCPSocket.cpp" />
+    <ClCompile Include="..\..\..\Common\md5_lib_src.cpp" />
+    <ClCompile Include="..\..\..\Common\Overlapped.cpp" />
+    <ClCompile Include="..\..\..\Common\QueueINT.cpp" />
+    <ClCompile Include="..\..\..\Common\Random.cpp" />
+    <ClCompile Include="..\..\..\Common\sha256.cpp" />
+    <ClCompile Include="..\..\..\Common\SocketHeader.cpp" />
+    <ClCompile Include="..\..\..\Common\SystemLogManager.cpp" />
+    <ClCompile Include="..\..\..\Common\ThreadCheck.cpp" />
+    <ClCompile Include="..\..\..\Common\VMem.cpp" />
+    <ClCompile Include="..\..\..\Common\VMemPool.cpp" />
+    <ClCompile Include="..\..\..\Common\WinSocket.cpp" />
+    <ClCompile Include="..\..\..\Common\XOR_Lib.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumDateTime.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumDBHelper.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumDBManager.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumLogSender.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumParamProtocol.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumParamProtocolFunctions.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumSJ.cpp" />
+    <ClCompile Include="..\..\..\Common\ChatBlockManager.cpp" />
+    <ClCompile Include="..\..\..\Common\Config.cpp" />
+    <ClCompile Include="..\..\..\Common\CountdownChecker.cpp" />
+    <ClCompile Include="..\..\..\Common\Debuff.cpp" />
+    <ClCompile Include="..\..\..\Common\Dot.cpp" />
+    <ClCompile Include="..\..\..\Common\GameDataLast.cpp" />
+    <ClCompile Include="..\..\..\Common\GenericHTTPClient.cpp" />
+    <ClCompile Include="..\..\..\Common\GlobalGameServer.cpp" />
+    <ClCompile Include="..\..\..\Common\LoadLibrary.cpp" />
+    <ClCompile Include="..\..\..\Common\MapBlock.cpp" />
+    <ClCompile Include="..\..\..\Common\MapChannel.cpp" />
+    <ClCompile Include="..\..\..\Common\MapProject.cpp" />
+    <ClCompile Include="..\..\..\Common\MapWorkspace.cpp" />
+    <ClCompile Include="..\..\..\Common\Monster.cpp" />
+    <ClCompile Include="..\..\..\Common\MonsterDBAccess.cpp" />
+    <ClCompile Include="..\..\..\Common\NPCScripts.cpp" />
+    <ClCompile Include="..\..\..\Common\ODBCStatement.cpp" />
+    <ClCompile Include="..\..\..\Common\Quest.cpp" />
+    <ClCompile Include="..\..\..\Common\TickManager.cpp" />
+    <ClCompile Include="..\..\..\Common\UserVariable.cpp" />
+    <ClCompile Include="..\..\..\Common\WayPointManager.cpp" />
+    <ClCompile Include="AllGuildItemManager.cpp" />
+    <ClCompile Include="ArenaDeathMatchRoom.cpp" />
+    <ClCompile Include="ArenaFieldWinSocket.cpp" />
+    <ClCompile Include="ArenaManager.cpp" />
+    <ClCompile Include="ArenaTeam.cpp" />
+    <ClCompile Include="ArenaTickManager.cpp" />
+    <ClCompile Include="Cinema.cpp" />
+    <ClCompile Include="CityLeader.cpp" />
+    <ClCompile Include="DissolutionItemmanager.cpp" />
+    <ClCompile Include="FieldDebuff.cpp" />
+    <ClCompile Include="FieldDot.cpp" />
+    <ClCompile Include="FieldServer.cpp" />
+    <ClCompile Include="GiveItemManager.cpp" />
+    <ClCompile Include="GuildDamageManager.cpp" />
+    <ClCompile Include="GuildItemManager.cpp" />
+    <ClCompile Include="InfinityBase.cpp" />
+    <ClCompile Include="InfinityBossrush.cpp" />
+    <ClCompile Include="InfinityDefence.cpp" />
+    <ClCompile Include="InfinityManager.cpp" />
+    <ClCompile Include="InfinityMapManager.cpp" />
+    <ClCompile Include="InfinityMShipBattle.cpp" />
+    <ClCompile Include="InfinityTickManager.cpp" />
+    <ClCompile Include="InvokingItemInfo.cpp" />
+    <ClCompile Include="InvokingItemManager.cpp" />
+    <ClCompile Include="LetterManager.cpp" />
+    <ClCompile Include="Loop.cpp" />
+    <ClCompile Include="Main\ArmorCollection.cpp" />
+    <ClCompile Include="main\AtumFieldDBManager.cpp" />
+    <ClCompile Include="Main\BazaarManager.cpp" />
+    <ClCompile Include="Main\BunchCountableItemCount.cpp" />
+    <ClCompile Include="Main\CallWarpEventManager.cpp" />
+    <ClCompile Include="Main\CityWar.cpp" />
+    <ClCompile Include="Main\CityWarManager.cpp" />
+    <ClCompile Include="Main\CollectionManager.cpp" />
+    <ClCompile Include="Main\CouponManager.cpp" />
+    <ClCompile Include="Main\DGAEventManger.cpp" />
+    <ClCompile Include="Main\DropItemManager.cpp" />
+    <ClCompile Include="Main\EXPDivisionManager.cpp" />
+    <ClCompile Include="Main\FieldCharacterQuest.cpp" />
+    <ClCompile Include="Main\FieldDataManager.cpp" />
+    <ClCompile Include="Main\FieldGlobal.cpp" />
+    <ClCompile Include="main\FieldIOCP.cpp" />
+    <ClCompile Include="main\FieldIOCPSocket.cpp" />
+    <ClCompile Include="Main\FieldIOCPSocket2.cpp" />
+    <ClCompile Include="Main\FieldItemManager.cpp" />
+    <ClCompile Include="Main\FieldMapChannel.cpp" />
+    <ClCompile Include="main\FieldMapProject.cpp" />
+    <ClCompile Include="main\FieldMapWorkspace.cpp" />
+    <ClCompile Include="Main\FieldMonster.cpp" />
+    <ClCompile Include="Main\FieldODBC.cpp" />
+    <ClCompile Include="Main\FieldParty.cpp" />
+    <ClCompile Include="Main\FieldSkillManager.cpp" />
+    <ClCompile Include="Main\FieldTickManager.cpp" />
+    <ClCompile Include="Main\FieldTimerManager.cpp" />
+    <ClCompile Include="Main\GameEventManager.cpp" />
+    <ClCompile Include="Main\GeneralRequestHandler.cpp" />
+    <ClCompile Include="Main\GuildWar.cpp" />
+    <ClCompile Include="Main\HappyHourEventManager.cpp" />
+    <ClCompile Include="main\IMWinSocket.cpp" />
+    <ClCompile Include="Main\InflRateManager.cpp" />
+    <ClCompile Include="Main\InflWarManager.cpp" />
+    <ClCompile Include="Main\LastHitManager.cpp" />
+    <ClCompile Include="Main\LogWinSocket.cpp" />
+    <ClCompile Include="Main\MapOwnership.cpp" />
+    <ClCompile Include="main\PreWinSocket.cpp" />
+    <ClCompile Include="Main\QuestMatching.cpp" />
+    <ClCompile Include="Main\Racing.cpp" />
+    <ClCompile Include="Main\RacingDemon.cpp" />
+    <ClCompile Include="Main\ServicePauseManager.cpp" />
+    <ClCompile Include="Main\WRankingFame.cpp" />
+    <ClCompile Include="Main\WRankingFameManager.cpp" />
+    <ClCompile Include="Main\WRankingLevel.cpp" />
+    <ClCompile Include="Main\WRankingLevelManager.cpp" />
+    <ClCompile Include="Main\WRankingManager.cpp" />
+    <ClCompile Include="Main\WRankingPVP.cpp" />
+    <ClCompile Include="Main\WRankingPVPManager.cpp" />
+    <ClCompile Include="Main\WRankingServiceManager.cpp" />
+    <ClCompile Include="MapTriggerManager.cpp" />
+    <ClCompile Include="MemoryHackHistory.cpp" />
+    <ClCompile Include="MonthlyArmorManager.cpp" />
+    <ClCompile Include="OutPost.cpp" />
+    <ClCompile Include="OutPostManager.cpp" />
+    <ClCompile Include="PCBangIPManager.cpp" />
+    <ClCompile Include="PetDataManager.cpp" />
+    <ClCompile Include="Revision.cpp" />
+    <ClCompile Include="SpeedHackHistory.cpp" />
+    <ClCompile Include="StatisticsManager.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='R_Wiki_Arena|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="TriggerCrystalDestroyGroup.cpp" />
+    <ClCompile Include="TriggerCrystalGroup.cpp" />
+    <ClCompile Include="TriggerFunction.cpp" />
+    <ClCompile Include="TriggerFunctionCrystal.cpp" />
+    <ClCompile Include="TriggerFunctionNGCInflWar.cpp" />
+    <ClCompile Include="TriggerFunctionNGOutPost.cpp" />
+    <ClCompile Include="TriggerMapBuffManager.cpp" />
+    <ClCompile Include="TriggerNGCInflWarMonsterGroup.cpp" />
+    <ClCompile Include="WarContributionCalculation.cpp" />
+    <ClCompile Include="Main\WarpRestrictionManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FieldServer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Common\BonusKillSystem.h" />
+    <ClInclude Include="..\..\..\Common\DefineGlobal.h" />
+    <ClInclude Include="..\..\..\Common\IOCP.h" />
+    <ClInclude Include="..\..\..\Common\ItemKind.h" />
+    <ClInclude Include="..\..\..\Common\MTAutoCriticalSection.h" />
+    <ClInclude Include="..\..\..\Common\MTCriticalSection.h" />
+    <ClInclude Include="..\..\..\Common\mt_stl.h" />
+    <ClInclude Include="..\..\..\Common\QueueINT.h" />
+    <ClInclude Include="..\..\..\Common\sha256.h" />
+    <ClInclude Include="..\..\..\Common\SystemLogManager.h" />
+    <ClInclude Include="..\..\..\Common\VMem.h" />
+    <ClInclude Include="..\..\..\Common\VMemPool.h" />
+    <ClInclude Include="..\..\..\Common\WinPacket.h" />
+    <ClInclude Include="..\..\..\Common\WinSocket.h" />
+    <ClInclude Include="..\..\..\Common\AtumDataLoader.h" />
+    <ClInclude Include="..\..\..\Common\AtumDateTime.h" />
+    <ClInclude Include="..\..\..\Common\AtumDBHelper.h" />
+    <ClInclude Include="..\..\..\Common\AtumDBManager.h" />
+    <ClInclude Include="..\..\..\Common\AtumError.h" />
+    <ClInclude Include="..\..\..\Common\AtumLogSender.h" />
+    <ClInclude Include="..\..\..\Common\AtumParam.h" />
+    <ClInclude Include="..\..\..\Common\AtumProtocol.h" />
+    <ClInclude Include="..\..\..\Common\AtumSJ.h" />
+    <ClInclude Include="..\..\..\Common\AtumTime.h" />
+    <ClInclude Include="..\..\..\Common\ChatBlockManager.h" />
+    <ClInclude Include="..\..\..\Common\Config.h" />
+    <ClInclude Include="..\..\..\Common\CountdownChecker.h" />
+    <ClInclude Include="..\..\..\Common\Debuff.h" />
+    <ClInclude Include="..\..\..\Common\Dot.h" />
+    <ClInclude Include="..\..\..\Common\GameDataLast.h" />
+    <ClInclude Include="..\..\..\Common\GlobalGameServer.h" />
+    <ClInclude Include="..\..\..\Common\Localization.h" />
+    <ClInclude Include="..\..\..\Common\MapBlock.h" />
+    <ClInclude Include="..\..\..\Common\MapChannel.h" />
+    <ClInclude Include="..\..\..\Common\MapProject.h" />
+    <ClInclude Include="..\..\..\Common\MapWorkspace.h" />
+    <ClInclude Include="..\..\..\Common\Monster.h" />
+    <ClInclude Include="..\..\..\Common\MonsterDBAccess.h" />
+    <ClInclude Include="..\..\..\Common\ODBCStatement.h" />
+    <ClInclude Include="..\..\..\Common\Quest.h" />
+    <ClInclude Include="..\..\..\Common\QuestLoaderParser.h" />
+    <ClInclude Include="..\..\..\Common\StringDefineSecurityCommand.h" />
+    <ClInclude Include="..\..\..\Common\TickManager.h" />
+    <ClInclude Include="..\..\..\Common\UserVariable.h" />
+    <ClInclude Include="..\..\..\Common\WayPointManager.h" />
+    <ClInclude Include="AllGuildItemManager.h" />
+    <ClInclude Include="ArenaDeathMatchRoom.h" />
+    <ClInclude Include="ArenaFieldWinSocket.h" />
+    <ClInclude Include="ArenaManager.h" />
+    <ClInclude Include="ArenaTeam.h" />
+    <ClInclude Include="ArenaTickManager.h" />
+    <ClInclude Include="BannedSkills.h" />
+    <ClInclude Include="Cinema.h" />
+    <ClInclude Include="CityLeader.h" />
+    <ClInclude Include="DissolutionItemmanager.h" />
+    <ClInclude Include="FieldDebuff.h" />
+    <ClInclude Include="FieldDot.h" />
+    <ClInclude Include="FieldServer.h" />
+    <ClInclude Include="GiveItemManager.h" />
+    <ClInclude Include="GuildDamageManager.h" />
+    <ClInclude Include="GuildItemManager.h" />
+    <ClInclude Include="InfinityBase.h" />
+    <ClInclude Include="InfinityBossrush.h" />
+    <ClInclude Include="InfinityDefence.h" />
+    <ClInclude Include="InfinityManager.h" />
+    <ClInclude Include="InfinityMapManager.h" />
+    <ClInclude Include="InfinityMShipBattle.h" />
+    <ClInclude Include="InfinityTickManager.h" />
+    <ClInclude Include="InvokingItemInfo.h" />
+    <ClInclude Include="InvokingItemManager.h" />
+    <ClInclude Include="LetterManager.h" />
+    <ClInclude Include="Main\ArmorCollection.h" />
+    <ClInclude Include="main\AtumFieldDBManager.h" />
+    <ClInclude Include="Main\BazaarManager.h" />
+    <ClInclude Include="Main\BunchCountableItemCount.h" />
+    <ClInclude Include="Main\CallWarpEventManager.h" />
+    <ClInclude Include="Main\CityWar.h" />
+    <ClInclude Include="Main\CityWarManager.h" />
+    <ClInclude Include="Main\CollectionManager.h" />
+    <ClInclude Include="Main\CouponManager.h" />
+    <ClInclude Include="Main\DGAEventManager.h" />
+    <ClInclude Include="Main\DropItemManager.h" />
+    <ClInclude Include="Main\EXPDivisionManager.h" />
+    <ClInclude Include="Main\FieldCharacterQuest.h" />
+    <ClInclude Include="Main\FieldDataManager.h" />
+    <ClInclude Include="Main\FieldGlobal.h" />
+    <ClInclude Include="main\FieldIOCP.h" />
+    <ClInclude Include="main\FieldIOCPSocket.h" />
+    <ClInclude Include="Main\FieldItemManager.h" />
+    <ClInclude Include="Main\FieldMapChannel.h" />
+    <ClInclude Include="main\FieldMapProject.h" />
+    <ClInclude Include="main\FieldMapWorkspace.h" />
+    <ClInclude Include="Main\FieldMonster.h" />
+    <ClInclude Include="Main\FieldODBC.h" />
+    <ClInclude Include="Main\FieldParty.h" />
+    <ClInclude Include="Main\FieldSkillManager.h" />
+    <ClInclude Include="Main\FieldTickManager.h" />
+    <ClInclude Include="Main\FieldTimerManager.h" />
+    <ClInclude Include="Main\GameEventManager.h" />
+    <ClInclude Include="Main\GeneralRequestHandler.h" />
+    <ClInclude Include="Main\GuildWar.h" />
+    <ClInclude Include="Main\HappyHourEventManager.h" />
+    <ClInclude Include="main\IMWinSocket.h" />
+    <ClInclude Include="Main\InflRateManager.h" />
+    <ClInclude Include="Main\InflWarManager.h" />
+    <ClInclude Include="Main\LastHitManager.h" />
+    <ClInclude Include="Main\LogWinSocket.h" />
+    <ClInclude Include="Main\MallAgentConnect.h" />
+    <ClInclude Include="Main\MapOwnership.h" />
+    <ClInclude Include="main\PreWinSocket.h" />
+    <ClInclude Include="Main\QuestMatching.h" />
+    <ClInclude Include="Main\Racing.h" />
+    <ClInclude Include="Main\RacingDemon.h" />
+    <ClInclude Include="Main\ServicePauseManager.h" />
+    <ClInclude Include="Main\WRankingFame.h" />
+    <ClInclude Include="Main\WRankingFameManager.h" />
+    <ClInclude Include="Main\WRankingLevel.h" />
+    <ClInclude Include="Main\WRankingLevelManager.h" />
+    <ClInclude Include="Main\WRankingManager.h" />
+    <ClInclude Include="Main\WRankingPVP.h" />
+    <ClInclude Include="Main\WRankingPVPManager.h" />
+    <ClInclude Include="Main\WRankingServiceManager.h" />
+    <ClInclude Include="MapTriggerManager.h" />
+    <ClInclude Include="MemoryHackHistory.h" />
+    <ClInclude Include="MonthlyArmorManager.h" />
+    <ClInclude Include="OutPost.h" />
+    <ClInclude Include="OutPostManager.h" />
+    <ClInclude Include="PCBangIPManager.h" />
+    <ClInclude Include="PetDataManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Revision.h" />
+    <ClInclude Include="SpeedHackHistory.h" />
+    <ClInclude Include="StatisticsManager.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TriggerCrystalDestroyGroup.h" />
+    <ClInclude Include="TriggerCrystalGroup.h" />
+    <ClInclude Include="TriggerFunction.h" />
+    <ClInclude Include="TriggerFunctionCrystal.h" />
+    <ClInclude Include="TriggerFunctionNGCInflWar.h" />
+    <ClInclude Include="TriggerFunctionNGOutPost.h" />
+    <ClInclude Include="TriggerMapBuffManager.h" />
+    <ClInclude Include="TriggerNGCInflWarMonsterGroup.h" />
+    <ClInclude Include="WarContributionCalculation.h" />
+    <ClInclude Include="Main\WarpRestrictionManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="FieldServer.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuestLoaderLib\QuestLoaderLib.vcxproj">
+      <Project>{ec5cdf7d-051d-4081-8aa6-0a54d5237124}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

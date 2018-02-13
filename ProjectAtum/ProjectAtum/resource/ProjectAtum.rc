@@ -1,0 +1,144 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "../main/resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+
+#ifdef WIKIGAMES_ENG
+	// 2012-12-10 by bhsohn, manifest 적용 - manifest 파일이름은 동일하게 유지한다.
+//	IDR_MANIFEST RT_MANIFEST MOVEABLE PURE "AceOnline.atm.manifest" // 2013-02-13 by bhsohn [캐나다] 매니페스트 일반사용자 모드 제거
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR_YELLOW       CURSOR  DISCARDABLE     "3dgarro.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "atum.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJECT_NAME        "ATUM Client"
+    IDS_DIRECTORY_MAP       ".\\Res-Map\\"
+    IDS_DIRECTORY_OBJECT    ".\\Res-Obj\\"
+    IDS_DIRECTORY_TEXTURE   ".\\Res-Tex\\"
+    IDS_DIRECTORY_EFFECT    ".\\Res-Eff\\"
+    IDS_MENU_LEVEL          "레벨"
+    IDS_MENU_HP             "HP"
+    IDS_MENU_SP             "SP"
+    IDS_MENU_EP             "EP"
+    IDS_MENU_ATTACKCONTROL  "공격 디바이스 파트"
+    IDS_MENU_SPEEDCONTROL   "스피드 디바이스 파트"
+    IDS_MENU_DEFENSECONTROL "방어 디바이스 파트"
+    IDS_MENU_PILOTNAME      "파일럿 이름"
+    IDS_MENU_PILOTRACE      "파일럿 종족"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MENU_GUILD          "소속"
+    IDS_MENU_CHARISMA       "카리스마"
+    IDS_MENU_SOULCONTROL    "정신력"
+    IDS_MENU_LUCK           "행운"
+    IDS_MENU_CREATE_NAME    "이름"
+    IDS_MENU_CREATE_RACE    "종족"
+    IDS_MENU_CREATE_DECA    "데카"
+    IDS_MENU_CREATE_SELECT  "유닛 선택"
+    IDS_MENU_CREATE_PILOTSELECT "파일럿 선택"
+    IDS_MENU_CREATE_BT      "Bomb-Flight Gear"
+    IDS_MENU_CREATE_BT_EXPLAIN 
+                            "전폭기로서 Air-Air와 Air-Ground 기능을 갖춘 기어"
+    IDS_MENU_CREATE_OT      "Multi-Flight Gear"
+    IDS_MENU_CREATE_OT_EXPLAIN "전투 및 보급에 이용 가능한 다목적 기어"
+    IDS_MENU_CREATE_DT      "Amor-Flight Gear"
+    IDS_MENU_CREATE_DT_EXPLAIN "지상전에 이용가능한 중장갑으로 무장한 기어"
+    IDS_MENU_CREATE_ST      "Interception-Flight Gear"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MENU_CREATE_ST_EXPLAIN "Air-Air 기능을 위해 개발된 전투 요격 기어"
+    IDS_MENU_CREATE_BATTALUS "바탈러스"
+    IDS_MENU_CREATE_ATTACKCONTROL "공격 디바이스 파트"
+    IDS_MENU_CREATE_SPEEDCONTROL "스피드 디바이스 파트"
+    IDS_MENU_CREATE_DEFENSECONTROL "방어 디바이스 파트"
+    IDS_MSGBOX_DELETE_UNIT  "정말로 삭제하시겠습니까?"
+    IDS_MSGBOX_INPUT_NAME   "이름을 입력하세요."
+    IDS_MSGBOX_CREATE_UNIT  "새 유닛을 생성하시겠습니까?"
+    IDS_MSGBOX_CREATEERROR_NOSLOT "더이상 유닛을 생성할 수 없습니다."
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

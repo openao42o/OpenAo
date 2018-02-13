@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c4b5b3e8-f2df-4556-a8e7-390aa6458507}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{f411e50e-8458-414e-9b7c-d7e54195633a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{0b76e07c-0500-441d-8f7d-c2e6d44a0bb3}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Atum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AtumDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main\PreUpdateWinSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\selectgameserverdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\AtumParamProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\AtumParamProtocolFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\HttpManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Iexplore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\FTP\KbcBmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\FTP\KbcButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\ListBoxEBX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\MGameDecryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\RegistryControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\SocketHeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\WinSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\XOR_Lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Atum.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Atum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AtumDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main\PreUpdateWinSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\selectgameserverdlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\Contents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\HttpManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\IExplore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\ListBoxEBX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\LocalizationDefineCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\MGameDecryption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\RegistryControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\StringDefineServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\WinPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\WinSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="atum.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Atum.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BtnGameServer9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LoginServer_BG_r1_c1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LoginServer_BG_r3_c1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LoginServer_BG_r4_c1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LoginServer_ListItemBG.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LoginServerListItemBG.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\TitleBar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\148.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\149.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\Atum.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

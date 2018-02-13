@@ -1,0 +1,337 @@
+################################################################################
+# <ÆÄÀÏ »ç¿ë¹ý ¹× ÁÖÀÇ »çÇ×>
+################################################################################
+# - ½ºÆ®¸µÀ» »ç¿ëÇÒ ¶§´Â ²À ÀÛÀºµû¿ÈÇ¥(')¸¦ »ç¿ëÇØÁÖ¼¼¿ä. Å«µû¿ÈÇ¥(")´Â ÀÎ½ÄµÇÁö
+#   ¾Ê½À´Ï´Ù.
+# - »ç¿ëÀÚ º¯¼ö Á¤ÀÇ´Â ´ÙÀ½°ú °°Àº Çü½ÄÀ¸·Î ÇØÁÖ¼¼¿ä.
+#      $¼ýÀÚº¯¼ö¸í = 1;
+#      $¹®ÀÚº¯¼ö¸í = '¹®ÀÚ°ª';
+#   C/C++ ÀÇ #define°ú µ¿ÀÏÇÏ´Ù°í »ý°¢ÇÏ½Ã¸é µË´Ï´Ù.
+################################################################################
+# ¸í·É¾î Á¤¸®
+################################################################################
+## BASIC_INFO
+#	
+# QUEST_INDEX			Äù½ºÆ®ÀÇ °íÀ¯ ÀÎµ¦½º ³Ñ¹ö 
+# QUEST_NAME			Äù½ºÆ®ÀÇ ÀÌ¸§ ''			
+# QUEST_TYPE			Äù½ºÆ®ÀÇ Å¸ÀÔ				
+# QUEST_START_TYPE		Äù½ºÆ®ÀÇ ½ÃÀÛ Å¸ÀÔ		
+# QUEST_END_TYPE		Äù½ºÆ®ÀÇ ³¡ Å¸ÀÔ			
+# NPC_INDEX				Äù½ºÆ®¸¦ ºÎ¿©ÇÏ´Â NPC ÀÎµ¦½º ³Ñ¹ö				
+# PRE_TALK				Äù½ºÆ® ½ÃÀÛ ´ëÈ­ ''				
+# FAIL_TALK				Äù½ºÆ® Áß°£ ´ëÈ­ ''				
+# SUCCESS_TALK			Äù½ºÆ® ¸¶Áö¸· ´ëÈ­ ''
+# EVENT_MAP				Äù½ºÆ®°¡ ÁøÇàµÇ´Â ¸ã FORM XÁÂÇ¥,YÁÂÇ¥,R¹ÝÁö¸§
+# NEXT_QUEST_INDEX      ¿¬¼ÓÀûÀ¸·Î ÁøÇàÇØ¾ß ÇÏ´Â ´ÙÀ½ Äù½ºÆ® ÀÎµ¦½º
+#
+## START_REQ
+#
+# S_REQ_UNIT_KIND		Äù½ºÆ®¸¦ ºÎ¿©¹ÞÀ» ¼ö ÀÖ´Â À¯´Ö Á¾·ù
+# S_REQ_LEVEL			Äù½ºÆ®¸¦ ºÎ¿©¹ÞÀ» ¼ö ÀÖ´Â ·¹º§	
+# S_PAY_OBJECT			Äù½ºÆ® ½Ã EVENT_MAP¿¡ ¹ß»ýÇÏ´Â ¿ÀºêÁ§Æ®
+# S_REQ_QUEST_INDEX		Äù½ºÆ®¸¦ ºÎ¿©¹ÞÀ» ¼ö ÀÖ´Â Äù½ºÆ® ¿ä°Ç ÀÎµ¦½º
+#
+## START_ACTION
+# S_PAY_ITEM			Äù½ºÆ® ½Ã ºÎ¿©µÇ´Â ¾ÆÀÌÅÛ
+# S_PAY_ITEM			= ¾ÆÀÌÅÛÄÚµå(ÃÑÁö±Þ¾ÆÀÌÅÛ) ATTACH Áö±ÝµÈ ¾ÆÀÌÅÛÀ» °­Á¦ ÀåÂø
+# S_PAY_ITEM			= 7002690(ÃÑÁö±Þ¾ÆÀÌÅÛ) FORM MONSTER ¸ó½ºÅÍÄÚµå(Áö±Þ¾ÆÀÌÅÛ,¾ÆÀÌÅÛÃÖ¼Ò~¾ÆÀÌÅÛÃÖ´ë,10000È®·ü)
+#
+## COMPLETION_REQ
+# C_REQ_ITEM			Äù½ºÆ® ÇØ°áÀ» À§ÇØ ÀÖ¾î¾ß ÇÏ´Â ¾ÆÀÌÅÛ
+# C_REQ_MEET_NPC_INDEX	Äù½ºÆ® ÇØ°áÀ» À§ÇØ ¸¸³ª¾ß ÇÏ´Â NPC
+# C_REQ_MEET_OBJ_INDEX	Äù½ºÆ® ÇØ°áÀ» À§ÇØ ¸¸³ª¾ß ÇÏ´Â ¿ÀºêÁ§Æ®	
+#
+## COMPLETION_ACTION
+# C_DEL_ITEM			Äù½ºÆ® Á¾·á ½Ã »èÁ¦µÇ´Â ¾ÆÀÌÅÛ
+# C_PAY_ITEM			Äù½ºÆ® Á¾·á ½Ã Áö±ÞµÇ´Â ¾ÆÀÌÅÛ
+#
+#
+#
+################################################################################
+# »ç¿ëÀÚ Á¤ÀÇ º¯¼ö
+################################################################################
+## QUEST TYPE
+$QUEST_TYPE_SINGLE					= 0;	# 1È¸¼º QUEST
+$QUEST_TYPE_SERIES					= 1;	# ¿¬¼Ó¼º QUEST
+$QUEST_TYPE_REPEATABLE				= 2;	# ¹«ÇÑ ¹Ýº¹ QUEST
+ 
+## QUEST START TYPE
+$QUEST_START_TYPE_LEVEL_CHANGE		= 0;	# LEVEL º¯È­ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
+$QUEST_START_TYPE_EXP_CHANGE		= 1;	# EXP º¯È­ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
+$QUEST_START_TYPE_MEET_NPC			= 2;	# Æ¯Á¤ NPC¸¦ ¸¸³µÀ» ¶§ ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
+$QUEST_START_TYPE_ENTER_BUILDING	= 3;	# Æ¯Á¤ °Ç¹°¿¡ µé¾î°¬À» ¶§ ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
+$QUEST_START_TYPE_ITEM_CLICK		= 4;	# ¾ÆÀÌÅÛÀ» Å¬¸¯ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
+
+## QUEST END TYPE
+$QUEST_END_TYPE_IMMEDIATE			= 0;	# ½ÃÀÛ°ú ÇÔ²² ¹Ù·Î ³¡³ª´Â QUEST, Å¬¶óÀÌ¾ðÆ®´Â ¼­¹öÀÇ QUEST Á¾·á ¸Þ½ÃÁö¸¦ ¹ÞÀ» ¶§ ±îÁö ±â´Ù¸®¸é µÊ
+$QUEST_END_TYPE_REQESTED_BY_CLIENT	= 1;	# Å¬¶óÀÌ¾ðÆ®ÀÇ ¿äÃ»°ú ±×¿¡ ´ëÇÑ ¼­¹öÀÇ °Ë»ç¿¡ ÀÇÇØ ³¡³ª´Â QUEST
+
+## UNITKIND
+$UNITKIND_BGEAR						= 15;
+$UNITKIND_MGEAR						= 240;
+$UNITKIND_AGEAR						= 3840;
+$UNITKIND_IGEAR						= 61440;
+$UNITKIND_ALL						= 65535;
+#$UNITKIND_TRNSUNIT					= ¸ó½ºÅÍ³Ñ¹ö;
+
+## ITEM
+$SPI								= 7000022;
+
+## ¹®ÀÚ »ç¿ëÀÚ º¯¼ö ¿¹Á¦
+$SHOP_NPC_NAME						= 'ºñÁê ¶óÀÌ¾ð';
+################################################################################
+#####ÁÙ°Å¸® ¹Ì¼Ç################################################################
+quest (1001)
+{
+	BASIC_INFO				# ±âº» Á¤º¸
+	{
+		QUEST_INDEX				= 1001;
+		QUEST_NAME				= 'Ã¹ ¼ö¼Û ÀÓ¹«';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6; 
+		PRE_TALK				= '¹¹¿©? ÇÔ ÇØº¼²¸?';
+		FAIL_TALK				= '¾ÆÁ÷µµ ¸øÇÑ°Ü? ¹Ùº¸';
+		SUCCESS_TALK			= '¹Ùº» ÁÙ ¾Ë¾Ò´õ´Ï Àß ÇÏ´Â±¸¸¸';		
+	};
+	
+	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (1~);
+	};
+	
+	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		S_PAY_ITEM				= 7002700(1);
+		S_PAY_ITEM				= 7001190(1) ATTACH;
+	};
+	
+	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+	{
+		C_REQ_ITEM				= 7001190(1);
+		C_REQ_MEET_NPC_INDEX	= 1;
+	};
+	
+	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		C_DEL_ITEM				= 7002700(1);
+		C_DEL_ITEM				= 7001190(ALL);
+		C_PAY_ITEM				= $SPI(1000);
+	};
+};
+
+quest (1002)
+{
+	BASIC_INFO				# ±âº» Á¤º¸
+	{
+		QUEST_INDEX				= 1002;
+		QUEST_NAME				= 'Âø·úÀå ¾öÈ£';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6; 
+		PRE_TALK				= 'Âø·úÀå ¾öÈ£ÀÎµ¥ ÇÔ ÇØº¼²¸?';
+		FAIL_TALK				= '¾ÆÁ÷µµ ¸øÇÑ°Ü? ¹Ùº¸';
+		SUCCESS_TALK			= '¹Ùº» ÁÙ ¾Ë¾Ò´õ´Ï Àß ÇÏ´Â±¸¸¸';
+		EVENT_MAP				= 3002; #FORM X50,Y150,R500;
+	};
+	
+	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (2~);
+	};
+	
+	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		S_PAY_ITEM				= 7002700(1);
+	};
+	
+	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+	{
+		C_REQ_ITEM				= 7001190(1);
+		C_REQ_ITEM				= 7002690(20) FROM MONSTER (02002300, 1~1, 10000);
+		C_REQ_MEET_NPC_INDEX	= 6;
+	};
+
+	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		C_DEL_ITEM				= 7002700(1);
+		C_DEL_ITEM				= 7002690(ALL);
+		C_PAY_ITEM				= $SPI(2000);
+	};
+};
+
+#quest (1003)
+#{
+#	BASIC_INFO				# ±âº» Á¤º¸
+#	{
+#		QUEST_INDEX				= 1003;
+#		QUEST_NAME				= 'ÀÒ¾î¹ö¸° ¼ö¼Û¼±';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '¼ö¼Û¼±À» Ã£¾Æº¸¼¼¿°';
+#		FAIL_TALK				= '¾ÆÁ÷µµ ¸øÇÑ°Ü? ¹Ùº¸';
+#		SUCCESS_TALK			= 'ÀßÇß½º';
+#		EVENT_MAP				= 3002 FORM X110,Y230,R30;
+#	};
+#	
+#	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (3~);
+#	};
+#	
+#	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_OBJECT			= ¿ÀºêÁ§Æ® ÀÎµ¦½º;	
+#	};
+#	
+#	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+#	{
+#		C_REQ_ITEM				= 7001190(1);
+#		C_REQ_MEET_OBJ_INDEX	= ¿ÀºêÁ§Æ® ÀÎµ¦½º;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_PAY_ITEM				= $SPI(3000);
+#	};
+#};
+#
+#quest (1004)
+#{
+#	BASIC_INFO				# ±âº» Á¤º¸
+#	{
+#		QUEST_INDEX				= 1004;
+#		QUEST_NAME				= '±ä±Þ ¸í·É';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '¼ö¼Û¼±À» µ¥¸®°í ¿À¼¼!';
+#		FAIL_TALK				= '»¡¸® °¡¾ß ÀÖÀ»°É?';
+#		SUCCESS_TALK			= 'ÀßÇß½º';
+#		EVENT_MAP				= 3002 FORM X110,Y230,R30;
+#	};
+#	
+#	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (4~);
+#	};
+#	
+#	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_OBJECT			= ¿ÀºêÁ§Æ® ÀÎµ¦½º;	
+#	};
+#	
+#	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+#	{
+#		C_REQ_ITEM				= 7001190(1);
+#		C_REQ_MEET_OBJ_INDEX	= ¿ÀºêÁ§Æ® ÀÎµ¦½º;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_PAY_ITEM				= $SPI(4000);
+#	};
+#};
+#
+#quest (1005)
+#{
+#	BASIC_INFO				# ±âº» Á¤º¸
+#	{
+#		QUEST_INDEX				= 1005;
+#		QUEST_NAME				= 'Ã¹ ¿øÁ¤ ÀÓ¹«';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '´Ù¸¥ °÷À¸·Î °¡¼­ ´Ù Àü¸ê ½ÃÄÑ ¹ö¸®¼¼!';
+#		FAIL_TALK				= '»¡¸® °¡¾ß ÀÖÀ»°É?';
+#		SUCCESS_TALK			= 'ÀßÇß½º';
+#		EVENT_MAP				= 3002 FORM X40,Y235,0;
+#	};
+#	
+#	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (5~);
+#		S_REQ_QUEST_INDEX		= 1004;
+#	};
+#	
+#	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_NPC				= $UNITKIND_TRNSUNIT FORM PATTERN ÆÐÅÏ ³Ñ¹ö;
+#		S_PAY_MONSTER			= 2005600(5) FORM PATTERN ÆÐÅÏ³Ñ¹ö;
+#	};
+#	
+#	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+#	{
+#		C_REQ_NPC				= $UNITKIND_TRNSUNIT;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_DEL_NPC				= $UNITKIND_TRNSUNIT(ALL);
+#		C_PAY_ITEM				= $SPI(5000);
+#	};
+#};
+#
+################################################################################
+##´Ü¼ø ¹Ì¼Ç#####################################################################
+quest (5001)
+{
+	BASIC_INFO				# ±âº» Á¤º¸
+	{
+		QUEST_INDEX				= 5001;
+		QUEST_NAME				= '½ºÇÇ Åä¹ú';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6;
+		PRE_TALK				= 'ÀÌ¹ø°Ç ½ºÇÇ 1¸¶¸® Àâ´Â°Ü? Áö°ã´Ù°í? ÈÆÀåÁÙ²² ÇÔÇØºÁ';
+		FAIL_TALK				= 'Áö°ã³Ä? Áö°Ü¿ì¸é ÇÏÁö¸¶.';
+		SUCCESS_TALK			= '³ë°¡´Ù¿¡ °­ÇÑµ¥? ÀÚ ÈÆÀå°¡Á®¶ó.';		
+		EVENT_MAP				= 3002;
+	};
+
+	START_REQ				# Äù½ºÆ® ½ÃÀÛ Á¶°Ç
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (1~10);
+	};
+
+	START_ACTION			# Äù½ºÆ® ½ÃÀÛ ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		S_PAY_ITEM				= 7002700(1);
+	};
+
+	COMPLETION_REQ		# Äù½ºÆ® ¼º°ø(ÇØ°á) Á¶°Ç
+	{
+		C_REQ_MEET_NPC_INDEX	= 6;
+		C_REQ_ITEM				= 7002680(1) FROM MONSTER (2002500, 1 ~ 1, 10000); #»ç³ÉÇÏ´Â ¸ó½ºÅÍ·Î ºÎÅÍ ³ª¿À´Â ¾ÆÀÌÅÛ
+	};	
+
+	COMPLETION_ACTION		# Äù½ºÆ® ¼º°ø ½Ã Ä³¸¯ÅÍ¿¡°Ô ÇØ ÁÖ´Â ÀÏ
+	{
+		C_DEL_ITEM				= 7002700(ALL);
+		C_DEL_ITEM				= 7002680(ALL);
+		C_PAY_ITEM				= $SPI(100);
+	};
+};	
+		ÿ

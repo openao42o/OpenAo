@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="D_DevX|Win32">
+      <Configuration>D_DevX</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DevX_Arena|Win32">
+      <Configuration>R_DevX_Arena</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DevX|Win32">
+      <Configuration>R_DevX</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="TEST|Win32">
+      <Configuration>TEST</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{DF80B110-96AD-4029-A26E-BDDC1DAD4ACA}</ProjectGuid>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Client/Release/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+    <TargetName>Launcher</TargetName>
+    <TargetExt>.atm</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Client/Release/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+    <TargetName>Launcher</TargetName>
+    <TargetExt>.atm</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Client/Test/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Release</LibraryPath>
+    <TargetName>Launcher</TargetName>
+    <TargetExt>.atm</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">
+    <OutDir>$(SolutionDir)../../BuildResult/Client/Debug/</OutDir>
+    <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib;$(SolutionDir)..\..\BuildResult\Lib\Debug</LibraryPath>
+    <TargetName>Launcher_dbg</TargetName>
+    <TargetExt>.atm</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;..\CommonGameServer\FTP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent />
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;SERVICE_TYPE_ENGLISH_SERVER_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libci.lib;MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;ziparchive.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy .\res\DEFAULT .\res /Y /Q
+xcopy .\res\WIKIGAMES_ENG .\res /Y /Q</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>#### Launcher Resource Copy ####</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;..\CommonGameServer\FTP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent />
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;SERVICE_TYPE_ENGLISH_SERVER_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libci.lib;MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;ziparchive.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy .\res\DEFAULT .\res /Y /Q
+xcopy .\res\WIKIGAMES_ENG .\res /Y /Q</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>#### Launcher Resource Copy ####</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;..\CommonGameServer\FTP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent />
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;SERVICE_TYPE_ENGLISH_SERVER_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\AtumLauncher___Win32_R_Wikigames_Eng\AtumLauncher.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libci.lib;MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;ziparchive.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> /MAPINFO:EXPORTS</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy .\res\DEFAULT .\res /Y /Q
+xcopy .\res\WIKIGAMES_ENG .\res /Y /Q</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>#### Launcher Resource Copy ####</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>.;..\..\Common;.\Main;..\CommonGameServer;..\CommonGameServer\FTP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <PreLinkEvent />
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\AtumLauncher___Win32_D_Wikigames_Eng\AtumLauncher.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\AtumLauncher___Win32_D_Wikigames_Eng\AtumLauncher.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>MSVCRT;%(IgnoreSpecificDefaultLibraries);libci.lib;libcmt.lib</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>../../Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;ZipArchiveD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PreBuildEvent>
+      <Command>xcopy .\res\DEFAULT .\res /Y /Q
+xcopy .\res\WIKIGAMES_ENG .\res /Y /Q</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>#### Launcher Resource Copy ####</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Common\MachineID.cpp" />
+    <ClCompile Include="..\..\..\Common\md5_lib_src.cpp" />
+    <ClCompile Include="..\..\..\Common\Random.cpp" />
+    <ClCompile Include="..\..\..\Common\SocketHeader.cpp" />
+    <ClCompile Include="..\..\..\Common\SystemLogManager.cpp" />
+    <ClCompile Include="..\..\..\Common\WinSocket.cpp" />
+    <ClCompile Include="..\..\..\Common\XOR_Lib.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumDateTime.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumParamProtocol.cpp" />
+    <ClCompile Include="..\..\..\Common\AtumParamProtocolFunctions.cpp" />
+    <ClCompile Include="..\..\..\Common\BrowseForFolder.cpp" />
+    <ClCompile Include="..\..\..\Common\CommandHistory.cpp" />
+    <ClCompile Include="..\..\..\Common\FTP\KbcBmp.cpp" />
+    <ClCompile Include="..\..\..\Common\FTP\KbcButton.cpp" />
+    <ClCompile Include="..\..\..\Common\FTP\ProgressCtrlX.cpp" />
+    <ClCompile Include="..\..\..\Common\HistoryComboBox.cpp" />
+    <ClCompile Include="..\..\..\Common\HttpManager.cpp" />
+    <ClCompile Include="..\..\..\Common\Iexplore.cpp" />
+    <ClCompile Include="..\..\..\Common\ListBoxEBX.cpp" />
+    <ClCompile Include="..\..\..\Common\MGameDecryption.cpp" />
+    <ClCompile Include="..\..\..\Common\RegistryControl.cpp" />
+    <ClCompile Include="..\..\..\Common\Security\md5.cpp" />
+    <ClCompile Include="..\..\..\Common\Security\metafile.cpp" />
+    <ClCompile Include="..\..\..\Common\Security\shieldSecurity.cpp" />
+    <ClCompile Include="..\..\..\Common\Security\shieldSecurityDll.cpp" />
+    <ClCompile Include="..\..\..\Common\Security\utility.cpp" />
+    <ClCompile Include="AtumLauncher.cpp" />
+    <ClCompile Include="AtumLauncherDlg.cpp" />
+    <ClCompile Include="DlgGuardAgreement.cpp" />
+    <ClCompile Include="LoginSuccessDlg.cpp" />
+    <ClCompile Include="Main\comboboxebx.cpp" />
+    <ClCompile Include="Main\MyCheck.cpp" />
+    <ClCompile Include="Main\MyComboBox.cpp" />
+    <ClCompile Include="Main\MyEdit.cpp" />
+    <ClCompile Include="Main\screenkeyboarddlg.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="main\UpdateWinSocket.cpp" />
+    <ClCompile Include="PreServerIPDlg.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AtumLauncher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Common\MachineID.h" />
+    <ClInclude Include="..\..\..\Common\md5_lib_src.h" />
+    <ClInclude Include="..\..\..\Common\SystemLogManager.h" />
+    <ClInclude Include="..\..\..\Common\BrowseForFolder.h" />
+    <ClInclude Include="..\..\..\Common\CommandHistory.h" />
+    <ClInclude Include="..\..\..\Common\FTP\Drawgdix.h" />
+    <ClInclude Include="..\..\..\Common\FTP\KbcBmp.h" />
+    <ClInclude Include="..\..\..\Common\FTP\KbcButton.h" />
+    <ClInclude Include="..\..\..\Common\FTP\MemDC.h" />
+    <ClInclude Include="..\..\..\Common\FTP\ProgressCtrlX.h" />
+    <ClInclude Include="..\..\..\Common\historycombobox.h" />
+    <ClInclude Include="..\..\..\Common\HttpManager.h" />
+    <ClInclude Include="..\..\..\Common\IExplore.h" />
+    <ClInclude Include="..\..\..\Common\ListBoxEBX.h" />
+    <ClInclude Include="AtumLauncher.h" />
+    <ClInclude Include="AtumLauncherDlg.h" />
+    <ClInclude Include="DlgGuardAgreement.h" />
+    <ClInclude Include="LoginSuccessDlg.h" />
+    <ClInclude Include="Main\comboboxebx.h" />
+    <ClInclude Include="Main\MyCheck.h" />
+    <ClInclude Include="Main\MyComboBox.h" />
+    <ClInclude Include="Main\MyEdit.h" />
+    <ClInclude Include="Main\screenkeyboarddlg.h" />
+    <ClInclude Include="main\UpdateWinSocket.h" />
+    <ClInclude Include="PreServerIPDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="VTCGuardManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="atum.ico" />
+    <Image Include="res\AtumLauncher.ico" />
+    <Image Include="res\BarCenter.bmp" />
+    <Image Include="res\BarLeft.bmp" />
+    <Image Include="res\BarRight.bmp" />
+    <Image Include="res\BatalOff.bmp" />
+    <Image Include="res\BatalOn.bmp" />
+    <Image Include="res\Batle2.bmp" />
+    <Image Include="res\BG_ARG.bmp" />
+    <Image Include="res\BG_VTC.bmp" />
+    <Image Include="res\BG_VTC_mask.bmp" />
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\ButtonDown.bmp" />
+    <Image Include="res\CanCelD.bmp" />
+    <Image Include="res\CancelF.bmp" />
+    <Image Include="res\CanCelU.bmp" />
+    <Image Include="res\CB_Check.bmp" />
+    <Image Include="res\CB_UnCheck.bmp" />
+    <Image Include="res\center.bmp" />
+    <Image Include="res\CloseD.bmp" />
+    <Image Include="res\CloseU.bmp" />
+    <Image Include="res\ComboBox.bmp" />
+    <Image Include="res\DecaOff.bmp" />
+    <Image Include="res\DecaOn.bmp" />
+    <Image Include="res\Decar1.bmp" />
+    <Image Include="res\Decar2.bmp" />
+    <Image Include="res\EditBG.bmp" />
+    <Image Include="res\End1.bmp" />
+    <Image Include="res\End2.bmp" />
+    <Image Include="res\EndOff.bmp" />
+    <Image Include="res\EndOn.bmp" />
+    <Image Include="res\Gear.bmp" />
+    <Image Include="res\Go1.bmp" />
+    <Image Include="res\Go2.bmp" />
+    <Image Include="res\GoBtn.bmp" />
+    <Image Include="res\GoBtn_Arg.bmp" />
+    <Image Include="res\GoBtn_Chn.bmp" />
+    <Image Include="res\GoBtn_S2.bmp" />
+    <Image Include="res\GoBtn_VTC.bmp" />
+    <Image Include="res\GoD.bmp" />
+    <Image Include="res\GoF.bmp" />
+    <Image Include="res\Gooff.bmp" />
+    <Image Include="res\Goon.bmp" />
+    <Image Include="res\GoU.bmp" />
+    <Image Include="res\GoX.bmp" />
+    <Image Include="res\HomepageD.bmp" />
+    <Image Include="res\HomepageF.bmp" />
+    <Image Include="res\HomepageU.bmp" />
+    <Image Include="res\icon_VTC.bmp" />
+    <Image Include="res\Idb_Login.bmp" />
+    <Image Include="res\Join1.bmp" />
+    <Image Include="res\Join2.bmp" />
+    <Image Include="res\JoinBtn.bmp" />
+    <Image Include="res\JoinD.bmp" />
+    <Image Include="res\JoinF.bmp" />
+    <Image Include="res\JoinOff.bmp" />
+    <Image Include="res\JoinOn.bmp" />
+    <Image Include="res\JoinU.bmp" />
+    <Image Include="res\key_0.bmp" />
+    <Image Include="res\key_0_OnShift.bmp" />
+    <Image Include="res\key_1.bmp" />
+    <Image Include="res\key_1_OnShift.bmp" />
+    <Image Include="res\key_2.bmp" />
+    <Image Include="res\key_2_OnShift.bmp" />
+    <Image Include="res\key_3.bmp" />
+    <Image Include="res\key_3_OnShift.bmp" />
+    <Image Include="res\key_4.bmp" />
+    <Image Include="res\key_4_on.bmp" />
+    <Image Include="res\key_4_OnShift.bmp" />
+    <Image Include="res\key_5.bmp" />
+    <Image Include="res\key_5_OnShift.bmp" />
+    <Image Include="res\key_6.bmp" />
+    <Image Include="res\key_6_OnShift.bmp" />
+    <Image Include="res\key_7.bmp" />
+    <Image Include="res\key_7_OnShift.bmp" />
+    <Image Include="res\key_8.bmp" />
+    <Image Include="res\key_8_OnShift.bmp" />
+    <Image Include="res\key_9.bmp" />
+    <Image Include="res\key_9_OnShift.bmp" />
+    <Image Include="res\key_a.bmp" />
+    <Image Include="res\key_a_OnShift.bmp" />
+    <Image Include="res\key_b.bmp" />
+    <Image Include="res\key_backSpace.bmp" />
+    <Image Include="res\key_b_OnShift.bmp" />
+    <Image Include="res\key_c.bmp" />
+    <Image Include="res\key_CapsLock.bmp" />
+    <Image Include="res\key_CapsLock_On.bmp" />
+    <Image Include="res\key_c_OnShift.bmp" />
+    <Image Include="res\key_d.bmp" />
+    <Image Include="res\key_d_OnShift.bmp" />
+    <Image Include="res\key_e.bmp" />
+    <Image Include="res\key_e1.bmp" />
+    <Image Include="res\key_Enter.bmp" />
+    <Image Include="res\key_e_OnShift.bmp" />
+    <Image Include="res\key_f.bmp" />
+    <Image Include="res\key_f_OnShift.bmp" />
+    <Image Include="res\key_g.bmp" />
+    <Image Include="res\key_g_OnShift.bmp" />
+    <Image Include="res\key_h.bmp" />
+    <Image Include="res\key_h_OnShift.bmp" />
+    <Image Include="res\key_i.bmp" />
+    <Image Include="res\key_i_OnShift.bmp" />
+    <Image Include="res\key_j.bmp" />
+    <Image Include="res\key_j_OnShift.bmp" />
+    <Image Include="res\key_k.bmp" />
+    <Image Include="res\key_k_OnShift.bmp" />
+    <Image Include="res\key_l.bmp" />
+    <Image Include="res\key_l_OnShift.bmp" />
+    <Image Include="res\key_m.bmp" />
+    <Image Include="res\key_m_OnShift.bmp" />
+    <Image Include="res\key_n.bmp" />
+    <Image Include="res\key_n_OnShift.bmp" />
+    <Image Include="res\key_o.bmp" />
+    <Image Include="res\key_o_OnShift.bmp" />
+    <Image Include="res\key_p.bmp" />
+    <Image Include="res\key_p_OnShift.bmp" />
+    <Image Include="res\key_q.bmp" />
+    <Image Include="res\key_q_OnShift.bmp" />
+    <Image Include="res\key_r.bmp" />
+    <Image Include="res\key_r_OnShift.bmp" />
+    <Image Include="res\key_s.bmp" />
+    <Image Include="res\key_Shift.bmp" />
+    <Image Include="res\key_Shift_On.bmp" />
+    <Image Include="res\key_Space.bmp" />
+    <Image Include="res\key_s_OnShift.bmp" />
+    <Image Include="res\key_t.bmp" />
+    <Image Include="res\key_t_OnShift.bmp" />
+    <Image Include="res\key_u.bmp" />
+    <Image Include="res\key_u_OnShift.bmp" />
+    <Image Include="res\key_v.bmp" />
+    <Image Include="res\key_v_OnShift.bmp" />
+    <Image Include="res\key_w.bmp" />
+    <Image Include="res\key_w_OnShift.bmp" />
+    <Image Include="res\key_x.bmp" />
+    <Image Include="res\key_x_OnShift.bmp" />
+    <Image Include="res\key_y.bmp" />
+    <Image Include="res\key_y_OnShift.bmp" />
+    <Image Include="res\key_z.bmp" />
+    <Image Include="res\key_z_OnShift.bmp" />
+    <Image Include="res\ListBg_VTC.bmp" />
+    <Image Include="res\ListBg_VTC_mask.bmp" />
+    <Image Include="res\MinD.bmp" />
+    <Image Include="res\MinF.bmp" />
+    <Image Include="res\MinU.bmp" />
+    <Image Include="res\OK.bmp" />
+    <Image Include="res\OkD.bmp" />
+    <Image Include="res\OKU.bmp" />
+    <Image Include="res\Philon2.bmp" />
+    <Image Include="res\PilonOff.bmp" />
+    <Image Include="res\PilonOn.bmp" />
+    <Image Include="res\ScreenKeyboard.bmp" />
+    <Image Include="res\ScreenKeyboard_Mask.bmp" />
+    <Image Include="res\Scr_Login.bmp" />
+    <Image Include="res\Secret1.bmp" />
+    <Image Include="res\Secret2.bmp" />
+    <Image Include="res\SecretOff.bmp" />
+    <Image Include="res\SecretOn.bmp" />
+    <Image Include="res\ServerList.bmp" />
+    <Image Include="res\ServerUser.bmp" />
+    <Image Include="res\ServerUser_VTC.bmp" />
+    <Image Include="res\Sharin2.bmp" />
+    <Image Include="res\SharinOff.bmp" />
+    <Image Include="res\SharinOn.bmp" />
+    <Image Include="res\Titlebar.bmp" />
+    <Image Include="res\Titlebar_Arg.bmp" />
+    <Image Include="res\Titlebar_mask.bmp" />
+    <Image Include="res\update_bar.bmp" />
+    <Image Include="res\UseClass.BMP" />
+    <Image Include="res\x.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\AtumLauncher.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AtumLauncherModifyList.txt" />
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="AtumLauncher.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CalculatorTest - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP7810.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "YY_NEVER_INTERACTIVE" /D "WIN32" /D "_MBCS" /D "_ATUM_DATA_LOADER" /Fp"..\..\output\Calculator\Debug/CalculatorTest.pch" /YX /Fo"..\..\output\Calculator\Debug/" /Fd"..\..\output\Calculator\Debug/" /FD /GZ /c 
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\CalculatorTest\CalculatorTest.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\CalculatorTest\CalculatorTest.l.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\CalculatorTest\CalculatorTestParser.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\CalculatorTest\main.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\CalculatorTest\SymTab.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP7810.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP7811.tmp" with contents
+[
+libflex.lib /nologo /incremental:yes /pdb:"..\..\output\Calculator\Debug/CalculatorTest.pdb" /debug /machine:I386 /out:"..\..\output\Calculator\Debug/CalculatorTest.exe" /pdbtype:sept 
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\Calculator\Debug\CalculatorTest.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\Calculator\Debug\CalculatorTest.l.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\Calculator\Debug\CalculatorTestParser.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\Calculator\Debug\main.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\Calculator\Debug\SymTab.obj"
+]
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP7811.tmp"
+<h3>Output Window</h3>
+Compiling...
+CalculatorTest.cpp
+CalculatorTest.l.cpp
+CalculatorTestParser.cpp
+main.cpp
+SymTab.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+CalculatorTest.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

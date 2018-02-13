@@ -1,0 +1,1 @@
+select * from ti_item where itemnum / 1000000 = 8 and itemnum % 10 <> 0 and itemnum <> sourceindex and kind = 60

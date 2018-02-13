@@ -1,0 +1,5 @@
+#define _NO_HACKSHIELD
+#define COLLCHECKLAG
+#define FPSIMPROVEMENTS
+#define ARESBETA
+#define SERVERCONSOLE

@@ -1,0 +1,283 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Atum_LoadGen.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Atum_LoadGen.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Atum_LoadGen 정보"
+FONT 9, "굴림"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Atum_LoadGen 버전 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_ATUM_LOADGEN_DIALOG DIALOGEX 0, 0, 279, 323
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Atum_LoadGen"
+FONT 9, "굴림"
+BEGIN
+    EDITTEXT        IDC_EDIT_FIELD_SERVER_IP,92,7,58,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CLIENT_COUNT,92,24,32,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CPM,92,40,38,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CHARACTER_NAME_START,139,56,29,12,
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_X_START,38,85,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_X_END,78,85,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Y,38,99,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Z_START,38,113,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Z_END,78,113,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPEED,239,85,26,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SEND_MOVE_COUNT,239,99,26,14,ES_AUTOHSCROLL
+    CONTROL         "Primary Weapon Attack",IDC_CHECK_ATTACK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,151,99,15,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Start",IDC_BTN_START,11,270,54,14
+    PUSHBUTTON      "Suspend",IDC_BTN_SUSPEND,78,270,54,14,WS_DISABLED
+    PUSHBUTTON      "Stop",IDC_BTN_STOP,145,270,54,14,WS_DISABLED
+    EDITTEXT        IDC_EDIT_FIELD_SERVER_PORT,181,7,24,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CHARACTER_NAME,92,56,46,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_CHARACTER_NAME_END,176,56,29,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "종  료",IDOK,222,302,50,14
+    LTEXT           "Field Server IP :",IDC_STATIC,36,9,52,9
+    LTEXT           "Max Client Count :",IDC_STATIC,26,27,62,9
+    LTEXT           "Reconnect Time :",IDC_STATIC,29,42,58,9
+    GROUPBOX        " Move Setting ",IDC_STATIC,7,76,264,56
+    LTEXT           "X 좌표:",IDC_STATIC,12,88,23,9
+    LTEXT           "Y 좌표:",IDC_STATIC,12,102,23,9
+    LTEXT           "~",IDC_STATIC,68,87,8,9
+    LTEXT           "~",IDC_STATIC,69,116,8,9
+    LTEXT           "Z 좌표:",IDC_STATIC,12,116,23,9
+    LTEXT           "Connected Count :",IDC_STATIC,11,294,61,9
+    EDITTEXT        IDC_EDIT_CONNECTED_COUNT,73,289,27,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Account and Character :",IDC_STATIC,8,58,79,9
+    LTEXT           "~",IDC_STATIC,168,59,8,9
+    LTEXT           "Port :",IDC_STATIC,161,9,17,8
+    LTEXT           "Connect Failed :",IDC_STATIC,121,293,53,9
+    EDITTEXT        IDC_EDIT_CONNECTED_FAILED,179,289,29,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Speed:",IDC_STATIC,213,88,23,9
+    LTEXT           "Send Move Count / second :",IDC_STATIC,141,103,94,9
+    LTEXT           "ms",IDC_STATIC,133,43,15,9
+    GROUPBOX        "Attack Setting",IDC_STATIC,7,136,265,59
+    CONTROL         "Secondary Weapon Attack",IDC_CHECK_ATTACK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,176,99,15,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_REATTACKTIME_1,168,152,26,14,ES_AUTOHSCROLL
+    LTEXT           "ReAttackTime:",IDC_STATIC,118,155,47,9
+    LTEXT           "ms",IDC_STATIC,196,155,15,9
+    EDITTEXT        IDC_EDIT_REATTACKTIME_2,168,175,26,14,ES_AUTOHSCROLL
+    LTEXT           "ReAttackTime:",IDC_STATIC,118,178,47,9
+    LTEXT           "ms",IDC_STATIC,196,178,15,9
+    PUSHBUTTON      "Analyze WriteBufData",IDC_BTN_ANALYZE_PACKET,180,220,92,
+                    14
+END
+
+IDD_DLG_ANALYZE_PACKET DIALOG DISCARDABLE  0, 0, 416, 81
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Analyze Packet"
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "End",IDCANCEL,359,60,50,14
+    LTEXT           "FilePath :",IDC_STATIC,7,14,32,8
+    EDITTEXT        IDC_EDIT_FILE_PATH,41,11,350,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BTN_FIND_FILE,392,11,17,14
+    PUSHBUTTON      "Analyze",IDC_BTN_ANALYZE,41,28,50,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,1,5
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Atum_LoadGen MFC 응용 프로그램\0"
+            VALUE "FileVersion", "1, 0, 1, 5\0"
+            VALUE "InternalName", "Atum_LoadGen\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Atum_LoadGen.EXE\0"
+            VALUE "PrivateBuild", "1323\0"
+            VALUE "ProductName", "Atum_LoadGen 응용 프로그램\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "20080319\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ATUM_LOADGEN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 316
+    END
+
+    IDD_DLG_ANALYZE_PACKET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 409
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "Atum_LoadGen 정보(&A)..."
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\Atum_LoadGen.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

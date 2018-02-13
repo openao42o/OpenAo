@@ -1,0 +1,338 @@
+################################################################################
+# <파일 사용법 및 주의 사항>
+################################################################################
+# - 스트링을 사용할 때는 꼭 작은따옴표(')를 사용해주세요. 큰따옴표(")는 인식되지
+#   않습니다.
+# - 사용자 변수 정의는 다음과 같은 형식으로 해주세요.
+#      $숫자변수명 = 1;
+#      $문자변수명 = '문자값';
+#   C/C++ 의 #define과 동일하다고 생각하시면 됩니다.
+################################################################################
+# 명령어 정리
+################################################################################
+## BASIC_INFO
+#	
+# QUEST_INDEX			퀘스트의 고유 인덱스 넘버 
+# QUEST_NAME			퀘스트의 이름 ''			
+# QUEST_TYPE			퀘스트의 타입				
+# QUEST_START_TYPE		퀘스트의 시작 타입		
+# QUEST_END_TYPE		퀘스트의 끝 타입			
+# NPC_INDEX				퀘스트를 부여하는 NPC 인덱스 넘버				
+# PRE_TALK				퀘스트 시작 대화 ''				
+# FAIL_TALK				퀘스트 중간 대화 ''				
+# SUCCESS_TALK			퀘스트 마지막 대화 ''
+# EVENT_MAP				퀘스트가 진행되는 멥 FORM X좌표,Y좌표,R반지름
+# NEXT_QUEST_INDEX      연속적으로 진행해야 하는 다음 퀘스트 인덱스
+#
+## START_REQ
+#
+# S_REQ_UNIT_KIND		퀘스트를 부여받을 수 있는 유닛 종류
+# S_REQ_LEVEL			퀘스트를 부여받을 수 있는 레벨	
+# S_PAY_OBJECT			퀘스트 시 EVENT_MAP에 발생하는 오브젝트
+# S_REQ_QUEST_INDEX		퀘스트를 부여받을 수 있는 퀘스트 요건 인덱스
+#
+## START_ACTION
+# S_PAY_ITEM			퀘스트 시 부여되는 아이템
+# S_PAY_ITEM			= 아이템코드(총지급아이템) ATTACH 지금된 아이템을 강제 장착
+# S_PAY_ITEM			= 7002690(총지급아이템) FORM MONSTER 몬스터코드(지급아이템,아이템최소~아이템최대,10000확률)
+#
+## COMPLETION_REQ
+# C_REQ_ITEM			퀘스트 해결을 위해 있어야 하는 아이템
+# C_REQ_MEET_NPC_INDEX	퀘스트 해결을 위해 만나야 하는 NPC
+# C_REQ_MEET_OBJ_INDEX	퀘스트 해결을 위해 만나야 하는 오브젝트	
+#
+## COMPLETION_ACTION
+# C_DEL_ITEM			퀘스트 종료 시 삭제되는 아이템
+# C_PAY_ITEM			퀘스트 종료 시 지급되는 아이템
+#
+#
+#
+################################################################################
+# 사용자 정의 변수
+################################################################################
+## QUEST TYPE
+$QUEST_TYPE_SINGLE					= 0;	# 1회성 QUEST
+$QUEST_TYPE_SERIES					= 1;	# 연속성 QUEST
+$QUEST_TYPE_REPEATABLE				= 2;	# 무한 반복 QUEST
+ 
+## QUEST START TYPE
+$QUEST_START_TYPE_LEVEL_CHANGE		= 0;	# LEVEL 변화 시 일어날 수 있는 QUEST
+$QUEST_START_TYPE_EXP_CHANGE		= 1;	# EXP 변화 시 일어날 수 있는 QUEST
+$QUEST_START_TYPE_MEET_NPC			= 2;	# 특정 NPC를 만났을 때 일어날 수 있는 QUEST
+$QUEST_START_TYPE_ENTER_BUILDING	= 3;	# 특정 건물에 들어갔을 때 일어날 수 있는 QUEST
+$QUEST_START_TYPE_ITEM_CLICK		= 4;	# 아이템을 클릭 시 일어날 수 있는 QUEST
+
+## QUEST END TYPE
+$QUEST_END_TYPE_IMMEDIATE			= 0;	# 시작과 함께 바로 끝나는 QUEST, 클라이언트는 서버의 QUEST 종료 메시지를 받을 때 까지 기다리면 됨
+$QUEST_END_TYPE_REQESTED_BY_CLIENT	= 1;	# 클라이언트의 요청과 그에 대한 서버의 검사에 의해 끝나는 QUEST
+
+## UNITKIND
+$UNITKIND_BGEAR						= 15;
+$UNITKIND_MGEAR						= 240;
+$UNITKIND_AGEAR						= 3840;
+$UNITKIND_IGEAR						= 61440;
+$UNITKIND_ALL						= 65535;
+#$UNITKIND_TRNSUNIT					= 몬스터넘버;
+
+## ITEM
+$SPI								= 7000022;
+
+## 문자 사용자 변수 예제
+$SHOP_NPC_NAME						= '비쥬 라이언';
+
+################################################################################
+#####줄거리 미션################################################################
+quest (1001)
+{
+	BASIC_INFO				# 기본 정보
+	{
+		QUEST_INDEX				= 1001;
+		QUEST_NAME				= '첫 수송 임무';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6; 
+		PRE_TALK				= '뭐여? 함 해볼껴?';
+		FAIL_TALK				= '아직도 못한겨? 바보';
+		SUCCESS_TALK			= '바본 줄 알았더니 잘 하는구만';		
+	};
+	
+	START_REQ				# 퀘스트 시작 조건
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (1~);
+	};
+	
+	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+	{
+		S_PAY_ITEM				= 7002700(1);
+		S_PAY_ITEM				= 7001190(1) ATTACH;
+	};
+	
+	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+	{
+		C_REQ_ITEM				= 7001190(1);
+		C_REQ_MEET_NPC_INDEX	= 1;
+	};
+	
+	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+	{
+		C_DEL_ITEM				= 7002700(1);
+		C_DEL_ITEM				= 7001190(ALL);
+		C_PAY_ITEM				= $SPI(1000);
+	};
+};
+
+quest (1002)
+{
+	BASIC_INFO				# 기본 정보
+	{
+		QUEST_INDEX				= 1002;
+		QUEST_NAME				= '착륙장 엄호';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6; 
+		PRE_TALK				= '착륙장 엄호인데 함 해볼껴?';
+		FAIL_TALK				= '아직도 못한겨? 바보';
+		SUCCESS_TALK			= '바본 줄 알았더니 잘 하는구만';
+		EVENT_MAP				= 3002; #FORM X50,Y150,R500;
+	};
+	
+	START_REQ				# 퀘스트 시작 조건
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (2~);
+	};
+	
+	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+	{
+		S_PAY_ITEM				= 7002700(1);
+	};
+	
+	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+	{
+		C_REQ_ITEM				= 7001190(1);
+		C_REQ_ITEM				= 7002690(20) FROM MONSTER (02002300, 1~1, 10000);
+		C_REQ_MEET_NPC_INDEX	= 6;
+	};
+
+	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+	{
+		C_DEL_ITEM				= 7002700(1);
+		C_DEL_ITEM				= 7002690(ALL);
+		C_PAY_ITEM				= $SPI(2000);
+	};
+};
+
+#quest (1003)
+#{
+#	BASIC_INFO				# 기본 정보
+#	{
+#		QUEST_INDEX				= 1003;
+#		QUEST_NAME				= '잃어버린 수송선';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '수송선을 찾아보세염';
+#		FAIL_TALK				= '아직도 못한겨? 바보';
+#		SUCCESS_TALK			= '잘했스';
+#		EVENT_MAP				= 3002 FORM X110,Y230,R30;
+#	};
+#	
+#	START_REQ				# 퀘스트 시작 조건
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (3~);
+#	};
+#	
+#	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_OBJECT			= 오브젝트 인덱스;	
+#	};
+#	
+#	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+#	{
+#		C_REQ_ITEM				= 7001190(1);
+#		C_REQ_MEET_OBJ_INDEX	= 오브젝트 인덱스;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_PAY_ITEM				= $SPI(3000);
+#	};
+#};
+#
+#quest (1004)
+#{
+#	BASIC_INFO				# 기본 정보
+#	{
+#		QUEST_INDEX				= 1004;
+#		QUEST_NAME				= '긴급 명령';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '수송선을 데리고 오세!';
+#		FAIL_TALK				= '빨리 가야 있을걸?';
+#		SUCCESS_TALK			= '잘했스';
+#		EVENT_MAP				= 3002 FORM X110,Y230,R30;
+#	};
+#	
+#	START_REQ				# 퀘스트 시작 조건
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (4~);
+#	};
+#	
+#	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_OBJECT			= 오브젝트 인덱스;	
+#	};
+#	
+#	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+#	{
+#		C_REQ_ITEM				= 7001190(1);
+#		C_REQ_MEET_OBJ_INDEX	= 오브젝트 인덱스;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_PAY_ITEM				= $SPI(4000);
+#	};
+#};
+#
+#quest (1005)
+#{
+#	BASIC_INFO				# 기본 정보
+#	{
+#		QUEST_INDEX				= 1005;
+#		QUEST_NAME				= '첫 원정 임무';
+#		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+#		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+#		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+#		NPC_INDEX				= 6; 
+#		PRE_TALK				= '다른 곳으로 가서 다 전멸 시켜 버리세!';
+#		FAIL_TALK				= '빨리 가야 있을걸?';
+#		SUCCESS_TALK			= '잘했스';
+#		EVENT_MAP				= 3002 FORM X40,Y235,0;
+#	};
+#	
+#	START_REQ				# 퀘스트 시작 조건
+#	{
+#		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+#		S_REQ_LEVEL				= (5~);
+#		S_REQ_QUEST_INDEX		= 1004;
+#	};
+#	
+#	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+#	{
+#		S_PAY_ITEM				= 7002700(1);
+#		S_PAY_NPC				= $UNITKIND_TRNSUNIT FORM PATTERN 패턴 넘버;
+#		S_PAY_MONSTER			= 2005600(5) FORM PATTERN 패턴넘버;
+#	};
+#	
+#	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+#	{
+#		C_REQ_NPC				= $UNITKIND_TRNSUNIT;
+#		C_REQ_MEET_NPC_INDEX	= 6;
+#	};
+#	
+#	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+#	{
+#		C_DEL_ITEM				= 7002700(1);
+#		C_DEL_NPC				= $UNITKIND_TRNSUNIT(ALL);
+#		C_PAY_ITEM				= $SPI(5000);
+#	};
+#};
+#
+################################################################################
+##단순 미션#####################################################################
+quest (5001)
+{
+	BASIC_INFO				# 기본 정보
+	{
+		QUEST_INDEX				= 5001;
+		QUEST_NAME				= '스피 토벌';
+		QUEST_TYPE				= $QUEST_TYPE_SINGLE;
+		QUEST_START_TYPE		= $QUEST_START_TYPE_MEET_NPC;
+		QUEST_END_TYPE			= $QUEST_END_TYPE_REQESTED_BY_CLIENT;
+		NPC_INDEX				= 6;
+		PRE_TALK				= '이번건 스피 1마리 잡는겨? 지겹다고? 훈장줄께 함해봐';
+		FAIL_TALK				= '지겹냐? 지겨우면 하지마.';
+		SUCCESS_TALK			= '노가다에 강한데? 자 훈장가져라.';		
+		EVENT_MAP				= 3002;
+	};
+
+	START_REQ				# 퀘스트 시작 조건
+	{
+		S_REQ_UNIT_KIND			= $UNITKIND_ALL;
+		S_REQ_LEVEL				= (1~10);
+	};
+
+	START_ACTION			# 퀘스트 시작 시 캐릭터에게 해 주는 일
+	{
+		S_PAY_ITEM				= 7002700(1);
+	};
+
+	COMPLETION_REQ		# 퀘스트 성공(해결) 조건
+	{
+		C_REQ_MEET_NPC_INDEX	= 6;
+		C_REQ_ITEM				= 7002680(1) FROM MONSTER (2002500, 1 ~ 1, 10000); #사냥하는 몬스터로 부터 나오는 아이템
+	};	
+
+	COMPLETION_ACTION		# 퀘스트 성공 시 캐릭터에게 해 주는 일
+	{
+		C_DEL_ITEM				= 7002700(ALL);
+		C_DEL_ITEM				= 7002680(ALL);
+		C_PAY_ITEM				= $SPI(100);
+	};
+};	
+			

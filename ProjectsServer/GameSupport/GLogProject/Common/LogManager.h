@@ -1,0 +1,50 @@
+#ifndef __SYSTEM_LOG_MANAGER_H__
+#define __SYSTEM_LOG_MANAGER_H__
+
+#include <windows.h>
+#include <tchar.h>
+#include <time.h>
+#include "DefineGlobal.h"
+
+class CLogManager
+{
+///////////////////////////////////////////////////////////////////////////////
+// public member functions
+///////////////////////////////////////////////////////////////////////////////
+public:
+	CLogManager();
+	virtual ~CLogManager();
+
+	HANDLE GetFileHandle(void){		return m_hFile;}
+	BOOL InitLogManger(BOOL bUse = TRUE, LPCWSTR szFileName = L"SystemLog", LPCWSTR szDirectory = L"../../Log/SystemLog/");
+	void Clean();
+
+	BOOL OpenFile(LPCWSTR szFileName, LPCWSTR szDirectory);
+	BOOL CloseFile();
+	BOOL ChangeFile();
+	BOOL WriteSystemLog(LPCWSTR log, BOOL bTimeFlag = TRUE);
+	
+///////////////////////////////////////////////////////////////////////////////
+// private member functions
+///////////////////////////////////////////////////////////////////////////////
+private:
+
+///////////////////////////////////////////////////////////////////////////////
+// public member variables
+///////////////////////////////////////////////////////////////////////////////
+public:
+
+///////////////////////////////////////////////////////////////////////////////
+// private member functions
+///////////////////////////////////////////////////////////////////////////////
+protected:
+	CRITICAL_SECTION	m_criticalSection;
+	HANDLE				m_hFile;
+	BOOL				m_bChangingFlagFile;
+
+	TCHAR				m_szFileName[512];
+	TCHAR				m_szDirectory[512];
+	TCHAR				m_szOpenedFilePath[1024];
+};
+
+#endif

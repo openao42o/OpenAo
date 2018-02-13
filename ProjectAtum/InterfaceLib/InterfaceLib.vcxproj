@@ -1,0 +1,1204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="D_DreamACEVN|Win32">
+      <Configuration>D_DreamACEVN</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="D_DreamACE|Win32">
+      <Configuration>D_DreamACE</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="D_EternalSkies|Win32">
+      <Configuration>D_EternalSkies</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="D_Intecom_Viet|Win32">
+      <Configuration>D_Intecom_Viet</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="D_Wikigames_Eng|Win32">
+      <Configuration>D_Wikigames_Eng</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DevX|Win32">
+      <Configuration>R_DevX</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DreamACEVN|Win32">
+      <Configuration>R_DreamACEVN</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DreamACE_XP|Win32">
+      <Configuration>R_DreamACE_XP</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_DreamACE|Win32">
+      <Configuration>R_DreamACE</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_EternalSkies_XP|Win32">
+      <Configuration>R_EternalSkies_XP</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_EternalSkies|Win32">
+      <Configuration>R_EternalSkies</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_Intecom_Viet|Win32">
+      <Configuration>R_Intecom_Viet</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_Wikigames_Eng|Win32">
+      <Configuration>R_Wikigames_Eng</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="R_Wikigames_Eng_XP|Win32">
+      <Configuration>R_Wikigames_Eng_XP</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{125F6A20-F418-4DA4-BEA8-EDE63D41DEF4}</ProjectGuid>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Intecom_Viet|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACEVN|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Intecom_Viet|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACEVN|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Wikigames_Eng|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_EternalSkies|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACE|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies_XP|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE_XP|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng_XP|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_Intecom_Viet|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACEVN|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_Intecom_Viet|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACEVN|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_Wikigames_Eng|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_EternalSkies|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACE|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies_XP|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE_XP|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng_XP|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies_XP|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE_XP|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng_XP|Win32'">
+    <OutDir>.\InterfaceLib___Win32_R_Wikigames_Eng\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Release</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Wikigames_Eng|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Debug\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Debug</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_EternalSkies|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Debug\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Debug</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACE|Win32'">
+    <OutDir>$(SolutionDir)..\BuildResult\Lib\Debug\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib;$(SolutionDir)..\BuildResult\Lib\Debug</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\../../output/InterfaceLib/Release\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\../../output/InterfaceLib/Debug\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Intecom_Viet|Win32'">
+    <OutDir>.\InterfaceLib___Win32_R_Intecom_Viet\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACEVN|Win32'">
+    <OutDir>.\InterfaceLib___Win32_R_Intecom_Viet\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Intecom_Viet|Win32'">
+    <OutDir>.\InterfaceLib___Win32_D_Intecom_Viet\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACEVN|Win32'">
+    <OutDir>.\InterfaceLib___Win32_D_Intecom_Viet\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)\DX9cLink\Include;$(SolutionDir)..\Common</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)DX9cLink\Lib</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;WIKIGAMES_ENG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;DEVX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies_XP|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;ETERNAL_SKIES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE_XP|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;DREAM_ACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;ETERNAL_SKIES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;DREAM_ACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng_XP|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WIN_XP;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;_ATUM_CLIENT;WIKIGAMES_ENG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_Wikigames_Eng|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;WIKIGAMES_ENG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_EternalSkies|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;ETERNAL_SKIES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACE|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;DREAM_ACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_ATUM_CLIENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_Intecom_Viet|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_ATUM_CLIENT;INTECOM_VIET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACEVN|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_ATUM_CLIENT;INTECOM_VIET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_Intecom_Viet|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;INTECOM_VIET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACEVN|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../common;../ProjectAtum/main;../DirectXLib/main;../SkinnedMeshLib/main;../EtcLib/main;../DataRenderLib/main;../EffectLib/main;../SocketLib/main;main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_ATUM_CLIENT;INTECOM_VIET;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\GameDataLast.cpp" />
+    <ClCompile Include="..\..\Common\md5_lib_src.cpp" />
+    <ClCompile Include="main\INFStrategicPointManager.cpp" />
+    <ClCompile Include="main\INFStrategicPointInfo.cpp" />
+    <ClCompile Include="main\CalendarBuilder.cpp" />
+    <ClCompile Include="main\Chat.cpp" />
+    <ClCompile Include="main\ChatData.cpp" />
+    <ClCompile Include="main\ChatMoveData.cpp" />
+    <ClCompile Include="main\ChatRender.cpp" />
+    <ClCompile Include="main\ChatTab_t.cpp" />
+    <ClCompile Include="main\IMEKey.cpp" />
+    <ClCompile Include="main\INFAlertMsgBox.cpp" />
+    <ClCompile Include="main\INFAniCtrl.cpp" />
+    <ClCompile Include="main\INFArenaCreate.cpp" />
+    <ClCompile Include="main\INFArenaResult.cpp" />
+    <ClCompile Include="main\INFArenaScore.cpp" />
+    <ClCompile Include="main\INFArenaScrollBar.cpp" />
+    <ClCompile Include="main\INFArenaTeamInfo.cpp" />
+    <ClCompile Include="main\INFArenaTxt.cpp" />
+    <ClCompile Include="main\INFArmorCollectWnd.cpp" />
+    <ClCompile Include="main\INFAttackDirection.cpp" />
+    <ClCompile Include="main\INFAutoEditBox.cpp" />
+    <ClCompile Include="main\INFAUTOSPRITEBTN.cpp" />
+    <ClCompile Include="main\INFBase.cpp" />
+    <ClCompile Include="main\INFChangeCharactor.cpp" />
+    <ClCompile Include="main\INFChannelList.cpp" />
+    <ClCompile Include="main\INFCharacterInfo.cpp" />
+    <ClCompile Include="main\INFCharacterInfoExtend.cpp" />
+    <ClCompile Include="main\INFCityArena.cpp" />
+    <ClCompile Include="main\INFCityAuction.cpp" />
+    <ClCompile Include="main\INFCityBase.cpp" />
+    <ClCompile Include="main\INFCityBazaar.cpp" />
+    <ClCompile Include="main\INFCityBoard.cpp" />
+    <ClCompile Include="main\INFCityCashShop.cpp" />
+    <ClCompile Include="main\INFCityInfinityField.cpp" />
+    <ClCompile Include="main\INFCityInfinityShop.cpp" />
+    <ClCompile Include="main\INFCityInflBuff.cpp" />
+    <ClCompile Include="main\INFCityLab.cpp" />
+    <ClCompile Include="main\INFCityLeader.cpp" />
+    <ClCompile Include="main\INFCityMission.cpp" />
+    <ClCompile Include="main\INFCityOccupy.cpp" />
+    <ClCompile Include="main\INFCityOutPost.cpp" />
+    <ClCompile Include="main\INFCityShop.cpp" />
+    <ClCompile Include="main\INFCitySkillShop.cpp" />
+    <ClCompile Include="main\INFCityStore.cpp" />
+    <ClCompile Include="main\INFCitySupply.cpp" />
+    <ClCompile Include="main\INFCityWarp.cpp" />
+    <ClCompile Include="main\INFCityWarPointShop.cpp" />
+    <ClCompile Include="main\INFComboBox.cpp" />
+    <ClCompile Include="main\INFComboBoxEX.cpp" />
+    <ClCompile Include="main\INFCommunity.cpp" />
+    <ClCompile Include="main\INFCommunityChatRoom.cpp" />
+    <ClCompile Include="main\INFCommunityFriend.cpp" />
+    <ClCompile Include="main\INFCommunityGuild.cpp" />
+    <ClCompile Include="main\INFCommunityGuildIntroMe.cpp" />
+    <ClCompile Include="main\INFCommunityGuildManager.cpp" />
+    <ClCompile Include="main\INFCommunityGuildSearch.cpp" />
+    <ClCompile Include="main\INFCommunityLetter.cpp" />
+    <ClCompile Include="main\INFCommunityParty.cpp" />
+    <ClCompile Include="main\INFCommunityReject.cpp" />
+    <ClCompile Include="main\INFCommunityUserInfo.cpp" />
+    <ClCompile Include="main\INFCommunityUserOpenSetup.cpp" />
+    <ClCompile Include="main\INFCommunityVOIP.cpp" />
+    <ClCompile Include="main\INFCommuPartyCre.cpp" />
+    <ClCompile Include="main\INFCommuPartyInvite.cpp" />
+    <ClCompile Include="main\INFControl.cpp" />
+    <ClCompile Include="main\INFCouponWindow.cpp" />
+    <ClCompile Include="main\INFCreateMenu.cpp" />
+    <ClCompile Include="main\INFCurselEditBox.cpp" />
+    <ClCompile Include="main\INFDamageView.cpp" />
+    <ClCompile Include="main\INFDefaultWnd.cpp" />
+    <ClCompile Include="main\INFDissolution.cpp" />
+    <ClCompile Include="main\INFEditBox.cpp" />
+    <ClCompile Include="main\INFEnemyItemInfo.cpp" />
+    <ClCompile Include="main\INFFadeEffect.cpp" />
+    <ClCompile Include="main\INFGameArena.cpp" />
+    <ClCompile Include="main\INFGameCountDown.cpp" />
+    <ClCompile Include="main\INFGameHelpDesk.cpp" />
+    <ClCompile Include="main\INFGameMain.cpp" />
+    <ClCompile Include="main\INFGameMainChat.cpp" />
+    <ClCompile Include="main\INFGameMainFAQ.cpp" />
+    <ClCompile Include="main\INFGameMainMiniMap.cpp" />
+    <ClCompile Include="main\INFGameMainOtherInfo.cpp" />
+    <ClCompile Include="main\INFGameMainOutPost.cpp" />
+    <ClCompile Include="main\INFGameMainQSlot.cpp" />
+    <ClCompile Include="main\INFGameMainSysMsg.cpp" />
+    <ClCompile Include="main\INFGameMainUnitInfoBar.cpp" />
+    <ClCompile Include="main\INFGameMainWisperChat.cpp" />
+    <ClCompile Include="main\INFGroupImage.cpp" />
+    <ClCompile Include="main\INFGroupManager.cpp" />
+    <ClCompile Include="main\INFIcon.cpp" />
+    <ClCompile Include="main\INFImage.cpp" />
+    <ClCompile Include="main\INFImageBtn.cpp" />
+    <ClCompile Include="main\INFImageBtnBoth.cpp" />
+    <ClCompile Include="main\INFImageComboBox.cpp" />
+    <ClCompile Include="main\INFImageComboBoxEx.cpp" />
+    <ClCompile Include="main\INFImageEx.cpp" />
+    <ClCompile Include="main\INFImageFile.cpp" />
+    <ClCompile Include="main\INFImageList.cpp" />
+    <ClCompile Include="main\INFImageListBox.cpp" />
+    <ClCompile Include="main\INFImageListCtrl.cpp" />
+    <ClCompile Include="main\INFImageRadioBtn.cpp" />
+    <ClCompile Include="main\INFImportantInfo.cpp" />
+    <ClCompile Include="main\INFInfinity.cpp" />
+    <ClCompile Include="main\INFInven.cpp" />
+    <ClCompile Include="main\INFInvenEquip.cpp" />
+    <ClCompile Include="main\INFInvenExtend.cpp" />
+    <ClCompile Include="main\INFInvenItem.cpp" />
+    <ClCompile Include="main\INFItemInfo.cpp" />
+    <ClCompile Include="main\INFItemMenuList.cpp" />
+    <ClCompile Include="main\INFItemMixFactoryWnd.cpp" />
+    <ClCompile Include="main\INFItemMixWnd.cpp" />
+    <ClCompile Include="main\INFListBox.cpp" />
+    <ClCompile Include="main\INFLuckyMachine.cpp" />
+    <ClCompile Include="main\INFMapLoad.cpp" />
+    <ClCompile Include="main\INFMapName.cpp" />
+    <ClCompile Include="main\INFMenuList.cpp" />
+    <ClCompile Include="main\INFMission.cpp" />
+    <ClCompile Include="main\INFMissionAniCtrl.cpp" />
+    <ClCompile Include="main\INFMissionInfo.cpp" />
+    <ClCompile Include="main\INFMissionMain.cpp" />
+    <ClCompile Include="main\INFMissionMapViewCtrl.cpp" />
+    <ClCompile Include="main\INFMissionMasterReg.cpp" />
+    <ClCompile Include="main\INFMissionPopupInfo.cpp" />
+    <ClCompile Include="main\INFMissionSelInfluence.cpp" />
+    <ClCompile Include="main\INFMissionTreeInfo.cpp" />
+    <ClCompile Include="main\INFMotherShipManager.cpp" />
+    <ClCompile Include="main\INFMp3Player.cpp" />
+    <ClCompile Include="main\INFNumEditBox.cpp" />
+    <ClCompile Include="main\INFOpBigHelper.cpp" />
+    <ClCompile Include="main\INFOpInfo.cpp" />
+    <ClCompile Include="main\INFOpJoystick.cpp" />
+    <ClCompile Include="main\INFOpMain.cpp" />
+    <ClCompile Include="main\INFOpSmallHelper.cpp" />
+    <ClCompile Include="main\INFOptionMachine.cpp" />
+    <ClCompile Include="main\INFOptionSystem.cpp" />
+    <ClCompile Include="main\INFOpUserHelper.cpp" />
+    <ClCompile Include="main\INFOpWnd.cpp" />
+    <ClCompile Include="main\INFOtherCharInfo.cpp" />
+    <ClCompile Include="main\INFPilotFace.cpp" />
+    <ClCompile Include="main\INFPopupMenu.cpp" />
+    <ClCompile Include="main\INFQuest.cpp" />
+    <ClCompile Include="main\INFScrollBar.cpp" />
+    <ClCompile Include="main\INFSecuChanPassWnd.cpp" />
+    <ClCompile Include="main\INFSecuEditBox.cpp" />
+    <ClCompile Include="main\INFSecuLockWnd.cpp" />
+    <ClCompile Include="main\INFSecuMain.cpp" />
+    <ClCompile Include="main\INFSecuPassWnd.cpp" />
+    <ClCompile Include="main\INFSecuSelectMenu.cpp" />
+    <ClCompile Include="main\INFSecuSetPassWnd.cpp" />
+    <ClCompile Include="main\INFSelect.cpp" />
+    <ClCompile Include="main\INFSelectBack.cpp" />
+    <ClCompile Include="main\INFSelectMenu.cpp" />
+    <ClCompile Include="main\INFSelectOption.cpp" />
+    <ClCompile Include="main\INFSingleCurselEditBox.cpp" />
+    <ClCompile Include="main\INFSkill.cpp" />
+    <ClCompile Include="main\INFSpeakeMsg.cpp" />
+    <ClCompile Include="main\INFStageEffect.cpp" />
+    <ClCompile Include="main\INFStageEffectData.cpp" />
+    <ClCompile Include="main\INFSystem.cpp" />
+    <ClCompile Include="main\INFTarget.cpp" />
+    <ClCompile Include="main\INFToolTip.cpp" />
+    <ClCompile Include="main\INFTrade.cpp" />
+    <ClCompile Include="main\INFUnitCreateInfo.cpp" />
+    <ClCompile Include="main\INFUnitNameInfo.cpp" />
+    <ClCompile Include="main\INFUnitState.cpp" />
+    <ClCompile Include="main\INFWarDeclare.cpp" />
+    <ClCompile Include="main\INFWeaponInfo.cpp" />
+    <ClCompile Include="main\INFWindow.cpp" />
+    <ClCompile Include="main\INFWorldRankWnd.cpp" />
+    <ClCompile Include="main\Interface.cpp" />
+    <ClCompile Include="main\SetupConfig.cpp" />
+    <ClCompile Include="main\SpriteDrawFix.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SocketLib\main\WinSocket.h" />
+    <ClInclude Include="main\INFStrategicPointManager.h" />
+    <ClInclude Include="main\INFStrategicPointInfo.h" />
+    <ClInclude Include="main\CalendarBuilder.h" />
+    <ClInclude Include="main\Chat.h" />
+    <ClInclude Include="main\ChatData.h" />
+    <ClInclude Include="main\ChatMoveData.h" />
+    <ClInclude Include="main\ChatRender.h" />
+    <ClInclude Include="main\ChatTab_t.h" />
+    <ClInclude Include="main\IMEKey.h" />
+    <ClInclude Include="main\INFAlertMsgBox.h" />
+    <ClInclude Include="main\INFAniCtrl.h" />
+    <ClInclude Include="main\INFArenaCreate.h" />
+    <ClInclude Include="main\INFArenaResult.h" />
+    <ClInclude Include="main\INFArenaScore.h" />
+    <ClInclude Include="main\INFArenaScrollBar.h" />
+    <ClInclude Include="main\INFArenaTeamInfo.h" />
+    <ClInclude Include="main\INFArenaTxt.h" />
+    <ClInclude Include="main\INFArmorCollectWnd.h" />
+    <ClInclude Include="main\INFAttackDirection.h" />
+    <ClInclude Include="main\INFAutoEditBox.h" />
+    <ClInclude Include="main\INFAUTOSPRITEBTN.h" />
+    <ClInclude Include="main\INFBase.h" />
+    <ClInclude Include="main\INFChangeCharactor.h" />
+    <ClInclude Include="main\INFChannelList.h" />
+    <ClInclude Include="main\INFCharacterInfo.h" />
+    <ClInclude Include="main\INFCharacterInfoExtend.h" />
+    <ClInclude Include="main\INFCityArena.h" />
+    <ClInclude Include="main\INFCityAuction.h" />
+    <ClInclude Include="main\INFCityBase.h" />
+    <ClInclude Include="main\INFCityBazaar.h" />
+    <ClInclude Include="main\INFCityBoard.h" />
+    <ClInclude Include="main\INFCityCashShop.h" />
+    <ClInclude Include="main\INFCityInfinityField.h" />
+    <ClInclude Include="main\INFCityInfinityShop.h" />
+    <ClInclude Include="main\INFCityInflBuff.h" />
+    <ClInclude Include="main\INFCityLab.h" />
+    <ClInclude Include="main\INFCityLeader.h" />
+    <ClInclude Include="main\INFCityMission.h" />
+    <ClInclude Include="main\INFCityOccupy.h" />
+    <ClInclude Include="main\INFCityOutPost.h" />
+    <ClInclude Include="main\INFCityShop.h" />
+    <ClInclude Include="main\INFCitySkillShop.h" />
+    <ClInclude Include="main\INFCityStore.h" />
+    <ClInclude Include="main\INFCitySupply.h" />
+    <ClInclude Include="main\INFCityWarp.h" />
+    <ClInclude Include="main\INFCityWarPointShop.h" />
+    <ClInclude Include="main\INFComboBox.h" />
+    <ClInclude Include="main\INFComboBoxEX.h" />
+    <ClInclude Include="main\INFCommunity.h" />
+    <ClInclude Include="main\INFCommunityChatRoom.h" />
+    <ClInclude Include="main\INFCommunityFriend.h" />
+    <ClInclude Include="main\INFCommunityGuild.h" />
+    <ClInclude Include="main\INFCommunityGuildIntroMe.h" />
+    <ClInclude Include="main\INFCommunityGuildManager.h" />
+    <ClInclude Include="main\INFCommunityGuildSearch.h" />
+    <ClInclude Include="main\INFCommunityLetter.h" />
+    <ClInclude Include="main\INFCommunityParty.h" />
+    <ClInclude Include="main\INFCommunityReject.h" />
+    <ClInclude Include="main\INFCommunityUserInfo.h" />
+    <ClInclude Include="main\INFCommunityUserOpenSetup.h" />
+    <ClInclude Include="main\INFCommunityVOIP.h" />
+    <ClInclude Include="main\INFCommuPartyCre.h" />
+    <ClInclude Include="main\INFCommuPartyInvite.h" />
+    <ClInclude Include="main\INFControl.h" />
+    <ClInclude Include="main\INFCouponWindow.h" />
+    <ClInclude Include="main\INFCreateMenu.h" />
+    <ClInclude Include="main\INFCurselEditBox.h" />
+    <ClInclude Include="main\INFDamageView.h" />
+    <ClInclude Include="main\INFDefaultWnd.h" />
+    <ClInclude Include="main\INFDissolution.h" />
+    <ClInclude Include="main\INFEditBox.h" />
+    <ClInclude Include="main\INFEnemyItemInfo.h" />
+    <ClInclude Include="main\INFFadeEffect.h" />
+    <ClInclude Include="main\INFGameArena.h" />
+    <ClInclude Include="main\INFGameCountDown.h" />
+    <ClInclude Include="main\INFGameHelpDesk.h" />
+    <ClInclude Include="main\INFGameMain.h" />
+    <ClInclude Include="main\INFGameMainChat.h" />
+    <ClInclude Include="main\INFGameMainFAQ.h" />
+    <ClInclude Include="main\INFGameMainMiniMap.h" />
+    <ClInclude Include="main\INFGameMainOtherInfo.h" />
+    <ClInclude Include="main\INFGameMainOutPost.h" />
+    <ClInclude Include="main\INFGameMainQSlot.h" />
+    <ClInclude Include="main\INFGameMainSysMsg.h" />
+    <ClInclude Include="main\INFGameMainUnitInfoBar.h" />
+    <ClInclude Include="main\INFGameMainWisperChat.h" />
+    <ClInclude Include="main\INFGroupImage.h" />
+    <ClInclude Include="main\INFGroupManager.h" />
+    <ClInclude Include="main\INFIcon.h" />
+    <ClInclude Include="main\INFImage.h" />
+    <ClInclude Include="main\INFImageBtn.h" />
+    <ClInclude Include="main\INFImageBtnBoth.h" />
+    <ClInclude Include="main\INFImageComboBox.h" />
+    <ClInclude Include="main\INFImageComboBoxEx.h" />
+    <ClInclude Include="main\INFImageEx.h" />
+    <ClInclude Include="main\INFImageFile.h" />
+    <ClInclude Include="main\INFImageList.h" />
+    <ClInclude Include="main\INFImageListBox.h" />
+    <ClInclude Include="main\INFImageListCtrl.h" />
+    <ClInclude Include="main\INFImageRadioBtn.h" />
+    <ClInclude Include="main\INFImportantInfo.h" />
+    <ClInclude Include="main\INFInfinity.h" />
+    <ClInclude Include="main\INFInven.h" />
+    <ClInclude Include="main\INFInvenEquip.h" />
+    <ClInclude Include="main\INFInvenExtend.h" />
+    <ClInclude Include="main\INFInvenItem.h" />
+    <ClInclude Include="main\INFItemInfo.h" />
+    <ClInclude Include="main\INFItemMenuList.h" />
+    <ClInclude Include="main\INFItemMixFactoryWnd.h" />
+    <ClInclude Include="main\INFItemMixWnd.h" />
+    <ClInclude Include="main\INFListBox.h" />
+    <ClInclude Include="main\INFLuckyMachine.h" />
+    <ClInclude Include="main\INFMapLoad.h" />
+    <ClInclude Include="main\INFMapName.h" />
+    <ClInclude Include="main\INFMenuList.h" />
+    <ClInclude Include="main\INFMission.h" />
+    <ClInclude Include="main\INFMissionAniCtrl.h" />
+    <ClInclude Include="main\INFMissionInfo.h" />
+    <ClInclude Include="main\INFMissionMain.h" />
+    <ClInclude Include="main\INFMissionMapViewCtrl.h" />
+    <ClInclude Include="main\INFMissionMasterReg.h" />
+    <ClInclude Include="main\INFMissionPopupInfo.h" />
+    <ClInclude Include="main\INFMissionSelInfluence.h" />
+    <ClInclude Include="main\INFMissionTreeInfo.h" />
+    <ClInclude Include="main\INFMotherShipManager.h" />
+    <ClInclude Include="main\INFMp3Player.h" />
+    <ClInclude Include="main\INFNumEditBox.h" />
+    <ClInclude Include="main\INFOpBigHelper.h" />
+    <ClInclude Include="main\INFOpInfo.h" />
+    <ClInclude Include="main\INFOpJoystick.h" />
+    <ClInclude Include="main\INFOpMain.h" />
+    <ClInclude Include="main\INFOpSmallHelper.h" />
+    <ClInclude Include="main\INFOptionMachine.h" />
+    <ClInclude Include="main\INFOptionSystem.h" />
+    <ClInclude Include="main\INFOpUserHelper.h" />
+    <ClInclude Include="main\INFOpWnd.h" />
+    <ClInclude Include="main\INFOtherCharInfo.h" />
+    <ClInclude Include="main\INFPilotFace.h" />
+    <ClInclude Include="main\INFPopupMenu.h" />
+    <ClInclude Include="main\INFQuest.h" />
+    <ClInclude Include="main\INFScrollBar.h" />
+    <ClInclude Include="main\INFSecuChanPassWnd.h" />
+    <ClInclude Include="main\INFSecuEditBox.h" />
+    <ClInclude Include="main\INFSecuLockWnd.h" />
+    <ClInclude Include="main\INFSecuMain.h" />
+    <ClInclude Include="main\INFSecuPassWnd.h" />
+    <ClInclude Include="main\INFSecuSelectMenu.h" />
+    <ClInclude Include="main\INFSecuSetPassWnd.h" />
+    <ClInclude Include="main\INFSelect.h" />
+    <ClInclude Include="main\INFSelectBack.h" />
+    <ClInclude Include="main\INFSelectMenu.h" />
+    <ClInclude Include="main\INFSelectOption.h" />
+    <ClInclude Include="main\INFSingleCurselEditBox.h" />
+    <ClInclude Include="main\INFSkill.h" />
+    <ClInclude Include="main\INFSpeakeMsg.h" />
+    <ClInclude Include="main\INFStageEffect.h" />
+    <ClInclude Include="main\INFStageEffectData.h" />
+    <ClInclude Include="main\INFSystem.h" />
+    <ClInclude Include="main\INFTarget.h" />
+    <ClInclude Include="main\INFToolTip.h" />
+    <ClInclude Include="main\INFTrade.h" />
+    <ClInclude Include="main\INFUnitCreateInfo.h" />
+    <ClInclude Include="main\INFUnitNameInfo.h" />
+    <ClInclude Include="main\INFUnitState.h" />
+    <ClInclude Include="main\INFWarDeclare.h" />
+    <ClInclude Include="main\INFWeaponInfo.h" />
+    <ClInclude Include="main\INFWindow.h" />
+    <ClInclude Include="main\INFWorldRankWnd.h" />
+    <ClInclude Include="main\Interface.h" />
+    <ClInclude Include="main\SetupConfig.h" />
+    <ClInclude Include="main\SpriteDrawFix.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
