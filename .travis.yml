@@ -4,15 +4,11 @@ language: python
 sudo: false
 python:
   - 3.5
-  - 3.4
-  - 3.3
-  - 3.2
   - 2.7
-  - 2.6
   - pypy
   - pypy3
 install:
   - pip install cpplint
 
 script:
-  - cpplint --verbose `find . -path '*' \( -name '*.h' -o -name '*.cpp' \)`
+  - cpplint --verbose=5 `find . -path '*' \( -name '*.h' -o -name '*.cpp' \)`
