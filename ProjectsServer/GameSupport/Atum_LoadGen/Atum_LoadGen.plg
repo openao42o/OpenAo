@@ -1,0 +1,65 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Atum_LoadGen - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x412 /fo"../../output/Atum_LoadGen/Debug/Atum_LoadGen.res" /d "_DEBUG" /d "_AFXDLL" "D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\Atum_LoadGen.rc"" 
+Creating temporary file "C:\Users\Dev\AppData\Local\Temp\RSP1C5.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "./../../Common/" /I "./../../GameServer/CommonGameServer/" /I "./Main" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"../../output/Atum_LoadGen/Debug/" /Fp"../../output/Atum_LoadGen/Debug/Atum_LoadGen.pch" /Yu"stdafx.h" /Fo"../../output/Atum_LoadGen/Debug/" /Fd"../../output/Atum_LoadGen/Debug/" /FD /GZ /c 
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\AnalyzePacket.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\AnalyzePacketDlg.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\Atum_LoadGen.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\Atum_LoadGenDlg.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\AtumDateTime.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameServer\CommonGameServer\AtumParamProtocol.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameServer\CommonGameServer\BrowseForFolder.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\Main\FieldWinSocket.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\Common\md5_lib_src.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\Common\SocketHeader.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\Common\SystemLogManager.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\Common\WinPacket.cpp"
+"D:\Source\Workspace\Server\Projects_Dev_Server\Common\WinSocket.cpp"
+]
+Creating command line "cl.exe @C:\Users\Dev\AppData\Local\Temp\RSP1C5.tmp" 
+Creating temporary file "C:\Users\Dev\AppData\Local\Temp\RSP1C6.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "./../../Common/" /I "./../../GameServer/CommonGameServer/" /I "./Main" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"../../output/Atum_LoadGen/Debug/" /Fp"../../output/Atum_LoadGen/Debug/Atum_LoadGen.pch" /Yc"stdafx.h" /Fo"../../output/Atum_LoadGen/Debug/" /Fd"../../output/Atum_LoadGen/Debug/" /FD /GZ /c 
+"D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Dev\AppData\Local\Temp\RSP1C6.tmp" 
+Creating temporary file "C:\Users\Dev\AppData\Local\Temp\RSP1C7.tmp" with contents
+[
+D3dx8.lib odbc32.lib odbccp32.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"../../output/Atum_LoadGen/Debug/Atum_LoadGen.pdb" /debug /machine:I386 /out:"../../Bin/GameSupport/Debug/Atum_LoadGen.exe" /pdbtype:sept 
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\AnalyzePacket.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\AnalyzePacketDlg.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\Atum_LoadGen.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\Atum_LoadGenDlg.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\AtumDateTime.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\AtumParamProtocol.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\BrowseForFolder.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\FieldWinSocket.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\md5_lib_src.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\SocketHeader.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\StdAfx.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\SystemLogManager.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\WinPacket.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\WinSocket.obj
+\Source\Workspace\Server\Projects_Dev_Server\output\Atum_LoadGen\Debug\Atum_LoadGen.res
+]
+Creating command line "link.exe @C:\Users\Dev\AppData\Local\Temp\RSP1C7.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+D:\Source\Workspace\Server\Projects_Dev_Server\GameSupport\Atum_LoadGen\Atum_LoadGen.rc(277) : fatal error RC1015: cannot open include file 'res\Atum_LoadGen.rc2'.
+Error executing rc.exe.
+
+
+
+<h3>Results</h3>
+Atum_LoadGen.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

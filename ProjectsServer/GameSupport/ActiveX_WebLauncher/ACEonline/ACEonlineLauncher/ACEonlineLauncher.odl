@@ -1,0 +1,69 @@
+// ACEonlineLauncher.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (ACEonlineLauncher.tlb) that will become a resource in
+// ACEonlineLauncher.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(7DBDB509-F4E4-45F0-94CD-7C8575162D7A), version(1.0),
+  helpfile("ACEonlineLauncher.hlp"),
+  helpstring("ACEonlineLauncher ActiveX Control module"),
+  control ]
+library ACEONLINELAUNCHERLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CACEonlineLauncherCtrl
+
+	[ uuid(641FCD62-0A3A-41B6-95F7-6369B2D2BB13),
+	  helpstring("Dispatch interface for ACEonlineLauncher Control"), hidden ]
+	dispinterface _DACEonlineLauncher
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CACEonlineLauncherCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CACEonlineLauncherCtrl)
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CACEonlineLauncherCtrl
+
+	[ uuid(787821BB-2F68-4BDF-8707-2F363A5EBDF4),
+	  helpstring("Event interface for ACEonlineLauncher Control") ]
+	dispinterface _DACEonlineLauncherEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CACEonlineLauncherCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CACEonlineLauncherCtrl
+
+	[ uuid(FF05EDC4-FAD0-48A4-AA30-E0CB825A93C4),
+	  helpstring("ACEonlineLauncher Control"), control ]
+	coclass ACEonlineLauncher
+	{
+		[default] dispinterface _DACEonlineLauncher;
+		[default, source] dispinterface _DACEonlineLauncherEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

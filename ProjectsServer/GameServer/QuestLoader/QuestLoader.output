@@ -1,0 +1,5655 @@
+Terminals unused in grammar
+
+   GT_TOK
+   LT_TOK
+   GE_TOK
+   LE_TOK
+   EQUAL_TOK
+   WORD_TOK
+
+
+State 12 conflicts: 1 shift/reduce
+State 253 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: command_list $end
+
+    1 command_list: command
+    2             | command_list command
+
+    3 command: user_variable_definition
+    4        | quest_definition
+
+    5 user_variable_definition: USER_VARIABLE_TOK '=' integer_expression ';'
+    6                         | USER_VARIABLE_TOK '=' QSTRING_TOK ';'
+    7                         | USER_VARIABLE_TOK '=' USER_VARIABLE_TOK ';'
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' '{' quest_content_list '}' ';'
+
+    9 quest_content_list: quest_content
+   10                   | quest_content_list quest_content
+
+   11 quest_content: BASIC_INFO_TOK '{' statement_list '}' ';'
+   12              | BASIC_INFO_TOK '{' '}' ';'
+   13              | START_REQ_TOK '{' statement_list '}' ';'
+   14              | START_REQ_TOK '{' '}' ';'
+   15              | START_ACTION_TOK '{' statement_list '}' ';'
+   16              | START_ACTION_TOK '{' '}' ';'
+   17              | COMPLETION_REQ_TOK '{' statement_list '}' ';'
+   18              | COMPLETION_REQ_TOK '{' '}' ';'
+   19              | COMPLETION_ACTION_TOK '{' statement_list '}' ';'
+   20              | COMPLETION_ACTION_TOK '{' '}' ';'
+
+   21 statement_list: statement
+   22               | statement_list statement
+
+   23 statement: QUEST_INDEX_TOK '=' integer_expression ';'
+   24          | QUEST_NAME_TOK '=' string_expression ';'
+   25          | QUEST_EPISODE_TYPE_TOK '=' integer_expression ';'
+   26          | QUEST_PARTYTYPE_TOK '=' integer_expression ';'
+   27          | QUEST_KIND_TOK '=' integer_expression ';'
+   28          | QUEST_TYPE_TOK '=' integer_expression ';'
+   29          | QUEST_START_TYPE_TOK '=' integer_expression ';'
+   30          | QUEST_END_TYPE_TOK '=' integer_expression ';'
+   31          | QUEST_PARTY_MEMBERS_TOK '=' integer_expression ';'
+   32          | QUEST_NPC_INFO_TOK '{' quest_npc_statement_list '}' ';'
+   33          | DESCRIPTION_TOK '=' string_expression ';'
+   34          | EVENT_MAP_TOK '=' integer_expression ';'
+   35          | NEXT_QUEST_INDEX_TOK '=' integer_expression ';'
+   36          | PARTY_QUEST_MEMBER_COUNT_TOK '=' integer_expression ';'
+   37          | DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK '=' boolean_value ';'
+   38          | TIME_LIMIT_IN_MINUTES_TOK '=' integer_expression ';'
+   39          | DISCARDABLE_QUEST_TOK '=' boolean_value ';'
+   40          | BI_QUEST_ATTRI_IS_CITYWAR_TOK '=' boolean_value ';'
+   41          | BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK '=' boolean_value ';'
+   42          | DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK '=' boolean_value ';'
+   43          | S_REQ_UNIT_KIND_TOK '=' integer_expression ';'
+   44          | S_REQ_LEVEL_TOK '=' integer_range_value ';'
+   45          | S_REQ_ATTACK_PART_TOK '=' integer_range_value ';'
+   46          | S_REQ_DEFENSE_PART_TOK '=' integer_range_value ';'
+   47          | S_REQ_FUEL_PART_TOK '=' integer_range_value ';'
+   48          | S_REQ_SOUL_PART_TOK '=' integer_range_value ';'
+   49          | S_REQ_SHIELD_PART_TOK '=' integer_range_value ';'
+   50          | S_REQ_DODGE_PART_TOK '=' integer_range_value ';'
+   51          | S_REQ_ITEM_TOK '=' item_w_count_value ';'
+   52          | S_REQ_QUEST_INDEX_TOK '=' integer_expression ';'
+   53          | S_REQ_RECV_QUEST_INDEX_TOK '=' integer_expression ';'
+   54          | S_REQ_GUILD_TOK '=' integer_expression ';'
+   55          | S_REQ_INFLUENCE_TYPE_TOK '=' integer_expression ';'
+   56          | S_REQ_START_AREA_TOK '=' map_area_value ';'
+   57          | S_PAY_ITEM_TOK '=' quest_pay_item_value ';'
+   58          | S_DEL_ITEM_TOK '=' item_w_count_value ';'
+   59          | S_START_MAP_INDEX_TOK '=' integer_expression ';'
+   60          | S_START_PARTY_WARP_FLAG_TOK '=' boolean_value ';'
+   61          | C_REQ_MEET_NPC_INFO_TOK '{' quest_npc_statement_list '}' ';'
+   62          | C_REQ_MEET_OBJ_INDEX_TOK '=' integer_expression map_area_value ';'
+   63          | C_REQ_ITEM_TOK '=' item_w_count_value ';'
+   64          | C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   65          | C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   66          | C_REQ_DEAD_BY_MONSTER_TOK '=' integer_expression ';'
+   67          | C_REQ_MEET_MAP_AREA_TOK '=' map_area_value ';'
+   68          | C_REQ_MONSTER_TOK '=' monster_w_count_value ';'
+   69          | C_REQ_MONSTER_TOK '=' monster_w_count_value map_area_value ';'
+   70          | C_REQ_MIX_ITEM_TARGET_TOK '=' item_w_count_value ';'
+   71          | C_PAY_BONUS_STAT_TOK '=' integer_expression ';'
+   72          | C_PAY_BONUS_SKILL_POINT_TOK '=' integer_expression ';'
+   73          | C_PAY_FAME_TOK '=' integer_expression ';'
+   74          | C_PAY_STATUS_TOK '=' integer_expression ';'
+   75          | C_PAY_LEVEL_TOK '=' integer_expression ';'
+   76          | C_PAY_EXPERIENCE_TOK '=' integer_expression ';'
+   77          | C_PAY_WARP_MAP_INDEX_TOK '=' integer_expression ';'
+   78          | C_DEL_ITEM_TOK '=' item_w_count_value ';'
+   79          | C_PAY_ITEM_TOK '=' quest_pay_item_value ';'
+   80          | C_PAY_ITEM_MISSIONMASTER_TOK '=' quest_missinmaster_pay_item_value ';'
+   81          | C_RANDOM_PAY_ITEM_TOK '=' item_w_count_prob_list PER_TOK integer_expression ';'
+   82          | C_MIX_ITEM_TOK '=' item_w_count_list R_ARROW_TOK integer_expression prob_value ';'
+   83          | C_PAY_PROPENSITY_TOK '=' integer_expression ';'
+   84          | C_CINEMA_NUM_TOK '=' integer_expression ';'
+   85          | C_PAY_INFLUENCE_TYPE_TOK '=' integer_expression ';'
+
+   86 item_w_count_prob_list: item_w_count_prob_value
+   87                       | item_w_count_prob_list OR_TOK item_w_count_prob_value
+
+   88 item_w_count_prob_value: integer_expression '(' integer_expression ',' integer_expression ')'
+
+   89 item_w_count_list: item_w_count_value
+   90                  | item_w_count_list '+' item_w_count_value
+
+   91 map_area_value: /* empty */
+   92               | AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+   93               | AREA_TOK integer_expression
+
+   94 integer_range_value: '(' integer_expression ')'
+   95                    | '(' integer_expression '~' integer_expression ')'
+   96                    | '(' integer_expression '~' ')'
+   97                    | '(' '~' integer_expression ')'
+
+   98 integer_expression: integer_expression '+' integer_expression
+   99                   | integer_expression '-' integer_expression
+  100                   | integer_expression '*' integer_expression
+  101                   | integer_expression '/' integer_expression
+  102                   | integer_expression AND_TOK integer_expression
+  103                   | integer_expression OR_TOK integer_expression
+  104                   | '(' integer_expression ')'
+  105                   | INTEGER_TOK
+  106                   | USER_VARIABLE_TOK
+
+  107 string_expression: QSTRING_TOK
+  108                  | USER_VARIABLE_TOK
+
+  109 monster_w_count_value: integer_expression '(' integer_expression ')'
+  110                      | integer_expression '(' ALL_TOK ')'
+
+  111 item_w_count_value: integer_expression '(' integer_expression ')'
+  112                   | integer_expression '(' ALL_TOK ')'
+
+  113 quest_pay_item_value: item_w_count_value per_item_value attach_value to_unit_kind_value
+
+  114 quest_missinmaster_pay_item_value: item_w_count_value per_item_value attach_value to_unit_kind_value
+
+  115 quest_npc_statement_list: quest_npc_statement
+  116                         | quest_npc_statement_list quest_npc_statement
+
+  117 quest_npc_statement: NPC_INDEX_TOK '=' integer_expression ';'
+  118                    | NPC_NAME_TOK '=' string_expression ';'
+  119                    | PRE_TALK_TOK '=' string_expression ';'
+  120                    | MID_TALK_TOK '=' string_expression ';'
+  121                    | FAIL_TALK_TOK '=' string_expression ';'
+  122                    | SUCCESS_TALK_TOK '=' string_expression ';'
+
+  123 per_item_value: /* empty */
+  124               | PER_TOK integer_expression
+
+  125 attach_value: /* empty */
+  126             | ATTACH_TOK
+
+  127 to_unit_kind_value: /* empty */
+  128                   | TO_TOK integer_expression
+
+  129 boolean_value: TRUE_TOK
+  130              | FALSE_TOK
+
+  131 prob_value: PROB_100_TOK '(' integer_expression ')'
+  132           | PROB_1K_TOK '(' integer_expression ')'
+  133           | PROB_10K_TOK '(' integer_expression ')'
+  134           | PROB_100K_TOK '(' integer_expression ')'
+  135           | PROB_256_TOK '(' integer_expression ')'
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 8 64 65 88 92 94 95 96 97 104 109 110 111 112 131 132 133
+    134 135
+')' (41) 8 64 65 88 92 94 95 96 97 104 109 110 111 112 131 132 133
+    134 135
+'*' (42) 100
+'+' (43) 90 98
+',' (44) 64 65 88 92
+'-' (45) 99
+'/' (47) 101
+';' (59) 5 6 7 8 11 12 13 14 15 16 17 18 19 20 23 24 25 26 27 28 29
+    30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+    51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71
+    72 73 74 75 76 77 78 79 80 81 82 83 84 85 117 118 119 120 121 122
+'=' (61) 5 6 7 23 24 25 26 27 28 29 30 31 33 34 35 36 37 38 39 40 41
+    42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 62 63
+    64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84
+    85 117 118 119 120 121 122
+'{' (123) 8 11 12 13 14 15 16 17 18 19 20 32 61
+'}' (125) 8 11 12 13 14 15 16 17 18 19 20 32 61
+'~' (126) 64 65 95 96 97
+error (256)
+QUEST_TOK (258) 8
+BASIC_INFO_TOK (259) 11 12
+QUEST_INDEX_TOK (260) 23
+QUEST_NAME_TOK (261) 24
+QUEST_EPISODE_TYPE_TOK (262) 25
+QUEST_PARTYTYPE_TOK (263) 26
+QUEST_KIND_TOK (264) 27
+QUEST_TYPE_TOK (265) 28
+QUEST_START_TYPE_TOK (266) 29
+QUEST_END_TYPE_TOK (267) 30
+QUEST_PARTY_MEMBERS_TOK (268) 31
+QUEST_NPC_INFO_TOK (269) 32
+NPC_INDEX_TOK (270) 117
+NPC_NAME_TOK (271) 118
+PRE_TALK_TOK (272) 119
+MID_TALK_TOK (273) 120
+FAIL_TALK_TOK (274) 121
+SUCCESS_TALK_TOK (275) 122
+DESCRIPTION_TOK (276) 33
+EVENT_MAP_TOK (277) 34
+NEXT_QUEST_INDEX_TOK (278) 35
+PARTY_QUEST_MEMBER_COUNT_TOK (279) 36
+DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK (280) 37
+TIME_LIMIT_IN_MINUTES_TOK (281) 38
+DISCARDABLE_QUEST_TOK (282) 39
+BI_QUEST_ATTRI_IS_CITYWAR_TOK (283) 40
+BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK (284) 41
+DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK (285) 42
+START_REQ_TOK (286) 13 14
+S_REQ_UNIT_KIND_TOK (287) 43
+S_REQ_LEVEL_TOK (288) 44
+S_REQ_ATTACK_PART_TOK (289) 45
+S_REQ_DEFENSE_PART_TOK (290) 46
+S_REQ_FUEL_PART_TOK (291) 47
+S_REQ_SOUL_PART_TOK (292) 48
+S_REQ_SHIELD_PART_TOK (293) 49
+S_REQ_DODGE_PART_TOK (294) 50
+S_REQ_ITEM_TOK (295) 51
+S_REQ_QUEST_INDEX_TOK (296) 52
+S_REQ_RECV_QUEST_INDEX_TOK (297) 53
+S_REQ_GUILD_TOK (298) 54
+S_REQ_INFLUENCE_TYPE_TOK (299) 55
+S_REQ_START_AREA_TOK (300) 56
+START_ACTION_TOK (301) 15 16
+S_PAY_ITEM_TOK (302) 57
+S_DEL_ITEM_TOK (303) 58
+S_START_MAP_INDEX_TOK (304) 59
+S_START_PARTY_WARP_FLAG_TOK (305) 60
+COMPLETION_REQ_TOK (306) 17 18
+C_REQ_MEET_NPC_INFO_TOK (307) 61
+C_REQ_ITEM_TOK (308) 63 64 65
+C_REQ_MEET_OBJ_INDEX_TOK (309) 62
+C_REQ_DEAD_BY_MONSTER_TOK (310) 66
+C_REQ_MEET_MAP_AREA_TOK (311) 67
+C_REQ_MONSTER_TOK (312) 68 69
+C_REQ_MIX_ITEM_TARGET_TOK (313) 70
+COMPLETION_ACTION_TOK (314) 19 20
+C_PAY_BONUS_STAT_TOK (315) 71
+C_PAY_BONUS_SKILL_POINT_TOK (316) 72
+C_PAY_FAME_TOK (317) 73
+C_PAY_STATUS_TOK (318) 74
+C_PAY_LEVEL_TOK (319) 75
+C_PAY_EXPERIENCE_TOK (320) 76
+C_PAY_WARP_MAP_INDEX_TOK (321) 77
+C_DEL_ITEM_TOK (322) 78
+C_PAY_ITEM_TOK (323) 79
+C_PAY_ITEM_MISSIONMASTER_TOK (324) 80
+C_RANDOM_PAY_ITEM_TOK (325) 81
+C_MIX_ITEM_TOK (326) 82
+C_PAY_PROPENSITY_TOK (327) 83
+C_CINEMA_NUM_TOK (328) 84
+C_PAY_INFLUENCE_TYPE_TOK (329) 85
+FROM_TOK (330) 64 65
+TO_TOK (331) 128
+MONSTER_TOK (332) 64
+CHARACTER_TOK (333) 65
+ALL_TOK (334) 110 112
+ATTACH_TOK (335) 126
+AREA_TOK (336) 92 93
+X_TOK (337) 92
+Y_TOK (338) 92
+R_TOK (339) 92
+PER_TOK (340) 81 124
+PROB_100_TOK (341) 131
+PROB_1K_TOK (342) 132
+PROB_10K_TOK (343) 133
+PROB_100K_TOK (344) 134
+PROB_256_TOK (345) 135
+AND_TOK (346) 102
+OR_TOK (347) 87 103
+TRUE_TOK (348) 129
+FALSE_TOK (349) 130
+R_ARROW_TOK (350) 82
+GT_TOK (351)
+LT_TOK (352)
+GE_TOK (353)
+LE_TOK (354)
+EQUAL_TOK (355)
+USER_VARIABLE_TOK (356) 5 6 7 106 108
+INTEGER_TOK (357) 8 105
+WORD_TOK (358)
+QSTRING_TOK (359) 6 107
+
+
+Nonterminals, with rules where they appear
+
+$accept (117)
+    on left: 0
+command_list (118)
+    on left: 1 2, on right: 0 2
+command (119)
+    on left: 3 4, on right: 1 2
+user_variable_definition (120)
+    on left: 5 6 7, on right: 3
+quest_definition (121)
+    on left: 8, on right: 4
+quest_content_list (122)
+    on left: 9 10, on right: 8 10
+quest_content (123)
+    on left: 11 12 13 14 15 16 17 18 19 20, on right: 9 10
+statement_list (124)
+    on left: 21 22, on right: 11 13 15 17 19 22
+statement (125)
+    on left: 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+    41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61
+    62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82
+    83 84 85, on right: 21 22
+item_w_count_prob_list (126)
+    on left: 86 87, on right: 81 87
+item_w_count_prob_value (127)
+    on left: 88, on right: 86 87
+item_w_count_list (128)
+    on left: 89 90, on right: 82 90
+map_area_value (129)
+    on left: 91 92 93, on right: 56 62 64 65 67 69
+integer_range_value (130)
+    on left: 94 95 96 97, on right: 44 45 46 47 48 49 50
+integer_expression (131)
+    on left: 98 99 100 101 102 103 104 105 106, on right: 5 23 25 26
+    27 28 29 30 31 34 35 36 38 43 52 53 54 55 59 62 64 65 66 71 72
+    73 74 75 76 77 81 82 83 84 85 88 92 93 94 95 96 97 98 99 100 101
+    102 103 104 109 110 111 112 117 124 128 131 132 133 134 135
+string_expression (132)
+    on left: 107 108, on right: 24 33 118 119 120 121 122
+monster_w_count_value (133)
+    on left: 109 110, on right: 68 69
+item_w_count_value (134)
+    on left: 111 112, on right: 51 58 63 64 65 70 78 89 90 113 114
+quest_pay_item_value (135)
+    on left: 113, on right: 57 79
+quest_missinmaster_pay_item_value (136)
+    on left: 114, on right: 80
+quest_npc_statement_list (137)
+    on left: 115 116, on right: 32 61 116
+quest_npc_statement (138)
+    on left: 117 118 119 120 121 122, on right: 115 116
+per_item_value (139)
+    on left: 123 124, on right: 113 114
+attach_value (140)
+    on left: 125 126, on right: 113 114
+to_unit_kind_value (141)
+    on left: 127 128, on right: 113 114
+boolean_value (142)
+    on left: 129 130, on right: 37 39 40 41 42 60
+prob_value (143)
+    on left: 131 132 133 134 135, on right: 82
+
+
+State 0
+
+    0 $accept: . command_list $end
+
+    QUEST_TOK          shift, and go to state 1
+    USER_VARIABLE_TOK  shift, and go to state 2
+
+    command_list              go to state 3
+    command                   go to state 4
+    user_variable_definition  go to state 5
+    quest_definition          go to state 6
+
+
+State 1
+
+    8 quest_definition: QUEST_TOK . '(' INTEGER_TOK ')' '{' quest_content_list '}' ';'
+
+    '('  shift, and go to state 7
+
+
+State 2
+
+    5 user_variable_definition: USER_VARIABLE_TOK . '=' integer_expression ';'
+    6                         | USER_VARIABLE_TOK . '=' QSTRING_TOK ';'
+    7                         | USER_VARIABLE_TOK . '=' USER_VARIABLE_TOK ';'
+
+    '='  shift, and go to state 8
+
+
+State 3
+
+    0 $accept: command_list . $end
+    2 command_list: command_list . command
+
+    $end               shift, and go to state 9
+    QUEST_TOK          shift, and go to state 1
+    USER_VARIABLE_TOK  shift, and go to state 2
+
+    command                   go to state 10
+    user_variable_definition  go to state 5
+    quest_definition          go to state 6
+
+
+State 4
+
+    1 command_list: command .
+
+    $default  reduce using rule 1 (command_list)
+
+
+State 5
+
+    3 command: user_variable_definition .
+
+    $default  reduce using rule 3 (command)
+
+
+State 6
+
+    4 command: quest_definition .
+
+    $default  reduce using rule 4 (command)
+
+
+State 7
+
+    8 quest_definition: QUEST_TOK '(' . INTEGER_TOK ')' '{' quest_content_list '}' ';'
+
+    INTEGER_TOK  shift, and go to state 11
+
+
+State 8
+
+    5 user_variable_definition: USER_VARIABLE_TOK '=' . integer_expression ';'
+    6                         | USER_VARIABLE_TOK '=' . QSTRING_TOK ';'
+    7                         | USER_VARIABLE_TOK '=' . USER_VARIABLE_TOK ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 12
+    INTEGER_TOK        shift, and go to state 13
+    QSTRING_TOK        shift, and go to state 14
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 16
+
+
+State 9
+
+    0 $accept: command_list $end .
+
+    $default  accept
+
+
+State 10
+
+    2 command_list: command_list command .
+
+    $default  reduce using rule 2 (command_list)
+
+
+State 11
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK . ')' '{' quest_content_list '}' ';'
+
+    ')'  shift, and go to state 17
+
+
+State 12
+
+    7 user_variable_definition: USER_VARIABLE_TOK '=' USER_VARIABLE_TOK . ';'
+  106 integer_expression: USER_VARIABLE_TOK .
+
+    ';'  shift, and go to state 18
+
+    ';'       [reduce using rule 106 (integer_expression)]
+    $default  reduce using rule 106 (integer_expression)
+
+
+State 13
+
+  105 integer_expression: INTEGER_TOK .
+
+    $default  reduce using rule 105 (integer_expression)
+
+
+State 14
+
+    6 user_variable_definition: USER_VARIABLE_TOK '=' QSTRING_TOK . ';'
+
+    ';'  shift, and go to state 19
+
+
+State 15
+
+  104 integer_expression: '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 21
+
+
+State 16
+
+    5 user_variable_definition: USER_VARIABLE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 28
+
+
+State 17
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' . '{' quest_content_list '}' ';'
+
+    '{'  shift, and go to state 29
+
+
+State 18
+
+    7 user_variable_definition: USER_VARIABLE_TOK '=' USER_VARIABLE_TOK ';' .
+
+    $default  reduce using rule 7 (user_variable_definition)
+
+
+State 19
+
+    6 user_variable_definition: USER_VARIABLE_TOK '=' QSTRING_TOK ';' .
+
+    $default  reduce using rule 6 (user_variable_definition)
+
+
+State 20
+
+  106 integer_expression: USER_VARIABLE_TOK .
+
+    $default  reduce using rule 106 (integer_expression)
+
+
+State 21
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  104                   | '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 30
+
+
+State 22
+
+  102 integer_expression: integer_expression AND_TOK . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 31
+
+
+State 23
+
+  103 integer_expression: integer_expression OR_TOK . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 32
+
+
+State 24
+
+   99 integer_expression: integer_expression '-' . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 33
+
+
+State 25
+
+   98 integer_expression: integer_expression '+' . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 34
+
+
+State 26
+
+  101 integer_expression: integer_expression '/' . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 35
+
+
+State 27
+
+  100 integer_expression: integer_expression '*' . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 36
+
+
+State 28
+
+    5 user_variable_definition: USER_VARIABLE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 5 (user_variable_definition)
+
+
+State 29
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' '{' . quest_content_list '}' ';'
+
+    BASIC_INFO_TOK         shift, and go to state 37
+    START_REQ_TOK          shift, and go to state 38
+    START_ACTION_TOK       shift, and go to state 39
+    COMPLETION_REQ_TOK     shift, and go to state 40
+    COMPLETION_ACTION_TOK  shift, and go to state 41
+
+    quest_content_list  go to state 42
+    quest_content       go to state 43
+
+
+State 30
+
+  104 integer_expression: '(' integer_expression ')' .
+
+    $default  reduce using rule 104 (integer_expression)
+
+
+State 31
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  102                   | integer_expression AND_TOK integer_expression .
+  103                   | integer_expression . OR_TOK integer_expression
+
+    $default  reduce using rule 102 (integer_expression)
+
+
+State 32
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  103                   | integer_expression OR_TOK integer_expression .
+
+    $default  reduce using rule 103 (integer_expression)
+
+
+State 33
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+   99                   | integer_expression '-' integer_expression .
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+
+    $default  reduce using rule 99 (integer_expression)
+
+
+State 34
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   98                   | integer_expression '+' integer_expression .
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+
+    $default  reduce using rule 98 (integer_expression)
+
+
+State 35
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  101                   | integer_expression '/' integer_expression .
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+
+    $default  reduce using rule 101 (integer_expression)
+
+
+State 36
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  100                   | integer_expression '*' integer_expression .
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+
+    $default  reduce using rule 100 (integer_expression)
+
+
+State 37
+
+   11 quest_content: BASIC_INFO_TOK . '{' statement_list '}' ';'
+   12              | BASIC_INFO_TOK . '{' '}' ';'
+
+    '{'  shift, and go to state 44
+
+
+State 38
+
+   13 quest_content: START_REQ_TOK . '{' statement_list '}' ';'
+   14              | START_REQ_TOK . '{' '}' ';'
+
+    '{'  shift, and go to state 45
+
+
+State 39
+
+   15 quest_content: START_ACTION_TOK . '{' statement_list '}' ';'
+   16              | START_ACTION_TOK . '{' '}' ';'
+
+    '{'  shift, and go to state 46
+
+
+State 40
+
+   17 quest_content: COMPLETION_REQ_TOK . '{' statement_list '}' ';'
+   18              | COMPLETION_REQ_TOK . '{' '}' ';'
+
+    '{'  shift, and go to state 47
+
+
+State 41
+
+   19 quest_content: COMPLETION_ACTION_TOK . '{' statement_list '}' ';'
+   20              | COMPLETION_ACTION_TOK . '{' '}' ';'
+
+    '{'  shift, and go to state 48
+
+
+State 42
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' '{' quest_content_list . '}' ';'
+   10 quest_content_list: quest_content_list . quest_content
+
+    BASIC_INFO_TOK         shift, and go to state 37
+    START_REQ_TOK          shift, and go to state 38
+    START_ACTION_TOK       shift, and go to state 39
+    COMPLETION_REQ_TOK     shift, and go to state 40
+    COMPLETION_ACTION_TOK  shift, and go to state 41
+    '}'                    shift, and go to state 49
+
+    quest_content  go to state 50
+
+
+State 43
+
+    9 quest_content_list: quest_content .
+
+    $default  reduce using rule 9 (quest_content_list)
+
+
+State 44
+
+   11 quest_content: BASIC_INFO_TOK '{' . statement_list '}' ';'
+   12              | BASIC_INFO_TOK '{' . '}' ';'
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 111
+
+    statement_list  go to state 112
+    statement       go to state 113
+
+
+State 45
+
+   13 quest_content: START_REQ_TOK '{' . statement_list '}' ';'
+   14              | START_REQ_TOK '{' . '}' ';'
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 114
+
+    statement_list  go to state 115
+    statement       go to state 113
+
+
+State 46
+
+   15 quest_content: START_ACTION_TOK '{' . statement_list '}' ';'
+   16              | START_ACTION_TOK '{' . '}' ';'
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 116
+
+    statement_list  go to state 117
+    statement       go to state 113
+
+
+State 47
+
+   17 quest_content: COMPLETION_REQ_TOK '{' . statement_list '}' ';'
+   18              | COMPLETION_REQ_TOK '{' . '}' ';'
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 118
+
+    statement_list  go to state 119
+    statement       go to state 113
+
+
+State 48
+
+   19 quest_content: COMPLETION_ACTION_TOK '{' . statement_list '}' ';'
+   20              | COMPLETION_ACTION_TOK '{' . '}' ';'
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 120
+
+    statement_list  go to state 121
+    statement       go to state 113
+
+
+State 49
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' '{' quest_content_list '}' . ';'
+
+    ';'  shift, and go to state 122
+
+
+State 50
+
+   10 quest_content_list: quest_content_list quest_content .
+
+    $default  reduce using rule 10 (quest_content_list)
+
+
+State 51
+
+   23 statement: QUEST_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 123
+
+
+State 52
+
+   24 statement: QUEST_NAME_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 124
+
+
+State 53
+
+   25 statement: QUEST_EPISODE_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 125
+
+
+State 54
+
+   26 statement: QUEST_PARTYTYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 126
+
+
+State 55
+
+   27 statement: QUEST_KIND_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 127
+
+
+State 56
+
+   28 statement: QUEST_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 128
+
+
+State 57
+
+   29 statement: QUEST_START_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 129
+
+
+State 58
+
+   30 statement: QUEST_END_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 130
+
+
+State 59
+
+   31 statement: QUEST_PARTY_MEMBERS_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 131
+
+
+State 60
+
+   32 statement: QUEST_NPC_INFO_TOK . '{' quest_npc_statement_list '}' ';'
+
+    '{'  shift, and go to state 132
+
+
+State 61
+
+   33 statement: DESCRIPTION_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 133
+
+
+State 62
+
+   34 statement: EVENT_MAP_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 134
+
+
+State 63
+
+   35 statement: NEXT_QUEST_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 135
+
+
+State 64
+
+   36 statement: PARTY_QUEST_MEMBER_COUNT_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 136
+
+
+State 65
+
+   37 statement: DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 137
+
+
+State 66
+
+   38 statement: TIME_LIMIT_IN_MINUTES_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 138
+
+
+State 67
+
+   39 statement: DISCARDABLE_QUEST_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 139
+
+
+State 68
+
+   40 statement: BI_QUEST_ATTRI_IS_CITYWAR_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 140
+
+
+State 69
+
+   41 statement: BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 141
+
+
+State 70
+
+   42 statement: DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 142
+
+
+State 71
+
+   43 statement: S_REQ_UNIT_KIND_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 143
+
+
+State 72
+
+   44 statement: S_REQ_LEVEL_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 144
+
+
+State 73
+
+   45 statement: S_REQ_ATTACK_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 145
+
+
+State 74
+
+   46 statement: S_REQ_DEFENSE_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 146
+
+
+State 75
+
+   47 statement: S_REQ_FUEL_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 147
+
+
+State 76
+
+   48 statement: S_REQ_SOUL_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 148
+
+
+State 77
+
+   49 statement: S_REQ_SHIELD_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 149
+
+
+State 78
+
+   50 statement: S_REQ_DODGE_PART_TOK . '=' integer_range_value ';'
+
+    '='  shift, and go to state 150
+
+
+State 79
+
+   51 statement: S_REQ_ITEM_TOK . '=' item_w_count_value ';'
+
+    '='  shift, and go to state 151
+
+
+State 80
+
+   52 statement: S_REQ_QUEST_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 152
+
+
+State 81
+
+   53 statement: S_REQ_RECV_QUEST_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 153
+
+
+State 82
+
+   54 statement: S_REQ_GUILD_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 154
+
+
+State 83
+
+   55 statement: S_REQ_INFLUENCE_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 155
+
+
+State 84
+
+   56 statement: S_REQ_START_AREA_TOK . '=' map_area_value ';'
+
+    '='  shift, and go to state 156
+
+
+State 85
+
+   57 statement: S_PAY_ITEM_TOK . '=' quest_pay_item_value ';'
+
+    '='  shift, and go to state 157
+
+
+State 86
+
+   58 statement: S_DEL_ITEM_TOK . '=' item_w_count_value ';'
+
+    '='  shift, and go to state 158
+
+
+State 87
+
+   59 statement: S_START_MAP_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 159
+
+
+State 88
+
+   60 statement: S_START_PARTY_WARP_FLAG_TOK . '=' boolean_value ';'
+
+    '='  shift, and go to state 160
+
+
+State 89
+
+   61 statement: C_REQ_MEET_NPC_INFO_TOK . '{' quest_npc_statement_list '}' ';'
+
+    '{'  shift, and go to state 161
+
+
+State 90
+
+   63 statement: C_REQ_ITEM_TOK . '=' item_w_count_value ';'
+   64          | C_REQ_ITEM_TOK . '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   65          | C_REQ_ITEM_TOK . '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    '='  shift, and go to state 162
+
+
+State 91
+
+   62 statement: C_REQ_MEET_OBJ_INDEX_TOK . '=' integer_expression map_area_value ';'
+
+    '='  shift, and go to state 163
+
+
+State 92
+
+   66 statement: C_REQ_DEAD_BY_MONSTER_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 164
+
+
+State 93
+
+   67 statement: C_REQ_MEET_MAP_AREA_TOK . '=' map_area_value ';'
+
+    '='  shift, and go to state 165
+
+
+State 94
+
+   68 statement: C_REQ_MONSTER_TOK . '=' monster_w_count_value ';'
+   69          | C_REQ_MONSTER_TOK . '=' monster_w_count_value map_area_value ';'
+
+    '='  shift, and go to state 166
+
+
+State 95
+
+   70 statement: C_REQ_MIX_ITEM_TARGET_TOK . '=' item_w_count_value ';'
+
+    '='  shift, and go to state 167
+
+
+State 96
+
+   71 statement: C_PAY_BONUS_STAT_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 168
+
+
+State 97
+
+   72 statement: C_PAY_BONUS_SKILL_POINT_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 169
+
+
+State 98
+
+   73 statement: C_PAY_FAME_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 170
+
+
+State 99
+
+   74 statement: C_PAY_STATUS_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 171
+
+
+State 100
+
+   75 statement: C_PAY_LEVEL_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 172
+
+
+State 101
+
+   76 statement: C_PAY_EXPERIENCE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 173
+
+
+State 102
+
+   77 statement: C_PAY_WARP_MAP_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 174
+
+
+State 103
+
+   78 statement: C_DEL_ITEM_TOK . '=' item_w_count_value ';'
+
+    '='  shift, and go to state 175
+
+
+State 104
+
+   79 statement: C_PAY_ITEM_TOK . '=' quest_pay_item_value ';'
+
+    '='  shift, and go to state 176
+
+
+State 105
+
+   80 statement: C_PAY_ITEM_MISSIONMASTER_TOK . '=' quest_missinmaster_pay_item_value ';'
+
+    '='  shift, and go to state 177
+
+
+State 106
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK . '=' item_w_count_prob_list PER_TOK integer_expression ';'
+
+    '='  shift, and go to state 178
+
+
+State 107
+
+   82 statement: C_MIX_ITEM_TOK . '=' item_w_count_list R_ARROW_TOK integer_expression prob_value ';'
+
+    '='  shift, and go to state 179
+
+
+State 108
+
+   83 statement: C_PAY_PROPENSITY_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 180
+
+
+State 109
+
+   84 statement: C_CINEMA_NUM_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 181
+
+
+State 110
+
+   85 statement: C_PAY_INFLUENCE_TYPE_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 182
+
+
+State 111
+
+   12 quest_content: BASIC_INFO_TOK '{' '}' . ';'
+
+    ';'  shift, and go to state 183
+
+
+State 112
+
+   11 quest_content: BASIC_INFO_TOK '{' statement_list . '}' ';'
+   22 statement_list: statement_list . statement
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 184
+
+    statement  go to state 185
+
+
+State 113
+
+   21 statement_list: statement .
+
+    $default  reduce using rule 21 (statement_list)
+
+
+State 114
+
+   14 quest_content: START_REQ_TOK '{' '}' . ';'
+
+    ';'  shift, and go to state 186
+
+
+State 115
+
+   13 quest_content: START_REQ_TOK '{' statement_list . '}' ';'
+   22 statement_list: statement_list . statement
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 187
+
+    statement  go to state 185
+
+
+State 116
+
+   16 quest_content: START_ACTION_TOK '{' '}' . ';'
+
+    ';'  shift, and go to state 188
+
+
+State 117
+
+   15 quest_content: START_ACTION_TOK '{' statement_list . '}' ';'
+   22 statement_list: statement_list . statement
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 189
+
+    statement  go to state 185
+
+
+State 118
+
+   18 quest_content: COMPLETION_REQ_TOK '{' '}' . ';'
+
+    ';'  shift, and go to state 190
+
+
+State 119
+
+   17 quest_content: COMPLETION_REQ_TOK '{' statement_list . '}' ';'
+   22 statement_list: statement_list . statement
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 191
+
+    statement  go to state 185
+
+
+State 120
+
+   20 quest_content: COMPLETION_ACTION_TOK '{' '}' . ';'
+
+    ';'  shift, and go to state 192
+
+
+State 121
+
+   19 quest_content: COMPLETION_ACTION_TOK '{' statement_list . '}' ';'
+   22 statement_list: statement_list . statement
+
+    QUEST_INDEX_TOK                              shift, and go to state 51
+    QUEST_NAME_TOK                               shift, and go to state 52
+    QUEST_EPISODE_TYPE_TOK                       shift, and go to state 53
+    QUEST_PARTYTYPE_TOK                          shift, and go to state 54
+    QUEST_KIND_TOK                               shift, and go to state 55
+    QUEST_TYPE_TOK                               shift, and go to state 56
+    QUEST_START_TYPE_TOK                         shift, and go to state 57
+    QUEST_END_TYPE_TOK                           shift, and go to state 58
+    QUEST_PARTY_MEMBERS_TOK                      shift, and go to state 59
+    QUEST_NPC_INFO_TOK                           shift, and go to state 60
+    DESCRIPTION_TOK                              shift, and go to state 61
+    EVENT_MAP_TOK                                shift, and go to state 62
+    NEXT_QUEST_INDEX_TOK                         shift, and go to state 63
+    PARTY_QUEST_MEMBER_COUNT_TOK                 shift, and go to state 64
+    DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK        shift, and go to state 65
+    TIME_LIMIT_IN_MINUTES_TOK                    shift, and go to state 66
+    DISCARDABLE_QUEST_TOK                        shift, and go to state 67
+    BI_QUEST_ATTRI_IS_CITYWAR_TOK                shift, and go to state 68
+    BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK  shift, and go to state 69
+    DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK           shift, and go to state 70
+    S_REQ_UNIT_KIND_TOK                          shift, and go to state 71
+    S_REQ_LEVEL_TOK                              shift, and go to state 72
+    S_REQ_ATTACK_PART_TOK                        shift, and go to state 73
+    S_REQ_DEFENSE_PART_TOK                       shift, and go to state 74
+    S_REQ_FUEL_PART_TOK                          shift, and go to state 75
+    S_REQ_SOUL_PART_TOK                          shift, and go to state 76
+    S_REQ_SHIELD_PART_TOK                        shift, and go to state 77
+    S_REQ_DODGE_PART_TOK                         shift, and go to state 78
+    S_REQ_ITEM_TOK                               shift, and go to state 79
+    S_REQ_QUEST_INDEX_TOK                        shift, and go to state 80
+    S_REQ_RECV_QUEST_INDEX_TOK                   shift, and go to state 81
+    S_REQ_GUILD_TOK                              shift, and go to state 82
+    S_REQ_INFLUENCE_TYPE_TOK                     shift, and go to state 83
+    S_REQ_START_AREA_TOK                         shift, and go to state 84
+    S_PAY_ITEM_TOK                               shift, and go to state 85
+    S_DEL_ITEM_TOK                               shift, and go to state 86
+    S_START_MAP_INDEX_TOK                        shift, and go to state 87
+    S_START_PARTY_WARP_FLAG_TOK                  shift, and go to state 88
+    C_REQ_MEET_NPC_INFO_TOK                      shift, and go to state 89
+    C_REQ_ITEM_TOK                               shift, and go to state 90
+    C_REQ_MEET_OBJ_INDEX_TOK                     shift, and go to state 91
+    C_REQ_DEAD_BY_MONSTER_TOK                    shift, and go to state 92
+    C_REQ_MEET_MAP_AREA_TOK                      shift, and go to state 93
+    C_REQ_MONSTER_TOK                            shift, and go to state 94
+    C_REQ_MIX_ITEM_TARGET_TOK                    shift, and go to state 95
+    C_PAY_BONUS_STAT_TOK                         shift, and go to state 96
+    C_PAY_BONUS_SKILL_POINT_TOK                  shift, and go to state 97
+    C_PAY_FAME_TOK                               shift, and go to state 98
+    C_PAY_STATUS_TOK                             shift, and go to state 99
+    C_PAY_LEVEL_TOK                              shift, and go to state 100
+    C_PAY_EXPERIENCE_TOK                         shift, and go to state 101
+    C_PAY_WARP_MAP_INDEX_TOK                     shift, and go to state 102
+    C_DEL_ITEM_TOK                               shift, and go to state 103
+    C_PAY_ITEM_TOK                               shift, and go to state 104
+    C_PAY_ITEM_MISSIONMASTER_TOK                 shift, and go to state 105
+    C_RANDOM_PAY_ITEM_TOK                        shift, and go to state 106
+    C_MIX_ITEM_TOK                               shift, and go to state 107
+    C_PAY_PROPENSITY_TOK                         shift, and go to state 108
+    C_CINEMA_NUM_TOK                             shift, and go to state 109
+    C_PAY_INFLUENCE_TYPE_TOK                     shift, and go to state 110
+    '}'                                          shift, and go to state 193
+
+    statement  go to state 185
+
+
+State 122
+
+    8 quest_definition: QUEST_TOK '(' INTEGER_TOK ')' '{' quest_content_list '}' ';' .
+
+    $default  reduce using rule 8 (quest_definition)
+
+
+State 123
+
+   23 statement: QUEST_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 194
+
+
+State 124
+
+   24 statement: QUEST_NAME_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 197
+
+
+State 125
+
+   25 statement: QUEST_EPISODE_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 198
+
+
+State 126
+
+   26 statement: QUEST_PARTYTYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 199
+
+
+State 127
+
+   27 statement: QUEST_KIND_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 200
+
+
+State 128
+
+   28 statement: QUEST_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 201
+
+
+State 129
+
+   29 statement: QUEST_START_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 202
+
+
+State 130
+
+   30 statement: QUEST_END_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 203
+
+
+State 131
+
+   31 statement: QUEST_PARTY_MEMBERS_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 204
+
+
+State 132
+
+   32 statement: QUEST_NPC_INFO_TOK '{' . quest_npc_statement_list '}' ';'
+
+    NPC_INDEX_TOK     shift, and go to state 205
+    NPC_NAME_TOK      shift, and go to state 206
+    PRE_TALK_TOK      shift, and go to state 207
+    MID_TALK_TOK      shift, and go to state 208
+    FAIL_TALK_TOK     shift, and go to state 209
+    SUCCESS_TALK_TOK  shift, and go to state 210
+
+    quest_npc_statement_list  go to state 211
+    quest_npc_statement       go to state 212
+
+
+State 133
+
+   33 statement: DESCRIPTION_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 213
+
+
+State 134
+
+   34 statement: EVENT_MAP_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 214
+
+
+State 135
+
+   35 statement: NEXT_QUEST_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 215
+
+
+State 136
+
+   36 statement: PARTY_QUEST_MEMBER_COUNT_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 216
+
+
+State 137
+
+   37 statement: DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 219
+
+
+State 138
+
+   38 statement: TIME_LIMIT_IN_MINUTES_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 220
+
+
+State 139
+
+   39 statement: DISCARDABLE_QUEST_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 221
+
+
+State 140
+
+   40 statement: BI_QUEST_ATTRI_IS_CITYWAR_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 222
+
+
+State 141
+
+   41 statement: BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 223
+
+
+State 142
+
+   42 statement: DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 224
+
+
+State 143
+
+   43 statement: S_REQ_UNIT_KIND_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 225
+
+
+State 144
+
+   44 statement: S_REQ_LEVEL_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 227
+
+
+State 145
+
+   45 statement: S_REQ_ATTACK_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 228
+
+
+State 146
+
+   46 statement: S_REQ_DEFENSE_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 229
+
+
+State 147
+
+   47 statement: S_REQ_FUEL_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 230
+
+
+State 148
+
+   48 statement: S_REQ_SOUL_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 231
+
+
+State 149
+
+   49 statement: S_REQ_SHIELD_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 232
+
+
+State 150
+
+   50 statement: S_REQ_DODGE_PART_TOK '=' . integer_range_value ';'
+
+    '('  shift, and go to state 226
+
+    integer_range_value  go to state 233
+
+
+State 151
+
+   51 statement: S_REQ_ITEM_TOK '=' . item_w_count_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 235
+
+
+State 152
+
+   52 statement: S_REQ_QUEST_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 236
+
+
+State 153
+
+   53 statement: S_REQ_RECV_QUEST_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 237
+
+
+State 154
+
+   54 statement: S_REQ_GUILD_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 238
+
+
+State 155
+
+   55 statement: S_REQ_INFLUENCE_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 239
+
+
+State 156
+
+   56 statement: S_REQ_START_AREA_TOK '=' . map_area_value ';'
+
+    AREA_TOK  shift, and go to state 240
+
+    $default  reduce using rule 91 (map_area_value)
+
+    map_area_value  go to state 241
+
+
+State 157
+
+   57 statement: S_PAY_ITEM_TOK '=' . quest_pay_item_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression    go to state 234
+    item_w_count_value    go to state 242
+    quest_pay_item_value  go to state 243
+
+
+State 158
+
+   58 statement: S_DEL_ITEM_TOK '=' . item_w_count_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 244
+
+
+State 159
+
+   59 statement: S_START_MAP_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 245
+
+
+State 160
+
+   60 statement: S_START_PARTY_WARP_FLAG_TOK '=' . boolean_value ';'
+
+    TRUE_TOK   shift, and go to state 217
+    FALSE_TOK  shift, and go to state 218
+
+    boolean_value  go to state 246
+
+
+State 161
+
+   61 statement: C_REQ_MEET_NPC_INFO_TOK '{' . quest_npc_statement_list '}' ';'
+
+    NPC_INDEX_TOK     shift, and go to state 205
+    NPC_NAME_TOK      shift, and go to state 206
+    PRE_TALK_TOK      shift, and go to state 207
+    MID_TALK_TOK      shift, and go to state 208
+    FAIL_TALK_TOK     shift, and go to state 209
+    SUCCESS_TALK_TOK  shift, and go to state 210
+
+    quest_npc_statement_list  go to state 247
+    quest_npc_statement       go to state 212
+
+
+State 162
+
+   63 statement: C_REQ_ITEM_TOK '=' . item_w_count_value ';'
+   64          | C_REQ_ITEM_TOK '=' . item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   65          | C_REQ_ITEM_TOK '=' . item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 248
+
+
+State 163
+
+   62 statement: C_REQ_MEET_OBJ_INDEX_TOK '=' . integer_expression map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 249
+
+
+State 164
+
+   66 statement: C_REQ_DEAD_BY_MONSTER_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 250
+
+
+State 165
+
+   67 statement: C_REQ_MEET_MAP_AREA_TOK '=' . map_area_value ';'
+
+    AREA_TOK  shift, and go to state 240
+
+    $default  reduce using rule 91 (map_area_value)
+
+    map_area_value  go to state 251
+
+
+State 166
+
+   68 statement: C_REQ_MONSTER_TOK '=' . monster_w_count_value ';'
+   69          | C_REQ_MONSTER_TOK '=' . monster_w_count_value map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression     go to state 252
+    monster_w_count_value  go to state 253
+
+
+State 167
+
+   70 statement: C_REQ_MIX_ITEM_TARGET_TOK '=' . item_w_count_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 254
+
+
+State 168
+
+   71 statement: C_PAY_BONUS_STAT_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 255
+
+
+State 169
+
+   72 statement: C_PAY_BONUS_SKILL_POINT_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 256
+
+
+State 170
+
+   73 statement: C_PAY_FAME_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 257
+
+
+State 171
+
+   74 statement: C_PAY_STATUS_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 258
+
+
+State 172
+
+   75 statement: C_PAY_LEVEL_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 259
+
+
+State 173
+
+   76 statement: C_PAY_EXPERIENCE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 260
+
+
+State 174
+
+   77 statement: C_PAY_WARP_MAP_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 261
+
+
+State 175
+
+   78 statement: C_DEL_ITEM_TOK '=' . item_w_count_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 262
+
+
+State 176
+
+   79 statement: C_PAY_ITEM_TOK '=' . quest_pay_item_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression    go to state 234
+    item_w_count_value    go to state 242
+    quest_pay_item_value  go to state 263
+
+
+State 177
+
+   80 statement: C_PAY_ITEM_MISSIONMASTER_TOK '=' . quest_missinmaster_pay_item_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression                 go to state 234
+    item_w_count_value                 go to state 264
+    quest_missinmaster_pay_item_value  go to state 265
+
+
+State 178
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK '=' . item_w_count_prob_list PER_TOK integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    item_w_count_prob_list   go to state 266
+    item_w_count_prob_value  go to state 267
+    integer_expression       go to state 268
+
+
+State 179
+
+   82 statement: C_MIX_ITEM_TOK '=' . item_w_count_list R_ARROW_TOK integer_expression prob_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    item_w_count_list   go to state 269
+    integer_expression  go to state 234
+    item_w_count_value  go to state 270
+
+
+State 180
+
+   83 statement: C_PAY_PROPENSITY_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 271
+
+
+State 181
+
+   84 statement: C_CINEMA_NUM_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 272
+
+
+State 182
+
+   85 statement: C_PAY_INFLUENCE_TYPE_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 273
+
+
+State 183
+
+   12 quest_content: BASIC_INFO_TOK '{' '}' ';' .
+
+    $default  reduce using rule 12 (quest_content)
+
+
+State 184
+
+   11 quest_content: BASIC_INFO_TOK '{' statement_list '}' . ';'
+
+    ';'  shift, and go to state 274
+
+
+State 185
+
+   22 statement_list: statement_list statement .
+
+    $default  reduce using rule 22 (statement_list)
+
+
+State 186
+
+   14 quest_content: START_REQ_TOK '{' '}' ';' .
+
+    $default  reduce using rule 14 (quest_content)
+
+
+State 187
+
+   13 quest_content: START_REQ_TOK '{' statement_list '}' . ';'
+
+    ';'  shift, and go to state 275
+
+
+State 188
+
+   16 quest_content: START_ACTION_TOK '{' '}' ';' .
+
+    $default  reduce using rule 16 (quest_content)
+
+
+State 189
+
+   15 quest_content: START_ACTION_TOK '{' statement_list '}' . ';'
+
+    ';'  shift, and go to state 276
+
+
+State 190
+
+   18 quest_content: COMPLETION_REQ_TOK '{' '}' ';' .
+
+    $default  reduce using rule 18 (quest_content)
+
+
+State 191
+
+   17 quest_content: COMPLETION_REQ_TOK '{' statement_list '}' . ';'
+
+    ';'  shift, and go to state 277
+
+
+State 192
+
+   20 quest_content: COMPLETION_ACTION_TOK '{' '}' ';' .
+
+    $default  reduce using rule 20 (quest_content)
+
+
+State 193
+
+   19 quest_content: COMPLETION_ACTION_TOK '{' statement_list '}' . ';'
+
+    ';'  shift, and go to state 278
+
+
+State 194
+
+   23 statement: QUEST_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 279
+
+
+State 195
+
+  108 string_expression: USER_VARIABLE_TOK .
+
+    $default  reduce using rule 108 (string_expression)
+
+
+State 196
+
+  107 string_expression: QSTRING_TOK .
+
+    $default  reduce using rule 107 (string_expression)
+
+
+State 197
+
+   24 statement: QUEST_NAME_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 280
+
+
+State 198
+
+   25 statement: QUEST_EPISODE_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 281
+
+
+State 199
+
+   26 statement: QUEST_PARTYTYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 282
+
+
+State 200
+
+   27 statement: QUEST_KIND_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 283
+
+
+State 201
+
+   28 statement: QUEST_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 284
+
+
+State 202
+
+   29 statement: QUEST_START_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 285
+
+
+State 203
+
+   30 statement: QUEST_END_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 286
+
+
+State 204
+
+   31 statement: QUEST_PARTY_MEMBERS_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 287
+
+
+State 205
+
+  117 quest_npc_statement: NPC_INDEX_TOK . '=' integer_expression ';'
+
+    '='  shift, and go to state 288
+
+
+State 206
+
+  118 quest_npc_statement: NPC_NAME_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 289
+
+
+State 207
+
+  119 quest_npc_statement: PRE_TALK_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 290
+
+
+State 208
+
+  120 quest_npc_statement: MID_TALK_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 291
+
+
+State 209
+
+  121 quest_npc_statement: FAIL_TALK_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 292
+
+
+State 210
+
+  122 quest_npc_statement: SUCCESS_TALK_TOK . '=' string_expression ';'
+
+    '='  shift, and go to state 293
+
+
+State 211
+
+   32 statement: QUEST_NPC_INFO_TOK '{' quest_npc_statement_list . '}' ';'
+  116 quest_npc_statement_list: quest_npc_statement_list . quest_npc_statement
+
+    NPC_INDEX_TOK     shift, and go to state 205
+    NPC_NAME_TOK      shift, and go to state 206
+    PRE_TALK_TOK      shift, and go to state 207
+    MID_TALK_TOK      shift, and go to state 208
+    FAIL_TALK_TOK     shift, and go to state 209
+    SUCCESS_TALK_TOK  shift, and go to state 210
+    '}'               shift, and go to state 294
+
+    quest_npc_statement  go to state 295
+
+
+State 212
+
+  115 quest_npc_statement_list: quest_npc_statement .
+
+    $default  reduce using rule 115 (quest_npc_statement_list)
+
+
+State 213
+
+   33 statement: DESCRIPTION_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 296
+
+
+State 214
+
+   34 statement: EVENT_MAP_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 297
+
+
+State 215
+
+   35 statement: NEXT_QUEST_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 298
+
+
+State 216
+
+   36 statement: PARTY_QUEST_MEMBER_COUNT_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 299
+
+
+State 217
+
+  129 boolean_value: TRUE_TOK .
+
+    $default  reduce using rule 129 (boolean_value)
+
+
+State 218
+
+  130 boolean_value: FALSE_TOK .
+
+    $default  reduce using rule 130 (boolean_value)
+
+
+State 219
+
+   37 statement: DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 300
+
+
+State 220
+
+   38 statement: TIME_LIMIT_IN_MINUTES_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 301
+
+
+State 221
+
+   39 statement: DISCARDABLE_QUEST_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 302
+
+
+State 222
+
+   40 statement: BI_QUEST_ATTRI_IS_CITYWAR_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 303
+
+
+State 223
+
+   41 statement: BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 304
+
+
+State 224
+
+   42 statement: DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 305
+
+
+State 225
+
+   43 statement: S_REQ_UNIT_KIND_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 306
+
+
+State 226
+
+   94 integer_range_value: '(' . integer_expression ')'
+   95                    | '(' . integer_expression '~' integer_expression ')'
+   96                    | '(' . integer_expression '~' ')'
+   97                    | '(' . '~' integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+    '~'                shift, and go to state 307
+
+    integer_expression  go to state 308
+
+
+State 227
+
+   44 statement: S_REQ_LEVEL_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 309
+
+
+State 228
+
+   45 statement: S_REQ_ATTACK_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 310
+
+
+State 229
+
+   46 statement: S_REQ_DEFENSE_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 311
+
+
+State 230
+
+   47 statement: S_REQ_FUEL_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 312
+
+
+State 231
+
+   48 statement: S_REQ_SOUL_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 313
+
+
+State 232
+
+   49 statement: S_REQ_SHIELD_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 314
+
+
+State 233
+
+   50 statement: S_REQ_DODGE_PART_TOK '=' integer_range_value . ';'
+
+    ';'  shift, and go to state 315
+
+
+State 234
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  111 item_w_count_value: integer_expression . '(' integer_expression ')'
+  112                   | integer_expression . '(' ALL_TOK ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '('      shift, and go to state 316
+
+
+State 235
+
+   51 statement: S_REQ_ITEM_TOK '=' item_w_count_value . ';'
+
+    ';'  shift, and go to state 317
+
+
+State 236
+
+   52 statement: S_REQ_QUEST_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 318
+
+
+State 237
+
+   53 statement: S_REQ_RECV_QUEST_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 319
+
+
+State 238
+
+   54 statement: S_REQ_GUILD_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 320
+
+
+State 239
+
+   55 statement: S_REQ_INFLUENCE_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 321
+
+
+State 240
+
+   92 map_area_value: AREA_TOK . integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+   93               | AREA_TOK . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 322
+
+
+State 241
+
+   56 statement: S_REQ_START_AREA_TOK '=' map_area_value . ';'
+
+    ';'  shift, and go to state 323
+
+
+State 242
+
+  113 quest_pay_item_value: item_w_count_value . per_item_value attach_value to_unit_kind_value
+
+    PER_TOK  shift, and go to state 324
+
+    $default  reduce using rule 123 (per_item_value)
+
+    per_item_value  go to state 325
+
+
+State 243
+
+   57 statement: S_PAY_ITEM_TOK '=' quest_pay_item_value . ';'
+
+    ';'  shift, and go to state 326
+
+
+State 244
+
+   58 statement: S_DEL_ITEM_TOK '=' item_w_count_value . ';'
+
+    ';'  shift, and go to state 327
+
+
+State 245
+
+   59 statement: S_START_MAP_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 328
+
+
+State 246
+
+   60 statement: S_START_PARTY_WARP_FLAG_TOK '=' boolean_value . ';'
+
+    ';'  shift, and go to state 329
+
+
+State 247
+
+   61 statement: C_REQ_MEET_NPC_INFO_TOK '{' quest_npc_statement_list . '}' ';'
+  116 quest_npc_statement_list: quest_npc_statement_list . quest_npc_statement
+
+    NPC_INDEX_TOK     shift, and go to state 205
+    NPC_NAME_TOK      shift, and go to state 206
+    PRE_TALK_TOK      shift, and go to state 207
+    MID_TALK_TOK      shift, and go to state 208
+    FAIL_TALK_TOK     shift, and go to state 209
+    SUCCESS_TALK_TOK  shift, and go to state 210
+    '}'               shift, and go to state 330
+
+    quest_npc_statement  go to state 295
+
+
+State 248
+
+   63 statement: C_REQ_ITEM_TOK '=' item_w_count_value . ';'
+   64          | C_REQ_ITEM_TOK '=' item_w_count_value . FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   65          | C_REQ_ITEM_TOK '=' item_w_count_value . FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    FROM_TOK  shift, and go to state 331
+    ';'       shift, and go to state 332
+
+
+State 249
+
+   62 statement: C_REQ_MEET_OBJ_INDEX_TOK '=' integer_expression . map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AREA_TOK  shift, and go to state 240
+    AND_TOK   shift, and go to state 22
+    OR_TOK    shift, and go to state 23
+    '-'       shift, and go to state 24
+    '+'       shift, and go to state 25
+    '/'       shift, and go to state 26
+    '*'       shift, and go to state 27
+
+    $default  reduce using rule 91 (map_area_value)
+
+    map_area_value  go to state 333
+
+
+State 250
+
+   66 statement: C_REQ_DEAD_BY_MONSTER_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 334
+
+
+State 251
+
+   67 statement: C_REQ_MEET_MAP_AREA_TOK '=' map_area_value . ';'
+
+    ';'  shift, and go to state 335
+
+
+State 252
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  109 monster_w_count_value: integer_expression . '(' integer_expression ')'
+  110                      | integer_expression . '(' ALL_TOK ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '('      shift, and go to state 336
+
+
+State 253
+
+   68 statement: C_REQ_MONSTER_TOK '=' monster_w_count_value . ';'
+   69          | C_REQ_MONSTER_TOK '=' monster_w_count_value . map_area_value ';'
+
+    AREA_TOK  shift, and go to state 240
+    ';'       shift, and go to state 337
+
+    ';'  [reduce using rule 91 (map_area_value)]
+
+    map_area_value  go to state 338
+
+
+State 254
+
+   70 statement: C_REQ_MIX_ITEM_TARGET_TOK '=' item_w_count_value . ';'
+
+    ';'  shift, and go to state 339
+
+
+State 255
+
+   71 statement: C_PAY_BONUS_STAT_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 340
+
+
+State 256
+
+   72 statement: C_PAY_BONUS_SKILL_POINT_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 341
+
+
+State 257
+
+   73 statement: C_PAY_FAME_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 342
+
+
+State 258
+
+   74 statement: C_PAY_STATUS_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 343
+
+
+State 259
+
+   75 statement: C_PAY_LEVEL_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 344
+
+
+State 260
+
+   76 statement: C_PAY_EXPERIENCE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 345
+
+
+State 261
+
+   77 statement: C_PAY_WARP_MAP_INDEX_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 346
+
+
+State 262
+
+   78 statement: C_DEL_ITEM_TOK '=' item_w_count_value . ';'
+
+    ';'  shift, and go to state 347
+
+
+State 263
+
+   79 statement: C_PAY_ITEM_TOK '=' quest_pay_item_value . ';'
+
+    ';'  shift, and go to state 348
+
+
+State 264
+
+  114 quest_missinmaster_pay_item_value: item_w_count_value . per_item_value attach_value to_unit_kind_value
+
+    PER_TOK  shift, and go to state 324
+
+    $default  reduce using rule 123 (per_item_value)
+
+    per_item_value  go to state 349
+
+
+State 265
+
+   80 statement: C_PAY_ITEM_MISSIONMASTER_TOK '=' quest_missinmaster_pay_item_value . ';'
+
+    ';'  shift, and go to state 350
+
+
+State 266
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK '=' item_w_count_prob_list . PER_TOK integer_expression ';'
+   87 item_w_count_prob_list: item_w_count_prob_list . OR_TOK item_w_count_prob_value
+
+    PER_TOK  shift, and go to state 351
+    OR_TOK   shift, and go to state 352
+
+
+State 267
+
+   86 item_w_count_prob_list: item_w_count_prob_value .
+
+    $default  reduce using rule 86 (item_w_count_prob_list)
+
+
+State 268
+
+   88 item_w_count_prob_value: integer_expression . '(' integer_expression ',' integer_expression ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '('      shift, and go to state 353
+
+
+State 269
+
+   82 statement: C_MIX_ITEM_TOK '=' item_w_count_list . R_ARROW_TOK integer_expression prob_value ';'
+   90 item_w_count_list: item_w_count_list . '+' item_w_count_value
+
+    R_ARROW_TOK  shift, and go to state 354
+    '+'          shift, and go to state 355
+
+
+State 270
+
+   89 item_w_count_list: item_w_count_value .
+
+    $default  reduce using rule 89 (item_w_count_list)
+
+
+State 271
+
+   83 statement: C_PAY_PROPENSITY_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 356
+
+
+State 272
+
+   84 statement: C_CINEMA_NUM_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 357
+
+
+State 273
+
+   85 statement: C_PAY_INFLUENCE_TYPE_TOK '=' integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 358
+
+
+State 274
+
+   11 quest_content: BASIC_INFO_TOK '{' statement_list '}' ';' .
+
+    $default  reduce using rule 11 (quest_content)
+
+
+State 275
+
+   13 quest_content: START_REQ_TOK '{' statement_list '}' ';' .
+
+    $default  reduce using rule 13 (quest_content)
+
+
+State 276
+
+   15 quest_content: START_ACTION_TOK '{' statement_list '}' ';' .
+
+    $default  reduce using rule 15 (quest_content)
+
+
+State 277
+
+   17 quest_content: COMPLETION_REQ_TOK '{' statement_list '}' ';' .
+
+    $default  reduce using rule 17 (quest_content)
+
+
+State 278
+
+   19 quest_content: COMPLETION_ACTION_TOK '{' statement_list '}' ';' .
+
+    $default  reduce using rule 19 (quest_content)
+
+
+State 279
+
+   23 statement: QUEST_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 23 (statement)
+
+
+State 280
+
+   24 statement: QUEST_NAME_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 24 (statement)
+
+
+State 281
+
+   25 statement: QUEST_EPISODE_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 25 (statement)
+
+
+State 282
+
+   26 statement: QUEST_PARTYTYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 26 (statement)
+
+
+State 283
+
+   27 statement: QUEST_KIND_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 27 (statement)
+
+
+State 284
+
+   28 statement: QUEST_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 28 (statement)
+
+
+State 285
+
+   29 statement: QUEST_START_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 29 (statement)
+
+
+State 286
+
+   30 statement: QUEST_END_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 30 (statement)
+
+
+State 287
+
+   31 statement: QUEST_PARTY_MEMBERS_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 31 (statement)
+
+
+State 288
+
+  117 quest_npc_statement: NPC_INDEX_TOK '=' . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 359
+
+
+State 289
+
+  118 quest_npc_statement: NPC_NAME_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 360
+
+
+State 290
+
+  119 quest_npc_statement: PRE_TALK_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 361
+
+
+State 291
+
+  120 quest_npc_statement: MID_TALK_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 362
+
+
+State 292
+
+  121 quest_npc_statement: FAIL_TALK_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 363
+
+
+State 293
+
+  122 quest_npc_statement: SUCCESS_TALK_TOK '=' . string_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 195
+    QSTRING_TOK        shift, and go to state 196
+
+    string_expression  go to state 364
+
+
+State 294
+
+   32 statement: QUEST_NPC_INFO_TOK '{' quest_npc_statement_list '}' . ';'
+
+    ';'  shift, and go to state 365
+
+
+State 295
+
+  116 quest_npc_statement_list: quest_npc_statement_list quest_npc_statement .
+
+    $default  reduce using rule 116 (quest_npc_statement_list)
+
+
+State 296
+
+   33 statement: DESCRIPTION_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 33 (statement)
+
+
+State 297
+
+   34 statement: EVENT_MAP_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 34 (statement)
+
+
+State 298
+
+   35 statement: NEXT_QUEST_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 35 (statement)
+
+
+State 299
+
+   36 statement: PARTY_QUEST_MEMBER_COUNT_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 36 (statement)
+
+
+State 300
+
+   37 statement: DROP_ITEM_TO_ALL_ATTACK_CHARACTER_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 37 (statement)
+
+
+State 301
+
+   38 statement: TIME_LIMIT_IN_MINUTES_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 38 (statement)
+
+
+State 302
+
+   39 statement: DISCARDABLE_QUEST_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 39 (statement)
+
+
+State 303
+
+   40 statement: BI_QUEST_ATTRI_IS_CITYWAR_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 40 (statement)
+
+
+State 304
+
+   41 statement: BI_QUEST_ATTRI_NEVER_COMPLETION_BY_USER_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 41 (statement)
+
+
+State 305
+
+   42 statement: DROP_ITEM_TO_ALL_PARTY_MEMBERS_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 42 (statement)
+
+
+State 306
+
+   43 statement: S_REQ_UNIT_KIND_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 43 (statement)
+
+
+State 307
+
+   97 integer_range_value: '(' '~' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 366
+
+
+State 308
+
+   94 integer_range_value: '(' integer_expression . ')'
+   95                    | '(' integer_expression . '~' integer_expression ')'
+   96                    | '(' integer_expression . '~' ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 367
+    '~'      shift, and go to state 368
+
+
+State 309
+
+   44 statement: S_REQ_LEVEL_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 44 (statement)
+
+
+State 310
+
+   45 statement: S_REQ_ATTACK_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 45 (statement)
+
+
+State 311
+
+   46 statement: S_REQ_DEFENSE_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 46 (statement)
+
+
+State 312
+
+   47 statement: S_REQ_FUEL_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 47 (statement)
+
+
+State 313
+
+   48 statement: S_REQ_SOUL_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 48 (statement)
+
+
+State 314
+
+   49 statement: S_REQ_SHIELD_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 49 (statement)
+
+
+State 315
+
+   50 statement: S_REQ_DODGE_PART_TOK '=' integer_range_value ';' .
+
+    $default  reduce using rule 50 (statement)
+
+
+State 316
+
+  111 item_w_count_value: integer_expression '(' . integer_expression ')'
+  112                   | integer_expression '(' . ALL_TOK ')'
+
+    ALL_TOK            shift, and go to state 369
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 370
+
+
+State 317
+
+   51 statement: S_REQ_ITEM_TOK '=' item_w_count_value ';' .
+
+    $default  reduce using rule 51 (statement)
+
+
+State 318
+
+   52 statement: S_REQ_QUEST_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 52 (statement)
+
+
+State 319
+
+   53 statement: S_REQ_RECV_QUEST_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 53 (statement)
+
+
+State 320
+
+   54 statement: S_REQ_GUILD_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 54 (statement)
+
+
+State 321
+
+   55 statement: S_REQ_INFLUENCE_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 55 (statement)
+
+
+State 322
+
+   92 map_area_value: AREA_TOK integer_expression . '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+   93               | AREA_TOK integer_expression .
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '('      shift, and go to state 371
+
+    $default  reduce using rule 93 (map_area_value)
+
+
+State 323
+
+   56 statement: S_REQ_START_AREA_TOK '=' map_area_value ';' .
+
+    $default  reduce using rule 56 (statement)
+
+
+State 324
+
+  124 per_item_value: PER_TOK . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 372
+
+
+State 325
+
+  113 quest_pay_item_value: item_w_count_value per_item_value . attach_value to_unit_kind_value
+
+    ATTACH_TOK  shift, and go to state 373
+
+    $default  reduce using rule 125 (attach_value)
+
+    attach_value  go to state 374
+
+
+State 326
+
+   57 statement: S_PAY_ITEM_TOK '=' quest_pay_item_value ';' .
+
+    $default  reduce using rule 57 (statement)
+
+
+State 327
+
+   58 statement: S_DEL_ITEM_TOK '=' item_w_count_value ';' .
+
+    $default  reduce using rule 58 (statement)
+
+
+State 328
+
+   59 statement: S_START_MAP_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 59 (statement)
+
+
+State 329
+
+   60 statement: S_START_PARTY_WARP_FLAG_TOK '=' boolean_value ';' .
+
+    $default  reduce using rule 60 (statement)
+
+
+State 330
+
+   61 statement: C_REQ_MEET_NPC_INFO_TOK '{' quest_npc_statement_list '}' . ';'
+
+    ';'  shift, and go to state 375
+
+
+State 331
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK . MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   65          | C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK . CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    MONSTER_TOK    shift, and go to state 376
+    CHARACTER_TOK  shift, and go to state 377
+
+
+State 332
+
+   63 statement: C_REQ_ITEM_TOK '=' item_w_count_value ';' .
+
+    $default  reduce using rule 63 (statement)
+
+
+State 333
+
+   62 statement: C_REQ_MEET_OBJ_INDEX_TOK '=' integer_expression map_area_value . ';'
+
+    ';'  shift, and go to state 378
+
+
+State 334
+
+   66 statement: C_REQ_DEAD_BY_MONSTER_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 66 (statement)
+
+
+State 335
+
+   67 statement: C_REQ_MEET_MAP_AREA_TOK '=' map_area_value ';' .
+
+    $default  reduce using rule 67 (statement)
+
+
+State 336
+
+  109 monster_w_count_value: integer_expression '(' . integer_expression ')'
+  110                      | integer_expression '(' . ALL_TOK ')'
+
+    ALL_TOK            shift, and go to state 379
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 380
+
+
+State 337
+
+   68 statement: C_REQ_MONSTER_TOK '=' monster_w_count_value ';' .
+
+    $default  reduce using rule 68 (statement)
+
+
+State 338
+
+   69 statement: C_REQ_MONSTER_TOK '=' monster_w_count_value map_area_value . ';'
+
+    ';'  shift, and go to state 381
+
+
+State 339
+
+   70 statement: C_REQ_MIX_ITEM_TARGET_TOK '=' item_w_count_value ';' .
+
+    $default  reduce using rule 70 (statement)
+
+
+State 340
+
+   71 statement: C_PAY_BONUS_STAT_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 71 (statement)
+
+
+State 341
+
+   72 statement: C_PAY_BONUS_SKILL_POINT_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 72 (statement)
+
+
+State 342
+
+   73 statement: C_PAY_FAME_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 73 (statement)
+
+
+State 343
+
+   74 statement: C_PAY_STATUS_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 74 (statement)
+
+
+State 344
+
+   75 statement: C_PAY_LEVEL_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 75 (statement)
+
+
+State 345
+
+   76 statement: C_PAY_EXPERIENCE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 76 (statement)
+
+
+State 346
+
+   77 statement: C_PAY_WARP_MAP_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 77 (statement)
+
+
+State 347
+
+   78 statement: C_DEL_ITEM_TOK '=' item_w_count_value ';' .
+
+    $default  reduce using rule 78 (statement)
+
+
+State 348
+
+   79 statement: C_PAY_ITEM_TOK '=' quest_pay_item_value ';' .
+
+    $default  reduce using rule 79 (statement)
+
+
+State 349
+
+  114 quest_missinmaster_pay_item_value: item_w_count_value per_item_value . attach_value to_unit_kind_value
+
+    ATTACH_TOK  shift, and go to state 373
+
+    $default  reduce using rule 125 (attach_value)
+
+    attach_value  go to state 382
+
+
+State 350
+
+   80 statement: C_PAY_ITEM_MISSIONMASTER_TOK '=' quest_missinmaster_pay_item_value ';' .
+
+    $default  reduce using rule 80 (statement)
+
+
+State 351
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK '=' item_w_count_prob_list PER_TOK . integer_expression ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 383
+
+
+State 352
+
+   87 item_w_count_prob_list: item_w_count_prob_list OR_TOK . item_w_count_prob_value
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    item_w_count_prob_value  go to state 384
+    integer_expression       go to state 268
+
+
+State 353
+
+   88 item_w_count_prob_value: integer_expression '(' . integer_expression ',' integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 385
+
+
+State 354
+
+   82 statement: C_MIX_ITEM_TOK '=' item_w_count_list R_ARROW_TOK . integer_expression prob_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 386
+
+
+State 355
+
+   90 item_w_count_list: item_w_count_list '+' . item_w_count_value
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 234
+    item_w_count_value  go to state 387
+
+
+State 356
+
+   83 statement: C_PAY_PROPENSITY_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 83 (statement)
+
+
+State 357
+
+   84 statement: C_CINEMA_NUM_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 84 (statement)
+
+
+State 358
+
+   85 statement: C_PAY_INFLUENCE_TYPE_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 85 (statement)
+
+
+State 359
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  117 quest_npc_statement: NPC_INDEX_TOK '=' integer_expression . ';'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 388
+
+
+State 360
+
+  118 quest_npc_statement: NPC_NAME_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 389
+
+
+State 361
+
+  119 quest_npc_statement: PRE_TALK_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 390
+
+
+State 362
+
+  120 quest_npc_statement: MID_TALK_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 391
+
+
+State 363
+
+  121 quest_npc_statement: FAIL_TALK_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 392
+
+
+State 364
+
+  122 quest_npc_statement: SUCCESS_TALK_TOK '=' string_expression . ';'
+
+    ';'  shift, and go to state 393
+
+
+State 365
+
+   32 statement: QUEST_NPC_INFO_TOK '{' quest_npc_statement_list '}' ';' .
+
+    $default  reduce using rule 32 (statement)
+
+
+State 366
+
+   97 integer_range_value: '(' '~' integer_expression . ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 394
+
+
+State 367
+
+   94 integer_range_value: '(' integer_expression ')' .
+
+    $default  reduce using rule 94 (integer_range_value)
+
+
+State 368
+
+   95 integer_range_value: '(' integer_expression '~' . integer_expression ')'
+   96                    | '(' integer_expression '~' . ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+    ')'                shift, and go to state 395
+
+    integer_expression  go to state 396
+
+
+State 369
+
+  112 item_w_count_value: integer_expression '(' ALL_TOK . ')'
+
+    ')'  shift, and go to state 397
+
+
+State 370
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  111 item_w_count_value: integer_expression '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 398
+
+
+State 371
+
+   92 map_area_value: AREA_TOK integer_expression '(' . X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+
+    X_TOK  shift, and go to state 399
+
+
+State 372
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  124 per_item_value: PER_TOK integer_expression .
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+
+    $default  reduce using rule 124 (per_item_value)
+
+
+State 373
+
+  126 attach_value: ATTACH_TOK .
+
+    $default  reduce using rule 126 (attach_value)
+
+
+State 374
+
+  113 quest_pay_item_value: item_w_count_value per_item_value attach_value . to_unit_kind_value
+
+    TO_TOK  shift, and go to state 400
+
+    $default  reduce using rule 127 (to_unit_kind_value)
+
+    to_unit_kind_value  go to state 401
+
+
+State 375
+
+   61 statement: C_REQ_MEET_NPC_INFO_TOK '{' quest_npc_statement_list '}' ';' .
+
+    $default  reduce using rule 61 (statement)
+
+
+State 376
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK . '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    '('  shift, and go to state 402
+
+
+State 377
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK . '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    '('  shift, and go to state 403
+
+
+State 378
+
+   62 statement: C_REQ_MEET_OBJ_INDEX_TOK '=' integer_expression map_area_value ';' .
+
+    $default  reduce using rule 62 (statement)
+
+
+State 379
+
+  110 monster_w_count_value: integer_expression '(' ALL_TOK . ')'
+
+    ')'  shift, and go to state 404
+
+
+State 380
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  109 monster_w_count_value: integer_expression '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 405
+
+
+State 381
+
+   69 statement: C_REQ_MONSTER_TOK '=' monster_w_count_value map_area_value ';' .
+
+    $default  reduce using rule 69 (statement)
+
+
+State 382
+
+  114 quest_missinmaster_pay_item_value: item_w_count_value per_item_value attach_value . to_unit_kind_value
+
+    TO_TOK  shift, and go to state 400
+
+    $default  reduce using rule 127 (to_unit_kind_value)
+
+    to_unit_kind_value  go to state 406
+
+
+State 383
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK '=' item_w_count_prob_list PER_TOK integer_expression . ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ';'      shift, and go to state 407
+
+
+State 384
+
+   87 item_w_count_prob_list: item_w_count_prob_list OR_TOK item_w_count_prob_value .
+
+    $default  reduce using rule 87 (item_w_count_prob_list)
+
+
+State 385
+
+   88 item_w_count_prob_value: integer_expression '(' integer_expression . ',' integer_expression ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 408
+
+
+State 386
+
+   82 statement: C_MIX_ITEM_TOK '=' item_w_count_list R_ARROW_TOK integer_expression . prob_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    PROB_100_TOK   shift, and go to state 409
+    PROB_1K_TOK    shift, and go to state 410
+    PROB_10K_TOK   shift, and go to state 411
+    PROB_100K_TOK  shift, and go to state 412
+    PROB_256_TOK   shift, and go to state 413
+    AND_TOK        shift, and go to state 22
+    OR_TOK         shift, and go to state 23
+    '-'            shift, and go to state 24
+    '+'            shift, and go to state 25
+    '/'            shift, and go to state 26
+    '*'            shift, and go to state 27
+
+    prob_value  go to state 414
+
+
+State 387
+
+   90 item_w_count_list: item_w_count_list '+' item_w_count_value .
+
+    $default  reduce using rule 90 (item_w_count_list)
+
+
+State 388
+
+  117 quest_npc_statement: NPC_INDEX_TOK '=' integer_expression ';' .
+
+    $default  reduce using rule 117 (quest_npc_statement)
+
+
+State 389
+
+  118 quest_npc_statement: NPC_NAME_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 118 (quest_npc_statement)
+
+
+State 390
+
+  119 quest_npc_statement: PRE_TALK_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 119 (quest_npc_statement)
+
+
+State 391
+
+  120 quest_npc_statement: MID_TALK_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 120 (quest_npc_statement)
+
+
+State 392
+
+  121 quest_npc_statement: FAIL_TALK_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 121 (quest_npc_statement)
+
+
+State 393
+
+  122 quest_npc_statement: SUCCESS_TALK_TOK '=' string_expression ';' .
+
+    $default  reduce using rule 122 (quest_npc_statement)
+
+
+State 394
+
+   97 integer_range_value: '(' '~' integer_expression ')' .
+
+    $default  reduce using rule 97 (integer_range_value)
+
+
+State 395
+
+   96 integer_range_value: '(' integer_expression '~' ')' .
+
+    $default  reduce using rule 96 (integer_range_value)
+
+
+State 396
+
+   95 integer_range_value: '(' integer_expression '~' integer_expression . ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 415
+
+
+State 397
+
+  112 item_w_count_value: integer_expression '(' ALL_TOK ')' .
+
+    $default  reduce using rule 112 (item_w_count_value)
+
+
+State 398
+
+  111 item_w_count_value: integer_expression '(' integer_expression ')' .
+
+    $default  reduce using rule 111 (item_w_count_value)
+
+
+State 399
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK . integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 416
+
+
+State 400
+
+  128 to_unit_kind_value: TO_TOK . integer_expression
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 417
+
+
+State 401
+
+  113 quest_pay_item_value: item_w_count_value per_item_value attach_value to_unit_kind_value .
+
+    $default  reduce using rule 113 (quest_pay_item_value)
+
+
+State 402
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' . integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 418
+
+
+State 403
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' . integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 419
+
+
+State 404
+
+  110 monster_w_count_value: integer_expression '(' ALL_TOK ')' .
+
+    $default  reduce using rule 110 (monster_w_count_value)
+
+
+State 405
+
+  109 monster_w_count_value: integer_expression '(' integer_expression ')' .
+
+    $default  reduce using rule 109 (monster_w_count_value)
+
+
+State 406
+
+  114 quest_missinmaster_pay_item_value: item_w_count_value per_item_value attach_value to_unit_kind_value .
+
+    $default  reduce using rule 114 (quest_missinmaster_pay_item_value)
+
+
+State 407
+
+   81 statement: C_RANDOM_PAY_ITEM_TOK '=' item_w_count_prob_list PER_TOK integer_expression ';' .
+
+    $default  reduce using rule 81 (statement)
+
+
+State 408
+
+   88 item_w_count_prob_value: integer_expression '(' integer_expression ',' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 420
+
+
+State 409
+
+  131 prob_value: PROB_100_TOK . '(' integer_expression ')'
+
+    '('  shift, and go to state 421
+
+
+State 410
+
+  132 prob_value: PROB_1K_TOK . '(' integer_expression ')'
+
+    '('  shift, and go to state 422
+
+
+State 411
+
+  133 prob_value: PROB_10K_TOK . '(' integer_expression ')'
+
+    '('  shift, and go to state 423
+
+
+State 412
+
+  134 prob_value: PROB_100K_TOK . '(' integer_expression ')'
+
+    '('  shift, and go to state 424
+
+
+State 413
+
+  135 prob_value: PROB_256_TOK . '(' integer_expression ')'
+
+    '('  shift, and go to state 425
+
+
+State 414
+
+   82 statement: C_MIX_ITEM_TOK '=' item_w_count_list R_ARROW_TOK integer_expression prob_value . ';'
+
+    ';'  shift, and go to state 426
+
+
+State 415
+
+   95 integer_range_value: '(' integer_expression '~' integer_expression ')' .
+
+    $default  reduce using rule 95 (integer_range_value)
+
+
+State 416
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression . ',' Y_TOK integer_expression ',' R_TOK integer_expression ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 427
+
+
+State 417
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  128 to_unit_kind_value: TO_TOK integer_expression .
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+
+    $default  reduce using rule 128 (to_unit_kind_value)
+
+
+State 418
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression . ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 428
+
+
+State 419
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression . ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 429
+
+
+State 420
+
+   88 item_w_count_prob_value: integer_expression '(' integer_expression ',' integer_expression . ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 430
+
+
+State 421
+
+  131 prob_value: PROB_100_TOK '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 431
+
+
+State 422
+
+  132 prob_value: PROB_1K_TOK '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 432
+
+
+State 423
+
+  133 prob_value: PROB_10K_TOK '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 433
+
+
+State 424
+
+  134 prob_value: PROB_100K_TOK '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 434
+
+
+State 425
+
+  135 prob_value: PROB_256_TOK '(' . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 435
+
+
+State 426
+
+   82 statement: C_MIX_ITEM_TOK '=' item_w_count_list R_ARROW_TOK integer_expression prob_value ';' .
+
+    $default  reduce using rule 82 (statement)
+
+
+State 427
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' . Y_TOK integer_expression ',' R_TOK integer_expression ')'
+
+    Y_TOK  shift, and go to state 436
+
+
+State 428
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' . integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 437
+
+
+State 429
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' . integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 438
+
+
+State 430
+
+   88 item_w_count_prob_value: integer_expression '(' integer_expression ',' integer_expression ')' .
+
+    $default  reduce using rule 88 (item_w_count_prob_value)
+
+
+State 431
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  131 prob_value: PROB_100_TOK '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 439
+
+
+State 432
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  132 prob_value: PROB_1K_TOK '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 440
+
+
+State 433
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  133 prob_value: PROB_10K_TOK '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 441
+
+
+State 434
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  134 prob_value: PROB_100K_TOK '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 442
+
+
+State 435
+
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+  135 prob_value: PROB_256_TOK '(' integer_expression . ')'
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 443
+
+
+State 436
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK . integer_expression ',' R_TOK integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 444
+
+
+State 437
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression . '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '~'      shift, and go to state 445
+
+
+State 438
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression . ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 446
+
+
+State 439
+
+  131 prob_value: PROB_100_TOK '(' integer_expression ')' .
+
+    $default  reduce using rule 131 (prob_value)
+
+
+State 440
+
+  132 prob_value: PROB_1K_TOK '(' integer_expression ')' .
+
+    $default  reduce using rule 132 (prob_value)
+
+
+State 441
+
+  133 prob_value: PROB_10K_TOK '(' integer_expression ')' .
+
+    $default  reduce using rule 133 (prob_value)
+
+
+State 442
+
+  134 prob_value: PROB_100K_TOK '(' integer_expression ')' .
+
+    $default  reduce using rule 134 (prob_value)
+
+
+State 443
+
+  135 prob_value: PROB_256_TOK '(' integer_expression ')' .
+
+    $default  reduce using rule 135 (prob_value)
+
+
+State 444
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression . ',' R_TOK integer_expression ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 447
+
+
+State 445
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' . integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 448
+
+
+State 446
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' . integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 449
+
+
+State 447
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' . R_TOK integer_expression ')'
+
+    R_TOK  shift, and go to state 450
+
+
+State 448
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression . ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 451
+
+
+State 449
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression . '~' integer_expression ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    '~'      shift, and go to state 452
+
+
+State 450
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK . integer_expression ')'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 453
+
+
+State 451
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' . integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 454
+
+
+State 452
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' . integer_expression ',' integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 455
+
+
+State 453
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression . ')'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 456
+
+
+State 454
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression . ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 457
+
+
+State 455
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression . ',' integer_expression ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ','      shift, and go to state 458
+
+
+State 456
+
+   92 map_area_value: AREA_TOK integer_expression '(' X_TOK integer_expression ',' Y_TOK integer_expression ',' R_TOK integer_expression ')' .
+
+    $default  reduce using rule 92 (map_area_value)
+
+
+State 457
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' . map_area_value ';'
+
+    AREA_TOK  shift, and go to state 240
+
+    $default  reduce using rule 91 (map_area_value)
+
+    map_area_value  go to state 459
+
+
+State 458
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' . integer_expression ')' map_area_value ';'
+
+    USER_VARIABLE_TOK  shift, and go to state 20
+    INTEGER_TOK        shift, and go to state 13
+    '('                shift, and go to state 15
+
+    integer_expression  go to state 460
+
+
+State 459
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value . ';'
+
+    ';'  shift, and go to state 461
+
+
+State 460
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression . ')' map_area_value ';'
+   98 integer_expression: integer_expression . '+' integer_expression
+   99                   | integer_expression . '-' integer_expression
+  100                   | integer_expression . '*' integer_expression
+  101                   | integer_expression . '/' integer_expression
+  102                   | integer_expression . AND_TOK integer_expression
+  103                   | integer_expression . OR_TOK integer_expression
+
+    AND_TOK  shift, and go to state 22
+    OR_TOK   shift, and go to state 23
+    '-'      shift, and go to state 24
+    '+'      shift, and go to state 25
+    '/'      shift, and go to state 26
+    '*'      shift, and go to state 27
+    ')'      shift, and go to state 462
+
+
+State 461
+
+   64 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK MONSTER_TOK '(' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';' .
+
+    $default  reduce using rule 64 (statement)
+
+
+State 462
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' . map_area_value ';'
+
+    AREA_TOK  shift, and go to state 240
+
+    $default  reduce using rule 91 (map_area_value)
+
+    map_area_value  go to state 463
+
+
+State 463
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value . ';'
+
+    ';'  shift, and go to state 464
+
+
+State 464
+
+   65 statement: C_REQ_ITEM_TOK '=' item_w_count_value FROM_TOK CHARACTER_TOK '(' integer_expression ',' integer_expression ',' integer_expression '~' integer_expression ',' integer_expression ')' map_area_value ';' .
+
+    $default  reduce using rule 65 (statement)

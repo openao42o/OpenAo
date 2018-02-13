@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a84819e4-a68f-4d79-a06e-0a7e846d4964}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{41d1d785-0444-40a3-a3cb-4a07c9ac10b9}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{57820648-99ae-4134-8c29-6f6ccfb42c0d}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AtumLauncher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AtumLauncherDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\comboboxebx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgGuardAgreement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginSuccessDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\MyCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\MyComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\MyEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreServerIPDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\screenkeyboarddlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main\UpdateWinSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\AtumDateTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\AtumParamProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\AtumParamProtocolFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\BrowseForFolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\CommandHistory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\HistoryComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\HttpManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Iexplore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\FTP\KbcBmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\FTP\KbcButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\ListBoxEBX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Security\md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\md5_lib_src.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Security\metafile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\MGameDecryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\FTP\ProgressCtrlX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\RegistryControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Security\shieldSecurity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Security\shieldSecurityDll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\SocketHeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\SystemLogManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Security\utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\WinSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\XOR_Lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\MachineID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Common\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AtumLauncher.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AtumLauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AtumLauncherDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\comboboxebx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgGuardAgreement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginSuccessDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\MyCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\MyComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\MyEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PreServerIPDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\screenkeyboarddlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main\UpdateWinSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VTCGuardManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\BrowseForFolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\CommandHistory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\FTP\Drawgdix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\historycombobox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\HttpManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\IExplore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\IExplore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\FTP\KbcBmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\FTP\KbcButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\ListBoxEBX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\md5_lib_src.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\FTP\MemDC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\FTP\ProgressCtrlX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\SystemLogManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\MachineID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="atum.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\AtumLauncher.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BarCenter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BarLeft.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BarRight.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BatalOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BatalOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Batle2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BG_ARG.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BG_VTC.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BG_VTC_mask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ButtonDown.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CanCelD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CancelF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CanCelU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CB_Check.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CB_UnCheck.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\center.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CloseD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CloseU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ComboBox.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DecaOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DecaOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Decar1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Decar2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\EditBG.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\End1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\End2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\EndOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\EndOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Gear.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Go1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Go2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoBtn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoBtn_Arg.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoBtn_Chn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoBtn_S2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoBtn_VTC.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Gooff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Goon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GoX.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HomepageD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HomepageF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\HomepageU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon_VTC.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Idb_Login.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Join1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Join2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinBtn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\JoinU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_0_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_1_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_2_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_3_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_4_on.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_4_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_5_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_6_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_7_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_8_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_9_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_a.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_a_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_b_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_backSpace.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_c.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_c_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_CapsLock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_CapsLock_On.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_d.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_d_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_e.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_e1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_e_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_Enter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_f.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_f_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_g.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_g_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_h.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_h_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_i.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_i_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_j.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_j_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_k.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_k_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_l.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_l_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_m.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_m_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_n.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_n_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_o.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_o_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_p.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_p_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_q.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_q_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_r_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_s_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_Shift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_Shift_On.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_Space.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_t.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_t_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_u.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_u_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_v.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_v_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_w.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_w_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_x.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_x_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_y_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_z.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\key_z_OnShift.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ListBg_VTC.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ListBg_VTC_mask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MinD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MinF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\MinU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OK.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OkD.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OKU.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Philon2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PilonOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PilonOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Scr_Login.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ScreenKeyboard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ScreenKeyboard_Mask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Secret1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Secret2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SecretOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SecretOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ServerList.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ServerUser.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ServerUser_VTC.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Sharin2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SharinOff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SharinOn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Titlebar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Titlebar_Arg.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Titlebar_mask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\update_bar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\UseClass.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\x.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\AtumLauncher.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AtumLauncherModifyList.txt" />
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

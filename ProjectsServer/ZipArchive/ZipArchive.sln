@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZipArchive", "ZipArchive.vcxproj", "{A51CF340-B0EA-4C9B-A2FA-4D7487692EF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug STL MT|Win32 = Debug STL MT|Win32
+		Release STL MT|Win32 = Release STL MT|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A51CF340-B0EA-4C9B-A2FA-4D7487692EF5}.Debug STL MT|Win32.ActiveCfg = Debug STL MT|Win32
+		{A51CF340-B0EA-4C9B-A2FA-4D7487692EF5}.Debug STL MT|Win32.Build.0 = Debug STL MT|Win32
+		{A51CF340-B0EA-4C9B-A2FA-4D7487692EF5}.Release STL MT|Win32.ActiveCfg = Release STL MT|Win32
+		{A51CF340-B0EA-4C9B-A2FA-4D7487692EF5}.Release STL MT|Win32.Build.0 = Release STL MT|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

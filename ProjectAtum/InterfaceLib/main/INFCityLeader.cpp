@@ -1,0 +1,5429 @@
+// INFCityLeader.cpp: implementation of the CINFCityLeader class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "INFCityLeader.h"
+#include "Interface.h"
+#include "INFPilotFace.h"
+#include "INFGameMain.h"
+#include "AtumApplication.h"
+#include "FieldWinSocket.h"
+#include "AtumDatabase.h"
+#include "INFWindow.h"
+#include "D3DHanFont.h"
+#include "INFIcon.h"
+#include "ShuttleChild.h"
+#include "CharacterChild.h"				// 2005-07-21 by ispark
+#include "INFCityBase.h"
+#include "ItemInfo.h"
+#include "INFInven.h"
+#include "INFImage.h"
+#include "GameDataLast.h"
+#include "Chat.h"
+#include "StoreData.h"
+#include "dxutil.h" 
+#include "AtumSound.h"
+#include "CInput.h"
+#include "INFSelect.h"
+#include "INFPilotFace.h"
+#include "INFMotherShipManager.h"
+#include "INFCurselEditBox.h"	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+#include "INFImageEx.h"
+#include "INFGroupImage.h"
+#include "INFGroupManager.h"
+#include "INFToolTip.h"			// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+ 
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	#define LEADER_BAR_NAME_X			(CITY_BASE_NPC_BOX_START_X + 5)
+	#define LEADER_BAR_NAME_Y			(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 2)			// 바를 제외한 젤 윗단.
+	#define LEADER_STARTL_X				(CITY_BASE_NPC_BOX_START_X)									// 윈도우 창 젤 앞단.
+	#define LEADER_STARTL_Y				(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 20)			// 바를 제외한 젤 윗단.
+	#define LEADER_STARTR_X				(LEADER_STARTL_X + SIZE_CITYLEADER_WINDOWL_X)
+	#define LEADER_STARTR_Y				(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 20)			// 바를 제외한 젤 윗단.
+
+	// 왼쪽 창 배경 및 버튼 위치.
+	#define LEADER_BGL_X				(LEADER_STARTL_X + 14)
+	#define LEADER_BGL_Y				(LEADER_STARTL_Y + 7)
+
+	#define TITLE_POS_X					(LEADER_BGL_X)
+	#define TITLE_POS_Y					(LEADER_BGL_Y -24)
+
+	#define LEADER_BRIGADE_NOTICE_BUTTON_X				(LEADER_BGL_X + ( m_pImgOutPostLBG->GetImgSize().x / 2 ) )
+	#define LEADER_BRIGADE_NOTICE_BUTTON_Y				(LEADER_BGL_Y + 44)
+	#define LEADER_EXPENCE_BUTTON_X						LEADER_BRIGADE_NOTICE_BUTTON_X
+	#define LEADER_EXPENCE_BUTTON_Y						(LEADER_BGL_Y + 92)
+	//#define LEADER_WAR_TIME_SET_BUTTON_X			(LEADER_BGL_X + 16)
+	//#define LEADER_WAR_TIME_SET_BUTTON_Y			(LEADER_BGL_Y + 98)
+	#define LEADER_POLL_BUTTON_X						LEADER_BRIGADE_NOTICE_BUTTON_X
+	#define LEADER_POLL_BUTTON_Y						(LEADER_BGL_Y + 140)
+	#define LEADER_POLL_DATE_BUTTON_X					LEADER_BRIGADE_NOTICE_BUTTON_X
+	#define LEADER_POLL_DATE_BUTTON_Y					(LEADER_BGL_Y + 188)
+	#define LEADER_WARINFO_BUTTON_X						LEADER_BRIGADE_NOTICE_BUTTON_X
+	#define LEADER_WARINFO_BUTTON_Y						(LEADER_BGL_Y + 236)
+	#define LEADER_LEFT_BUTTON_W						124
+	#define	LEADER_LEFT_BUTTON_H						29
+
+	// 오른쪽 배경 및 버튼위치.
+	//--------------------------------------------------------------------------//
+
+	#define LEADER_BGR_X								(LEADER_STARTR_X + 60)
+	#define LEADER_BGR_Y								(LEADER_STARTR_Y + 11)
+	#define LEADER_INFO_BG_X							(LEADER_BGR_X)
+	#define LEADER_INFO_BG_Y							(LEADER_BGR_Y + 20)
+
+	// 여단 공지 사항.
+
+	#define LEADER_SCROOL_START_X						(LEADER_INFO_BG_X + 20)
+	#define LEADER_SCROOL_START_Y						(LEADER_INFO_BG_Y + 40)
+	#define LEADER_WRITE_BUTTON_X						(LEADER_INFO_BG_X + 275)
+	#define LEADER_WRITE_BUTTON_Y						(LEADER_INFO_BG_Y + 235)
+	#define LEADER_REV_BUTTON_X							(LEADER_BGR_X + 79)
+	#define LEADER_REV_BUTTON_Y							(LEADER_BGR_Y + 47)
+	#define LEADER_DEL_BUTTON_X							(LEADER_BGR_X + 147)
+	#define LEADER_DEL_BUTTON_Y							(LEADER_BGR_Y + 47)
+	#define LEADER_APP_BUTTON_X							(LEADER_INFO_BG_X + 310)
+	#define LEADER_APP_BUTTON_Y							(LEADER_INFO_BG_Y + 235)
+	#define LEADER_RIGHT_BUTTON_W						65
+	#define	LEADER_RIGHT_BUTTON_H						19
+
+	//#define LEADER_NOTICE_EDIT_W						260
+	#define LEADER_NOTICE_EDIT_W						300
+	#define LEADER_NOTICE_EDIT_H						110
+
+	#define LEADER_NOTICE_EDIT_X						(LEADER_INFO_BG_X + 25)
+	#define LEADER_NOTICE_EDIT_Y						(LEADER_INFO_BG_Y + 54)
+	#define LEADER_NOTICE_FONT_LINE_HEIGHT				15
+
+	// 판공비 수령.
+	#define LEADER_EXPENCE_OK_BUTTON_X					(LEADER_INFO_BG_X + 322)
+	#define LEADER_EXPENCE_OK_BUTTON_Y					(LEADER_INFO_BG_Y + 235)
+
+	#define LEADER_EXPENCE_LATE_FONT_X					(LEADER_INFO_BG_X + 314)
+	#define LEADER_EXPENCE_LATE_FONT_Y					(LEADER_INFO_BG_Y +  70)
+	#define LEADER_EXPENCE_CUMEXP_FONT_X				(LEADER_INFO_BG_X + 314)
+	#define LEADER_EXPENCE_CUMEXP_FONT_Y				(LEADER_INFO_BG_Y + 112)
+	#define LEADER_EXPENCE_EXP_FONT_X					(LEADER_INFO_BG_X + 314)
+	#define LEADER_EXPENCE_EXP_FONT_Y					(LEADER_INFO_BG_Y + 154)
+
+	// 전쟁 시간 설정.
+	#define LEADER_WARTIME_RADIO_BUTTON_START_X			(LEADER_BGR_X + 35)
+	#define LEADER_WARTIME_RADIO_BUTTON_START_Y			(LEADER_BGR_Y + 161)
+	#define LEADER_WARTIME_RADIO_BUTTON_GAP_Y			19
+	#define LEADER_WARTIME_RADIO_BUTTON_W				17
+	#define LEADER_WARTIME_RADIO_BUTTON_H				17
+
+	#define LEADER_NEXT_WARTIME_DATE_FONT_X				(LEADER_BGR_X + 74)
+	#define LEADER_NEXT_WARTIME_DATE_FONT_Y				(LEADER_BGR_Y + 67)
+	#define LEADER_NEXT_WARTIME_TIME_FONT_X				(LEADER_BGR_X + 74)
+	#define LEADER_NEXT_WARTIME_TIME_FONT_Y				(LEADER_BGR_Y + 117)
+
+	#define LEADER_SEL_WARTIME_FONT_X					(LEADER_BGR_X + 57)
+	#define LEADER_SEL_WARTIME_FONT_Y					(LEADER_BGR_Y + 167)
+	#define LEADER_SEL_WARTIME_FONT_GAP_H				18 
+
+
+
+	#define LEADER_OK_BUTTON_X							(LEADER_BGR_X + 238)
+	#define LEADER_OK_BUTTON_Y							(LEADER_BGR_Y + 202)
+
+	// 전진 기지전 일정 
+	#define LEADER_WAR_TIME_X							(LEADER_BGR_X + 11)
+	#define LEADER_WAR_TIME_Y							(LEADER_BGR_Y + 202)
+	//--------------------------------------------------------------------------//
+	//							폴시스템 추가									//
+
+	//         후보 정보창.
+
+	#define LEADER_POLL_START_BUTTON_X					(LEADER_INFO_BG_X + 217)
+	#define LEADER_POLL_START_BUTTON_Y					(LEADER_INFO_BG_Y + 232)
+	// 정보 
+	#define LEADER_POLL_INFO_BUTTON_X					(LEADER_BGR_X + 14)
+	#define LEADER_POLL_INFO_BUTTON_Y					(LEADER_BGR_Y + 32)
+	// 등록
+	#define LEADER_POLL_APP_BUTTON_X					(LEADER_BGR_X + 112)
+	#define LEADER_POLL_APP_BUTTON_Y					(LEADER_BGR_Y + 32)
+	// 투표
+	#define LEADER_POLL_VOTE_BUTTON_X					(LEADER_INFO_BG_X + 77)
+	#define LEADER_POLL_VOTE_BUTTON_Y					(LEADER_INFO_BG_Y + 197)
+	// 목록
+	#define LEADER_POLL_LIST_BUTTON_X					(LEADER_INFO_BG_X + 225)
+	#define LEADER_POLL_LIST_BUTTON_Y					(LEADER_INFO_BG_Y + 210)
+	#define LEADER_POLL_LIST_BUTTON_W					30
+	#define LEADER_POLL_LIST_BUTTON_H					30
+
+	// 레벨 
+	#define LEADER_POLL_INFO_LEVEL_FONT_X				(LEADER_INFO_BG_X + 205)
+	#define LEADER_POLL_INFO_LEVEL_FONT_Y				(LEADER_INFO_BG_Y + 76)
+	#define LEADER_POLL_INFO_LEVEL_SIZE					(118)
+	// 여단마크.
+	#define LEADER_POLL_GUILDMARK_IMG_X					(LEADER_INFO_BG_X + 205)
+	#define LEADER_POLL_GUILDMARK_IMG_Y					(LEADER_INFO_BG_Y + 100)
+	#define LEADER_POLL_INFO_GUILD_SIZE					(118)
+	// 얼굴 이미지.
+	#define LEADER_POLL_FACE_IMG_X						(LEADER_INFO_BG_X + 40)
+	#define LEADER_POLL_FACE_IMG_Y						(LEADER_INFO_BG_Y + 76)
+	// 여단명.
+	#define LEADER_POLL_GUILDNAME_FONT_X				(LEADER_INFO_BG_X + 205)
+	#define LEADER_POLL_GUILDNAME_FONT_Y				(LEADER_INFO_BG_Y + 97)
+	// 여단명성
+	#define LEADER_POLL_INFO_GUILDFAME_SIZE				(91)
+	#define LEADER_POLL_GUILDFAME_FONT_X				(LEADER_INFO_BG_X + 232)
+	#define LEADER_POLL_GUILDFAME_FONT_Y				(LEADER_INFO_BG_Y + 118)
+	// id
+	#define LEADER_POLL_ID_FONT_X						(LEADER_INFO_BG_X + 34)
+	#define LEADER_POLL_ID_FONT_Y						(LEADER_INFO_BG_Y + 181)
+
+	#define LEADER_POLL_ID_FONT_SIZE					(112)
+
+
+	//       공약 작성.
+	#define LEADER_POLL_APPSUC_BUTTON_X					(LEADER_POLL_LIST_BUTTON_X)
+	#define LEADER_POLL_APPSUC_BUTTON_Y					(LEADER_POLL_LIST_BUTTON_Y)
+
+	#define LEADER_POLL_PLEDGE_EDIT_X					(LEADER_INFO_BG_X + 24)
+	#define LEADER_POLL_PLEDGE_EDIT_Y					(LEADER_INFO_BG_Y + 80)
+	//#define LEADER_POLL_PLEDGE_EDIT_W					256
+	#define LEADER_POLL_PLEDGE_EDIT_W					296
+	#define LEADER_POLL_PLEDGE_EDIT_H					106
+
+	#define LEADER_POLL_PLEDGE_VIEW_EDIT_X				(LEADER_BGR_X + 160)
+	#define LEADER_POLL_PLEDGE_VIEW_EDIT_Y				(LEADER_BGR_Y + 162)
+	#define LEADER_POLL_PLEDGE_VIEW_EDIT_W				143
+	#define LEADER_POLL_PLEDGE_VIEW_EDIT_H				74
+
+
+	//       선거 일정.
+	// 후보 신청 기간. 
+	#define LEADER_POLL_APP_CENTER_FONT_X				(LEADER_INFO_BG_X + 57)
+	#define LEADER_POLL_APP_CENTER_FONT_Y				(LEADER_INFO_BG_Y + 82)
+	// 투표 참여 기간.
+	#define LEADER_POLL_JOIN_CENTER_FONT_X				(LEADER_INFO_BG_X + 57)
+	#define LEADER_POLL_JOIN_CENTER_FONT_Y				(LEADER_INFO_BG_Y + 137)
+	// 선출일.
+	#define LEADER_POLL_ELECT_CENTER_FONT_X				(LEADER_INFO_BG_X + 57)
+	#define LEADER_POLL_ELECT_CENTER_FONT_Y				(LEADER_INFO_BG_Y + 195)
+
+	#define LEADER_POLL_APP_SIZE						(254)
+
+	//       후보 리스트.
+	#define LEADER_POLL_SELECT_BUTTON_X					LEADER_POLL_LIST_BUTTON_X
+	#define LEADER_POLL_SELECT_BUTTON_Y					LEADER_POLL_LIST_BUTTON_Y
+
+	// 리스트 배경.
+	#define LEADER_POLL_LIST_BG_X						(LEADER_INFO_BG_X)
+	#define LEADER_POLL_LIST_BG_Y						(LEADER_INFO_BG_Y)
+
+	#define LEADER_POLL_LIST_AREA_X						(LEADER_INFO_BG_X + 24)
+	#define LEADER_POLL_LIST_AREA_Y						(LEADER_INFO_BG_Y + 92)
+	#define LEADER_POLL_LIST_AREA_W						258
+	#define LEADER_POLL_LIST_AREA_H						119
+	#define LEADER_POLL_LIST_SELECT_H					18
+
+	#define LEADER_POLL_LIST_NUMBER_X					(LEADER_INFO_BG_X + 23)
+	#define LEADER_POLL_LIST_START_Y					(LEADER_INFO_BG_Y + 91)
+	#define LEADER_POLL_LIST_CONDIDATE_NAME_X			(LEADER_POLL_LIST_NUMBER_X + LEADER_POLL_LIST_NUM_SIZE )
+	#define LEADER_POLL_LIST_GUILD_NAME_X				(LEADER_POLL_LIST_CONDIDATE_NAME_X + LEADER_POLL_LIST_CONDIDATE_SIZE )
+	#define LEADER_POLL_LIST_NUM_SIZE					(39)
+	#define LEADER_POLL_LIST_CONDIDATE_SIZE				(133)
+	#define LEADER_POLL_LIST_NAME_SIZE					(132)
+
+
+	// 리스트 스크롤.
+	#define LEADER_POLL_LIST_MAX_SCROLL_LINE			7
+	#define LEADER_POLL_LIST_SCROLL_X					(LEADER_INFO_BG_X + 334)
+	#define LEADER_POLL_LIST_SCROLL_Y					(LEADER_INFO_BG_Y + 95)
+	#define LEADER_POLL_LIST_SCROLL_W					11
+	#define LEADER_POLL_LIST_SCROLL_H					97
+	#define LEADER_POLL_LIST_SCROLL_WHELL_X				(LEADER_INFO_BG_X + 20)
+	#define LEADER_POLL_LIST_SCROLL_WHELL_Y				(LEADER_INFO_BG_Y + 62)
+	#define LEADER_POLL_LIST_SCROLL_WHELL_W				305	
+	#define LEADER_POLL_LIST_SCROLL_WHELL_H				148
+	#define LEADER_POLL_LIST_SCROLL_BALL_X				(LEADER_INFO_BG_Y + 235)
+	#define LEADER_POLL_LIST_SCROLL_BALL_Y				(LEADER_BGR_Y + 86)
+	#define LEADER_POLL_LIST_SCROLL_BALL_W				8
+	#define LEADER_POLL_LIST_SCROLL_BALL_H				119
+	// 공약 스크롤 													
+	#define LEADER_POLL_PLEDGE_MAX_SCROLL_LINE			7
+	#define LEADER_POLL_PLEDGE_SCROLL_X					(LEADER_INFO_BG_X + 336)
+	#define LEADER_POLL_PLEDGE_SCROLL_Y					(LEADER_INFO_BG_Y + 76)
+	#define LEADER_POLL_PLEDGE_SCROLL_W					11
+	#define LEADER_POLL_PLEDGE_SCROLL_H					97
+	#define LEADER_POLL_PLEDGE_SCROLL_WHELL_X			(LEADER_BGR_X + 22)
+	#define LEADER_POLL_PLEDGE_SCROLL_WHELL_Y			(LEADER_BGR_Y + 82)
+	#define LEADER_POLL_PLEDGE_SCROLL_WHELL_W			279	
+	#define LEADER_POLL_PLEDGE_SCROLL_WHELL_H			120
+	#define LEADER_POLL_PLEDGE_SCROLL_BALL_X			(LEADER_BGR_X + 270)
+	#define LEADER_POLL_PLEDGE_SCROLL_BALL_Y			(LEADER_BGR_Y + 53)
+	#define LEADER_POLL_PLEDGE_SCROLL_BALL_W			46
+	#define LEADER_POLL_PLEDGE_SCROLL_BALL_H			180
+	// 공약 뷰 스크롤
+	#define LEADER_POLL_PLEDGE_VIEW_MAX_SCROLL_LINE		5
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_X			(LEADER_INFO_BG_X + 308)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_Y			(LEADER_INFO_BG_Y + 142)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_W			11
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_H			54
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_X		(LEADER_INFO_BG_X + 156)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_Y		(LEADER_INFO_BG_Y + 123)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_W		164
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_H		76
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_X		(LEADER_INFO_BG_X + 315)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_Y		(LEADER_INFO_BG_Y + 214)
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_W		32
+	#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_H		113
+
+	//--------------------------------------------------------------------------//
+	//							전쟁 정보 창.
+	#define LEADER_WARINFO_BG_X							(LEADER_INFO_BG_X)// + 22)
+	#define LEADER_WARINFO_BG_Y							(LEADER_INFO_BG_Y)// + 8)
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	//#define LEADER_WARINFO_TAB_W						(116)
+	#define LEADER_WARINFO_TAB_W						(99)
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+	#define LEADER_WARINFO_TAB_H						(29)
+	#define LEADER_WARINFO_TAB_Y						(LEADER_INFO_BG_Y + 10)
+	#define LEADER_WARINFO_TAB_INFLUENCE_X				(LEADER_INFO_BG_X + 15)
+	#define LEADER_WARINFO_TAB_MOTHERSHIP_X				(LEADER_WARINFO_TAB_INFLUENCE_X + LEADER_WARINFO_TAB_W)
+	#define LEADER_WARINFO_TAB_OUTPOST_X				(LEADER_WARINFO_TAB_MOTHERSHIP_X + LEADER_WARINFO_TAB_W)
+	#define LEADER_WARINFO_TAB_WARPOINT_X				(LEADER_WARINFO_TAB_OUTPOST_X + LEADER_WARINFO_TAB_W)
+
+	// 세력전 탭
+	#define WARINFO_INFLUENCE_BG1_X						(LEADER_WARINFO_BG_X + 27)
+	#define WARINFO_INFLUENCE_BG1_Y						(LEADER_WARINFO_BG_Y + 62)
+	#define WARINFO_INFLUENCE_BG2_X						(LEADER_WARINFO_BG_X + 262)
+	#define WARINFO_INFLUENCE_BG2_Y						(LEADER_WARINFO_BG_Y + 62)
+	#define WARINFO_INFLUENCE_FONT_POINT_H				31				
+	#define WARINFO_INFLUENCE_FONT_1_CENTER_X			(LEADER_INFO_BG_X + 125)
+	#define WARINFO_INFLUENCE_FONT_2_CENTER_X			(LEADER_INFO_BG_X + 361)
+	#define WARINFO_INFLUENCE_FONT_CENTER_SIZE			114
+	#define WARINFO_INFLUENCE_FONT_LEADER_Y				(LEADER_WARINFO_BG_Y + 103)
+	#define WARINFO_INFLUENCE_FONT_LEADER1_Y			(WARINFO_INFLUENCE_FONT_LEADER_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+	#define WARINFO_INFLUENCE_FONT_LEADER2_Y			(WARINFO_INFLUENCE_FONT_LEADER1_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+	#define WARINFO_INFLUENCE_FONT_POINT_Y				(WARINFO_INFLUENCE_FONT_LEADER2_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+
+	// 전진기지전 탭
+	#define WARINFO_OUTPOST_FONT_OUTPOST_CENTER_X		(LEADER_BGR_X + 19)
+	#define WARINFO_OUTPOST_FONT_INFLUENCE_CENTER_X		(LEADER_BGR_X + 114)
+
+	// 2007-12-17 by dgwoo 인터페이스 변경.
+	#define WARINFO_OUTPOST_FONT_GUILD_CENTER_X			(LEADER_BGR_X + 178)
+	#define WARINFO_OUTPOST_FONT_GUILDLEADER_CENTER_X	(LEADER_BGR_X + 186)
+	#define WARINFO_OUTPOST_FONT_GUILDLEADER_W			70
+	
+	//#define WARINFO_OUTPOST_FONT_GUILD_CENTER_X			(LEADER_BGR_X + 286)
+	#define WARINFO_OUTPOST_FONT_GUILDMARK_X			(LEADER_BGR_X + 240)
+	#define WARINFO_OUTPOST_FONT_GUILDNAME_X			(WARINFO_OUTPOST_FONT_GUILDMARK_X + 28)
+	#define WARINFO_OUTPOST_FONT_GUILDNAME_W			65
+	#define WARINFO_OUTPOST_FONT_SCHEDULE_CENTER_X		(LEADER_BGR_X + 382)
+
+	#define WARINFO_OUTPOST_FONT_DATA_1_Y				(LEADER_BGR_Y + 122)
+	#define WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y		(LEADER_BGR_Y + 115)
+	#define WARINFO_OUTPOST_FONT_DATA_1_GUILDLEADER_Y	(LEADER_BGR_Y + 130)
+	#define WARINFO_OUTPOST_GUILDMARK_1_Y				(WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y + 3)
+	#define WARINFO_OUTPOST_FONT_H						(34)
+
+	#define WARINFO_OUTPOST_FONT_OUTPOST_SIZE			(96)
+	#define WARINFO_OUTPOST_FONT_INFLUENCE_SIZE			(63)
+	#define WARINFO_OUTPOST_FONT_GUILD_SIZE				(206)
+	#define WARINFO_OUTPOST_FONT_SCHEDULE_SIZE			(104)
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	// 거점전스크롤
+	#define MOTHERSHIP_INFO_VIEW_MAX_SCROLL_LINE		4
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_X			(LEADER_BGR_X + 489)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_Y			(LEADER_BGR_Y + 113)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_W			11
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_H			113
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_X		(LEADER_BGR_X + 22)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_Y		(LEADER_BGR_Y + 114)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_W		464
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_H		137
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_X		(LEADER_BGR_X + 487)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_Y		(LEADER_BGR_Y + 113)
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_W		32
+	#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_H		134
+
+	// 아이템들 위치
+	// 공격 세력
+	#define MOTHERSHIP_WARINFO_VIEW_ATT_INFL_X			(LEADER_BGR_X + 19)
+	#define MOTHERSHIP_WARINFO_VIEW_ATT_INFL_Y			(LEADER_BGR_Y + 115)
+	#define MOTHERSHIP_WARINFO_VIEW_ATT_BOX_SIZE		(86)
+
+	#define MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_X		(LEADER_BGR_X + 19)
+	#define MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_Y		(LEADER_BGR_Y + 129)
+	#define MOTHERSHIP_WARINFO_VIEW_POINT_X				(LEADER_BGR_X + 104)
+	#define MOTHERSHIP_WARINFO_VIEW_POINT_Y				(LEADER_BGR_Y + 122)
+	#define MOTHERSHIP_WARINFO_VIEW_POINT_BOX_SIZE		(83)
+
+	#define MOTHERSHIP_WARINFO_VIEW_TIME_X				(LEADER_BGR_X + 184)
+	#define MOTHERSHIP_WARINFO_VIEW_TIME_Y				(LEADER_BGR_Y + 122)
+	#define MOTHERSHIP_WARINFO_VIEW_TIME_BOX_SIZE		(230)
+	#define MOTHERSHIP_WARINFO_VIEW_WININFL_X			(LEADER_BGR_X + 414)
+	#define MOTHERSHIP_WARINFO_VIEW_WININFL_Y			(LEADER_BGR_Y + 122)
+	#define MOTHERSHIP_WARINFO_VIEW_WININFL_BOX_SIZE	(70)
+	#define MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT			(34)
+
+	// 거점전
+	#define POINTWAR_WARINFO_VIEW_ATT_INFL_X			(LEADER_BGR_X + 19)
+	#define POINTWAR_WARINFO_VIEW_ATT_INFL_Y			(LEADER_BGR_Y + 123)
+	#define POINTWAR_WARINFO_VIEW_POINT_X				(LEADER_BGR_X + 81)
+	#define POINTWAR_WARINFO_VIEW_POINT_Y				(LEADER_BGR_Y + 123)
+	#define POINTWAR_WARINFO_VIEW_TIME_X				(LEADER_BGR_X + 176)
+	#define POINTWAR_WARINFO_VIEW_TIME_Y				(LEADER_BGR_Y + 123)
+	#define POINTWAR_WARINFO_VIEW_WININFL_X				(LEADER_BGR_X + 423)
+	#define POINTWAR_WARINFO_VIEW_WININFL_Y				(LEADER_BGR_Y + 123)
+	#define POINTWAR_WARINFO_VIEW_CAP_HEIGHT			(34)
+
+	#define POINTWAR_WARINFO_VIEW_ATT_SIZE				(62)
+	#define POINTWAR_WARINFO_VIEW_POINT_SIZE			(96)
+	#define POINTWAR_WARINFO_VIEW_TIME_SIZE				(247)
+	#define POINTWAR_WARINFO_VIEW_WININFL_SIZE			(63)
+
+	// 거점전 관리 옵션
+	#define MOTHERSHIP_OPTION_X							(LEADER_BGR_X + 353)
+	#define MOTHERSHIP_OPTION_Y 						(LEADER_BGR_Y + 212)
+
+	// end 2008-03-19 by bhsohn 모선전, 거점전 정보창
+
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	#define WARDECLARE_BTN_X							(LEADER_INFO_BG_X + 355)
+	#define WARDECLARE_BTN_Y 							(LEADER_INFO_BG_Y + 222)
+
+	#define WARDECLAR_SIZE								(203)
+
+	#define OUR_THIS_TAKEOFF_X							(LEADER_BGR_X + 37)
+	#define OUR_THIS_TAKEOFF_Y							(LEADER_BGR_Y + 118)
+	#define OUR_NEXT_TAKEOFF_X							(LEADER_BGR_X + 37)
+	#define OUR_NEXT_TAKEOFF_Y							(LEADER_BGR_Y + 179)
+
+	#define ENEMY_THIS_TAKEOFF_X						(LEADER_BGR_X + 273)
+	#define ENEMY_THIS_TAKEOFF_Y						(LEADER_BGR_Y + 118)
+	#define ENEMY_NEXT_TAKEOFF_X						(LEADER_BGR_X + 273)
+	#define ENEMY_NEXT_TAKEOFF_Y						(LEADER_BGR_Y + 179)
+
+	#define OUR_THIS_TAKEOFFTIME_X						(LEADER_BGR_X + 40)
+	#define OUR_THIS_TAKEOFFTIME_Y						(LEADER_BGR_Y + 143)
+	#define OUR_NEXT_TAKEOFFTIME_X						(LEADER_BGR_X + 40)
+	#define OUR_NEXT_TAKEOFFTIME_Y						(LEADER_BGR_Y + 205)
+
+	#define ENEMY_THIS_TAKEOFFTIME_X					(LEADER_BGR_X + 275)
+	#define ENEMY_THIS_TAKEOFFTIME_Y					(LEADER_BGR_Y + 143)
+	#define ENEMY_NEXT_TAKEOFFTIME_X					(LEADER_BGR_X + 275)
+	#define ENEMY_NEXT_TAKEOFFTIME_Y					(LEADER_BGR_Y + 205)
+
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	// 스크롤 바 라인
+	#define	MAX_SCROLL_LINE			11
+	#define	SCROLL_BALL_POSX					315
+	#define	SCROLL_BALL_POSY					12
+	#define	SCROLL_BALL_WIDTH					11
+	#define	SCROLL_BALL_SCROLL_CAP				23
+
+	#define	SCROLL_WIDTH						330
+	#define	SCROLL_HEIGHT						176
+	#define	SCROLL_WHELL_HEIGHT					195
+	// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+#else
+#define LEADER_BAR_NAME_X			(CITY_BASE_NPC_BOX_START_X + 5)
+#define LEADER_BAR_NAME_Y			(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 2)			// 바를 제외한 젤 윗단.
+#define LEADER_STARTL_X				(CITY_BASE_NPC_BOX_START_X)									// 윈도우 창 젤 앞단.
+#define LEADER_STARTL_Y				(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 20)			// 바를 제외한 젤 윗단.
+#define LEADER_STARTR_X				(LEADER_STARTL_X + SIZE_CITYLEADER_WINDOWL_X)
+#define LEADER_STARTR_Y				(CITY_BASE_NPC_BOX_START_Y - SIZE_CITYLEADER_WINDOWL_Y + 20)			// 바를 제외한 젤 윗단.
+
+// 왼쪽 창 배경 및 버튼 위치.
+#define LEADER_BGL_X				(LEADER_STARTL_X + 14)
+#define LEADER_BGL_Y				(LEADER_STARTL_Y + 7)
+
+#define TITLE_POS_X					(LEADER_BGL_X)
+#define TITLE_POS_Y					(LEADER_BGL_Y -24)
+
+
+#define LEADER_BRIGADE_NOTICE_BUTTON_X				(LEADER_BGL_X + 16)
+#define LEADER_BRIGADE_NOTICE_BUTTON_Y				(LEADER_BGL_Y + 23)
+#define LEADER_EXPENCE_BUTTON_X						(LEADER_BGL_X + 16)
+#define LEADER_EXPENCE_BUTTON_Y						(LEADER_BGL_Y + 61)
+//#define LEADER_WAR_TIME_SET_BUTTON_X			(LEADER_BGL_X + 16)
+//#define LEADER_WAR_TIME_SET_BUTTON_Y			(LEADER_BGL_Y + 98)
+#define LEADER_POLL_BUTTON_X						(LEADER_BGL_X + 16)
+#define LEADER_POLL_BUTTON_Y						(LEADER_BGL_Y + 98)
+#define LEADER_POLL_DATE_BUTTON_X					(LEADER_BGL_X + 16)
+#define LEADER_POLL_DATE_BUTTON_Y					(LEADER_BGL_Y + 135)
+#define LEADER_WARINFO_BUTTON_X						(LEADER_BGL_X + 16)
+#define LEADER_WARINFO_BUTTON_Y						(LEADER_BGL_Y + 172)
+#define LEADER_LEFT_BUTTON_W						124
+#define	LEADER_LEFT_BUTTON_H						29
+
+// 오른쪽 배경 및 버튼위치.
+//--------------------------------------------------------------------------//
+
+#define LEADER_BGR_X								(LEADER_STARTR_X + 12)
+#define LEADER_BGR_Y								(LEADER_STARTR_Y + 7)
+
+// 여단 공지 사항.
+#define LEADER_WRITE_BUTTON_X						(LEADER_BGR_X + 11)
+#define LEADER_WRITE_BUTTON_Y						(LEADER_BGR_Y + 47)
+#define LEADER_REV_BUTTON_X							(LEADER_BGR_X + 79)
+#define LEADER_REV_BUTTON_Y							(LEADER_BGR_Y + 47)
+#define LEADER_DEL_BUTTON_X							(LEADER_BGR_X + 147)
+#define LEADER_DEL_BUTTON_Y							(LEADER_BGR_Y + 47)
+#define LEADER_APP_BUTTON_X							(LEADER_BGR_X + 238)
+#define LEADER_APP_BUTTON_Y							(LEADER_BGR_Y + 205)
+#define LEADER_RIGHT_BUTTON_W						65
+#define	LEADER_RIGHT_BUTTON_H						19
+
+//#define LEADER_NOTICE_EDIT_W						260
+#define LEADER_NOTICE_EDIT_W						240
+#define LEADER_NOTICE_EDIT_H						110
+
+#define LEADER_NOTICE_EDIT_X						(LEADER_BGR_X + 25)
+#define LEADER_NOTICE_EDIT_Y						(LEADER_BGR_Y + 86)
+#define LEADER_NOTICE_FONT_LINE_HEIGHT				15
+
+// 판공비 수령.
+#define LEADER_EXPENCE_OK_BUTTON_X					(LEADER_BGR_X + 238)
+#define LEADER_EXPENCE_OK_BUTTON_Y					(LEADER_BGR_Y + 202)
+
+#define LEADER_EXPENCE_LATE_FONT_X					(LEADER_BGR_X + 247)
+#define LEADER_EXPENCE_LATE_FONT_Y					(LEADER_BGR_Y + 55)
+#define LEADER_EXPENCE_CUMEXP_FONT_X				(LEADER_BGR_X + 247)
+#define LEADER_EXPENCE_CUMEXP_FONT_Y				(LEADER_BGR_Y + 86)
+#define LEADER_EXPENCE_EXP_FONT_X					(LEADER_BGR_X + 247)
+#define LEADER_EXPENCE_EXP_FONT_Y					(LEADER_BGR_Y + 116)
+
+// 전쟁 시간 설정.
+#define LEADER_WARTIME_RADIO_BUTTON_START_X			(LEADER_BGR_X + 35)
+#define LEADER_WARTIME_RADIO_BUTTON_START_Y			(LEADER_BGR_Y + 161)
+#define LEADER_WARTIME_RADIO_BUTTON_GAP_Y			19
+#define LEADER_WARTIME_RADIO_BUTTON_W				17
+#define LEADER_WARTIME_RADIO_BUTTON_H				17
+
+#define LEADER_NEXT_WARTIME_DATE_FONT_X				(LEADER_BGR_X + 74)
+#define LEADER_NEXT_WARTIME_DATE_FONT_Y				(LEADER_BGR_Y + 67)
+#define LEADER_NEXT_WARTIME_TIME_FONT_X				(LEADER_BGR_X + 74)
+#define LEADER_NEXT_WARTIME_TIME_FONT_Y				(LEADER_BGR_Y + 117)
+
+#define LEADER_SEL_WARTIME_FONT_X					(LEADER_BGR_X + 57)
+#define LEADER_SEL_WARTIME_FONT_Y					(LEADER_BGR_Y + 167)
+#define LEADER_SEL_WARTIME_FONT_GAP_H				18 
+
+
+
+#define LEADER_OK_BUTTON_X							(LEADER_BGR_X + 238)
+#define LEADER_OK_BUTTON_Y							(LEADER_BGR_Y + 202)
+
+// 전진 기지전 일정 
+#define LEADER_WAR_TIME_X							(LEADER_BGR_X + 11)
+#define LEADER_WAR_TIME_Y							(LEADER_BGR_Y + 202)
+//--------------------------------------------------------------------------//
+//							폴시스템 추가									//
+
+//         후보 정보창.
+
+// 정보 
+#define LEADER_POLL_INFO_BUTTON_X					(LEADER_BGR_X + 14)
+#define LEADER_POLL_INFO_BUTTON_Y					(LEADER_BGR_Y + 32)
+// 등록
+#define LEADER_POLL_APP_BUTTON_X					(LEADER_BGR_X + 112)
+#define LEADER_POLL_APP_BUTTON_Y					(LEADER_BGR_Y + 32)
+// 투표
+#define LEADER_POLL_VOTE_BUTTON_X					(LEADER_BGR_X + 36)
+#define LEADER_POLL_VOTE_BUTTON_Y					(LEADER_BGR_Y + 184)
+// 목록
+#define LEADER_POLL_LIST_BUTTON_X					(LEADER_BGR_X + 225)
+#define LEADER_POLL_LIST_BUTTON_Y					(LEADER_BGR_Y + 210)
+#define LEADER_POLL_LIST_BUTTON_W					76
+#define LEADER_POLL_LIST_BUTTON_H					21
+
+// 레벨 
+#define LEADER_POLL_INFO_LEVEL_FONT_X				(LEADER_BGR_X + 183)
+#define LEADER_POLL_INFO_LEVEL_FONT_Y				(LEADER_BGR_Y + 59)
+// 여단마크.
+#define LEADER_POLL_GUILDMARK_IMG_X					(LEADER_BGR_X + 180)
+#define LEADER_POLL_GUILDMARK_IMG_Y					(LEADER_BGR_Y + 82)
+// 얼굴 이미지.
+#define LEADER_POLL_FACE_IMG_X						(LEADER_BGR_X + 21)
+#define LEADER_POLL_FACE_IMG_Y						(LEADER_BGR_Y + 58)
+// 여단명.
+#define LEADER_POLL_GUILDNAME_FONT_X				(LEADER_POLL_GUILDMARK_IMG_X + 30)
+#define LEADER_POLL_GUILDNAME_FONT_Y				(LEADER_POLL_GUILDMARK_IMG_Y - 3)
+// 여단명성
+#define LEADER_POLL_GUILDFAME_FONT_X				(LEADER_BGR_X + 209)
+#define LEADER_POLL_GUILDFAME_FONT_Y				(LEADER_BGR_Y + 100)
+// id
+#define LEADER_POLL_ID_FONT_X						(LEADER_BGR_X + 71)
+#define LEADER_POLL_ID_FONT_Y						(LEADER_BGR_Y + 161)
+
+
+//       공약 작성.
+#define LEADER_POLL_APPSUC_BUTTON_X					(LEADER_POLL_LIST_BUTTON_X)
+#define LEADER_POLL_APPSUC_BUTTON_Y					(LEADER_POLL_LIST_BUTTON_Y)
+
+#define LEADER_POLL_PLEDGE_EDIT_X					(LEADER_BGR_X + 24)
+#define LEADER_POLL_PLEDGE_EDIT_Y					(LEADER_BGR_Y + 83)
+//#define LEADER_POLL_PLEDGE_EDIT_W					256
+#define LEADER_POLL_PLEDGE_EDIT_W					246
+#define LEADER_POLL_PLEDGE_EDIT_H					106
+
+#define LEADER_POLL_PLEDGE_VIEW_EDIT_X				(LEADER_BGR_X + 133)
+#define LEADER_POLL_PLEDGE_VIEW_EDIT_Y				(LEADER_BGR_Y + 124)
+#define LEADER_POLL_PLEDGE_VIEW_EDIT_W				143
+#define LEADER_POLL_PLEDGE_VIEW_EDIT_H				74
+
+
+//       선거 일정.
+// 후보 신청 기간. 
+#define LEADER_POLL_APP_CENTER_FONT_X				(LEADER_BGR_X + 157)
+#define LEADER_POLL_APP_CENTER_FONT_Y				(LEADER_BGR_Y + 80)
+// 투표 참여 기간.
+#define LEADER_POLL_JOIN_CENTER_FONT_X				(LEADER_BGR_X + 157)
+#define LEADER_POLL_JOIN_CENTER_FONT_Y				(LEADER_BGR_Y + 132)
+// 선출일.
+#define LEADER_POLL_ELECT_CENTER_FONT_X				(LEADER_BGR_X + 106)
+#define LEADER_POLL_ELECT_CENTER_FONT_Y				(LEADER_BGR_Y + 182)
+
+//       후보 리스트.
+#define LEADER_POLL_SELECT_BUTTON_X					LEADER_POLL_LIST_BUTTON_X
+#define LEADER_POLL_SELECT_BUTTON_Y					LEADER_POLL_LIST_BUTTON_Y
+
+// 리스트 배경.
+#define LEADER_POLL_LIST_BG_X						(LEADER_BGR_X + 14)
+#define LEADER_POLL_LIST_BG_Y						(LEADER_BGR_Y + 52)
+
+#define LEADER_POLL_LIST_AREA_X						(LEADER_BGR_X + 22)
+#define LEADER_POLL_LIST_AREA_Y						(LEADER_BGR_Y + 81)
+#define LEADER_POLL_LIST_AREA_W						258
+#define LEADER_POLL_LIST_AREA_H						119
+#define LEADER_POLL_LIST_SELECT_H					17
+
+#define LEADER_POLL_LIST_NUMBER_X					(LEADER_BGR_X + 39)
+#define LEADER_POLL_LIST_START_Y					(LEADER_BGR_Y + 81)
+#define LEADER_POLL_LIST_CONDIDATE_NAME_X			(LEADER_BGR_X + 123)
+#define LEADER_POLL_LIST_GUILD_NAME_X				(LEADER_BGR_X + 236)
+
+// 리스트 스크롤.
+#define LEADER_POLL_LIST_MAX_SCROLL_LINE			7
+#define LEADER_POLL_LIST_SCROLL_X					(LEADER_BGR_X + 286)
+#define LEADER_POLL_LIST_SCROLL_Y					(LEADER_BGR_Y + 83)
+#define LEADER_POLL_LIST_SCROLL_W					11
+#define LEADER_POLL_LIST_SCROLL_H					78
+#define LEADER_POLL_LIST_SCROLL_WHELL_X				(LEADER_BGR_X + 22)
+#define LEADER_POLL_LIST_SCROLL_WHELL_Y				(LEADER_BGR_Y + 82)
+#define LEADER_POLL_LIST_SCROLL_WHELL_W				279	
+#define LEADER_POLL_LIST_SCROLL_WHELL_H				120
+#define LEADER_POLL_LIST_SCROLL_BALL_X				(LEADER_BGR_X + 270)
+#define LEADER_POLL_LIST_SCROLL_BALL_Y				(LEADER_BGR_Y + 53)
+#define LEADER_POLL_LIST_SCROLL_BALL_W				46
+#define LEADER_POLL_LIST_SCROLL_BALL_H				180
+// 공약 스크롤 													
+#define LEADER_POLL_PLEDGE_MAX_SCROLL_LINE			6
+#define LEADER_POLL_PLEDGE_SCROLL_X					(LEADER_BGR_X + 286)
+#define LEADER_POLL_PLEDGE_SCROLL_Y					(LEADER_BGR_Y + 76)
+#define LEADER_POLL_PLEDGE_SCROLL_W					11
+#define LEADER_POLL_PLEDGE_SCROLL_H					68
+#define LEADER_POLL_PLEDGE_SCROLL_WHELL_X			(LEADER_BGR_X + 22)
+#define LEADER_POLL_PLEDGE_SCROLL_WHELL_Y			(LEADER_BGR_Y + 82)
+#define LEADER_POLL_PLEDGE_SCROLL_WHELL_W			279	
+#define LEADER_POLL_PLEDGE_SCROLL_WHELL_H			120
+#define LEADER_POLL_PLEDGE_SCROLL_BALL_X			(LEADER_BGR_X + 270)
+#define LEADER_POLL_PLEDGE_SCROLL_BALL_Y			(LEADER_BGR_Y + 53)
+#define LEADER_POLL_PLEDGE_SCROLL_BALL_W			46
+#define LEADER_POLL_PLEDGE_SCROLL_BALL_H			180
+// 공약 뷰 스크롤
+#define LEADER_POLL_PLEDGE_VIEW_MAX_SCROLL_LINE		4
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_X			(LEADER_BGR_X + 280)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_Y			(LEADER_BGR_Y + 124)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_W			11
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_H			36
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_X		(LEADER_BGR_X + 130)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_Y		(LEADER_BGR_Y + 124)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_W		164
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_H		76
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_X		(LEADER_BGR_X + 315)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_Y		(LEADER_BGR_Y + 234)
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_W		32
+#define LEADER_POLL_PLEDGE_VIEW_SCROLL_BALL_H		113
+
+//--------------------------------------------------------------------------//
+//							전쟁 정보 창.
+#define LEADER_WARINFO_BG_X							(LEADER_BGR_X)// + 22)
+#define LEADER_WARINFO_BG_Y							(LEADER_BGR_Y)// + 8)
+
+
+// 2009. 01. 12 by ckPark 선전 포고 시스템
+//#define LEADER_WARINFO_TAB_W						(116)
+#define LEADER_WARINFO_TAB_W						(91)
+// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+#define LEADER_WARINFO_TAB_H						(25)
+#define LEADER_WARINFO_TAB_Y						(LEADER_BGR_Y)
+#define LEADER_WARINFO_TAB_INFLUENCE_X				(LEADER_BGR_X)
+#define LEADER_WARINFO_TAB_MOTHERSHIP_X				(LEADER_WARINFO_TAB_INFLUENCE_X + LEADER_WARINFO_TAB_W)
+#define LEADER_WARINFO_TAB_OUTPOST_X				(LEADER_WARINFO_TAB_MOTHERSHIP_X + LEADER_WARINFO_TAB_W)
+#define LEADER_WARINFO_TAB_WARPOINT_X				(LEADER_WARINFO_TAB_OUTPOST_X + LEADER_WARINFO_TAB_W)
+
+// 세력전 탭
+#define WARINFO_INFLUENCE_BG1_X						(LEADER_BGR_X + 18)
+#define WARINFO_INFLUENCE_BG1_Y						(LEADER_BGR_Y + 45)
+#define WARINFO_INFLUENCE_BG2_X						(LEADER_BGR_X + 244)
+#define WARINFO_INFLUENCE_BG2_Y						(LEADER_BGR_Y + 45)
+#define WARINFO_INFLUENCE_FONT_POINT_H				31				
+#define WARINFO_INFLUENCE_FONT_1_CENTER_X			(LEADER_BGR_X + 178)
+#define WARINFO_INFLUENCE_FONT_2_CENTER_X			(LEADER_BGR_X + 405)
+#define WARINFO_INFLUENCE_FONT_LEADER_Y				(LEADER_BGR_Y + 89)
+#define WARINFO_INFLUENCE_FONT_LEADER1_Y			(WARINFO_INFLUENCE_FONT_LEADER_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+#define WARINFO_INFLUENCE_FONT_LEADER2_Y			(WARINFO_INFLUENCE_FONT_LEADER1_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+#define WARINFO_INFLUENCE_FONT_POINT_Y				(WARINFO_INFLUENCE_FONT_LEADER2_Y + WARINFO_INFLUENCE_FONT_POINT_H)
+
+// 전진기지전 탭
+#define WARINFO_OUTPOST_FONT_OUTPOST_CENTER_X		(LEADER_BGR_X + 56)
+#define WARINFO_OUTPOST_FONT_INFLUENCE_CENTER_X		(LEADER_BGR_X + 119)
+// 2007-12-17 by dgwoo 인터페이스 변경.
+#define WARINFO_OUTPOST_FONT_GUILD_CENTER_X			(LEADER_BGR_X + 247)
+#define WARINFO_OUTPOST_FONT_GUILDLEADER_CENTER_X	(LEADER_BGR_X + 186)
+#define WARINFO_OUTPOST_FONT_GUILDLEADER_W			70
+//#define WARINFO_OUTPOST_FONT_GUILD_CENTER_X			(LEADER_BGR_X + 286)
+#define WARINFO_OUTPOST_FONT_GUILDMARK_X			(LEADER_BGR_X + 240)
+#define WARINFO_OUTPOST_FONT_GUILDNAME_X			(WARINFO_OUTPOST_FONT_GUILDMARK_X + 28)
+#define WARINFO_OUTPOST_FONT_GUILDNAME_W			65
+#define WARINFO_OUTPOST_FONT_SCHEDULE_CENTER_X		(LEADER_BGR_X + 396)
+
+#define WARINFO_OUTPOST_FONT_DATA_1_Y				(LEADER_BGR_Y + 106)
+#define WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y		(LEADER_BGR_Y + 97)
+#define WARINFO_OUTPOST_FONT_DATA_1_GUILDLEADER_Y	(LEADER_BGR_Y + 112)
+#define WARINFO_OUTPOST_GUILDMARK_1_Y				(WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y + 3)
+#define WARINFO_OUTPOST_FONT_H						(32)
+
+// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+// 거점전스크롤
+#define MOTHERSHIP_INFO_VIEW_MAX_SCROLL_LINE		5
+#define MOTHERSHIP_INFO_VIEW_SCROLL_X			(LEADER_BGR_X + 476)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_Y			(LEADER_BGR_Y + 74)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_W			11
+#define MOTHERSHIP_INFO_VIEW_SCROLL_H			93
+#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_X		(LEADER_BGR_X + 55)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_Y		(LEADER_BGR_Y + 74)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_W		434
+#define MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_H		133
+#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_X		(LEADER_BGR_X + 465)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_Y		(LEADER_BGR_Y + 74)
+#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_W		32
+#define MOTHERSHIP_INFO_VIEW_SCROLL_BALL_H		123
+
+// 아이템들 위치
+// 공격 세력
+#define MOTHERSHIP_WARINFO_VIEW_ATT_INFL_X			(LEADER_BGR_X + 52)
+#define MOTHERSHIP_WARINFO_VIEW_ATT_INFL_Y			(LEADER_BGR_Y + 71)
+#define MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_X		(LEADER_BGR_X + 52)
+#define MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_Y		(LEADER_BGR_Y + 83)
+#define MOTHERSHIP_WARINFO_VIEW_POINT_X				(LEADER_BGR_X + 135)
+#define MOTHERSHIP_WARINFO_VIEW_POINT_Y				(LEADER_BGR_Y + 77)
+#define MOTHERSHIP_WARINFO_VIEW_TIME_X				(LEADER_BGR_X + 289)
+#define MOTHERSHIP_WARINFO_VIEW_TIME_Y				(LEADER_BGR_Y + 77)
+#define MOTHERSHIP_WARINFO_VIEW_WININFL_X			(LEADER_BGR_X + 437)
+#define MOTHERSHIP_WARINFO_VIEW_WININFL_Y			(LEADER_BGR_Y + 77)
+#define MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT			(27)
+
+// 거점전
+#define POINTWAR_WARINFO_VIEW_ATT_INFL_X			(LEADER_BGR_X + 37)
+#define POINTWAR_WARINFO_VIEW_ATT_INFL_Y			(LEADER_BGR_Y + 83)
+#define POINTWAR_WARINFO_VIEW_POINT_X				(LEADER_BGR_X + 117)
+#define POINTWAR_WARINFO_VIEW_POINT_Y				(LEADER_BGR_Y + 83)
+#define POINTWAR_WARINFO_VIEW_TIME_X				(LEADER_BGR_X + 289)
+#define POINTWAR_WARINFO_VIEW_TIME_Y				(LEADER_BGR_Y + 83)
+#define POINTWAR_WARINFO_VIEW_WININFL_X				(LEADER_BGR_X + 437)
+#define POINTWAR_WARINFO_VIEW_WININFL_Y				(LEADER_BGR_Y + 83)
+#define POINTWAR_WARINFO_VIEW_CAP_HEIGHT			(27)
+
+// 거점전 관리 옵션
+#define MOTHERSHIP_OPTION_X							(LEADER_BGR_X + 353)
+#define MOTHERSHIP_OPTION_Y 						(LEADER_BGR_Y + 212)
+
+// end 2008-03-19 by bhsohn 모선전, 거점전 정보창
+
+
+
+// 2009. 01. 12 by ckPark 선전 포고 시스템
+#define WARDECLARE_BTN_X							(LEADER_BGR_X + 200)
+#define WARDECLARE_BTN_Y 							(LEADER_BGR_Y + 212)
+
+#define OUR_THIS_TAKEOFF_X							(LEADER_BGR_X + 43)
+#define OUR_THIS_TAKEOFF_Y							(LEADER_BGR_Y + 81)
+#define OUR_NEXT_TAKEOFF_X							(LEADER_BGR_X + 43)
+#define OUR_NEXT_TAKEOFF_Y							(LEADER_BGR_Y + 142)
+
+#define ENEMY_THIS_TAKEOFF_X						(LEADER_BGR_X + 275)
+#define ENEMY_THIS_TAKEOFF_Y						(LEADER_BGR_Y + 81)
+#define ENEMY_NEXT_TAKEOFF_X						(LEADER_BGR_X + 275)
+#define ENEMY_NEXT_TAKEOFF_Y						(LEADER_BGR_Y + 142)
+
+#define OUR_THIS_TAKEOFFTIME_X						(LEADER_BGR_X + 48)
+#define OUR_THIS_TAKEOFFTIME_Y						(LEADER_BGR_Y + 105)
+#define OUR_NEXT_TAKEOFFTIME_X						(LEADER_BGR_X + 48)
+#define OUR_NEXT_TAKEOFFTIME_Y						(LEADER_BGR_Y + 167)
+
+#define ENEMY_THIS_TAKEOFFTIME_X					(LEADER_BGR_X + 280)
+#define ENEMY_THIS_TAKEOFFTIME_Y					(LEADER_BGR_Y + 105)
+#define ENEMY_NEXT_TAKEOFFTIME_X					(LEADER_BGR_X + 280)
+#define ENEMY_NEXT_TAKEOFFTIME_Y					(LEADER_BGR_Y + 167)
+
+// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+// 스크롤 바 라인
+#define	MAX_SCROLL_LINE			7
+#define	SCROLL_BALL_POSX					288
+#define	SCROLL_BALL_POSY					78
+#define	SCROLL_BALL_WIDTH					11
+#define	SCROLL_BALL_SCROLL_CAP				30
+
+#define	SCROLL_WIDTH						330
+#define	SCROLL_HEIGHT						78
+#define	SCROLL_WHELL_HEIGHT					150
+// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+#endif
+
+// 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+struct sort_MotherShip_summontime: binary_function<structMotherShipInfo, structMotherShipInfo, bool>
+{
+	bool operator()(structMotherShipInfo pTime1, structMotherShipInfo pTime2)
+	{
+        if(pTime1.SummonTime < pTime2.SummonTime)
+		{
+			return TRUE;
+		}		
+		return FALSE;
+    };
+};
+struct sort_WarPoint_summontime: binary_function<structWarPointInfo, structWarPointInfo, bool>
+{
+	bool operator()(structWarPointInfo pTime1, structWarPointInfo pTime2)
+	{
+        if(pTime1.SummonTime < pTime2.SummonTime)
+		{
+			return TRUE;
+		}		
+		return FALSE;
+    };
+};
+// end 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+
+
+
+//--------------------------------------------------------------------------//
+
+#define	MAX_NEXT_WAR_RADIO							3
+
+//--------------------------------------------------------------------------//
+
+#define STRING_CULL ::StringCullingUserDataEx	
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+CINFCityLeader::CINFCityLeader(CAtumNode* pParent, BUILDINGNPC* pBuilding)
+{
+	m_pParent = pParent;	// CGameMain*
+	m_pBuildingInfo = pBuilding;
+
+	m_pFontExp		= NULL;
+
+	m_fExplate = 0.0f;
+	m_nCumulativeExp = 	m_nExp = 0;
+
+	m_nSelWarTimeRadioB		= 0;
+	m_nWarTimeMaxCount		= MAX_NEXT_WAR_RADIO;	
+	m_BPollState			= LEADER_POLL_LIST;
+	m_pImgPAppB				= NULL;
+	m_pImgPUnAppB			= NULL;
+	m_nRSelectB_1			= 0;
+	m_nRSelectB_2			= BUTTON_BOTH_STATE_NORMAL;
+	m_nBrigadeNoticeB		= BUTTON_STATE_NORMAL;
+	m_nDelB					= BUTTON_STATE_NORMAL;
+	m_nExpenceB				= BUTTON_STATE_NORMAL;
+	m_nExpenceOkB			= BUTTON_STATE_NORMAL;
+	m_nOkB					= BUTTON_STATE_NORMAL;
+	m_nRevB					= BUTTON_STATE_NORMAL;
+
+	// 전진기지.
+	m_nLPollB				= BUTTON_STATE_NORMAL;
+	m_nLDateB				= BUTTON_STATE_NORMAL;
+	m_nPInfoB				= BUTTON_STATE_NORMAL;
+	m_nRVoteB				= BUTTON_STATE_NORMAL;
+	m_nRSelectB_2			= BUTTON_BOTH_STATE_NORMAL;	
+
+	// 2007-09-05 by bhsohn 전진 기지전
+	///////////////////여단 공지///////////////////
+	m_pNoticeWrite = NULL;
+	m_pRegist = NULL;
+	m_pNoticeEditBox = NULL;
+	m_pEditPledge = NULL;
+	m_pEditPledgeView = NULL;
+	///////////////////판공비 수령///////////////////	
+	m_pExpenceOkBtn = NULL;
+	m_pWarNextOkBtn = NULL;
+
+	
+	///////////////////전쟁 시간 설정 관련 처리///////////////////	
+	m_vecNextWarTimeList.clear();
+	m_OutPostNextWarTime.Year 
+		= m_OutPostNextWarTime.Month 
+		= m_OutPostNextWarTime.Day 
+		= m_OutPostNextWarTime.Hour 
+		= m_OutPostNextWarTime.Minute 
+		= m_OutPostNextWarTime.Second = 0;
+
+	m_pImgGuildMark				= NULL;
+	m_pImgFace					= NULL;
+	m_pPilotFace				= NULL;
+
+	m_pScrollPollList			= NULL;
+	m_pScrollPollPledge			= NULL;
+	m_pScrollPollPledgeView		= NULL;
+
+
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	m_pScrollMotherShipInfo			= NULL;
+	m_pFontWarInfo		= NULL;
+	m_pBtnMotherShipInfo = NULL;
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	m_pFontWarDeclare	= NULL;
+	m_pBtnWarDeclare		= NULL;
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+	m_nSelectNum				= -1;
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	m_pINFScrollBar = NULL;
+	
+}
+
+CINFCityLeader::~CINFCityLeader()
+{
+
+}
+void CINFCityLeader::ButtonClickWrite()
+{
+//	memset(m_cNoticeString,0x00,SIZE_MAX_NOTICE);
+//	m_bWriteMode = TRUE;
+	char chBlank[16];
+	memset(chBlank, 0x00, 16);
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	m_pNoticeEditBox->SetString(chBlank, 16, 0, TRUE);		// 내용
+	m_pNoticeEditBox->EnableEdit(TRUE, FALSE);
+	
+	m_pNoticeEditBox->BackupTxtString();	
+	m_pINFScrollBar->SetMaxItem(0);
+}
+
+void CINFCityLeader::ButtonClickApp()
+{
+	//m_bWriteMode = FALSE;
+	m_pNoticeEditBox->EnableEdit(FALSE, FALSE);
+	MSG_FC_INFO_NOTICE_REG sMsg;
+	memset(&sMsg, 0x00, sizeof(MSG_FC_INFO_NOTICE_REG));
+	sMsg.GuildUID = g_pShuttleChild->GetMyShuttleInfo().GuildUniqueNumber;		
+	m_pNoticeEditBox->GetString(sMsg.NoticeString, SIZE_MAX_NOTICE);
+
+	g_pFieldWinSocket->SendMsg(T_FC_INFO_NOTICE_REG,(char*)&sMsg,sizeof(sMsg));
+}
+void CINFCityLeader::ButtonClickPollApp()
+{// 후보 등록 버튼.
+	ChangePollState(LEADER_POLL_APP);
+}
+void CINFCityLeader::ButtonClickPollAppSuc()
+{// 자신을 후보로 등록.
+	m_pNoticeEditBox->EnableEdit(FALSE, FALSE);	
+	MSG_FC_CITY_POLL_REG_LEADER_CANDIDATE sMsg;
+	sMsg.CharacterUID		= g_pShuttleChild->GetMyShuttleInfo().CharacterUniqueNumber;
+	sMsg.GuildUID			= g_pShuttleChild->GetMyShuttleInfo().GuildUniqueNumber;
+	m_pEditPledge->GetString(sMsg.CampaignPromises,SIZE_MAX_CAMPAIGNPROMISES);
+	g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REG_LEADER_CANDIDATE,(char*)&sMsg,sizeof(sMsg));
+}
+void CINFCityLeader::ButtonClickPollInfo()
+{// 후보 정보 요청.
+	SendCandidateInfo();
+}
+
+INT CINFCityLeader::SetChangeRadioButton(INT i_nSel)
+{
+	m_nSelWarTimeRadioB = i_nSel;
+	return m_nSelWarTimeRadioB;
+}
+void CINFCityLeader::SetNotice(char *i_szNotice)
+{
+	if(NULL == m_pNoticeEditBox)
+	{
+		return;
+	}
+	char chBuff[SIZE_MAX_NOTICE];
+	ZERO_MEMORY(chBuff);
+
+	m_pNoticeEditBox->InitString();
+	if(strlen(i_szNotice) > 0)
+	{		
+		strncpy(chBuff, i_szNotice, strlen(i_szNotice));	
+	}
+	else
+	{
+		wsprintf(chBuff, STRMSG_C_070816_0102);
+	}	
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	//int nLine = m_pNoticeEditBox->SetString(chBuff, strlen(chBuff)+1);	
+	int nLine = m_pNoticeEditBox->SetString(chBuff, strlen(chBuff)+1, 0, TRUE);	
+	
+	m_pINFScrollBar->SetMaxItem(nLine);
+}
+
+void CINFCityLeader::ChangeLeaderState(DWORD i_dState)
+{
+	m_nRWindowState = i_dState;
+	MapIndex_t	MapIndex = g_pShuttleChild->GetShuttleInfo()->MapChannelIndex.MapIndex;
+
+	// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	g_pInterface->m_pToolTip->m_bToolTipState = FALSE;
+	// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	BOOL bShowBtn = FALSE;
+	if(g_pD3dApp->IsMyShuttleLeader())
+	{
+		bShowBtn = TRUE;
+	}
+
+	switch(m_nRWindowState)
+	{
+	case LEADER_STATE_NOTICE:
+		{			
+			m_pNoticeWrite->ShowWindow(bShowBtn);
+			m_pRegist->ShowWindow(bShowBtn);
+
+			MSG_FC_INFO_NOTICE_REQUEST sMsg;
+			sMsg.NoticeState = NOTICE_LEADER;
+			sMsg.MapIndex = MapIndex;
+			g_pFieldWinSocket->SendMsg(T_FC_INFO_NOTICE_REQUEST,(char*)&sMsg,sizeof(sMsg));
+		}
+		break;
+	case LEADER_STATE_EXPENCE:
+		{
+			m_pExpenceOkBtn->ShowWindow(bShowBtn);
+
+			MSG_FC_INFO_EXPEDIENCYFUND_REQUEST sMsg;
+			sMsg.MapIndex = MapIndex;
+			g_pFieldWinSocket->SendMsg(T_FC_INFO_EXPEDIENCYFUND_REQUEST,(char*)&sMsg,sizeof(sMsg));
+		}
+		break;
+	case LEADER_STATE_POLL:
+		{// 후보자 및 후보 리스트.
+			//ChangePollState(LEADER_POLL_LIST);
+			//SendLeaderCandidateList();
+		}
+		break;
+	case LEADER_STATE_POLLDATE:
+		{// 선거 일정.
+			g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REQUEST_POLL_DATE,NULL,NULL);
+		}
+		break;
+	case LEADER_STATE_WARINFO:
+		{// 전장 정보.
+			ChangeWarInfoState(LEADER_WARINFO_INFLUENCE);
+		}
+		break;
+	}
+}
+HRESULT CINFCityLeader::InitDeviceObjects()
+{
+	DataHeader	* pDataHeader;
+	int i,j;
+	char buf[16];
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	{			
+		char  szScBall[30];	
+		if(NULL == m_pINFScrollBar)
+		{
+			m_pINFScrollBar = new CINFArenaScrollBar;
+		}		
+		wsprintf(szScBall,"c_scrlb");
+		
+		m_pINFScrollBar->InitDeviceObjects(MAX_SCROLL_LINE, szScBall);
+	}
+	// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+	for(i = 0 ; i < BUTTON_STATE_NUMBER ; i++)
+	{
+		m_pImgBrigadeNoticeB[i] = new CINFImageEx;
+		//wsprintf(buf, "Onotice%d",i);
+		wsprintf(buf, "inflnotb%d",i);
+		
+		pDataHeader = FindResource(buf);
+		m_pImgBrigadeNoticeB[i]->InitDeviceObjects(pDataHeader) ;
+
+		m_pImgDelB[i] = new CINFImageEx;
+		wsprintf(buf, "Odel%d",i);
+		pDataHeader = FindResource(buf);
+		m_pImgDelB[i]->InitDeviceObjects(pDataHeader) ;
+
+		m_pImgExpenceB[i] = new CINFImageEx;
+		wsprintf(buf, "Oexpence%d",i);
+		pDataHeader = FindResource(buf);
+		m_pImgExpenceB[i]->InitDeviceObjects(pDataHeader) ;
+
+
+		m_pImgWriteB[i] = new CINFImageEx;
+		wsprintf(buf, "Owrite%d",i);
+		pDataHeader = FindResource(buf);
+		m_pImgWriteB[i]->InitDeviceObjects(pDataHeader) ;
+
+		m_pImgRevB[i] = new CINFImageEx;
+		wsprintf(buf, "Orev%d",i);
+		pDataHeader = FindResource(buf);
+		m_pImgRevB[i]->InitDeviceObjects(pDataHeader) ;
+
+	}
+	for(j= 0 ; j < BUTTON_BOTH_STATE_NUMBER ; j++)
+	{
+		for(i = 0 ; i < BUTTON_BOTH_STATE_NUMBER ; i++)
+		{
+			m_pImgRSelectB[j][i] = new CINFImageEx;
+			wsprintf(buf, "lselectB%d%d",j,i);
+			pDataHeader = FindResource(buf);
+			m_pImgRSelectB[j][i]->InitDeviceObjects(pDataHeader);
+		}
+	}
+	for(i = 0 ; i < LEADER_WARINFO_END ; i++)
+	{
+		m_pImgWarInfoBG[i] = new CINFImageEx;
+		wsprintf(buf,"warfield%d",i);
+		pDataHeader = FindResource(buf);
+		m_pImgWarInfoBG[i]->InitDeviceObjects(pDataHeader);
+	}
+
+	m_pImgWarInfoInflAni = new CINFImageEx;
+	pDataHeader = FindResource("inflAbg");
+	m_pImgWarInfoInflAni->InitDeviceObjects(pDataHeader);
+
+	m_pImgWarInfoInflBcu = new CINFImageEx;
+	pDataHeader = FindResource("inflBbg");
+	m_pImgWarInfoInflBcu->InitDeviceObjects(pDataHeader);
+
+	m_pImgTitle = new CINFImageEx;
+	pDataHeader = FindResource("aleader");				
+	m_pImgTitle->InitDeviceObjects(pDataHeader);
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("chief");
+	m_pImgOutPostLBG = g_pGameMain->m_GruopImagemanager->GetGroupImage(pDataHeader);
+	m_pImgOutPostLBG->InitDeviceObjects( g_pD3dApp->m_pImageList );
+
+	pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("chiBG01");
+	m_pImgRightBG[0] = g_pGameMain->m_GruopImagemanager->GetGroupImage( pDataHeader );
+	m_pImgRightBG[0]->InitDeviceObjects( g_pD3dApp->m_pImageList );
+
+	pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("chiBG02");
+	m_pImgRightBG[1] = g_pGameMain->m_GruopImagemanager->GetGroupImage( pDataHeader );
+	m_pImgRightBG[1]->InitDeviceObjects( g_pD3dApp->m_pImageList );
+
+	pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("chiNo_btn");
+	CityLeaderControl = g_pGameMain->m_GruopImagemanager->GetGroupImage(pDataHeader);
+#else
+	m_pImgOutPostLBG = new CINFImageEx;
+	pDataHeader = FindResource("outpostB");
+	m_pImgOutPostLBG->InitDeviceObjects(pDataHeader);
+#endif	
+	m_pImgBriNoticeBG = new CINFImageEx;
+	//pDataHeader = FindResource("OnoticeB");
+	pDataHeader = FindResource("inflnotB");
+	m_pImgBriNoticeBG->InitDeviceObjects(pDataHeader);
+
+	m_pImgPollDateABG = new CINFImageEx;
+	pDataHeader = FindResource("pdateaBG");
+	m_pImgPollDateABG->InitDeviceObjects(pDataHeader);
+
+	m_pImgPollDateVBG = new CINFImageEx;
+	pDataHeader = FindResource("pdatevBG");
+	m_pImgPollDateVBG->InitDeviceObjects(pDataHeader);
+
+	m_pImgExpenceBG = new CINFImageEx;
+	pDataHeader = FindResource("lexpenB");
+	m_pImgExpenceBG->InitDeviceObjects(pDataHeader);
+
+	m_pFontExp = new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()),9, D3DFONT_ZENABLE, TRUE,256,32);
+	m_pFontExp->InitDeviceObjects(g_pD3dDev);
+
+	m_pImgVniBG = new CINFImageEx;
+	pDataHeader = FindResource("lvniBG");
+	m_pImgVniBG->InitDeviceObjects(pDataHeader);
+
+	m_pImgAniBG = new CINFImageEx;
+	pDataHeader = FindResource("laniBG");
+	m_pImgAniBG->InitDeviceObjects(pDataHeader);
+
+	m_pImgListBG = new CINFImageEx;
+	pDataHeader = FindResource("llistBG");
+	m_pImgListBG->InitDeviceObjects(pDataHeader);
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRSelect = new CINFImageEx;
+	pDataHeader = FindResource("p_sel0");
+	m_pImgRSelect->InitDeviceObjects(pDataHeader);
+#else
+	m_pImgRSelect = new CINFImageEx;
+	pDataHeader = FindResource("lselect");
+	m_pImgRSelect->InitDeviceObjects(pDataHeader);
+#endif
+	m_pImgPInfoBG = new CINFImageEx;
+	pDataHeader = FindResource("pinfoBG");
+	m_pImgPInfoBG->InitDeviceObjects(pDataHeader);
+
+	m_pImgAppBG = new CINFImageEx;
+	pDataHeader = FindResource("pledgeBG");
+	m_pImgAppBG->InitDeviceObjects(pDataHeader);
+
+	m_pPilotFace = new CINFPilotFace;
+	m_pPilotFace->InitDeviceObjects("face.tex");
+	{
+		char szButtonName[32];
+
+		// 2007-10-16 by dgwoo 폴 시스템 
+		// 알링턴 폴 버튼.
+		wsprintf(szButtonName, "LpollaB");
+		if(NULL == m_pImgLPollAB)
+		{
+			m_pImgLPollAB = new CINFImageBtn;
+		}
+		m_pImgLPollAB->InitDeviceObjects(szButtonName);	
+
+		// 바이제니유 폴 버튼.
+
+		wsprintf(szButtonName,"LpollvB");
+		if(NULL == m_pImgLPollVB)
+		{
+			m_pImgLPollVB = new CINFImageBtn;
+		}
+		m_pImgLPollVB->InitDeviceObjects(szButtonName);	
+
+		// 선거 일정 버튼.
+		wsprintf(szButtonName,"LdateB");
+		if(NULL == m_pImgLDateB)
+		{
+			m_pImgLDateB = new CINFImageBtn;
+		}
+		m_pImgLDateB->InitDeviceObjects(szButtonName);	
+		// 전장 정보 버튼.
+		wsprintf(szButtonName,"warfieldB");
+		if(NULL == m_pImgLWarInfoB)
+		{
+			m_pImgLWarInfoB = new CINFImageBtn;
+		}
+		m_pImgLWarInfoB->InitDeviceObjects(szButtonName);
+		// 후보 정보 버튼.
+		wsprintf(szButtonName,"pinfoB");
+		if(NULL == m_pImgPInfoB)
+		{
+			m_pImgPInfoB = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pImgPInfoB->InitDeviceObjects(szButtonName);	
+		m_pImgPInfoB->InitDeviceObjects(szButtonName,"STRTOOLTIP84");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		// 투표 버튼.
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+		// 후보 등록 버튼.
+		wsprintf(szButtonName,"c_jrq");
+		if(NULL == m_pImgPAppB)
+		{
+			m_pImgPAppB = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pImgPAppB->InitDeviceObjects(szButtonName);	
+		m_pImgPAppB->InitDeviceObjects(szButtonName,"STRTOOLTIP16");	
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		// 후보 탈퇴 버튼.
+		wsprintf(szButtonName,"p_bt2");
+		if(NULL == m_pImgPUnAppB)
+		{
+			m_pImgPUnAppB = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pImgPUnAppB->InitDeviceObjects(szButtonName);	
+		m_pImgPUnAppB->InitDeviceObjects(szButtonName,"STRTOOLTIP19");	
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+
+		wsprintf(szButtonName,"oks0");
+		if(NULL == m_pImgAppSucB)
+		{
+			m_pImgAppSucB = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pImgAppSucB->InitDeviceObjects(szButtonName);
+		m_pImgAppSucB->InitDeviceObjects(szButtonName,"STRTOOLTIP115");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+
+		wsprintf(szButtonName,"apps0");
+		if(NULL == m_pImgRVoteB)
+		{
+			m_pImgRVoteB = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pImgRVoteB->InitDeviceObjects(szButtonName);	
+		m_pImgRVoteB->InitDeviceObjects(szButtonName,"STRTOOLTIP18");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+#else
+		// 후보 등록 버튼.
+		wsprintf(szButtonName,"pappB");
+		if(NULL == m_pImgPAppB)
+		{
+			m_pImgPAppB = new CINFImageBtn;
+		}
+		m_pImgPAppB->InitDeviceObjects(szButtonName);	
+		// 후보 탈퇴 버튼.
+		wsprintf(szButtonName,"punappB");
+		if(NULL == m_pImgPUnAppB)
+		{
+			m_pImgPUnAppB = new CINFImageBtn;
+		}
+		m_pImgPUnAppB->InitDeviceObjects(szButtonName);	
+
+		wsprintf(szButtonName,"pleappB");
+		if(NULL == m_pImgAppSucB)
+		{
+			m_pImgAppSucB = new CINFImageBtn;
+		}
+		m_pImgAppSucB->InitDeviceObjects(szButtonName);
+
+		wsprintf(szButtonName,"pollB");
+		if(NULL == m_pImgRVoteB)
+		{
+			m_pImgRVoteB = new CINFImageBtn;
+		}
+		m_pImgRVoteB->InitDeviceObjects(szButtonName);	
+#endif
+
+	}
+	// 2007-09-05 by bhsohn 전진 기지전
+	// 버튼
+	{
+		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+		wsprintf(szUpBtn, "Owrite3");
+		wsprintf(szDownBtn, "Owrite1");
+		wsprintf(szSelBtn, "Owrite0");
+		wsprintf(szDisBtn, "Owrite2");
+		if(NULL == m_pNoticeWrite)
+		{
+			m_pNoticeWrite = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pNoticeWrite->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
+		m_pNoticeWrite->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP66");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	}
+	
+	{
+		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+		wsprintf(szUpBtn, "Oapp3");
+		wsprintf(szDownBtn, "Oapp1");
+		wsprintf(szSelBtn, "Oapp0");
+		wsprintf(szDisBtn, "Oapp2");
+		if(NULL == m_pRegist)
+		{
+			m_pRegist = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pRegist->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+		m_pRegist->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP56");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	}
+
+	// 에디트 박스
+	{
+		if(NULL == m_pNoticeEditBox)
+		{
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			//m_pNoticeEditBox = new CINFEditBox;
+			m_pNoticeEditBox = new CINFCurselEditBox;
+		}
+		POINT ptPos = {LEADER_NOTICE_EDIT_X, LEADER_NOTICE_EDIT_Y};
+		m_pNoticeEditBox->InitDeviceObjects(9, ptPos, LEADER_NOTICE_EDIT_W, TRUE, LEADER_NOTICE_FONT_LINE_HEIGHT);		
+		m_pNoticeEditBox->SetOnePageItemCnt(MAX_SCROLL_LINE);	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+		SetNotice(STRMSG_C_070816_0102);
+	}
+	// 공약 에디트 박스.
+	{
+		if(NULL == m_pEditPledge)
+		{
+			//m_pEditPledge = new CINFEditBox;
+			m_pEditPledge = new CINFCurselEditBox;
+		}
+		POINT ptPos = {LEADER_POLL_PLEDGE_EDIT_X,LEADER_POLL_PLEDGE_EDIT_Y};
+		m_pEditPledge->InitDeviceObjects(9,ptPos,LEADER_POLL_PLEDGE_EDIT_W,TRUE,LEADER_NOTICE_FONT_LINE_HEIGHT);
+		m_pEditPledge->SetStringMaxBuff(SIZE_MAX_STRING_512);
+		m_pEditPledge->SetOnePageItemCnt(LEADER_POLL_PLEDGE_MAX_SCROLL_LINE);	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	}
+	// 공약 뷰 에디트 박스.
+	{
+		if(NULL == m_pEditPledgeView)
+		{
+			m_pEditPledgeView = new CINFEditBox;
+		}
+		POINT ptPos = {LEADER_POLL_PLEDGE_VIEW_EDIT_X,LEADER_POLL_PLEDGE_VIEW_EDIT_Y};
+		m_pEditPledgeView->InitDeviceObjects(9,ptPos,LEADER_POLL_PLEDGE_VIEW_EDIT_W,TRUE,LEADER_NOTICE_FONT_LINE_HEIGHT);
+	}
+
+	// 판공비 수령
+	{
+		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+		wsprintf(szUpBtn, "oks03");
+		wsprintf(szDownBtn, "oks01");
+		wsprintf(szSelBtn, "oks00");
+		wsprintf(szDisBtn, "oks02");
+#else
+		wsprintf(szUpBtn, "Oreveb3");
+		wsprintf(szDownBtn, "Oreveb1");
+		wsprintf(szSelBtn, "Oreveb0");
+		wsprintf(szDisBtn, "Oreveb2");
+#endif
+		if(NULL == m_pExpenceOkBtn)
+		{
+			m_pExpenceOkBtn = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pExpenceOkBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+		m_pExpenceOkBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP113");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	}
+
+	// 확인 버튼
+	{
+		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+		wsprintf(szUpBtn, "Ook3");
+		wsprintf(szDownBtn, "Ook1");
+		wsprintf(szSelBtn, "Ook0");
+		wsprintf(szDisBtn, "Ook2");
+		if(NULL == m_pWarNextOkBtn)
+		{
+			m_pWarNextOkBtn = new CINFImageBtn;
+		}
+		// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		//m_pWarNextOkBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
+		m_pWarNextOkBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP40");
+		// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	}
+	// 스크롤
+	{
+		char  szScBall[30];	
+		// 폴 리스트.
+		if(NULL == m_pScrollPollList)
+		{
+			m_pScrollPollList = new CINFArenaScrollBar;
+		}		
+		wsprintf(szScBall,"c_scrlb");
+		m_pScrollPollList->InitDeviceObjects(LEADER_POLL_LIST_MAX_SCROLL_LINE, szScBall);
+		// 공약 작성 에디트 박스.
+		if(NULL == m_pScrollPollPledge)
+		{
+			m_pScrollPollPledge = new CINFArenaScrollBar;
+		}
+		wsprintf(szScBall,"c_scrlb");
+		m_pScrollPollPledge->InitDeviceObjects(LEADER_POLL_PLEDGE_MAX_SCROLL_LINE,szScBall);
+		// 공약 작성한 에디트 뷰 박스.(후보 정보)
+		if(NULL == m_pScrollPollPledgeView)
+		{
+			m_pScrollPollPledgeView = new CINFArenaScrollBar;
+		}
+		wsprintf(szScBall,"c_scrlb");
+		m_pScrollPollPledgeView->InitDeviceObjects(LEADER_POLL_PLEDGE_VIEW_MAX_SCROLL_LINE,szScBall);
+
+		// 모선전
+		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+		if(NULL == m_pScrollMotherShipInfo)
+		{
+			m_pScrollMotherShipInfo = new CINFArenaScrollBar;
+		}
+		wsprintf(szScBall,"c_scrlb");
+		m_pScrollMotherShipInfo->InitDeviceObjects(MOTHERSHIP_INFO_VIEW_MAX_SCROLL_LINE,szScBall);		
+
+		m_pFontWarInfo= new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()),9, D3DFONT_ZENABLE, TRUE,256,32);
+		m_pFontWarInfo->InitDeviceObjects(g_pD3dDev);
+
+		{
+			char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			wsprintf(szUpBtn, "p_bt43");
+			wsprintf(szDownBtn, "p_bt41");
+			wsprintf(szSelBtn, "p_bt40");
+			wsprintf(szDisBtn, "p_bt42");
+#else
+			wsprintf(szUpBtn, "minfobtn3");
+			wsprintf(szDownBtn, "minfobtn1");
+			wsprintf(szSelBtn, "minfobtn0");
+			wsprintf(szDisBtn, "minfobtn2");
+#endif
+			if(NULL == m_pBtnMotherShipInfo)
+			{
+				m_pBtnMotherShipInfo = new CINFImageBtn;
+			}
+			// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+			//m_pBtnMotherShipInfo->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+			m_pBtnMotherShipInfo->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP83");
+			// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+			
+		}		
+		// end 2008-03-19 by bhsohn 모선전, 거점전 정보창
+
+
+		// 2009. 01. 12 by ckPark 선전 포고 시스템
+		m_pFontWarDeclare	= new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()),9, D3DFONT_ZENABLE, TRUE,256,32);
+		m_pFontWarDeclare->InitDeviceObjects(g_pD3dDev);
+
+		{
+			char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+			wsprintf(szUpBtn, "wdbtn3");
+			wsprintf(szDownBtn, "wdbtn1");
+			wsprintf(szSelBtn, "wdbtn0");
+			wsprintf(szDisBtn, "wdbtn2");
+			if(NULL == m_pBtnWarDeclare)
+			{
+				m_pBtnWarDeclare	= new CINFImageBtn;
+			}
+			// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+			//m_pBtnWarDeclare->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+			m_pBtnWarDeclare->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP82");
+			// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+		}
+		// end 2009. 01. 12 by ckPark 선전 포고 시스템
+	}
+
+
+	// 
+	ChangeLeaderState(LEADER_STATE_NOTICE);
+	m_BInfluence = g_pShuttleChild->m_myShuttleInfo.InfluenceType;
+
+	if(g_pD3dApp->IsMyShuttleLeader())
+	{
+		m_nExpenceB = BUTTON_STATE_NORMAL;
+	}
+	else
+	{
+		m_nExpenceB = BUTTON_STATE_DISABLE;
+	}
+
+
+	return S_OK;
+}
+HRESULT CINFCityLeader::RestoreDeviceObjects()
+{
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRightBG[0]->RestoreDeviceObjects();
+	m_pImgRightBG[1]->RestoreDeviceObjects();
+#endif
+
+	int j,i;
+	for(i = 0 ; i < BUTTON_STATE_NUMBER ; i++)
+	{
+		m_pImgBrigadeNoticeB[i]->RestoreDeviceObjects() ;
+		m_pImgDelB[i]->RestoreDeviceObjects() ;
+		m_pImgExpenceB[i]->RestoreDeviceObjects() ;
+		m_pImgWriteB[i]->RestoreDeviceObjects() ;
+		m_pImgRevB[i]->RestoreDeviceObjects() ;
+		
+
+	}
+	for(i = 0 ; i < LEADER_WARINFO_END ; i++)
+	{
+		m_pImgWarInfoBG[i]->RestoreDeviceObjects();
+	}
+	m_pImgWarInfoInflAni->RestoreDeviceObjects();
+	m_pImgWarInfoInflBcu->RestoreDeviceObjects();
+	m_pImgTitle->RestoreDeviceObjects();
+	m_pImgOutPostLBG->RestoreDeviceObjects();
+	m_pImgBriNoticeBG->RestoreDeviceObjects();
+	m_pImgPollDateABG->RestoreDeviceObjects();
+	m_pImgPollDateVBG->RestoreDeviceObjects();
+	m_pImgExpenceBG->RestoreDeviceObjects();
+	m_pFontExp->RestoreDeviceObjects();
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	m_pFontWarInfo->RestoreDeviceObjects();
+
+	m_pImgPInfoBG->RestoreDeviceObjects();
+	m_pImgVniBG->RestoreDeviceObjects();
+	m_pImgAniBG->RestoreDeviceObjects();
+	m_pImgListBG->RestoreDeviceObjects();
+	m_pImgRSelect->RestoreDeviceObjects();
+	m_pImgAppBG->RestoreDeviceObjects();
+	m_pPilotFace->RestoreDeviceObjects();
+	for(j= 0 ; j < BUTTON_BOTH_STATE_NUMBER ; j++)
+	{
+		for(i = 0 ; i < BUTTON_BOTH_STATE_NUMBER ; i++)
+		{
+			m_pImgRSelectB[j][i]->RestoreDeviceObjects();
+		}
+	}
+	
+	{
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM		
+		m_pImgLPollAB->RestoreDeviceObjects();
+		m_pImgLPollAB->SetBtnPosition( LEADER_POLL_BUTTON_X - ( m_pImgLPollAB->GetImgSize().x / 2 ),LEADER_POLL_BUTTON_Y);
+		
+		m_pImgLPollVB->RestoreDeviceObjects();
+		m_pImgLPollVB->SetBtnPosition( LEADER_POLL_BUTTON_X - ( m_pImgLPollVB->GetImgSize().x / 2 ), LEADER_POLL_BUTTON_Y);
+
+		m_pImgLDateB->RestoreDeviceObjects();
+		m_pImgLDateB->SetBtnPosition(LEADER_POLL_DATE_BUTTON_X - ( m_pImgLDateB->GetImgSize().x / 2 ),LEADER_POLL_DATE_BUTTON_Y);
+		
+		m_pImgLWarInfoB->RestoreDeviceObjects();
+		m_pImgLWarInfoB->SetBtnPosition(LEADER_WARINFO_BUTTON_X - ( m_pImgLWarInfoB->GetImgSize().x / 2 ),LEADER_WARINFO_BUTTON_Y);
+		
+		POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_2"); 
+		m_pImgPInfoB->RestoreDeviceObjects();		
+		m_pImgPInfoB->SetBtnPosition( LEADER_POLL_START_BUTTON_X + pPos.x,LEADER_POLL_START_BUTTON_Y + pPos.y );
+		
+		m_pImgRVoteB->RestoreDeviceObjects();
+		m_pImgRVoteB->SetBtnPosition( LEADER_POLL_VOTE_BUTTON_X, LEADER_POLL_VOTE_BUTTON_Y);
+		
+		// 후보 등록, 탈퇴
+		pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_3");
+		m_pImgPAppB->RestoreDeviceObjects();
+		m_pImgPAppB->SetBtnPosition( LEADER_POLL_START_BUTTON_X + pPos.x,LEADER_POLL_START_BUTTON_Y + pPos.y );
+		
+		m_pImgPUnAppB->RestoreDeviceObjects();
+		m_pImgPUnAppB->SetBtnPosition( LEADER_POLL_START_BUTTON_X + pPos.x,LEADER_POLL_START_BUTTON_Y + pPos.y );
+		
+		// 신청 완료 
+		pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+		m_pImgAppSucB->RestoreDeviceObjects();
+		m_pImgAppSucB->SetBtnPosition( LEADER_POLL_START_BUTTON_X + pPos.x, LEADER_POLL_START_BUTTON_Y + pPos.y );
+#else
+		// 폴 시스템 버튼.
+		m_pImgLPollAB->RestoreDeviceObjects();
+		m_pImgLPollAB->SetBtnPosition(LEADER_POLL_BUTTON_X,LEADER_POLL_BUTTON_Y);
+
+		m_pImgLPollVB->RestoreDeviceObjects();
+		m_pImgLPollVB->SetBtnPosition(LEADER_POLL_BUTTON_X,LEADER_POLL_BUTTON_Y);
+
+		m_pImgLDateB->RestoreDeviceObjects();
+		m_pImgLDateB->SetBtnPosition(LEADER_POLL_DATE_BUTTON_X,LEADER_POLL_DATE_BUTTON_Y);
+
+		m_pImgLWarInfoB->RestoreDeviceObjects();
+		m_pImgLWarInfoB->SetBtnPosition(LEADER_WARINFO_BUTTON_X,LEADER_WARINFO_BUTTON_Y);
+
+		m_pImgPInfoB->RestoreDeviceObjects();
+		m_pImgPInfoB->SetBtnPosition(LEADER_POLL_INFO_BUTTON_X,LEADER_POLL_INFO_BUTTON_Y);
+
+		m_pImgRVoteB->RestoreDeviceObjects();
+		m_pImgRVoteB->SetBtnPosition(LEADER_POLL_VOTE_BUTTON_X,LEADER_POLL_VOTE_BUTTON_Y);
+
+		m_pImgPAppB->RestoreDeviceObjects();
+		m_pImgPAppB->SetBtnPosition(LEADER_POLL_APP_BUTTON_X,LEADER_POLL_APP_BUTTON_Y);
+
+		m_pImgPUnAppB->RestoreDeviceObjects();
+		m_pImgPUnAppB->SetBtnPosition(LEADER_POLL_APP_BUTTON_X,LEADER_POLL_APP_BUTTON_Y);
+
+		m_pImgAppSucB->RestoreDeviceObjects();
+		m_pImgAppSucB->SetBtnPosition(LEADER_POLL_LIST_BUTTON_X,LEADER_POLL_LIST_BUTTON_Y);
+#endif
+
+	}
+	// 2007-09-05 by bhsohn 전진 기지전
+	{	
+		
+		float fPosX = LEADER_WRITE_BUTTON_X;
+		float fPosY = LEADER_WRITE_BUTTON_Y;		
+
+		m_pNoticeWrite->RestoreDeviceObjects();		
+		m_pNoticeWrite->SetBtnPosition(fPosX, fPosY);
+	}
+
+	// 등록
+	{			
+		float fPosX = LEADER_APP_BUTTON_X;
+		float fPosY = LEADER_APP_BUTTON_Y;		
+
+		m_pRegist->RestoreDeviceObjects();		
+		m_pRegist->SetBtnPosition(fPosX, fPosY);
+	}
+	
+	// 판공비 수령
+	{			
+		float fPosX = LEADER_EXPENCE_OK_BUTTON_X;
+		float fPosY = LEADER_EXPENCE_OK_BUTTON_Y;		
+
+		m_pExpenceOkBtn->RestoreDeviceObjects();		
+		m_pExpenceOkBtn->SetBtnPosition(fPosX, fPosY);
+	}
+	
+	{			
+		float fPosX = LEADER_OK_BUTTON_X;
+		float fPosY = LEADER_OK_BUTTON_Y;		
+
+		m_pWarNextOkBtn->RestoreDeviceObjects();		
+		m_pWarNextOkBtn->SetBtnPosition(fPosX, fPosY);
+	}
+	// 
+	{
+		m_pNoticeEditBox->RestoreDeviceObjects();	
+		m_pEditPledge->RestoreDeviceObjects();
+		m_pEditPledgeView->RestoreDeviceObjects();
+	}
+	// 스크롤.
+	{
+		//POINT ptScroll;
+		RECT rcMouseWhell, rcMousePos;
+		// 리스트 스크롤.
+		m_pScrollPollList->RestoreDeviceObjects();
+		m_pScrollPollList->SetPosition(LEADER_POLL_LIST_SCROLL_X,LEADER_POLL_LIST_SCROLL_Y,LEADER_POLL_LIST_SCROLL_W,LEADER_POLL_LIST_SCROLL_H);
+		rcMouseWhell.left		= LEADER_POLL_LIST_SCROLL_WHELL_X;
+		rcMouseWhell.top		= LEADER_POLL_LIST_SCROLL_WHELL_Y;
+		rcMouseWhell.right		= LEADER_POLL_LIST_SCROLL_WHELL_X + LEADER_POLL_LIST_SCROLL_WHELL_W;
+		rcMouseWhell.bottom		= LEADER_POLL_LIST_SCROLL_WHELL_Y + LEADER_POLL_LIST_SCROLL_WHELL_H;
+		m_pScrollPollList->SetMouseWhellRect(rcMouseWhell);
+		rcMousePos.left			= LEADER_POLL_LIST_SCROLL_BALL_X;
+		rcMousePos.top			= LEADER_POLL_LIST_SCROLL_BALL_Y;
+		rcMousePos.right		= LEADER_POLL_LIST_SCROLL_BALL_X + LEADER_POLL_LIST_SCROLL_BALL_W;
+		rcMousePos.bottom		= LEADER_POLL_LIST_SCROLL_BALL_Y + LEADER_POLL_LIST_SCROLL_BALL_H;
+		m_pScrollPollList->SetMouseBallRect(rcMousePos);
+		
+		// 공약 에디트 박스 스크롤.
+		m_pScrollPollPledge->RestoreDeviceObjects();
+		m_pScrollPollPledge->SetPosition(LEADER_POLL_PLEDGE_SCROLL_X,LEADER_POLL_PLEDGE_SCROLL_Y,LEADER_POLL_PLEDGE_SCROLL_W,LEADER_POLL_PLEDGE_SCROLL_H);
+		rcMouseWhell.left		= LEADER_POLL_PLEDGE_SCROLL_WHELL_X;
+		rcMouseWhell.top		= LEADER_POLL_PLEDGE_SCROLL_WHELL_Y;
+		rcMouseWhell.right		= LEADER_POLL_PLEDGE_SCROLL_WHELL_X + LEADER_POLL_PLEDGE_SCROLL_WHELL_W;
+		rcMouseWhell.bottom		= LEADER_POLL_PLEDGE_SCROLL_WHELL_Y + LEADER_POLL_PLEDGE_SCROLL_WHELL_H;
+		m_pScrollPollPledge->SetMouseWhellRect(rcMouseWhell);
+		rcMousePos.left			= LEADER_POLL_PLEDGE_SCROLL_BALL_X;
+		rcMousePos.top			= LEADER_POLL_PLEDGE_SCROLL_BALL_Y;
+		rcMousePos.right		= LEADER_POLL_PLEDGE_SCROLL_BALL_X + LEADER_POLL_PLEDGE_SCROLL_BALL_W;
+		rcMousePos.bottom		= LEADER_POLL_PLEDGE_SCROLL_BALL_Y + LEADER_POLL_PLEDGE_SCROLL_BALL_H;
+		m_pScrollPollPledge->SetMouseBallRect(rcMousePos);
+		// 공약 뷰(에디트)박스 스크롤.
+		m_pScrollPollPledgeView->RestoreDeviceObjects();
+		m_pScrollPollPledgeView->SetPosition(LEADER_POLL_PLEDGE_VIEW_SCROLL_X,LEADER_POLL_PLEDGE_VIEW_SCROLL_Y,LEADER_POLL_PLEDGE_VIEW_SCROLL_W,LEADER_POLL_PLEDGE_VIEW_SCROLL_H);
+		rcMouseWhell.left		= LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_X;
+		rcMouseWhell.top		= LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_Y;
+		rcMouseWhell.right		= LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_X + LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_W;
+		rcMouseWhell.bottom		= LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_Y + LEADER_POLL_PLEDGE_VIEW_SCROLL_WHELL_H;
+		m_pScrollPollPledgeView->SetMouseWhellRect(rcMouseWhell);
+		rcMousePos.left			= LEADER_POLL_LIST_SCROLL_BALL_X;
+		rcMousePos.top			= LEADER_POLL_LIST_SCROLL_BALL_Y;
+		rcMousePos.right		= LEADER_POLL_LIST_SCROLL_BALL_X + LEADER_POLL_LIST_SCROLL_BALL_W;
+		rcMousePos.bottom		= LEADER_POLL_LIST_SCROLL_BALL_Y + LEADER_POLL_LIST_SCROLL_BALL_H;
+		m_pScrollPollPledgeView->SetMouseBallRect(rcMousePos);
+
+		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+		// 모선전 정보
+		m_pScrollMotherShipInfo->RestoreDeviceObjects();
+		m_pScrollMotherShipInfo->SetPosition(MOTHERSHIP_INFO_VIEW_SCROLL_X,MOTHERSHIP_INFO_VIEW_SCROLL_Y,MOTHERSHIP_INFO_VIEW_SCROLL_W,MOTHERSHIP_INFO_VIEW_SCROLL_H);
+		rcMouseWhell.left		= MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_X;
+		rcMouseWhell.top		= MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_Y;
+		rcMouseWhell.right		= MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_X + MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_W;
+		rcMouseWhell.bottom		= MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_Y + MOTHERSHIP_INFO_VIEW_SCROLL_WHELL_H;
+		m_pScrollMotherShipInfo->SetMouseWhellRect(rcMouseWhell);
+		rcMousePos.left			= MOTHERSHIP_INFO_VIEW_SCROLL_BALL_X;
+		rcMousePos.top			= MOTHERSHIP_INFO_VIEW_SCROLL_BALL_Y;
+		rcMousePos.right		= MOTHERSHIP_INFO_VIEW_SCROLL_BALL_X + MOTHERSHIP_INFO_VIEW_SCROLL_BALL_W;
+		rcMousePos.bottom		= MOTHERSHIP_INFO_VIEW_SCROLL_BALL_Y + MOTHERSHIP_INFO_VIEW_SCROLL_BALL_H;
+		m_pScrollMotherShipInfo->SetMouseBallRect(rcMousePos);
+		
+		
+		if(m_pBtnMotherShipInfo)
+		{
+			m_pBtnMotherShipInfo->RestoreDeviceObjects();		
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			m_pBtnMotherShipInfo->SetBtnPosition(WARDECLARE_BTN_X + pPos.x, WARDECLARE_BTN_Y + pPos.y);
+#else
+			m_pBtnMotherShipInfo->SetBtnPosition(MOTHERSHIP_OPTION_X, MOTHERSHIP_OPTION_Y);
+#endif			
+		}
+		
+		// 2009. 01. 12 by ckPark 선전 포고 시스템
+
+		m_pFontWarDeclare->RestoreDeviceObjects();
+
+		if(m_pBtnWarDeclare)
+		{
+			m_pBtnWarDeclare->RestoreDeviceObjects();		
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM			
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_3");
+			m_pBtnWarDeclare->SetBtnPosition(WARDECLARE_BTN_X + pPos.x, WARDECLARE_BTN_Y + pPos.y);
+#else
+			m_pBtnWarDeclare->SetBtnPosition(WARDECLARE_BTN_X, WARDECLARE_BTN_Y);
+#endif
+		}
+		// end 2009. 01. 12 by ckPark 선전 포고 시스템
+	}
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	{		
+		m_pINFScrollBar->RestoreDeviceObjects();		
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+		UpdateScrollPos(( LEADER_SCROOL_START_X ), (LEADER_SCROOL_START_Y), SCROLL_WIDTH, SCROLL_HEIGHT, SCROLL_WHELL_HEIGHT);
+#else
+		UpdateScrollPos((LEADER_BGR_X), (LEADER_BGR_Y), SCROLL_WIDTH, SCROLL_HEIGHT, SCROLL_WHELL_HEIGHT);		
+#endif		
+	}
+	// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+	return S_OK;
+}
+HRESULT CINFCityLeader::DeleteDeviceObjects()
+{
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRightBG[0]->DeleteDeviceObjects();
+	m_pImgRightBG[1]->DeleteDeviceObjects();
+	util::del(m_pImgRightBG[0]);
+	util::del(m_pImgRightBG[1]);
+
+	CityLeaderControl->DeleteDeviceObjects();
+	util::del(CityLeaderControl);
+#endif
+	int j,i;
+	for(i = 0 ; i < BUTTON_STATE_NUMBER ; i++)
+	{
+		m_pImgBrigadeNoticeB[i]->DeleteDeviceObjects();
+		m_pImgDelB[i]->DeleteDeviceObjects();
+		m_pImgExpenceB[i]->DeleteDeviceObjects();
+		m_pImgWriteB[i]->DeleteDeviceObjects();
+		m_pImgRevB[i]->DeleteDeviceObjects();
+
+
+		util::del(m_pImgBrigadeNoticeB[i]);
+		util::del(m_pImgDelB[i]);
+		util::del(m_pImgExpenceB[i]);
+		util::del(m_pImgWriteB[i]);
+		util::del(m_pImgRevB[i]);
+
+	}
+	for(i = 0 ; i < LEADER_WARINFO_END ; i++)
+	{
+		m_pImgWarInfoBG[i]->DeleteDeviceObjects();
+		util::del(m_pImgWarInfoBG[i]);
+	}
+	
+	m_pImgWarInfoInflAni->DeleteDeviceObjects();
+	m_pImgWarInfoInflBcu->DeleteDeviceObjects();
+	m_pImgTitle->DeleteDeviceObjects();
+	m_pImgOutPostLBG->DeleteDeviceObjects();
+	m_pImgBriNoticeBG->DeleteDeviceObjects();
+	m_pImgPollDateABG->DeleteDeviceObjects();
+	m_pImgPollDateVBG->DeleteDeviceObjects();
+	m_pImgExpenceBG->DeleteDeviceObjects();
+	m_pFontExp->DeleteDeviceObjects();
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	m_pFontWarInfo->DeleteDeviceObjects();
+
+	util::del(m_pImgWarInfoInflBcu);
+	util::del(m_pImgWarInfoInflAni);
+	util::del(m_pImgTitle);
+	util::del(m_pImgOutPostLBG);
+	util::del(m_pImgBriNoticeBG);
+	util::del(m_pImgPollDateABG);
+	util::del(m_pImgPollDateVBG);
+	util::del(m_pImgExpenceBG);
+	util::del(m_pFontExp);
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	util::del(m_pFontWarInfo);
+	
+	for(j= 0 ; j < BUTTON_BOTH_STATE_NUMBER ; j++)
+	{
+		for(i = 0 ; i < BUTTON_BOTH_STATE_NUMBER ; i++)
+		{
+			m_pImgRSelectB[j][i]->DeleteDeviceObjects();
+			util::del(m_pImgRSelectB[j][i]);
+		}
+	}
+	
+	m_pImgPInfoBG->DeleteDeviceObjects();
+	m_pImgVniBG->DeleteDeviceObjects();
+	m_pImgAniBG->DeleteDeviceObjects();
+	m_pImgListBG->DeleteDeviceObjects();
+	m_pImgRSelect->DeleteDeviceObjects();
+	m_pImgAppBG->DeleteDeviceObjects();
+	m_pPilotFace->DeleteDeviceObjects();
+	util::del(m_pImgPInfoBG);
+	util::del(m_pImgVniBG);
+	util::del(m_pImgAniBG);
+	util::del(m_pImgListBG);
+	util::del(m_pImgRSelect);
+	util::del(m_pImgAppBG);
+	util::del(m_pPilotFace);
+
+
+	m_pImgPAppB->DeleteDeviceObjects();
+	m_pImgPUnAppB->DeleteDeviceObjects();
+	m_pImgAppSucB->DeleteDeviceObjects();
+	m_pImgLPollAB->DeleteDeviceObjects();
+	m_pImgLPollVB->DeleteDeviceObjects();
+	m_pImgLDateB->DeleteDeviceObjects();
+	m_pImgLWarInfoB->DeleteDeviceObjects();
+	m_pImgPInfoB->DeleteDeviceObjects();
+	m_pImgRVoteB->DeleteDeviceObjects();
+	util::del(m_pImgPAppB);
+	util::del(m_pImgPUnAppB);
+	util::del(m_pImgAppSucB);
+	util::del(m_pImgLPollAB);
+	util::del(m_pImgLPollVB);
+	util::del(m_pImgLDateB);
+	util::del(m_pImgLWarInfoB);
+	util::del(m_pImgPInfoB);
+	util::del(m_pImgRVoteB);
+
+
+	// 2007-09-05 by bhsohn 전진 기지전
+	if(m_pNoticeWrite)
+	{
+		m_pNoticeWrite->DeleteDeviceObjects();	
+		util::del(m_pNoticeWrite);
+	}
+	if(m_pRegist)
+	{
+		m_pRegist->DeleteDeviceObjects();	
+		util::del(m_pRegist);
+	}
+	
+	if(m_pExpenceOkBtn)
+	{
+		m_pExpenceOkBtn->DeleteDeviceObjects();	
+		util::del(m_pExpenceOkBtn);
+	}
+	if(m_pWarNextOkBtn)
+	{
+		m_pWarNextOkBtn->DeleteDeviceObjects();	
+		util::del(m_pWarNextOkBtn);
+	}
+
+	if(m_pNoticeEditBox)
+	{
+		m_pNoticeEditBox->DeleteDeviceObjects();	
+		util::del(m_pNoticeEditBox);
+	}
+	if(m_pEditPledge)
+	{
+		m_pEditPledge->DeleteDeviceObjects();
+		util::del(m_pEditPledge);
+	}
+	if(m_pEditPledgeView)
+	{
+		m_pEditPledgeView->DeleteDeviceObjects();
+		util::del(m_pEditPledgeView);
+	}
+	if(m_pScrollPollList)
+	{
+		m_pScrollPollList->DeleteDeviceObjects();
+		util::del(m_pScrollPollList);
+	}
+	if(m_pScrollPollPledge)
+	{
+		m_pScrollPollPledge->DeleteDeviceObjects();
+		util::del(m_pScrollPollPledge);
+	}
+	if(m_pScrollPollPledgeView)
+	{
+		m_pScrollPollPledgeView->DeleteDeviceObjects();
+		util::del(m_pScrollPollPledgeView);
+	}
+
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	if(m_pScrollMotherShipInfo)
+	{
+		m_pScrollMotherShipInfo->DeleteDeviceObjects();
+		util::del(m_pScrollMotherShipInfo);
+	}
+	if(m_pBtnMotherShipInfo)
+	{
+		m_pBtnMotherShipInfo->DeleteDeviceObjects();	
+		util::del(m_pBtnMotherShipInfo);
+	}
+	// end 2008-03-19 by bhsohn 모선전, 거점전 정보창
+
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	m_pFontWarDeclare->DeleteDeviceObjects();
+
+	util::del(m_pFontWarDeclare);
+	
+	if(m_pBtnWarDeclare)
+	{
+		m_pBtnWarDeclare->DeleteDeviceObjects();
+		util::del(m_pBtnWarDeclare);
+	}
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	if(m_pINFScrollBar)
+	{
+		m_pINFScrollBar->DeleteDeviceObjects();	
+		util::del(m_pINFScrollBar);
+	}
+	// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	
+
+	
+	return S_OK;
+}
+HRESULT CINFCityLeader::InvalidateDeviceObjects()
+{
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRightBG[0]->InvalidateDeviceObjects();
+	m_pImgRightBG[1]->InvalidateDeviceObjects();
+	CityLeaderControl->InvalidateDeviceObjects();
+#endif
+
+	int i,j;
+	for(i = 0 ; i < BUTTON_STATE_NUMBER ; i++)
+	{
+		m_pImgBrigadeNoticeB[i]->InvalidateDeviceObjects();
+		m_pImgDelB[i]->InvalidateDeviceObjects();
+		m_pImgExpenceB[i]->InvalidateDeviceObjects();
+		m_pImgWriteB[i]->InvalidateDeviceObjects();
+		m_pImgRevB[i]->InvalidateDeviceObjects();
+
+	}
+
+	m_pImgWarInfoInflAni->InvalidateDeviceObjects();
+	m_pImgWarInfoInflBcu->InvalidateDeviceObjects();
+	
+	m_pImgTitle->InvalidateDeviceObjects();
+	m_pImgOutPostLBG->InvalidateDeviceObjects();
+	m_pImgBriNoticeBG->InvalidateDeviceObjects();
+	m_pImgPollDateVBG->InvalidateDeviceObjects();
+	m_pImgPollDateABG->InvalidateDeviceObjects();
+	m_pImgExpenceBG->InvalidateDeviceObjects();
+	m_pFontExp->InvalidateDeviceObjects();
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	m_pFontWarInfo->InvalidateDeviceObjects();
+
+	for(j= 0 ; j < BUTTON_BOTH_STATE_NUMBER ; j++)
+	{
+		for(i = 0 ; i < BUTTON_BOTH_STATE_NUMBER ; i++)
+		{
+			m_pImgRSelectB[j][i]->InvalidateDeviceObjects();
+		}
+	}
+	for(i = 0 ; i < LEADER_WARINFO_END ; i++)
+	{
+		m_pImgWarInfoBG[i]->InvalidateDeviceObjects();
+	}
+	m_pImgVniBG->InvalidateDeviceObjects();
+	m_pImgAniBG->InvalidateDeviceObjects();
+	m_pImgListBG->InvalidateDeviceObjects();
+	m_pImgRSelect->InvalidateDeviceObjects();
+	m_pImgPInfoBG->InvalidateDeviceObjects();
+	m_pImgAppBG->InvalidateDeviceObjects();
+
+	m_pImgPAppB->InvalidateDeviceObjects();
+	m_pImgPUnAppB->InvalidateDeviceObjects();
+	m_pImgLPollAB->InvalidateDeviceObjects();
+	m_pImgLPollVB->InvalidateDeviceObjects();
+	m_pImgLDateB->InvalidateDeviceObjects();
+	m_pImgLWarInfoB->InvalidateDeviceObjects();
+	m_pImgPInfoB->InvalidateDeviceObjects();
+	m_pImgRVoteB->InvalidateDeviceObjects();
+	m_pImgAppSucB->InvalidateDeviceObjects();
+	m_pPilotFace->InvalidateDeviceObjects();
+
+	// 2007-09-05 by bhsohn 전진 기지전
+	m_pNoticeEditBox->InvalidateDeviceObjects();
+	m_pEditPledge->InvalidateDeviceObjects();
+	m_pEditPledgeView->InvalidateDeviceObjects();
+	m_pNoticeWrite->InvalidateDeviceObjects();		
+	m_pRegist->InvalidateDeviceObjects();		
+
+	m_pExpenceOkBtn->InvalidateDeviceObjects();		
+	m_pWarNextOkBtn->InvalidateDeviceObjects();		
+
+	m_pScrollPollList->InvalidateDeviceObjects();
+	m_pScrollPollPledge->InvalidateDeviceObjects();
+	m_pScrollPollPledgeView->InvalidateDeviceObjects();
+	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+	m_pScrollMotherShipInfo->InvalidateDeviceObjects();
+	if(m_pBtnMotherShipInfo)
+	{
+		m_pBtnMotherShipInfo->InvalidateDeviceObjects();		
+	}
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	m_pFontWarDeclare->InvalidateDeviceObjects();
+	
+	if(m_pBtnWarDeclare)
+		m_pBtnWarDeclare->InvalidateDeviceObjects();
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	if(m_pINFScrollBar)
+	{
+		m_pINFScrollBar->InvalidateDeviceObjects();
+	}
+	// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+	return S_OK;
+}
+
+void CINFCityLeader::Render()
+{
+	// 왼쪽 배경.
+	m_pImgOutPostLBG->Move(LEADER_BGL_X,LEADER_BGL_Y);
+	m_pImgOutPostLBG->Render();
+
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM
+	// 타이틀 	
+	m_pImgTitle->Move(TITLE_POS_X,TITLE_POS_Y);
+	m_pImgTitle->Render();	
+
+	m_pImgBrigadeNoticeB[m_nBrigadeNoticeB]->Move(LEADER_BRIGADE_NOTICE_BUTTON_X,LEADER_BRIGADE_NOTICE_BUTTON_Y);
+	m_pImgBrigadeNoticeB[m_nBrigadeNoticeB]->Render();
+
+	m_pImgExpenceB[m_nExpenceB]->Move(LEADER_EXPENCE_BUTTON_X,LEADER_EXPENCE_BUTTON_Y);
+	m_pImgExpenceB[m_nExpenceB]->Render();
+#else
+	m_pImgBrigadeNoticeB[m_nBrigadeNoticeB]->Move(LEADER_BRIGADE_NOTICE_BUTTON_X - ( m_pImgBrigadeNoticeB[m_nBrigadeNoticeB]->GetImgSize().x / 2 ), LEADER_BRIGADE_NOTICE_BUTTON_Y);
+	m_pImgBrigadeNoticeB[m_nBrigadeNoticeB]->Render();
+
+	m_pImgExpenceB[m_nExpenceB]->Move(LEADER_EXPENCE_BUTTON_X - ( m_pImgExpenceB[m_nExpenceB]->GetImgSize().x / 2 ), LEADER_EXPENCE_BUTTON_Y);
+	m_pImgExpenceB[m_nExpenceB]->Render();
+#endif
+
+	if(INFLUENCE_TYPE_VCN == m_BInfluence)
+	{
+		m_pImgLPollVB->Render();
+	}
+	else
+	{
+		m_pImgLPollAB->Render();
+	}
+	m_pImgLDateB->Render();
+	m_pImgLWarInfoB->Render();
+
+	// 오른쪽 창.
+	switch(m_nRWindowState)
+	{
+	case LEADER_STATE_NOTICE:
+		{// 여단 공지 
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			m_pImgRightBG[0]->Move(LEADER_BGR_X,LEADER_BGR_Y);
+			m_pImgRightBG[0]->Render();
+
+			m_pImgBriNoticeBG->Move(LEADER_INFO_BG_X,LEADER_INFO_BG_Y);
+			m_pImgBriNoticeBG->Render();			
+#else
+			// 배경
+			m_pImgBriNoticeBG->Move(LEADER_BGR_X,LEADER_BGR_Y);
+			m_pImgBriNoticeBG->Render();			
+#endif			
+			// 2007-09-05 by bhsohn 전진 기지전
+			m_pNoticeWrite->Render();
+			m_pRegist->Render();
+			m_pNoticeEditBox->Tick();
+			//m_pNoticeEditBox->Render(0, 7);
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			m_pNoticeEditBox->Render(m_pINFScrollBar->GetScrollStep(), MAX_SCROLL_LINE);
+			m_pINFScrollBar->Render();		
+			// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+		}
+		break;
+	case LEADER_STATE_EXPENCE:
+		{// 판공비 수령.
+			// 배경.
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			m_pImgRightBG[0]->Move( LEADER_BGR_X,LEADER_BGR_Y );
+			m_pImgRightBG[0]->Render();
+
+			m_pImgExpenceBG->Move( LEADER_INFO_BG_X,LEADER_INFO_BG_Y );
+			m_pImgExpenceBG->Render();
+#else
+			m_pImgExpenceBG->Move( LEADER_BGR_X,LEADER_BGR_X );
+			m_pImgExpenceBG->Render();
+#endif
+			char temp1[512],temp2[512];
+			SIZE size;
+			
+			sprintf(temp1,"%.1f%%",m_fExplate);
+			size = m_pFontExp->GetStringSize(temp1);
+			m_pFontExp->DrawText(LEADER_EXPENCE_LATE_FONT_X - size.cx,LEADER_EXPENCE_LATE_FONT_Y,GUI_FONT_COLOR,
+				temp1, 0L);
+			wsprintf(temp1,"%d",m_nCumulativeExp);                                                                                                                               
+			MakeCurrencySeparator( temp2, temp1, 3, ',' );
+			size = m_pFontExp->GetStringSize(temp2);
+			m_pFontExp->DrawText(LEADER_EXPENCE_CUMEXP_FONT_X - size.cx,LEADER_EXPENCE_CUMEXP_FONT_Y,GUI_FONT_COLOR,
+				temp2,0L);
+			wsprintf(temp1,"%d",m_nExp);
+			MakeCurrencySeparator( temp2, temp1, 3, ',' );
+			size = m_pFontExp->GetStringSize(temp2);
+			m_pFontExp->DrawText(LEADER_EXPENCE_EXP_FONT_X - size.cx,LEADER_EXPENCE_EXP_FONT_Y,GUI_FONT_COLOR,
+				temp2,0L);
+//			m_pImgExpenceOkB[m_nExpenceOkB]->Move(LEADER_EXPENCE_OK_BUTTON_X,LEADER_EXPENCE_OK_BUTTON_Y);
+//			m_pImgExpenceOkB[m_nExpenceOkB]->Render();
+
+			m_pExpenceOkBtn->Render();
+			
+		}
+		break;
+	case LEADER_STATE_POLL:
+		{// 폴.
+			RenderPoll();
+		}
+		break;
+	case LEADER_STATE_POLLDATE:
+		{
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			m_pImgRightBG[0]->Move(LEADER_BGR_X,LEADER_BGR_Y);
+			m_pImgRightBG[0]->Render();
+
+			// 배경.
+			if(INFLUENCE_TYPE_VCN == m_BInfluence)
+			{
+				m_pImgPollDateVBG->Move(LEADER_INFO_BG_X,LEADER_INFO_BG_Y);
+				m_pImgPollDateVBG->Render();
+			}
+			else
+			{
+				m_pImgPollDateABG->Move(LEADER_INFO_BG_X,LEADER_INFO_BG_Y);
+				m_pImgPollDateABG->Render();
+			}
+#else
+			// 배경.
+			if(INFLUENCE_TYPE_VCN == m_BInfluence)
+			{
+				m_pImgPollDateVBG->Move(LEADER_BGR_X,LEADER_BGR_Y);
+				m_pImgPollDateVBG->Render();
+			}
+			else
+			{
+				m_pImgPollDateABG->Move(LEADER_BGR_X,LEADER_BGR_Y);
+				m_pImgPollDateABG->Render();
+			}
+#endif
+			string strStart,strEnd;
+			SIZE size;
+			char cResult[512];
+			ATUM_DATE_TIME tmpDate;
+			tmpDate.GetLocalString_MMDD(m_AppStartDate.Month,m_AppStartDate.Day,strStart);
+			tmpDate.GetLocalString_MMDD(m_AppEndDate.Month,m_AppEndDate.Day,strEnd);
+			// 후보 신청 기간.
+			wsprintf(cResult,STRMSG_C_071030_0100,strStart.c_str(),m_AppStartDate.Hour,m_AppStartDate.Minute,
+				strEnd.c_str(),m_AppEndDate.Hour,m_AppEndDate.Minute);					//"%s %02d:%02d ~ %s %02d:%02d"
+			size = m_pFontExp->GetStringSize(cResult);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			m_pFontExp->DrawText(LEADER_POLL_APP_CENTER_FONT_X + ( LEADER_POLL_APP_SIZE- size.cx ) /2,LEADER_POLL_APP_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);
+#else 
+			m_pFontExp->DrawText(LEADER_POLL_APP_CENTER_FONT_X - (size.cx/2),LEADER_POLL_APP_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);
+#endif
+			// 투표 참여 기간.
+			tmpDate.GetLocalString_MMDD(m_VoteStartDate.Month,m_VoteStartDate.Day,strStart);
+			tmpDate.GetLocalString_MMDD(m_VoteEndDate.Month,m_VoteEndDate.Day,strEnd);
+			wsprintf(cResult,STRMSG_C_071030_0100,strStart.c_str(),m_VoteStartDate.Hour,m_VoteStartDate.Minute,
+				strEnd.c_str(),m_VoteEndDate.Hour,m_VoteEndDate.Minute);					//"%s %02d:%02d ~ %s %02d:%02d")
+			size = m_pFontExp->GetStringSize(cResult);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UI시스템 변경
+			m_pFontExp->DrawText(LEADER_POLL_JOIN_CENTER_FONT_X  + ( LEADER_POLL_APP_SIZE- size.cx ) /2,LEADER_POLL_JOIN_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);
+#else
+			m_pFontExp->DrawText(LEADER_POLL_JOIN_CENTER_FONT_X - (size.cx/2),LEADER_POLL_JOIN_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);
+#endif
+			// 선출일.
+			tmpDate.GetLocalString_MMDD(m_Election.Month,m_Election.Day,strStart);
+			wsprintf(cResult,STRMSG_C_071030_0101,strStart.c_str(),m_Election.Hour,m_Election.Minute);					//"%s %02d:%02d"
+			size = m_pFontExp->GetStringSize(cResult);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UI시스템 변경
+			m_pFontExp->DrawText(LEADER_POLL_ELECT_CENTER_FONT_X + ( LEADER_POLL_APP_SIZE- size.cx ) /2,LEADER_POLL_ELECT_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);     
+#else
+			m_pFontExp->DrawText(LEADER_POLL_ELECT_CENTER_FONT_X - (size.cx/2),LEADER_POLL_ELECT_CENTER_FONT_Y,GUI_FONT_COLOR,cResult);     
+#endif
+			
+		}
+		break;
+	case LEADER_STATE_WARINFO:
+		{// 전장 정보.
+			RenderWarInfo();
+		}
+		break;
+	}
+}
+void CINFCityLeader::RenderWarInfo()
+{
+	SIZE sz;
+	char buf[32],rbuf[32];
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRightBG[1]->Move(LEADER_BGR_X,LEADER_BGR_Y);
+	m_pImgRightBG[1]->Render();
+#endif
+	switch(m_bStateWarInfo)
+	{
+	case LEADER_WARINFO_INFLUENCE:
+		{
+			m_pImgWarInfoBG[LEADER_WARINFO_INFLUENCE]->Move(LEADER_WARINFO_BG_X,LEADER_WARINFO_BG_Y);
+			m_pImgWarInfoBG[LEADER_WARINFO_INFLUENCE]->Render();
+			if(IS_VCN_INFLUENCE_TYPE(g_pShuttleChild->GetMyShuttleInfo().InfluenceType))
+			{// 바이제니유.
+				m_pImgWarInfoInflBcu->Move(WARINFO_INFLUENCE_BG1_X,WARINFO_INFLUENCE_BG1_Y);
+				m_pImgWarInfoInflBcu->Render();
+				m_pImgWarInfoInflAni->Move(WARINFO_INFLUENCE_BG2_X,WARINFO_INFLUENCE_BG2_Y);
+				m_pImgWarInfoInflAni->Render();
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+				// 아군 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X  + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.VCNInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+				// 상대 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.ANIInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+#else
+				// 아군 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.VCNInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+				// 상대 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.ANIInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+#endif
+			}
+			else if(IS_ANI_INFLUENCE_TYPE(g_pShuttleChild->GetMyShuttleInfo().InfluenceType))
+			{// 알링턴.
+				m_pImgWarInfoInflAni->Move(WARINFO_INFLUENCE_BG1_X,WARINFO_INFLUENCE_BG1_Y);
+				m_pImgWarInfoInflAni->Render();
+				m_pImgWarInfoInflBcu->Move(WARINFO_INFLUENCE_BG2_X,WARINFO_INFLUENCE_BG2_Y);
+				m_pImgWarInfoInflBcu->Render();
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+				// 아군 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.ANIInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+				// 상대 세력.
+					sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceLeader);
+					sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader1);
+					sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.VCNInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+					sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X + ( ( WARINFO_INFLUENCE_FONT_CENTER_SIZE - sz.cx )/2), WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+#else
+				// 아군 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.ANIInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.ANIInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_1_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+				// 상대 세력.
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceLeader);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceLeader);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER1_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader1);
+				sz = m_pFontExp->GetStringSize(m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_LEADER2_Y,
+					GUI_FONT_COLOR,m_sInfluenceInfo.VCNInfluenceSubLeader2);
+				wsprintf(buf,"%d",m_sInfluenceInfo.VCNInfluencePoint);
+				MakeCurrencySeparator(rbuf,buf,3,',');
+				sz = m_pFontExp->GetStringSize(rbuf);
+				m_pFontExp->DrawText(WARINFO_INFLUENCE_FONT_2_CENTER_X - (sz.cx/2),WARINFO_INFLUENCE_FONT_POINT_Y,
+					GUI_FONT_COLOR,rbuf);
+#endif	
+			}
+
+		}
+		break;
+
+		
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	case LEADER_WARINFO_DECLAREWAR:
+		{
+			m_pImgWarInfoBG[LEADER_WARINFO_DECLAREWAR]->Move(LEADER_WARINFO_BG_X,LEADER_WARINFO_BG_Y);
+			m_pImgWarInfoBG[LEADER_WARINFO_DECLAREWAR]->Render();
+			
+			// 모선 출항 정보
+			RenderWarInfoDeclareWar();
+		}
+		break;
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+	case LEADER_WARINFO_MOTHERSHIP:
+		{
+			m_pImgWarInfoBG[LEADER_WARINFO_MOTHERSHIP]->Move(LEADER_WARINFO_BG_X,LEADER_WARINFO_BG_Y);
+			m_pImgWarInfoBG[LEADER_WARINFO_MOTHERSHIP]->Render();
+
+			// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+			RenderWarInfoMothership();
+		}
+		break;
+
+	case LEADER_WARINFO_OUTPOST:
+		{
+			m_pImgWarInfoBG[LEADER_WARINFO_OUTPOST]->Move(LEADER_WARINFO_BG_X,LEADER_WARINFO_BG_Y);
+			m_pImgWarInfoBG[LEADER_WARINFO_OUTPOST]->Render();
+			int i = 0;
+			vector<ST_WARINFO_OUTPOST>::iterator it = m_vecOutPostInfo.begin();
+			
+			while(it != m_vecOutPostInfo.end())
+			{
+				{//렌더링.
+					memset(buf,0x00,32);
+					MAP_INFO * pMapInfo = g_pDatabase->GetMapInfo(it->MapIndex);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+					sz = m_pFontExp->GetStringSize(pMapInfo->MapName);
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_OUTPOST_CENTER_X + ( ( WARINFO_OUTPOST_FONT_OUTPOST_SIZE - sz.cx ) /2),WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,pMapInfo->MapName);
+
+ 					if(IS_VCN_INFLUENCE_TYPE(it->Influence))
+ 					{
+ 						wsprintf(buf,STRMSG_C_070608_0100);
+ 					}else if(IS_ANI_INFLUENCE_TYPE(it->Influence))
+ 					{
+						wsprintf(buf,STRMSG_C_070608_0101);
+					}
+					sz = m_pFontExp->GetStringSize(buf);
+					
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_INFLUENCE_CENTER_X + ( ( WARINFO_OUTPOST_FONT_INFLUENCE_SIZE - sz.cx ) /2),WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+
+					// 2007-12-17 by dgwoo 인터페이스 변경.
+					wsprintf(buf,"%s",it->GuildCommander);
+					sz = m_pFontExp->GetStringSize(buf);
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_GUILD_CENTER_X + ( ( WARINFO_OUTPOST_FONT_GUILD_SIZE - sz.cx ) /2),WARINFO_OUTPOST_FONT_DATA_1_GUILDLEADER_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+
+					wsprintf(buf,"%s",it->GuildName);
+					sz = m_pFontExp->GetStringSize(buf);
+					float fIsGuild = 0;
+					if(it->pGuildMark)
+					{
+						fIsGuild = 26;
+					}
+// 2013-07-31 by ssjung 전진기지전 정보 창에서 여단마크, 여단장이름이 흐릇하게 보이는 문제 수정
+//					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_GUILD_CENTER_X + ( ( WARINFO_OUTPOST_FONT_GUILD_SIZE -( sz.cx + fIsGuild ) ) /2) + fIsGuild ,WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y + (i * WARINFO_OUTPOST_FONT_H),
+					m_pFontExp->DrawText((int)(WARINFO_OUTPOST_FONT_GUILD_CENTER_X + ( ( WARINFO_OUTPOST_FONT_GUILD_SIZE -( sz.cx + fIsGuild ) ) /2)+0.5f) + fIsGuild ,WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+					// 길드 마크.
+					if(it->pGuildMark != NULL)
+					{
+//						it->pGuildMark->Move(WARINFO_OUTPOST_FONT_GUILD_CENTER_X+ ( ( WARINFO_OUTPOST_FONT_GUILD_SIZE - ( sz.cx + fIsGuild ) ) /2),WARINFO_OUTPOST_GUILDMARK_1_Y + (i * WARINFO_OUTPOST_FONT_H));
+						it->pGuildMark->Move((int)(WARINFO_OUTPOST_FONT_GUILD_CENTER_X + ( ( WARINFO_OUTPOST_FONT_GUILD_SIZE -( sz.cx + fIsGuild ) ) /2)+0.5f),WARINFO_OUTPOST_GUILDMARK_1_Y + (i * WARINFO_OUTPOST_FONT_H));
+						it->pGuildMark->Render();
+					}
+// end 2013-07-31 by ssjung 전진기지전 정보 창에서 여단마크, 여단장이름이 흐릇하게 보이는 문제 수정
+
+					int nPosX, nPosY;
+					char temp1[512];
+					nPosX = nPosY = 0;
+					nPosX = WARINFO_OUTPOST_FONT_SCHEDULE_CENTER_X;
+					nPosY = WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H);
+					if(it->OutpostDate.Year != 0)
+					{					
+						// 2007-10-05 by bhsohn 시,분,초 스트링 시스템 추가
+						// 월일시				
+		//				wsprintf(temp1, STRMSG_C_070910_0205, m_OutPostNextWarTime.Month,
+		//														m_OutPostNextWarTime.Day,
+		//														m_OutPostNextWarTime.Hour);	
+						string szStrBuf;
+						it->OutpostDate.GetLocalString_MMDD(it->OutpostDate.Month, it->OutpostDate.Day, szStrBuf);						
+						// 2007-10-08 by bhsohn 전진기지전 시간 표시 변경
+						//wsprintf(temp1, STRMSG_C_070910_0205, szStrBuf.c_str(), m_OutPostNextWarTime.Hour);	
+						wsprintf(temp1, STRMSG_C_071030_0101, szStrBuf.c_str(), it->OutpostDate.Hour, it->OutpostDate.Minute);	
+						sz = m_pFontExp->GetStringSize(temp1);
+						m_pFontExp->DrawText(nPosX + ( ( WARINFO_OUTPOST_FONT_SCHEDULE_SIZE - sz.cx ) /2),nPosY, GUI_FONT_COLOR,temp1,0L);
+						// end 2007-10-05 by bhsohn 시,분,초 스트링 시스템 추가
+					}
+					else
+					{
+						//wsprintf(temp1, STRMSG_C_070910_0206);	
+					}
+#else
+					sz = m_pFontExp->GetStringSize(pMapInfo->MapName);
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_OUTPOST_CENTER_X-(sz.cx/2),WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,pMapInfo->MapName);
+
+					if(IS_VCN_INFLUENCE_TYPE(it->Influence))
+					{
+						wsprintf(buf,STRMSG_C_070608_0100);
+					}else if(IS_ANI_INFLUENCE_TYPE(it->Influence))
+					{
+						wsprintf(buf,STRMSG_C_070608_0101);
+					}
+					sz = m_pFontExp->GetStringSize(buf);
+					
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_INFLUENCE_CENTER_X-(sz.cx/2),WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+
+					// 2007-12-17 by dgwoo 인터페이스 변경.
+					wsprintf(buf,"%s",it->GuildCommander);
+					sz = m_pFontExp->GetStringSize(buf);
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_GUILD_CENTER_X-(sz.cx/2),WARINFO_OUTPOST_FONT_DATA_1_GUILDLEADER_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+
+					wsprintf(buf,"%s",it->GuildName);
+					sz = m_pFontExp->GetStringSize(buf);
+					float fIsGuild = 0;
+					if(it->pGuildMark)
+					{
+						fIsGuild = 12;
+					}
+					m_pFontExp->DrawText(WARINFO_OUTPOST_FONT_GUILD_CENTER_X-(sz.cx/2)+fIsGuild,WARINFO_OUTPOST_FONT_DATA_1_GUILDNAME_Y + (i * WARINFO_OUTPOST_FONT_H),
+						GUI_FONT_COLOR,buf);
+					// 길드 마크.
+					if(it->pGuildMark != NULL)
+					{
+						it->pGuildMark->Move(WARINFO_OUTPOST_FONT_GUILD_CENTER_X-(sz.cx/2)-12,WARINFO_OUTPOST_GUILDMARK_1_Y + (i * WARINFO_OUTPOST_FONT_H));
+						it->pGuildMark->Render();
+					}
+
+					int nPosX, nPosY;
+					char temp1[512];
+					nPosX = nPosY = 0;
+					nPosX = WARINFO_OUTPOST_FONT_SCHEDULE_CENTER_X;
+					nPosY = WARINFO_OUTPOST_FONT_DATA_1_Y + (i * WARINFO_OUTPOST_FONT_H);
+					if(it->OutpostDate.Year != 0)
+					{					
+						// 2007-10-05 by bhsohn 시,분,초 스트링 시스템 추가
+						// 월일시				
+		//				wsprintf(temp1, STRMSG_C_070910_0205, m_OutPostNextWarTime.Month,
+		//														m_OutPostNextWarTime.Day,
+		//														m_OutPostNextWarTime.Hour);	
+						string szStrBuf;
+						it->OutpostDate.GetLocalString_MMDD(it->OutpostDate.Month, it->OutpostDate.Day, szStrBuf,GetLanguageType());						
+						// 2007-10-08 by bhsohn 전진기지전 시간 표시 변경
+						//wsprintf(temp1, STRMSG_C_070910_0205, szStrBuf.c_str(), m_OutPostNextWarTime.Hour);	
+						wsprintf(temp1, STRMSG_C_071030_0101, szStrBuf.c_str(), it->OutpostDate.Hour, it->OutpostDate.Minute);	
+						sz = m_pFontExp->GetStringSize(temp1);
+						m_pFontExp->DrawText(nPosX-(sz.cx/2),nPosY, GUI_FONT_COLOR,temp1,0L);
+						// end 2007-10-05 by bhsohn 시,분,초 스트링 시스템 추가
+					}
+					else
+					{
+						//wsprintf(temp1, STRMSG_C_070910_0206);	
+					}
+#endif
+					
+				}
+				it++;
+				i++;
+			}
+		}
+		break;
+	case LEADER_WARINFO_POINT:
+		{
+			m_pImgWarInfoBG[LEADER_WARINFO_POINT]->Move(LEADER_WARINFO_BG_X,LEADER_WARINFO_BG_Y);
+			m_pImgWarInfoBG[LEADER_WARINFO_POINT]->Render();
+
+			// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+			RenderWarInfoPointWar();
+		}
+		break;
+	}
+}
+void CINFCityLeader::RenderPoll()
+{
+	char tempBuf[512];
+	SIZE size;
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	m_pImgRightBG[0]->Move(LEADER_BGR_X,LEADER_BGR_Y);
+	m_pImgRightBG[0]->Render();
+
+	if(INFLUENCE_TYPE_VCN == m_BInfluence)
+	{
+		m_pImgVniBG->Move(LEADER_INFO_BG_X,LEADER_INFO_BG_Y);
+		m_pImgVniBG->Render();
+	}
+	else
+	{
+		m_pImgAniBG->Move(LEADER_INFO_BG_X,LEADER_INFO_BG_Y);
+		m_pImgAniBG->Render();
+	}
+#else
+	if(INFLUENCE_TYPE_VCN == m_BInfluence)
+	{
+		m_pImgVniBG->Move(LEADER_BGR_X,LEADER_BGR_Y);
+		m_pImgVniBG->Render();
+	}
+	else
+	{
+		m_pImgAniBG->Move(LEADER_BGR_X,LEADER_BGR_Y);
+		m_pImgAniBG->Render();
+	}
+#endif
+	// 배경.
+
+	// 버튼.
+	m_pImgPInfoB->Render();
+	if(m_bCandidate)
+	{
+		m_pImgPUnAppB->Render();
+	}
+	else
+	{
+		m_pImgPAppB->Render();
+	}
+		
+	// 배경.
+	switch(m_BPollState)
+	{
+	case LEADER_POLL_APP:
+		{
+			m_pImgAppBG->Move(LEADER_POLL_LIST_BG_X,LEADER_POLL_LIST_BG_Y);
+			m_pImgAppBG->Render();
+
+			m_pImgAppSucB->Render();
+			m_pEditPledge->Tick();
+			//m_pEditPledge->Render(0,6);
+			m_pEditPledge->Render(m_pScrollPollPledge->GetScrollStep(), LEADER_POLL_PLEDGE_MAX_SCROLL_LINE);
+
+			m_pScrollPollPledge->Render();
+		}
+		break;
+	case LEADER_POLL_LIST:
+		{
+			m_pImgListBG->Move(LEADER_POLL_LIST_BG_X,LEADER_POLL_LIST_BG_Y);
+			m_pImgListBG->Render();
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			m_pImgRSelectB[0][m_nRSelectB_2]->Move( LEADER_POLL_START_BUTTON_X + pPos.x, LEADER_POLL_START_BUTTON_Y + pPos.y );
+			m_pImgRSelectB[0][m_nRSelectB_2]->Render();
+#else
+			m_pImgRSelectB[0][m_nRSelectB_2]->Move(LEADER_POLL_SELECT_BUTTON_X,LEADER_POLL_SELECT_BUTTON_Y);
+			m_pImgRSelectB[0][m_nRSelectB_2]->Render();
+#endif
+
+			if(m_vecCandidateList.size() > 0)
+			{
+				int i = 0;
+				vector<MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK>::iterator it = m_vecCandidateList.begin();
+				it += m_pScrollPollList->GetScrollStep();
+				DWORD FontColor;
+				while(it != m_vecCandidateList.end())
+				{
+					FontColor = GUI_FONT_COLOR;
+					if((*it).DeleteCandidate)
+					{
+						FontColor = GUI_FONT_COLOR_G;
+					} 
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%d",(*it).LeaderCandidateNum);
+					SIZE size = m_pFontExp->GetStringSize( tempBuf );
+					m_pFontExp->DrawText(LEADER_POLL_LIST_NUMBER_X + ( LEADER_POLL_LIST_NUM_SIZE - size.cx ) / 2,LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H)
+						,FontColor,tempBuf,0L);
+					
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%s",(*it).CharacterName);
+					size = m_pFontExp->GetStringSize(tempBuf);
+					m_pFontExp->DrawText(LEADER_POLL_LIST_CONDIDATE_NAME_X + ( LEADER_POLL_LIST_CONDIDATE_SIZE - size.cx ) / 2, LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H)
+						,FontColor,tempBuf,0L);
+					
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%s",(*it).GuildName);
+					size = m_pFontExp->GetStringSize(tempBuf);
+					m_pFontExp->DrawText(LEADER_POLL_LIST_GUILD_NAME_X  + ( LEADER_POLL_LIST_NAME_SIZE - size.cx ) / 2,LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H),FontColor,tempBuf,0L);
+#else
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%d",(*it).LeaderCandidateNum);
+					m_pFontExp->DrawText(LEADER_POLL_LIST_NUMBER_X,LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H)
+						,FontColor,tempBuf,0L);
+					
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%s",(*it).CharacterName);
+					size = m_pFontExp->GetStringSize(tempBuf);
+					m_pFontExp->DrawText(LEADER_POLL_LIST_CONDIDATE_NAME_X-(size.cx/2),LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H)
+						,FontColor,tempBuf,0L);
+
+					memset(tempBuf,0x00,512);
+					wsprintf(tempBuf,"%s",(*it).GuildName);
+					size = m_pFontExp->GetStringSize(tempBuf);
+					m_pFontExp->DrawText(LEADER_POLL_LIST_GUILD_NAME_X-(size.cx/2),LEADER_POLL_LIST_START_Y + (i * LEADER_POLL_LIST_SELECT_H),FontColor,tempBuf,0L);
+#endif
+					if(m_nSelectNum == i &&
+						FontColor != GUI_FONT_COLOR_G)
+					{
+						m_pImgRSelect->Move(LEADER_POLL_LIST_AREA_X,LEADER_POLL_LIST_AREA_Y + (i * LEADER_POLL_LIST_SELECT_H));
+						m_pImgRSelect->Render();
+					}
+					
+					i++;
+					it++;
+					// 2008-05-26 by dgwoo 선거 후보 리스트창에서 후보 리스트가 벗어나는 버그 수정.
+					if(LEADER_POLL_LIST_MAX_SCROLL_LINE <= i)
+					{
+						break;
+					}
+				}
+			}
+
+			m_pScrollPollList->Render();
+		}
+		break;
+	case LEADER_POLL_INFO:
+		{
+			// 배경 및 버튼.
+			m_pImgPInfoBG->Move(LEADER_POLL_LIST_BG_X,LEADER_POLL_LIST_BG_Y);
+			m_pImgPInfoBG->Render();
+			m_pImgRVoteB->Render();
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			m_pImgRSelectB[1][m_nRSelectB_2]->Move(LEADER_POLL_START_BUTTON_X + pPos.x, LEADER_POLL_START_BUTTON_Y + pPos.y);
+			m_pImgRSelectB[1][m_nRSelectB_2]->Render();
+#else
+			m_pImgRSelectB[1][m_nRSelectB_2]->Move(LEADER_POLL_SELECT_BUTTON_X,LEADER_POLL_SELECT_BUTTON_Y);
+			m_pImgRSelectB[1][m_nRSelectB_2]->Render();
+#endif
+			// 얼굴. 
+			if(m_pImgFace)
+			{
+				m_pImgFace->Move(LEADER_POLL_FACE_IMG_X,LEADER_POLL_FACE_IMG_Y);
+				m_pImgFace->Render();
+			}
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			// 길드 마크.
+			if(m_pImgGuildMark)
+			{
+				size = m_pFontExp->GetStringSize( m_sCandidateInfo.GuildName );
+				m_pImgGuildMark->Move( LEADER_POLL_GUILDNAME_FONT_X + ( ( LEADER_POLL_INFO_GUILD_SIZE - ( m_pImgGuildMark->GetImgSize().x + size.cx + 5 ) ) / 2 ),LEADER_POLL_GUILDMARK_IMG_Y);
+				m_pImgGuildMark->Render();
+			}
+			// 레벨
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%d",m_sCandidateInfo.Level);
+			size = m_pFontExp->GetStringSize(tempBuf);
+			m_pFontExp->DrawText(LEADER_POLL_INFO_LEVEL_FONT_X + ( LEADER_POLL_INFO_LEVEL_SIZE - size.cx ) / 2, LEADER_POLL_INFO_LEVEL_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 길드명
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%s",m_sCandidateInfo.GuildName);
+			size = m_pFontExp->GetStringSize(tempBuf);
+			m_pFontExp->DrawText( LEADER_POLL_GUILDNAME_FONT_X + ( ( LEADER_POLL_INFO_GUILD_SIZE - ( m_pImgGuildMark->GetImgSize().x + size.cx + 5 ) ) / 2 ) + m_pImgGuildMark->GetImgSize().x + 5,LEADER_POLL_GUILDNAME_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 캐릭터 명
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%s",m_sCandidateInfo.CharacterName);
+			size = m_pFontExp->GetStringSize(tempBuf);
+			m_pFontExp->DrawText( LEADER_POLL_ID_FONT_X + ( ( LEADER_POLL_ID_FONT_SIZE - size.cx ) / 2), LEADER_POLL_ID_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 여단 명성.
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%d",m_sCandidateInfo.GuildFame);
+			size = m_pFontExp->GetStringSize(tempBuf);
+			m_pFontExp->DrawText(LEADER_POLL_GUILDFAME_FONT_X + ( LEADER_POLL_INFO_GUILDFAME_SIZE - size.cx ) / 2,LEADER_POLL_GUILDFAME_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 공약
+			//			m_pEditPledge->SetString(m_sCandidateInfo.CampaignPromises,SIZE_MAX_CAMPAIGNPROMISES);
+			m_pEditPledgeView->Render(m_pScrollPollPledgeView->GetScrollStep(),LEADER_POLL_PLEDGE_VIEW_MAX_SCROLL_LINE);
+			m_pScrollPollPledgeView->Render();
+#else
+			// 길드 마크.
+			if(m_pImgGuildMark)
+			{
+				m_pImgGuildMark->Move(LEADER_POLL_GUILDMARK_IMG_X,LEADER_POLL_GUILDMARK_IMG_Y);
+				m_pImgGuildMark->Render();
+			}
+			// 레벨
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%d",m_sCandidateInfo.Level);
+			m_pFontExp->DrawText(LEADER_POLL_INFO_LEVEL_FONT_X,LEADER_POLL_INFO_LEVEL_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 길드명
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%s",m_sCandidateInfo.GuildName);
+			m_pFontExp->DrawText(LEADER_POLL_GUILDNAME_FONT_X,LEADER_POLL_GUILDNAME_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 캐릭터 명
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%s",m_sCandidateInfo.CharacterName);
+			size = m_pFontExp->GetStringSize(tempBuf);
+			m_pFontExp->DrawText(LEADER_POLL_ID_FONT_X - (size.cx/2),LEADER_POLL_ID_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 여단 명성.
+			memset(tempBuf,0x00,512);
+			wsprintf(tempBuf,"%d",m_sCandidateInfo.GuildFame);
+			m_pFontExp->DrawText(LEADER_POLL_GUILDFAME_FONT_X,LEADER_POLL_GUILDFAME_FONT_Y,GUI_FONT_COLOR,tempBuf);
+			// 공약
+//			m_pEditPledge->SetString(m_sCandidateInfo.CampaignPromises,SIZE_MAX_CAMPAIGNPROMISES);
+			m_pEditPledgeView->Render(m_pScrollPollPledgeView->GetScrollStep(),LEADER_POLL_PLEDGE_VIEW_MAX_SCROLL_LINE);
+			m_pScrollPollPledgeView->Render();
+#endif
+
+		}
+		break;
+	}
+}
+void CINFCityLeader::Tick()
+{
+}
+void CINFCityLeader::WriteAppPLedge()
+{
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	//m_pEditPledge->InitString();		
+	char chBlank[16];
+	memset(chBlank, 0x00, 16);
+	m_pEditPledge->SetString(chBlank, 16, 0, TRUE);		// 내용
+
+	m_pEditPledge->EnableEdit(TRUE, FALSE);
+
+	m_pEditPledge->BackupTxtString();	
+	
+	m_pScrollPollPledge->SetMaxItem(0);
+}
+void CINFCityLeader::SendLeaderCandidateList()
+{
+// 2007-11-20 by dgwoo 목록이 있을경우엔 그 리스트를 그냥보여준다.
+	if(m_vecCandidateList.size() == 0)
+	{
+		g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST,NULL,NULL);
+	}
+	else
+	{
+		ChangePollState(LEADER_POLL_LIST);
+	}
+}
+
+int CINFCityLeader::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			BOOL	bList = FALSE;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_BRIGADE_NOTICE_BUTTON_X &&
+				pt.x < LEADER_BRIGADE_NOTICE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+				pt.y > LEADER_BRIGADE_NOTICE_BUTTON_Y &&
+				pt.y < LEADER_BRIGADE_NOTICE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+			{
+				m_nBrigadeNoticeB = BUTTON_STATE_NORMAL;
+				ChangeLeaderState(LEADER_STATE_NOTICE);
+			}
+			if( pt.x > LEADER_EXPENCE_BUTTON_X &&
+				pt.x < LEADER_EXPENCE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+				pt.y > LEADER_EXPENCE_BUTTON_Y &&
+				pt.y < LEADER_EXPENCE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+			{
+				if(g_pD3dApp->IsMyShuttleLeader())
+				{
+					m_nExpenceB = BUTTON_STATE_NORMAL;
+					ChangeLeaderState(LEADER_STATE_EXPENCE);
+				}
+				else
+				{
+					m_nExpenceB = BUTTON_STATE_DISABLE;
+				}
+			}
+			if(m_pImgLPollAB->OnLButtonUp(pt)) 
+			{
+				//ChangeLeaderState(LEADER_STATE_POLL);
+				bList = TRUE;
+			}
+			if(m_pImgLPollVB->OnLButtonUp(pt))
+			{
+				//ChangeLeaderState(LEADER_STATE_POLL);
+				bList = TRUE;
+			}
+			if(bList)
+			{
+				// 2007-11-20 by dgwoo 폴시스템의 state를 프로토콜이 왔을때 처리.
+				//ChangeLeaderState(LEADER_STATE_POLL);
+				SendLeaderCandidateList();
+			}
+			
+			if(m_pImgLDateB->OnLButtonUp(pt))
+			{
+				ChangeLeaderState(LEADER_STATE_POLLDATE);
+			}
+			if(m_pImgLWarInfoB->OnLButtonUp(pt))
+			{
+				ChangeLeaderState(LEADER_STATE_WARINFO);
+			}
+
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_BRIGADE_NOTICE_BUTTON_X &&
+				pt.x < LEADER_BRIGADE_NOTICE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+				pt.y > LEADER_BRIGADE_NOTICE_BUTTON_Y &&
+				pt.y < LEADER_BRIGADE_NOTICE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+			{
+				m_nBrigadeNoticeB = BUTTON_STATE_DOWN;
+			}
+			if(pt.x > LEADER_EXPENCE_BUTTON_X &&
+				pt.x < LEADER_EXPENCE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+				pt.y > LEADER_EXPENCE_BUTTON_Y &&
+				pt.y < LEADER_EXPENCE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+			{
+				if(g_pD3dApp->IsMyShuttleLeader())
+				{				
+					m_nExpenceB = BUTTON_STATE_DOWN;
+				}
+				else
+				{
+					m_nExpenceB = BUTTON_STATE_DISABLE;
+				}
+			}
+			m_pImgLPollAB->OnLButtonDown(pt);
+			m_pImgLPollVB->OnLButtonDown(pt);
+			m_pImgLDateB->OnLButtonDown(pt);
+			m_pImgLWarInfoB->OnLButtonDown(pt);
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_BRIGADE_NOTICE_BUTTON_X &&
+				pt.x < LEADER_BRIGADE_NOTICE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+				pt.y > LEADER_BRIGADE_NOTICE_BUTTON_Y &&
+				pt.y < LEADER_BRIGADE_NOTICE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+			{
+				if(m_nBrigadeNoticeB != BUTTON_STATE_DOWN)
+				{
+					m_nBrigadeNoticeB = BUTTON_STATE_UP;
+				}
+			}
+			else
+			{
+				m_nBrigadeNoticeB = BUTTON_STATE_NORMAL;
+			}
+
+			if(g_pD3dApp->IsMyShuttleLeader())
+			{
+				if(	pt.x > LEADER_EXPENCE_BUTTON_X &&
+					pt.x < LEADER_EXPENCE_BUTTON_X + LEADER_LEFT_BUTTON_W &&
+					pt.y > LEADER_EXPENCE_BUTTON_Y &&
+					pt.y < LEADER_EXPENCE_BUTTON_Y + LEADER_LEFT_BUTTON_H)
+				{
+					if(m_nExpenceB != BUTTON_STATE_DOWN)
+					{
+						m_nExpenceB = BUTTON_STATE_UP;
+					}
+				}
+				else
+				{
+					m_nExpenceB = BUTTON_STATE_NORMAL;
+				}
+			}
+			m_pImgLPollAB->OnMouseMove(pt);
+			m_pImgLPollVB->OnMouseMove(pt);
+			m_pImgLDateB->OnMouseMove(pt);
+			m_pImgLWarInfoB->OnMouseMove(pt);			
+			
+
+		}
+		break;
+	}
+	switch(m_nRWindowState)
+	{
+	case LEADER_STATE_NOTICE:
+		{
+			if(INF_MSGPROC_BREAK == WndProcNotice(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case LEADER_STATE_EXPENCE:
+		{
+			if(INF_MSGPROC_BREAK == WndProcExpence(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case LEADER_STATE_POLL:
+		{
+			if(INF_MSGPROC_BREAK == WndProcPoll(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+
+		}
+		break;
+	case LEADER_STATE_WARINFO:
+		{
+			if(INF_MSGPROC_BREAK == WndProcWarInfo(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	}
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcWarInfo(UINT uMsg,WPARAM wParam,LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.y > LEADER_WARINFO_TAB_Y &&
+				pt.y < LEADER_WARINFO_TAB_Y + LEADER_WARINFO_TAB_H &&
+				pt.x > LEADER_WARINFO_TAB_INFLUENCE_X &&
+				pt.x < LEADER_WARINFO_TAB_INFLUENCE_X + (LEADER_WARINFO_TAB_W * LEADER_WARINFO_END))
+
+			{
+				int nSelTab = (int)((pt.x - LEADER_WARINFO_TAB_INFLUENCE_X)/LEADER_WARINFO_TAB_W);
+				ChangeWarInfoState(nSelTab);
+			}			
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+		}
+		break;
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+		}
+		break;
+
+	}
+
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+
+// 	// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+// 	switch(m_bStateWarInfo)
+// 	{
+// 	case LEADER_WARINFO_MOTHERSHIP:
+// 	case LEADER_WARINFO_POINT:
+// 		{			
+// 			if(INF_MSGPROC_BREAK == WndProcWarInfoSub(uMsg,wParam,lParam))
+// 			{
+// 				return INF_MSGPROC_BREAK;
+// 			}
+// 		}
+// 		break;
+// 	}
+// 	// end 2008-03-19 by bhsohn 모선전, 거점전 정보창
+
+
+	// 각 탭에 대하여 메세지 프로시져를 분리
+	switch(m_bStateWarInfo)
+	{
+		case LEADER_WARINFO_INFLUENCE:
+			if( WndProcInfluenceInfoTab( uMsg, wParam, lParam) == INF_MSGPROC_BREAK)
+				return INF_MSGPROC_BREAK;
+			break;
+
+		case LEADER_WARINFO_DECLAREWAR:
+			if( WndProcWarDeclareTab( uMsg, wParam, lParam) == INF_MSGPROC_BREAK)
+				return INF_MSGPROC_BREAK;
+			break;
+
+		case LEADER_WARINFO_MOTHERSHIP:
+			if( WndProcMotherShipResultTab( uMsg, wParam, lParam) == INF_MSGPROC_BREAK)
+				return INF_MSGPROC_BREAK;
+			break;
+
+		case LEADER_WARINFO_OUTPOST:
+			if( WndProcOutPostTab( uMsg, wParam, lParam) == INF_MSGPROC_BREAK)
+				return INF_MSGPROC_BREAK;
+			break;
+
+		case LEADER_WARINFO_POINT:
+			if( WndProcPointWarTab( uMsg, wParam, lParam) == INF_MSGPROC_BREAK)
+				return INF_MSGPROC_BREAK;
+			break;
+	}
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcPoll(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(m_bCandidate)
+			{
+				if(m_pImgPUnAppB->OnLButtonUp(pt))
+				{// 후보 탈퇴.
+					ButtonClickDeleteCandidate();
+				}
+			}
+			else
+			{
+				if(m_pImgPAppB->OnLButtonUp(pt))
+				{// 후보 등록.
+					ChangePollState(LEADER_POLL_APP);				
+				}
+			}
+
+			if(m_pImgPInfoB->OnLButtonUp(pt))
+			{// 후보 정보로 변경.
+				ButtonClickPollInfo();			
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			//m_pImgPAppB->OnLButtonDown(pt);
+			//m_pImgPUnAppB->OnLButtonDown(pt);
+			// 2012-11-02 by mspark, 후보 등록 버튼 툴팁 버그 수정
+			if(m_bCandidate)
+			{
+			m_pImgPUnAppB->OnLButtonDown(pt);
+			}
+			else
+			{
+				m_pImgPAppB->OnLButtonDown(pt);
+			}
+			// end 2012-11-02 by mspark, 후보 등록 버튼 툴팁 버그 수정
+			m_pImgPInfoB->OnLButtonDown(pt);
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			//m_pImgPAppB->OnMouseMove(pt);
+			//m_pImgPUnAppB->OnMouseMove(pt);
+			// 2012-11-02 by mspark, 후보 등록 버튼 툴팁 버그 수정
+			if(m_bCandidate)
+			{
+			m_pImgPUnAppB->OnMouseMove(pt);
+			}
+			else
+			{
+				m_pImgPAppB->OnMouseMove(pt);
+			}
+			// end 2012-11-02 by mspark, 후보 등록 버튼 툴팁 버그 수정
+			m_pImgPInfoB->OnMouseMove(pt);
+
+		}
+		break;
+	}
+	switch(m_BPollState)
+	{
+	case LEADER_POLL_APP:
+		{
+			if(INF_MSGPROC_BREAK == WndProcPollApp(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case LEADER_POLL_LIST:
+		{
+			if(INF_MSGPROC_BREAK == WndProcPollList(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case LEADER_POLL_INFO:
+		{
+			if(INF_MSGPROC_BREAK == WndProcPollInfo(uMsg,wParam,lParam))
+			{
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+	}
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcPollInfo(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(m_pImgRVoteB->OnLButtonUp(pt))
+			{// 투표.
+				ButtonClickVote();
+				//m_pInfWindow->AddMsgBox(STRMSG_C_070928_0201, _Q_SECOND_PASS_CANCEL_MSG);
+			}
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			if(pt.x > LEADER_POLL_START_BUTTON_X + pPos.x&&
+				pt.x < LEADER_POLL_START_BUTTON_X + pPos.x + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_START_BUTTON_Y + pPos.y &&
+				pt.y < LEADER_POLL_START_BUTTON_Y + pPos.y + LEADER_POLL_LIST_BUTTON_H)
+				
+#else
+			if(pt.x > LEADER_POLL_LIST_BUTTON_X &&
+				pt.x < LEADER_POLL_LIST_BUTTON_X + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_LIST_BUTTON_Y &&
+				pt.y < LEADER_POLL_LIST_BUTTON_Y + LEADER_POLL_LIST_BUTTON_H)
+#endif
+			{
+				//ChangePollState(LEADER_POLL_LIST);
+				SendLeaderCandidateList();
+			}
+			BOOL bClick = m_pScrollPollPledgeView->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollPollPledgeView->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			m_pImgRVoteB->OnLButtonDown(pt);
+			BOOL bClick = m_pScrollPollPledgeView->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollPollPledgeView->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			m_pImgRVoteB->OnMouseMove(pt);
+	
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			if(pt.x > LEADER_POLL_START_BUTTON_X + pPos.x&&
+				pt.x < LEADER_POLL_START_BUTTON_X + pPos.x + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_START_BUTTON_Y + pPos.y &&
+				pt.y < LEADER_POLL_START_BUTTON_Y + pPos.y + LEADER_POLL_LIST_BUTTON_H)
+
+#else
+			if(pt.x > LEADER_POLL_LIST_BUTTON_X &&
+				pt.x < LEADER_POLL_LIST_BUTTON_X + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_LIST_BUTTON_Y &&
+				pt.y < LEADER_POLL_LIST_BUTTON_Y + LEADER_POLL_LIST_BUTTON_H)
+#endif
+			{
+				m_nRSelectB_2 = BUTTON_BOTH_STATE_UP;
+			}
+			else
+			{
+				m_nRSelectB_2 = BUTTON_BOTH_STATE_NORMAL;
+			}
+
+			if(m_pScrollPollPledgeView->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollPollPledgeView->IsMouseScrollPos(pt))
+				{
+					m_pScrollPollPledgeView->SetMouseMoveMode(FALSE);
+				}
+				else
+				{
+					m_pScrollPollPledgeView->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+
+
+		}
+		break;
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollPollPledgeView->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pScrollPollPledgeView->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+	}
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcPollList(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			if(pt.x > LEADER_POLL_START_BUTTON_X + pPos.x&&
+				pt.x < LEADER_POLL_START_BUTTON_X + pPos.x + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_START_BUTTON_Y + pPos.y &&
+				pt.y < LEADER_POLL_START_BUTTON_Y + pPos.y + LEADER_POLL_LIST_BUTTON_H)
+				
+#else
+			if(pt.x > LEADER_POLL_LIST_BUTTON_X &&
+				pt.x < LEADER_POLL_LIST_BUTTON_X + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_LIST_BUTTON_Y &&
+				pt.y < LEADER_POLL_LIST_BUTTON_Y + LEADER_POLL_LIST_BUTTON_H)
+#endif
+			{
+				SendCandidateInfo();
+			}
+			if(pt.x > LEADER_POLL_LIST_AREA_X &&
+				pt.x < LEADER_POLL_LIST_AREA_X + LEADER_POLL_LIST_AREA_W &&
+				pt.y > LEADER_POLL_LIST_AREA_Y &&
+				pt.y < LEADER_POLL_LIST_AREA_Y + LEADER_POLL_LIST_AREA_H)
+			{
+				int nSelect = (pt.y - LEADER_POLL_LIST_AREA_Y)/LEADER_POLL_LIST_SELECT_H;
+				if(nSelect >= 0 &&
+					nSelect < LEADER_POLL_LIST_MAX_SCROLL_LINE)
+				{
+					m_nSelectNum = nSelect;
+				}
+			}
+			BOOL bClick = m_pScrollPollList->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollPollList->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollPollList->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollPollList->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+			POINT pPos = CityLeaderControl->GetFindControlTargetofMinPos("poll_4");
+			if(pt.x > LEADER_POLL_START_BUTTON_X + pPos.x &&
+				pt.x < LEADER_POLL_START_BUTTON_X + pPos.x + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_START_BUTTON_Y + pPos.y &&
+				pt.y < LEADER_POLL_START_BUTTON_Y + pPos.y + LEADER_POLL_LIST_BUTTON_H)
+#else
+			if(pt.x > LEADER_POLL_LIST_BUTTON_X &&
+				pt.x < LEADER_POLL_LIST_BUTTON_X + LEADER_POLL_LIST_BUTTON_W &&
+				pt.y > LEADER_POLL_LIST_BUTTON_Y &&
+				pt.y < LEADER_POLL_LIST_BUTTON_Y + LEADER_POLL_LIST_BUTTON_H)
+#endif
+			{
+				m_nRSelectB_2 = BUTTON_BOTH_STATE_UP;
+			}
+			else
+			{
+				m_nRSelectB_2 = BUTTON_BOTH_STATE_NORMAL;
+			}
+			if(m_pScrollPollList->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollPollList->IsMouseScrollPos(pt))
+				{
+					m_pScrollPollList->SetMouseMoveMode(FALSE);
+				}
+				else
+				{
+					m_pScrollPollList->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+
+		}
+		break;
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollPollList->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pScrollPollList->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_LBUTTONDBLCLK:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			
+			// 방 선택.
+			if(pt.x > LEADER_POLL_LIST_AREA_X &&
+				pt.x < LEADER_POLL_LIST_AREA_X + LEADER_POLL_LIST_AREA_W &&
+				pt.y > LEADER_POLL_LIST_AREA_Y &&
+				pt.y < LEADER_POLL_LIST_AREA_Y + LEADER_POLL_LIST_AREA_H)
+			{
+				int nSelect = (pt.y - LEADER_POLL_LIST_AREA_Y)/LEADER_POLL_LIST_SELECT_H;
+				if(nSelect >= 0 &&
+					nSelect < LEADER_POLL_LIST_MAX_SCROLL_LINE)
+				{
+					m_nSelectNum = nSelect;
+					SendCandidateInfo();
+				}
+			}
+		}
+		break;
+
+	}
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcPollApp(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(m_pImgAppSucB->OnLButtonUp(pt))
+			{// 신청 완료.
+				//g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REG_LEADER_CANDIDATE,NULL,NULL);
+				ButtonClickPollAppSuc();
+
+			}
+			if(pt.x > LEADER_POLL_PLEDGE_EDIT_X &&
+				pt.x < LEADER_POLL_PLEDGE_EDIT_X + LEADER_POLL_PLEDGE_EDIT_W &&
+				pt.y > LEADER_POLL_PLEDGE_EDIT_Y &&
+				pt.y < LEADER_POLL_PLEDGE_EDIT_Y + LEADER_POLL_PLEDGE_EDIT_H)
+			{
+				WriteAppPLedge();
+			}
+			BOOL bClick = m_pScrollPollPledge->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollPollPledge->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			m_pImgAppSucB->OnLButtonDown(pt);
+			BOOL bClick = m_pScrollPollPledge->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollPollPledge->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			m_pImgAppSucB->OnMouseMove(pt);
+			if(m_pScrollPollPledge->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollPollPledge->IsMouseScrollPos(pt))
+				{
+					m_pScrollPollPledge->SetMouseMoveMode(FALSE);
+				}
+				else
+				{
+					m_pScrollPollPledge->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+
+		}
+		break;
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollPollPledge->IsMouseWhellPos(pt);
+			if(bClick)
+			{			
+				m_pScrollPollPledge->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+	case WM_IME_STARTCOMPOSITION:
+//	case WM_IME_NOTIFY:
+	case WM_IME_COMPOSITION:
+	case WM_INPUTLANGCHANGE:	
+	case WM_IME_ENDCOMPOSITION:
+	case WM_IME_SETCONTEXT:	
+	case WM_CHAR:
+	case WM_KEYDOWN:
+	// 2010. 04. 12 by ckPark 편지쓰기 관련 에디트 박스 기능 개선
+	case WM_KEYUP:
+	// end 2010. 04. 12 by ckPark 편지쓰기 관련 에디트 박스 기능 개선
+		{
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			if(m_pEditPledge->IsEditMode())
+			{				
+				int nLienCnt = -1;
+				int nArrowScroll = 0;
+				BOOL bRtn = FALSE;
+				BOOL bStrCat =FALSE;
+				bRtn = m_pEditPledge->WndProc(uMsg, wParam, lParam, m_pScrollPollPledge->GetScrollStep(), 
+					&nLienCnt, &nArrowScroll, &bStrCat);
+				
+				if(nLienCnt < 0)
+				{
+					// 아무 처리도 안했다.
+					return INF_MSGPROC_NORMAL;
+				}			
+				int nMaxStep = 0;			
+				int nScrollStep = 0;
+				switch(uMsg)
+				{
+				case WM_KEYDOWN:
+					{
+						switch(wParam)
+						{
+						case VK_LEFT:	// 왼쪽으로 이동
+						case VK_UP:
+						case VK_RIGHT:
+						case VK_DOWN:
+							{
+								// 방향키를 눌러서 스크롤 위치 변경 
+								if(nLienCnt > LEADER_POLL_PLEDGE_MAX_SCROLL_LINE 
+									&& nArrowScroll !=0)
+								{
+									nMaxStep = m_pScrollPollPledge->GetMaxStepCnt();
+									nScrollStep = m_pScrollPollPledge->GetScrollStep() + nArrowScroll;
+									nScrollStep = max(0, nScrollStep);						
+									nScrollStep = min(nMaxStep, nScrollStep);						
+									m_pScrollPollPledge->SetScrollStep(nScrollStep);
+								}
+								
+								return INF_MSGPROC_NORMAL;
+							}
+							break;
+						case VK_RETURN:
+							{
+								return INF_MSGPROC_BREAK;
+							}
+							break;
+						}
+					}
+					break;
+				}
+				
+				nMaxStep = max(nLienCnt, LEADER_POLL_PLEDGE_MAX_SCROLL_LINE);
+				nScrollStep = nMaxStep - LEADER_POLL_PLEDGE_MAX_SCROLL_LINE;
+				if(nScrollStep < 0)
+				{
+					nScrollStep = 0;
+				}						
+				if(m_pEditPledge->IsLastPos())
+				{
+					// 가장 마지막 라인이냐?					
+					
+					// 최대 아이템을 정해주고
+					m_pScrollPollPledge->SetMaxItem(nMaxStep);					
+					// 스트링을 뒤에 붙이는 방식이 아니다.
+					// 스크롤 위치는 가장 아래
+					m_pScrollPollPledge->SetScrollStep(nScrollStep);								
+				}					
+				else
+				{
+					m_pScrollPollPledge->SetOnlyMaxItem(nMaxStep);
+					m_pEditPledge->RefreshEndCurselPos();	// 마지막위치 갱신
+				}
+				
+				if(bRtn)
+				{
+					return INF_MSGPROC_BREAK;
+				}					
+				
+			}
+		}
+		break;
+//		{
+//			int nLienCnt = 0;
+//			BOOL bRtn = FALSE;
+//			bRtn = m_pEditPledge->WndProc(uMsg, wParam, lParam, &nLienCnt);			
+//			
+//			int nMaxStep = max(nLienCnt, LEADER_POLL_PLEDGE_MAX_SCROLL_LINE);			
+//			
+//			// 최대 아이템을 정해주고
+//			m_pScrollPollPledge->SetMaxItem(nMaxStep);
+//			
+//			int nScrollStep = nMaxStep - LEADER_POLL_PLEDGE_MAX_SCROLL_LINE;
+//			if(nScrollStep < 0)
+//			{
+//				nScrollStep = 0;
+//			}
+//
+//			// 스크롤 위치는 가장 아래
+//			m_pScrollPollPledge->SetScrollStep(nScrollStep);		
+//			if(bRtn)
+//			{
+//				return INF_MSGPROC_BREAK;
+//			}
+//
+//		}
+//		break;
+	}
+	return INF_MSGPROC_NORMAL;
+}
+
+int CINFCityLeader::WndProcNotice(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+
+			// 2007-09-05 by bhsohn 전진 기지전
+//			if(pt.x > LEADER_WRITE_BUTTON_X &&
+//				pt.x < LEADER_WRITE_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+//				pt.y > LEADER_WRITE_BUTTON_Y &&
+//				pt.y < LEADER_WRITE_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+//			{
+//				m_nWriteB = BUTTON_STATE_NORMAL;
+//			}
+			{
+				if(TRUE == m_pNoticeWrite->OnLButtonUp(pt))
+				{	
+					// 버튼 클릭 
+					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
+					// 버튼 클릭
+					ButtonClickWrite();					
+					return  INF_MSGPROC_BREAK;
+				}
+			}
+			
+			{
+				if(TRUE == m_pRegist->OnLButtonUp(pt))
+				{	
+					// 버튼 클릭 
+					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
+					// 버튼 클릭
+					ButtonClickApp();					
+					return  INF_MSGPROC_BREAK;
+				}
+			}
+
+			if(pt.x > LEADER_APP_BUTTON_X &&
+				pt.x < LEADER_APP_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_APP_BUTTON_Y &&
+				pt.y < LEADER_APP_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				m_nAppB = BUTTON_STATE_NORMAL;
+			}
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			{
+				BOOL bClick = m_pINFScrollBar->GetMouseMoveMode();
+				if(bClick)		
+				{
+					m_pINFScrollBar->SetMouseMoveMode(FALSE);	
+					return INF_MSGPROC_BREAK;
+				}
+			}
+			// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			// 쓰기 버튼
+			{
+				if(TRUE == m_pNoticeWrite->OnLButtonDown(pt))
+				{
+					// 버튼위에 마우스가 있다.
+					return  INF_MSGPROC_BREAK;
+				}		
+			}
+			
+			{
+				if(TRUE == m_pRegist->OnLButtonDown(pt))
+				{
+					// 버튼위에 마우스가 있다.
+					return  INF_MSGPROC_BREAK;
+				}		
+			}
+			
+
+			if(pt.x > LEADER_APP_BUTTON_X &&
+				pt.x < LEADER_APP_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_APP_BUTTON_Y &&
+				pt.y < LEADER_APP_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				m_nAppB = BUTTON_STATE_DOWN;
+			}
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			{
+				BOOL bClick = m_pINFScrollBar->IsMouseBallPos(pt);
+				if(bClick)		
+				{
+					m_pINFScrollBar->SetMouseMoveMode(TRUE);
+					return INF_MSGPROC_BREAK;
+				}		
+			}
+			// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+
+			// 2007-09-05 by bhsohn 전진 기지전
+			m_pNoticeWrite->OnMouseMove(pt);
+			m_pRegist->OnMouseMove(pt);
+
+			if(pt.x > LEADER_APP_BUTTON_X &&
+				pt.x < LEADER_APP_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_APP_BUTTON_Y &&
+				pt.y < LEADER_APP_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				if(m_nAppB != BUTTON_STATE_DOWN)
+				{
+					m_nAppB = BUTTON_STATE_UP;
+				}
+			}
+			else
+			{
+				m_nAppB = BUTTON_STATE_NORMAL;
+			}
+
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			{
+				if(m_pINFScrollBar->GetMouseMoveMode())
+				{
+					if(FALSE == m_pINFScrollBar->IsMouseScrollPos(pt))
+					{
+						m_pINFScrollBar->SetMouseMoveMode(FALSE);						
+					}
+					else
+					{
+						m_pINFScrollBar->SetScrollPos(pt);	
+						return INF_MSGPROC_BREAK;
+					}								
+				}
+			}
+			// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+		}
+		break;
+	case WM_IME_STARTCOMPOSITION:
+//	case WM_IME_NOTIFY:
+	case WM_IME_COMPOSITION:
+	case WM_INPUTLANGCHANGE:	
+	case WM_IME_ENDCOMPOSITION:
+	case WM_IME_SETCONTEXT:	
+	case WM_CHAR:
+	case WM_KEYDOWN:	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	// 2010. 04. 12 by ckPark 편지쓰기 관련 에디트 박스 기능 개선
+	case WM_KEYUP:
+	// end 2010. 04. 12 by ckPark 편지쓰기 관련 에디트 박스 기능 개선
+		{
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			if(m_pNoticeEditBox->IsEditMode())
+			{				
+				int nLienCnt = -1;
+				int nArrowScroll = 0;
+				BOOL bRtn = FALSE;
+				BOOL bStrCat =FALSE;
+				bRtn = m_pNoticeEditBox->WndProc(uMsg, wParam, lParam, m_pINFScrollBar->GetScrollStep(), 
+					&nLienCnt, &nArrowScroll, &bStrCat);
+				
+				if(nLienCnt < 0)
+				{
+					// 아무 처리도 안했다.
+					return INF_MSGPROC_NORMAL;
+				}			
+				int nMaxStep = 0;			
+				int nScrollStep = 0;
+				switch(uMsg)
+				{
+				case WM_KEYDOWN:
+					{
+						switch(wParam)
+						{
+						case VK_LEFT:	// 왼쪽으로 이동
+						case VK_UP:
+						case VK_RIGHT:
+						case VK_DOWN:
+							{
+								// 방향키를 눌러서 스크롤 위치 변경 
+								if(nLienCnt > MAX_SCROLL_LINE 
+									&& nArrowScroll !=0)
+								{
+									nMaxStep = m_pINFScrollBar->GetMaxStepCnt();
+									nScrollStep = m_pINFScrollBar->GetScrollStep() + nArrowScroll;
+									nScrollStep = max(0, nScrollStep);						
+									nScrollStep = min(nMaxStep, nScrollStep);						
+									m_pINFScrollBar->SetScrollStep(nScrollStep);
+								}
+								
+								return INF_MSGPROC_NORMAL;
+							}
+							break;
+						case VK_RETURN:
+							{
+								return INF_MSGPROC_BREAK;
+							}
+							break;
+						}
+					}
+					break;
+				}
+				
+				nMaxStep = max(nLienCnt, MAX_SCROLL_LINE);
+				nScrollStep = nMaxStep - MAX_SCROLL_LINE;
+				if(nScrollStep < 0)
+				{
+					nScrollStep = 0;
+				}						
+				if(m_pNoticeEditBox->IsLastPos())
+				{
+					// 가장 마지막 라인이냐?					
+					
+					// 최대 아이템을 정해주고
+					m_pINFScrollBar->SetMaxItem(nMaxStep);					
+					// 스트링을 뒤에 붙이는 방식이 아니다.
+					// 스크롤 위치는 가장 아래
+					m_pINFScrollBar->SetScrollStep(nScrollStep);								
+				}					
+				else
+				{
+					m_pINFScrollBar->SetOnlyMaxItem(nMaxStep);
+					m_pNoticeEditBox->RefreshEndCurselPos();	// 마지막위치 갱신
+				}
+				
+				if(bRtn)
+				{
+					return INF_MSGPROC_BREAK;
+				}					
+				
+			}		
+			
+			
+			// end 2008-10-29 by bhsohn 에디트 박스 형태 변경
+//			if(m_bWriteMode)
+//			{
+//				int bFlag = FALSE;
+//				g_nRenderCandidate = SET_MAIN_CHAT_CANDIDATE;
+//
+//				if(INF_MSGPROC_BREAK == g_pD3dApp->m_inputkey.KeyMapping(g_pD3dApp->GetHwnd(), uMsg, wParam, lParam))
+//					bFlag = TRUE;
+//				/*--------------------------------------------------------------------------*/				
+//				if(strlen(g_pD3dApp->m_inputkey.m_full_str)!=0)
+//				{
+//					memset(m_cNoticeString,0x00,SIZE_MAX_CHAT_MESSAGE);
+//					if(wParam == 34 && g_pD3dApp->m_pShuttleChild->m_bOldPToPPos != 200 && g_pD3dApp->m_inputkey.m_str_pos == 1)
+//					{
+//						char tempName[SIZE_MAX_CHARACTER_NAME+2] = {0,};
+//						wsprintf(tempName, "%s ", g_pD3dApp->m_pShuttleChild->m_strChatPToP[g_pD3dApp->m_pShuttleChild->m_bOldPToPPos]);
+//
+//						int nNameSize = strlen(tempName);
+//						wchar_t wTmName[SIZE_MAX_CHARACTER_NAME];
+//						memset(wTmName, 0x00, sizeof(wTmName[0])*SIZE_MAX_CHARACTER_NAME);
+//						MultiByteToWideChar(g_input.GetCodePage(), 0, tempName, nNameSize + 1, wTmName, nNameSize + 1);
+//						for(int j = 0; j < wcslen(wTmName); j++)
+//						{
+//							g_input.SetInputWideChar(wTmName[j]);
+//						}
+//
+//						g_pD3dApp->m_inputkey.SetGameText(g_pD3dApp->m_inputkey.GetInputLanguage());
+//
+//					}
+//					strncpy(m_cNoticeString,g_pD3dApp->m_inputkey.m_full_str,strlen(g_pD3dApp->m_inputkey.m_full_str));
+//				}
+//				else
+//				{
+//					memset(m_cNoticeString,0x00,sizeof(m_cNoticeString));
+//					
+//				}
+//				/*--------------------------------------------------------------------------*/
+//		
+//				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_INPUT_CHAT, g_pShuttleChild->m_vPos, FALSE);
+//				if(TRUE == bFlag)
+//					return INF_MSGPROC_BREAK;
+//			}
+		}
+		break;
+//	case WM_KEYDOWN:
+//		{
+//			if(m_pNoticeEditBox->WndProc(uMsg, wParam, lParam))
+//			{
+//				return INF_MSGPROC_BREAK;
+//			}
+//		}
+//		break;
+	case WM_MOUSEWHEEL:
+		{
+			// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pINFScrollBar->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pINFScrollBar->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	}
+	return INF_MSGPROC_NORMAL;
+}
+int CINFCityLeader::WndProcExpence(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_EXPENCE_OK_BUTTON_X &&
+				pt.x < LEADER_EXPENCE_OK_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_EXPENCE_OK_BUTTON_Y &&
+				pt.y < LEADER_EXPENCE_OK_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				m_nExpenceOkB = BUTTON_STATE_NORMAL;
+			}
+
+			// 2007-09-05 by bhsohn 전진 기지전
+			{
+				if(TRUE == m_pExpenceOkBtn->OnLButtonUp(pt))
+				{					
+					// 버튼 클릭 
+					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
+					OnClickExpenceOk();
+					return  INF_MSGPROC_BREAK;
+				}
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_EXPENCE_OK_BUTTON_X &&
+				pt.x < LEADER_EXPENCE_OK_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_EXPENCE_OK_BUTTON_Y &&
+				pt.y < LEADER_EXPENCE_OK_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				m_nExpenceOkB = BUTTON_STATE_DOWN;
+			}
+
+			// 2007-09-05 by bhsohn 전진 기지전
+			{
+				if(TRUE == m_pExpenceOkBtn->OnLButtonDown(pt))
+				{
+					// 버튼위에 마우스가 있다.
+					return  INF_MSGPROC_BREAK;
+				}		
+			}
+			
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			if(pt.x > LEADER_EXPENCE_OK_BUTTON_X &&
+				pt.x < LEADER_EXPENCE_OK_BUTTON_X + LEADER_RIGHT_BUTTON_W &&
+				pt.y > LEADER_EXPENCE_OK_BUTTON_Y &&
+				pt.y < LEADER_EXPENCE_OK_BUTTON_Y + LEADER_RIGHT_BUTTON_H)
+			{
+				if(m_nExpenceOkB != BUTTON_STATE_DOWN)
+				{
+					m_nExpenceOkB = BUTTON_STATE_UP;
+				}
+			}
+			else
+			{
+				m_nExpenceOkB = BUTTON_STATE_NORMAL;
+			}
+
+			// 2007-09-05 by bhsohn 전진 기지전
+			m_pExpenceOkBtn->OnMouseMove(pt);
+
+		}
+		break;
+	}
+	return INF_MSGPROC_NORMAL;
+}
+
+void CINFCityLeader::OnClickExpenceOk()
+{
+	char buf[256];
+	ZERO_MEMORY(buf);
+	wsprintf(buf, STRMSG_C_070910_0201);//"환급받을 금액을 입력하세요."
+	((CINFGameMain*)m_pParent)->m_pInfWindow->AddMsgBox(buf,_Q_INFLUENCE_WAR_EXPENCE_OK_MSG, 0, m_nExp);
+}
+
+
+// 판공비 관련 정보 업데이트
+void CINFCityLeader::SetExpenceInfo(float fExplate,DWORD nCumulativeExp, DWORD nExp)
+{
+	m_fExplate = fExplate/(10.0f);
+	m_nCumulativeExp = nCumulativeExp;
+	m_nExp = nExp;
+
+}
+// 전쟁 시간 설정 관련 처리
+void CINFCityLeader::SetNextWarInfo(ATUM_DATE_TIME OutPostNextWarTime, INT nOutPostNextWarSelectTimeChoice, vector<ATUM_DATE_TIME> vectmpTimeList)
+{
+// 2008-10-13 by dgwoo 전진기지 시간선택하는 부분 없어짐	
+//	m_vecNextWarTimeList.clear();
+//	m_nWarTimeMaxCount = vectmpTimeList.size();
+//	if(m_nWarTimeMaxCount > MAX_NEXT_WAR_RADIO)
+//	{
+//		m_nWarTimeMaxCount = MAX_NEXT_WAR_RADIO;
+//	}
+//	
+//	m_OutPostNextWarTime = OutPostNextWarTime;
+//	m_nSelWarTimeRadioB = nOutPostNextWarSelectTimeChoice;
+//	m_vecNextWarTimeList = vectmpTimeList;	
+}
+// 정보 리프레시
+VOID CINFCityLeader::ReFresh()
+{
+	ChangeLeaderState(LEADER_STATE_NOTICE);
+	ClearCandidateList();
+	memset(&m_sCandidateInfo,0x00,sizeof(MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK));
+}
+// 닫기 버튼 클릭
+void CINFCityLeader::OnCloseInfWnd()
+{
+	m_pNoticeEditBox->InitString();		
+	m_pNoticeEditBox->EnableEdit(FALSE, FALSE);
+
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	m_pINFScrollBar->SetMaxItem(0);
+}
+void CINFCityLeader::ChangePollState(BYTE i_BPollState)
+{
+	ChangeLeaderState(LEADER_STATE_POLL);
+	switch(i_BPollState)
+	{
+	case LEADER_POLL_LIST:
+		{
+			// 후보 리스트는 한번만 요청한다.
+			m_pImgPInfoB->EnableBtn(TRUE);
+//			if(m_vecCandidateList.size() == 0)
+//				g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST,NULL,NULL);
+		}
+		break;
+	case LEADER_POLL_APP:
+		{
+			m_pImgPInfoB->EnableBtn(FALSE);
+		}
+		break;
+	case LEADER_POLL_INFO:
+		{
+			m_pImgPInfoB->EnableBtn(FALSE);
+		}
+		break;
+	}
+	m_BPollState = i_BPollState;
+	// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	g_pInterface->m_pToolTip->m_bToolTipState = FALSE;
+	// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+}
+void CINFCityLeader::ChangeWarInfoState(BYTE i_BWarInfoState)
+{
+	switch(i_BWarInfoState)
+	{
+	case LEADER_WARINFO_INFLUENCE:
+		{
+			g_pFieldWinSocket->SendMsg(T_FC_CITY_WARINFO_INFLUENCE,NULL,NULL);
+		}
+		break;
+
+		
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	case LEADER_WARINFO_DECLAREWAR:
+		{
+			// 일반 세력일 경우 아무것도 안함
+			if( COMPARE_INFLUENCE( g_pShuttleChild->m_myShuttleInfo.InfluenceType, INFLUENCE_TYPE_NORMAL ) )
+				break;
+			
+			int		nOurMothershipNum;
+			int		nEnemyMothershipNum;
+			
+			// 각 세력에 대해 자신과 적의 모선 번호 셋팅
+			if( COMPARE_INFLUENCE( g_pShuttleChild->m_myShuttleInfo.InfluenceType, INFLUENCE_TYPE_ANI ) )
+			{
+				nOurMothershipNum	= ANI_MOTHERSHIP_NUMBER;
+				nEnemyMothershipNum	= BCU_MOTHERSHIP_NUMBER;
+			}
+			
+			else if( COMPARE_INFLUENCE( g_pShuttleChild->m_myShuttleInfo.InfluenceType, INFLUENCE_TYPE_VCN ) )
+			{
+				nOurMothershipNum	= BCU_MOTHERSHIP_NUMBER;
+				nEnemyMothershipNum	= ANI_MOTHERSHIP_NUMBER;
+			}	 
+			else
+			{
+				break;
+			}
+			
+			// 모선 텍스트 설정
+			MEX_MONSTER_INFO* pMonsterInfo = g_pDatabase->CheckMonsterInfo(nOurMothershipNum);
+			sprintf(m_szOurThisTakeOff, STRMSG_C_090113_0301, pMonsterInfo->MonsterName);
+			sprintf(m_szOurNextTakeOff, STRMSG_C_090113_0302, pMonsterInfo->MonsterName);
+			pMonsterInfo = g_pDatabase->CheckMonsterInfo(nEnemyMothershipNum);
+			sprintf(m_szEnemyThisTakeOff, STRMSG_C_090113_0301, pMonsterInfo->MonsterName);
+			sprintf(m_szEnemyNextTakeOff, STRMSG_C_090113_0302,	pMonsterInfo->MonsterName);
+			
+			
+			// 시간 텍스트 설정
+			ATUM_DATE_TIME tempDate;
+			tempDate.Year	= 0;
+			SetWarDeclareTime(tempDate, m_szOurThisTakeOffTime);
+			SetWarDeclareTime(tempDate, m_szOurNextTakeOffTime);
+			SetWarDeclareTime(tempDate, m_szEnemyThisTakeOffTime);
+			SetWarDeclareTime(tempDate, m_szEnemyNextTakeOffTime);
+			
+			
+			// Lock
+			{
+				vector<MessageType_t> vecUnLockMsg;
+				vecUnLockMsg.clear();
+				vecUnLockMsg.push_back(T_FC_INFO_DECLARATION_MSWAR_INFO);
+				vecUnLockMsg.push_back(T_FC_INFO_DECLARATION_MSWAR_INFO_OK);
+				// 하나만 매칭 되어도 락이 풀린다. 
+				g_pD3dApp->EnterMultiLock(TRUE, T_FC_INFO_DECLARATION_MSWAR_INFO, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+			}
+			
+			g_pFieldWinSocket->SendMsg(T_FC_INFO_DECLARATION_MSWAR_INFO, 0, 0);
+		}
+		break;
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+	case LEADER_WARINFO_MOTHERSHIP:
+		{
+			// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+			if(m_bStateWarInfo != i_BWarInfoState)
+			{
+				//TestMotherDB();
+				InitWarInfoMothership();				
+				RqMotherShipDB();
+			}
+//			g_pD3dApp->m_pChat->CreateChatChild(STRMSG_C_051114_0001, COLOR_ERROR );
+//			return;
+		}
+		break;
+	case LEADER_WARINFO_OUTPOST:
+		{
+			g_pFieldWinSocket->SendMsg(T_FC_CITY_WARINFO_OUTPOST,NULL,NULL);
+		}
+		break;
+	case LEADER_WARINFO_POINT:
+		{
+			// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+//			g_pD3dApp->m_pChat->CreateChatChild(STRMSG_C_051114_0001, COLOR_ERROR );
+			if(m_bStateWarInfo != i_BWarInfoState)
+			{
+				//TestPointWarDB();
+				InitWarInfoPointWar();				
+				RqPointWarDB();
+			}
+//			return;
+		}
+		break;
+	}
+	m_bStateWarInfo = i_BWarInfoState;
+	// 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+	g_pInterface->m_pToolTip->m_bToolTipState = FALSE;
+	// end 2011. 1. 12 by jskim UI 이미지 버튼 툴팁 구현
+}
+void CINFCityLeader::SendCandidateInfo()
+{
+	int nStep = m_pScrollPollList->GetScrollStep();
+	nStep += m_nSelectNum;
+	if(nStep < 0 ||
+		m_vecCandidateList.size() <= nStep)
+	{
+		return;
+	}
+	if(m_vecCandidateList[nStep].DeleteCandidate)
+	{// 한번 탈퇴한 유저는 정보를 볼수없다.
+		return;
+	}
+	m_nCandidateNum = m_vecCandidateList[nStep].LeaderCandidateNum;
+	MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO sMsg;
+	sMsg.LeaderCandidateNum = m_nCandidateNum;
+	g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO,(char*)&sMsg,sizeof(sMsg));
+}
+void CINFCityLeader::ButtonClickVote()
+{// 투표 버튼 클릭.
+//	MSG_FC_CITY_POLL_VOTE sMsg;
+//	sMsg.LeaderCandidateNum		= m_nCandidateNum;
+//	sMsg.CharacterUID			= m_sCandidateInfo.CharacterUID;
+//	sMsg.VoteCharacterUID		= g_pShuttleChild->GetMyShuttleInfo().CharacterUniqueNumber;
+//	g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_VOTE,(char*)&sMsg,sizeof(sMsg));
+	char buf[128];
+	wsprintf(buf,STRMSG_C_071029_0108,m_sCandidateInfo.CharacterName);
+	((CINFGameMain*)m_pParent)->m_pInfWindow->AddMsgBox(buf,_Q_POLL_CANDIDATE_VOTE);
+}
+void CINFCityLeader::AddCandidateList(MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK * pMsg)
+{
+	m_vecCandidateList.push_back(*pMsg);
+}
+void CINFCityLeader::AddCandidateListDone()
+{
+	ChangePollState(LEADER_POLL_LIST);
+	m_pScrollPollList->SetMaxItem(m_vecCandidateList.size());
+}
+void CINFCityLeader::ClearCandidateList()
+{
+	m_vecCandidateList.clear();
+}
+void CINFCityLeader::SetCandidate(BOOL i_bCandidate)
+{
+	m_bCandidate = i_bCandidate;
+	if(m_bCandidate)
+	{
+		m_pImgPAppB->EnableBtn(FALSE);
+		m_pImgPUnAppB->EnableBtn(TRUE);
+	}
+	else
+	{
+		m_pImgPAppB->EnableBtn(TRUE);
+		m_pImgPUnAppB->EnableBtn(FALSE);
+	}
+	
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			void CINFCityLeader::SetCandidateInfo(MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK * pMsg)
+/// \brief		후보 정보 셋팅.
+/// \author		dgwoo
+/// \date		2007-10-30 ~ 2007-10-30
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::SetCandidateInfo(MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK * pMsg)
+{
+	m_pImgGuildMark			= NULL;
+	m_pImgFace				= NULL;
+	ChangePollState(LEADER_POLL_INFO);
+	memcpy(&m_sCandidateInfo,pMsg,sizeof(MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK));
+	m_pImgFace = m_pPilotFace->FindPilotImage(m_sCandidateInfo.PilotFace);
+	// 2008-10-29 by bhsohn 에디트 박스 형태 변경
+	//int nMaxLineNum = m_pEditPledgeView->SetString(pMsg->CampaignPromises,SIZE_MAX_CAMPAIGNPROMISES);
+	int nMaxLineNum = m_pEditPledgeView->SetString(pMsg->CampaignPromises,SIZE_MAX_CAMPAIGNPROMISES, TRUE);
+	m_pScrollPollPledgeView->SetMaxItem(nMaxLineNum);
+	
+}
+void CINFCityLeader::SetCandidateInfoGuildMark(UID32_t i_nGuildUID)
+{
+	m_pImgGuildMark = g_pDatabase->GetGuildMark(i_nGuildUID);
+}
+void CINFCityLeader::SetPollDate(MSG_FC_CITY_POLL_REQUEST_POLL_DATE_OK * pMsg)
+{
+	m_AppEndDate				= pMsg->ApplicationEndDate;
+	m_AppStartDate				= pMsg->ApplicationStartDate;
+	m_VoteStartDate				= pMsg->VoteStartDate;
+	m_VoteEndDate				= pMsg->VoteEndDate;
+	m_Election					= pMsg->Election;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			void CINFCityLeader::PollRegLeaderCandidateOk()
+/// \brief		후보 등록이 완료 되었을경우.
+/// \author		dgwoo
+/// \date		2007-10-31 ~ 2007-10-31
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::PollRegLeaderCandidateOk(INT i_nCandidateNum)
+{
+	ClearCandidateList();
+	//ChangePollState() 함수 내에서 정보 요청을 다시 하지 않도록 -1 대입.
+	m_nSelectNum = -1;
+	m_pScrollPollList->SetScrollStep(0);
+	// 2007-11-08 by dgwoo 후보에 등록이 완료 되었을경우 탈퇴가능하게 버튼 수정.
+	SetCandidate(TRUE);
+	MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO sMsg;
+	sMsg.LeaderCandidateNum = i_nCandidateNum;
+	m_nCandidateNum = i_nCandidateNum;
+	g_pFieldWinSocket->SendMsg(T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO,(char*)&sMsg,sizeof(sMsg));
+}
+void CINFCityLeader::DeleteCandidateOk()
+{
+	ClearCandidateList();
+	return;
+}
+void CINFCityLeader::ButtonClickDeleteCandidate()
+{
+	char buf[512];
+	wsprintf(buf,STRMSG_C_071029_0101);
+	((CINFGameMain*)m_pParent)->m_pInfWindow->AddMsgBox(buf,_Q_POLL_CANDIDATE_DELETE);
+}
+void CINFCityLeader::AddOutPostInfo(SCITY_WARINFO_OUTPOST * i_pOutPostInfo)
+{
+	ST_WARINFO_OUTPOST stWarInfo;
+	memset(&stWarInfo,0x00,sizeof(ST_WARINFO_OUTPOST));
+	stWarInfo.GuildUID = i_pOutPostInfo->GuildUID;
+	stWarInfo.MapIndex = i_pOutPostInfo->MapIndex;
+	stWarInfo.OutpostDate = i_pOutPostInfo->OutpostDate;
+	memcpy(stWarInfo.GuildCommander,i_pOutPostInfo->GuildCommander,SIZE_MAX_CHARACTER_NAME);
+	memcpy(stWarInfo.GuildName,i_pOutPostInfo->GuildName,SIZE_MAX_GUILD_NAME);
+	stWarInfo.Influence = i_pOutPostInfo->Influence;
+	if(stWarInfo.GuildUID)
+	{
+		stWarInfo.pGuildMark = g_pDatabase->GetGuildMark(stWarInfo.GuildUID);
+		if(stWarInfo.pGuildMark == NULL)
+		{
+			MSG_FC_INFO_GET_GUILDMARK sMsg;
+			sMsg.GuildUID = stWarInfo.GuildUID;
+			g_pFieldWinSocket->SendMsg(T_FC_INFO_GET_GUILDMARK,(char*)&sMsg,sizeof(sMsg));
+		}
+	}
+	m_vecOutPostInfo.push_back(stWarInfo);
+}
+void CINFCityLeader::ClearOutPostInfo()
+{
+	m_vecOutPostInfo.clear();
+}
+void CINFCityLeader::SetWarInfoInfluence(MSG_FC_CITY_WARINFO_INFLUENCE_OK *pMsg)
+{
+	memcpy(&m_sInfluenceInfo,pMsg,sizeof(MSG_FC_CITY_WARINFO_INFLUENCE_OK));
+}
+BOOL CINFCityLeader::SetGuildMark(UID32_t i_nGuildUID)
+{
+	vector<ST_WARINFO_OUTPOST>::iterator it = m_vecOutPostInfo.begin();
+	while(it != m_vecOutPostInfo.end())
+	{
+		if(it->GuildUID == i_nGuildUID)
+		{
+			it->pGuildMark = g_pDatabase->GetGuildMark(i_nGuildUID);
+		}
+		it++;
+	}
+	return FALSE;
+}
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		// 모선전 정보 초기화
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::InitWarInfoMothership()
+{
+	m_vecMotherShipInfo.clear();
+	m_pScrollMotherShipInfo->SetMaxItem(m_vecMotherShipInfo.size());
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::AddWarInfoMothership(BYTE byAttackBelligerence,	// 공격세력
+											BYTE byWinBelligerence,		// 승리세력
+											char* pMonName,				// 모선이름
+											int nWarpoint,				// 세력포인트
+											ATUM_DATE_TIME	timeStartWarTime,	// 시작시간
+											ATUM_DATE_TIME	timeEndWarTime)		//종료시간	
+{
+	structMotherShipInfo sMsg;
+	memset(&sMsg, 0x00, sizeof(structMotherShipInfo));
+
+	// 공격 세력
+	if(IS_VCN_INFLUENCE_TYPE(byAttackBelligerence))
+	{
+		wsprintf(sMsg.chAttackInfluence,STRMSG_C_070608_0100);
+	}
+	else if(IS_ANI_INFLUENCE_TYPE(byAttackBelligerence))
+	{
+		wsprintf(sMsg.chAttackInfluence,STRMSG_C_070608_0101);
+	}	
+
+	// 승리 세력
+	if(IS_VCN_INFLUENCE_TYPE(byWinBelligerence))
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070608_0100);
+	}
+	else if(IS_ANI_INFLUENCE_TYPE(byWinBelligerence))
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070608_0101);
+	}	
+	else if(0 == byWinBelligerence)	// (0:진행중)
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070607_0102);		
+	}
+	
+	// 모선 이름
+	if(pMonName)
+	{
+		strncpy(sMsg.chMotherShipName, pMonName, SIZE_MAX_MONSTER_NAME);
+	}
+
+	// 세력포인트
+	char chWarPoint[64];								// 세력포인트
+	wsprintf(chWarPoint, "%d", nWarpoint);
+	MakeCurrencySeparator( sMsg.chWarPoint, chWarPoint, 3, ',' );
+
+	// 세력전 진행 시간	
+	string szStartStrBuf;
+	timeStartWarTime.GetLocalString_MMDD(timeStartWarTime.Month, 
+										timeStartWarTime.Day, 
+										szStartStrBuf);	
+
+	// 2008-04-22 by bhsohn 모선/거점전 진행중인 정보도 표시 하게 변경
+	if(0 == timeEndWarTime.Year)
+	{
+		wsprintf(sMsg.chTimeCap, "%s %02d:%02d ~ ", (char*)szStartStrBuf.c_str(), 
+												timeStartWarTime.Hour, 
+												timeStartWarTime.Minute);
+	}
+	else
+	{
+		string szEndStrBuf;
+		timeEndWarTime.GetLocalString_MMDD(timeEndWarTime.Month, 
+			timeEndWarTime.Day, 
+			szEndStrBuf);	
+		
+		wsprintf(sMsg.chTimeCap, "%s %02d:%02d ~ %s %02d:%02d ", (char*)szStartStrBuf.c_str(), timeStartWarTime.Hour, timeStartWarTime.Minute,
+			(char*)szEndStrBuf.c_str(), timeEndWarTime.Hour, timeEndWarTime.Minute);
+	}
+
+	// 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+	sMsg.SummonTime = timeStartWarTime;
+
+	m_vecMotherShipInfo.push_back(sMsg);	
+		
+	// 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+	sort(m_vecMotherShipInfo.begin(), m_vecMotherShipInfo.end(), sort_MotherShip_summontime());	
+
+	m_pScrollMotherShipInfo->SetMaxItem(m_vecMotherShipInfo.size());
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::RenderWarInfoMothership()
+{
+	// 스크롤 랜더
+	m_pScrollMotherShipInfo->Render();
+
+	// 2009. 01. 12 by ckPark 선전 포고 시스템
+	//m_pBtnMotherShipInfo->Render();	// 모선전탭으로 이동
+	// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+	vector<structMotherShipInfo>::iterator it = m_vecMotherShipInfo.begin();
+	int nCnt=0;
+	for(nCnt=0; nCnt < m_pScrollMotherShipInfo->GetScrollStep();nCnt++)
+	{
+		if(it != m_vecMotherShipInfo.end())
+		{
+			it++;
+		}
+	}		
+	
+	int nLine = 0;
+	int nX,nY;
+	SIZE sizeFont;
+	nX = nY = 0;
+
+	while(it != m_vecMotherShipInfo.end())
+	{
+		if(nLine >= MOTHERSHIP_INFO_VIEW_MAX_SCROLL_LINE)
+		{
+			break;
+		}
+		structMotherShipInfo sMsg = (*it);
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+		// 공격세력
+//		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chAttackInfluence);
+			nX = MOTHERSHIP_WARINFO_VIEW_ATT_INFL_X + ( ( MOTHERSHIP_WARINFO_VIEW_ATT_BOX_SIZE - sizeFont.cx ) /2);
+			nY = MOTHERSHIP_WARINFO_VIEW_ATT_INFL_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chAttackInfluence, 0L);
+//		}
+
+		// 모선명 
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chMotherShipName);
+			nX = MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_X + ( ( MOTHERSHIP_WARINFO_VIEW_ATT_BOX_SIZE - sizeFont.cx ) /2);
+			nY = MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chMotherShipName, 0L);
+		}
+
+		// 세력포인트
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWarPoint);
+			nX = MOTHERSHIP_WARINFO_VIEW_POINT_X + ( ( MOTHERSHIP_WARINFO_VIEW_POINT_BOX_SIZE - sizeFont.cx ) /2);
+			nY = MOTHERSHIP_WARINFO_VIEW_POINT_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWarPoint, 0L);
+		}
+
+		// 시간
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chTimeCap);
+			nX = MOTHERSHIP_WARINFO_VIEW_TIME_X + ( ( MOTHERSHIP_WARINFO_VIEW_TIME_BOX_SIZE - sizeFont.cx ) /2);
+			nY = MOTHERSHIP_WARINFO_VIEW_TIME_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chTimeCap, 0L);
+		}
+
+		// 승리 세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWinInfluence);
+			nX = MOTHERSHIP_WARINFO_VIEW_WININFL_X  + ( ( MOTHERSHIP_WARINFO_VIEW_WININFL_BOX_SIZE - sizeFont.cx ) /2);
+			nY = MOTHERSHIP_WARINFO_VIEW_WININFL_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWinInfluence, 0L);
+		}
+#else
+		// 공격세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chAttackInfluence);
+			nX = MOTHERSHIP_WARINFO_VIEW_ATT_INFL_X - (sizeFont.cx/2);
+			nY = MOTHERSHIP_WARINFO_VIEW_ATT_INFL_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chAttackInfluence, 0L);
+		}
+
+		// 모선명 
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chMotherShipName);
+			nX = MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_X - (sizeFont.cx/2);
+			nY = MOTHERSHIP_WARINFO_VIEW_ATT_MOTHER_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chMotherShipName, 0L);
+		}
+
+		// 세력포인트
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWarPoint);
+			nX = MOTHERSHIP_WARINFO_VIEW_POINT_X - (sizeFont.cx/2);
+			nY = MOTHERSHIP_WARINFO_VIEW_POINT_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWarPoint, 0L);
+		}
+
+		// 시간
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chTimeCap);
+			nX = MOTHERSHIP_WARINFO_VIEW_TIME_X - (sizeFont.cx/2);
+			nY = MOTHERSHIP_WARINFO_VIEW_TIME_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chTimeCap, 0L);
+		}
+
+		// 승리 세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWinInfluence);
+			nX = MOTHERSHIP_WARINFO_VIEW_WININFL_X - (sizeFont.cx/2);
+			nY = MOTHERSHIP_WARINFO_VIEW_WININFL_Y + (nLine*MOTHERSHIP_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWinInfluence, 0L);
+		}
+#endif
+		it++;
+		nLine++;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		// 모선전 정보 초기화
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::InitWarInfoPointWar()
+{
+	m_vecWarPointInfo.clear();
+	m_pScrollMotherShipInfo->SetMaxItem(m_vecWarPointInfo.size());
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::AddWarInfoPointWar(BYTE byAttackBelligerence,	// 공격세력
+											BYTE byWinBelligerence,		// 승리세력(0:진행중)
+											char* pMapName,				// 맵이름											
+											ATUM_DATE_TIME	timeStartWarTime,	// 시작시간
+											ATUM_DATE_TIME	timeEndWarTime)		//종료시간	
+{
+	structWarPointInfo sMsg;
+	memset(&sMsg, 0x00, sizeof(structWarPointInfo));
+
+	// 공격 세력
+	if(IS_VCN_INFLUENCE_TYPE(byAttackBelligerence))
+	{
+		wsprintf(sMsg.chAttackInfluence,STRMSG_C_070608_0100);
+	}
+	else if(IS_ANI_INFLUENCE_TYPE(byAttackBelligerence))
+	{
+		wsprintf(sMsg.chAttackInfluence,STRMSG_C_070608_0101);
+	}	
+
+	// 승리 세력
+	if(IS_VCN_INFLUENCE_TYPE(byWinBelligerence))
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070608_0100);
+	}
+	else if(IS_ANI_INFLUENCE_TYPE(byWinBelligerence))
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070608_0101);
+	}
+	// 2008-04-22 by bhsohn 모선/거점전 진행중인 정보도 표시 하게 변경
+	else if(0 == byWinBelligerence) //(0:진행중)
+	{
+		wsprintf(sMsg.chWinInfluence,STRMSG_C_070607_0102);		
+	}
+	// end 2008-04-22 by bhsohn 모선/거점전 진행중인 정보도 표시 하게 변경
+	
+	// 모선 이름
+	if(pMapName)
+	{
+		strncpy(sMsg.MapName, pMapName, SIZE_MAX_MAP_NAME);
+	}
+
+	// 세력전 진행 시간	
+	string szStartStrBuf;
+	timeStartWarTime.GetLocalString_MMDD(timeStartWarTime.Month, 
+										timeStartWarTime.Day, 
+										szStartStrBuf);	
+
+	// 2008-04-22 by bhsohn 모선/거점전 진행중인 정보도 표시 하게 변경
+	if(0 == timeEndWarTime.Year)
+	{
+		wsprintf(sMsg.chTimeCap, "%s %02d:%02d ~ ", (char*)szStartStrBuf.c_str(), 
+													timeStartWarTime.Hour, 
+													timeStartWarTime.Minute);
+
+	}
+	else
+	{
+		string szEndStrBuf;
+		timeEndWarTime.GetLocalString_MMDD(timeEndWarTime.Month, 
+			timeEndWarTime.Day, 
+			szEndStrBuf);	
+		
+		wsprintf(sMsg.chTimeCap, "%s %02d:%02d ~ %s %02d:%02d ", (char*)szStartStrBuf.c_str(), timeStartWarTime.Hour, timeStartWarTime.Minute,
+			(char*)szEndStrBuf.c_str(), timeEndWarTime.Hour, timeEndWarTime.Minute);
+	}
+	// 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+	sMsg.SummonTime = timeStartWarTime;
+	
+
+	m_vecWarPointInfo.push_back(sMsg);
+	
+	// 2008-08-19 by bhsohn 세력전, 모선전 정보 소환 시간으로 정렬
+	sort(m_vecWarPointInfo.begin(), m_vecWarPointInfo.end(), sort_WarPoint_summontime());	
+
+	m_pScrollMotherShipInfo->SetMaxItem(m_vecWarPointInfo.size());
+}
+
+
+
+
+// 2009. 01. 12 by ckPark 선전 포고 시스템
+
+void	CINFCityLeader::SetWarDeclareTime( const ATUM_DATE_TIME thisWarDeclare, char* pStr )
+{
+	// 만약 선전포고 년도가 0이면 포기로 간주
+	if(thisWarDeclare.Year == 0)
+		sprintf(pStr, STRMSG_C_090113_0321);		// 모선전 포기
+	else
+	{	// %d년%d월%d일 %d:%d
+		std::string strYYYYMMDD;
+		thisWarDeclare.GetLocalString_YYYYMMDD(thisWarDeclare.Year, thisWarDeclare.Month, thisWarDeclare.Day, strYYYYMMDD);
+		sprintf(pStr, STRMSG_C_090113_0322, strYYYYMMDD.c_str(), thisWarDeclare.Hour, thisWarDeclare.Minute );
+	}
+}
+
+void	CINFCityLeader::RenderWarInfoDeclareWar(void)
+{
+	m_pBtnWarDeclare->Render();
+	
+	m_pBtnMotherShipInfo->Render();
+
+	m_pFontWarDeclare->DrawText( OUR_THIS_TAKEOFF_X, OUR_THIS_TAKEOFF_Y, GUI_FONT_COLOR, m_szEnemyThisTakeOff );
+	m_pFontWarDeclare->DrawText( OUR_NEXT_TAKEOFF_X, OUR_NEXT_TAKEOFF_Y, GUI_FONT_COLOR, m_szEnemyNextTakeOff );
+	m_pFontWarDeclare->DrawText( ENEMY_THIS_TAKEOFF_X, ENEMY_THIS_TAKEOFF_Y, GUI_FONT_COLOR,  m_szOurThisTakeOff );
+	m_pFontWarDeclare->DrawText( ENEMY_NEXT_TAKEOFF_X, ENEMY_NEXT_TAKEOFF_Y, GUI_FONT_COLOR,  m_szOurNextTakeOff );
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+	SIZE size = m_pFontWarDeclare->GetStringSize(m_szOurThisTakeOffTime);
+	m_pFontWarDeclare->DrawText( OUR_THIS_TAKEOFFTIME_X + (WARDECLAR_SIZE - size.cx ) / 2, OUR_THIS_TAKEOFFTIME_Y, GUI_FONT_COLOR,	m_szOurThisTakeOffTime );
+	size = m_pFontWarDeclare->GetStringSize(m_szOurNextTakeOffTime);
+	m_pFontWarDeclare->DrawText( OUR_NEXT_TAKEOFFTIME_X + (WARDECLAR_SIZE - size.cx ) / 2, OUR_NEXT_TAKEOFFTIME_Y, GUI_FONT_COLOR,	m_szOurNextTakeOffTime );
+	size = m_pFontWarDeclare->GetStringSize(m_szEnemyThisTakeOffTime);
+	m_pFontWarDeclare->DrawText( ENEMY_THIS_TAKEOFFTIME_X + (WARDECLAR_SIZE - size.cx ) / 2, ENEMY_THIS_TAKEOFFTIME_Y, GUI_FONT_COLOR, m_szEnemyThisTakeOffTime );
+	size = m_pFontWarDeclare->GetStringSize(m_szEnemyNextTakeOffTime);
+	m_pFontWarDeclare->DrawText( ENEMY_NEXT_TAKEOFFTIME_X + (WARDECLAR_SIZE - size.cx ) / 2, ENEMY_NEXT_TAKEOFFTIME_Y, GUI_FONT_COLOR, m_szEnemyNextTakeOffTime );
+#else
+	m_pFontWarDeclare->DrawText( OUR_THIS_TAKEOFFTIME_X, OUR_THIS_TAKEOFFTIME_Y, GUI_FONT_COLOR,	m_szOurThisTakeOffTime );
+	m_pFontWarDeclare->DrawText( OUR_NEXT_TAKEOFFTIME_X, OUR_NEXT_TAKEOFFTIME_Y, GUI_FONT_COLOR,	m_szOurNextTakeOffTime );
+	m_pFontWarDeclare->DrawText( ENEMY_THIS_TAKEOFFTIME_X, ENEMY_THIS_TAKEOFFTIME_Y, GUI_FONT_COLOR, m_szEnemyThisTakeOffTime );
+	m_pFontWarDeclare->DrawText( ENEMY_NEXT_TAKEOFFTIME_X, ENEMY_NEXT_TAKEOFFTIME_Y, GUI_FONT_COLOR, m_szEnemyNextTakeOffTime);
+#endif
+}
+// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::RenderWarInfoPointWar()
+{
+	// 스크롤 랜더
+	m_pScrollMotherShipInfo->Render();
+
+	vector<structWarPointInfo>::iterator it = m_vecWarPointInfo.begin();
+	int nCnt=0;
+	for(nCnt=0; nCnt < m_pScrollMotherShipInfo->GetScrollStep();nCnt++)
+	{
+		if(it != m_vecWarPointInfo.end())
+		{
+			it++;
+		}
+	}		
+	
+	int nLine = 0;
+	int nX,nY;
+	SIZE sizeFont;
+	nX = nY = 0;
+
+	while(it != m_vecWarPointInfo.end())
+	{
+		if(nLine >= MOTHERSHIP_INFO_VIEW_MAX_SCROLL_LINE)
+		{
+			break;
+		}
+		structWarPointInfo sMsg = (*it);
+
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM
+		// 공격세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chAttackInfluence);
+			nX = POINTWAR_WARINFO_VIEW_ATT_INFL_X + ( ( POINTWAR_WARINFO_VIEW_ATT_SIZE - sizeFont.cx ) / 2 );
+			nY = POINTWAR_WARINFO_VIEW_ATT_INFL_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chAttackInfluence, 0L);
+		}
+
+		// 전략포인트 지도명
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.MapName);
+			nX = POINTWAR_WARINFO_VIEW_POINT_X + ( ( POINTWAR_WARINFO_VIEW_POINT_SIZE - sizeFont.cx ) / 2 );
+			nY = POINTWAR_WARINFO_VIEW_POINT_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.MapName, 0L);
+		}
+
+		// 시간
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chTimeCap);
+			nX = POINTWAR_WARINFO_VIEW_TIME_X + ( ( POINTWAR_WARINFO_VIEW_TIME_SIZE - sizeFont.cx ) / 2 );
+			nY = POINTWAR_WARINFO_VIEW_TIME_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chTimeCap, 0L);
+		}
+
+		// 승리 세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWinInfluence);
+			nX = POINTWAR_WARINFO_VIEW_WININFL_X + ( ( POINTWAR_WARINFO_VIEW_WININFL_SIZE - sizeFont.cx ) / 2 );
+			nY = POINTWAR_WARINFO_VIEW_WININFL_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWinInfluence, 0L);
+		}
+#else
+		// 공격세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chAttackInfluence);
+			nX = POINTWAR_WARINFO_VIEW_ATT_INFL_X - (sizeFont.cx/2);
+			nY = POINTWAR_WARINFO_VIEW_ATT_INFL_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chAttackInfluence, 0L);
+		}
+
+		// 전략포인트 지도명
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.MapName);
+			nX = POINTWAR_WARINFO_VIEW_POINT_X - (sizeFont.cx/2);
+			nY = POINTWAR_WARINFO_VIEW_POINT_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.MapName, 0L);
+		}
+
+		// 시간
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chTimeCap);
+			nX = POINTWAR_WARINFO_VIEW_TIME_X - (sizeFont.cx/2);
+			nY = POINTWAR_WARINFO_VIEW_TIME_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chTimeCap, 0L);
+		}
+
+		// 승리 세력
+		{
+			sizeFont = m_pFontWarInfo->GetStringSize(sMsg.chWinInfluence);
+			nX = POINTWAR_WARINFO_VIEW_WININFL_X - (sizeFont.cx/2);
+			nY = POINTWAR_WARINFO_VIEW_WININFL_Y + (nLine*POINTWAR_WARINFO_VIEW_CAP_HEIGHT);
+			m_pFontWarInfo->DrawText(nX, nY, GUI_FONT_COLOR_W, sMsg.chWinInfluence, 0L);
+		}
+#endif
+		it++;
+		nLine++;
+	}
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+int CINFCityLeader::WndProcWarInfoSub(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+			if(TRUE == m_pBtnMotherShipInfo->OnLButtonUp(pt))
+			{					
+				// 버튼 클릭 
+				g_pGameMain->GetINFMotherShipManager()->ShowWindowOption();
+				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_BUTTON_OK, D3DXVECTOR3(0,0,0), FALSE);
+				return  INF_MSGPROC_BREAK;
+			}			
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+			if(TRUE == m_pBtnMotherShipInfo->OnLButtonDown(pt))
+			{
+				// 버튼위에 마우스가 있다.
+				return  INF_MSGPROC_BREAK;
+			}	
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+
+			m_pBtnMotherShipInfo->OnMouseMove(pt);
+			
+			if(m_pScrollMotherShipInfo->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollMotherShipInfo->IsMouseScrollPos(pt))
+				{
+					m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				}
+				else
+				{
+					m_pScrollMotherShipInfo->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+		}
+		break;
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pScrollMotherShipInfo->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+	}
+	//return INF_MSGPROC_BREAK;
+	return INF_MSGPROC_NORMAL;
+}
+
+
+// 2009. 01. 12 by ckPark 선전 포고 시스템
+int		CINFCityLeader::WndProcInfluenceInfoTab(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return INF_MSGPROC_NORMAL;
+}
+
+int		CINFCityLeader::WndProcMotherShipResultTab(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	// 2009-03-13 by bhsohn 모선전 정보 스크롤창 버그 수정
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+		
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+		
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			
+			if(m_pScrollMotherShipInfo->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollMotherShipInfo->IsMouseScrollPos(pt))
+					m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				else
+				{
+					m_pScrollMotherShipInfo->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+		}
+		break;
+		
+	case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pScrollMotherShipInfo->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	}
+	// end 2009-03-13 by bhsohn 모선전 정보 스크롤창 버그 수정
+	return INF_MSGPROC_NORMAL;
+}
+
+int		CINFCityLeader::WndProcWarDeclareTab(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+	case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+
+			// 선전포고 창
+			if(TRUE == m_pBtnWarDeclare->OnLButtonUp(pt))
+			{
+				// 버튼 클릭 
+				// 2009. 11. 11 by jskim  일반세력으로 선전포고 버튼을 눌렀을 경우 튕기는 버그
+				if(COMPARE_INFLUENCE( g_pShuttleChild->m_myShuttleInfo.InfluenceType, INFLUENCE_TYPE_NORMAL ))
+				{
+					g_pD3dApp->m_pChat->CreateChatChild(STRMSG_C_091111_0401,COLOR_ERROR);// "선전포고 설정이 불가능합니다."
+					return INF_MSGPROC_BREAK;
+				}
+				//end 2009. 11. 11 by jskim  일반세력으로 선전포고 버튼을 눌렀을 경우 튕기는 버그
+				g_pGameMain->GetINFMotherShipManager()->GetWarDeclareWindow()->ShowWarDeclare();
+				g_pInterface->SetWindowOrder(WNDWarDecalre);
+				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_BUTTON_OK, D3DXVECTOR3(0,0,0), FALSE);
+				return  INF_MSGPROC_BREAK;
+			}
+
+			// 모선전 옵션
+			if(TRUE == m_pBtnMotherShipInfo->OnLButtonUp(pt))
+			{
+				// 버튼 클릭 
+				g_pGameMain->GetINFMotherShipManager()->ShowWindowOption();
+				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_BUTTON_OK, D3DXVECTOR3(0,0,0), FALSE);
+				return  INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+
+			if(TRUE == m_pBtnWarDeclare->OnLButtonDown(pt))
+			{
+				// 버튼위에 마우스가 있다.
+				return  INF_MSGPROC_BREAK;
+			}
+
+			if(TRUE == m_pBtnMotherShipInfo->OnLButtonDown(pt))
+			{
+				// 버튼위에 마우스가 있다.
+				return  INF_MSGPROC_BREAK;
+			}	
+		}
+		break;
+	case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			m_pBtnWarDeclare->OnMouseMove(pt);
+			m_pBtnMotherShipInfo->OnMouseMove(pt);			
+		}
+		break;	
+	}
+
+	return INF_MSGPROC_NORMAL;
+}
+
+int		CINFCityLeader::WndProcOutPostTab(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return INF_MSGPROC_NORMAL;
+}
+
+int		CINFCityLeader::WndProcPointWarTab(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch(uMsg)
+	{
+		case WM_LBUTTONUP:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->GetMouseMoveMode();
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+		case WM_LBUTTONDOWN:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseBallPos(pt);
+			if(bClick)
+			{
+				m_pScrollMotherShipInfo->SetMouseMoveMode(TRUE);
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+
+		case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(lParam);
+			CheckMouseReverse(&pt);
+			
+			if(m_pScrollMotherShipInfo->GetMouseMoveMode())
+			{
+				if(FALSE == m_pScrollMotherShipInfo->IsMouseScrollPos(pt))
+					m_pScrollMotherShipInfo->SetMouseMoveMode(FALSE);
+				else
+				{
+					m_pScrollMotherShipInfo->SetScrollPos(pt);
+					return INF_MSGPROC_BREAK;
+				}
+			}
+		}
+		break;
+		
+		case WM_MOUSEWHEEL:
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+			CheckMouseReverse(&pt);
+			BOOL bClick = m_pScrollMotherShipInfo->IsMouseWhellPos(pt);
+			if(bClick)		
+			{			
+				m_pScrollMotherShipInfo->OnMouseWheel(wParam, lParam);	
+				return INF_MSGPROC_BREAK;
+			}
+		}
+		break;
+	}
+
+	return INF_MSGPROC_NORMAL;
+}
+// end 2009. 01. 12 by ckPark 선전 포고 시스템
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::TestMotherDB()
+{
+	for(int nCnt = 0;nCnt <10;nCnt++)
+	{
+		char chMonster[20];
+		wsprintf(chMonster, "ROCK%d", nCnt);
+
+		ATUM_DATE_TIME	timeStartWarTime { true };
+		ATUM_DATE_TIME	timeEndWarTime { true };
+
+		AddWarInfoMothership(INFLUENCE_TYPE_VCN,	// 공격세력
+											INFLUENCE_TYPE_VCN,		// 승리세력
+											chMonster,				// 모선이름
+											100000,				// 세력포인트
+											timeStartWarTime,	// 시작시간
+											timeEndWarTime);	//종료시간	
+		
+	}
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::TestPointWarDB()
+{
+	for(int nCnt = 0;nCnt <10;nCnt++)
+	{
+		char chMonster[20];
+		wsprintf(chMonster, "ROCK%d", nCnt);
+
+		ATUM_DATE_TIME	timeStartWarTime { true };
+		ATUM_DATE_TIME	timeEndWarTime { true };
+
+		AddWarInfoPointWar(INFLUENCE_TYPE_VCN,	// 공격세력
+											INFLUENCE_TYPE_VCN,		// 승리세력
+											chMonster,				// 모선이름											
+											timeStartWarTime,	// 시작시간
+											timeEndWarTime);	//종료시간	
+		
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		모선전 정보 요청
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::RqMotherShipDB()
+{
+	g_pFieldWinSocket->SendMsg(T_FC_INFO_MSWARINFO_RESULT,NULL,NULL);
+}
+///////////////////////////////////////////////////////////////////////////////
+/// \fn			
+/// \brief		거점전 정보 요청
+/// \author		// 2008-03-19 by bhsohn 모선전, 거점전 정보창
+/// \date		2008-03-19 ~ 2008-03-19
+/// \warning	
+///
+/// \param		
+/// \return		
+///////////////////////////////////////////////////////////////////////////////
+void CINFCityLeader::RqPointWarDB()
+{
+	g_pFieldWinSocket->SendMsg(T_FC_INFO_SPWARINFO_RESULT,NULL,NULL);
+}
+
+
+void CINFCityLeader::UpdateScrollPos(float fPosX, float fPosY, float fWidth, float fHeight, int nWhellHeight)
+{		
+	POINT ptScroll;
+	RECT rcMouseWhell, rcMousePos;
+	
+	// 휠 위치지정 
+	rcMouseWhell.left		= fPosX;
+	rcMouseWhell.top		= fPosY;
+	rcMouseWhell.right		= rcMouseWhell.left + fWidth;
+	rcMouseWhell.bottom		= rcMouseWhell.top + nWhellHeight;
+	
+	
+	// 마우스 위치 지정
+	rcMousePos.left			= fPosX + SCROLL_BALL_POSX;
+	rcMousePos.top			= fPosY + SCROLL_BALL_POSY;
+	rcMousePos.right		= rcMousePos.left;
+	rcMousePos.bottom		= rcMousePos.top;
+		
+	// Resotre를 해야지만 이미지 크기를 알수 있다. 
+	m_pINFScrollBar->SetPosition(rcMousePos.left, rcMousePos.top, SCROLL_BALL_WIDTH, fHeight);
+	m_pINFScrollBar->SetMouseWhellRect(rcMouseWhell);			
+
+	ptScroll = m_pINFScrollBar->GetImgBkSize();
+	
+	rcMousePos.bottom		= rcMousePos.top + ptScroll.y + SCROLL_BALL_SCROLL_CAP;
+	rcMousePos.top			-= SCROLL_BALL_SCROLL_CAP;
+	rcMousePos.right		= rcMousePos.left + SCROLL_BALL_SCROLL_CAP;
+	rcMousePos.left			-= SCROLL_BALL_SCROLL_CAP;					
+	
+	m_pINFScrollBar->SetMouseBallRect(rcMousePos);
+}

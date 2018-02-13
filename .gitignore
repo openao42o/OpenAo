@@ -1,0 +1,18 @@
+/BuildResult
+/Intermediate
+/ProjectsServer/config
+/ProjectsServer/ebLauncher
+/DATedit.exe
+/DATedit.strs
+/DatEditor.exe
+/codegen/codegen/bin
+/codegen/codegen/obj
+*.suo
+/ProjectsServer/GameVoIP
+/ProjectsServer/ACEonline ActiveX WebLauncher
+/SFML-2.4.0
+/newlauncher
+/eclipse
+/sce_vectormath-master
+/ProjectsServer/XmlRpc/.vs
+/ProjectsServer/XmlRpc/XmlRpc.VC.db

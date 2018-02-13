@@ -1,0 +1,7 @@
+/Debug STL MT
+/Release STL MT
+/.vs
+/*.suo
+/*.db
+/*.sdf
+/ZipArchive.vcxproj.user

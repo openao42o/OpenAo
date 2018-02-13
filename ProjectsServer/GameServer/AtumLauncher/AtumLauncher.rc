@@ -1,0 +1,405 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean (Korea) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AtumLauncher.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "atum.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+CANF                    BITMAP                  "res\\CancelF.bmp"
+
+CANU                    BITMAP                  "res\\CancelU.bmp"
+
+CAND                    BITMAP                  "res\\CancelD.bmp"
+
+IDB_GOBTN               BITMAP                  "res\\GoBtn.bmp"
+
+MINU                    BITMAP                  "res\\MinU.bmp"
+
+MINF                    BITMAP                  "res\\MinF.bmp"
+
+MIND                    BITMAP                  "res\\MinD.bmp"
+
+IDB_BG_VTC_MASK         BITMAP                  "res\\BG_VTC_mask.bmp"
+
+IDB_SERVER_LIST_MASK    BITMAP                  "res\\ListBg_VTC_mask.bmp"
+
+#endif    // Korean (Korea) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BG_VTC              BITMAP                  "res\\BG_VTC.bmp"
+
+IDB_GO_VTC              BITMAP                  "res\\GoBtn_VTC.bmp"
+
+IDB_LISTBG_VTC          BITMAP                  "res\\ListBg_VTC.bmp"
+
+IDB_ICON_VTC            BITMAP                  "res\\icon_VTC.bmp"
+
+IDB_SERVERUSER_VTC      BITMAP                  "res\\ServerUser_VTC.bmp"
+
+IDB_GO_S2               BITMAP                  "res\\GoBtn_S2.bmp"
+
+IDB_GO_CHN              BITMAP                  "res\\GoBtn_Chn.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_SCREEN_KEYBOARD DIALOGEX 0, 0, 306, 286
+STYLE DS_SETFONT | WS_POPUP
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    CONTROL         "1",IDC_BTN_KEY_0,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,49,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "2",IDC_BTN_KEY_1,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,68,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "3",IDC_BTN_KEY_2,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,87,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "4",IDC_BTN_KEY_3,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,106,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "5",IDC_BTN_KEY_4,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,125,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "6",IDC_BTN_KEY_5,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,144,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "7",IDC_BTN_KEY_6,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,163,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "8",IDC_BTN_KEY_7,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,182,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "9",IDC_BTN_KEY_8,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,201,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "0",IDC_BTN_KEY_9,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,220,8,17,12,WS_EX_TRANSPARENT
+    CONTROL         "q",IDC_BTN_KEY_10,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,57,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "w",IDC_BTN_KEY_11,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,76,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "e",IDC_BTN_KEY_12,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,95,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "r",IDC_BTN_KEY_13,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,114,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "t",IDC_BTN_KEY_14,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,133,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "y",IDC_BTN_KEY_15,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,152,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "u",IDC_BTN_KEY_16,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,171,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "i",IDC_BTN_KEY_17,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,190,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "o",IDC_BTN_KEY_18,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,209,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "p",IDC_BTN_KEY_19,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,228,24,17,12,WS_EX_TRANSPARENT
+    CONTROL         "a",IDC_BTN_KEY_20,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,67,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "s",IDC_BTN_KEY_21,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,86,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "s",IDC_BTN_KEY_22,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,105,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "f",IDC_BTN_KEY_23,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,124,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "g",IDC_BTN_KEY_24,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,143,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "h",IDC_BTN_KEY_25,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,162,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "j",IDC_BTN_KEY_26,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,181,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "k",IDC_BTN_KEY_27,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,200,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "l",IDC_BTN_KEY_28,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,219,40,17,12,WS_EX_TRANSPARENT
+    CONTROL         "z",IDC_BTN_KEY_29,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,75,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "x",IDC_BTN_KEY_30,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,94,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "c",IDC_BTN_KEY_31,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,113,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "v",IDC_BTN_KEY_32,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,132,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "b",IDC_BTN_KEY_33,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,151,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "n",IDC_BTN_KEY_34,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,170,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "m",IDC_BTN_KEY_35,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,189,56,17,12,WS_EX_TRANSPARENT
+    CONTROL         "Backspace",IDC_BTN_BACKSPACE,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,240,7,50,12,WS_EX_TRANSPARENT
+    CONTROL         "Caps LOCK",IDC_BTN_CAPS_LOCK,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,24,40,41,12,WS_EX_TRANSPARENT
+    CONTROL         "Shift",IDC_BTN_SHIFT,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,25,57,49,12,WS_EX_TRANSPARENT
+    CONTROL         "Enter",IDC_BTN_ENTER,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,238,40,50,12,WS_EX_TRANSPARENT
+    CONTROL         "Space",IDC_BTN_SPACE,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,103,70,106,14,WS_EX_TRANSPARENT
+    PUSHBUTTON      "Cancel",IDCANCEL,173,192,50,14,NOT WS_VISIBLE | NOT WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,239,189,50,14,NOT WS_VISIBLE | NOT WS_TABSTOP
+END
+
+IDD_DIALOG_PRE_IP DIALOG 0, 0, 274, 132
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Developer's Version"
+FONT 12, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_PRESERVER_IP,7,17,82,58,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_BIN,7,49,242,58,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_BIN_SELECT,251,49,16,12
+    COMBOBOX        IDC_COMBO_PATH,7,81,242,58,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_PATH_SELECT,251,81,16,12
+    CONTROL         "Excute windows mode(Not fullscreen)",IDC_WINDOW_MODE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,103,135,10
+    DEFPUSHBUTTON   "OK",IDOK,217,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,217,24,50,14
+    CONTROL         "Client Update(warning: Write to existing files)",IDC_CLIENT_UPDATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,260,8
+    LTEXT           "PreServer IP",IDC_STATIC_PRE_IP,7,7,83,8
+    LTEXT           "Excute file path(If empty, do not become excute)",IDC_STATIC_BIN,7,39,164,8
+    LTEXT           "Excute directory path(Directory path that game is executed)",IDC_STATIC_PATH,7,71,193,8
+END
+
+IDD_DIALOG_LOGIN_SUCCESS DIALOG 0, 0, 392, 42
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SpaceCowboyLauncher - Success login"
+FONT 8, "Microsoft Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_CMD_LINE,7,7,378,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,335,21,50,14
+END
+
+IDD_ATUMLAUNCHER_DIALOG DIALOGEX 0, 0, 483, 388
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+EXSTYLE WS_EX_APPWINDOW
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_ACCOUNT,85,19,81,12,ES_AUTOHSCROLL | NOT WS_VISIBLE | NOT WS_BORDER,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT_PASSWORD,85,39,81,12,ES_PASSWORD | NOT WS_VISIBLE | NOT WS_BORDER,WS_EX_TRANSPARENT
+    CONTROL         "GO",IDGO,"Button",BS_OWNERDRAW | WS_TABSTOP,42,115,55,31
+    COMBOBOX        IDC_COMBO_WINDOW_DEGREE_LAUNCHER,201,168,61,108,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP,WS_EX_TRANSPARENT
+    CONTROL         "MIN",IDMIN,"Button",BS_OWNERDRAW | BS_FLAT,243,7,23,14,WS_EX_TRANSPARENT
+    CONTROL         "CAN",IDCAN,"Button",BS_OWNERDRAW | BS_FLAT,267,7,23,14,WS_EX_TRANSPARENT
+    DEFPUSHBUTTON   "OK",IDOK,7,43,27,27,NOT WS_VISIBLE
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",PBS_SMOOTH,18,87,148,8,WS_EX_TRANSPARENT
+    LTEXT           "            ",IDC_DOWNLOAD_FILENUM,209,221,40,8,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    CONTROL         "CANCEL",IDCANCEL,"Button",BS_OWNERDRAW | NOT WS_VISIBLE,259,31,37,16
+    CONTROL         "JOIN",IDJOIN,"Button",BS_OWNERDRAW | NOT WS_VISIBLE | WS_TABSTOP,170,39,39,14
+    CONTROL         "SECRET",IDSECRET,"Button",BS_OWNERDRAW | NOT WS_VISIBLE | WS_TABSTOP,108,366,41,15
+    CONTROL         "END",IDEND,"Button",BS_OWNERDRAW | NOT WS_VISIBLE | WS_TABSTOP,51,366,39,15
+    LTEXT           "",IDC_FILE_INFO,181,235,146,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_CHARACTER_NAME,21,15,46,28,0,WS_EX_TRANSPARENT
+    COMBOBOX        IDC_COMBO_SERVER_LIST,202,189,79,84,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "View Screen Keyboard",IDC_BTN_VIEW_SCREEN_KEYBOARD,247,273,93,14,NOT WS_VISIBLE | NOT WS_TABSTOP
+    CONTROL         "Homepage",IDC_BTN_HOMEPAGE,"Button",BS_OWNERDRAW | BS_FLAT | NOT WS_VISIBLE,241,66,23,14,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_CHECK_WINDOWS_MODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,397,275,8,8
+    CONTROL         "",IDC_CHECK_REMEMBER_ID,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,397,293,8,8
+    CONTROL         "",IDC_CHECK_V_SYNC,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,397,309,8,8
+    LISTBOX         IDC_LIST,168,87,93,72,LBS_OWNERDRAWVARIABLE | NOT WS_VISIBLE | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About SpaceCowboyLauncher"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "SpaceCowboyLauncher Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_DLG_GUARD_AGREEMENT DIALOG 0, 0, 251, 158
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP
+FONT 10, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,129,142,80,14
+    PUSHBUTTON      "OK",IDOK,42,142,80,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DLG_SCREEN_KEYBOARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 279
+    END
+
+    IDD_DIALOG_PRE_IP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 125
+    END
+
+    IDD_DIALOG_LOGIN_SUCCESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 385
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 35
+    END
+
+    IDD_ATUMLAUNCHER_DIALOG, DIALOG
+    BEGIN
+        MOCKUP, 0, 50, 0, 0, ".\res\BG_VTC - Copy.bmp"
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 476
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 381
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_DLG_GUARD_AGREEMENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 247
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 156
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,5,8
+ PRODUCTVERSION 0,0,4,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "DreamACE INC"
+            VALUE "FileDescription", "DreamACE Launcher"
+            VALUE "FileVersion", "4, 4, 0, 0"
+            VALUE "InternalName", "DreamACE Launcher"
+            VALUE "LegalCopyright", "Copyright (C) 2015"
+            VALUE "OriginalFilename", "Launcher.exe"
+            VALUE "PrivateBuild", "2010-0001"
+            VALUE "ProductName", "DreamACE Launcher"
+            VALUE "ProductVersion", "4, 4, 0, 0"
+            VALUE "SpecialBuild", "20100428"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ATUMLAUNCHER_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About AtumLauncher..."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\AtumLauncher.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

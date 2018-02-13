@@ -1,0 +1,112 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: QuestLoader - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2B.bat" with contents
+[
+@echo off
+flex.exe -PQuestLoader -t QuestLoader.l > QuestLoader.l.cpp
+]
+Creating command line "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2B.bat"
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2C.bat" with contents
+[
+@echo off
+bison.exe -pQuestLoader -o QuestLoader.cpp -d QuestLoader.y
+]
+Creating command line "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2C.bat"
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2D.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /I "." /I "..\..\Common" /I "..\..\GameServer\CommonGameServer" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "YY_NEVER_INTERACTIVE" /D "WIN32" /D "_MBCS" /D "_ATUM_DATA_LOADER" /Fp"..\..\output\QuestLoader\Release/QuestLoader.pch" /YX /Fo"..\..\output\QuestLoader\Release/" /Fd"..\..\output\QuestLoader\Release/" /FD /c 
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\main.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\GameServer\CommonGameServer\Quest.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoader.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoader.l.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoaderParser.cpp"
+"E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\GameServer\CommonGameServer\UserVariable.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPDD2D.tmp" 
+Building Lexer
+Building Parser
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPDDF9.tmp" with contents
+[
+libflex.lib /nologo /incremental:no /pdb:"..\..\output\QuestLoader\Release/QuestLoader.pdb" /machine:I386 /out:"..\..\output\QuestLoader\Release/QuestLoader.exe" 
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\main.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\Quest.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\QuestLoader.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\QuestLoader.l.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\QuestLoaderParser.obj"
+"\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\output\QuestLoader\Release\UserVariable.obj"
+]
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPDDF9.tmp"
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+..\..\GameServer\CommonGameServer\AtumParam.h(4850) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_INVENTORY' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4851) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_STORE' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4852) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY' : undeclared identifier
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\main.cpp(9) : error C2078: too many initializers
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\main.cpp(9) : error C2440: 'initializing' : cannot convert from 'class ez_map<int,class CQuest *,struct std::less<int>,class std::allocator<class CQuest *> > *' to 'class QuestLoaderParser'
+        No constructor could take the source type, or constructor overload resolution was ambiguous
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\main.cpp(10) : error C2039: 'Parse' : is not a member of 'QuestLoaderParser'
+        ..\..\GameServer\CommonGameServer\QuestLoaderParser.h(12) : see declaration of 'QuestLoaderParser'
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\main.cpp(20) : error C2440: 'initializing' : cannot convert from 'struct QUEST_PAY_ITEM *' to 'struct ITEM_W_COUNT *'
+        Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+Quest.cpp
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\GameServer\CommonGameServer\AtumParam.h(4850) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_INVENTORY' : undeclared identifier
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\GameServer\CommonGameServer\AtumParam.h(4851) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_STORE' : undeclared identifier
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\GameServer\CommonGameServer\AtumParam.h(4852) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY' : undeclared identifier
+QuestLoader.cpp
+..\..\GameServer\CommonGameServer\AtumParam.h(4850) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_INVENTORY' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4851) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_STORE' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4852) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY' : undeclared identifier
+QuestLoader.y(237) : error C2039: 'NPCIndex' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(242) : error C2039: 'NPCName' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(249) : error C2039: 'PreTalk' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(256) : error C2039: 'FailTalk' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(263) : error C2039: 'SuccessTalk' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(291) : error C2039: 'ReqEndurancePart' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(327) : error C2664: 'push_back' : cannot convert parameter 1 from 'struct ITEM_W_COUNT' to 'const struct QUEST_PAY_ITEM &'
+        Reason: cannot convert from 'struct ITEM_W_COUNT' to 'const struct QUEST_PAY_ITEM'
+        No constructor could take the source type, or constructor overload resolution was ambiguous
+QuestLoader.y(338) : error C2039: 'TargetMeetNPCIndex' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(343) : error C2039: 'TargetItem' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(354) : error C2039: 'EndPayBonusSkillPoint' : is not a member of 'CQuest'
+        ..\..\GameServer\CommonGameServer\Quest.h(40) : see declaration of 'CQuest'
+QuestLoader.y(389) : error C2664: 'push_back' : cannot convert parameter 1 from 'struct ITEM_W_COUNT' to 'const struct QUEST_PAY_ITEM &'
+        Reason: cannot convert from 'struct ITEM_W_COUNT' to 'const struct QUEST_PAY_ITEM'
+        No constructor could take the source type, or constructor overload resolution was ambiguous
+QuestLoader.l.cpp
+..\..\GameServer\CommonGameServer\AtumParam.h(4850) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_INVENTORY' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4851) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_STORE' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4852) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY' : undeclared identifier
+QuestLoaderParser.cpp
+..\..\GameServer\CommonGameServer\AtumParam.h(4850) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_INVENTORY' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4851) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_STORE' : undeclared identifier
+..\..\GameServer\CommonGameServer\AtumParam.h(4852) : error C2065: 'COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY' : undeclared identifier
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoaderParser.cpp(11) : error C2600: 'QuestLoaderParser::QuestLoaderParser' : cannot define a compiler-generated special member function (must be declared in the class first)
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoaderParser.cpp(15) : error C2511: 'QuestLoaderParser::QuestLoaderParser' : overloaded member function 'void (char *,class ez_map<int,class CQuest *,struct std::less<int>,class std::allocator<class CQuest *> > *)' not found in 'QuestLoaderParser'
+        ..\..\GameServer\CommonGameServer\QuestLoaderParser.h(12) : see declaration of 'QuestLoaderParser'
+E:\HeroRivals_22_08_2013\Source\Server\Projects(Masang)_Dev_Kor_140\AtumDataLoader\QuestLoader\QuestLoaderParser.cpp(26) : error C2039: 'Parse' : is not a member of 'QuestLoaderParser'
+        ..\..\GameServer\CommonGameServer\QuestLoaderParser.h(12) : see declaration of 'QuestLoaderParser'
+UserVariable.cpp
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+QuestLoader.exe - 33 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

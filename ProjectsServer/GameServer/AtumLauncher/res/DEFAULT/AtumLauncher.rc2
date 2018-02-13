@@ -1,0 +1,17 @@
+//
+// ATUMLAUNCHER.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////
+// 2012-12-06 by bckim, manifest 적용 - manifest 파일이름은 동일하게 유지한다.
+#ifdef SERVICE_TYPE_ENGLISH_SERVER_1
+//IDR_MANIFEST RT_MANIFEST MOVEABLE PURE ".\\res\\Masangsoft.exe.manifest"
+#endif
