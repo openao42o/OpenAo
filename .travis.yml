@@ -8,4 +8,4 @@ install:
   - pip install cpplint
 
 script:
-  - cpplint --verbose=5 --quiet `find . -path '*' \( -name '*.h' -o -name '*.cpp' \)` -not -path "./ProjectAtum/DX9*"
+  - cpplint --verbose=5 --quiet `find . -path '*' \( -name '*.h' -o -name '*.cpp' \) -not -path "./ProjectAtum/DX9*"`
