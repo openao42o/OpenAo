@@ -4,11 +4,8 @@ language: python
 sudo: false
 python:
   - 3.5
-  - 2.7
-  - pypy
-  - pypy3
 install:
   - pip install cpplint
 
 script:
-  - cpplint --verbose=5 `find . -path '*' \( -name '*.h' -o -name '*.cpp' \)`
+  - cpplint --verbose=5 --quiet `find . -path '*' \( -name '*.h' -o -name '*.cpp' \)` -not -path "./ProjectAtum/DX9*"
