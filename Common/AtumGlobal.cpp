@@ -1,4 +1,5 @@
-﻿// AtumGlobal.cpp
+﻿//Copyright[2002] MasangSoft
+// AtumGlobal.cpp
 // Atum global function group
 //////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
@@ -30,7 +31,7 @@ extern CAtumApplication * g_pD3dApp;
 
 void SetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float fDestValue)
 {
-    switch(nDestParam)
+    switch (nDestParam)
     {
     case DES_NULL:                        // 대상 파라미터가 없는 경우 사용
     case DES_FACTION_01    :                // 속성 01, check: 추가됨
@@ -387,7 +388,7 @@ void SetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float f
 
 float GetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam)
 {
-    switch(nDestParam)
+    switch (nDestParam)
     {
     case DES_NULL:                        // 대상 파라미터가 없는 경우 사용
     case DES_FACTION_01    :                // 속성 01, check: 추가됨
@@ -602,7 +603,7 @@ float GetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam)
 
 void ReleaseParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float fDestValue)
 {
-    switch(nDestParam)
+    switch (nDestParam)
     {
     case DES_NULL:                        // 대상 파라미터가 없는 경우 사용
     case DES_FACTION_01    :                // 속성 01, check: 추가됨
@@ -1057,17 +1058,17 @@ void SetItem_ParamFactor( ITEM & item, CParamFactor &paramFactor )
     item.ReactionRange += paramFactor.pfp_REACTION_RANGE;
 
     // 2005-03-28 by jschoi - 서버 요청으로 조건문 추가
-    if(item.ReqMinLevel != 0)
+    if (item.ReqMinLevel != 0)
     {
         item.ReqMinLevel = max(0, (int)item.ReqMinLevel + paramFactor.pfp_REQ_MIN_LEVEL);
     }
     // 2005-03-28 by jschoi - 서버 요청으로 조건문 추가
-    if(item.ReqMaxLevel != 0)
+    if (item.ReqMaxLevel != 0)
     {
         item.ReqMaxLevel += paramFactor.pfp_REQ_MAX_LEVEL;
     }
 
-    if(IS_PRIMARY_WEAPON(item.Kind))
+    if (IS_PRIMARY_WEAPON(item.Kind))
     {
         item.Endurance += paramFactor.pfp_ENDURANCE_01;    // 내구도 01
         item.Charging += paramFactor.pfp_CHARGING_01;    // 장탄수 01
@@ -1162,7 +1163,7 @@ void SetItem_ParamFactor( ITEM & item, CParamFactor &paramFactor )
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CompareIntRange(INT_RANGE &range, INT nValue)
 {
-    if( (range.Min == 0 ? TRUE : range.Min <= nValue) &&
+    if ( (range.Min == 0 ? TRUE : range.Min <= nValue) &&
         (range.Max == 0 ? TRUE : range.Max >= nValue) )
     {
         return TRUE;
@@ -1182,7 +1183,7 @@ BOOL CompareIntRange(INT_RANGE &range, INT nValue)
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CompareBitFlag( USHORT nSource, USHORT nValue )
 {
-    if(nSource == 0 ? TRUE : nSource & nValue )
+    if (nSource == 0 ? TRUE : nSource & nValue )
     {
         return TRUE;
     }
@@ -1202,7 +1203,7 @@ BOOL CompareBitFlag( USHORT nSource, USHORT nValue )
 BOOL CompareItemCount( ITEM_W_COUNT &itemCount )
 {
     ASSERT_ASSERT(g_pStoreData);
-    if( g_pStoreData->GetCurrentCountItemInInventoryByItemNum( itemCount.ItemNum ) >= itemCount.Count )
+    if (g_pStoreData->GetCurrentCountItemInInventoryByItemNum( itemCount.ItemNum ) >= itemCount.Count )
     {
         return TRUE;
     }
@@ -1212,20 +1213,20 @@ BOOL CompareItemCount( ITEM_W_COUNT &itemCount )
 // 각 기어별 잔상 이펙트
 int GetGearTrace(UINT nUnitKind)
 {
-    if(IS_BT(nUnitKind))
+    if (IS_BT(nUnitKind))
         return RC_EFF_BGEAR_TRACE;
-    if(IS_OT(nUnitKind))
+    if (IS_OT(nUnitKind))
         return RC_EFF_MGEAR_TRACE;
-    if(IS_DT(nUnitKind))
+    if (IS_DT(nUnitKind))
         return RC_EFF_AGEAR_TRACE;
-    if(IS_ST(nUnitKind))
+    if (IS_ST(nUnitKind))
         return RC_EFF_IGEAR_TRACE;
     return 0;
 }
 
 char* GetGuildRankName( BYTE nGuildRank )
 {
-    switch(nGuildRank)
+    switch (nGuildRank)
     {
     case GUILD_RANK_PRIVATE_NULL:
         return STRCMD_CS_GUILD_RANK_PRIVATE_NULL;
@@ -1271,7 +1272,7 @@ unsigned short GGetUnitUpgradeLevel(unsigned short i_nUnitKind)
 {
     FLOG( "GGetUnitUpgradeLevel(unsigned short i_nUnitKind)" );
     unsigned short nHexLevel = 1;    
-    if(IS_BT (i_nUnitKind)) nHexLevel = i_nUnitKind - 0x0000;
+    if (IS_BT (i_nUnitKind)) nHexLevel = i_nUnitKind - 0x0000;
     else if (IS_OT(i_nUnitKind)) nHexLevel = i_nUnitKind - 0x000F;
     else if (IS_DT(i_nUnitKind)) nHexLevel = i_nUnitKind - 0x00FF;
     else if (IS_ST(i_nUnitKind)) nHexLevel = i_nUnitKind - 0x0FFF;
@@ -1296,10 +1297,10 @@ unsigned short GGetUnitKindHexToDeimal(unsigned short i_nUnitKind)
 {
 /*    unsigned short nUpgradeLevel = GGetUnitUpgradeLevel( i_nUnitKind );
 
-    if(IS_BT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_B_GEAR;
-    else if(IS_OT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_M_GEAR;
-    else if(IS_DT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_A_GEAR;
-    else if(IS_ST(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_I_GEAR;
+    if (IS_BT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_B_GEAR;
+    else if (IS_OT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_M_GEAR;
+    else if (IS_DT(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_A_GEAR;
+    else if (IS_ST(i_nUnitKind)) return nUpgradeLevel + UNIT_KIND_SHIFT_I_GEAR;
 */
     switch (i_nUnitKind)
     {
@@ -1318,10 +1319,10 @@ unsigned short GGetUnitKindHexToDeimal(unsigned short i_nUnitKind)
 
 int GetUnitTypeDecimal(unsigned short nUnitKind) 
 {
-    if( IS_BT(nUnitKind) ) return 0;
-    if( IS_OT(nUnitKind) ) return 1;
-    if( IS_DT(nUnitKind) ) return 2;
-    if( IS_ST(nUnitKind) ) return 3;
+    if ( IS_BT(nUnitKind) ) return 0;
+    if ( IS_OT(nUnitKind) ) return 1;
+    if ( IS_DT(nUnitKind) ) return 2;
+    if ( IS_ST(nUnitKind) ) return 3;
     return 0;
 }
 
@@ -1337,27 +1338,27 @@ float Random(float max, float min)
 int GetCreateUnitWeapon11(int nUnitKind)
 {
 // 2005-11-25 by ispark, EP2에서는 무기 지급이 공통이므로 표준무기로 입력(1형 : 테일)
-//    if(IS_BT(nUnitKind)) return 7002710;
-//    if(IS_OT(nUnitKind)) return 7002750;
-//    if(IS_DT(nUnitKind)) return 7002770;
-//    if(IS_ST(nUnitKind)) return 7002740;
+//    if (IS_BT(nUnitKind)) return 7002710;
+//    if (IS_OT(nUnitKind)) return 7002750;
+//    if (IS_DT(nUnitKind)) return 7002770;
+//    if (IS_ST(nUnitKind)) return 7002740;
 //    return 0;
     // 2006-01-02 by ispark, 오른쪽 (0으로 끝남)
-    if(IS_DT(nUnitKind)) return 7000050;
+    if (IS_DT(nUnitKind)) return 7000050;
     return 7001950;
 }
 int GetCreateUnitWeapon12(int nUnitKind)
 {
     // 2006-01-02 by ispark, 왼쪽 (1로 끝남)
-    if(IS_DT(nUnitKind)) return 7000050;
+    if (IS_DT(nUnitKind)) return 7000050;
     return 7001950;
 }
 int GetCreateUnitEngine(int nUnitKind)
 {
-    if(IS_BT(nUnitKind)) return 7001230;
-    if(IS_OT(nUnitKind)) return 7002580;
-    if(IS_DT(nUnitKind)) return 7002590;
-    if(IS_ST(nUnitKind)) return 7002570;
+    if (IS_BT(nUnitKind)) return 7001230;
+    if (IS_OT(nUnitKind)) return 7002580;
+    if (IS_DT(nUnitKind)) return 7002590;
+    if (IS_ST(nUnitKind)) return 7002570;
     return 0;
 }
 
@@ -1442,7 +1443,7 @@ UINT GetUnitNum(int nDegree, int nDefenseItemNum, int nUnitKind, BOOL bCharacter
 #endif
             break;
         default:
-        if(nUnitKind >= 100)
+        if (nUnitKind >= 100)
                 nUnitKind = 100;
         else
             nUnitKind = 0;
@@ -1478,7 +1479,7 @@ char* GetWaterTypeAtMap(USHORT nMapIndex )
 {
     // 2005-06-29 by ispark
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
-    switch(pMapInfo->WaterType) 
+    switch (pMapInfo->WaterType) 
     {
     case 0:
         return NULL;
@@ -1489,7 +1490,7 @@ char* GetWaterTypeAtMap(USHORT nMapIndex )
     case 3:
         return "black.tex";            // 2008-06-26 by dgwoo 깔루아 다시 변경. black_g => black
     }
-/*    switch( nMapIndex )
+/*    switch ( nMapIndex )
     {
     case 1001:
     case 2001:
@@ -1527,7 +1528,7 @@ char* GetWaterTypeAtMap(USHORT nMapIndex )
 float GetWaterTick(USHORT nMapIndex )
 {
 
-    switch( nMapIndex )
+    switch ( nMapIndex )
     {
     case 1001:
     case 2001:
@@ -1570,7 +1571,7 @@ BOOL IsTileMapRenderEnable(USHORT nMapIndex )
     // 2007-04-12 by bhsohn 포커스 잃어 버렸을때의 추가버그 처리
     //return pMapInfo->TileRenderingFlag;
     //BOOL bMapRender = pMapInfo->TileRenderingFlag;
-    //if(bMapRender && g_pD3dApp->IsDeviceLost())
+    //if (bMapRender && g_pD3dApp->IsDeviceLost())
     //{
     //    bMapRender = FALSE;        
     //}
@@ -1590,7 +1591,7 @@ BOOL IsTileMapTickEnable(USHORT nMapIndex )
 MapIndex_t GetMapIndexBGM(USHORT nMapIndex)
 {
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);    
-    if(pMapInfo == NULL)
+    if (pMapInfo == NULL)
         return NULL;
     return pMapInfo->Bgm;
 }
@@ -1727,14 +1728,14 @@ void SetFogLevel(USHORT nMapIndex,BOOL bDay)
 // 2005-06-29 by ispark
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
-    if(pMapInfo == NULL)
+    if (pMapInfo == NULL)
     {
         DBGOUT("맵(%d)이 없습니다.\n", nMapIndex);
         return;
     }
     DBGOUT("DayFogST = %d, DayFogED = %d\n", pMapInfo->DayFogStartDistance, pMapInfo->DayFogEndDistance);
     DBGOUT("NightFogST = %d, NightFogED = %d\n", pMapInfo->NightFogStartDistance, pMapInfo->NightFogEndDistance);
-    if(bDay)
+    if (bDay)
     {
         g_pScene->SetFogLevel(pMapInfo->DayFogColor, pMapInfo->DayFogStartDistance, pMapInfo->DayFogEndDistance);
     }
@@ -1749,7 +1750,7 @@ D3DXVECTOR3 GetMapDirection(USHORT nMapIndex,BOOL bDay)
     // 2005-06-29 by ispark
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
-    if(bDay)
+    if (bDay)
     {
         return A2DX(pMapInfo->DaySunDirection);
     }
@@ -1765,7 +1766,7 @@ void SetOptionFogDistance(USHORT nMapIndex,BOOL bDay, float fFogStart, float fFo
 
     // 2005-04-29 by jschoi
     float fFogE, fFogS;
-    if(IS_TUTORIAL_MAP_INDEX(nMapIndex))
+    if (IS_TUTORIAL_MAP_INDEX(nMapIndex))
     {
         fFogE = fFogEnd;
         fFogS = fFogStart;
@@ -1779,7 +1780,7 @@ void SetOptionFogDistance(USHORT nMapIndex,BOOL bDay, float fFogStart, float fFo
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
     
-    if(bDay)
+    if (bDay)
     {
         g_pScene->SetFogLevel(pMapInfo->DayFogColor, fFogS, fFogE);
         DBGOUT("Scene DayFogST = %d, DayFogED = %d\n", fFogS, fFogE);
@@ -1808,12 +1809,12 @@ void SetOptionFogDistance(USHORT nMapIndex,BOOL bDay, float fFogStart, float fFo
 // 2005-03-04 by jschoi
 void CheckMouseReverse(POINT* pt)
 {
-    if(g_pD3dApp->m_dwGameState != _GAME)
+    if (g_pD3dApp->m_dwGameState != _GAME)
     {
         return;
     }
 
-    if(    g_pInterface && 
+    if (g_pInterface && 
         g_pInterface->m_pTarget && 
         g_pInterface->m_pTarget->m_nMouseType == MOUSE_TYPE_0)    
     {
@@ -1821,12 +1822,12 @@ void CheckMouseReverse(POINT* pt)
     }
 
     // 좌우반전 옵션
-    if(g_pSOption && g_pSOption->sMouseReversLeft == TRUE)
+    if (g_pSOption && g_pSOption->sMouseReversLeft == TRUE)
     {
         pt->x = g_pD3dApp->GetBackBufferDesc().Width - pt->x;
     }
     // 상하반전 옵션
-    if(g_pSOption && g_pSOption->sMouseReversUp == TRUE)
+    if (g_pSOption && g_pSOption->sMouseReversUp == TRUE)
     {
         pt->y = g_pD3dApp->GetBackBufferDesc().Height - pt->y;
     }
@@ -1845,7 +1846,7 @@ void CheckMouseReverse(POINT* pt)
 ///////////////////////////////////////////////////////////////////////////////
 float GetCharacterHeight(int nPilotNum)
 {
-    switch(nPilotNum) 
+    switch (nPilotNum) 
     {
     case 20000000:                        // 여자
         //return 10.4f * 1.5f;            // 2007-07-18 by dgwoo 캐릭터 변경 
@@ -1910,7 +1911,7 @@ float GetCharacterHeight(int nPilotNum)
 float GetCharacterSteps(int nPilotNum)
 {
 // 2007-07-20 by dgwoo 모든 캐릭터의 보폭을 같게함.
-//    switch(nPilotNum) 
+//    switch (nPilotNum) 
 //    {
 //    case 0:                        // 여자
 //        return 50.0f;
@@ -1948,7 +1949,7 @@ float GetCharacterSteps(int nPilotNum)
 BOOL GetCharactorName(char* o_szCharatorName,INT i_nPilotNum)
 {
     char buf[SIZE_MAX_CHARACTER_NAME];
-    switch(i_nPilotNum)
+    switch (i_nPilotNum)
     {
     case 0:                        // 여자
         wsprintf(buf,STRMSG_C_071122_0103);
@@ -2060,7 +2061,7 @@ void GetBaseChange3D(POINT pt, D3DXVECTOR3 *vOutPos, D3DXVECTOR3 *vOutDir)
 int GetPositionInvenScreenMode()
 {
     // 2007-12-21 by dgwoo 창모드 지원
-    switch(g_pD3dApp->GetHeight())
+    switch (g_pD3dApp->GetHeight())
     {
 
         case RESOLUTION_FULL_H_720:
@@ -2114,7 +2115,7 @@ int GetPositionInvenScreenMode()
 
     }
 //    DbgOut("Window Height(%d)",g_pD3dApp->GetBackBufferDesc().Height);
-//    switch(g_pD3dApp->GetBackBufferDesc().Height)
+//    switch (g_pD3dApp->GetBackBufferDesc().Height)
 //    {
 //    case INVEN_RESOLUTION_1:
 //        return 173;
@@ -2122,15 +2123,15 @@ int GetPositionInvenScreenMode()
 //        return 311;
 //    case INVEN_RESOLUTION_3:
 //        {
-//            if(g_pD3dApp->GetBackBufferDesc().Height == 960)
+//            if (g_pD3dApp->GetBackBufferDesc().Height == 960)
 //                return 423;
 //            // 2007-04-24 by bhsohn 와이드 모니터 관련 처리
-//            else if(g_pD3dApp->GetBackBufferDesc().Height == 800)
+//            else if (g_pD3dApp->GetBackBufferDesc().Height == 800)
 //            {
 //                return 311;
 //            }
 //            // 2007-08-23 by bhsohn 1280X720와이드 모니터 관련 처리
-//            else if(720 == g_pD3dApp->GetBackBufferDesc().Height)
+//            else if (720 == g_pD3dApp->GetBackBufferDesc().Height)
 //            {
 //                return 255;
 //            }
@@ -2141,7 +2142,7 @@ int GetPositionInvenScreenMode()
 //    case INVEN_RESOLUTION_4:
 //        {
 //            // 2007-04-24 by bhsohn 와이드 모니터 관련 처리
-//            if(g_pD3dApp->GetBackBufferDesc().Height == 900)
+//            if (g_pD3dApp->GetBackBufferDesc().Height == 900)
 //            {
 //                return 388;
 //            }
@@ -2179,10 +2180,10 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
     // 미세력, 바이제니유
-    if(nInfluenceType == INFLUENCE_TYPE_NORMAL ||
+    if (nInfluenceType == INFLUENCE_TYPE_NORMAL ||
         nInfluenceType == INFLUENCE_TYPE_VCN)
     {        
-        if(pMapInfo->MapInfluenceType == MAP_INFLUENCE_ANI_START)
+        if (pMapInfo->MapInfluenceType == MAP_INFLUENCE_ANI_START)
         {
             return FALSE;
         }        
@@ -2196,7 +2197,7 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
     // 알링턴
     else if (nInfluenceType == INFLUENCE_TYPE_ANI)
     {
-        if(pMapInfo->MapInfluenceType == MAP_INFLUENCE_VCN_START)
+        if (pMapInfo->MapInfluenceType == MAP_INFLUENCE_VCN_START)
         {
             return FALSE;
         }
@@ -2228,9 +2229,9 @@ BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
 {
     MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
     // 바이제니유.
-    if(nInfluenceType == INFLUENCE_TYPE_VCN)
+    if (nInfluenceType == INFLUENCE_TYPE_VCN)
     {
-        if(IS_MAP_INFLUENCE_ANI(pMapInfo->MapInfluenceType))
+        if (IS_MAP_INFLUENCE_ANI(pMapInfo->MapInfluenceType))
         {
             return FALSE;
         }
@@ -2238,7 +2239,7 @@ BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
     // 알링턴.
     else if (nInfluenceType == INFLUENCE_TYPE_ANI)
     {
-        if(IS_MAP_INFLUENCE_VCN(pMapInfo->MapInfluenceType))
+        if (IS_MAP_INFLUENCE_VCN(pMapInfo->MapInfluenceType))
         {
             return FALSE;
         }
@@ -2292,7 +2293,7 @@ BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BY
 ///////////////////////////////////////////////////////////////////////////////
 void GetInfluenceString(char* pOutStr, USHORT nMyInfluenceType)
 {
-    if(nMyInfluenceType == INFLUENCE_TYPE_NORMAL)
+    if (nMyInfluenceType == INFLUENCE_TYPE_NORMAL)
     {
         strcpy(pOutStr, STRCMD_CS_INFLUENCE_TYPE_NORMAL);
     }
@@ -2334,10 +2335,10 @@ int GetMapItemVisibleDistance(USHORT nMapIndex)
 ///////////////////////////////////////////////////////////////////////////////
 int GetInvenUseEngineEffectNum(int nUnitKind)
 {
-    if(IS_BT(nUnitKind)) return 6351600;        // B기어
-    if(IS_OT(nUnitKind)) return 6357000;        // M기어
-    if(IS_DT(nUnitKind)) return 6353100;        // A기어
-    if(IS_ST(nUnitKind)) return 6350500;        // I기어
+    if (IS_BT(nUnitKind)) return 6351600;        // B기어
+    if (IS_OT(nUnitKind)) return 6357000;        // M기어
+    if (IS_DT(nUnitKind)) return 6353100;        // A기어
+    if (IS_ST(nUnitKind)) return 6350500;        // I기어
     return 0;
 }
 
@@ -2353,10 +2354,10 @@ int GetInvenUseEngineEffectNum(int nUnitKind)
 ///////////////////////////////////////////////////////////////////////////////
 int GetInvenUseEngineObjectNum(int nUnitKind)
 {
-    if(IS_BT(nUnitKind)) return 6332800;        // B기어
-    if(IS_OT(nUnitKind)) return 6336000;        // M기어
-    if(IS_DT(nUnitKind)) return 6333400;        // A기어
-    if(IS_ST(nUnitKind)) return 6332400;        // I기어
+    if (IS_BT(nUnitKind)) return 6332800;        // B기어
+    if (IS_OT(nUnitKind)) return 6336000;        // M기어
+    if (IS_DT(nUnitKind)) return 6333400;        // A기어
+    if (IS_ST(nUnitKind)) return 6332400;        // I기어
     return 0;
 }
 
@@ -2472,11 +2473,11 @@ BOOL ReSetRemoveString(int nType, char *pChar)
     char pSubStringTemp[260] = {0,};
     int nRemoveCount = 0, nInCount = 0;
     // 특수 문자 빼기
-    if(nType == SPECIAL_STRING)
+    if (nType == SPECIAL_STRING)
     {
-        for(int i = 0; i < nStrLen; i++)
+        for (int i = 0; i < nStrLen; i++)
         {
-            if((*(pChar+i) >= 33 && *(pChar+i) <= 47) ||        // ! ~ /
+            if ((*(pChar+i) >= 33 && *(pChar+i) <= 47) ||        // ! ~ /
                 (*(pChar+i) >= 58 && *(pChar+i) <= 64) ||        // : ~ @
                 (*(pChar+i) >= 91 && *(pChar+i) <= 96) ||        // [ ~ `
                 (*(pChar+i) >= 123 && *(pChar+i) <= 126))        // { ~ ~
@@ -2491,7 +2492,7 @@ BOOL ReSetRemoveString(int nType, char *pChar)
         }
     }
 
-    if(nRemoveCount > 0)
+    if (nRemoveCount > 0)
     {
         memset(pChar, 0x00, nStrLen);
         strncpy(pChar,pSubStringTemp, nStrLen);
@@ -2513,7 +2514,7 @@ BOOL ReSetRemoveString(int nType, char *pChar)
 float GetCollReflect(D3DXVECTOR3 *pvOut, D3DXVECTOR3 *pvVel, D3DXVECTOR3 *pvNor, BOOL    bRight)
 {
     D3DXVECTOR3 vIVel;
-    if(bRight)
+    if (bRight)
         vIVel = -1.0f * *pvVel;
     else
         vIVel = *pvVel;
@@ -2539,7 +2540,7 @@ void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string>
 {
     FLOG( "CINFGameMain::StringCullingUserData(char *strFullString, int nHeight, vector<string> *vecStorage)" );
     
-    if(nCullStringNum>strlen(pLineString))
+    if (nCullStringNum>strlen(pLineString))
     {
         vecStorage->push_back(pLineString);
         return;
@@ -2550,12 +2551,12 @@ void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string>
     char    *pStr = CharNext(pLineString);
     char    *pPreStr = NULL;
     nStrPointGap = pStr - pLineString;    
-    while(nStrPointGap < nCullStringNum)
+    while (nStrPointGap < nCullStringNum)
     {
         pPreStr = pStr;
         pStr = CharNext(&pLineString[nStrPointGap]);
         nStrPointGap = pStr - pLineString;
-        if(strlen(pLineString)<nCullStringNum)
+        if (strlen(pLineString)<nCullStringNum)
         {
             break;
         }
@@ -2565,7 +2566,7 @@ void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string>
     memcpy(temp[0], pLineString, strlen(pLineString) - strlen(pPreStr));
     vecStorage->push_back(temp[0]);
     memcpy(temp[1], pPreStr, strlen(pPreStr));
-    if(strlen(temp[1])>nCullStringNum)
+    if (strlen(temp[1])>nCullStringNum)
     {
         StringCullingUserData(temp[1], nCullStringNum, vecStorage);
     }
@@ -2611,18 +2612,18 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
         if (bShop)
         {
             int nListChar = strlen(strBuf) - 1;
-            if(' ' == strBuf[nListChar] || '+' == strBuf[nListChar])
+            if (' ' == strBuf[nListChar] || '+' == strBuf[nListChar])
             {
                 char* strTemp;
                 int n_pStrMinusstrTemp;
                 int nCount = 0;
-                for(int i = 0; i<1000; ++i)
+                for (int i = 0; i<1000; ++i)
                 {
                     strTemp = CharNext(&pStr[nCount]);
-                    if(' ' == pStr[nCount] || '+' == pStr[nCount] || ']' == pStr[nCount] || NULL == pStr[nCount])
+                    if (' ' == pStr[nCount] || '+' == pStr[nCount] || ']' == pStr[nCount] || NULL == pStr[nCount])
                     {
                         n_pStrMinusstrTemp  = pHanFont->GetStringSize(pStr).cx -  pHanFont->GetStringSize(strTemp).cx;
-                        if(nBufSize+n_pStrMinusstrTemp >= nCullStringNum)
+                        if (nBufSize+n_pStrMinusstrTemp >= nCullStringNum)
                         {
 //                            memcpy(strNPCTalk[nLine], pLineString + nCheckPoint, ++nLineBreakPoint);
 //                            nCheckPoint += nLineBreakPoint;
@@ -2640,12 +2641,12 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 
         if (nBufSize >= nCullStringNum || bShopNextLine)
         {
-            if(nLine >= nLineMax)
+            if (nLine >= nLineMax)
             {
                 return FALSE;
             }            
 
-            if(chColorSave)
+            if (chColorSave)
             {                
                 char strNPCTalkTemp[1024] = {0, };
                 memcpy(strNPCTalkTemp, pLineString + nCheckPoint, nLineBreakPoint);
@@ -2654,7 +2655,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
                 // 2007-07-27 by bhsohn 글씨 컬링 버그 수정
                 char chFindColor = GetLineFindColor(strNPCTalkTemp);                
                 // 다음 라인에 종료 글씨가 있다.면 초기화 
-                if(chFindColor == chColorSave)            
+                if (chFindColor == chColorSave)            
                 {                
                     chColorSave = 0;
                     chColor = 0;                
@@ -2663,7 +2664,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
             }
             else
             {
-                if(bShopNextLine) ++nLineBreakPoint;                                     // 2013-04-05 by ssjung ?일때 아이템 이름 글자 수 넘어 갈때 처리 보정
+                if (bShopNextLine) ++nLineBreakPoint;                                     // 2013-04-05 by ssjung ?일때 아이템 이름 글자 수 넘어 갈때 처리 보정
                 memcpy(strNPCTalk[nLine], pLineString + nCheckPoint, nLineBreakPoint);
             }
 
@@ -2705,7 +2706,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
         //*--------------------------------------------------------------------------*//
         // 색깔 체크
         int nLastCount = strlen(strBuf) - 1;
-        if(strBuf[nLastCount - 1] == '\\')
+        if (strBuf[nLastCount - 1] == '\\')
         {
             if (CheckFontColor(strBuf[nLastCount]))
             {
@@ -2718,16 +2719,16 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
             }            
             // 2007-07-27 by bhsohn 채팅 enter관련 처리
             // 2007-11-15 by bhsohn 퀘스트설정할만 \n되게 변경
-            else if('n' == strBuf[nLastCount] && bChRt)
+            else if ('n' == strBuf[nLastCount] && bChRt)
             {
-                if(nLine >= nLineMax)
+                if (nLine >= nLineMax)
                 {
                     return FALSE;
                 }            
                 
                 // 역슬래쉬 제거
                 nLineBreakPoint--;
-                if(chColorSave)
+                if (chColorSave)
                 {                
                     char strNPCTalkTemp[1024] = {0, };                    
                     memcpy(strNPCTalkTemp, pLineString + nCheckPoint, nLineBreakPoint);
@@ -2736,7 +2737,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
                     // 2007-07-27 by bhsohn 글씨 컬링 버그 수정
                     char chFindColor = GetLineFindColor(strNPCTalkTemp);                
                     // 다음 라인에 종료 글씨가 있다.면 초기화 
-                    if(chFindColor == chColorSave)            
+                    if (chFindColor == chColorSave)            
                     {                
                         chColorSave = 0;
                         chColor = 0;                
@@ -2756,7 +2757,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
                 nLine ++;
                 
                 // 색깔 저장(다음 라인에 입력
-                if(chColor)
+                if (chColor)
                 {
                     chColorSave = chColor;
                     chColor = 0;
@@ -2792,9 +2793,9 @@ char GetLineFindColor(char* pTxtTmp)
 {
     int nCnt = 0;
     BOOL bFindSlash = FALSE;
-    for(nCnt = 0;nCnt < strlen(pTxtTmp);nCnt++)
+    for (nCnt = 0;nCnt < strlen(pTxtTmp);nCnt++)
     {
-        if(pTxtTmp[nCnt] == '\\')
+        if (pTxtTmp[nCnt] == '\\')
         {
             bFindSlash = TRUE;
         }
@@ -2824,9 +2825,9 @@ char GetFindColorOnTxt(char* pTxtTmp)
     char chColor = 0;
     int nCnt = 0;
     BOOL bFindSlash = FALSE;
-    for(nCnt = 0;nCnt < strlen(pTxtTmp);nCnt++)
+    for (nCnt = 0;nCnt < strlen(pTxtTmp);nCnt++)
     {
-        if(pTxtTmp[nCnt] == '\\')
+        if (pTxtTmp[nCnt] == '\\')
         {
             bFindSlash = TRUE;
         }
@@ -2834,7 +2835,7 @@ char GetFindColorOnTxt(char* pTxtTmp)
         {
             bFindSlash = FALSE;
 
-            if(chColor == pTxtTmp[nCnt])
+            if (chColor == pTxtTmp[nCnt])
             {
                 chColor = 0;
             }
@@ -2843,7 +2844,7 @@ char GetFindColorOnTxt(char* pTxtTmp)
                 chColor = pTxtTmp[nCnt];
             }                        
 
-            if(-1 == nFindColorPos)
+            if (-1 == nFindColorPos)
             {
                 nFindColorPos = nCnt;
             }
@@ -2876,24 +2877,24 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 //    BOOL bSetChar = FALSE;
 //    ZERO_MEMORY(strNPCTalk);
 //    
-//    if(strlen(strTalk) == 0)
+//    if (strlen(strTalk) == 0)
 //    {
 //        DBGOUT("NPC Talk is NULL.(QuestIndex)\n");
 //        return;
 //    }
-//    while(TRUE)
+//    while (TRUE)
 //    {
-////        if(strTalk[i] == ' ' || (strTalk[i] == '.' && strTalk[i-3] != '[') || strTalk[i] == '!' || strTalk[i] == NULL || bSetChar == TRUE)
-//        if(strTalk[i] == ' ' || strTalk[i] == '!' || strTalk[i] == NULL || bSetChar == TRUE)
+////        if (strTalk[i] == ' ' || (strTalk[i] == '.' && strTalk[i-3] != '[') || strTalk[i] == '!' || strTalk[i] == NULL || bSetChar == TRUE)
+//        if (strTalk[i] == ' ' || strTalk[i] == '!' || strTalk[i] == NULL || bSetChar == TRUE)
 //        {
 //            bSetChar = FALSE;
 //            char strBuf[512] = {0,};
 //            memcpy(strBuf, strTalk + nCheckPoint, nPoint);
 //            int nBufSize = pHanFont->GetStringSize(strBuf).cx;
-////            if(nPoint >= nCullStringNum)
-//            if(nBufSize >= nCullStringNum)
+////            if (nPoint >= nCullStringNum)
+//            if (nBufSize >= nCullStringNum)
 //            {
-//                if(nLine >= nLineMax)
+//                if (nLine >= nLineMax)
 //                {
 //                    return;
 //                }
@@ -2906,13 +2907,13 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 //                i++;
 //                continue;
 //            }
-//            if(strTalk[i] == NULL)
+//            if (strTalk[i] == NULL)
 //            {
-//                if(nLine == 0 && i == 0)
+//                if (nLine == 0 && i == 0)
 //                {
 //                    return;
 //                }
-//                if(nLine >= nLineMax)
+//                if (nLine >= nLineMax)
 //                {
 //                    return;
 //                }
@@ -2922,12 +2923,12 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 //            nBreakPoint = nPoint;
 //            nLineBreakPoint = nBreakPoint;
 //        }
-//        else if(nLineBreakPoint == 0)
+//        else if (nLineBreakPoint == 0)
 //        {
 //            char strBuf[512] = {0,};
 //            memcpy(strBuf, strTalk + nCheckPoint, nPoint);
 //            int nBufSize = pHanFont->GetStringSize(strBuf).cx;
-//            if(nBufSize >= nCullStringNum)
+//            if (nBufSize >= nCullStringNum)
 //            {
 //                bSetChar = TRUE;
 //                nBreakPoint = nPoint - 1;
@@ -2937,7 +2938,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 //        nPoint++;
 //    }
 //
-//    for(int j=0; j<nLine+1; j++)
+//    for (int j=0; j<nLine+1; j++)
 //    {
 //        vecStorage->push_back(strNPCTalk[j]);
 //    }
@@ -2955,23 +2956,23 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
     BOOL bSetChar = FALSE;
     ZERO_MEMORY(strNPCTalk);
     
-    while(TRUE)
+    while (TRUE)
     {
         bSetChar = FALSE;
         char strBuf[1024] = {0,};
         pStr = CharNext(&strTalk[nOldPoint]);
         nPoint = pStr - (strTalk + nCheckPoint);
-        if(strTalk[nOldPoint+1] == ' ' || strTalk[nOldPoint+1] == '!' || strTalk[nOldPoint+1] == NULL || bSetChar == TRUE)
+        if (strTalk[nOldPoint+1] == ' ' || strTalk[nOldPoint+1] == '!' || strTalk[nOldPoint+1] == NULL || bSetChar == TRUE)
         {
             memcpy(strBuf, strTalk + nCheckPoint, nPoint);
             int nBufSize = pHanFont->GetStringSize(strBuf).cx;
-            if(nBufSize >= nCullStringNum)
+            if (nBufSize >= nCullStringNum)
             {
-                if(nLine >= nLineMax || nBreakPoint == 0)
+                if (nLine >= nLineMax || nBreakPoint == 0)
                 {
                     return FALSE;
                 }
-                if(chColorSave)
+                if (chColorSave)
                 {
                     char strNPCTalkTemp[1024] = {0, };
                     memcpy(strNPCTalkTemp, strTalk + nCheckPoint, nBreakPoint);
@@ -2979,7 +2980,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
                     // 2007-07-27 by bhsohn 글씨 컬링 버그 수정
                     char chFindColor = GetLineFindColor(strNPCTalkTemp);                
                     // 다음 라인에 종료 글씨가 있다.면 초기화 
-                    if(chColorSave == chFindColor)            
+                    if (chColorSave == chFindColor)            
                     {                
                         chColorSave = 0;
                         chColor = 0;                
@@ -2996,7 +2997,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
                 nLine ++;
 
                 // 색깔 저장(다음 라인에 입력
-                if(chColor)
+                if (chColor)
                 {
                     chColorSave = chColor;
                     chColor = 0;
@@ -3004,18 +3005,18 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
             }
             else if (strTalk[nOldPoint+1] == NULL)
             {
-                if(nPoint == 0)
+                if (nPoint == 0)
                 {
                     nLine--;
                     break;
                 }
 
-                if(nLine >= nLineMax)
+                if (nLine >= nLineMax)
                 {
                     return FALSE;
                 }
 
-                if(chColorSave)
+                if (chColorSave)
                 {
                     char strNPCTalkTemp[1024] = {0, };
                     memcpy(strNPCTalkTemp, strTalk + nCheckPoint, nPoint);
@@ -3034,11 +3035,11 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 
         //*--------------------------------------------------------------------------*//
         // 색깔 체크
-        if(strTalk[nOldPoint] == '\\')
+        if (strTalk[nOldPoint] == '\\')
         {
-            if(CheckFontColor(strTalk[nOldPoint+1]))
+            if (CheckFontColor(strTalk[nOldPoint+1]))
             {
-                if(chColor == strTalk[nOldPoint+1])
+                if (chColor == strTalk[nOldPoint+1])
                 {
                     chColor = 0;
                 }
@@ -3053,7 +3054,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
         nOldPoint = nCheckPoint + nPoint;
     }
 
-    for(int j=0; j<nLine+1; j++)
+    for (int j=0; j<nLine+1; j++)
     {
         vecStorage->push_back(strNPCTalk[j]);
     }
@@ -3080,15 +3081,15 @@ void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, v
     char    *pStr = CharNext(pLineString);
     char    *pPreStr = NULL;
     nStrPointGap = pStr - pLineString;    
-    while(nStrPointGap < nCullStringNum)
+    while (nStrPointGap < nCullStringNum)
     {
         pPreStr = pStr;
         pStr = CharNext(&pLineString[nStrPointGap]);
         nStrPointGap = pStr - pLineString;
 
-        if(nState == _SHOP)
+        if (nState == _SHOP)
         {
-            if(pLineString[nStrPointGap - 2] == ']')
+            if (pLineString[nStrPointGap - 2] == ']')
             {
                 break;
             }
@@ -3099,7 +3100,7 @@ void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, v
     memcpy(temp[0], pLineString, strlen(pLineString) - strlen(pPreStr));
     vecStorage->push_back(temp[0]);
     memcpy(temp[1], pPreStr, strlen(pPreStr));
-    if(strlen(temp[1])>nCullStringNum)
+    if (strlen(temp[1])>nCullStringNum)
     {
         StringCullingUserData(temp[1], nCullStringNum, vecStorage);
     }
@@ -3172,7 +3173,7 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
             // 길이 추가
             int nStringSize = strlen(chCullingBuff);
             memset(chCullingBuff, 0x00, nStringSize + 1);
-            if(nLastCullingLen)
+            if (nLastCullingLen)
             {
                 // 다시 메모리를 다시 복사해온다.
                 strncpy(chCullingBuff, &strTalk[nLastStartPos], nLastCullingLen);                
@@ -3198,7 +3199,7 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
             {
                 // 공백을 못찾고 최대 픽셀수를 넘었다.
                 nCullingLen = pNextStr - (strTalk + nLastStartPos);
-                if(nCullingLen)
+                if (nCullingLen)
                 {
                     strncpy(chCullingBuff, &strTalk[nLastStartPos], nCullingLen);            
                     chColorSave = StringCullingAddVector(chColorSave, chCullingBuff, vecDstString);
@@ -3214,7 +3215,7 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
         {
             // 공백을 못찾고 최대 픽셀수를 넘었다.
             nCullingLen = pNextStr - (strTalk + nLastStartPos);
-            if(nCullingLen)
+            if (nCullingLen)
             {
                 strncpy(chCullingBuff, &strTalk[nLastStartPos], nCullingLen);            
                 chColorSave = StringCullingAddVector(chColorSave, chCullingBuff, vecDstString);            
@@ -3239,8 +3240,8 @@ char StringCullingAddVector(char chColorSave, char* pString, vector<string> *vec
 
     ZERO_MEMORY(chCullingTmpBuff);
     // 2008-07-24 by bhsohn 컬링 관련 버그 수정
-    //if(0 == chFindColor && chColorSave )
-    if(chColorSave )
+    //if (0 == chFindColor && chColorSave )
+    if (chColorSave )
     {
         // 칼러가 없으면 강제로 칼라 넣어줌
         strncpy(chCullingTmpBuff, pString, 2048);
@@ -3319,7 +3320,7 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 // //    byHour = (nSecond % 60);
 // //    nSecond /= 24;
 // //    byDay = (nSecond % 24);
-//     if(nSecond < 0)
+//     if (nSecond < 0)
 //     {
 //         tempTime.SetDateTime(0, 0, 0, 0, 0, 0);
 //         return tempTime;
@@ -3344,7 +3345,7 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 // 
 //     // 초
 //     {        
-//         if(nSecond < 0)
+//         if (nSecond < 0)
 //         {
 //             nSecond = 0;
 //         }
@@ -3363,7 +3364,7 @@ void    GetAtumDateTimeFormSecond( const int nSecond, int* pDay, int* pHour, int
 {
     int nSec = nSecond;
     
-    if(nSec < 0)
+    if (nSec < 0)
         *pDay = *pHour = *pMin = *Sec = 0;
     {
         // 일수를 구한다.
@@ -3379,7 +3380,7 @@ void    GetAtumDateTimeFormSecond( const int nSecond, int* pDay, int* pHour, int
         nSec    -=    *pMin * 60;
 
         // 초
-        if(nSec < 0)
+        if (nSec < 0)
             nSec = 0;
         *Sec = nSec;
     }
@@ -3396,7 +3397,7 @@ void    GetString_TimeLeft( DWORD nSec, char* pBuff )
 {
     int        nNum;
 
-    if( nSec > ONEDAY_SEC )
+    if ( nSec > ONEDAY_SEC )
     {
         // 일단위 표시
         nNum = nSec / ONEDAY_SEC;
@@ -3423,7 +3424,7 @@ void    GetString_TimeLeft( DWORD nSec, char* pBuff )
 
 BOOL    GetString_CoolTime( CItemInfo* pItem, char* pBuff )
 {
-    if( pItem->GetCoolElapsedTime() > 0
+    if ( pItem->GetCoolElapsedTime() > 0
         && pItem->GetCoolElapsedTime() < pItem->ItemInfo->ReAttacktime )
     {
         GetString_TimeLeft( (int)((pItem->ItemInfo->ReAttacktime - pItem->GetCoolElapsedTime()) / 1000), pBuff );
@@ -3451,27 +3452,27 @@ char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond)
     // 2009. 06. 10 by ckPark 255일 넘는 아이템 사용 시간 제대로 나오지 않는 오류 수정
 //     ATUM_DATE_TIME tempTime = GetAtumDateTimeFormSecond(nSecond);
 // 
-//     if(tempTime.Day)
+//     if (tempTime.Day)
 //     {
 //         char strTemp[15] = {0,};
 //         wsprintf(strTemp, STRMSG_C_061011_0004, tempTime.Day);
 //         wsprintf(o_strDateTime, "%s ", strTemp);
 //     }
-//     if(tempTime.Hour)
+//     if (tempTime.Hour)
 //     {
 //         char strTemp[15] = {0,};
 //         wsprintf(strTemp, STRMSG_C_060425_0000, tempTime.Hour);
 //         wsprintf(strTemp, "%s ", strTemp);
 //         strcat(o_strDateTime, strTemp);
 //     }
-//     if(tempTime.Minute)
+//     if (tempTime.Minute)
 //     {
 //         char strTemp[15] = {0,};
 //         wsprintf(strTemp, STRMSG_C_SKILL_0009, tempTime.Minute);
 //         wsprintf(strTemp, "%s ", strTemp);
 //         strcat(o_strDateTime, strTemp);
 //     }
-//     if(tempTime.Second)
+//     if (tempTime.Second)
 //     {
 //         char strTemp[15] = {0,};
 //         wsprintf(strTemp, STRMSG_C_SKILL_0010, tempTime.Second);
@@ -3484,27 +3485,27 @@ char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond)
     nDay = nHour = nMin = nSec = 0;
     GetAtumDateTimeFormSecond( nSecond, &nDay, &nHour, &nMin, &nSec );
     
-    if(nDay)
+    if (nDay)
     {
         char strTemp[15] = {0,};
         wsprintf(strTemp, STRMSG_C_061011_0004, nDay);
         wsprintf(o_strDateTime, "%s ", strTemp);
     }
-    if(nHour)
+    if (nHour)
     {
         char strTemp[15] = {0,};
         wsprintf(strTemp, STRMSG_C_060425_0000, nHour);
         wsprintf(strTemp, "%s ", strTemp);
         strcat(o_strDateTime, strTemp);
     }
-    if(nMin)
+    if (nMin)
     {
         char strTemp[15] = {0,};
         wsprintf(strTemp, STRMSG_C_SKILL_0009, nMin);
         wsprintf(strTemp, "%s ", strTemp);
         strcat(o_strDateTime, strTemp);
     }
-    if(nSec)
+    if (nSec)
     {
         char strTemp[15] = {0,};
         wsprintf(strTemp, STRMSG_C_SKILL_0010, nSec);
@@ -3589,7 +3590,7 @@ BOOL CheckFontColor(char* str)
 ///////////////////////////////////////////////////////////////////////////////
 void GetScale(float& fXScale, float& fYScale)
 {
-    if((fXScale*fYScale) <= 0)
+    if ((fXScale*fYScale) <= 0)
         return;
     fXScale = (float)(g_pD3dApp->GetBackBufferDesc().Width)/fXScale;
     fYScale = (float)(g_pD3dApp->GetBackBufferDesc().Height)/fYScale;
@@ -3599,11 +3600,11 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
     DWORD dwColor = 0x00FFFFFF;
     DWORD dwAlpha;
 
-    if(dwType == ALPHA_WAVE)
+    if (dwType == ALPHA_WAVE)
     {// 깜빡깜빡
         float fAlpha;
         fAlpha =  (fTime - (((int)(fTime/fTotal))*fTotal))/fTotal;
-        if(fAlpha >= 0.5f)
+        if (fAlpha >= 0.5f)
         {
             dwAlpha = 255 * (2.0f - fAlpha*2.0f);
         }
@@ -3618,7 +3619,7 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
         fTime = fTime - (((int)(fTime/fTotal))*fTotal);
         float fGap = (fTotal - fDelay)/2.0f;    // fGap + fDelay + fGap = fTotal
         
-        if(fTime < fGap)
+        if (fTime < fGap)
         {
             // 2006-07-18 by dgwoo 점점 진해진다.
             fAlpha =  fTime / fGap;
@@ -3637,7 +3638,7 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
         }
 
 //        fAlpha =  (fTime - (((int)(fTime/fTotal))*fTotal))/fTotal;
-//        if(fAlpha >= 0.5f)
+//        if (fAlpha >= 0.5f)
 //        {
 //            dwAlpha = 255 * (2.0f - fAlpha*2.0f);
 //        }
@@ -3648,7 +3649,7 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
     }
     else if (dwType == ALPHA_FADE_IN)
     {
-        if(fTime < 0.0f)
+        if (fTime < 0.0f)
         {
             dwAlpha = 0;
         }
@@ -3663,7 +3664,7 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
     }
     else if (dwType == ALPHA_FADE_OUT)
     {
-        if(fTime < 0.0f)
+        if (fTime < 0.0f)
         {
             dwAlpha = 255;
         }
@@ -3699,7 +3700,7 @@ BOOL IsMousePosClientArea()
     GetCursorPos(&pt);
     ScreenToClient(g_pD3dApp->GetHwnd(),&pt);
     GetClientRect(g_pD3dApp->GetHwnd(),&rtClient);
-    if(PtInRect(&rtClient,pt))
+    if (PtInRect(&rtClient,pt))
     {
         return TRUE;
     }
@@ -3729,7 +3730,7 @@ float FloatRangeDecimal(float fValue, int nDecimalPoint)
 
     sprintf(chFloatBuff, "%f", fDst);
     char* pFind = strstr(chFloatBuff, ".");
-    if(NULL == pFind)
+    if (NULL == pFind)
     {
         return fDst;
     }
@@ -3775,7 +3776,7 @@ float FloatSecRangeSharp(float fValue)
 INT ChangeChatButtonNumber(INT i_nMenuIndex)
 {
     INT nNum = 0;
-    switch(i_nMenuIndex)
+    switch (i_nMenuIndex)
     {
     case CHAT_TAB_ALLUSER:
         nNum = 0;
@@ -3824,9 +3825,9 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
     // 2009. 09. 03 by ckPark 로봇기어 버젼에 따라 높이적용 안되는 문제
 
     ITEM* pItem = g_pDatabase->GetServerItemInfo( i_nAmmor );
-    if( pItem )
+    if ( pItem )
     {
-        if( pItem->SourceIndex != i_nAmmor )
+        if ( pItem->SourceIndex != i_nAmmor )
             i_nAmmor = pItem->SourceIndex;
     }
 
@@ -3834,7 +3835,7 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
     
     
     
-    switch(i_nAmmor)
+    switch (i_nAmmor)
     {
     case 8410100:
     case 8412100:
@@ -3864,25 +3865,25 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
     // 2010. 05. 03 by ckPark 로봇기어 높이 수정
     // 2009. 07. 07 by ckPark 로봇기어 요청사항(롤링, 선택화면, 무기, A기어포대)
 //     case 8293800:
-//         if( i_bSelect )
+//         if ( i_bSelect )
 //             return 13.0f;
 //         else
 //             return 22.0f;
 // 
 //     case 8292800:
-//         if( i_bSelect )
+//         if ( i_bSelect )
 //             return 16.0f;
 //         else
 //             return 19.0f;
 // 
 //     case 8291800:
-//         if( i_bSelect )
+//         if ( i_bSelect )
 //             return 14.0f;
 //         else
 //             return 21.0f;
 // 
 //     case 8290800:
-//         if( i_bSelect )
+//         if ( i_bSelect )
 //             return 8.5f;
 //         else
 //             return 17.0f;
@@ -3998,7 +3999,7 @@ int GetStringBuffPos(const char* pTxt, int i_nCurSelPos)
         }
 
         nCheckPoint = pNextStr - pTxt;        
-        if(i_nCurSelPos == nStringPos)
+        if (i_nCurSelPos == nStringPos)
         {
             return nCheckPoint;
 
@@ -4026,10 +4027,10 @@ int GetStringBuffLen(const char* pTxt)
     int nCnt = 0;
     BOOL bChColor = FALSE;
     int nMaxSize = strlen(pTxt);
-    for(nCnt = 0;nCnt < strlen(pTxt); nCnt++)
+    for (nCnt = 0;nCnt < strlen(pTxt); nCnt++)
     {
         char    *pNextStr = CharNext(&pTxt[nCheckPoint]);
-        if(NULL == pNextStr)
+        if (NULL == pNextStr)
         {
             break;
         }

@@ -1,7 +1,7 @@
 //Copyright[2002] MasangSoft
 #pragma once
 
-namespace ares // namespace ares
+namespace ares
 {
     // 2D vector
     template<typename v_t>
@@ -25,6 +25,6 @@ namespace ares // namespace ares
             return { x - rv.x, y - rv.y };
         }
     };
-}
+} // namespace ares
 
 using APoint = ares::Point<int>;

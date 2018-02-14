@@ -10,7 +10,7 @@
 #include "ThreadCheck.h"
 #include "windows.h"
 #include "AtumDBHelper.h"
-#include "IOCPSocket.h""
+#include "IOCPSocket.h"
 #include "QueryTypes.h"
 
 using namespace std;

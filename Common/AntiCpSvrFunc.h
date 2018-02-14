@@ -1,9 +1,7 @@
 ﻿// Copyright[2002] MasangSoft
 
-
 #ifndef COMMON_ANTICPSVRFUNC_H_
-#ifndef _ANTICPSVRFUNC_H
-#define _ANTICPSVRFUNC_H
+#define COMMON_ANTICPSVRFUNC_H_
 
 #define SIZEOF_REQMSG            160                // Request Message를 담을 버퍼의 크기
 #define SIZEOF_REQINFO            88                // Request Info를 담을 버퍼의 크기
@@ -252,5 +250,4 @@ _AntiCpSvr_AnalyzeAckMsg (
 }
 #endif
 
-#endif //_ANTICPSVRFUNC_H
 #endif // COMMON_ANTICPSVRFUNC_H_

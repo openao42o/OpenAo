@@ -87,7 +87,7 @@ CAtumData::CAtumData()
     D3DXMatrixInverse( &m_vPetRightMatrix, NULL, &m_vPetRightMatrix );
     // end 2010-06-15 by shcho&hslee 펫시스템 - A-Gear 시즈상태
     
-    for(int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
         D3DXMatrixIdentity(&m_pMatWeaponPosition[i]);
 }
 
@@ -100,19 +100,19 @@ CAtumData::~CAtumData()
 //        m_pWeapon1_1->m_bUsing = FALSE;
 //        m_pWeapon1_1 = NULL;
 //    }
-    if(m_pWeapon1_1_1)
+    if (m_pWeapon1_1_1)
     {
         m_pWeapon1_1_1->m_pParent = NULL;
         m_pWeapon1_1_1->m_bUsing = FALSE;
         m_pWeapon1_1_1 = NULL;
     }
-    if(m_pWeapon1_1_2)
+    if (m_pWeapon1_1_2)
     {
         m_pWeapon1_1_2->m_pParent = NULL;
         m_pWeapon1_1_2->m_bUsing = FALSE;
         m_pWeapon1_1_2 = NULL;
     }
-    if(m_pWeapon1_2)
+    if (m_pWeapon1_2)
     {
         m_pWeapon1_2->m_pParent = NULL;
         m_pWeapon1_2->m_bUsing = FALSE;
@@ -124,19 +124,19 @@ CAtumData::~CAtumData()
 //        m_pWeapon2_1->m_bUsing = FALSE;
 //        m_pWeapon2_1 = NULL;
 //    }
-    if(m_pWeapon2_1_1)
+    if (m_pWeapon2_1_1)
     {
         m_pWeapon2_1_1->m_pParent = NULL;
         m_pWeapon2_1_1->m_bUsing = FALSE;
         m_pWeapon2_1_1 = NULL;
     }
-    if(m_pWeapon2_1_2)
+    if (m_pWeapon2_1_2)
     {
         m_pWeapon2_1_2->m_pParent = NULL;
         m_pWeapon2_1_2->m_bUsing = FALSE;
         m_pWeapon2_1_2 = NULL;
     }
-    if(m_pWeapon2_2)
+    if (m_pWeapon2_2)
     {
         m_pWeapon2_2->m_pParent = NULL;
         m_pWeapon2_2->m_bUsing = FALSE;
@@ -145,7 +145,7 @@ CAtumData::~CAtumData()
 
 
     // 2009. 07. 07 by ckPark 로봇기어 요청사항(롤링, 선택화면, 무기, A기어포대)
-    if( m_pRobotAGearWeapon_1 )
+    if ( m_pRobotAGearWeapon_1 )
     {
         m_pRobotAGearWeapon_1->m_pParent    = NULL;
         m_pRobotAGearWeapon_1->m_bUsing        = FALSE;
@@ -154,13 +154,13 @@ CAtumData::~CAtumData()
     // end 2009. 07. 07 by ckPark 로봇기어 요청사항(롤링, 선택화면, 무기, A기어포대)
 
 
-    if(m_pEngine)
+    if (m_pEngine)
     {
         m_pEngine->m_pParent = NULL;
         m_pEngine->m_bUsing = FALSE;
         m_pEngine = NULL;
     }
-    if(m_pRadar)
+    if (m_pRadar)
     {
         m_pRadar->m_pParent = NULL;
         m_pRadar->m_bUsing = FALSE;
@@ -172,40 +172,40 @@ CAtumData::~CAtumData()
 //        m_pArmor->m_bUsing = FALSE;
 //        m_pArmor = NULL;
 //    }
-    if(m_pContainer)
+    if (m_pContainer)
     {
         m_pContainer->m_pParent = NULL;
         m_pContainer->m_bUsing = FALSE;
         m_pContainer = NULL;
     }
-    if(m_pAccessories)
+    if (m_pAccessories)
     {
         m_pAccessories->m_pParent = NULL;
         m_pAccessories->m_bUsing = FALSE;
         m_pAccessories = NULL;
     }
     // 2010-06-08 by dgwoo, 펫시스템 추가. 
-    if(m_pPartner)
+    if (m_pPartner)
     {
         m_pPartner->m_pParent = NULL;
         m_pPartner->m_bUsing = FALSE;
         m_pPartner = NULL;
     }
     // 2010-06-15 by shcho&hslee 펫시스템 - 펫 무기 생성
-    if(m_pPartner1)
+    if (m_pPartner1)
     {
         m_pPartner1->m_pParent = NULL;
         m_pPartner1->m_bUsing = FALSE;
         m_pPartner1 = NULL;
     }
 
-    if(m_pDummyPartner)
+    if (m_pDummyPartner)
     {
         m_pDummyPartner->m_pParent = NULL;
         m_pDummyPartner->m_bUsing = FALSE;
         m_pDummyPartner = NULL;
     }    
-    if(m_pDummyPartner1)
+    if (m_pDummyPartner1)
     {
         m_pDummyPartner1->m_pParent = NULL;
         m_pDummyPartner1->m_bUsing = FALSE;
@@ -213,7 +213,7 @@ CAtumData::~CAtumData()
     }
     // end 2010-06-15 by shcho&hslee 펫시스템 - 펫 무기 생성
     // 2010-06-08 by dgwoo, 펫시스템 추가. 
-    if(m_pWingIn)
+    if (m_pWingIn)
     {
         m_pWingIn->m_pParent = NULL;
         m_pWingIn->m_bUsing = FALSE;
@@ -225,7 +225,7 @@ CAtumData::~CAtumData()
 void CAtumData::LoadCharacterEffect(char* strFileName, int nMonsterTransformer /* = 0 */, float nMonsterTransScale /* = 0.0f */)
 //end 2010. 03. 18 by jskim 몬스터변신 카드
 {
-    if(m_pCharacterInfo)
+    if (m_pCharacterInfo)
     {
         m_pCharacterInfo->InvalidateDeviceObjects();
         m_pCharacterInfo->DeleteDeviceObjects();
@@ -234,7 +234,7 @@ void CAtumData::LoadCharacterEffect(char* strFileName, int nMonsterTransformer /
     m_pCharacterInfo = new CCharacterInfo();
     // 2010. 03. 18 by jskim 몬스터변신 카드
     //if(m_pCharacterInfo->Load(strFileName))
-    if(m_pCharacterInfo->Load(strFileName, nMonsterTransformer, nMonsterTransScale))
+    if (m_pCharacterInfo->Load(strFileName, nMonsterTransformer, nMonsterTransScale))
     //end 2010. 03. 18 by jskim 몬스터변신 카드
     {
         m_pCharacterInfo->InitDeviceObjects();
@@ -279,7 +279,7 @@ void CAtumData::LoadCharacterEffect(char* strFileName, int nMonsterTransformer /
 // }
 void CAtumData::SetPrimaryWeaponPosition()
 {
-    if(m_pCharacterInfo != NULL)
+    if (m_pCharacterInfo != NULL)
     {
         m_pMatWeaponPosition[0] = m_pCharacterInfo->GetEffectMatrix(BODYCON_WEAPON_POSITION_MASK, RC_EFF_PRIMARY_RIGHT_POSITION);
         m_pMatWeaponPosition[1] = m_pCharacterInfo->GetEffectMatrix(BODYCON_WEAPON_POSITION_MASK, RC_EFF_PRIMARY_LEFT_POSITION);
@@ -293,7 +293,7 @@ void CAtumData::SetPrimaryWeaponPosition()
 
 void CAtumData::SetSecondaryWeaponPosition()
 {
-    if(m_pCharacterInfo != NULL)
+    if (m_pCharacterInfo != NULL)
     {
         m_pMatWeaponPosition[2] = m_pCharacterInfo->GetEffectMatrix(BODYCON_WEAPON_POSITION_MASK, RC_EFF_SECONDARY_RIGHT_POSITION);
         m_pMatWeaponPosition[3] = m_pCharacterInfo->GetEffectMatrix(BODYCON_WEAPON_POSITION_MASK, RC_EFF_SECONDARY_LEFT_POSITION);
@@ -309,7 +309,7 @@ void CAtumData::SetSecondaryWeaponPosition()
 // 2010-06-15 by shcho&hslee 펫시스템 - 펫 무기 생성
 void CAtumData::SetPetPosition()
 {
-    if(m_pCharacterInfo != NULL)
+    if (m_pCharacterInfo != NULL)
     {
         m_pMatPetPosition[0] = m_pCharacterInfo->GetEffectMatrix(BODYCON_PET_POSITION_MASK, RC_EFF_PET_RIGHT_POSITION);
         m_pMatPetPosition[1] = m_pCharacterInfo->GetEffectMatrix(BODYCON_PET_POSITION_MASK, RC_EFF_PET_LEFT_POSITION);
@@ -317,7 +317,7 @@ void CAtumData::SetPetPosition()
         D3DXMATRIX temp;
         D3DXMatrixIdentity( &temp );
 
-        if(m_pMatPetPosition[0] == temp)
+        if (m_pMatPetPosition[0] == temp)
         {
             m_PetAttack.vSidePos.x = m_PetAttack.vSideBackPos.x = m_pMatPetPosition[0]._41 = PET_DEFULT_POS_X;
             m_PetAttack.vSidePos.y = m_PetAttack.vSideBackPos.y = m_pMatPetPosition[0]._42 = PET_DEFULT_POS_Y;
@@ -336,7 +336,7 @@ void CAtumData::SetPetPosition()
             m_pMatPetPosition[1]._33 = 1;            
         }
         
-        if(m_pMatPetPosition[1] == temp)
+        if (m_pMatPetPosition[1] == temp)
         {
             m_pMatPetPosition[1]._41 = - PET_DEFULT_POS_X;
             m_pMatPetPosition[1]._42 =     PET_DEFULT_POS_Y;
@@ -421,14 +421,14 @@ void CAtumData::SetShowData()
 // 2011-03-21 by jhAhn 마크시스템 마크 위치 생성
 void CAtumData::SetMarkPosition()
 {
-    if(m_pCharacterInfo != NULL)
+    if (m_pCharacterInfo != NULL)
     {
         m_pMatMarkPosition = m_pCharacterInfo->GetEffectMatrix(BODYCON_MARK_POSITION_MASK, RC_EFF_MARK_POSITION);    
     }
     D3DXMATRIX temp;
     D3DXMatrixIdentity( &temp );
     
-    if(m_pMatMarkPosition == temp)
+    if (m_pMatMarkPosition == temp)
     {
         m_pMatMarkPosition._41 = MARK_DEFULT_POS_X;
         m_pMatMarkPosition._42 = MARK_DEFULT_POS_Y;
