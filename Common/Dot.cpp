@@ -1,4 +1,5 @@
-﻿// Dot.cpp: implementation of the CDot class.
+﻿//Copyright[2002] MasangSoft
+// Dot.cpp: implementation of the CDot class.
 //
 //////////////////////////////////////////////////////////////////////
 

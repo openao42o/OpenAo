@@ -1,9 +1,10 @@
-﻿// Dot.h: interface for the CDot class.
+﻿//Copyright[2002] MasangSoft
+// Dot.h: interface for the CDot class.
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_DOT_H__7FE3E589_F823_478E_AC3E_73E7ADB09FF9__INCLUDED_)
-#define AFX_DOT_H__7FE3E589_F823_478E_AC3E_73E7ADB09FF9__INCLUDED_
+#ifndef COMMON_FTP_DRAWGDIX_H_
+#define COMMON_FTP_DRAWGDIX_H_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -29,4 +30,4 @@ protected:
 	mtvectorDotInfo						m_mtvectDotInfo;
 };
 
-#endif // !defined(AFX_DOT_H__7FE3E589_F823_478E_AC3E_73E7ADB09FF9__INCLUDED_)
+#endif // COMMON_FTP_DRAWGDIX_H_

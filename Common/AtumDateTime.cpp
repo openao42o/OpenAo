@@ -1,4 +1,5 @@
-﻿#include "StdAfx.h"
+﻿//Copyright[2002] MasangSoft
+#include "StdAfx.h"
 #include "AtumDateTime.h"
 #include "AtumParam.h"
 //Copyright [2002] MasangSoft

@@ -1,5 +1,6 @@
-﻿#ifndef _BILLING_NETPOWERTPE_H_
-#define _BILLING_NETPOWERTPE_H_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_BILLINGNETPOWERTPE_H_
+#define COMMON_BILLINGNETPOWERTPE_H_
 
 // 2008-11-13 by cmkwon, 대만 Netpower_Tpe 빌링 시스템 구축 - BillingNetpower.h 파일 추가
 
@@ -42,4 +43,4 @@ struct SNETBILL_RET_DATA
 };
 
 
-#endif // #ifndef _BILLING_NETPOWERTPE_H_
+#endif // #ifndef COMMON_BILLINGNETPOWERTPE_H_

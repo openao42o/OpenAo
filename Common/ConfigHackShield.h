@@ -1,6 +1,7 @@
-﻿// start 2012-03-21 by hskim, 핵쉴드 기능 추가 [자동 업데이트/옵션 추가/모니터링 시스템]
-#ifndef _CONFIG_HACK_SHIELD_H_
-#define _CONFIG_HACK_SHIELD_H_
+﻿//Copyright[2002] MasangSoft
+// start 2012-03-21 by hskim, 핵쉴드 기능 추가 [자동 업데이트/옵션 추가/모니터링 시스템]
+#ifndef COMMON_CONFIGHACKSHIELD_H_
+#define COMMON_CONFIGHACKSHIELD_H_
 
 //////////////////////////////////////////////////////////////////////
 // 핵 쉴드 관련 코드
@@ -76,5 +77,5 @@
 #define HACKSHIELD_FILE_PATH_DBG			"\\HShield\\EhSvc.dll"	
 #define HACKSHIELD_FILE_PATH				"HShield\\EhSvc.dll"	
 
-#endif // _CONFIG_HACK_SHIELD_H_
+#endif // COMMON_CONFIGHACKSHIELD_H_
 // end 2012-03-21 by hskim, 핵쉴드 기능 추가 [자동 업데이트/옵션 추가/모니터링 시스템]

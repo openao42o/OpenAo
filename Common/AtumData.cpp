@@ -1,4 +1,5 @@
-﻿// AtumData.cpp: implementation of the CAtumData class.
+﻿//Copyright[2002] MasangSoft
+// AtumData.cpp: implementation of the CAtumData class.
 //
 //////////////////////////////////////////////////////////////////////
 

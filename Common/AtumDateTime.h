@@ -1,5 +1,5 @@
-﻿#pragma once
-//Copyright [2002] MasangSoft
+﻿//Copyright [2002] MasangSoft
+#pragma once
 #ifdef _ATUM_SERVER
 #include <SQLTYPES.H>
 #endif
