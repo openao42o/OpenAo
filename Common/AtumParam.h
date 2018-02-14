@@ -7170,6 +7170,24 @@ struct ENEMY_LAST_HIT
 
 struct LOG_GUILDSTORE_ITEM_INFO
 {// 2006-09-27 by dhjin, 여단 로그 테이블에서 얻어오는 값 저장 구조체
+<<<<<<< HEAD
+	T1<T0::FL_LOG>	LogType;
+	ATUM_DATE_TIME	Time;
+	UID32_t			GuildUID;
+	CHAR			GuildName[SIZE_MAX_GUILD_NAME];
+	UID32_t			AccountUID;
+	CHAR			AccountName[SIZE_MAX_ACCOUNT_NAME];
+	UID32_t			CharacterUID;
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];
+	UID64_t			ItemUID;
+	INT				ItemNum;
+	CHAR			ItemName[SIZE_MAX_ITEM_NAME];
+	INT				PrefixCodeNum;
+	INT				SuffixCodeNum;
+	INT				ItemResultCount;
+	INT				ItemChangeCount;
+};
+=======
     T1<T0::FL_LOG>    LogType;
     ATUM_DATE_TIME    Time;
     UID32_t            GuildUID;
@@ -7186,3 +7204,4 @@ struct LOG_GUILDSTORE_ITEM_INFO
     INT                ItemResultCount;
     INT                ItemChangeCount;
 };
+>>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
