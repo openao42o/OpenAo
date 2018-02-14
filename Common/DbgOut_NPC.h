@@ -1,8 +1,9 @@
+//Copyright[2002] MasangSoft
 // File: DbgOut.h
 //
 
-#ifndef DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
-#define DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
+#ifndef COMMON_DBGOUT_NPC_H_
+#define COMMON_DBGOUT_NPC_H_
 
 static  LPCTSTR    g_dbgOut                = _T("NPC Server 20021023");
 static  LPCTSTR    g_dbgOutwindowClassName = _T("NPC DebugOut Window");
@@ -69,7 +70,7 @@ inline void DbgOut (LPCTSTR pFormat, ...)
 	va_list args;
 	va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
 	vsprintf(buffer, pFormat, args);
 
     #ifdef UNICODE
@@ -98,7 +99,7 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
 	va_list args;
 	va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
 	vsprintf(buffer, pFormat, args);
 
     LPVOID pMessage;
@@ -116,7 +117,7 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
     
     DBGOUT (buffer);
     
-    if(result)
+    if (result)
         ::LocalFree(pMessage);
    
     va_end(args);
@@ -132,4 +133,4 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
 
 
 
-#endif//  DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
+#endif // COMMON_DBGOUT_NPC_H_

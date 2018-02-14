@@ -1,6 +1,5 @@
 ﻿// Copyright[2002] MasangSoft
 
-
 #ifndef COMMON_ANTICPSVRFUNC_H_
 #define COMMON_ANTICPSVRFUNC_H_
 

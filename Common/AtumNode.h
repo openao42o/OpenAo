@@ -1,8 +1,7 @@
-﻿// AtumNode.h: interface for the CAtumNode class.
+﻿//Copyright[2002] MasangSoft
+// AtumNode.h: interface for the CAtumNode class.
 //
 //////////////////////////////////////////////////////////////////////
-
-
 #pragma once
 
 #include <windows.h>

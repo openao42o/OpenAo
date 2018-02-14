@@ -23,15 +23,19 @@
 
 struct ArGameInfo
 {
+<<<<<<< HEAD
     WCHAR gameId [ MAX_PATH + 1 ];            // game id of arario inside
     WCHAR developerId [ MAX_PATH + 1 ];            // game studio title
     WCHAR gameName [ MAX_PATH + 1 ];            // original game title
     WCHAR defChannelId [ MAX_PATH + 1 ];            // default channel id for auto-entering
     bool isAlpha;
+=======
+>>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 };
 
 struct ArGameStartInfo
 {
+<<<<<<< HEAD
     WCHAR        userId [ USERID_LEN + 1 ]; // user id
     DWORD        userIndex;
     char        ticket [ TICKET_LEN + 1 ]; // ticket to auth (or being auth.ed)
@@ -39,6 +43,8 @@ struct ArGameStartInfo
     HWND        launcherHwnd; // Window handle of Arario Launcher
     bool        isFullScreen; // Is full screen mode
     ArGameInfo    optGameInfo; // optional game information
+=======
+>>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 };
 
 #include <PopPack.h>
