@@ -1,5 +1,5 @@
 ﻿// CommandHistory.h: interface for the CCommandHistory class.
-//
+//Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_COMMANDHISTORY_H__E17CC8A8_4994_4A53_BB1B_0EF3A49BB3DA__INCLUDED_)

@@ -1,5 +1,5 @@
-#ifndef _DEBUG_CHECK_TIME_H_
-#define _DEBUG_CHECK_TIME_H_
+#ifndef COMMON_DEBUGCHECKTIME_H_
+#define COMMON_DEBUGCHECKTIME_H_
 
 
 #define CHECK_TIME_INIT(size)								\
@@ -24,4 +24,4 @@
 
 
 
-#endif // _DEBUG_CHECK_TIME_H_endif
+#endif // COMMON_DEBUGCHECKTIME_H_

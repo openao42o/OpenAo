@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #pragma once
 
 #ifndef ARAUTH4CLI_DLLDECLARE
@@ -22,22 +23,22 @@
 
 struct ArGameInfo
 {
-	WCHAR gameId		[ MAX_PATH + 1 ];			// game id of arario inside
-	WCHAR developerId	[ MAX_PATH + 1 ];			// game studio title
-	WCHAR gameName		[ MAX_PATH + 1 ];			// original game title
-	WCHAR defChannelId	[ MAX_PATH + 1 ];			// default channel id for auto-entering
+	WCHAR gameId [ MAX_PATH + 1 ];			// game id of arario inside
+	WCHAR developerId [ MAX_PATH + 1 ];			// game studio title
+	WCHAR gameName [ MAX_PATH + 1 ];			// original game title
+	WCHAR defChannelId [ MAX_PATH + 1 ];			// default channel id for auto-entering
 	bool isAlpha;
 };
 
 struct ArGameStartInfo
 {
-	WCHAR		userId		[ USERID_LEN + 1 ]	; // user id
+	WCHAR		userId [ USERID_LEN + 1 ]; // user id
 	DWORD		userIndex						;
-	char		ticket		[ TICKET_LEN + 1 ]	; // ticket to auth (or being auth.ed)
-	WCHAR		downloadUrl	[ URL_LEN + 1 ]		; // download url to download patch file
-	HWND		launcherHwnd					; // Window handle of Arario Launcher
-	bool		isFullScreen					; // Is full screen mode
-	ArGameInfo	optGameInfo						; // optional game information
+	char		ticket [ TICKET_LEN + 1 ]; // ticket to auth (or being auth.ed)
+	WCHAR		downloadUrl	[ URL_LEN + 1 ]; // download url to download patch file
+	HWND		launcherHwnd; // Window handle of Arario Launcher
+	bool		isFullScreen; // Is full screen mode
+	ArGameInfo	optGameInfo; // optional game information
 };
 
 #include <PopPack.h>

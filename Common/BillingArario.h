@@ -1,5 +1,6 @@
-﻿#ifndef _BILLING_ARARIO_H_
-#define _BILLING_ARARIO_H_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_BILLINGARARIO_H_
+#define COMMON_BILLINGARARIO_H_
 
 // 2008-12-18 by cmkwon, 일본 Arario 외부인증, 빌링 모듈 적용하기 - BillingArario.h 파일 추가
 
@@ -49,3 +50,4 @@ struct SARABILL_RET_DATA
 
 
 #endif // #ifndef _BILLING_ARARIO_H_
+#endif // COMMON_BILLINGARARIO_H_

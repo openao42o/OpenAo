@@ -1,11 +1,11 @@
 ////////////////
 //
-//The Header of Apex Client 
+//Copyright[2002] MasangSoft
 //
 ////////////////
 
-#ifndef __ApexClient_h__
-#define __ApexClient_h__
+#ifndef COMMON_APEXCLIENT_H_
+#define COMMON_APEXCLIENT_H_
  
 //Send  and Rec Function type;
 typedef long (*_FUNC_C_SEND) (const char * pBuffer,int nLen);		
@@ -36,4 +36,4 @@ extern "C"
 }
 #endif
 
-#endif
+#endif // COMMON_APEXCLIENT_H_

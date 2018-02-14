@@ -1,6 +1,6 @@
 ﻿//Copyright [2002] MasangSoft
-#ifndef _ATUM_DB_LOG_WRITER_H_
-#define _ATUM_DB_LOG_WRITER_H_
+#ifndef COMMON_ATUMDBLOGWRITER_H_
+#define COMMON_ATUMDBLOGWRITER_H_
 
 class CODBCStatement;
 
@@ -134,3 +134,4 @@ public:
 };
 
 #endif // _ATUM_DB_LOG_WRITER_H_
+#endif // COMMON_ATUMDBLOGWRITER_H_

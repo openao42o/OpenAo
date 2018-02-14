@@ -61,4 +61,4 @@ struct SBILLING_RET_DATA
 
 
 #endif
-#endif
+#endif // COMMON_ACEONLINESQL_H_

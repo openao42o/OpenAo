@@ -1,5 +1,6 @@
-﻿#ifndef __ATUM_TIME_H__
-#define __ATUM_TIME_H__
+﻿// Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMTIME_H_
+#define COMMON_ATUMTIME_H_
 
 #include "StdAfx.h"
 
@@ -151,3 +152,4 @@ AtumTime& AtumTime::operator/=(const int n)
 }
 
 #endif
+#endif // COMMON_ATUMTIME_H_

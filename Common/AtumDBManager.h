@@ -1,6 +1,6 @@
 ﻿//Copyright [2002] MasangSoft
-#ifndef __ATUM_DB_MANAGER_H__
-#define __ATUM_DB_MANAGER_H__
+#ifndef COMMON_ATUMDBMANAGER_H_
+#define COMMON_ATUMDBMANAGER_H_
 
 #include <thread>
 #include <future>
@@ -84,7 +84,7 @@ struct DBWorkerData
 
     SQLHSTMT GetSQLHSTMT(EN_DBCONN_TYPE i_dbConnTy) const
     {
-        switch(i_dbConnTy)
+        switch (i_dbConnTy)
         {
         case EN_DBCONN_AUTO_COMMIT:
             return hstmt;
@@ -119,9 +119,9 @@ struct DBWorkerData
 class CODBCStatement;
 class CAtumDBManager : public CAtumDBHelper
 {
-///////////////////////////////////////////////////////////////////////////////
+
 // public member functions
-///////////////////////////////////////////////////////////////////////////////
+
 public:
     explicit CAtumDBManager(DWORD i_dwWorkerCounts);
     virtual ~CAtumDBManager();
@@ -182,9 +182,9 @@ private:
 
     thread_local static DBWorkerData workerdata;
 
-///////////////////////////////////////////////////////////////////////////////
+    
 // private member functions
-///////////////////////////////////////////////////////////////////////////////
+
 private:
     virtual BOOL ProcessServerQuery(DB_QUERY q, SQLHSTMT &hstmt, SQLHSTMT &hstmt_mc, SQLHSTMT &hstmt_extAuth, SQLHSTMT &hstmt_GLog) = 0;        // 2013-06-20 by jhseol,bckim GLog 보완
 
@@ -198,19 +198,19 @@ public:
     void ProcessLogMessages(SQLSMALLINT plm_handle_type,
         SQLHANDLE &plm_handle, const char *logstring, BOOL ConnInd, CIOCPSocket *pIOCPSocket = NULL);
 
-    SThreadInfo *CheckDBThread(DWORD i_dwThreadIdToExclude){    return m_DBThreadCheck.CheckThreadInfo(i_dwThreadIdToExclude);}
+    SThreadInfo *CheckDBThread(DWORD i_dwThreadIdToExclude) {    return m_DBThreadCheck.CheckThreadInfo(i_dwThreadIdToExclude);}
 
-///////////////////////////////////////////////////////////////////////////////
+
 // public member variables
-///////////////////////////////////////////////////////////////////////////////
+
 public:
     thread                m_threadDBWorker[COUNT_MAX_DBWORKER_THREADS];
     //HANDLE            m_hDBWorkerThread[COUNT_MAX_DBWORKER_THREADS];
     CThreadCheck        m_DBThreadCheck;
 
-///////////////////////////////////////////////////////////////////////////////
+
 // private member variables
-///////////////////////////////////////////////////////////////////////////////
+
 protected:
     DWORD                m_dwCountDBWorker;
     BOOL                m_bShutDownFlag;
@@ -220,4 +220,4 @@ protected:
     CODBCStatement        *m_ArrOdbcStmt;        // Synchronous Execution용
 };
 
-#endif
+#endif // COMMON_ATUMDBMANAGER_H_

@@ -1,4 +1,5 @@
-﻿#include "stdafx.h"
+﻿//Copyright[2002] MasangSoft
+#include "stdafx.h"
 #include "atumparam.h"
 #include "atumprotocol.h"
 #include "AtumError.h"				// 2006-10-02 by cmkwon
@@ -724,7 +725,7 @@ int GDelimiterIndex(char *i_szStr, int i_nMaxCount)
 		{
 			return nCurCount;
 		}
-		else if(nCurCount > i_nMaxCount)
+		else if (nCurCount > i_nMaxCount)
 		{
 			return pBeforeStr - i_szStr;
 		}
@@ -1354,7 +1355,7 @@ char *StringCullingForValidChar(char *i_szSource, int i_nCullingSize)
 		{
 			return pCur;
 		}
-		else if(nGap > i_nCullingSize)
+		else if (nGap > i_nCullingSize)
 		{
 			return pPrev;
 		}
@@ -1562,7 +1563,7 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 					return FALSE;
 				}
 			}
-			else if(COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
+			else if (COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
 			{// 2005-12-06 by cmkwon, 관리자도 관리자 끼리만 거래 가능, 상대방이 관리자 일때
 				if(FALSE == COMPARE_RACE(i_usRace, RACE_OPERATION))
 				{
@@ -1777,7 +1778,7 @@ INT CalcGradeByRate(float i_nMaxValue, float i_nValue, INT i_nRate)
 inline int GetNumberOfBits(INT64 i_n64Mask)
 {
 	int nBits = 0;
-    while( i_n64Mask )
+    while ( i_n64Mask )
     {
         i_n64Mask = i_n64Mask & ( i_n64Mask - 1 ); 
         nBits++;

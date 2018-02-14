@@ -1,5 +1,6 @@
-﻿#if !defined(ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_)
-#define ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMGLOBAL_H_
+#define COMMON_ATUMGLOBAL_H_
 
 #include "stdafx.h"
 #include "math.h"
@@ -318,4 +319,4 @@ typedef struct PK_TARGET
 	int			nTargetIndex;
 } PK_TARGET;
 
-#endif // !defined(ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_)
+#endif // COMMON_ATUMGLOBAL_H_

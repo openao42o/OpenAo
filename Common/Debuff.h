@@ -1,5 +1,5 @@
 ﻿// Debuff.h: interface for the CDebuff class.
-//
+////Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_DEBUFF_H__D3E2A7B5_A30F_41FE_9FC3_BD4485E3B78E__INCLUDED_)
