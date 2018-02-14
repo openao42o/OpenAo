@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿//Copyright[2002] MasangSoft
+#pragma once
 
 enum BUILDINGKIND : unsigned char
 {

@@ -1,5 +1,6 @@
-﻿#ifndef _ATUM_ERROR_H_
-#define _ATUM_ERROR_H_
+﻿// Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMERROR_H_
+#define COMMON_ATUMERROR_H_
 
 ///////////////////////////////////////////////////////////////////////////////
 // ERROR CODES
@@ -737,4 +738,4 @@ char* GetErrorXMLRPCString(int err);
 
 // end 2013-03-13 by hskim, 웹 캐시 상점
 
-#endif // _ATUM_ERROR_H_
+#endif // COMMON_ATUMERROR_H_

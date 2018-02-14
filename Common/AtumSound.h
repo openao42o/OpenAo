@@ -1,11 +1,11 @@
 ﻿#pragma once
 
 // AtumSound.h: interface for the CAtumSound class.
-//
+//Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
-#ifndef ATUMSOUND_H
-#define ATUMSOUND_H
+#ifndef COMMON_ATUMSOUND_H_
+#define COMMON_ATUMSOUND_H_
 
 #include <dsound.h>
 
@@ -93,3 +93,4 @@ protected:
 
 
 #endif
+#endif // COMMON_ATUMSOUND_H_

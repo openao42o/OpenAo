@@ -1,5 +1,5 @@
 ﻿// ChatBlockManager.h: interface for the CChatBlockManager class.
-//
+// Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_CHATBLOCKMANAGER_H__0D41A9DF_9A0A_4E5F_B5E7_1D53A60C594C__INCLUDED_)

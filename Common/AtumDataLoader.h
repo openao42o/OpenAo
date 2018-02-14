@@ -1,9 +1,9 @@
 ﻿// AtumDataLoader.h: interface for the CAtumDataLoader class.
-//
+// Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_ATUMDATALOADER_H__86859305_F2F3_4DA7_A7E6_674DDCF802FA__INCLUDED_)
-#define AFX_ATUMDATALOADER_H__86859305_F2F3_4DA7_A7E6_674DDCF802FA__INCLUDED_
+#ifndef COMMON_ATUMDATALOADER_H_
+#define COMMON_ATUMDATALOADER_H_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -115,4 +115,4 @@ struct QUEST_NPC_INFO
     }
 };
 
-#endif // !defined(AFX_ATUMDATALOADER_H__86859305_F2F3_4DA7_A7E6_674DDCF802FA__INCLUDED_)
+#endif // COMMON_ATUMDATALOADER_H_

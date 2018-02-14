@@ -282,12 +282,12 @@ BOOL CAtumDBManager::Connect2DBServer(DBWorkerData *io_pDBTlsData, EN_DBCONN_TYP
 void CAtumDBManager::DisconnectDBServer(SQLHENV *i_phenv, SQLHDBC    *i_phdbc, SQLHSTMT *i_phstmt)
 {
     // cleanup odbc resources
-    if (SQL_NULL_HSTMT != *i_phstmt){    SQLFreeHandle(SQL_HANDLE_STMT, *i_phstmt);}
-    if (SQL_NULL_HDBC != *i_phdbc){        SQLDisconnect (*i_phdbc);}
+    if (SQL_NULL_HSTMT != *i_phstmt) {    SQLFreeHandle(SQL_HANDLE_STMT, *i_phstmt);}
+    if (SQL_NULL_HDBC != *i_phdbc) {        SQLDisconnect (*i_phdbc);}
 #ifndef _DEBUG
-    if (SQL_NULL_HDBC != *i_phdbc){        SQLFreeHandle (SQL_HANDLE_DBC, *i_phdbc);}
+    if (SQL_NULL_HDBC != *i_phdbc) {        SQLFreeHandle (SQL_HANDLE_DBC, *i_phdbc);}
 #endif
-    if (SQL_NULL_HENV != *i_phenv){        SQLFreeHandle (SQL_HANDLE_ENV, *i_phenv);}
+    if (SQL_NULL_HENV != *i_phenv) {        SQLFreeHandle (SQL_HANDLE_ENV, *i_phenv);}
 
     *i_phstmt        = SQL_NULL_HSTMT;
     *i_phdbc        = SQL_NULL_HDBC;

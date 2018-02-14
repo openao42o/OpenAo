@@ -1,5 +1,6 @@
-﻿#ifndef _BILLING_WIKIGAMES_H_
-#define _BILLING_WIKIGAMES_H_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_BILLINGWIKIGAMES_H_
+#define COMMON_BILLINGWIKIGAMES_H_
 
 
 #define WIKIBILL_SIZE_MAX_ACCOUNT_NAME			50		// 최대 계정명
@@ -59,3 +60,4 @@ struct SWIKIBILL_RET_DATA
 
 
 #endif // #ifndef _BILLING_WIKIGAMES_H_
+#endif // COMMON_BILLINGWIKIGAMES_H_

@@ -1,4 +1,7 @@
-﻿#pragma once
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_CONTENTS_H_
+#define COMMON_CONTENTS_H_
+#pragma once
 
 // BUILD CONFIGURATION SETTINGS
 
@@ -420,3 +423,4 @@
 // 2016-01-03 Future, leader warp restriction
 #define SC_LEADER_WARP_RESTRICTION
 #define SC_LEADER_WARP_RESTRICTION_TIME_IN_MINUTES		30
+#endif // COMMON_CONTENTS_H_

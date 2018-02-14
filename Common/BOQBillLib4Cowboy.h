@@ -1,5 +1,7 @@
-﻿
+﻿//Copyright[2002] MasangSoft
 // 2006-08-24 by cmkwon, billing server ip changed(64.127.103.228 --> 192.168.7.111)
+#ifndef COMMON_BOQBILLLIB4COWBOY_H_
+#define COMMON_BOQBILLLIB4COWBOY_H_
 #define BILL_SERVER_INFO "192.168.7.111:24701"
 
 #ifdef BOQBILL_EXPORTS
@@ -87,3 +89,4 @@ BOQBILL_API int BillCmdExecute(const char* szServerInfo, const LPBILLSENDDATA pD
 // 
 // 
 //		기타	Network Error
+#endif // COMMON_BOQBILLLIB4COWBOY_H_

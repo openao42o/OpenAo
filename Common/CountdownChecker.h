@@ -1,5 +1,5 @@
 // CountdownChecker.h: interface for the CCountdownChecker class.
-//
+//Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_COUNTDOWNCHECKER_H__4F03B5DB_EFBB_4111_8415_719672633C3E__INCLUDED_)

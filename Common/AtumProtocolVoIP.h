@@ -1,5 +1,7 @@
-﻿#if 0 // ndef _ATUM_PROTOCOL_VOIP_H_
-#define _ATUM_PROTOCOL_VOIP_H_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMPROTOCOLVOIP_H_
+#if 0 // ndef _ATUM_PROTOCOL_VOIP_H_
+#define COMMON_ATUMPROTOCOLVOIP_H_
 
 #include "AtumProtocol.h"
 #include "VoIPError.h"
@@ -106,3 +108,4 @@
 
 
 #endif
+#endif // COMMON_ATUMPROTOCOLVOIP_H_

@@ -1,13 +1,7 @@
-﻿/*
-* Copyright[2002] MasangSoft
-*
-* Any part of this source code can not be copied with
-* any method without prior written permission from
-* the author or authorized person.
-*
-* File Name : AntiCpSvrFunc.h
-*/
+﻿// Copyright[2002] MasangSoft
 
+
+#ifndef COMMON_ANTICPSVRFUNC_H_
 #ifndef _ANTICPSVRFUNC_H
 #define _ANTICPSVRFUNC_H
 
@@ -259,3 +253,4 @@ _AntiCpSvr_AnalyzeAckMsg (
 #endif
 
 #endif //_ANTICPSVRFUNC_H
+#endif // COMMON_ANTICPSVRFUNC_H_
