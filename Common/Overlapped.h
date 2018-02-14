@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SocketHeader.h"
 
 class COverlapped;
 
-struct SSendedOverlappedInfo	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
+struct SSendedOverlappedInfo	// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
 {
 	COverlapped*	pOverlapped;
 	BYTE*			pbyData;
 	int				nSendedSize;
 };
 
-using vectSSendedOverlappedInfo = vector<SSendedOverlappedInfo>;	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
+using vectSSendedOverlappedInfo = vector<SSendedOverlappedInfo>;	// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
 
 class COverlapped : public OVERLAPPED
 {
@@ -33,52 +33,52 @@ public:
 	};
 
 	COverlapped(ENOperationMode i_enOperationMode, ENOverlappedType i_enOverlappedType,
-		bool Encoding = false, ENDataType i_enDataType = EN_DATA_TYPE_ACEONLINE);		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+		bool Encoding = false, ENDataType i_enDataType = EN_DATA_TYPE_ACEONLINE);		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 	///////////////////////////////////////////////////////////////////////////
 	// Property
 	BYTE GetOperationMode() const { return m_enOperationMode; }
 	BYTE GetOverlappedType() const { return m_enOverlappedType; }
-	BYTE GetDataType() const { return m_enDataType; }		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	BYTE GetDataType() const { return m_enDataType; }		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 	WSABUF* GetWSABUFPtr() { return &m_WSABUF; }
 	sockaddr_in* Getsocketaddr_inPtr() { return &m_socketaddr_in; }
 	int GetSizesocketaddr_in() const { return m_nSizesocketaddr_in; }
 	int* GetSizesocketaddr_inPtr() { return &m_nSizesocketaddr_in; }
-	BYTE GetSessionEnd() const { return m_bSessionEnd; }		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	BYTE GetSessionEnd() const { return m_bSessionEnd; }		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 	// Operations
-	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - ÀÎÀÚÃß°¡(SSendedOverlappedInfo *o_pSendedOverInfo)
-	BOOL AddData(SSendedOverlappedInfo *o_pSendedOverInfo, const BYTE* pData, int nSize);					// COverlapped Å¬·¡½ºÀÇ ³»ºÎ ¹öÆÛ¿¡ µ¥ÀÌÅ¸¸¦ Ãß°¡ÇÑ´Ù.
-	int GetDataSize() const { return m_WSABUF.len; }		// COverlapped Å¬·¡½ºÀÇ ³»ºÎ ¹öÆÛ¿¡ Ãß°¡µÈ µ¥ÀÌÅ¸ÀÇ »çÀÌÁî¸¦ ¸®ÅÏ
-	void ResetOverlapped();								// COverlapped Å¬·¡½º¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
-	void EncodePacket(BYTE seq);							// m_bEncodingFlag °¡ TRUEÀÌ°í m_bEncodedFlag °¡ FALSEÀÏ¶§ EncodingÀ» ÇÑ´Ù.
-	void SetSequenceNumber(BYTE seq);						// m_bEncodingFlag °¡ FALSEÀÏ¶§ Sequence Number ¸¦ ¼³Á¤ÇÑ´Ù.
-	BYTE GetSequenceNumber();								// m_bEncodingFlag °¡ TRUEÀÌ°í m_bEncodedFlag °¡ TRUEÀÏ¶§ ÆĞÅ¶¿¡ ¼³Á¤µÈ Sequence Number
-															// m_bEncodingFlag °¡ FALSEÀÏ¶§ ÆĞÅ¶¿¡ ¼³Á¤µÈ Sequence Number
-	bool IsPacketEncoded() const { return m_bEncodedFlag; }	// ÆĞÅ¶ÀÌ Encoding µÇ¾ú´ÂÁöÀÇ ¿©ºÎ¸¦ ¸®ÅÏ
+	// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - ì¸ìì¶”ê°€(SSendedOverlappedInfo *o_pSendedOverInfo)
+	BOOL AddData(SSendedOverlappedInfo *o_pSendedOverInfo, const BYTE* pData, int nSize);					// COverlapped í´ë˜ìŠ¤ì˜ ë‚´ë¶€ ë²„í¼ì— ë°ì´íƒ€ë¥¼ ì¶”ê°€í•œë‹¤.
+	int GetDataSize() const { return m_WSABUF.len; }		// COverlapped í´ë˜ìŠ¤ì˜ ë‚´ë¶€ ë²„í¼ì— ì¶”ê°€ëœ ë°ì´íƒ€ì˜ ì‚¬ì´ì¦ˆë¥¼ ë¦¬í„´
+	void ResetOverlapped();								// COverlapped í´ë˜ìŠ¤ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
+	void EncodePacket(BYTE seq);							// m_bEncodingFlag ê°€ TRUEì´ê³  m_bEncodedFlag ê°€ FALSEì¼ë•Œ Encodingì„ í•œë‹¤.
+	void SetSequenceNumber(BYTE seq);						// m_bEncodingFlag ê°€ FALSEì¼ë•Œ Sequence Number ë¥¼ ì„¤ì •í•œë‹¤.
+	BYTE GetSequenceNumber();								// m_bEncodingFlag ê°€ TRUEì´ê³  m_bEncodedFlag ê°€ TRUEì¼ë•Œ íŒ¨í‚·ì— ì„¤ì •ëœ Sequence Number
+															// m_bEncodingFlag ê°€ FALSEì¼ë•Œ íŒ¨í‚·ì— ì„¤ì •ëœ Sequence Number
+	bool IsPacketEncoded() const { return m_bEncodedFlag; }	// íŒ¨í‚·ì´ Encoding ë˜ì—ˆëŠ”ì§€ì˜ ì—¬ë¶€ë¥¼ ë¦¬í„´
 
-	void SetSessionEnd(BYTE bSessionEnd);					// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	void SetSessionEnd(BYTE bSessionEnd);					// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 	///////////////////////////////////////////////////////////////////////////
-	// new, delete ¸¦ ¿À¹ö¶óÀÌµùÇÑ´Ù.
+	// new, delete ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•œë‹¤.
 	void* operator new(size_t size);
 	void operator delete(void* p);
 	
 private:	
-	BYTE				m_enOperationMode;					// Read Or Write Mode º¯¼ö
-	BYTE				m_enOverlappedType;					// Overlapped °´Ã¼ÀÇ Static or Dynamic Type º¯¼ö
-	BYTE				m_bEncodingFlag;					// COverlapped °¡ Encoding À» À§ÇÑ °ÍÀÎÁöÀÇ Flag
-	BYTE				m_bEncodedFlag;						// COverlapped °¡ Encoding µÇ¾ú´ÂÁöÀÇ Flag
-	WSABUF				m_WSABUF;							// ReadFile and WriteFile ÀÎÀÚ	
+	BYTE				m_enOperationMode;					// Read Or Write Mode ë³€ìˆ˜
+	BYTE				m_enOverlappedType;					// Overlapped ê°ì²´ì˜ Static or Dynamic Type ë³€ìˆ˜
+	BYTE				m_bEncodingFlag;					// COverlapped ê°€ Encoding ì„ ìœ„í•œ ê²ƒì¸ì§€ì˜ Flag
+	BYTE				m_bEncodedFlag;						// COverlapped ê°€ Encoding ë˜ì—ˆëŠ”ì§€ì˜ Flag
+	WSABUF				m_WSABUF;							// ReadFile and WriteFile ì¸ì	
 	char				lpBuff[SIZE_MAX_SOCKET_BUFFER];		// Data Buffer
-	sockaddr_in			m_socketaddr_in;					// UDP Áö¿øÀ» À§ÇÑ º¯¼ö(¼§´ë¹æ ÁÖ¼Ò¸¦ ¼³Á¤)
-	int					m_nSizesocketaddr_in;				// UDP Áö¿øÀ» À§ÇÑ º¯¼ö(socketaddr »çÀÌÁî)
+	sockaddr_in			m_socketaddr_in;					// UDP ì§€ì›ì„ ìœ„í•œ ë³€ìˆ˜(ìƒ¹ëŒ€ë°© ì£¼ì†Œë¥¼ ì„¤ì •)
+	int					m_nSizesocketaddr_in;				// UDP ì§€ì›ì„ ìœ„í•œ ë³€ìˆ˜(socketaddr ì‚¬ì´ì¦ˆ)
 
-	BYTE				m_enDataType;						// Date Type (Raw / Game Packet Type ¿©ºÎ)	- // 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
-	BYTE				m_bSessionEnd;						// µ¥ÀÌÅÍ Àü¼Û ÈÄ ¼¼¼Ç Á¾·á ¿©ºÎ			- // 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	BYTE				m_enDataType;						// Date Type (Raw / Game Packet Type ì—¬ë¶€)	- // 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
+	BYTE				m_bSessionEnd;						// ë°ì´í„° ì „ì†¡ í›„ ì„¸ì…˜ ì¢…ë£Œ ì—¬ë¶€			- // 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 	///////////////////////////////////////////////////////////////////////////
-	// static ¸â¹ö º¯¼ö
+	// static ë©¤ë²„ ë³€ìˆ˜
 	static const char*		pXOR_ENCODE_BYTES;	
 };
 

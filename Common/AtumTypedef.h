@@ -1,4 +1,4 @@
-#ifndef _ATUM_TYPEDEF_H__32E91AE4_C7F3_424D_B983_17488DDA215B__INCLUDED_
+ï»¿#ifndef _ATUM_TYPEDEF_H__32E91AE4_C7F3_424D_B983_17488DDA215B__INCLUDED_
 #define _ATUM_TYPEDEF_H__32E91AE4_C7F3_424D_B983_17488DDA215B__INCLUDED_
 
 #include "mt_stl.h"
@@ -14,34 +14,34 @@ struct GUILD_MARK_VERSION;
 struct MAP_INFO;
 
 
-typedef vector<CEnemyData *>				CVecEnemyList;			// Block ´ÜÀ§·Î ´Ù·ç´Â Enemy ListÀÇ Vector
-typedef vector<CEnemyData *>::iterator		CVecEnemyIterator;		// Block ´ÜÀ§·Î ´Ù·ç´Â Enemy ListÀÇ Vector iterator 
-typedef vector<CMonsterData *>				CVecMonsterList;		// Block ´ÜÀ§·Î ´Ù·ç´Â Monster ListÀÇ Vector
-typedef vector<CMonsterData *>::iterator	CVecMonsterIterator;	// Block ´ÜÀ§·Î ´Ù·ç´Â Monster ListÀÇ Vector iterator
-typedef map<INT,CEnemyData *>				CMapEnemyList;			// Enemy ListÀÇ Map
-typedef map<INT,CEnemyData *>::iterator		CMapEnemyIterator;		// Enemy ListÀÇ Map iterator
-typedef map<INT,CMonsterData *>				CMapMonsterList;		// Monster ListÀÇ Map
-typedef map<INT,CMonsterData *>::iterator	CMapMonsterIterator;	// Monster ListÀÇ Map iterator
-typedef map<INT,CObjectChild *>				CMapObjectList;			// ·»´õ¸µ µÇ¾îÁú Object ListÀÇ Map
+typedef vector<CEnemyData *>				CVecEnemyList;			// Block ë‹¨ìœ„ë¡œ ë‹¤ë£¨ëŠ” Enemy Listì˜ Vector
+typedef vector<CEnemyData *>::iterator		CVecEnemyIterator;		// Block ë‹¨ìœ„ë¡œ ë‹¤ë£¨ëŠ” Enemy Listì˜ Vector iterator 
+typedef vector<CMonsterData *>				CVecMonsterList;		// Block ë‹¨ìœ„ë¡œ ë‹¤ë£¨ëŠ” Monster Listì˜ Vector
+typedef vector<CMonsterData *>::iterator	CVecMonsterIterator;	// Block ë‹¨ìœ„ë¡œ ë‹¤ë£¨ëŠ” Monster Listì˜ Vector iterator
+typedef map<INT,CEnemyData *>				CMapEnemyList;			// Enemy Listì˜ Map
+typedef map<INT,CEnemyData *>::iterator		CMapEnemyIterator;		// Enemy Listì˜ Map iterator
+typedef map<INT,CMonsterData *>				CMapMonsterList;		// Monster Listì˜ Map
+typedef map<INT,CMonsterData *>::iterator	CMapMonsterIterator;	// Monster Listì˜ Map iterator
+typedef map<INT,CObjectChild *>				CMapObjectList;			// ë Œë”ë§ ë˜ì–´ì§ˆ Object Listì˜ Map
 typedef vector<CObjectChild*>				vectorCObjectChildPtr;
-typedef map<INT,CObjectChild *>::iterator	CMapObjectIterator;		// ·»´õ¸µ µÇ¾îÁú Object ListÀÇ Map iterator
+typedef map<INT,CObjectChild *>::iterator	CMapObjectIterator;		// ë Œë”ë§ ë˜ì–´ì§ˆ Object Listì˜ Map iterator
 //typedef map<int, DSound3D *>				CMapSound3DList;		// effect sound file map
 //typedef map<int, DSound3D *>::iterator		CMapSound3DIterator;		// effect sound file map
 
 
-typedef map<int, ITEM*>						CMapItemInfoList;			// ¾ÆÀÌÅÛ Á¤º¸
+typedef map<int, ITEM*>						CMapItemInfoList;			// ì•„ì´í…œ ì •ë³´
 typedef map<int, ITEM*>::iterator			CMapItemInfoIterator;
-typedef map<int, RARE_ITEM_INFO*>			CMapRareItemInfoList;			// ·¹¾î ¾ÆÀÌÅÛ Á¤º¸
+typedef map<int, RARE_ITEM_INFO*>			CMapRareItemInfoList;			// ë ˆì–´ ì•„ì´í…œ ì •ë³´
 typedef map<int, RARE_ITEM_INFO*>::iterator	CMapRareItemInfoIterator;
-typedef map<int, MEX_MONSTER_INFO *>		CMapMonsterInfoList;// ¸ó½ºÅÍ Á¤º¸
+typedef map<int, MEX_MONSTER_INFO *>		CMapMonsterInfoList;// ëª¬ìŠ¤í„° ì •ë³´
 typedef map<int, MEX_MONSTER_INFO *>::iterator CMapMonsterInfoIterator;	
-typedef map<int, MAPOBJECTINFO *>			CMapObjectInfoList;			// ¿ÀºêÁ§Æ® Á¤º¸
+typedef map<int, MAPOBJECTINFO *>			CMapObjectInfoList;			// ì˜¤ë¸Œì íŠ¸ ì •ë³´
 typedef map<int, MAPOBJECTINFO *>::iterator	CMapObjectInfoIterator;
-typedef map<int, BOOL>						CMapIsLoadingList;			// °¢ Item Data - Á¤º¸¸¦ ¿äÃ»Çß´ÂÁö
+typedef map<int, BOOL>						CMapIsLoadingList;			// ê° Item Data - ì •ë³´ë¥¼ ìš”ì²­í–ˆëŠ”ì§€
 typedef map<int, BOOL>::iterator			CMapIsLoadingIterator;		
 typedef map<int, BUILDINGNPC*>				CMapBuildingNPCList;			// building info
 typedef map<int, BUILDINGNPC*>::iterator	CMapBuildingNPCIterator;		
-typedef map<UINT, GUILD_MARK_VERSION*>		CMapGuildMark;				// ±æµå ¸¶Å©
+typedef map<UINT, GUILD_MARK_VERSION*>		CMapGuildMark;				// ê¸¸ë“œ ë§ˆí¬
 typedef map<UINT, GUILD_MARK_VERSION*>::iterator CMapGuildMarkIterator;
 typedef map<int, MEX_OTHER_GUILD_INFO*>		CMapOtherGuildInfo;
 typedef map<int, MEX_OTHER_GUILD_INFO*>::iterator CMapOtherGuildInfoIterator;
@@ -57,7 +57,7 @@ typedef map<UID64_t, CItemInfo*>			CMapItemInventory;			// new inventory
 typedef map<UID64_t, CItemInfo*>::iterator	CMapItemInventoryIterator;
 typedef map<int, CItemInfo*>				CMapItemWindowInventory;			// new inventory
 typedef map<int, CItemInfo*>::iterator		CMapItemWindowInventoryIterator;
-typedef vector<CItemInfo*>					CVectorItemInfo;			// store¿ë
+typedef vector<CItemInfo*>					CVectorItemInfo;			// storeìš©
 typedef vector<CItemInfo*>::iterator		CVectorItemInfoIterator;
 
 typedef ez_map<INT, CQuest*>				CMapQuest;
@@ -79,22 +79,22 @@ typedef vector<ITEM*>						vectorItemInfoList;					// 2006-07-31 by ispark
 typedef vector<MYSTERY_ITEM_DROP*>				CVectorMysteryItemDrop;				// 2008-11-04 by dgwoo
 typedef vector<MYSTERY_ITEM_DROP*>::iterator	CVectorMysteryItemDropIterator;
 
-// 2009-03-04 by bhsohn ·°Å° ¸Ó½Å ¼öÁ¤¾È
+// 2009-03-04 by bhsohn ëŸ­í‚¤ ë¨¸ì‹  ìˆ˜ì •ì•ˆ
 typedef vector<LUCKY_MACHINE_OMI*>				CVectorLuckyMachine;	
 typedef vector<LUCKY_MACHINE_OMI*>::iterator	CVectorLuckyMachineIterator;
-// end 2009-03-04 by bhsohn ·°Å° ¸Ó½Å ¼öÁ¤¾È
+// end 2009-03-04 by bhsohn ëŸ­í‚¤ ë¨¸ì‹  ìˆ˜ì •ì•ˆ
 
-// 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
 typedef vector<INVOKING_WEAR_ITEM_DESTPARAM*>			CVectorInvokingWearItemDP;
 typedef vector<INVOKING_WEAR_ITEM_DESTPARAM*>::iterator	CVectorInvokingWearItemDPIt;
-// end 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// end 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
 
 
 typedef vector<tPET_BASE_ALL_DATA*>				CVectorPetAllData;
 typedef vector<tPET_BASE_ALL_DATA*>::iterator	CVectorPetAllDataItr;
 
 
-// 2010-08-10 by dgwoo ¹ö´×¸Ê ½Ã½ºÅÛ
+// 2010-08-10 by dgwoo ë²„ë‹ë§µ ì‹œìŠ¤í…œ
 typedef vector<BURNING_MAP_INFO*>				CVectorBurningData;
 typedef vector<BURNING_MAP_INFO*>::iterator		CVectorBurningDataItr;
 

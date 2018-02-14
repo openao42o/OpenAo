@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "servergroup.h"
 #include "IOCPSocket.h"
 
@@ -17,12 +17,12 @@ void CServerGroup::InitServerGroup()
 	memset(m_ServerGroupName, 0x00, SIZE_MAX_SERVER_NAME);
 	m_bEnableServerGroup			= TRUE;
 	m_LimitGroupUserCounts			= 0;
-	m_bForbidViewServer				= FALSE;		// 2007-12-22 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ·±ÃÄ ¸®½ºÆ®¿¡¼­ º¸ÀÌ¸é ¾ÈµÇ´Â ¼­¹ö Ã¼Å©, TRUE = º¸ÀÌÁö ¾Ê´Â´Ù.
+	m_bForbidViewServer				= FALSE;		// 2007-12-22 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ëŸ°ì³ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë³´ì´ë©´ ì•ˆë˜ëŠ” ì„œë²„ ì²´í¬, TRUE = ë³´ì´ì§€ ì•ŠëŠ”ë‹¤.
 	
 	m_AccumulatedGroupUserCounts	= 0;
 	m_MaxGroupUserCounts			= 0;
 
-	m_bLockCreateCharacterForNewAccount	= FALSE;	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	m_bLockCreateCharacterForNewAccount	= FALSE;	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 
 	// reset m_IMServerInfo
 	m_IMServerInfo.Reset();

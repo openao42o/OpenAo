@@ -1,4 +1,4 @@
-// WinSocket.cpp: implementation of the CWinSocket class.
+ï»¿// WinSocket.cpp: implementation of the CWinSocket class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -6,13 +6,13 @@
 #include "WinSocket.h"
 #include "DefineGlobal.h"
 #include <timeapi.h>
-// 2009-11-19 by cmkwon, ·¯½Ã¾Æ AdminTool¿¡ FrostLib Àû¿ëÇÏ±â - ¾Æ·¡¿Í °°ÀÌ AdminToolµµ Ãß°¡
+// 2009-11-19 by cmkwon, ëŸ¬ì‹œì•„ AdminToolì— FrostLib ì ìš©í•˜ê¸° - ì•„ë˜ì™€ ê°™ì´ AdminToolë„ ì¶”ê°€
 #if defined(_C_EXE2_) || defined(_ATUM_ADMINTOOL)
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
-#include "Security\shieldSecurity.h"				// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
-#include "Security\shieldSecurityDll.h"				// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
+// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
+#include "Security\shieldSecurity.h"				// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
+#include "Security\shieldSecurityDll.h"				// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
 
 #endif
 
@@ -24,7 +24,7 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CWinSocket::CWinSocket(ENServerType PeerType, HWND hWnd, UINT wmSock, UINT wmNotify, BOOL bEncoding, char* szNPlayServerIP_Real/* = ""*/, char* szNPlayServerIP_Real_BackUp/* = ""*/) // 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - NPlay ¼­¹ö IP ÀÎÀÚ Ãß°¡
+CWinSocket::CWinSocket(ENServerType PeerType, HWND hWnd, UINT wmSock, UINT wmNotify, BOOL bEncoding, char* szNPlayServerIP_Real/* = ""*/, char* szNPlayServerIP_Real_BackUp/* = ""*/) // 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - NPlay ì„œë²„ IP ì¸ì ì¶”ê°€
 {
 	m_PeerSocketType = PeerType;
 
@@ -42,15 +42,15 @@ CWinSocket::CWinSocket(ENServerType PeerType, HWND hWnd, UINT wmSock, UINT wmNot
 	InitializeCriticalSection(&m_criticalSendList);
 	InitializeCriticalSection(&m_criticalRecvMessageQueue);
 
-	// ÀÚÃ¼ »ı¼º
+	// ìì²´ ìƒì„±
 	m_nAsyncFlag = 0;
 	m_bSendNotify = FALSE;
 
 	m_msgTyLastPacket = 0; // 2008-02-22 by cmkwon, 
-	// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - NPlay ¼­¹ö IP ÀÎÀÚ Ãß°¡
+	// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - NPlay ì„œë²„ IP ì¸ì ì¶”ê°€
 	util::strncpy(m_szNPlayServerIP_Real, szNPlayServerIP_Real, sizeof(m_szNPlayServerIP_Real));
 	util::strncpy(m_szNPlayServerIP_BackUp, szNPlayServerIP_Real_BackUp, sizeof(m_szNPlayServerIP_BackUp));
-	// end 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - NPlay ¼­¹ö IP ÀÎÀÚ Ãß°¡
+	// end 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - NPlay ì„œë²„ IP ì¸ì ì¶”ê°€
 	CreateSocket();
 }
 
@@ -92,7 +92,7 @@ BOOL CWinSocket::CreateSocket()
 	if (!IsWindow(m_hMsgWnd))
 	{
 		return FALSE;
-	} // Socket Event¿Í Notify¿¡ »ç¿ëÇÒ À©µµ¿ì ÇÚµéÀÌ À¯È¿ÇÑÁö Ã¼Å©
+	} // Socket Eventì™€ Notifyì— ì‚¬ìš©í•  ìœˆë„ìš° í•¸ë“¤ì´ ìœ íš¨í•œì§€ ì²´í¬
 
 	if (INVALID_SOCKET == m_Socket)
 	{
@@ -107,7 +107,7 @@ BOOL CWinSocket::CreateSocket()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CWinSocket::SetOptionWinSocket(int level, int nOption, char* pValue, int nValueSize)
-/// \brief		// 2007-06-21 by cmkwon, TCP Nagle ¾Ë°í¸®Áò ÇØÁ¦¸¦ À§ÇØ
+/// \brief		// 2007-06-21 by cmkwon, TCP Nagle ì•Œê³ ë¦¬ì¦˜ í•´ì œë¥¼ ìœ„í•´
 /// \author		cmkwon
 /// \date		2007-06-21 ~ 2007-06-21
 /// \warning	
@@ -124,7 +124,7 @@ BOOL CWinSocket::SetOptionWinSocket(int level, int nOption, char* pValue, int nV
 	return !setsockopt(m_Socket, level, nOption, pValue, nValueSize);
 }
 
-// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - ÀÎÀÚÃß°¡(BOOL i_bBlockingMode=FALSE)
+// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - ì¸ìì¶”ê°€(BOOL i_bBlockingMode=FALSE)
 BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FALSE*/)
 {
 	if (INVALID_SOCKET == m_Socket && !CreateSocket())
@@ -132,7 +132,7 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 		return FALSE;
 	}
 
-	m_byHostSequenceNumber = (BYTE)(GetTickCount() % SEQNO_VAR_C); // ÃÊ±â°ªÀ» SEQNO_VAR_C °ªº¸´Ù ÀÛ°Ô ¼³Á¤
+	m_byHostSequenceNumber = (BYTE)(GetTickCount() % SEQNO_VAR_C); // ì´ˆê¸°ê°’ì„ SEQNO_VAR_C ê°’ë³´ë‹¤ ì‘ê²Œ ì„¤ì •
 	m_bPeerSequenceNumberInitFlag = FALSE;
 	if (m_byHostSequenceNumber == 116)
 	{
@@ -140,13 +140,13 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 	}
 	m_SockAddrRemote.sin_port = htons(nPort);
 	DWORD dwPeerAddress = inet_addr(strPeerIP);
-	// 2008-04-23 by cmkwon, PreServer ÁÖ¼Ò¸¦ IP¿Í µµ¸ŞÀÎ µÑ´Ù Áö¿ø - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ÇÔ
+	// 2008-04-23 by cmkwon, PreServer ì£¼ì†Œë¥¼ IPì™€ ë„ë©”ì¸ ë‘˜ë‹¤ ì§€ì› - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •í•¨
 	// 	if (INADDR_NONE != dwPeerAddress)
 	// 	{
 	// 	    m_SockAddrRemote.sin_addr.s_addr = dwPeerAddress;
 	// 		m_SockAddrRemote.sin_family = AF_INET;
 	// 
-	// 		// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 		// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	// 		//if(!AsyncSelect(FD_CONNECT) ||	SOCKET_ERROR != connect(m_Socket, (SOCKADDR *)&m_SockAddrRemote, sizeof(m_SockAddrRemote)))
 	// 		//{
 	// 		//	return !IsError();
@@ -162,7 +162,7 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 	// 		}
 	// 
 	// 		if(i_bBlockingMode)
-	// 		{// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - ºí·¯Å· ¸ğµåÀÌ¸é m_bConnected ¿¬°á ¿Ï·á
+	// 		{// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - ë¸”ëŸ¬í‚¹ ëª¨ë“œì´ë©´ m_bConnected ì—°ê²° ì™„ë£Œ
 	// 			m_bConnected = TRUE;
 	// 		}
 	// 		WSASetLastError(0);
@@ -171,7 +171,7 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 	// 
 	// 	return FALSE;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-04-23 by cmkwon, PreServer ÁÖ¼Ò¸¦ IP¿Í µµ¸ŞÀÎ µÑ´Ù Áö¿ø - 
+	// 2008-04-23 by cmkwon, PreServer ì£¼ì†Œë¥¼ IPì™€ ë„ë©”ì¸ ë‘˜ë‹¤ ì§€ì› - 
 	m_SockAddrRemote.sin_family = AF_INET ;
 	m_SockAddrRemote.sin_addr.s_addr = dwPeerAddress;
 	if (INADDR_NONE == dwPeerAddress)
@@ -191,10 +191,10 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 		return FALSE;
 	}
 
-	// 2009-11-19 by cmkwon, ·¯½Ã¾Æ AdminTool¿¡ FrostLib Àû¿ëÇÏ±â - ¾Æ·¡¿Í °°ÀÌ AdminToolµµ Ãß°¡
+	// 2009-11-19 by cmkwon, ëŸ¬ì‹œì•„ AdminToolì— FrostLib ì ìš©í•˜ê¸° - ì•„ë˜ì™€ ê°™ì´ AdminToolë„ ì¶”ê°€
 #if defined(_C_EXE2_) || defined(_ATUM_ADMINTOOL)
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
+	// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
 	//	DbgOut("[TEMP] 090710 Frost frostConnect Before Peer(%s:%d) nRet(%d) \r\n", strPeerIP, nPort, 0);
 	int nRet = frostConnect(m_Socket, (SOCKADDR *)&m_SockAddrRemote, sizeof(m_SockAddrRemote));
 	//	DbgOut("[TEMP] 090710 Frost frostConnect After  Peer(%s:%d) nRet(%d) \r\n", strPeerIP, nPort, nRet);
@@ -208,7 +208,7 @@ BOOL CWinSocket::Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode/*=FAL
 	}
 
 	if (i_bBlockingMode)
-	{// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - ºí·¯Å· ¸ğµåÀÌ¸é m_bConnected ¿¬°á ¿Ï·á
+	{// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - ë¸”ëŸ¬í‚¹ ëª¨ë“œì´ë©´ m_bConnected ì—°ê²° ì™„ë£Œ
 		m_bConnected = TRUE;
 	}
 	WSASetLastError(0);
@@ -270,15 +270,15 @@ BOOL CWinSocket::CloseSocket(int reason)
 
 	if (INVALID_SOCKET != m_Socket)
 	{
-		// 2009-04-17 by cmkwon, Gameforge4D Á×´Â ¹®Á¦ Ã³¸® - ¼ÒÄÏ Á¾·á½Ã AsyncSelect(0) ÀÌ ÇÊ¿ä ¾øÀ½.
+		// 2009-04-17 by cmkwon, Gameforge4D ì£½ëŠ” ë¬¸ì œ ì²˜ë¦¬ - ì†Œì¼“ ì¢…ë£Œì‹œ AsyncSelect(0) ì´ í•„ìš” ì—†ìŒ.
 		// 		DWORD	dw = 1L;
 		// 		if (GetLastError() == 0)
 		// 		{
 		// 			AsyncSelect(0);
 		// 		}
-		// 		// 2009-02-23 by cmkwon, Gameforge4D Á×´Â ¹®Á¦ Ã³¸® - ÇÊ¿ä ¾ø´Â ÄÚµå·Î »ı°¢µÊ, ÀÌ ºÎºĞ¿¡¼­ Äİ½ºÅÃ ¿À¹öÇÃ·Î¿ì ¹ß»ıÇÑ ¿À·ù Ã³¸®ÀÓ.
+		// 		// 2009-02-23 by cmkwon, Gameforge4D ì£½ëŠ” ë¬¸ì œ ì²˜ë¦¬ - í•„ìš” ì—†ëŠ” ì½”ë“œë¡œ ìƒê°ë¨, ì´ ë¶€ë¶„ì—ì„œ ì½œìŠ¤íƒ ì˜¤ë²„í”Œë¡œìš° ë°œìƒí•œ ì˜¤ë¥˜ ì²˜ë¦¬ì„.
 		// 		//ioctlsocket(m_Socket, FIONBIO, &dw);
-		shutdown(m_Socket, SD_SEND); // 2009-04-17 by cmkwon, Gameforge4D Á×´Â ¹®Á¦ Ã³¸® - 
+		shutdown(m_Socket, SD_SEND); // 2009-04-17 by cmkwon, Gameforge4D ì£½ëŠ” ë¬¸ì œ ì²˜ë¦¬ - 
 		closesocket(m_Socket);
 		m_Socket = INVALID_SOCKET;
 	}
@@ -341,20 +341,20 @@ BOOL CWinSocket::OnConnect(int nErrorCode)
 		return FALSE;
 	}
 
-	// 2007-06-21 by cmkwon, TCP Nagle ¾Ë°í¸®Áò ÇØÁ¦¸¦ À§ÇØ Ãß°¡
+	// 2007-06-21 by cmkwon, TCP Nagle ì•Œê³ ë¦¬ì¦˜ í•´ì œë¥¼ ìœ„í•´ ì¶”ê°€
 	BOOL bOption = TRUE;
 	this->SetOptionWinSocket(IPPROTO_TCP, TCP_NODELAY, (char*)&bOption, sizeof(BOOL));
 
 	SetAsyncFlag(FD_READ | FD_WRITE | FD_OOB | FD_CLOSE);
-	AsyncSelect(); // Socket Event¸¦ ¼³Á¤ÇÑ´Ù.
+	AsyncSelect(); // Socket Eventë¥¼ ì„¤ì •í•œë‹¤.
 
 	m_bConnected = TRUE;
 
 	util::strncpy(m_szPeerIP, inet_ntoa(m_SockAddrRemote.sin_addr), SIZE_MAX_IPADDRESS);
 	m_nPeerPort = ntohs(m_SockAddrRemote.sin_port);
 
-	// cmkwon SocketÀÌ ¿¬°áµÈÈÄ Ã³¸® ÄÚµå »ğÀÔ ºÎºĞ
-	// App¿¡ Connected Á¤º¸¸¦ PostÇÑ´Ù.
+	// cmkwon Socketì´ ì—°ê²°ëœí›„ ì²˜ë¦¬ ì½”ë“œ ì‚½ì… ë¶€ë¶„
+	// Appì— Connected ì •ë³´ë¥¼ Postí•œë‹¤.
 	SendNotify(WS_CONNECTED, TRUE, (char*)this);
 	return TRUE;
 }
@@ -366,9 +366,9 @@ BOOL CWinSocket::OnAccept(int nErrorCode)
 		return FALSE;
 	}
 
-	// cmkwon SocketÀÌ Accept µÈÈÄ¿¡ Ã³¸® ÄÚµå »ğÀÔ ºÎºĞ
-	// App¿¡ Accepted Á¤º¸¸¦ SendÇÑ´Ù.
-	SendNotify(WS_ACCEPTED, 0, (char*)this); // 2007-06-21 by cmkwon, Å¬¶óÀÌ¾ğÆ®ÀÇ ¼Ò½º¿Í ÅëÇÕ
+	// cmkwon Socketì´ Accept ëœí›„ì— ì²˜ë¦¬ ì½”ë“œ ì‚½ì… ë¶€ë¶„
+	// Appì— Accepted ì •ë³´ë¥¼ Sendí•œë‹¤.
+	SendNotify(WS_ACCEPTED, 0, (char*)this); // 2007-06-21 by cmkwon, í´ë¼ì´ì–¸íŠ¸ì˜ ì†ŒìŠ¤ì™€ í†µí•©
 	return TRUE;
 }
 
@@ -378,9 +378,9 @@ BOOL CWinSocket::OnCloseSocket(int nErrorCode)
 
 	m_PeerSocketType = ST_INVALID_TYPE;
 
-	// cmkwon SocketÀÌ Close µÈÈÄ¿¡ Ã³¸® ÄÚµå »ğÀÔ ºÎºĞ
-	// App¿¡ Closed Á¤º¸¸¦ SendÇÑ´Ù.
-	// 2009-05-06 by cmkwon, ¾Æ·¡¿Í °°ÀÌ PostNotify ÇÔ¼ö·Î º¯°æÇÔ.
+	// cmkwon Socketì´ Close ëœí›„ì— ì²˜ë¦¬ ì½”ë“œ ì‚½ì… ë¶€ë¶„
+	// Appì— Closed ì •ë³´ë¥¼ Sendí•œë‹¤.
+	// 2009-05-06 by cmkwon, ì•„ë˜ì™€ ê°™ì´ PostNotify í•¨ìˆ˜ë¡œ ë³€ê²½í•¨.
 	//SendNotify(WS_CLOSED, 0, (char*)this);
 	PostNotify(WS_CLOSED, 0, (char*)this);
 	return TRUE;
@@ -406,10 +406,10 @@ BOOL CWinSocket::OnReceive(int nErrorCode)
 	wsaBuf.buf = m_RecvBuffer;
 	wsaBuf.len = SIZE_MAX_SOCKET_BUFFER ;
 
-	// 2009-11-19 by cmkwon, ·¯½Ã¾Æ AdminTool¿¡ FrostLib Àû¿ëÇÏ±â - ¾Æ·¡¿Í °°ÀÌ AdminToolµµ Ãß°¡
+	// 2009-11-19 by cmkwon, ëŸ¬ì‹œì•„ AdminToolì— FrostLib ì ìš©í•˜ê¸° - ì•„ë˜ì™€ ê°™ì´ AdminToolë„ ì¶”ê°€
 #if defined(_C_EXE2_) || defined(_ATUM_ADMINTOOL)
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
+	// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
 	//	DbgOut("[TEMP] 090710 Frost frostWSARecv Before Peer(%s:%d) nRet(%d) ReceivedBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, nBytesRecvd);
 	int nRet = frostWSARecv(m_Socket, &wsaBuf, 1, &nBytesRecvd, &dwFlag, NULL, NULL);
 	//	DbgOut("[TEMP] 090710 Frost frostWSARecv After  Peer(%s:%d) nRet(%d) ReceivedBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, nBytesRecvd);
@@ -432,7 +432,7 @@ BOOL CWinSocket::OnReceive(int nErrorCode)
 	while (nBytesRecvd > 0)
 	{
 		nRet = m_RecvPacket.AddTail(m_RecvBuffer + nBytesTotalUsed, nBytesRecvd, &nBytesUsed);
-		if (nRet < 0) // size Çì´õ°¡ SIZE_MAX_PACKET(1500 bytes)º¸´Ù Å©´Ù, ¿À·ù ¹ß»ı ¼ÒÄÏÀ» ´İ´Â´Ù.
+		if (nRet < 0) // size í—¤ë”ê°€ SIZE_MAX_PACKET(1500 bytes)ë³´ë‹¤ í¬ë‹¤, ì˜¤ë¥˜ ë°œìƒ ì†Œì¼“ì„ ë‹«ëŠ”ë‹¤.
 		{
 			CloseSocket(0x10000);
 			return FALSE;
@@ -442,25 +442,25 @@ BOOL CWinSocket::OnReceive(int nErrorCode)
 		nRet = FALSE;
 		if (m_RecvPacket.RecvCompleted() == TRUE)
 		{
-			if (m_RecvPacket.IsPacketEncoded() == FALSE // ÀÌ¹Ì ¾ÏÈ£È­¸¦ ±¸ºĞÇÏ°í ÀÖ´Ù.
+			if (m_RecvPacket.IsPacketEncoded() == FALSE // ì´ë¯¸ ì•”í˜¸í™”ë¥¼ êµ¬ë¶„í•˜ê³  ìˆë‹¤.
 				|| m_RecvPacket.IsValidPacket() == TRUE)
 			{
-				// 2005-09-07 by cmkwon, Å×½ºÆ®
+				// 2005-09-07 by cmkwon, í…ŒìŠ¤íŠ¸
 				//				MessageType_t ty = *(MessageType_t*)m_RecvPacket.GetPacket();
 				//				DBGOUT("		Recv : %s(0x%X)\n", GetProtocolTypeString(ty), ty);
 
-				// start 2011-12-12 by shcho, ¾ÏÈ£È­ µÇÁö ¾ÊÀº ÆĞÅ¶ Ã³¸® ¾ÈµÇµµ·Ï Ã³¸® - Åø¿¡¼­´Â DbgoutÀ¸·Î ÂïÀ½
-				// g_pGlobal->WriteSystemLogEX(TRUE, "[TEMP] Not Encoded Packet command[%s]", *(DWORD*)m_RecvPacket.GetPacket() );	 // Âï¾îµµ È¿À²¿¡ ¹®Á¦°¡ ¾ø´Â°É±î³ª...
+				// start 2011-12-12 by shcho, ì•”í˜¸í™” ë˜ì§€ ì•Šì€ íŒ¨í‚· ì²˜ë¦¬ ì•ˆë˜ë„ë¡ ì²˜ë¦¬ - íˆ´ì—ì„œëŠ” Dbgoutìœ¼ë¡œ ì°ìŒ
+				// g_pGlobal->WriteSystemLogEX(TRUE, "[TEMP] Not Encoded Packet command[%s]", *(DWORD*)m_RecvPacket.GetPacket() );	 // ì°ì–´ë„ íš¨ìœ¨ì— ë¬¸ì œê°€ ì—†ëŠ”ê±¸ê¹Œë‚˜...
 				char szSystemLog1[256];
 				sprintf(szSystemLog1, "[Error] Not Encoded Packet command[%4d]\r\n", *(DWORD*)m_RecvPacket.GetPacket());
 				//GWriteSystemLog(szSystemLog);
 				DBGOUT(szSystemLog1);
-				// end 2011-12-12 by shcho, ¾ÏÈ£È­ µÇÁö ¾ÊÀº ÆĞÅ¶ Ã³¸® ¾ÈµÇµµ·Ï Ã³¸® - Åø¿¡¼­´Â DbgoutÀ¸·Î ÂïÀ½
+				// end 2011-12-12 by shcho, ì•”í˜¸í™” ë˜ì§€ ì•Šì€ íŒ¨í‚· ì²˜ë¦¬ ì•ˆë˜ë„ë¡ ì²˜ë¦¬ - íˆ´ì—ì„œëŠ” Dbgoutìœ¼ë¡œ ì°ìŒ
 
 				nRet = OnRecvdPacket(m_RecvPacket.GetPacket(), m_RecvPacket.GetLength(), m_RecvPacket.GetSequenceNumber());
 			}
 			else
-			{ // Encoded PacketÀÌÁö¸¸ À¯È¿ÇÏÁö ¾ÊÀº ÆĞÅ¶ÀÌ´Ù.
+			{ // Encoded Packetì´ì§€ë§Œ ìœ íš¨í•˜ì§€ ì•Šì€ íŒ¨í‚·ì´ë‹¤.
 				CloseSocket(0x10001);
 
 				char szSystemLog[256];
@@ -509,10 +509,10 @@ BOOL CWinSocket::OnSendReady(int nErrorCode)
 		wsaBuf.len = pSendPacket->GetLength();
 		wsaBuf.buf = pSendPacket->GetPacket();
 
-		// 2009-11-19 by cmkwon, ·¯½Ã¾Æ AdminTool¿¡ FrostLib Àû¿ëÇÏ±â - ¾Æ·¡¿Í °°ÀÌ AdminToolµµ Ãß°¡
+		// 2009-11-19 by cmkwon, ëŸ¬ì‹œì•„ AdminToolì— FrostLib ì ìš©í•˜ê¸° - ì•„ë˜ì™€ ê°™ì´ AdminToolë„ ì¶”ê°€
 #if defined(_C_EXE2_) || defined(_ATUM_ADMINTOOL)
 		///////////////////////////////////////////////////////////////////////////////
-		// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
+		// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
 		//		DbgOut("[TEMP] 090710 Frost frostWSASend Before Peer(%s:%d) nRet(%d) SentBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, sendBytes);
 		int nRet = frostWSASend(m_Socket, &wsaBuf, 1, &sendBytes, dwFlag, NULL, NULL);
 		//		DbgOut("[TEMP] 090710 Frost frostWSASend After Peer(%s:%d) nRet(%d) SentBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, sendBytes);
@@ -549,7 +549,7 @@ BOOL CWinSocket::OnSendReady(int nErrorCode)
 int CWinSocket::Read(LPSTR* pPacket, int& nLength)
 {
 	*pPacket = NULL;
-	nLength = 0; // ÀÇ¹Ì ¾øÀ½
+	nLength = 0; // ì˜ë¯¸ ì—†ìŒ
 	EnterCriticalSection(&m_criticalRecvMessageQueue);
 	if (m_queueRecvMessage.empty() == true)
 	{
@@ -568,7 +568,7 @@ int CWinSocket::Read(LPSTR* pPacket, int& nLength)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CWinSocket::WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTimeInSec/*=-1*/)
-/// \brief		// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - CWinSocket::WriteBlockingMode() Ãß°¡
+/// \brief		// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - CWinSocket::WriteBlockingMode() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-12-21 ~ 2007-12-21
 /// \warning	
@@ -588,7 +588,7 @@ BOOL CWinSocket::WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTim
 	while (nLength > sendedTotalBytes)
 	{
 		if (0 < i_nLimiteTimeInSec)
-		{// 2007-12-21 by cmkwon, Á¦ÇÑ ½Ã°£ Ã¼Å©
+		{// 2007-12-21 by cmkwon, ì œí•œ ì‹œê°„ ì²´í¬
 			DWORD dwCurTick = timeGetTime();
 			if (i_nLimiteTimeInSec < (dwCurTick - dwStartTick) / 1000)
 			{
@@ -606,7 +606,7 @@ BOOL CWinSocket::WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTim
 		{
 			int nErr = WSAGetLastError();
 			WSASetLastError(0);
-			if (IsError(nErr) == TRUE) // ¿¡·¯°¡ ¹ß»ıÇÏ¸é ¼ÒÄÏÀÌ ´İÈ÷°Ô µÊ, ±×·¯¹Ç·Î Àü¼ÛÇÏ·Á¸é CSendPacketÀº deleteÇØ¾ßÇÔ
+			if (IsError(nErr) == TRUE) // ì—ëŸ¬ê°€ ë°œìƒí•˜ë©´ ì†Œì¼“ì´ ë‹«íˆê²Œ ë¨, ê·¸ëŸ¬ë¯€ë¡œ ì „ì†¡í•˜ë ¤ë©´ CSendPacketì€ deleteí•´ì•¼í•¨
 			{
 				return FALSE;
 			}
@@ -621,7 +621,7 @@ BOOL CWinSocket::WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTim
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CWinSocket::ReadBlockingMode(LPSTR *o_pBuffer, int nRLength, int i_nLimiteTimeInSec/*=-1*/)
-/// \brief		// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - CWinSocket::ReadBlockingMode() Ãß°¡
+/// \brief		// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - CWinSocket::ReadBlockingMode() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-12-21 ~ 2007-12-21
 /// \warning	
@@ -642,7 +642,7 @@ BOOL CWinSocket::ReadBlockingMode(LPSTR o_pBuffer, int nRLength, int i_nLimiteTi
 	while (nRLength > nRecvedTotalBytes)
 	{
 		if (0 < i_nLimiteTimeInSec)
-		{// 2007-12-21 by cmkwon, Á¦ÇÑ ½Ã°£ Ã¼Å©
+		{// 2007-12-21 by cmkwon, ì œí•œ ì‹œê°„ ì²´í¬
 			DWORD dwCurTick = timeGetTime();
 			if (i_nLimiteTimeInSec < (dwCurTick - dwStartTick) / 1000)
 			{
@@ -650,7 +650,7 @@ BOOL CWinSocket::ReadBlockingMode(LPSTR o_pBuffer, int nRLength, int i_nLimiteTi
 			}
 		}
 
-		// 2007-12-26 by cmkwon, ÀÓ½Ã ÄÚµåÀÓ
+		// 2007-12-26 by cmkwon, ì„ì‹œ ì½”ë“œì„
 		//		unsigned long recvableBytes = 0;
 		//		unsigned long recvableBytes1 = 0;
 		//		DWORD	 dwRet = 0;
@@ -690,7 +690,7 @@ BOOL CWinSocket::ReadBlockingMode(LPSTR o_pBuffer, int nRLength, int i_nLimiteTi
 			continue;
 		}
 		if (0 >= nBytesRecvd)
-		{// 2007-12-26 by cmkwon, ¼ÒÄÏÀÌ Á¾·á µÇ¾úÀ½
+		{// 2007-12-26 by cmkwon, ì†Œì¼“ì´ ì¢…ë£Œ ë˜ì—ˆìŒ
 			return FALSE;
 		}
 
@@ -705,7 +705,7 @@ BOOL CWinSocket::WriteMessageType(MessageType_t msgType)
 	return Write((LPCSTR)&msgType, SIZE_FIELD_TYPE_HEADER);
 }
 
-BOOL CWinSocket::Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket /* = FALSE*/) // 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - ÆĞÅ¶ÀÇ ÇØ´õ Á¦°Å ¿©ºÎÀÎÀÚ Ãß°¡
+BOOL CWinSocket::Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket /* = FALSE*/) // 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - íŒ¨í‚·ì˜ í•´ë” ì œê±° ì—¬ë¶€ì¸ì ì¶”ê°€
 {
 	WSABUF wsaBuf;
 	DWORD sendBytes = 0;
@@ -725,7 +725,7 @@ BOOL CWinSocket::Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket /* = FALSE*
 	EnterCriticalSection(&m_criticalSendList);
 	if (m_listSendPacket.empty() == true)
 	{
-		// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - ÆĞÅ¶ÀÇ ÇØ´õ Á¦°ÅÇÏ°í º¸³»±â
+		// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - íŒ¨í‚·ì˜ í•´ë” ì œê±°í•˜ê³  ë³´ë‚´ê¸°
 		if (TRUE == NPlaySocket)
 		{
 			wsaBuf.len = nLength;
@@ -736,12 +736,12 @@ BOOL CWinSocket::Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket /* = FALSE*
 			wsaBuf.len = pSendPacket->GetLength();
 			wsaBuf.buf = pSendPacket->GetPacket();
 		}
-		// end 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - ÆĞÅ¶ÀÇ ÇØ´õ Á¦°ÅÇÏ°í º¸³»±â
+		// end 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - íŒ¨í‚·ì˜ í•´ë” ì œê±°í•˜ê³  ë³´ë‚´ê¸°
 
-		// 2009-11-19 by cmkwon, ·¯½Ã¾Æ AdminTool¿¡ FrostLib Àû¿ëÇÏ±â - ¾Æ·¡¿Í °°ÀÌ AdminToolµµ Ãß°¡
+		// 2009-11-19 by cmkwon, ëŸ¬ì‹œì•„ AdminToolì— FrostLib ì ìš©í•˜ê¸° - ì•„ë˜ì™€ ê°™ì´ AdminToolë„ ì¶”ê°€
 #if defined(_C_EXE2_) || defined(_ATUM_ADMINTOOL)
 		///////////////////////////////////////////////////////////////////////////////
-		// 2009-07-10 by cmkwon, ·¯½Ã¾Æ Frost ½Å±Ô Lib·Î ¼öÁ¤ - 
+		// 2009-07-10 by cmkwon, ëŸ¬ì‹œì•„ Frost ì‹ ê·œ Libë¡œ ìˆ˜ì • - 
 		//		DbgOut("[TEMP] 090710 Frost frostWSASend Before Peer(%s:%d) nRet(%d) SentBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, sendBytes);
 		nRet = frostWSASend(m_Socket, &wsaBuf, 1, &sendBytes, dwFlag, NULL, NULL);
 		//		DbgOut("[TEMP] 090710 Frost frostWSASend After Peer(%s:%d) nRet(%d) SentBytes(%d) \r\n", inet_ntoa(m_SockAddrRemote.sin_addr), ntohs(m_SockAddrRemote.sin_port), nRet, sendBytes);
@@ -757,7 +757,7 @@ BOOL CWinSocket::Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket /* = FALSE*
 			//			DbgOut("WSASend Error Type(%s) nRet(%d)\n", GetProtocolTypeString(nType), nRet);
 			int nErr = WSAGetLastError();
 			WSASetLastError(0);
-			if (IsError(nErr) == TRUE) // ¿¡·¯°¡ ¹ß»ıÇÏ¸é ¼ÒÄÏÀÌ ´İÈ÷°Ô µÊ, ±×·¯¹Ç·Î Àü¼ÛÇÏ·Á¸é CSendPacketÀº deleteÇØ¾ßÇÔ
+			if (IsError(nErr) == TRUE) // ì—ëŸ¬ê°€ ë°œìƒí•˜ë©´ ì†Œì¼“ì´ ë‹«íˆê²Œ ë¨, ê·¸ëŸ¬ë¯€ë¡œ ì „ì†¡í•˜ë ¤ë©´ CSendPacketì€ deleteí•´ì•¼í•¨
 			{
 				util::del(pSendPacket);
 				LeaveCriticalSection(&m_criticalSendList);
@@ -794,7 +794,7 @@ BOOL CWinSocket::SocketInit(void)
 	if (m_bSocketInitFlag)
 		return m_bSocketInitFlag;
 
-	srand((unsigned)timeGetTime()); // Random Number¸¦ À§ÇØ¼­
+	srand((unsigned)timeGetTime()); // Random Numberë¥¼ ìœ„í•´ì„œ
 	// todo : deprecate
 	random::init();
 	
@@ -823,7 +823,7 @@ void CWinSocket::SocketClean(void)
 	WSACleanup();
 }
 
-// error ¸Ş¼¼Áö¸¦ Àü¼Û
+// error ë©”ì„¸ì§€ë¥¼ ì „ì†¡
 void CWinSocket::SendErrorMessage(MessageType_t msgType, Err_t err, int errParam1, int errParam2, char* errMsg, BOOL bCloseConnection)
 {
 	//	MSG_ERROR	*pMsgError;

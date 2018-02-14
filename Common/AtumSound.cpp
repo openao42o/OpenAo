@@ -1,4 +1,4 @@
-// AtumSound.cpp: implementation of the CAtumSound class.
+ï»¿// AtumSound.cpp: implementation of the CAtumSound class.
 //
 //////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
@@ -19,7 +19,7 @@
 #include "dsutil.h"
 #include "INFMp3Player.h"
 
-// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 #define	NARRATION_VOLUME		50
 
 //////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ CAtumSound::CAtumSound()
 {
 	m_bPlayMusic = FALSE;
 	m_pMusic = NULL;
-	// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+	// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 	m_pNarrationMusic = NULL;
 
 	m_fSetSoundGroundCheckTime = 0.0f;
@@ -48,11 +48,11 @@ CAtumSound::CAtumSound()
 	m_nOnlyBackMusicState = -1;
 	m_bOnlyBackMusic = FALSE;
 
-	m_bNotDevice = TRUE;								// 2006-09-15 by ispark, ±âº»ÀûÀ¸·Î È°¼º
+	m_bNotDevice = TRUE;								// 2006-09-15 by ispark, ê¸°ë³¸ì ìœ¼ë¡œ í™œì„±
 
-	// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+	// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 	m_bPlayNarrationMusic = FALSE;
-	util::zero(m_strNarrationMusic);			// ³ª·¹ÀÌ¼Ç ¹ÂÁ÷ ÀÌ¸§
+	util::zero(m_strNarrationMusic);			// ë‚˜ë ˆì´ì…˜ ë®¤ì§ ì´ë¦„
 
 	//m_nSoundType = -1;	
 }
@@ -123,25 +123,25 @@ HRESULT	CAtumSound::InitDeviceObjects()
 		}
 	}
 
-	// 2009-01-20 by bhsohn »ç¿îµå ½Ã½ºÅÛ º¯°æ
+	// 2009-01-20 by bhsohn ì‚¬ìš´ë“œ ì‹œìŠ¤í…œ ë³€ê²½
 // 	m_pMusic = new CMusicMP3();
-// 	// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+// 	// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 // 	m_pNarrationMusic = new CMusicMP3();
 	m_pMusic = new CMusicMP3Ex();	
 	m_pNarrationMusic = new CMusicMP3Ex();
-	// end 2009-01-20 by bhsohn »ç¿îµå ½Ã½ºÅÛ º¯°æ
+	// end 2009-01-20 by bhsohn ì‚¬ìš´ë“œ ì‹œìŠ¤í…œ ë³€ê²½
 
 	return S_OK;
 }
 
 void CAtumSound::Tick()
 {
-// 2005-01-03 by jschoi  ÁÖ¼® - »ç¿ë¾ÈÇÔ
+// 2005-01-03 by jschoi  ì£¼ì„ - ì‚¬ìš©ì•ˆí•¨
 //	for(int i=0; i < m_vectorSoundPtr.size(); i++)
 //	{
 //		m_vectorSoundPtr[i]->SetAllParameter();
 //	}
-	// ÇöÀç ¾²ÀÌÁö ¾ÊÀ½
+	// í˜„ì¬ ì“°ì´ì§€ ì•ŠìŒ
 //	if(m_fSetSoundGroundCheckTime > 0.0f)
 //	{
 //		m_fSetSoundGroundCheckTime -= g_pD3dApp->GetElapsedTime();
@@ -170,7 +170,7 @@ HRESULT	CAtumSound::DeleteDeviceObjects()
 		util::del(m_pMusic);
 		m_bPlayMusic = FALSE;
 	}
-	// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+	// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 	if(m_pNarrationMusic)
 	{
 		m_pNarrationMusic->Atum_MusicStop();
@@ -195,12 +195,12 @@ D3DXVECTOR3 CalcRelativeSoundPos(const D3DXVECTOR3& vecPos, const D3DXMATRIX& ma
 }
 
 
-// ¼º¿ì ½ºÅ©¸³Æ®¿¡¼­¸¸ »ç¿ë. ´Ù¸¥µ¥ »ç¿ëÇÏ·Á¸é ¹®ÀÇÇÒ°Í. 2004-12-15, by dhkwon
+// ì„±ìš° ìŠ¤í¬ë¦½íŠ¸ì—ì„œë§Œ ì‚¬ìš©. ë‹¤ë¥¸ë° ì‚¬ìš©í•˜ë ¤ë©´ ë¬¸ì˜í• ê²ƒ. 2004-12-15, by dhkwon
 // creates a sound, adds it in the sounds vector and plays it
 void CAtumSound::PlayD3DSound(int nType, char* pBuffer, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE*/)
 {
-	// 2006-09-15 by ispark, ÀåÄ¡ È°¼º À¯¹«
-	// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+	// 2006-09-15 by ispark, ì¥ì¹˜ í™œì„± ìœ ë¬´
+	// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 
 	if (!m_bNotDevice || g_pSOption->sSoundVolume == -10000)
 
@@ -327,14 +327,14 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
 		}
 		pTmSound->m_nSoundType = nType;
 		///////////////////////////////////////////////////////////////////////////////
-		// Vector¿¡ Ãß°¡
+		// Vectorì— ì¶”ê°€
 		m_vectorSoundPtr.push_back(pTmSound);
 
 		util::del(pHeader);// 2005-02-04 by jschoi
 	}
-	// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+	// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 	//pTmSound->Stop();
-	//end 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+	//end 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 	D3DXVECTOR3 tmVec3SoundPos = vPos;
 	if(i_b3DSound)
 	{
@@ -352,9 +352,9 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
 		tmVec3SoundPos.x = -tmVec3SoundPos.x;
 		tmVec3SoundPos.z = -tmVec3SoundPos.z;
 
-		// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+		// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 		pTmSound->Set3DSoundPosition(&tmVec3SoundPos);
-		//end 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+		//end 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 	}	
 	
 	if(nType == SOUND_FLYING_M_A_GEAR 
@@ -372,7 +372,7 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
 	}
 	else if(nType == SOUND_MISSILE_WARNNING)								// 2005-07-11 by ispark
 	{
-		if (pTmSound->IsSoundPlaying())								// Loop¸¦ ´Ù µ¹¾Ò´Â°¡¸¦ ÆÇ´Ü
+		if (pTmSound->IsSoundPlaying())								// Loopë¥¼ ë‹¤ ëŒì•˜ëŠ”ê°€ë¥¼ íŒë‹¨
 		{
 			return;
 		}
@@ -391,7 +391,7 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
 	}
 }
 
-// WAVEFORMATEX ¸¦ ™VÆÃÇÏ°í ½ÇÁ¦ wave form data ±æÀÌ¸¦ ¸®ÅÏÇÑ´Ù.
+// WAVEFORMATEX ë¥¼ Â™VíŒ…í•˜ê³  ì‹¤ì œ wave form data ê¸¸ì´ë¥¼ ë¦¬í„´í•œë‹¤.
 BYTE * CAtumSound::SetWaveFormatEx(BYTE* pData, DWORD& dwWaveFormLen, WAVEFORMATEX* pwfx )
 {
 	typedef struct
@@ -457,7 +457,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 		DataHeader* pHeader = NULL;
 		pHeader = m_pGameData->FindFromFile(strWave);
 
-		if(pHeader == NULL) // by dhkwon 2005-11-23, NULLÃ¼Å©
+		if(pHeader == NULL) // by dhkwon 2005-11-23, NULLì²´í¬
 		{
 			DBGOUT("Sound File Error(%s)\n", strWave);
 			return;
@@ -505,13 +505,13 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 		}
 		pTmSound->m_nSoundType = nSType;
 		///////////////////////////////////////////////////////////////////////////////
-		// Vector¿¡ Ãß°¡
+		// Vectorì— ì¶”ê°€
 		m_vectorSoundPtr.push_back(pTmSound);
 		util::del(pHeader);// 2005-02-04 by jschoi
 	}
-	// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+	// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 //	pTmSound->Stop();
-	//end 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+	//end 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 	D3DXVECTOR3 tmVec3SoundPos = vPos;
 	if(i_b3DSound)
 	{
@@ -528,9 +528,9 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 
 		tmVec3SoundPos.x = -tmVec3SoundPos.x;
 		tmVec3SoundPos.z = -tmVec3SoundPos.z;
-		// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+		// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 		pTmSound->Set3DSoundPosition(&tmVec3SoundPos);
-		//end 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤
+		//end 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì •
 	}
 	//pTmSound->Set3DSoundPosition(&tmVec3SoundPos);
 	
@@ -558,12 +558,12 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 
 VOID CAtumSound::StopD3DSound(int nType)
 {
-	// 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 	if(!m_bNotDevice)
 	{
 		return;
 	}
-	// END 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// END 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 
 	FLOG("CAtumSound::StopD3DSound(int nType)");
 	CSound *pTmSound = FindSCSoundWithSoundType(nType);
@@ -575,12 +575,12 @@ VOID CAtumSound::StopD3DSound(int nType)
 
 VOID CAtumSound::StopD3DSound(char * str)
 {
-	// 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 	if(!m_bNotDevice)
 	{
 		return;
 	}
-	// END 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// END 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 
 	FLOG("CAtumSound::StopD3DSound(char * str)");
 	int nType;
@@ -595,7 +595,7 @@ VOID CAtumSound::StopD3DSound(char * str)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CAtumSound::DelD3DSound(int nType)
-/// \brief		»ç¿îµå »èÁ¦
+/// \brief		ì‚¬ìš´ë“œ ì‚­ì œ
 /// \author		ispark
 /// \date		2006-09-07 ~ 2006-09-07
 /// \warning	
@@ -605,12 +605,12 @@ VOID CAtumSound::StopD3DSound(char * str)
 ///////////////////////////////////////////////////////////////////////////////
 void CAtumSound::DelD3DSound(int nType)
 {
-	// 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 	if(!m_bNotDevice)
 	{
 		return;
 	}
-// END 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+// END 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 
 	CSound *pTmSound = FindSCSoundWithSoundType(nType);
 	if(pTmSound)
@@ -623,12 +623,12 @@ void CAtumSound::DelD3DSound(int nType)
 
 VOID CAtumSound::CheckD3DSoundGround()
 {
-	// 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 	if(!m_bNotDevice)
 	{
 		return;
 	}
-// END 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+// END 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 
 	FLOG("CAtumSound::CheckD3DSoundGround()");
 	int type,type2;
@@ -689,13 +689,13 @@ VOID CAtumSound::CheckD3DSoundGround()
 VOID CAtumSound::PlayBackSound()
 {
 	FLOG("CAtumSound::PlayBackSound()");
-	// 2006-09-15 by ispark, ÀåÄ¡ È°¼º À¯¹«
+	// 2006-09-15 by ispark, ì¥ì¹˜ í™œì„± ìœ ë¬´
 	if(m_bNotDevice == FALSE)
 	{
 		return;
 	}
 
-	// 2006-04-20 by ispark, ½Ã°£Á¦ ¹è°æÀ½¾Ç
+	// 2006-04-20 by ispark, ì‹œê°„ì œ ë°°ê²½ìŒì•…
 	if(m_bOnlyBackMusic == TRUE)
 	{
 		m_fSetSoundGroundCheckTime -= g_pD3dApp->GetElapsedTime();
@@ -739,8 +739,8 @@ VOID CAtumSound::PlayBackSound()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		³ª·¹ÀÌ¼Ç ÇÃ·¹ÀÌ 
-/// \author		// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+/// \brief		ë‚˜ë ˆì´ì…˜ í”Œë ˆì´ 
+/// \author		// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 /// \date		2007-07-24 ~ 2007-07-24
 /// \warning	
 ///
@@ -749,19 +749,19 @@ VOID CAtumSound::PlayBackSound()
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CAtumSound::PlayNarrationSound(char* pNarration)
 {
-	// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+	// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 	BOOL bSucSound = TRUE;
-	// end 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+	// end 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 	FLOG("CAtumSound::PlayBackSound()");
 	if(strlen(pNarration) <= 0)
 	{
-		// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+		// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 		return bSucSound;
 	}
-	// ÀåÄ¡ È°¼º À¯¹«
+	// ì¥ì¹˜ í™œì„± ìœ ë¬´
 	if(m_bNotDevice == FALSE)
 	{
-		// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+		// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 		return bSucSound;
 	}
 	if(0 != strncmp(m_strNarrationMusic, pNarration, strlen(pNarration)+1))
@@ -778,22 +778,22 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
 		{
 			char buf[128];
 			wsprintf(buf,".\\Res-Snd\\%s.mp3", pNarration);
-			// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+			// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 			//m_pNarrationMusic->Atum_MusicInit(buf);
 			if(FAILED(m_pNarrationMusic->Atum_MusicInit(buf)))
 			{
 				bSucSound = FALSE;
 			}
-			// end 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+			// end 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 			
-			// 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤ - ³ª·¹ÀÌ¼Ç º¼·ıÀ» ¿É¼Ç º¼·ıÀ¸·Î º¯°æ 
+			// 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì • - ë‚˜ë ˆì´ì…˜ ë³¼ë¥¨ì„ ì˜µì…˜ ë³¼ë¥¨ìœ¼ë¡œ ë³€ê²½ 
 			int nVolume = -10000;
- 			int nMusicVolume = NARRATION_VOLUME; // ³ª·¹ÀÌ¼Ç º¼·ıÀº 50À¸·Î ÁöÁ¤ 
+ 			int nMusicVolume = NARRATION_VOLUME; // ë‚˜ë ˆì´ì…˜ ë³¼ë¥¨ì€ 50ìœ¼ë¡œ ì§€ì • 
  			if(nMusicVolume > 0 && g_pSOption->sSoundVolume != -10000)
  			{
  				nVolume = GetMusicVolume(nMusicVolume);
  			}
-			//end 2010. 07. 07 by jskim ¸ğ¼±Àü½Ã »ç¿îµå ¹ö±× ¼öÁ¤ - ³ª·¹ÀÌ¼Ç º¼·ıÀ» ¿É¼Ç º¼·ıÀ¸·Î º¯°æ 
+			//end 2010. 07. 07 by jskim ëª¨ì„ ì „ì‹œ ì‚¬ìš´ë“œ ë²„ê·¸ ìˆ˜ì • - ë‚˜ë ˆì´ì…˜ ë³¼ë¥¨ì„ ì˜µì…˜ ë³¼ë¥¨ìœ¼ë¡œ ë³€ê²½ 
 
 			m_pNarrationMusic->Atum_PlayMP3(nVolume);
 		}
@@ -804,22 +804,22 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
 		m_pNarrationMusic->Atum_LoopMusic();
 	}	
 
-	// ÆÄÀÏÀÌ ³¡³µ´Ù. 
+	// íŒŒì¼ì´ ëë‚¬ë‹¤. 
 	if(m_bPlayNarrationMusic && (FALSE == m_pNarrationMusic->IsNowPlay()))
 	{		
 		g_pD3dApp->EndNarrationSound();		
 	}
 	m_bPlayNarrationMusic = TRUE;
 
-	// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+	// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 	return bSucSound;
-	// end 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+	// end 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		³ª·¹ÀÌ¼Ç ÇÃ·¹ÀÌ Á¾·á  
-/// \author		// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+/// \brief		ë‚˜ë ˆì´ì…˜ í”Œë ˆì´ ì¢…ë£Œ  
+/// \author		// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 /// \date		2007-07-24 ~ 2007-07-24
 /// \warning	
 ///
@@ -828,7 +828,7 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
 ///////////////////////////////////////////////////////////////////////////////
 void CAtumSound::EndNarrationSound()
 {
-	// 2013-02-05 bhsohn Sound­ Exception
+	// 2013-02-05 bhsohn Soundï£§ Exception
 	if (!m_bNotDevice) return;
 
 	if (m_pNarrationMusic) m_pNarrationMusic->Atum_MusicStop();
@@ -867,7 +867,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
 
 		util::zero(m_strBackMusic);
 			
-		// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+		// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 		g_pD3dApp->EndNarrationSound();
 
 		m_nMusicVolume = OPTION_DEFAULT_MUSICVOLUME;
@@ -913,26 +913,26 @@ void CAtumSound::SetBackMusic(DWORD dwType)
 			g_pD3dApp->m_dwGameState != _CITY &&
 			m_nOnlyBackMusicState != _BOSSMONSTERSUMMONREADY &&
 			m_nOnlyBackMusicState != _BOSSMONSTERSUMMON &&
-			m_nOnlyBackMusicState != _SERVER_DOWN ) || // 2013-07-05 by bhsohn ¼­¹öÁ¾·á½Ã, °æ°íÀ½ ½Ã½ºÅÛ
+			m_nOnlyBackMusicState != _SERVER_DOWN ) || // 2013-07-05 by bhsohn ì„œë²„ì¢…ë£Œì‹œ, ê²½ê³ ìŒ ì‹œìŠ¤í…œ
 			m_nOnlyBackMusicState == -1)
 		{
 			if(g_pD3dApp->m_pShuttleChild)
 			{
 				char buf[64];
-				// 2007-08-02 by dgwoo À½¾Ç ÆÄÀÏÀº ¸Ê¹øÈ£°¡¾Æ´Ñ bgmÀ» ÀĞ¾î¼­ ·ÎµùÇÑ´Ù.
+				// 2007-08-02 by dgwoo ìŒì•… íŒŒì¼ì€ ë§µë²ˆí˜¸ê°€ì•„ë‹Œ bgmì„ ì½ì–´ì„œ ë¡œë”©í•œë‹¤.
 				//wsprintf( buf, "BGM_%d.mp3", g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex);
 				wsprintf( buf, "BGM_%d.mp3", GetMapIndexBGM(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex));
 				if(strcmp(m_strBackMusic,buf))
 				{
 //						if(g_pGameMain->m_pMp3Player->m_vecMp3FileNames.size())
-//						{// mp3 ÆÄÀÏÀÌ ÀÖÀ»°æ¿ì¿£ ±âÁ¸ÀÇ ¹è°æÀ½¾ÇÀ» ±×´ë·Î À¯ÁöÇÑ´Ù.
+//						{// mp3 íŒŒì¼ì´ ìˆì„ê²½ìš°ì—” ê¸°ì¡´ì˜ ë°°ê²½ìŒì•…ì„ ê·¸ëŒ€ë¡œ ìœ ì§€í•œë‹¤.
 //								
 //						}
 //						else
-					{// mp3 ÆÄÀÏÀÌ ¾øÀ»°æ¿ì ÁøÀÔÇÑ ¹è°æÀ½¾ÇÀ¸·Î º¯°æ.
+					{// mp3 íŒŒì¼ì´ ì—†ì„ê²½ìš° ì§„ì…í•œ ë°°ê²½ìŒì•…ìœ¼ë¡œ ë³€ê²½.
 						if(g_pGameMain != NULL && g_pGameMain->m_pMp3Player != NULL &&
 							!g_pGameMain->m_pMp3Player->GetStopButton())
-						{// Á¤Áö ¹öÆ°À» ´©¸¥ »óÅÂ¶ó¸é ´Ù¸¥ ¸Ê¿¡¼­µµ ¹è°æÀ½¾ÇÀ» ÄÑÁöÁö ¾Ê´Â´Ù.
+						{// ì •ì§€ ë²„íŠ¼ì„ ëˆ„ë¥¸ ìƒíƒœë¼ë©´ ë‹¤ë¥¸ ë§µì—ì„œë„ ë°°ê²½ìŒì•…ì„ ì¼œì§€ì§€ ì•ŠëŠ”ë‹¤.
 							m_bPlayMusic = FALSE;
 						}
 						strcpy(m_strBackMusic,buf);
@@ -940,25 +940,25 @@ void CAtumSound::SetBackMusic(DWORD dwType)
 				}
 				else
 				{
-// 2006-05-15 by ispark, »óÁ¡ ÀÌ¿ë½Ã ±âº» ¹è°æÀ½¾ÇÀÌ ²¨Áö´Â °ÍÀ» ¹æÁö ÇÏ±â À§ÇØ¼­ Áö¿ü´Ù.
+// 2006-05-15 by ispark, ìƒì  ì´ìš©ì‹œ ê¸°ë³¸ ë°°ê²½ìŒì•…ì´ êº¼ì§€ëŠ” ê²ƒì„ ë°©ì§€ í•˜ê¸° ìœ„í•´ì„œ ì§€ì› ë‹¤.
 //						m_bPlayMusic = FALSE;
 //						memset(m_strBackMusic,0x00,sizeof(m_strBackMusic));
 				}
 
-				// 2007-08-01 by bhsohn Æ©Åä¸®¾ó ¸Ê¿¡¼­ À½¼º ÇÃ·¹ÀÌ ½ÃµµÇÒ·Á´Â ¹ö±× Ã³¸®
+				// 2007-08-01 by bhsohn íŠœí† ë¦¬ì–¼ ë§µì—ì„œ ìŒì„± í”Œë ˆì´ ì‹œë„í• ë ¤ëŠ” ë²„ê·¸ ì²˜ë¦¬
 				if(IS_TUTORIAL_MAP_INDEX(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex))
 				{
 					m_bPlayMusic = FALSE;
 					memset(m_strBackMusic,0x00,sizeof(m_strBackMusic));
 				}
-				// end 2007-08-01 by bhsohn Æ©Åä¸®¾ó ¸Ê¿¡¼­ À½¼º ÇÃ·¹ÀÌ ½ÃµµÇÒ·Á´Â ¹ö±× Ã³¸®
+				// end 2007-08-01 by bhsohn íŠœí† ë¦¬ì–¼ ë§µì—ì„œ ìŒì„± í”Œë ˆì´ ì‹œë„í• ë ¤ëŠ” ë²„ê·¸ ì²˜ë¦¬
 			}
 			else
 			{
 				m_bPlayMusic = FALSE;
 				memset(m_strBackMusic,0x00,sizeof(m_strBackMusic));
 
-				// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
+				// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
 				g_pD3dApp->EndNarrationSound();
 			}
 		}

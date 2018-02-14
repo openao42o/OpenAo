@@ -1,4 +1,4 @@
-#ifndef _TICK_MANAGER_H_
+ï»¿#ifndef _TICK_MANAGER_H_
 #define _TICK_MANAGER_H_
 
 #include "AtumParam.h"
@@ -28,12 +28,12 @@ public:
 	DWORD GetTickInterval() const { return m_nTickInterval; }
 
 	virtual void DoTickEvent(ATUM_DATE_TIME *pDateTime, TICK_EVENT *pTickEvent) = 0;
-	virtual void DoEveryTickWork(ATUM_DATE_TIME *pDateTime) = 0;	// ¸Å¹ø ¼öÇàÇØ¾ß ÇÒ ÀÏ
-	virtual void DoDailyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ÇÏ·ç¿¡ ÇÑ ¹ø ¾¿ ÇØ¾ß ÇÒ ÀÏ
-	virtual void DoHourlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ¸Å ½Ã°£¸¶´Ù ÇÑ ¹ø ¾¿ ÇØ¾ß ÇÒ ÀÏ
-	virtual void DoMinutelyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ¸Å ºĞ¸¶´Ù ÇÑ ¹ø ¾¿ ÇØ¾ß ÇÒ ÀÏ
-	virtual void DoSecondlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ¸Å ÃÊ¸¶´Ù ÇÑ ¹ø ¾¿ ÇØ¾ß ÇÒ ÀÏ
-	virtual void DoMonthlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// 2005-12-27 by cmkwon, ÇÑ´Ş¿¡ ÇÑ ¹ø ¾¿ ÇØ¾ß ÇÒ ÀÏ
+	virtual void DoEveryTickWork(ATUM_DATE_TIME *pDateTime) = 0;	// ë§¤ë²ˆ ìˆ˜í–‰í•´ì•¼ í•  ì¼
+	virtual void DoDailyWork(ATUM_DATE_TIME *pDateTime) = 0;		// í•˜ë£¨ì— í•œ ë²ˆ ì”© í•´ì•¼ í•  ì¼
+	virtual void DoHourlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ë§¤ ì‹œê°„ë§ˆë‹¤ í•œ ë²ˆ ì”© í•´ì•¼ í•  ì¼
+	virtual void DoMinutelyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ë§¤ ë¶„ë§ˆë‹¤ í•œ ë²ˆ ì”© í•´ì•¼ í•  ì¼
+	virtual void DoSecondlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// ë§¤ ì´ˆë§ˆë‹¤ í•œ ë²ˆ ì”© í•´ì•¼ í•  ì¼
+	virtual void DoMonthlyWork(ATUM_DATE_TIME *pDateTime) = 0;		// 2005-12-27 by cmkwon, í•œë‹¬ì— í•œ ë²ˆ ì”© í•´ì•¼ í•  ì¼
 
 	void InsertTickEvent(INT			i_TickEventType,
 						ATUM_DATE_TIME	*i_pStartTime,

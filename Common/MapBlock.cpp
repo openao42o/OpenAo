@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MapBlock.h"
 //#include "MapChannel.h"
 
@@ -12,7 +12,7 @@ CMapBlock::~CMapBlock()
 {
 }
 
-// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - 
+// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - 
 DROPITEM* CMapBlock::GetDROPITEM_SetProcess(ITEM_GENERAL* pStoreItem, BOOL i_bPickupTenderItem/*=FALSE*/)
 {
 	m_DropItemMtmap.lock();
@@ -21,7 +21,7 @@ DROPITEM* CMapBlock::GetDROPITEM_SetProcess(ITEM_GENERAL* pStoreItem, BOOL i_bPi
 	{
 		DROPITEM *pDropItem = &itr->second;
 		if (FALSE == pDropItem->bProcessing
-			&& (i_bPickupTenderItem || FALSE == pDropItem->bTendering))	// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - 
+			&& (i_bPickupTenderItem || FALSE == pDropItem->bTendering))	// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - 
 		{
 			pDropItem->bProcessing = TRUE;
 		}
@@ -39,7 +39,7 @@ DROPITEM* CMapBlock::GetDROPITEM_SetProcess(ITEM_GENERAL* pStoreItem, BOOL i_bPi
 
 void CMapBlock::AllDeleteDropItem()
 {
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
 	mt_auto_lock mtA(&m_DropItemMtmap);
 	mtmapDropItem::iterator itr = m_DropItemMtmap.begin();
 	for(; itr!=m_DropItemMtmap.end(); itr++)
@@ -50,7 +50,7 @@ void CMapBlock::AllDeleteDropItem()
 	m_DropItemMtmap.clear();
 }
 
-// 2012-03-05 by hskim, µå¶ø ¾ÆÀÌÅÛ ÀÏÁ¤ ½Ã°£ÈÄ »èÁ¦
+// 2012-03-05 by hskim, ë“œë ì•„ì´í…œ ì¼ì • ì‹œê°„í›„ ì‚­ì œ
 void CMapBlock::DeleteTimeoutDropItem(DWORD dwNowTick, vectorDeleteDropItem *pDeleteDropItem /*= NULL*/)
 {
 	mt_auto_lock mtA(&m_DropItemMtmap);
@@ -80,4 +80,4 @@ void CMapBlock::DeleteTimeoutDropItem(DWORD dwNowTick, vectorDeleteDropItem *pDe
 		}
 	}
 }
-// 2012-03-05 by hskim, µå¶ø ¾ÆÀÌÅÛ ÀÏÁ¤ ½Ã°£ÈÄ »èÁ¦
+// 2012-03-05 by hskim, ë“œë ì•„ì´í…œ ì¼ì • ì‹œê°„í›„ ì‚­ì œ

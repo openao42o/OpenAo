@@ -1,4 +1,4 @@
-#include "stdafx.h"
+癤�#include "stdafx.h"
 #include "TickManager.h"
 
 CTickManager::CTickManager(DWORD i_nTickInterval) :
@@ -58,7 +58,7 @@ void CTickManager::ProcessTickEvent(ATUM_DATE_TIME *i_pDateTime)
 	mt_multimap<ATUM_DATE_TIME, TICK_EVENT>::iterator itrMain;
 	mt_multimap<ATUM_DATE_TIME, TICK_EVENT>::iterator itrEnd;
 
-	vector<TICK_EVENT> vecTickEvent;		// 2011-10-10 by hskim, EP4 [트리거 시스템] - 화산재 / 모래 폭풍
+	vector<TICK_EVENT> vecTickEvent;		// p
 
 	m_multimapTickEvent.lock();
 
@@ -72,30 +72,30 @@ void CTickManager::ProcessTickEvent(ATUM_DATE_TIME *i_pDateTime)
 	for (itrMain = m_multimapTickEvent.begin(); itrMain != itrEnd; ++itrMain)
 	{
 		///////////////////////////////////////////////////////////////////////////////////////
-		// start 2011-10-10 by hskim, EP4 [트리거 시스템] - 화산재 / 모래 폭풍
+		// s
 		//
-		// 기존
+		// p
 		//
 		// DoTickEvent(i_pDateTime, &itrMain->second);
 
 		/////////
-		// 수정
+		// p
 
 		vecTickEvent.push_back(itrMain->second);
 
-		// end 2011-10-10 by hskim, EP4 [트리거 시스템] - 화산재 / 모래 폭풍
+		// end 2
 		///////////////////////////////////////////////////////////////////////////////////////
 	}
 
 	m_multimapTickEvent.erase(m_multimapTickEvent.begin(), itrEnd);
 	m_multimapTickEvent.unlock();
 
-	// start 2011-10-10 by hskim, EP4 [트리거 시스템] - 화산재 / 모래 폭풍
+	// start 2011-10-10 by h
 	for(int i=0; i<vecTickEvent.size(); i++)
 	{
 		DoTickEvent(i_pDateTime, &vecTickEvent[i]);
 	}
-	// end 2011-10-10 by hskim, EP4 [트리거 시스템] - 화산재 / 모래 폭풍
+	// end 2011-10-10 by hskim, EP
 }
 
 void CTickManager::InsertTickEvent(INT i_TickEventType, ATUM_DATE_TIME *i_pStartTime, INT i_nTickEventParam1 /* = 0 */, INT i_nTickEventParam2 /* = 0 */, void *i_vpTickEventParam1 /* = NULL */, void *i_vpTickEventParam2 /* = NULL */)
@@ -114,7 +114,7 @@ void CTickManager::InsertTickEvent(INT i_TickEventType, ATUM_DATE_TIME *i_pStart
 	m_multimapTickEvent.unlock();
 
 //#ifdef _DEBUG
-//	DBGOUT("타이머 시작 %s\r\n", i_pStartTime->GetDateTimeString(STRNBUF(SIZE_MAX_ATUM_DATE_TIME_STRING)));
+//	DBGOUT("n", i_pStartTime->GetDateTimeString(STRNBUF(SIZE_MAX_ATUM_DATE_TIME_STRING)));
 //#endif
 }
 

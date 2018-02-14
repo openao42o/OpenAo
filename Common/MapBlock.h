@@ -1,29 +1,29 @@
-#pragma once
+ï»¿#pragma once
 
 #include "VMemPool.h"
 
 /******************************************************************************
-	ATUM Map °ü¸®¿ë ¸ğµâ
+	ATUM Map ê´€ë¦¬ìš© ëª¨ë“ˆ
 	* Map > Block > Tile
 ******************************************************************************/
 constexpr auto SIZE_MAP_TILE_SIZE = 40;
-constexpr auto SIZE_MAP_BLOCK_SIDE = 960;		// ÀÏ´Ü, SIZE_VISIBLE_RADIUS/2 Å×½ºÆ®¸¦ ÅëÇØ ÃÖÀûÀÇ °ª Á¤ÇØ¾ß ÇÔ
+constexpr auto SIZE_MAP_BLOCK_SIDE = 960;		// ì¼ë‹¨, SIZE_VISIBLE_RADIUS/2 í…ŒìŠ¤íŠ¸ë¥¼ í†µí•´ ìµœì ì˜ ê°’ ì •í•´ì•¼ í•¨
 constexpr auto SIZE_BLOCK_X = SIZE_MAP_BLOCK_SIDE;
 constexpr auto SIZE_BLOCK_Z = SIZE_MAP_BLOCK_SIDE;
-constexpr auto SIZE_CHARACTER_VISIBLE_SIDE = 2000;	// Ä³¸¯ÅÍ ½Ã¾ß
-constexpr auto SIZE_MONSTER_VISIBLE_SIDE = 1440;	// ¸ó½ºÅÍ ½Ã¾ß
+constexpr auto SIZE_CHARACTER_VISIBLE_SIDE = 2000;	// ìºë¦­í„° ì‹œì•¼
+constexpr auto SIZE_MONSTER_VISIBLE_SIDE = 1440;	// ëª¬ìŠ¤í„° ì‹œì•¼
 
-constexpr auto	SIZE_MAP_BLOCK_SIDE_FOR_NPCSERVER = 960;		// NPC Server¿¡¼­ »ç¿ëÇÏ´Â MapBlockSize
+constexpr auto	SIZE_MAP_BLOCK_SIDE_FOR_NPCSERVER = 960;		// NPC Serverì—ì„œ ì‚¬ìš©í•˜ëŠ” MapBlockSize
 constexpr auto SIZE_BLOCK_X_FOR_NPCSERVER = SIZE_MAP_BLOCK_SIDE_FOR_NPCSERVER;
 constexpr auto SIZE_BLOCK_Z_FOR_NPCSERVER = SIZE_MAP_BLOCK_SIDE_FOR_NPCSERVER;
 
-constexpr auto SIZE_MONSTER_CREATION_RANGE = 180.0f;	// ¸ó½ºÅÍ°¡ »ı¼ºµÉ ¶§ ÀÌ °Å¸® ¾È¿¡ Ä³¸¯ÅÍ°¡ ÀÖÀ¸¸é »ı¼ºµÇÁö ¾ÊÀ½
-constexpr auto COUNT_MAX_ADMIN_SUMMON_MONSTER = 20;		// ¸ó½ºÅÍ ¼ÒÈ¯½Ã ÇÑ¹ø¿¡ ¼ÒÈ¯ÇÒ¼ö ÀÖ´Â ÃÖ´ë Å©±â
-constexpr auto SIZE_TILE_ADMIN_SUMMON_MONSTER_REGION = 2;		// ¸ó½ºÅÍ ¼ÒÈ¯½Ã »ı¼ºÇÏ´Â ¿µ¿ªÀÇ Å¸ÀÏ ºí·°(2 + 1 + 2)
+constexpr auto SIZE_MONSTER_CREATION_RANGE = 180.0f;	// ëª¬ìŠ¤í„°ê°€ ìƒì„±ë  ë•Œ ì´ ê±°ë¦¬ ì•ˆì— ìºë¦­í„°ê°€ ìˆìœ¼ë©´ ìƒì„±ë˜ì§€ ì•ŠìŒ
+constexpr auto COUNT_MAX_ADMIN_SUMMON_MONSTER = 20;		// ëª¬ìŠ¤í„° ì†Œí™˜ì‹œ í•œë²ˆì— ì†Œí™˜í• ìˆ˜ ìˆëŠ” ìµœëŒ€ í¬ê¸°
+constexpr auto SIZE_TILE_ADMIN_SUMMON_MONSTER_REGION = 2;		// ëª¬ìŠ¤í„° ì†Œí™˜ì‹œ ìƒì„±í•˜ëŠ” ì˜ì—­ì˜ íƒ€ì¼ ë¸”ëŸ­(2 + 1 + 2)
 
-constexpr auto SIZE_MAX_EXPERIENCE_DIVISION_RADIUS = SIZE_MONSTER_VISIBLE_SIDE * 2;	// °æÇèÄ¡ ºĞ¹è½Ã ¸ó½ºÅÍ¸¦ ±âÁØÀ¸·Î ÀÌ°Å¸® ¾È¿¡ ÀÖ¾î¾ßÇÔ
+constexpr auto SIZE_MAX_EXPERIENCE_DIVISION_RADIUS = SIZE_MONSTER_VISIBLE_SIDE * 2;	// ê²½í—˜ì¹˜ ë¶„ë°°ì‹œ ëª¬ìŠ¤í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì´ê±°ë¦¬ ì•ˆì— ìˆì–´ì•¼í•¨
 
-// ÁÖ¾îÁø ÁÂÇ¥¸¦ Tile Index·Î º¯È¯ÇÑ´Ù
+// ì£¼ì–´ì§„ ì¢Œí‘œë¥¼ Tile Indexë¡œ ë³€í™˜í•œë‹¤
 template<typename T> int CHANGE_TO_TILEINDEX(T x) { return (int)(x / SIZE_MAP_TILE_SIZE); }
 
 
@@ -32,7 +32,7 @@ typedef list<ClientIndex_t> ClientIndexList;
 typedef vector<ClientIndex_t> ClientIndexVector;
 
 constexpr auto MAX_DROPITEM_DELAY = 15000;	// miliseconds
-constexpr auto MAX_DROPITEM_DELAY_ADMIN_COMMAND = 2000;	// miliseconds		// 2013-04-10 by hskim, ¾îµå¹Î ¸í·É¿¡ ÀÇÇÑ µå¶ø ¾ÆÀÌÅÛÀº ´ë±â ½Ã°£ 2ÃÊ Àû¿ë
+constexpr auto MAX_DROPITEM_DELAY_ADMIN_COMMAND = 2000;	// miliseconds		// 2013-04-10 by hskim, ì–´ë“œë¯¼ ëª…ë ¹ì— ì˜í•œ ë“œë ì•„ì´í…œì€ ëŒ€ê¸° ì‹œê°„ 2ì´ˆ ì ìš©
 constexpr auto SIZE_MAX_DROP_ITEM_PRIORITY_INFO = 20;
 constexpr auto DROP_ITEM_RADIUS = 80;
 
@@ -45,23 +45,23 @@ enum EnumPriorityInfoType
 
 struct PRIORITY_INFO
 {
-	EnumPriorityInfoType	ePrioryInfoType;			// Ä³¸¯ÅÍ¿¡ ´ëÇÑ °ÍÀÎÁö, ÆÄÆ¼¿¡ ´ëÇÑ °ÍÀÎÁö ±¸ºĞ
-	UID32_t					CharacterUniqueNumber;		// PIT_CHARACTERÀÏ ¶§ Ä³¸¯ÅÍ UID
-	PartyID_t				PartyID;					// PIT_PARTYÀÏ ¶§ PartyID
+	EnumPriorityInfoType	ePrioryInfoType;			// ìºë¦­í„°ì— ëŒ€í•œ ê²ƒì¸ì§€, íŒŒí‹°ì— ëŒ€í•œ ê²ƒì¸ì§€ êµ¬ë¶„
+	UID32_t					CharacterUniqueNumber;		// PIT_CHARACTERì¼ ë•Œ ìºë¦­í„° UID
+	PartyID_t				PartyID;					// PIT_PARTYì¼ ë•Œ PartyID
 	DWORD					dwDelay;					// miliseconds
 };
 
 struct DROPITEM
 {
-	ITEM_GENERAL		*pItem;						// new·Î »ı¼ºµÇ¾î ÇÒ´çµÊ!
+	ITEM_GENERAL		*pItem;						// newë¡œ ìƒì„±ë˜ì–´ í• ë‹¹ë¨!
 	PRIORITY_INFO		priorityInfoArray[SIZE_MAX_DROP_ITEM_PRIORITY_INFO];
 	int					priorityInfoCount;
 	DWORD				dwStartTick;				// miliseconds
 	D3DXVECTOR3			Position;
 	BOOL				bProcessing;
 	UID32_t				FirstCharacterUID1;				// charcter UID
-	BOOL				bTendering;					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - TRUE = ÀÔÂû»óÅÂ				
-	BOOL				bAdminCommand;				// 2013-04-10 by hskim, ¾îµå¹Î ¸í·É¿¡ ÀÇÇÑ µå¶ø ¾ÆÀÌÅÛÀº ´ë±â ½Ã°£ 2ÃÊ Àû¿ë
+	BOOL				bTendering;					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - TRUE = ì…ì°°ìƒíƒœ				
+	BOOL				bAdminCommand;				// 2013-04-10 by hskim, ì–´ë“œë¯¼ ëª…ë ¹ì— ì˜í•œ ë“œë ì•„ì´í…œì€ ëŒ€ê¸° ì‹œê°„ 2ì´ˆ ì ìš©
 
 	DROPITEM()
 	{
@@ -74,8 +74,8 @@ struct DROPITEM
 		Position.z			= 0;
 		bProcessing			= FALSE;
 		FirstCharacterUID1	= 0;
-		bTendering			= FALSE;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - TRUE = ÀÔÂû»óÅÂ	
-		bAdminCommand		= FALSE;			// 2013-04-10 by hskim, ¾îµå¹Î ¸í·É¿¡ ÀÇÇÑ µå¶ø ¾ÆÀÌÅÛÀº ´ë±â ½Ã°£ 2ÃÊ Àû¿ë
+		bTendering			= FALSE;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - TRUE = ì…ì°°ìƒíƒœ	
+		bAdminCommand		= FALSE;			// 2013-04-10 by hskim, ì–´ë“œë¯¼ ëª…ë ¹ì— ì˜í•œ ë“œë ì•„ì´í…œì€ ëŒ€ê¸° ì‹œê°„ 2ì´ˆ ì ìš©
 	}
 
 #ifdef _ATUM_SERVER
@@ -84,25 +84,25 @@ struct DROPITEM
 #endif
 };
 
-typedef mt_map<ITEM_GENERAL*, DROPITEM> mtmapDropItem;	// ITEM_GENERAL*´Â ÇÁ·ÎÅäÄİ Àü¼Û½Ã´Â UINT·Î ÇÔ
+typedef mt_map<ITEM_GENERAL*, DROPITEM> mtmapDropItem;	// ITEM_GENERAL*ëŠ” í”„ë¡œí† ì½œ ì „ì†¡ì‹œëŠ” UINTë¡œ í•¨
 
 /*
-+ ¸¶ÀÎ ¹İÀÀ ½Ã°£ °ü¸® ¹æ¹ı
-	- ¶³¾îÁ³À» ¶§ ½Ã°£À» dwStartTickÀ» ÀúÀåÇÑ´Ù.
-	- ÁÖÀ§¿¡ À¯´ÖÀÌ °É·ÈÀ» ¶§
-		(1) dwStartTickÀÌ 0º¸´Ù Å©¸é, currentTickºñ±³¸¦ ÇØ¼­ Àû¿ë½Ã°£À» °áÁ¤ÇÑ´Ù.
-			¸¸¾à Àû¿ë ½Ã°£ ÀÌÈÄ¸é dwStartTickÀ» 0À¸·Î ¹Ù²Û ÈÄ Ã³¸®ÇÑ´Ù.
-		(2) dwStartTickÀÌ 0ÀÌ°Å³ª ÀÛÀ¸¸é ¹Ù·Î ¸¶ÀÎ °ø°İÀ» ÇÑ´Ù.
-+ °íÀ¯ ³Ñ¹ö´Â DROPMINEÀÇ pointer·Î ÇÑ´Ù.
-+ ÀÚ·á±¸Á¶´Â setÀ» »ç¿ë
++ ë§ˆì¸ ë°˜ì‘ ì‹œê°„ ê´€ë¦¬ ë°©ë²•
+	- ë–¨ì–´ì¡Œì„ ë•Œ ì‹œê°„ì„ dwStartTickì„ ì €ì¥í•œë‹¤.
+	- ì£¼ìœ„ì— ìœ ë‹›ì´ ê±¸ë ¸ì„ ë•Œ
+		(1) dwStartTickì´ 0ë³´ë‹¤ í¬ë©´, currentTickë¹„êµë¥¼ í•´ì„œ ì ìš©ì‹œê°„ì„ ê²°ì •í•œë‹¤.
+			ë§Œì•½ ì ìš© ì‹œê°„ ì´í›„ë©´ dwStartTickì„ 0ìœ¼ë¡œ ë°”ê¾¼ í›„ ì²˜ë¦¬í•œë‹¤.
+		(2) dwStartTickì´ 0ì´ê±°ë‚˜ ì‘ìœ¼ë©´ ë°”ë¡œ ë§ˆì¸ ê³µê²©ì„ í•œë‹¤.
++ ê³ ìœ  ë„˜ë²„ëŠ” DROPMINEì˜ pointerë¡œ í•œë‹¤.
++ ìë£Œêµ¬ì¡°ëŠ” setì„ ì‚¬ìš©
 +
 */
 struct DROPMINE
 {
-	UID32_t				CharacterUniqueNumber;		// ¶³¾î¶ß¸° character, ¼ÒÀ¯ÀÚ
-													// ÀÌ¹Ì ÆøÆÄµÈ °æ¿ì´Â timer Ã³¸®¸¦ À§ÇØ¼­ INVAILD_UNIQUE_NUMBER¸¦ ÇÒ´ç
-													// ±¸Á¶Ã¼ÀÇ »èÁ¦´Â timer°¡ °ü¸®
-	ClientIndex_t		ClientIndex;				// ¶³¾î¶ß¸° character, ¼ÒÀ¯ÀÚ
+	UID32_t				CharacterUniqueNumber;		// ë–¨ì–´ëœ¨ë¦° character, ì†Œìœ ì
+													// ì´ë¯¸ í­íŒŒëœ ê²½ìš°ëŠ” timer ì²˜ë¦¬ë¥¼ ìœ„í•´ì„œ INVAILD_UNIQUE_NUMBERë¥¼ í• ë‹¹
+													// êµ¬ì¡°ì²´ì˜ ì‚­ì œëŠ” timerê°€ ê´€ë¦¬
+	ClientIndex_t		ClientIndex;				// ë–¨ì–´ëœ¨ë¦° character, ì†Œìœ ì
 	ITEM*				pItemInfo;
 	D3DXVECTOR3			Position;
 	TimeUnit_t			dwStartTick;				// miliseconds, by GetTickCount()
@@ -133,11 +133,11 @@ struct BLOCK_INDEX
 	short sZ;
 };
 
-// start 2011-03-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+// start 2011-03-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 struct MONSTER_MAPBLOCK_INFO
 {
-	ClientIndex_t	MonsterIndex;					// ¸ó½ºÅÍ °íÀ¯ ¹øÈ£
-	BLOCK_INDEX		Block;							// ºí·° ÁÂÇ¥
+	ClientIndex_t	MonsterIndex;					// ëª¬ìŠ¤í„° ê³ ìœ  ë²ˆí˜¸
+	BLOCK_INDEX		Block;							// ë¸”ëŸ­ ì¢Œí‘œ
 	
 	MONSTER_MAPBLOCK_INFO()		{ MonsterIndex = 0; Block.sX = 0; Block.sZ = 0; }
 	MONSTER_MAPBLOCK_INFO(ClientIndex_t	Index, short x, short y)		{ MonsterIndex = Index; Block.sX = x; Block.sZ = y; }
@@ -145,12 +145,12 @@ struct MONSTER_MAPBLOCK_INFO
 };
 
 typedef mt_vector<MONSTER_MAPBLOCK_INFO>	mtvectorMTMonsterIndex;
-// end 2011-03-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+// end 2011-03-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 
 class CSkinnedMesh;
 struct OBJECTINFOSERVER
 {
-	DWORD			m_dwObjType;			// Object Å¸ÀÔ
+	DWORD			m_dwObjType;			// Object íƒ€ì…
 	D3DXVECTOR3		m_vPos;
 	D3DXVECTOR3		m_vVel;
 	D3DXVECTOR3		m_vUp;
@@ -158,11 +158,11 @@ struct OBJECTINFOSERVER
 	CSkinnedMesh*	m_pSkinnedMesh;
 	D3DXMATRIX		m_matrix;
 	DWORD			dwObjBossMonResTime;		// 2006-11-22 by cmkwon, 
-	MONSTER_INFO*	m_pMonsterInfo;			// 2007-08-18 by cmkwon, ¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¼ÒÈ¯ Á¤º¸¿¡ MONSTER_INFO * ¼³Á¤ÇÏ±â
-	// start 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+	MONSTER_INFO*	m_pMonsterInfo;			// 2007-08-18 by cmkwon, ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ì†Œí™˜ ì •ë³´ì— MONSTER_INFO * ì„¤ì •í•˜ê¸°
+	// start 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 	BYTE			m_bNotCreateMonster;
 	MONSTER_BALANCE_DATA	MonsterBalanceInfo;
-	// end 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+	// end 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 };
 
 typedef vector<OBJECTINFOSERVER>	vectorObjectInfoServer;
@@ -174,9 +174,9 @@ typedef vector<ClientIndex_t>		vectClientIndex_t;			// 2006-07-24 by cmkwon
 typedef mt_set<DROPMINE*>			mtsetDropMine;
 
 ////////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!! ¾Æ Èûµé¾î...
-typedef mt_vector<DWORD>				mtDeletedObjectInfoList;	// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
-typedef mt_vector<OBJECTINFOSERVER>		mtNewObjectInfoList;		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!! ì•„ í˜ë“¤ì–´...
+typedef mt_vector<DWORD>				mtDeletedObjectInfoList;	// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
+typedef mt_vector<OBJECTINFOSERVER>		mtNewObjectInfoList;		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 
 class CMapChannel;
 
@@ -186,16 +186,16 @@ public:
 	CMapBlock();
 	virtual ~CMapBlock();
 
-	// Ä³¸¯ÅÍ¿Í ¸ó½ºÅÍ °øÅë
+	// ìºë¦­í„°ì™€ ëª¬ìŠ¤í„° ê³µí†µ
 	inline BOOL InsertUnit(ClientIndex_t clientIndex);
 	inline BOOL DeleteUnit(ClientIndex_t clientIndex);
 
-	// Ä³¸¯ÅÍ
+	// ìºë¦­í„°
 	inline BOOL InsertCharacter(ClientIndex_t clientIndex);
 	inline BOOL DeleteCharacter(ClientIndex_t clientIndex);
-	inline void ResetCharacter();					// 2008-02-20 by dhjin, ¾Æ·¹³ª ÅëÇÕ -
+	inline void ResetCharacter();					// 2008-02-20 by dhjin, ì•„ë ˆë‚˜ í†µí•© -
 
-	// ¸ó½ºÅÍ
+	// ëª¬ìŠ¤í„°
 	inline BOOL InsertMonster(ClientIndex_t clientIndex);
 	inline BOOL DeleteMonster(ClientIndex_t clientIndex);
 
@@ -211,28 +211,28 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////
 	// item
-	mtmapDropItem		m_DropItemMtmap;	// »ı¼ºµÈ ¾ÆÀÌÅÛÀÇ pointer¸¦ ÀúÀå
+	mtmapDropItem		m_DropItemMtmap;	// ìƒì„±ëœ ì•„ì´í…œì˜ pointerë¥¼ ì €ì¥
 
 	inline void InsertDropItem(ITEM_GENERAL* pStoreItem, DROPITEM *pDropItem);
 	inline int DeleteDropItem(ITEM_GENERAL* pStoreItem);
-	void DeleteTimeoutDropItem(DWORD dwNowTick, vectorDeleteDropItem *pDeleteDropItem = NULL);		// 2012-03-05 by hskim, µå¶ø ¾ÆÀÌÅÛ ÀÏÁ¤ ½Ã°£ÈÄ »èÁ¦
+	void DeleteTimeoutDropItem(DWORD dwNowTick, vectorDeleteDropItem *pDeleteDropItem = NULL);		// 2012-03-05 by hskim, ë“œë ì•„ì´í…œ ì¼ì • ì‹œê°„í›„ ì‚­ì œ
 
-	// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - 
+	// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - 
 	DROPITEM* GetDROPITEM_SetProcess(ITEM_GENERAL* pStoreItem, BOOL i_bPickupTenderItem=FALSE);
 
-	void AllDeleteDropItem();		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
+	void AllDeleteDropItem();		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
 
 	///////////////////////////////////////////////////////////////////////////
 	// item
-	mtsetDropMine		m_setMapBlockDropMine;	// »ı¼ºµÈ ¾ÆÀÌÅÛÀÇ pointer¸¦ ÀúÀå
+	mtsetDropMine		m_setMapBlockDropMine;	// ìƒì„±ëœ ì•„ì´í…œì˜ pointerë¥¼ ì €ì¥
 
 	// map block index
 	short				m_x;	// map block x index
 	short				m_z;	// map block z index
 
-	//! map blockÀÇ center position X
+	//! map blockì˜ center position X
 	float				m_CenterPositionX;
-	//! map blockÀÇ center position Z
+	//! map blockì˜ center position Z
 	float				m_CenterPositionZ;
 
 	static int			ms_nSIZE_BLOCK;
@@ -253,11 +253,11 @@ int CMapBlock::DeleteDropItem(ITEM_GENERAL* pStoreItem)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::InsertUnit
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					Ä³¸¯ÅÍ¿Í ¸ó½ºÅÍ¸¦ ±¸º°ÇÏ¿© MapBlock¿¡ Ãß°¡ÇÏ´Â ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::InsertUnit
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ìºë¦­í„°ì™€ ëª¬ìŠ¤í„°ë¥¼ êµ¬ë³„í•˜ì—¬ MapBlockì— ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 BOOL CMapBlock::InsertUnit(ClientIndex_t clientIndex)
 {
 	if (clientIndex < MONSTER_CLIENT_INDEX_START_NUM)
@@ -270,10 +270,10 @@ BOOL CMapBlock::InsertUnit(ClientIndex_t clientIndex)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::DeleteUnit
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : Ä³¸¯ÅÍ¿Í ¸ó½ºÅÍ¸¦ ±¸º°ÇÏ¿© MapBlock¿¡¼­ »èÁ¦ÇÏ´Â ÇÔ¼ö¸¦ È£Ãâ
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::DeleteUnit
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : ìºë¦­í„°ì™€ ëª¬ìŠ¤í„°ë¥¼ êµ¬ë³„í•˜ì—¬ MapBlockì—ì„œ ì‚­ì œí•˜ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
 BOOL CMapBlock::DeleteUnit(ClientIndex_t clientIndex)
 {
 	if (clientIndex < MONSTER_CLIENT_INDEX_START_NUM)
@@ -283,19 +283,19 @@ BOOL CMapBlock::DeleteUnit(ClientIndex_t clientIndex)
 	return DeleteMonster(clientIndex);
 }
 
-// BlockÀ» listÀ¸·Î ±¸Çö ÇÑ°Í
+// Blockì„ listìœ¼ë¡œ êµ¬í˜„ í•œê²ƒ
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::InsertCharacter
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex ==> MapBlock¿¡ Ãß°¡ÇÒ Ä³¸¯ÅÍ ÀÎµ¦½º
-// ÇÔ ¼ö ¼³ ¸í  : MapBlockÀÇ Ä³¸¯ÅÍÀÇ ÀÎµ¦½º ¸®½ºÆ®¿¡ clientIndex¸¦ Ãß°¡ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::InsertCharacter
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex ==> MapBlockì— ì¶”ê°€í•  ìºë¦­í„° ì¸ë±ìŠ¤
+// í•¨ ìˆ˜ ì„¤ ëª…  : MapBlockì˜ ìºë¦­í„°ì˜ ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì— clientIndexë¥¼ ì¶”ê°€í•œë‹¤.
 BOOL CMapBlock::InsertCharacter(ClientIndex_t clientIndex)
 {	
 	m_CharacterIndexMtlist.lock();
 	if(0 == m_CharacterIndexMtlist.capacity())
 	{
-		// 2007-07-16 by cmkwon, ±âº» »çÀÌÁî 10À¸·Î ¼öÁ¤ÇÔ
+		// 2007-07-16 by cmkwon, ê¸°ë³¸ ì‚¬ì´ì¦ˆ 10ìœ¼ë¡œ ìˆ˜ì •í•¨
 		//m_CharacterIndexMtlist.reserve(ms_nSIZE_BLOCK/8);
 		m_CharacterIndexMtlist.reserve(10);
 	}
@@ -324,10 +324,10 @@ BOOL CMapBlock::InsertCharacter(ClientIndex_t clientIndex)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::DeleteCharacter
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : MapBlockÀÇ Ä³¸¯ÅÍ ÀÎµ¦½º ¸®½ºÆ®¿¡¼­ clientIndex¸¦ »èÁ¦ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::DeleteCharacter
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : MapBlockì˜ ìºë¦­í„° ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì—ì„œ clientIndexë¥¼ ì‚­ì œí•œë‹¤.
 BOOL CMapBlock::DeleteCharacter(ClientIndex_t clientIndex)
 {	
 	m_CharacterIndexMtlist.lock();
@@ -356,7 +356,7 @@ BOOL CMapBlock::DeleteCharacter(ClientIndex_t clientIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CMapBlock::ResetCharacter()
-/// \brief		¾Æ·¹³ª ÅëÇÕ -
+/// \brief		ì•„ë ˆë‚˜ í†µí•© -
 /// \author		dhjin
 /// \date		2008-02-20 ~ 2008-02-20
 /// \warning	
@@ -371,16 +371,16 @@ void CMapBlock::ResetCharacter()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::InsertMonster
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : MabBlockÀÇ ¸ó½ºÅÍ ÀÎµ¦½º ¸®½ºÆ®¿¡ clientIndex¸¦ Ãß°¡ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::InsertMonster
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : MabBlockì˜ ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì— clientIndexë¥¼ ì¶”ê°€í•œë‹¤.
 BOOL CMapBlock::InsertMonster(ClientIndex_t clientIndex)
 {
 	m_MonsterIndexMtlist.lock();
 	if(0 == m_MonsterIndexMtlist.capacity())
 	{
-		// 2007-07-16 by cmkwon, ±âº» »çÀÌÁî 10À¸·Î ¼öÁ¤ÇÔ
+		// 2007-07-16 by cmkwon, ê¸°ë³¸ ì‚¬ì´ì¦ˆ 10ìœ¼ë¡œ ìˆ˜ì •í•¨
 		//m_MonsterIndexMtlist.reserve(ms_nSIZE_BLOCK/8);
 		m_MonsterIndexMtlist.reserve(10);
 	}
@@ -408,10 +408,10 @@ BOOL CMapBlock::InsertMonster(ClientIndex_t clientIndex)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapBlock::DeleteMonster
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : MapBlockÀÇ ¸ó½ºÅÍ ÀÎµ¦½º ¸®½ºÆ®¿¡¼­ clientIndex¸¦ »èÁ¦ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapBlock::DeleteMonster
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : MapBlockì˜ ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì—ì„œ clientIndexë¥¼ ì‚­ì œí•œë‹¤.
 BOOL CMapBlock::DeleteMonster(ClientIndex_t clientIndex)
 {	
 #ifdef _DEBUG

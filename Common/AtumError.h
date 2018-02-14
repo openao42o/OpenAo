@@ -1,4 +1,4 @@
-#ifndef _ATUM_ERROR_H_
+ï»¿#ifndef _ATUM_ERROR_H_
 #define _ATUM_ERROR_H_
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
-	- Common Error (0x2000 ~ 0x20FF): °øÅëÀ¸·Î »ç¿ëµÉ ¼ö ÀÖ´Â ¿¡·¯µé·Î ÀÏ´ÜÀº ºñ¿öµÓ´Ï´Ù.
+	- Common Error (0x2000 ~ 0x20FF): ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë  ìˆ˜ ìžˆëŠ” ì—ëŸ¬ë“¤ë¡œ ì¼ë‹¨ì€ ë¹„ì›Œë‘¡ë‹ˆë‹¤.
 	- DB Error (0x2100 ~ 0x21FF)
 	- Server Error (0x2200 ~ 0x22FF)
 	- Protocol Error (0x2300 ~ 0x23FF)
@@ -30,237 +30,237 @@
 #define ERR_COMMON_TOO_LONG_PACKET						0x2004
 #define ERR_COMMON_SERVICE_TEMPORARILY_PAUSED			0x2005
 #define ERR_COMMON_INVALID_CLIENT_VERSION				0x2006
-#define ERR_COMMON_NOT_ALLOWED_TO_MYSELF				0x2007		// ÀÚ±â ÀÚ½Å¿¡°Ô´Â ¾È µÊ
+#define ERR_COMMON_NOT_ALLOWED_TO_MYSELF				0x2007		// ìžê¸° ìžì‹ ì—ê²ŒëŠ” ì•ˆ ë¨
 #define ERR_COMMON_INVALID_BUILDINGKIND					0x2008
 #define ERR_COMMON_NO_SUCH_BUILDINGKIND					0x2009
 #define ERR_COMMON_BAD_NETWORK							0x200A
-#define ERR_COMMON_CONNECTING_GAME						0x200B		// 2008-11-26 by cmkwon, ´ë¸¸ Netpower_Tpe À¥¿¡¼­ ¾ÆÀÌÅÛ Ãß°¡ ÇÁ·Î½ÃÀú Ãß°¡ - °ÔÀÓ¿¡ Á¢¼Ó ÁßÀÌ´Ù.
-#define ERR_COMMON_DISABLE_CONTENT						0x200C		// 2011-10-05 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÄÁÅÙÃ÷ OFF ¿¡·¯ ¸Þ½ÃÁö ¿ë
+#define ERR_COMMON_CONNECTING_GAME						0x200B		// 2008-11-26 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ì›¹ì—ì„œ ì•„ì´í…œ ì¶”ê°€ í”„ë¡œì‹œì € ì¶”ê°€ - ê²Œìž„ì— ì ‘ì† ì¤‘ì´ë‹¤.
+#define ERR_COMMON_DISABLE_CONTENT						0x200C		// 2011-10-05 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì»¨í…ì¸  OFF ì—ëŸ¬ ë©”ì‹œì§€ ìš©
 
 #define ERR_COMMON_SOCKET_CLOSED						0x20F0
 
 /////////////////////////////////////
 // DB Error (0x2100 ~ 0x21FF)
-#define ERR_DB_ACCOUNT_ALREAY_EXISTS					0x2100		// ÇØ´ç ¾ÆÀÌµð°¡ ÀÌ¹Ì Á¸Àç(pk integrity constraint), 23000
-#define ERR_DB_ACCOUNT_CHARACTER_NO_MATCH				0x2101		// Ä³¸¯ÅÍ¿Í account°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ½(´Ù¸¥ »ç¶÷ÀÇ Ä³¸¯ÅÍ), SQL_NO_DATA
-//#define ERR_DB_AUTH_FAILD								0x2102		// ¾ÆÀÌµð°¡ Á¸ÀçÇÏÁö ¾Ê°Å³ª ÆÐ½º¿öµå°¡ Æ²¸° °æ¿ì, SQL_NO_DATA
+#define ERR_DB_ACCOUNT_ALREAY_EXISTS					0x2100		// í•´ë‹¹ ì•„ì´ë””ê°€ ì´ë¯¸ ì¡´ìž¬(pk integrity constraint), 23000
+#define ERR_DB_ACCOUNT_CHARACTER_NO_MATCH				0x2101		// ìºë¦­í„°ì™€ accountê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŒ(ë‹¤ë¥¸ ì‚¬ëžŒì˜ ìºë¦­í„°), SQL_NO_DATA
+//#define ERR_DB_AUTH_FAILD								0x2102		// ì•„ì´ë””ê°€ ì¡´ìž¬í•˜ì§€ ì•Šê±°ë‚˜ íŒ¨ìŠ¤ì›Œë“œê°€ í‹€ë¦° ê²½ìš°, SQL_NO_DATA
 #define ERR_DB_INTEGRITY_CONSTRAINT_VIOLATION			0x2103		// integrity constraint violation, 23000
-#define ERR_DB_INVALID_PARAMETER						0x2104		// ÆÄ¶ó¹ÌÅÍ °ª ÀÌ»ó, 22018
-#define ERR_DB_INVALID_UNIQUE_NUMBER					0x2105		// Ä³¸¯ÅÍÀÇ unique number°¡ Á¸ÀçÇÏÁö ¾ÊÀ½, SQL_NO_DATA
-#define ERR_DB_NO_SUCH_ACCOUNT							0x2106		// ÇØ´ç ÀÌ¸§ÀÇ account°¡ ¾øÀ½, SQL_NO_DATA
-//#define ERR_DB_NO_SUCH_CHARACTER						0x2107		// ÇØ´ç ÀÌ¸§ÀÇ Ä³¸¯ÅÍ°¡ ¾øÀ½, SQL_NO_DATA
-#define ERR_DB_NUMERIC_VALUE_OUT_OF_RANGE				0x2108		// ¼ýÀÚ°ªÀÌ ¹üÀ§¸¦ ¹þ¾î³², 22003
-#define ERR_DB_STRING_TOO_LONG							0x2109		// stringÀÌ schemaÀÇ ±æÀÌº¸´Ù ±æ ¶§, 22001
-// item °ü·Ã ¿¡·¯
-#define ERR_DB_NO_SUCH_STORE_ITEM						0x210A		// DB¿¡ ÇØ´ç ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾ÊÀ½
-#define ERR_DB_CANNOT_INSERT_DEFAULT_ITEMS				0x210B		// ±âº» ¾ÆÀÌÅÛ »ðÀÔ ½ÇÆÐ
-#define ERR_DB_CONNECTION_ERROR							0x210C		// DB¿ÍÀÇ ¿¬°áÀÌ ½ÇÆÐ
-#define ERR_DB_EXECUTION_FAILED							0x210D		// SQLExecDirect() ½ÇÆÐ
-#define ERR_DB_NO_SUCH_DATA								0x210E		// 2008-06-12 by dhjin, EP3 µ¥ÀÌÅ¸ °ª ¾øÀ» °æ¿ì ¿¡·¯ Ãß°¡
-#define ERR_DB_INSERT_QUERY_ERROR						0x210F		// 2008-11-26 by cmkwon, ´ë¸¸ Netpower_Tpe À¥¿¡¼­ ¾ÆÀÌÅÛ Ãß°¡ ÇÁ·Î½ÃÀú Ãß°¡ - 
+#define ERR_DB_INVALID_PARAMETER						0x2104		// íŒŒë¼ë¯¸í„° ê°’ ì´ìƒ, 22018
+#define ERR_DB_INVALID_UNIQUE_NUMBER					0x2105		// ìºë¦­í„°ì˜ unique numberê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ, SQL_NO_DATA
+#define ERR_DB_NO_SUCH_ACCOUNT							0x2106		// í•´ë‹¹ ì´ë¦„ì˜ accountê°€ ì—†ìŒ, SQL_NO_DATA
+//#define ERR_DB_NO_SUCH_CHARACTER						0x2107		// í•´ë‹¹ ì´ë¦„ì˜ ìºë¦­í„°ê°€ ì—†ìŒ, SQL_NO_DATA
+#define ERR_DB_NUMERIC_VALUE_OUT_OF_RANGE				0x2108		// ìˆ«ìžê°’ì´ ë²”ìœ„ë¥¼ ë²—ì–´ë‚¨, 22003
+#define ERR_DB_STRING_TOO_LONG							0x2109		// stringì´ schemaì˜ ê¸¸ì´ë³´ë‹¤ ê¸¸ ë•Œ, 22001
+// item ê´€ë ¨ ì—ëŸ¬
+#define ERR_DB_NO_SUCH_STORE_ITEM						0x210A		// DBì— í•´ë‹¹ ì•„ì´í…œì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
+#define ERR_DB_CANNOT_INSERT_DEFAULT_ITEMS				0x210B		// ê¸°ë³¸ ì•„ì´í…œ ì‚½ìž… ì‹¤íŒ¨
+#define ERR_DB_CONNECTION_ERROR							0x210C		// DBì™€ì˜ ì—°ê²°ì´ ì‹¤íŒ¨
+#define ERR_DB_EXECUTION_FAILED							0x210D		// SQLExecDirect() ì‹¤íŒ¨
+#define ERR_DB_NO_SUCH_DATA								0x210E		// 2008-06-12 by dhjin, EP3 ë°ì´íƒ€ ê°’ ì—†ì„ ê²½ìš° ì—ëŸ¬ ì¶”ê°€
+#define ERR_DB_INSERT_QUERY_ERROR						0x210F		// 2008-11-26 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ì›¹ì—ì„œ ì•„ì´í…œ ì¶”ê°€ í”„ë¡œì‹œì € ì¶”ê°€ - 
 
 /////////////////////////////////////
 // PROTOCOL Error (0x2100 ~ 0x21FF)
-#define ERR_PROTOCOL_INVALID_PROTOCOL_TYPE				0x2400		// Client·Î ºÎÅÍ ¹ÞÀº Protocol TypeÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_FIELD_DATA					0x2401		// Client·Î ºÎÅÍ ¹ÞÀº Data Size°¡ Field Type¿¡ µû¸¥ Data Sizeº¸´Ù ÀÛÀ½
-#define ERR_PROTOCOL_INVALID_ACCOUNT_UNIQUENUMBER		0x2402		// AccountUniqueNumber°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_CHARACTER_UNIQUENUMBER		0x2403		// CharacterUniqueNumber°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_UNITKIND					0x2404		// Unit Kind°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_CLIENTINDEX				0x2405		// ÀÚ½Å ¶Ç´Â TargetÀÇ ClientIndex°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_PACKET						0x2406		// ¹ÞÀº ÆÐÅ¶ÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_PACKET_SIZE				0x2407		// ¹ÞÀº ÆÐÅ¶ÀÇ Size°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_SEQUENCE_NUMBER			0x2408		// ¹ÞÀº ÆÐÅ¶ÀÇ Sequence Number°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_PEER						0x2409		// UDP·Î ¹ÞÀº ÆÐÅ¶ÀÇ IP¿Í Port°¡ ¼­¹ö¿¡ ¼³Á¤µÈ ClientÀÇ IP, Port¿Í °°Áö ¾Ê´Ù
-#define ERR_PROTOCOL_INVALID_STAT_VALUE_OR_KIND			0x240A		// º¸³Ê½º Æ÷ÀÎÆ®°¡ ¾ø°Å³ª StatÀÇ Á¾·ù°¡ À¯È¿ÇÏÁö ¾Ê´Ù
-#define ERR_PROTOCOL_EMPTY_ACCOUNTNAME					0x2410		// AccountNameÀÌ ºñ¾î ÀÖÀ½
-#define ERR_PROTOCOL_DUPLICATE_LOGIN					0x2411		// ÀÌÁß ·Î±×ÀÎ
-#define ERR_PROTOCOL_NOT_LOGINED						0x2412		// Login ÇÏÁö ¾Ê¾ÒÀ½
-#define ERR_PROTOCOL_INVALID_SERVER_GROUP_NAME			0x2413		// Server Group NameÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_LIMIT_GROUP_USER_COUNT				0x2414		// Limit Server Group User Count¿¡ °É¸²
-#define ERR_PROTOCOL_ACCOUNT_BLOCKED					0x2415		// °èÁ¤ ¾Ð·ù
-#define ERR_PROTOCOL_INVALID_TARGET_INDEX				0x2416		// Target Index °¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_LIMIT_STAT_POINT					0x2417		// ÃÖ´ë ½ºÅÈ Æ÷ÀÎÆ®ÀÓ
-#define ERR_PROTOCOL_INVALID_GETCHARACTER				0x2418		// À¯È¿ÇÏÁö ¾ÊÀº GetCharacter ¸Þ½ÃÁö
-#define ERR_PROTOCOL_INVALID_CHARACTER_STATE			0x2419		// Character°¡ À¯È¿ÇÏÁö ¾ÊÀ½
+#define ERR_PROTOCOL_INVALID_PROTOCOL_TYPE				0x2400		// Clientë¡œ ë¶€í„° ë°›ì€ Protocol Typeì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_FIELD_DATA					0x2401		// Clientë¡œ ë¶€í„° ë°›ì€ Data Sizeê°€ Field Typeì— ë”°ë¥¸ Data Sizeë³´ë‹¤ ìž‘ìŒ
+#define ERR_PROTOCOL_INVALID_ACCOUNT_UNIQUENUMBER		0x2402		// AccountUniqueNumberê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_CHARACTER_UNIQUENUMBER		0x2403		// CharacterUniqueNumberê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_UNITKIND					0x2404		// Unit Kindê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_CLIENTINDEX				0x2405		// ìžì‹  ë˜ëŠ” Targetì˜ ClientIndexê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_PACKET						0x2406		// ë°›ì€ íŒ¨í‚·ì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_PACKET_SIZE				0x2407		// ë°›ì€ íŒ¨í‚·ì˜ Sizeê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_SEQUENCE_NUMBER			0x2408		// ë°›ì€ íŒ¨í‚·ì˜ Sequence Numberê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_PEER						0x2409		// UDPë¡œ ë°›ì€ íŒ¨í‚·ì˜ IPì™€ Portê°€ ì„œë²„ì— ì„¤ì •ëœ Clientì˜ IP, Portì™€ ê°™ì§€ ì•Šë‹¤
+#define ERR_PROTOCOL_INVALID_STAT_VALUE_OR_KIND			0x240A		// ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸ê°€ ì—†ê±°ë‚˜ Statì˜ ì¢…ë¥˜ê°€ ìœ íš¨í•˜ì§€ ì•Šë‹¤
+#define ERR_PROTOCOL_EMPTY_ACCOUNTNAME					0x2410		// AccountNameì´ ë¹„ì–´ ìžˆìŒ
+#define ERR_PROTOCOL_DUPLICATE_LOGIN					0x2411		// ì´ì¤‘ ë¡œê·¸ì¸
+#define ERR_PROTOCOL_NOT_LOGINED						0x2412		// Login í•˜ì§€ ì•Šì•˜ìŒ
+#define ERR_PROTOCOL_INVALID_SERVER_GROUP_NAME			0x2413		// Server Group Nameì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_LIMIT_GROUP_USER_COUNT				0x2414		// Limit Server Group User Countì— ê±¸ë¦¼
+#define ERR_PROTOCOL_ACCOUNT_BLOCKED					0x2415		// ê³„ì • ì••ë¥˜
+#define ERR_PROTOCOL_INVALID_TARGET_INDEX				0x2416		// Target Index ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_LIMIT_STAT_POINT					0x2417		// ìµœëŒ€ ìŠ¤íƒ¯ í¬ì¸íŠ¸ìž„
+#define ERR_PROTOCOL_INVALID_GETCHARACTER				0x2418		// ìœ íš¨í•˜ì§€ ì•Šì€ GetCharacter ë©”ì‹œì§€
+#define ERR_PROTOCOL_INVALID_CHARACTER_STATE			0x2419		// Characterê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
 
-#define ERR_PROTOCOL_ALREADY_MAX_CHARACTER				0x2420		// ´õÀÌ»ó Character¸¦ ¸¸µé¼ö ¾øÀ½, ÃÖ´ë 3(SIZE_MAX_NUM_CHARACTER)
-#define ERR_PROTOCOL_EMPTY_CHARACTERNAME				0x2421		// CharacterNameÀÌ ºñ¾îÀÖÀ½
-#define ERR_PROTOCOL_STATE_MINUSVALUE					0x2422		// ¹ÞÀº State °ªÁß¿¡ ¸¶ÀÌ³Ê½º °ªÀÌ ÀÖÀ½
-#define ERR_PROTOCOL_STATE_SUMISNOTBONUS				0x2423		// ¹ÞÀº State ¼¼ÆÃ°ªÀÇ ÇÕÀÌ [20]ÀÌ ¾Æ´Ô
-#define ERR_PROTOCOL_INVALID_GAMESTART					0x2424		// À¯È¿ÇÏÁö ¾ÊÀº Game Start ¸Þ½ÃÁö
-#define ERR_PROTOCOL_INVALID_SOCKET_FORNPC				0x2425		// NPC ¼­¹ö¸¦ À§ÇÑ IOCPSocketÀÌ À¯È¿ ÇÏÁö ¾Ê´Ù.
-#define ERR_PROTOCOL_INVALID_CONNECT_GAMESTART			0x2426		// À¯È¿ÇÏÁö ¾ÊÀº Connect Game Start ¸Þ½ÃÁö
-#define ERR_PROTOCOL_INVALID_CONNECT_WARP				0x2427		// À¯È¿ÇÏÁö ¾ÊÀº Warp Connect ¸Þ½ÃÁö
-#define ERR_PROTOCOL_INVALID_POSITION					0x2428		// Å¬¶óÀÌ¾ðÆ®ÀÇ PositionÀÌ À¯È¿ÇÏÁö ¾Ê´Ù.
-#define ERR_PROTOCOL_INVALID_GAMEEND					0x2429		// GameEnd°¡ À¯È¿ ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_GAMESTARTROUTINE_FAILED			0x242A		// GameStartRoutine() ¼öÇà ½ÇÆÐ
-#define ERR_PROTOCOL_INVALID_CHARACTER_NAME				0x242B		// Àß¸øµÈ Ä³¸¯ÅÍ ÀÌ¸§
-#define ERR_PROTOCOL_INVALID_PEER_CHARACTER				0x242C		// »ó´ë¹æÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.
-#define ERR_PROTOCOL_INVALID_AUTOSTAT_TYPE				0x242D		// ÀÚµ¿ºÐ¹è½ºÅÈÅ¸ÀÔÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_NOT_TUTORIAL_MAP					0x242E		// Æ©Åä¸®¾ó ¸ÊÀÌ ¾Æ´Ï´Ù
-#define ERR_PROTOCOL_RACE_PERMISSION_DENIED				0x242F		// ±ÇÇÑÀÌ ¾øÀ½
-#define ERR_PROTOCOL_NOT_ENOUGH_ELAPSE_TIME				0x2430		// Àç»ç¿ë ½Ã°£ÀÌ °æ°úÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVALID_CHARACTERNAME				0x2431		// CharacterNameÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_CHARACTER_MODE_NOT_MATCHED			0x2432		// CharacterMode°¡ µ¿ÀÏÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_UNKNOWN_CHARACTER_ACTION_TYPE		0x2433		// ¾Ë¼ö ¾ø´Â CharacterActionType
-#define ERR_PROTOCOL_BUILDING_KIND_NOT_MATCHED			0x2434		// BuildingKind°¡ µ¿ÀÏÇÏÁö ¾ÊÀ½
+#define ERR_PROTOCOL_ALREADY_MAX_CHARACTER				0x2420		// ë”ì´ìƒ Characterë¥¼ ë§Œë“¤ìˆ˜ ì—†ìŒ, ìµœëŒ€ 3(SIZE_MAX_NUM_CHARACTER)
+#define ERR_PROTOCOL_EMPTY_CHARACTERNAME				0x2421		// CharacterNameì´ ë¹„ì–´ìžˆìŒ
+#define ERR_PROTOCOL_STATE_MINUSVALUE					0x2422		// ë°›ì€ State ê°’ì¤‘ì— ë§ˆì´ë„ˆìŠ¤ ê°’ì´ ìžˆìŒ
+#define ERR_PROTOCOL_STATE_SUMISNOTBONUS				0x2423		// ë°›ì€ State ì„¸íŒ…ê°’ì˜ í•©ì´ [20]ì´ ì•„ë‹˜
+#define ERR_PROTOCOL_INVALID_GAMESTART					0x2424		// ìœ íš¨í•˜ì§€ ì•Šì€ Game Start ë©”ì‹œì§€
+#define ERR_PROTOCOL_INVALID_SOCKET_FORNPC				0x2425		// NPC ì„œë²„ë¥¼ ìœ„í•œ IOCPSocketì´ ìœ íš¨ í•˜ì§€ ì•Šë‹¤.
+#define ERR_PROTOCOL_INVALID_CONNECT_GAMESTART			0x2426		// ìœ íš¨í•˜ì§€ ì•Šì€ Connect Game Start ë©”ì‹œì§€
+#define ERR_PROTOCOL_INVALID_CONNECT_WARP				0x2427		// ìœ íš¨í•˜ì§€ ì•Šì€ Warp Connect ë©”ì‹œì§€
+#define ERR_PROTOCOL_INVALID_POSITION					0x2428		// í´ë¼ì´ì–¸íŠ¸ì˜ Positionì´ ìœ íš¨í•˜ì§€ ì•Šë‹¤.
+#define ERR_PROTOCOL_INVALID_GAMEEND					0x2429		// GameEndê°€ ìœ íš¨ í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_GAMESTARTROUTINE_FAILED			0x242A		// GameStartRoutine() ìˆ˜í–‰ ì‹¤íŒ¨
+#define ERR_PROTOCOL_INVALID_CHARACTER_NAME				0x242B		// ìž˜ëª»ëœ ìºë¦­í„° ì´ë¦„
+#define ERR_PROTOCOL_INVALID_PEER_CHARACTER				0x242C		// ìƒëŒ€ë°©ì´ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define ERR_PROTOCOL_INVALID_AUTOSTAT_TYPE				0x242D		// ìžë™ë¶„ë°°ìŠ¤íƒ¯íƒ€ìž…ì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_NOT_TUTORIAL_MAP					0x242E		// íŠœí† ë¦¬ì–¼ ë§µì´ ì•„ë‹ˆë‹¤
+#define ERR_PROTOCOL_RACE_PERMISSION_DENIED				0x242F		// ê¶Œí•œì´ ì—†ìŒ
+#define ERR_PROTOCOL_NOT_ENOUGH_ELAPSE_TIME				0x2430		// ìž¬ì‚¬ìš© ì‹œê°„ì´ ê²½ê³¼í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVALID_CHARACTERNAME				0x2431		// CharacterNameì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_CHARACTER_MODE_NOT_MATCHED			0x2432		// CharacterModeê°€ ë™ì¼í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_UNKNOWN_CHARACTER_ACTION_TYPE		0x2433		// ì•Œìˆ˜ ì—†ëŠ” CharacterActionType
+#define ERR_PROTOCOL_BUILDING_KIND_NOT_MATCHED			0x2434		// BuildingKindê°€ ë™ì¼í•˜ì§€ ì•ŠìŒ
 
-#define ERR_PROTOCOL_INVALID_BODYCONDITION				0x2440		// body conditionÀÌ Àß ¸ø µÊ(ex: warp½Ã¿¡ warpingÀÌ ¾Æ´Ô)
-#define ERR_PROTOCOL_INVALID_MAP_EVENT_INFO				0x2441		// mapÀÇ event_info ±¸Á¶Ã¼ÀÇ Á¤º¸°¡ Àß ¸ø µÇ¾úÀ» ¶§
-#define ERR_PROTOCOL_MAP_ALREADY_SERVED_BY_FEILD_SERVER	0x2442		// ´Ù¸¥ field server°¡ ÀÌ¹Ì mapÀ» µî·ÏÇÏ¿´À½
-#define ERR_PROTOCOL_NO_SUCH_FIELD_SERVER				0x2443		// ÇØ´ç field server°¡ ¾øÀ½
-#define ERR_PROTOCOL_NO_SUCH_MAP_SERVED					0x2444		// ÇØ´ç ¸ÊÀÌ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀ½
-#define ERR_PROTOCOL_NO_SUCH_CHANNEL					0x2445		// ÇØ´ç Ã¤³ÎÀÌ ¾øÀ½
-#define ERR_PROTOCOL_MAP_CHANNEL_NOT_MATCHED			0x2446		// ¸ÊÃ¤³ÎÀÌ ÀÏÄ¡ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_CANNOT_WARP						0x2447		// WarpToMap()ÇÔ¼ö Ã³¸® Áß ¿¡·¯¸¦ ¸®ÅÏÇÏ¿© ¿öÇÁ ºÒ°¡
-#define ERR_PROTOCOL_CANNOT_WARP_INVALID_STATE			0x2448		// À¯È¿ÇÏÁö ¾ÊÀº »óÅÂ(Á×Àº »óÅÂ...)ÀÌ±â ¶§¹®¿¡ ¿öÇÁ ºÒ°¡
-#define ERR_PROTOCOL_DOING_WARP							0x2449		// ¿öÇÁÁß
+#define ERR_PROTOCOL_INVALID_BODYCONDITION				0x2440		// body conditionì´ ìž˜ ëª» ë¨(ex: warpì‹œì— warpingì´ ì•„ë‹˜)
+#define ERR_PROTOCOL_INVALID_MAP_EVENT_INFO				0x2441		// mapì˜ event_info êµ¬ì¡°ì²´ì˜ ì •ë³´ê°€ ìž˜ ëª» ë˜ì—ˆì„ ë•Œ
+#define ERR_PROTOCOL_MAP_ALREADY_SERVED_BY_FEILD_SERVER	0x2442		// ë‹¤ë¥¸ field serverê°€ ì´ë¯¸ mapì„ ë“±ë¡í•˜ì˜€ìŒ
+#define ERR_PROTOCOL_NO_SUCH_FIELD_SERVER				0x2443		// í•´ë‹¹ field serverê°€ ì—†ìŒ
+#define ERR_PROTOCOL_NO_SUCH_MAP_SERVED					0x2444		// í•´ë‹¹ ë§µì´ ë“±ë¡ë˜ì–´ ìžˆì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_NO_SUCH_CHANNEL					0x2445		// í•´ë‹¹ ì±„ë„ì´ ì—†ìŒ
+#define ERR_PROTOCOL_MAP_CHANNEL_NOT_MATCHED			0x2446		// ë§µì±„ë„ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_CANNOT_WARP						0x2447		// WarpToMap()í•¨ìˆ˜ ì²˜ë¦¬ ì¤‘ ì—ëŸ¬ë¥¼ ë¦¬í„´í•˜ì—¬ ì›Œí”„ ë¶ˆê°€
+#define ERR_PROTOCOL_CANNOT_WARP_INVALID_STATE			0x2448		// ìœ íš¨í•˜ì§€ ì•Šì€ ìƒíƒœ(ì£½ì€ ìƒíƒœ...)ì´ê¸° ë•Œë¬¸ì— ì›Œí”„ ë¶ˆê°€
+#define ERR_PROTOCOL_DOING_WARP							0x2449		// ì›Œí”„ì¤‘
 
-#define ERR_PROTOCOL_INVALID_FIELDSERVER_CLIENT_STATE	0x2450		// Field Server ³»¿¡¼­ÀÇ client state°¡ Àß¸øµÊ
-#define ERR_PROTOCOL_INVALID_PRESERVER_CLIENT_STATE		0x2451		// Pre Server³»¿¡¼­ÀÇ client state°¡ Àß¸øµÊ
-#define ERR_PROTOCOL_NO_SUCH_SERVER_GROUP				0x2452		// Field server°¡ º¸³½ ¼­¹ö±ºÀÌ ¾øÀ½
-#define ERR_PROTOCOL_FIELD_SERVER_ALREADY_REGISTERD		0x2453		// ÇØ´ç field server°¡ ÀÌ¹Ì µî·ÏµÇ¾úÀ½
-#define ERR_PROTOCOL_FIELD_SERVER_ID_NOT_MATCHED		0x2454		// PreServer¿¡ ÀúÀåµÈ (client°¡ Á¢¼ÓÇØ¾ß ÇÒ)FieldServerÀÇ ID°¡, ÁúÀÇ¸¦ ¿äÃ»ÇÏ´Â FieldServerÀÇ ID¿Í ´Ù¸§(AUTH_USER µî¿¡¼­...)
-#define ERR_PROTOCOL_ALL_FIELD_SERVER_NOT_ALIVE			0x2455		// ¸ðµç field server°¡ ´Ù Á×¾úÀ½ =.=
-#define ERR_PROTOCOL_NO_SUCH_SHOP						0x2456		// ÇØ´ç ˜ÞÀÌ ¾øÀ½
-#define ERR_PROTOCOL_NO_SUCH_SHOP_ITEM					0x2457		// ˜Þ¿¡¼­ ÇØ´ç ¾ÆÀÌÅÛÀ» ÆÈÁö ¾ÊÀ½
-#define ERR_PROTOCOL_NOT_ENOUGH_MONEY					0x2458		// µ· ºÎÁ·, ¾ÆÀÌÅÛ ±¸¸Å ºÒ°¡
+#define ERR_PROTOCOL_INVALID_FIELDSERVER_CLIENT_STATE	0x2450		// Field Server ë‚´ì—ì„œì˜ client stateê°€ ìž˜ëª»ë¨
+#define ERR_PROTOCOL_INVALID_PRESERVER_CLIENT_STATE		0x2451		// Pre Serverë‚´ì—ì„œì˜ client stateê°€ ìž˜ëª»ë¨
+#define ERR_PROTOCOL_NO_SUCH_SERVER_GROUP				0x2452		// Field serverê°€ ë³´ë‚¸ ì„œë²„êµ°ì´ ì—†ìŒ
+#define ERR_PROTOCOL_FIELD_SERVER_ALREADY_REGISTERD		0x2453		// í•´ë‹¹ field serverê°€ ì´ë¯¸ ë“±ë¡ë˜ì—ˆìŒ
+#define ERR_PROTOCOL_FIELD_SERVER_ID_NOT_MATCHED		0x2454		// PreServerì— ì €ìž¥ëœ (clientê°€ ì ‘ì†í•´ì•¼ í• )FieldServerì˜ IDê°€, ì§ˆì˜ë¥¼ ìš”ì²­í•˜ëŠ” FieldServerì˜ IDì™€ ë‹¤ë¦„(AUTH_USER ë“±ì—ì„œ...)
+#define ERR_PROTOCOL_ALL_FIELD_SERVER_NOT_ALIVE			0x2455		// ëª¨ë“  field serverê°€ ë‹¤ ì£½ì—ˆìŒ =.=
+#define ERR_PROTOCOL_NO_SUCH_SHOP						0x2456		// í•´ë‹¹ Â˜äº‹?ì—†ìŒ
+#define ERR_PROTOCOL_NO_SUCH_SHOP_ITEM					0x2457		// Â˜ä¹ã€ï£§ í•´ë‹¹ ì•„ì´í…œì„ íŒ”ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_NOT_ENOUGH_MONEY					0x2458		// ëˆ ë¶€ì¡±, ì•„ì´í…œ êµ¬ë§¤ ë¶ˆê°€
 #define ERR_PROTOCOL_ITEM_KIND_NOT_MATCHED				0x2459		//
-#define ERR_PROTOCOL_NO_SUCH_ITEM						0x245A		// ÇØ´ç ¾ÆÀÌÅÛÀÌ ¾øÀ½
-#define ERR_PROTOCOL_ITEM_AMOUNT_EXCEED					0x245B		// °¡Áø °³¼öº¸´Ù ¾ÆÀÌÅÛ ¼ö°¡ ¸¹À½
+#define ERR_PROTOCOL_NO_SUCH_ITEM						0x245A		// í•´ë‹¹ ì•„ì´í…œì´ ì—†ìŒ
+#define ERR_PROTOCOL_ITEM_AMOUNT_EXCEED					0x245B		// ê°€ì§„ ê°œìˆ˜ë³´ë‹¤ ì•„ì´í…œ ìˆ˜ê°€ ë§ŽìŒ
 #define ERR_PROTOCOL_CLIENT_IP_NOT_MATCHED				0x245C		//
-#define ERR_PROTOCOL_IMSERVER_ALREADY_CONNECTED			0x245D		// pre server¿¡ ÇØ´ç ±×·ìÀÇ im server°¡ ÀÌ¹Ì ¿¬°áµÇ¾î ÀÖÀ½
-#define ERR_PROTOCOL_GENERAL_ITEM_ERROR					0x245E		// ÀÏ¹Ý ¾ÆÀÌÅÛ ¿¡·¯
-#define ERR_PROTOCOL_IM_SERVER_NOT_ALIVE				0x245F		// IM Server°¡ ½ÇÇàµÇ¾îÀÖÁö ¾ÊÀ½
-// 2007-10-12 by dhjin, ¹øÈ£ ´Ù Ã¡À½
+#define ERR_PROTOCOL_IMSERVER_ALREADY_CONNECTED			0x245D		// pre serverì— í•´ë‹¹ ê·¸ë£¹ì˜ im serverê°€ ì´ë¯¸ ì—°ê²°ë˜ì–´ ìžˆìŒ
+#define ERR_PROTOCOL_GENERAL_ITEM_ERROR					0x245E		// ì¼ë°˜ ì•„ì´í…œ ì—ëŸ¬
+#define ERR_PROTOCOL_IM_SERVER_NOT_ALIVE				0x245F		// IM Serverê°€ ì‹¤í–‰ë˜ì–´ìžˆì§€ ì•ŠìŒ
+// 2007-10-12 by dhjin, ë²ˆí˜¸ ë‹¤ ì°¼ìŒ
 //////////////////////////////////////////////////////////////////////////
 
-// ÆÄÆ¼ °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_PARTY_MASTER_NOT_MATCHED			0x2460		// ÆÄÆ¼Àå ºÒÀÏÄ¡
-#define ERR_PROTOCOL_NO_SUCH_PARTY_MEMBER				0x2461		// ÇØ´ç ÆÄÆ¼¿ø ¾øÀ½
-#define ERR_PROTOCOL_PARTY_PERMISSION_DENIED			0x2462		// ±ÇÇÑÀÌ ¾øÀ½
-#define ERR_PROTOCOL_PARTY_MEMBER_ALREADY_EXISTS		0x2463		// ÀÌ¹Ì °¡ÀÔÇßÀ½
-#define ERR_PROTOCOL_NO_SUCH_PARTY						0x2464		// ÇØ´ç ÆÄÆ¼°¡ ¾øÀ½
-#define ERR_PROTOCOL_CANNOT_INVITE_USER					0x2465		// ÃÊ´ëÇÒ ¼ö ¾øÀ½
-#define ERR_PROTOCOL_GET_MEMBER_FAIL					0x2466		// ÆÄÆ¼¿ø Á¤º¸¸¦ ÀÐÀ» ¼ö ¾øÀ½(°ÔÀÓÁßÀÌ ¾Æ´Ï°Å³ª ´Ù¸¥ ¸Ê¿¡ ÀÖÀ½)
-#define ERR_PROTOCOL_PARTY_ID_NOT_MATCHED				0x2467		// ÆÄÆ¼ ¾ÆÀÌµð ºÒÀÏÄ¡
-#define ERR_PROTOCOL_ALREADY_MAX_PARTY_MEMBER			0x2468		// ÆÄÆ¼ Á¤¿ø ÃÊ°ú
-#define ERR_PROTOCOL_ALREADY_PARTY_BATTLE				0x2469		// ÀÌ¹Ì ÆÄÆ¼Àü ÁßÀÓ
-#define ERR_PROTOCOL_ALREADY_REQUESTING_PARTY_BATTLE	0x246A		// ÀÌ¹Ì ÆÄÆ¼Àü ¿äÃ»ÁßÀÓ
-#define ERR_PROTOCOL_DOING_PARTY_BATTLE					0x246B		// ÆÄÆ¼Àü ÁßÀÓ
-#define ERR_PROTOCOL_IMPOSSIBLE_IN_PARTY				0x246C		// ÆÄÆ¼½Ã¿¡´Â ºÒ°¡
+// íŒŒí‹° ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_PARTY_MASTER_NOT_MATCHED			0x2460		// íŒŒí‹°ìž¥ ë¶ˆì¼ì¹˜
+#define ERR_PROTOCOL_NO_SUCH_PARTY_MEMBER				0x2461		// í•´ë‹¹ íŒŒí‹°ì› ì—†ìŒ
+#define ERR_PROTOCOL_PARTY_PERMISSION_DENIED			0x2462		// ê¶Œí•œì´ ì—†ìŒ
+#define ERR_PROTOCOL_PARTY_MEMBER_ALREADY_EXISTS		0x2463		// ì´ë¯¸ ê°€ìž…í–ˆìŒ
+#define ERR_PROTOCOL_NO_SUCH_PARTY						0x2464		// í•´ë‹¹ íŒŒí‹°ê°€ ì—†ìŒ
+#define ERR_PROTOCOL_CANNOT_INVITE_USER					0x2465		// ì´ˆëŒ€í•  ìˆ˜ ì—†ìŒ
+#define ERR_PROTOCOL_GET_MEMBER_FAIL					0x2466		// íŒŒí‹°ì› ì •ë³´ë¥¼ ì½ì„ ìˆ˜ ì—†ìŒ(ê²Œìž„ì¤‘ì´ ì•„ë‹ˆê±°ë‚˜ ë‹¤ë¥¸ ë§µì— ìžˆìŒ)
+#define ERR_PROTOCOL_PARTY_ID_NOT_MATCHED				0x2467		// íŒŒí‹° ì•„ì´ë”” ë¶ˆì¼ì¹˜
+#define ERR_PROTOCOL_ALREADY_MAX_PARTY_MEMBER			0x2468		// íŒŒí‹° ì •ì› ì´ˆê³¼
+#define ERR_PROTOCOL_ALREADY_PARTY_BATTLE				0x2469		// ì´ë¯¸ íŒŒí‹°ì „ ì¤‘ìž„
+#define ERR_PROTOCOL_ALREADY_REQUESTING_PARTY_BATTLE	0x246A		// ì´ë¯¸ íŒŒí‹°ì „ ìš”ì²­ì¤‘ìž„
+#define ERR_PROTOCOL_DOING_PARTY_BATTLE					0x246B		// íŒŒí‹°ì „ ì¤‘ìž„
+#define ERR_PROTOCOL_IMPOSSIBLE_IN_PARTY				0x246C		// íŒŒí‹°ì‹œì—ëŠ” ë¶ˆê°€
 
-// ±æµå °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_NOT_ENOUGH_PARTY_MEMBER			0x2470		// ±æµå¸¦ ¸¸µé±â À§ÇÑ ÃÖ¼ÒÇÑ ÆÄÆ¼¿ø ¼ö°¡ ºÎÁ·ÇÔ
-#define ERR_PROTOCOL_GUILD_NAME_ALREADY_EXISTS			0x2471		// °°Àº ÀÌ¸§ÀÇ ±æµå°¡ Á¸ÀçÇÔ
-#define ERR_PROTOCOL_GUILD_MEMBER_ALREADY_EXISTS		0x2472		// ÀÌ¹Ì °¡ÀÔÇßÀ½
-#define ERR_PROTOCOL_GUILD_PERMISSION_DENIED			0x2473		// ±ÇÇÑÀÌ ¾øÀ½
-#define ERR_PROTOCOL_NOT_HAVE_GUILD						0x2474		// ±æµå¿¡ °¡ÀÔÇÏÁö ¾Ê¾ÒÀ½
-#define ERR_PROTOCOL_GUILD_NOT_MATCHED					0x2475		// ¼ÓÇÑ ±æµå°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_NO_SUCH_GUILD_MEMBER				0x2476		// ÇØ´ç ÆÄÆ¼¿ø ¾øÀ½
-#define ERR_PROTOCOL_NOT_HAVE_PARTY						0x2477		// ÆÄÆ¼¿¡ °¡ÀÔÇÏÁö ¾Ê¾ÒÀ½
-#define ERR_PROTOCOL_NO_SUCH_GUILD						0x2478		// ÇØ´ç ±æµå°¡ ¾øÀ½
-#define ERR_PROTOCOL_NOT_GUILD_MASTER					0x2479		// ±æµåÀåÀÌ ¾Æ´Ï´Ù
-#define ERR_PROTOCOL_GUILD_CARD_ALREADY_USING			0x247A		// ¿©´ÜÄ«µå°¡ ÀÌ¹Ì »ç¿ëÁßÀÓ
-#define ERR_PROTOCOL_INVLID_GUILDNAME					0x247B		// ±æµå¸íÀÌ À¯È¿ÇÏÁö ¾Ê´Ù, 2006-03-06 by cmkwon
-#define ERR_PROTOCOL_NOT_GET_GUILDSTORE_MEMBER			0x247C		// 2006-09-25 by dhjin, ¿©´Ü Ã¢°í ÀÌ¿ë °¡´ÉÇÑ À¯Àú°¡ ¾Æ´Ï´Ù ´ë´ëÀå ÀÌ»ó »ç¿ë°¡´É
-#define ERR_PROTOCOL_DOING_GUILDWAR_BATTLE				0x247D		// ¿©´ÜÀü ÁßÀÓ
-#define ERR_PROTOCOL_INVLID_GuildMarkSize				0x247E		// 2007-08-02 by cmkwon, ¿©´Ü ¸¶Å© ½É»ç ½Ã½ºÅÛ ±¸Çö - ¿©´Ü¸¶Å© »çÀÌÁî ¿À·ù
-#define ERR_PROTOCOL_OVER_MEMBERCOUNT					0x247F		// 2008-05-27 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø Áõ°¡ Ä³½¬ ¾ÆÀÌÅÛ, ÃÖ´ë ¿©´Ü¿ø ¼ö ³Ñ±è
+// ê¸¸ë“œ ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_NOT_ENOUGH_PARTY_MEMBER			0x2470		// ê¸¸ë“œë¥¼ ë§Œë“¤ê¸° ìœ„í•œ ìµœì†Œí•œ íŒŒí‹°ì› ìˆ˜ê°€ ë¶€ì¡±í•¨
+#define ERR_PROTOCOL_GUILD_NAME_ALREADY_EXISTS			0x2471		// ê°™ì€ ì´ë¦„ì˜ ê¸¸ë“œê°€ ì¡´ìž¬í•¨
+#define ERR_PROTOCOL_GUILD_MEMBER_ALREADY_EXISTS		0x2472		// ì´ë¯¸ ê°€ìž…í–ˆìŒ
+#define ERR_PROTOCOL_GUILD_PERMISSION_DENIED			0x2473		// ê¶Œí•œì´ ì—†ìŒ
+#define ERR_PROTOCOL_NOT_HAVE_GUILD						0x2474		// ê¸¸ë“œì— ê°€ìž…í•˜ì§€ ì•Šì•˜ìŒ
+#define ERR_PROTOCOL_GUILD_NOT_MATCHED					0x2475		// ì†í•œ ê¸¸ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_NO_SUCH_GUILD_MEMBER				0x2476		// í•´ë‹¹ íŒŒí‹°ì› ì—†ìŒ
+#define ERR_PROTOCOL_NOT_HAVE_PARTY						0x2477		// íŒŒí‹°ì— ê°€ìž…í•˜ì§€ ì•Šì•˜ìŒ
+#define ERR_PROTOCOL_NO_SUCH_GUILD						0x2478		// í•´ë‹¹ ê¸¸ë“œê°€ ì—†ìŒ
+#define ERR_PROTOCOL_NOT_GUILD_MASTER					0x2479		// ê¸¸ë“œìž¥ì´ ì•„ë‹ˆë‹¤
+#define ERR_PROTOCOL_GUILD_CARD_ALREADY_USING			0x247A		// ì—¬ë‹¨ì¹´ë“œê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ìž„
+#define ERR_PROTOCOL_INVLID_GUILDNAME					0x247B		// ê¸¸ë“œëª…ì´ ìœ íš¨í•˜ì§€ ì•Šë‹¤, 2006-03-06 by cmkwon
+#define ERR_PROTOCOL_NOT_GET_GUILDSTORE_MEMBER			0x247C		// 2006-09-25 by dhjin, ì—¬ë‹¨ ì°½ê³  ì´ìš© ê°€ëŠ¥í•œ ìœ ì €ê°€ ì•„ë‹ˆë‹¤ ëŒ€ëŒ€ìž¥ ì´ìƒ ì‚¬ìš©ê°€ëŠ¥
+#define ERR_PROTOCOL_DOING_GUILDWAR_BATTLE				0x247D		// ì—¬ë‹¨ì „ ì¤‘ìž„
+#define ERR_PROTOCOL_INVLID_GuildMarkSize				0x247E		// 2007-08-02 by cmkwon, ì—¬ë‹¨ ë§ˆí¬ ì‹¬ì‚¬ ì‹œìŠ¤í…œ êµ¬í˜„ - ì—¬ë‹¨ë§ˆí¬ ì‚¬ì´ì¦ˆ ì˜¤ë¥˜
+#define ERR_PROTOCOL_OVER_MEMBERCOUNT					0x247F		// 2008-05-27 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ì¦ê°€ ìºì‰¬ ì•„ì´í…œ, ìµœëŒ€ ì—¬ë‹¨ì› ìˆ˜ ë„˜ê¹€
 
-// Trade °ü·Ã error
-#define ERR_PROTOCOL_TOO_FAR_TO_TRADE					0x2480		// µÎ Ä³¸¯ÀÇ °Å¸®°¡ ¸Ö¾î¼­ °Å·¡°¡ ¼º»ç ¾È µÊ
-#define ERR_PROTOCOL_ALREADY_TRADING					0x2481		// ÀÌ¹Ì °Å·¡ ÁßÀÓ
-#define ERR_PROTOCOL_PEER_TRADER_NOT_MATCHED			0x2482		// °Å·¡ »ó´ë°¡ Æ²¸²
-#define ERR_PROTOCOL_TRADE_NOT_STARTED					0x2483		// °Å·¡°¡ ½ÃÀÛµÇÁö ¾Ê¾ÒÀ½
-#define ERR_PROTOCOL_INVALID_ITEMNUM					0x2484		// ItemNumÀÌ Àß¸øµÇ¾úÀ½
-#define ERR_PROTOCOL_INVALID_ITEM_COUNT					0x2485		// Item °³¼ö°¡ invalidÇÔ, ¿¹) energy·ù°¡ ¾Æ´Ñµ¥ °Å·¡ ¼ö·®ÀÌ ¿©·¯°³ÀÌ´Ù
-#define ERR_PROTOCOL_TRADE_ERROR						0x2486		// ÀÏ¹Ý °Å·¡ ¿À·ù
-#define ERR_PROTOCOL_INVALID_ITEM_KIND					0x2487		// Item Kind°¡ Àß¸øµÇ¾úÀ½
-#define ERR_PROTOCOL_MIN_TRADE_QUANTITY_ERROR			0x2488		// ÃÖ¼Ò °Å·¡ ´ÜÀ§ ¼ö·® ¿¡·¯
-#define ERR_PROTOCOL_ALREADY_TRADE_ITEM					0x2489		// ÀÌ¹Ì ¿Ã·ÁÁø ¾ÆÀÌÅÛÀÌ´Ù(³ÍÄ«¿îÅÍºí ¾ÆÀÌÅÛ)
+// Trade ê´€ë ¨ error
+#define ERR_PROTOCOL_TOO_FAR_TO_TRADE					0x2480		// ë‘ ìºë¦­ì˜ ê±°ë¦¬ê°€ ë©€ì–´ì„œ ê±°ëž˜ê°€ ì„±ì‚¬ ì•ˆ ë¨
+#define ERR_PROTOCOL_ALREADY_TRADING					0x2481		// ì´ë¯¸ ê±°ëž˜ ì¤‘ìž„
+#define ERR_PROTOCOL_PEER_TRADER_NOT_MATCHED			0x2482		// ê±°ëž˜ ìƒëŒ€ê°€ í‹€ë¦¼
+#define ERR_PROTOCOL_TRADE_NOT_STARTED					0x2483		// ê±°ëž˜ê°€ ì‹œìž‘ë˜ì§€ ì•Šì•˜ìŒ
+#define ERR_PROTOCOL_INVALID_ITEMNUM					0x2484		// ItemNumì´ ìž˜ëª»ë˜ì—ˆìŒ
+#define ERR_PROTOCOL_INVALID_ITEM_COUNT					0x2485		// Item ê°œìˆ˜ê°€ invalidí•¨, ì˜ˆ) energyë¥˜ê°€ ì•„ë‹Œë° ê±°ëž˜ ìˆ˜ëŸ‰ì´ ì—¬ëŸ¬ê°œì´ë‹¤
+#define ERR_PROTOCOL_TRADE_ERROR						0x2486		// ì¼ë°˜ ê±°ëž˜ ì˜¤ë¥˜
+#define ERR_PROTOCOL_INVALID_ITEM_KIND					0x2487		// Item Kindê°€ ìž˜ëª»ë˜ì—ˆìŒ
+#define ERR_PROTOCOL_MIN_TRADE_QUANTITY_ERROR			0x2488		// ìµœì†Œ ê±°ëž˜ ë‹¨ìœ„ ìˆ˜ëŸ‰ ì—ëŸ¬
+#define ERR_PROTOCOL_ALREADY_TRADE_ITEM					0x2489		// ì´ë¯¸ ì˜¬ë ¤ì§„ ì•„ì´í…œì´ë‹¤(ë„Œì¹´ìš´í„°ë¸” ì•„ì´í…œ)
 
-// Skill °ü·Ã error
-#define ERR_PROTOCOL_NO_SUCH_SKILL						0x2490		// ½ºÅ³ÀÌ Á¸ÀçÇÏÁö ¾ÊÀ½
-#define ERR_PROTOCOL_CANNOT_USE_SKILL					0x2491		// ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾øÀ½, ¿¹) level ºÎÁ·, °ø°Ý ¹«Áö ¹ÌÀåÀü
-#define ERR_PROTOCOL_INVALID_SKILLTYPE					0x2492		// ½ºÅ³ Å¸ÀÔÀÌ Àß ¸ø µÇ¾úÀ½
-#define ERR_PROTOCOL_NOT_ENOUGH_SP						0x2493		// SP ºÎÁ·(½ºÅ³ »ç¿ë ºÒ°¡)
+// Skill ê´€ë ¨ error
+#define ERR_PROTOCOL_NO_SUCH_SKILL						0x2490		// ìŠ¤í‚¬ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_CANNOT_USE_SKILL					0x2491		// ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŒ, ì˜ˆ) level ë¶€ì¡±, ê³µê²© ë¬´ì§€ ë¯¸ìž¥ì „
+#define ERR_PROTOCOL_INVALID_SKILLTYPE					0x2492		// ìŠ¤í‚¬ íƒ€ìž…ì´ ìž˜ ëª» ë˜ì—ˆìŒ
+#define ERR_PROTOCOL_NOT_ENOUGH_SP						0x2493		// SP ë¶€ì¡±(ìŠ¤í‚¬ ì‚¬ìš© ë¶ˆê°€)
 
-// Timer °ü·Ã error
-#define ERR_PROTOCOL_NO_SUCH_TIME_LIMIT_EVENT_IN_BUCKET	0x24A0		// ÇØ´ç ÀÌº¥Æ®°¡ TIMER_EVENT_BUCKET ¾È¿¡ ¾øÀ½
-#define ERR_PROTOCOL_NO_SUCH_TIMER_EVENT_TYPE			0x24A1		// ÇØ´ç ÀÌº¥Æ® typeÀÌ ¾È¿¡ ¾øÀ½
+// Timer ê´€ë ¨ error
+#define ERR_PROTOCOL_NO_SUCH_TIME_LIMIT_EVENT_IN_BUCKET	0x24A0		// í•´ë‹¹ ì´ë²¤íŠ¸ê°€ TIMER_EVENT_BUCKET ì•ˆì— ì—†ìŒ
+#define ERR_PROTOCOL_NO_SUCH_TIMER_EVENT_TYPE			0x24A1		// í•´ë‹¹ ì´ë²¤íŠ¸ typeì´ ì•ˆì— ì—†ìŒ
 
-// ENCHANT °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_ALREADY_MAX_ENCHANT_PER_ITEM		0x24A2		// ÃÖ´ë ÀÎÃ¦Æ® °³¼ö ÃÊ°ú
-#define ERR_PROTOCOL_ALREADY_HAVE_RARE_FIX				0x24A3		// ÀÌ¹Ì Rare Fix¸¦ °¡Áø ¾ÆÀÌÅÛÀÓ
-#define ERR_PROTOCOL_ALREADY_INITIALIZE_RARE_FIX		0x24A4		// ÀÌ¹Ì Rare Fix¸¦ °¡Áø ¾ÆÀÌÅÛÀÓ
-#define ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM		0x24A5	// ÆÄ¹æ(ÆÄ±«¹æÁö) »ç¿ë ÇÒ ¼ö ¾ø´Ù
-#define ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM_BY_STARTCOUNT		0x24A6	// 2009-01-19 by dhjin, ÀÎÃ¾Æ® È®·ü Áõ°¡, 10ÀÎÃ¾ ÆÄ¹æ Ä«µå - »ç¿ë °¡´ÉÇÑ ÀÎÃ¾Æ® ¼ö°¡ ¾Æ´Ï´Ù.
+// ENCHANT ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_ALREADY_MAX_ENCHANT_PER_ITEM		0x24A2		// ìµœëŒ€ ì¸ì±ˆíŠ¸ ê°œìˆ˜ ì´ˆê³¼
+#define ERR_PROTOCOL_ALREADY_HAVE_RARE_FIX				0x24A3		// ì´ë¯¸ Rare Fixë¥¼ ê°€ì§„ ì•„ì´í…œìž„
+#define ERR_PROTOCOL_ALREADY_INITIALIZE_RARE_FIX		0x24A4		// ì´ë¯¸ Rare Fixë¥¼ ê°€ì§„ ì•„ì´í…œìž„
+#define ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM		0x24A5	// íŒŒë°©(íŒŒê´´ë°©ì§€) ì‚¬ìš© í•  ìˆ˜ ì—†ë‹¤
+#define ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM_BY_STARTCOUNT		0x24A6	// 2009-01-19 by dhjin, ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€, 10ì¸ì²¸ íŒŒë°© ì¹´ë“œ - ì‚¬ìš© ê°€ëŠ¥í•œ ì¸ì²¸íŠ¸ ìˆ˜ê°€ ì•„ë‹ˆë‹¤.
 
-// °ø°Ý & ¿òÁ÷ÀÓ °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_NOT_ENOUGH_EP						0x24B0		// EP ºÎÁ·(ºÎ½ºÅÍ ÀÛµ¿ ºÒ°¡, beam·ù ¹ß»ç ºÒ°¡)
-#define ERR_PROTOCOL_TOO_LONG_DISTANCE					0x24B1		// °Å¸®°¡ ³Ê¹« ¸Ö´Ù(ex. SIZE_VISIBLERECT_XÀÌ»óÀÓ)
-#define ERR_PROTOCOL_ALREADY_P2P_PK						0x24B2		// ÀÌ¹Ì ÀÏ´ëÀÏ PK ÁßÀÓ
-#define ERR_PROTOCOL_TOO_FAR_TO_P2P_PK					0x24B3		// ³Ê¹« ¸Ö¾î¼­ ÀÏ´ëÀÏ PK ºÒ°¡
-#define ERR_PROTOCOL_HIGH_LEVEL_GAP_TO_P2P_PK			0x24B4		// ·¹º§ Â÷°¡ ¸¹ÀÌ ³ª¼­ PK ºÒ°¡
-#define ERR_PROTOCOL_NOT_DOING_P2P_PK					0x24B5		// PK ÁßÀÌ ¾Æ´Ô
-#define ERR_PROTOCOL_NOT_ALLOWED_ATTACK					0x24B6		// °ø°Ý ºÒ°¡
+// ê³µê²© & ì›€ì§ìž„ ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_NOT_ENOUGH_EP						0x24B0		// EP ë¶€ì¡±(ë¶€ìŠ¤í„° ìž‘ë™ ë¶ˆê°€, beamë¥˜ ë°œì‚¬ ë¶ˆê°€)
+#define ERR_PROTOCOL_TOO_LONG_DISTANCE					0x24B1		// ê±°ë¦¬ê°€ ë„ˆë¬´ ë©€ë‹¤(ex. SIZE_VISIBLERECT_Xì´ìƒìž„)
+#define ERR_PROTOCOL_ALREADY_P2P_PK						0x24B2		// ì´ë¯¸ ì¼ëŒ€ì¼ PK ì¤‘ìž„
+#define ERR_PROTOCOL_TOO_FAR_TO_P2P_PK					0x24B3		// ë„ˆë¬´ ë©€ì–´ì„œ ì¼ëŒ€ì¼ PK ë¶ˆê°€
+#define ERR_PROTOCOL_HIGH_LEVEL_GAP_TO_P2P_PK			0x24B4		// ë ˆë²¨ ì°¨ê°€ ë§Žì´ ë‚˜ì„œ PK ë¶ˆê°€
+#define ERR_PROTOCOL_NOT_DOING_P2P_PK					0x24B5		// PK ì¤‘ì´ ì•„ë‹˜
+#define ERR_PROTOCOL_NOT_ALLOWED_ATTACK					0x24B6		// ê³µê²© ë¶ˆê°€
 
 #define ERR_PROTOCOL_MULTIPLE_IP_CONNECTION				0x24C0		// 2015-11-24 Future, Restrict Multiple IP Access
 
-// Item °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_CANNOT_USE_ITEM							0x2600		// ¾ÆÀÌÅÛ »ç¿ë ºÒ°¡
-#define ERR_PROTOCOL_ALREADY_HAVE_ITEM							0x2601		// ÀÌ¹Ì ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖ½À´Ï´Ù
-#define ERR_PROTOCOL_ALREADY_HAVE_SKILL							0x2602		// ÀÌ¹Ì ½ºÅ³À» °¡Áö°í ÀÖ½À´Ï´Ù
-#define ERR_PROTOCOL_INVALID_ITEM_WINDOW_POSITION				0x2603		// Àß¸øµÈ Item Window Position
-#define ERR_PROTOCOL_ALREADY_ITEM_ACTIVATED						0x2604		// ÀÌ¹Ì ¾ÆÀÌÅÛÀÌ ¼öÇà Áß(dummy·ù µî)
-#define ERR_PROTOCOL_NO_SUCH_DES_PARAM							0x2605		// DES_XXXÀÌ Àß¸øµÇ¾úÀ½
-#define ERR_PROTOCOL_NOT_ENOUGH_BULLET							0x2606		// ÃÑ¾Ë(ÅºµÎ)°¡ ºÎÁ·ÇÔ
-#define ERR_PROTOCOL_ITEM_CANNOT_TRANSFER						0x2607		// ¾ÆÀÌÅÛÀ» ÀÌµ¿ÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define ERR_PROTOCOL_NO_SUCH_MIXING_INFO						0x2608		// ¾ÆÀÌÅÛ Á¶ÇÕ Á¤º¸°¡ ¾ø½À
-#define ERR_PROTOCOL_ITEM_OVER_WEIGHT							0x2609		// ÀûÀç·® ÃÊ°ú
-#define ERR_PROTOCOL_DO_NOT_HAVE_LINK_ITEM						0x260A		// ¸µÅ© ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖÁö ¾ÊÀ½
-#define ERR_PROTOCOL_INVENTORY_FULL_ITEM						0x260B		// ÀÎº¥Åä¸®°¡ ´Ù Âü
-#define ERR_PROTOCOL_STORE_FULL_ITEM							0x260C		// Ã¢°í°¡ ´Ù Âü
-#define ERR_PROTOCOL_ALREADY_USE_ITEM							0x260D		// ÀÌ¹Ì »ç¿ë ÁßÀÎ ¾ÆÀÌÅÛÀÌ´Ù
-#define ERR_PROTOCOL_ALREADY_USE_OTHER_ITEM						0x260E		// ÀÌ¹Ì ´Ù¸¥ »ç¿ë ÁßÀÎ ¾ÆÀÌÅÛÀÌ ÀÖ´Ù(°°Àº ItemNum)
-#define ERR_PROTOCOL_STAT_ERROR_STATE							0x260F		// ÇöÀç ½ºÅÈÀÌ ¿À·ù »óÅÂÀÓ
-#define ERR_PROTOCOL_STAT_INITIALIZE_STATE						0x2610		// ½ºÅÈÀÌ ÃÊ±âÈ­ »óÅÂÀÓ
-#define ERR_PROTOCOL_AREADY_USING_HP_UP_ITEM					0x2611		// ÀÌ¹Ì HP UP ¾ÆÀÌÅÛÀ» »ç¿ëÁßÀÓ
-#define ERR_PROTOCOL_AREADY_USING_DP_UP_ITEM					0x2612		// ÀÌ¹Ì DP UP ¾ÆÀÌÅÛÀ» »ç¿ëÁßÀÓ
-#define ERR_PROTOCOL_AREADY_USING_SP_UP_ITEM					0x2613		// ÀÌ¹Ì SP UP ¾ÆÀÌÅÛÀ» »ç¿ëÁßÀÓ
-#define ERR_PROTOCOL_AREADY_USING_EP_UP_ITEM					0x2614		// ÀÌ¹Ì EP UP ¾ÆÀÌÅÛÀ» »ç¿ëÁßÀÓ
-#define ERR_PROTOCOL_AREADY_FULL_HP								0x2615		// ÀÌ¹Ì HP °¡ ¸¸¶¥ÀÓ
-#define ERR_PROTOCOL_AREADY_FULL_DP								0x2616		// ÀÌ¹Ì DP °¡ ¸¸¶¥ÀÓ
-#define ERR_PROTOCOL_AREADY_FULL_SP								0x2617		// ÀÌ¹Ì SP °¡ ¸¸¶¥ÀÓ
-#define ERR_PROTOCOL_AREADY_FULL_EP								0x2618		// ÀÌ¹Ì EP °¡ ¸¸¶¥ÀÓ
-#define ERR_PROTOCOL_CANNOT_USEITEM_IN_PARTY					0x2619		// ÆÄÆ¼ Âü¿©Áß¿¡´Â ¾ÆÀÌÅÛ »ç¿ë ºÒ°¡
-#define ERR_PROTOCOL_CANNOT_IN_CITY_MAP_CHANNEL					0x261A		// µµ½Ã¸Ê¿¡¼­´Â »ç¿ë ºÒ°¡
-#define ERR_PROTOCOL_CHANNEL_USER_OVERFLOW						0x261B		// Ã¤³Î »ç¿ëÀÚ°¡ ¸¹´Ù.
-#define ERR_PROTOCOL_NO_SUCH_EVENT_AREA_INDEX					0x261C		// ÁöÁ¤ÇÑ Event Area Index¸¦ °¡Áø ÀÌº¥Æ®¸¦ Ã£À»¼ö ¾ø´Ù.
-#define ERR_PROTOCOL_MAX_ITEM_COUNTS_OVER						0x261D		// Ä«¿îÅÍºí ¾ÆÀÌÅÛÀÇ ÃÖ´ë Ä«¿îÆ® ¿À·ù(MAX_ITEM_COUNTS - 20¾ï°³)
-#define ERR_PROTOCOL_NOTIFY_MAX_ITEM_COUNTS_OVER				0x261E		// Ä«¿îÅÍºí ¾ÆÀÌÅÛÀÇ ÃÖ´ë Ä«¿îÆ® ¿À·ù°¡ ¹ß»ý ÇÒ ¼ö ÀÖÀ½À» ¾Ë¸²
-#define ERR_PROTOCOL_CANNOT_UNWEAR_ARMOR						0x261F		// 2005-10-31 by cmkwon, ¾Æ¸Ó´Â ÀåÂø ÇØÁ¦ ÇÒ ¼ö ¾ø´Ù, ±³Ã¼¸¸ °¡´ÉÇÏ´Ù
-#define ERR_PROTOCOL_NO_SUCH_BULLET_ITEM						0x2620		// 2005-11-02 by cmkwon, ÃÑ¾Ë ¾ÆÀÌÅÛÀÌ ¾ø´Ù
-#define ERR_PROTOCOL_CANNOT_ENCHANT_ITEM						0x2621		// 2005-11-21 by cmkwon, ÀÎÃ¦Æ®/°·ºíÀ» ÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
-#define ERR_PROTOCOL_BAZAAR_NO_SUCH_ITEM						0x2622		// 2006-08-02 by dhjin, °³ÀÎ»óÁ¡½Ã Ã£À» ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÏ¶§
-#define ERR_PROTOCOL_GUILD_STORE_FULL_ITEM						0x2623		// 2006-09-23 by dhjin, ±æµå Ã¢°í ´Ù Âü
-#define ERR_PROTOCOL_CANNOT_USE_ITEM_IN_ARENA					0x2624		// 2007-06-01 by dhjin, ¾Æ·¹³ª ¸Ê¿¡¼­ »ç¿ë ºÒ°¡ ¾ÆÀÌÅÛ
-#define ERR_PROTOCOL_INVALID_MIXING_INFO						0x2625		// 2009-10-01 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ °ü·Ã ÃÊ±âÈ­ ±â´É ±¸Çö - 
-#define ERR_PROTOCOL_NOT_WEARING_STATE							0x2626		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ÀåÂø »óÅÂ°¡ ¾Æ´Ï´Ù. 
-#define ERR_PROTOCOL_INVALID_INVOKING_TYPE						0x2627		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ¹ßµ¿ Å¸ÀÙ ¿À·ù
-#define ERR_PROTOCOL_FAIL_INVOKING_BY_RATE						0x2628		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ¹ßµ¿ ¹Ì½º
-#define ERR_PROTOCOL_FAIL_INVOKING_BY_REQITEMNUM				0x2629		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ¹ßµ¿ Á¶°Ç °ª ¿À·ù
-#define ERR_PROTOCOL_COOLING_TIME_INVOKING_ITEM					0x262A		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ¹ßµ¿·ù ¾ÆÀÌÅÛ ÄðÅ¸ÀÓÁß
-#define ERR_PROTOCOL_CANNOT_RARE_ITEM							0x262B		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define ERR_PROTOCOL_NOT_ACTIVATED_ITEM							0x262C		// 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - È°¼ºÈ­ µÇÁö ¾ÊÀº ¾ÆÀÌÅÛ
-#define ERR_PROTOCOL_CANNOT_ATTACHED_ITEM						0x262D		// 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀåÂøµÇÁö ¾ÊÀº ¾ÆÀÌÅÛ
+// Item ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_CANNOT_USE_ITEM							0x2600		// ì•„ì´í…œ ì‚¬ìš© ë¶ˆê°€
+#define ERR_PROTOCOL_ALREADY_HAVE_ITEM							0x2601		// ì´ë¯¸ ì•„ì´í…œì„ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤
+#define ERR_PROTOCOL_ALREADY_HAVE_SKILL							0x2602		// ì´ë¯¸ ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤
+#define ERR_PROTOCOL_INVALID_ITEM_WINDOW_POSITION				0x2603		// ìž˜ëª»ëœ Item Window Position
+#define ERR_PROTOCOL_ALREADY_ITEM_ACTIVATED						0x2604		// ì´ë¯¸ ì•„ì´í…œì´ ìˆ˜í–‰ ì¤‘(dummyë¥˜ ë“±)
+#define ERR_PROTOCOL_NO_SUCH_DES_PARAM							0x2605		// DES_XXXì´ ìž˜ëª»ë˜ì—ˆìŒ
+#define ERR_PROTOCOL_NOT_ENOUGH_BULLET							0x2606		// ì´ì•Œ(íƒ„ë‘)ê°€ ë¶€ì¡±í•¨
+#define ERR_PROTOCOL_ITEM_CANNOT_TRANSFER						0x2607		// ì•„ì´í…œì„ ì´ë™í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define ERR_PROTOCOL_NO_SUCH_MIXING_INFO						0x2608		// ì•„ì´í…œ ì¡°í•© ì •ë³´ê°€ ì—†ìŠµ
+#define ERR_PROTOCOL_ITEM_OVER_WEIGHT							0x2609		// ì ìž¬ëŸ‰ ì´ˆê³¼
+#define ERR_PROTOCOL_DO_NOT_HAVE_LINK_ITEM						0x260A		// ë§í¬ ì•„ì´í…œì„ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_INVENTORY_FULL_ITEM						0x260B		// ì¸ë²¤í† ë¦¬ê°€ ë‹¤ ì°¸
+#define ERR_PROTOCOL_STORE_FULL_ITEM							0x260C		// ì°½ê³ ê°€ ë‹¤ ì°¸
+#define ERR_PROTOCOL_ALREADY_USE_ITEM							0x260D		// ì´ë¯¸ ì‚¬ìš© ì¤‘ì¸ ì•„ì´í…œì´ë‹¤
+#define ERR_PROTOCOL_ALREADY_USE_OTHER_ITEM						0x260E		// ì´ë¯¸ ë‹¤ë¥¸ ì‚¬ìš© ì¤‘ì¸ ì•„ì´í…œì´ ìžˆë‹¤(ê°™ì€ ItemNum)
+#define ERR_PROTOCOL_STAT_ERROR_STATE							0x260F		// í˜„ìž¬ ìŠ¤íƒ¯ì´ ì˜¤ë¥˜ ìƒíƒœìž„
+#define ERR_PROTOCOL_STAT_INITIALIZE_STATE						0x2610		// ìŠ¤íƒ¯ì´ ì´ˆê¸°í™” ìƒíƒœìž„
+#define ERR_PROTOCOL_AREADY_USING_HP_UP_ITEM					0x2611		// ì´ë¯¸ HP UP ì•„ì´í…œì„ ì‚¬ìš©ì¤‘ìž„
+#define ERR_PROTOCOL_AREADY_USING_DP_UP_ITEM					0x2612		// ì´ë¯¸ DP UP ì•„ì´í…œì„ ì‚¬ìš©ì¤‘ìž„
+#define ERR_PROTOCOL_AREADY_USING_SP_UP_ITEM					0x2613		// ì´ë¯¸ SP UP ì•„ì´í…œì„ ì‚¬ìš©ì¤‘ìž„
+#define ERR_PROTOCOL_AREADY_USING_EP_UP_ITEM					0x2614		// ì´ë¯¸ EP UP ì•„ì´í…œì„ ì‚¬ìš©ì¤‘ìž„
+#define ERR_PROTOCOL_AREADY_FULL_HP								0x2615		// ì´ë¯¸ HP ê°€ ë§Œë•…ìž„
+#define ERR_PROTOCOL_AREADY_FULL_DP								0x2616		// ì´ë¯¸ DP ê°€ ë§Œë•…ìž„
+#define ERR_PROTOCOL_AREADY_FULL_SP								0x2617		// ì´ë¯¸ SP ê°€ ë§Œë•…ìž„
+#define ERR_PROTOCOL_AREADY_FULL_EP								0x2618		// ì´ë¯¸ EP ê°€ ë§Œë•…ìž„
+#define ERR_PROTOCOL_CANNOT_USEITEM_IN_PARTY					0x2619		// íŒŒí‹° ì°¸ì—¬ì¤‘ì—ëŠ” ì•„ì´í…œ ì‚¬ìš© ë¶ˆê°€
+#define ERR_PROTOCOL_CANNOT_IN_CITY_MAP_CHANNEL					0x261A		// ë„ì‹œë§µì—ì„œëŠ” ì‚¬ìš© ë¶ˆê°€
+#define ERR_PROTOCOL_CHANNEL_USER_OVERFLOW						0x261B		// ì±„ë„ ì‚¬ìš©ìžê°€ ë§Žë‹¤.
+#define ERR_PROTOCOL_NO_SUCH_EVENT_AREA_INDEX					0x261C		// ì§€ì •í•œ Event Area Indexë¥¼ ê°€ì§„ ì´ë²¤íŠ¸ë¥¼ ì°¾ì„ìˆ˜ ì—†ë‹¤.
+#define ERR_PROTOCOL_MAX_ITEM_COUNTS_OVER						0x261D		// ì¹´ìš´í„°ë¸” ì•„ì´í…œì˜ ìµœëŒ€ ì¹´ìš´íŠ¸ ì˜¤ë¥˜(MAX_ITEM_COUNTS - 20ì–µê°œ)
+#define ERR_PROTOCOL_NOTIFY_MAX_ITEM_COUNTS_OVER				0x261E		// ì¹´ìš´í„°ë¸” ì•„ì´í…œì˜ ìµœëŒ€ ì¹´ìš´íŠ¸ ì˜¤ë¥˜ê°€ ë°œìƒ í•  ìˆ˜ ìžˆìŒì„ ì•Œë¦¼
+#define ERR_PROTOCOL_CANNOT_UNWEAR_ARMOR						0x261F		// 2005-10-31 by cmkwon, ì•„ë¨¸ëŠ” ìž¥ì°© í•´ì œ í•  ìˆ˜ ì—†ë‹¤, êµì²´ë§Œ ê°€ëŠ¥í•˜ë‹¤
+#define ERR_PROTOCOL_NO_SUCH_BULLET_ITEM						0x2620		// 2005-11-02 by cmkwon, ì´ì•Œ ì•„ì´í…œì´ ì—†ë‹¤
+#define ERR_PROTOCOL_CANNOT_ENCHANT_ITEM						0x2621		// 2005-11-21 by cmkwon, ì¸ì±ˆíŠ¸/ê°¬ë¸”ì„ í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
+#define ERR_PROTOCOL_BAZAAR_NO_SUCH_ITEM						0x2622		// 2006-08-02 by dhjin, ê°œì¸ìƒì ì‹œ ì°¾ì„ ìˆ˜ ì—†ëŠ” ì•„ì´í…œì¼ë•Œ
+#define ERR_PROTOCOL_GUILD_STORE_FULL_ITEM						0x2623		// 2006-09-23 by dhjin, ê¸¸ë“œ ì°½ê³  ë‹¤ ì°¸
+#define ERR_PROTOCOL_CANNOT_USE_ITEM_IN_ARENA					0x2624		// 2007-06-01 by dhjin, ì•„ë ˆë‚˜ ë§µì—ì„œ ì‚¬ìš© ë¶ˆê°€ ì•„ì´í…œ
+#define ERR_PROTOCOL_INVALID_MIXING_INFO						0x2625		// 2009-10-01 by cmkwon, ê·¸ëž˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ê´€ë ¨ ì´ˆê¸°í™” ê¸°ëŠ¥ êµ¬í˜„ - 
+#define ERR_PROTOCOL_NOT_WEARING_STATE							0x2626		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ, ìž¥ì°© ìƒíƒœê°€ ì•„ë‹ˆë‹¤. 
+#define ERR_PROTOCOL_INVALID_INVOKING_TYPE						0x2627		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ, ë°œë™ íƒ€ìžŽ ì˜¤ë¥˜
+#define ERR_PROTOCOL_FAIL_INVOKING_BY_RATE						0x2628		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ, ë°œë™ ë¯¸ìŠ¤
+#define ERR_PROTOCOL_FAIL_INVOKING_BY_REQITEMNUM				0x2629		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ, ë°œë™ ì¡°ê±´ ê°’ ì˜¤ë¥˜
+#define ERR_PROTOCOL_COOLING_TIME_INVOKING_ITEM					0x262A		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ, ë°œë™ë¥˜ ì•„ì´í…œ ì¿¨íƒ€ìž„ì¤‘
+#define ERR_PROTOCOL_CANNOT_RARE_ITEM							0x262B		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ
+#define ERR_PROTOCOL_NOT_ACTIVATED_ITEM							0x262C		// 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - í™œì„±í™” ë˜ì§€ ì•Šì€ ì•„ì´í…œ
+#define ERR_PROTOCOL_CANNOT_ATTACHED_ITEM						0x262D		// 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìž¥ì°©ë˜ì§€ ì•Šì€ ì•„ì´í…œ
 
-#define ERR_PROTOCOL_CANNOT_ENCHANT_MORE_THEN_10				0x262E		// 2011-10-19 by hskim, EP4 [Free to play] - 10 È¸ ÀÎÃ¾Æ® ¾ÆÀÌÅÛ ±â´É ±¸Çö - 10 ÀÎÃ¦Æ® ÀÌ»ó ¾ÆÀÌÅÛÀº °­È­ÇÒ ¼ö ¾øÀ½
-#define ERR_PROTOCOL_CANNOT_ENCHANT_DIFFERENCE_ATTRIBUTE		0x262F		// 2011-10-19 by hskim, EP4 [Free to play] - 10 È¸ ÀÎÃ¾Æ® ¾ÆÀÌÅÛ ±â´É ±¸Çö - ÀÎÃ¦Æ® ¼Ó¼ºÀÌ Æ²·Á ÀÎÃ¦Æ® ÇÒ ¼ö ¾øÀ½
-#define ERR_PROTOCOL_CANNOT_ENCHANT_LACK_REQUIREMENT			0x2630		// 2011-10-19 by hskim, EP4 [Free to play] - Á¢µÎ/Á¢¹Ì °íÁ¤ ¿É¼Ç - ¿ä±¸ Á¶°Ç¿¡ ºÎÀûÇÔ
+#define ERR_PROTOCOL_CANNOT_ENCHANT_MORE_THEN_10				0x262E		// 2011-10-19 by hskim, EP4 [Free to play] - 10 íšŒ ì¸ì²¸íŠ¸ ì•„ì´í…œ ê¸°ëŠ¥ êµ¬í˜„ - 10 ì¸ì±ˆíŠ¸ ì´ìƒ ì•„ì´í…œì€ ê°•í™”í•  ìˆ˜ ì—†ìŒ
+#define ERR_PROTOCOL_CANNOT_ENCHANT_DIFFERENCE_ATTRIBUTE		0x262F		// 2011-10-19 by hskim, EP4 [Free to play] - 10 íšŒ ì¸ì²¸íŠ¸ ì•„ì´í…œ ê¸°ëŠ¥ êµ¬í˜„ - ì¸ì±ˆíŠ¸ ì†ì„±ì´ í‹€ë ¤ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŒ
+#define ERR_PROTOCOL_CANNOT_ENCHANT_LACK_REQUIREMENT			0x2630		// 2011-10-19 by hskim, EP4 [Free to play] - ì ‘ë‘/ì ‘ë¯¸ ê³ ì • ì˜µì…˜ - ìš”êµ¬ ì¡°ê±´ì— ë¶€ì í•¨
 
-// ¿ä±¸ Á¶°Ç °ü·Ã ¿¡·¯			
+// ìš”êµ¬ ì¡°ê±´ ê´€ë ¨ ì—ëŸ¬			
 #define ERR_PROTOCOL_REQ_EXPERIENCE_NOT_MATCHED					0x2640
 #define ERR_PROTOCOL_REQ_RACE_NOT_MATCHED						0x2641		//
 #define ERR_PROTOCOL_REQ_ATTACK_PART_NOT_MATCHED				0x2642		//
@@ -271,122 +271,122 @@
 #define ERR_PROTOCOL_REQ_DODGE_PART_NOT_MATCHED					0x2647		//
 #define ERR_PROTOCOL_REQ_UNITKIND_NOT_MATCHED					0x2648		//
 #define ERR_PROTOCOL_REQ_LEVEL_NOT_MATCHED						0x2649		//
-#define ERR_PROTOCOL_REQ_MINLEVEL_NOT_MATCHED					0x264A		// ÃÖ¼Ò ·¹º§º¸´Ù ·¹º§ÀÌ ³·´Ù
-#define ERR_PROTOCOL_REQ_MAXLEVEL_NOT_MATCHED					0x264B		// ÃÖ´ë ·¹º§º¸´Ù ·¹º§ÀÌ ³ô´Ù
+#define ERR_PROTOCOL_REQ_MINLEVEL_NOT_MATCHED					0x264A		// ìµœì†Œ ë ˆë²¨ë³´ë‹¤ ë ˆë²¨ì´ ë‚®ë‹¤
+#define ERR_PROTOCOL_REQ_MAXLEVEL_NOT_MATCHED					0x264B		// ìµœëŒ€ ë ˆë²¨ë³´ë‹¤ ë ˆë²¨ì´ ë†’ë‹¤
 #define ERR_PROTOCOL_REQ_ITEM_NOT_MATCHED						0x264C		//
 #define ERR_PROTOCOL_REQ_QUEST_NOT_MATCHED						0x264D		//
 #define ERR_PROTOCOL_REQ_NUM_OF_CHARACTER_NOT_MATCHED			0x264E		//
-#define ERR_PROTOCOL_TOO_FAR_TO_DO								0x264F		// ¹º°¡¸¦ ÇÏ±â¿¡ °Å¸®°¡ ³Ê¹« ¸Ö´Ù
-#define ERR_PROTOCOL_NO_SUCH_REQUEST_TYPE						0x2650		// ÇØ´ç REQUEST_TYPE ÀÌ ¾ø´Ù
-#define ERR_PROTOCOL_LOW_PROBABILITY							0x2651		// È®·ü ºÎÁ·À¸·Î ÀÎÇÑ ¿¡·¯
-#define ERR_PROTOCOL_REQ_NOT_CITY_MAP_CHANNEL					0x2652		// °Ý³³°í(µµ½Ã¸Ê)°¡ ¾Æ´Ï´Ù
-#define ERR_PROTOCOL_REQ_MUST_RELEASE_ALL_ITEM					0x2653		// ¹Ýµå½Ã ¸ðµç ¾ÆÀÌÅÛÀ» ÀåÂø ÇØÁ¦ ÇØ¾ßÇÔ
-#define ERR_PROTOCOL_REQ_WARP_REQUIREMENTS_NOT_MATCHED			0x2654		// ¿öÇÁ ¿ä±¸ Á¶°Ç ¿¡·¯
-#define ERR_PROTOCOL_REQ_INFLUENCE_NOT_MATCHED					0x2655		// ¼¼·Â
-#define ERR_PROTOCOL_REQ_MAP_OBJECT_NOT_MATCHED					0x2656		// ÁöÁ¤ÇÑ Map Object¿Í ´Ù¸£´Ù
-#define ERR_PROTOCOL_REQ_MAP_AREA_NOT_MATCHED					0x2657		// ÁöÁ¤ÇÑ Map Area¿Í ´Ù¸£´Ù, 2005-08-29 by cmkwon
-#define ERR_PROTOCOL_REQ_MONSTER_NOT_MATCHED					0x2658		// ¿ä±¸ ¸ó½ºÅÍ Ä«¿îÆ®¿Í ´Ù¸£´Ù
-#define ERR_PROTOCOL_REQ_PARTYMEMBERS_NOT_MATCHED				0x2659		// ÆÄÆ¼°¡ ¾ø°Å³ª ¿ä±¸ ÆÄÆ¼¿ø¼ö¿Í ´Ù¸£´Ù.
-#define ERR_PROTOCOL_REQ_PARTYMEMBERS_LEVEL_NOT_MATCHED			0x265A		// ÃÖ°í·¹º§ ÆÄÆ¼¿ø°ú ÃÖÀú·¹º§ Â÷°¡ 10ÀÌ»ó ÀÌ´Ù
-#define ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_CANNOT_WARP		0x265B		// ÆÄÆ¼¿øÁß ´©±º°¡ ¿öÇÁ ÇÒ ¼ö ¾ø´Â »óÅÂÀÌ´Ù
-#define ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_NOT_COMPLETION	0x265C		// ÆÄÆ¼¿øÁß ´©±º°¡ Äù½ºÆ® ¿Ï·á »óÅÂ°¡ ¾Æ´Ï´Ù.
-#define ERR_PROTOCOL_REQ_MIX_ITEM_NOT_MATCHED					0x265D		// 2007-04-02 by cmkwon, Äù½ºÆ® ¿Ï·á Á¶°Ç¿¡ Á¶ÇÕ °á°ú¹°ÀÌ ÇÊ¿äÇÔ
-#define ERR_PROTOCOL_REQ_PW_NOT_MATCHED							0x265E		// 2008-06-03 by dhjin, EP3 Æí´ë ¼öÁ¤ - PW¿À·ù
-#define ERR_PROTOCOL_NOT_WARP_BURNING_MAP						0x265F		// 2010-11-24 by shcho, ÄÝ¿Àºê È÷¾î·Î »ç¿ë½Ã ¹ö´×Å¸ÀÓ ¸ÊÀÌ¸é ¼ÒÈ¯ºÒ°¡ Ã³¸®
+#define ERR_PROTOCOL_TOO_FAR_TO_DO								0x264F		// ë­”ê°€ë¥¼ í•˜ê¸°ì— ê±°ë¦¬ê°€ ë„ˆë¬´ ë©€ë‹¤
+#define ERR_PROTOCOL_NO_SUCH_REQUEST_TYPE						0x2650		// í•´ë‹¹ REQUEST_TYPE ì´ ì—†ë‹¤
+#define ERR_PROTOCOL_LOW_PROBABILITY							0x2651		// í™•ë¥  ë¶€ì¡±ìœ¼ë¡œ ì¸í•œ ì—ëŸ¬
+#define ERR_PROTOCOL_REQ_NOT_CITY_MAP_CHANNEL					0x2652		// ê²©ë‚©ê³ (ë„ì‹œë§µ)ê°€ ì•„ë‹ˆë‹¤
+#define ERR_PROTOCOL_REQ_MUST_RELEASE_ALL_ITEM					0x2653		// ë°˜ë“œì‹œ ëª¨ë“  ì•„ì´í…œì„ ìž¥ì°© í•´ì œ í•´ì•¼í•¨
+#define ERR_PROTOCOL_REQ_WARP_REQUIREMENTS_NOT_MATCHED			0x2654		// ì›Œí”„ ìš”êµ¬ ì¡°ê±´ ì—ëŸ¬
+#define ERR_PROTOCOL_REQ_INFLUENCE_NOT_MATCHED					0x2655		// ì„¸ë ¥
+#define ERR_PROTOCOL_REQ_MAP_OBJECT_NOT_MATCHED					0x2656		// ì§€ì •í•œ Map Objectì™€ ë‹¤ë¥´ë‹¤
+#define ERR_PROTOCOL_REQ_MAP_AREA_NOT_MATCHED					0x2657		// ì§€ì •í•œ Map Areaì™€ ë‹¤ë¥´ë‹¤, 2005-08-29 by cmkwon
+#define ERR_PROTOCOL_REQ_MONSTER_NOT_MATCHED					0x2658		// ìš”êµ¬ ëª¬ìŠ¤í„° ì¹´ìš´íŠ¸ì™€ ë‹¤ë¥´ë‹¤
+#define ERR_PROTOCOL_REQ_PARTYMEMBERS_NOT_MATCHED				0x2659		// íŒŒí‹°ê°€ ì—†ê±°ë‚˜ ìš”êµ¬ íŒŒí‹°ì›ìˆ˜ì™€ ë‹¤ë¥´ë‹¤.
+#define ERR_PROTOCOL_REQ_PARTYMEMBERS_LEVEL_NOT_MATCHED			0x265A		// ìµœê³ ë ˆë²¨ íŒŒí‹°ì›ê³¼ ìµœì €ë ˆë²¨ ì°¨ê°€ 10ì´ìƒ ì´ë‹¤
+#define ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_CANNOT_WARP		0x265B		// íŒŒí‹°ì›ì¤‘ ëˆ„êµ°ê°€ ì›Œí”„ í•  ìˆ˜ ì—†ëŠ” ìƒíƒœì´ë‹¤
+#define ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_NOT_COMPLETION	0x265C		// íŒŒí‹°ì›ì¤‘ ëˆ„êµ°ê°€ í€˜ìŠ¤íŠ¸ ì™„ë£Œ ìƒíƒœê°€ ì•„ë‹ˆë‹¤.
+#define ERR_PROTOCOL_REQ_MIX_ITEM_NOT_MATCHED					0x265D		// 2007-04-02 by cmkwon, í€˜ìŠ¤íŠ¸ ì™„ë£Œ ì¡°ê±´ì— ì¡°í•© ê²°ê³¼ë¬¼ì´ í•„ìš”í•¨
+#define ERR_PROTOCOL_REQ_PW_NOT_MATCHED							0x265E		// 2008-06-03 by dhjin, EP3 íŽ¸ëŒ€ ìˆ˜ì • - PWì˜¤ë¥˜
+#define ERR_PROTOCOL_NOT_WARP_BURNING_MAP						0x265F		// 2010-11-24 by shcho, ì½œì˜¤ë¸Œ ížˆì–´ë¡œ ì‚¬ìš©ì‹œ ë²„ë‹íƒ€ìž„ ë§µì´ë©´ ì†Œí™˜ë¶ˆê°€ ì²˜ë¦¬
 
-// Quest °ü·Ã ¿¡·¯
+// Quest ê´€ë ¨ ì—ëŸ¬
 #define ERR_PROTOCOL_NO_SUCH_CHARACTER_QUEST					0x2700
-#define ERR_PROTOCOL_QUEST_ALREADY_COMPLETED					0x2701		// ÀÌ¹Ì ¼öÇà ¿Ï·áµÈ questÀÓ
-#define ERR_PROTOCOL_QUEST_NOT_IN_PROGRESS						0x2702		// ÁøÇàÁßÀÎ Äù½ºÆ®°¡ ¾Æ´Ô
-#define ERR_PROTOCOL_QUEST_RESULT_PROCESS_FAILED				0x2703		// Äù½ºÆ® °á°ú Ã³¸® ½ÇÆÐ
-#define ERR_PROTOCOL_QUEST_GENERAL_ERROR						0x2704		// Äù½ºÆ® ÀÏ¹Ý ¿¡·¯
-#define ERR_PROTOCOL_TIME_LIMIT_ERROR							0x2705		// ½Ã°£ Á¦ÇÑÀ¸·Î ÀÎÇÑ ¿¡·¯
-#define ERR_PROTOCOL_REQ_NOT_GUILD_MASTER						0x2706		// ±æµåÀå¸¸ °¡´ÉÇÑ Äù½ºÆ®ÀÌ´Ù
-#define ERR_PROTOCOL_QUEST_ALREADY_EXIST_CITYWAR				0x2707		// ÀÌ¹Ì ´Ù¸¥ µµ½ÃÁ¡·ÉÀü Äù½ºÆ®°¡ ÁøÇàÁßÀÌ´Ù
-#define ERR_PROTOCOL_QUEST_NEVER_COMPLITION_BY_USER				0x2708		// À¯Àú¿¡ ÀÇÇØ¼­ Äù½ºÆ®°¡ ¿Ï·áºÒ°¡´É
-#define ERR_PROTOCOL_QUEST_INVALID_CITYWAR_QUEST_INDEX			0x2709		// Äù½ºÆ® ÀÎµ¦½º°¡ À¯È¿ÇÏÁö ¾Ê´Ù
-#define ERR_PROTOCOL_QUEST_CANNOT_CITYWAR_QUEST					0x270A		// µµ½ÃÁ¡·ÉÀü Äù½ºÆ®¸¦ ¹ÞÀ»¼ö ¾ø´Ù(Á¡·ÉÀüÀÌ ÁøÇàÁßÀÎ »óÅÂ)
-#define ERR_PROTOCOL_QUEST_CITYWAR_MGAMESERVERID_NOT_MATCHED	0x270B		// µµ½ÃÁ¡·ÉÀü Äù½ºÆ®ÀÇ Ãë¼Ò´Â ¹ÞÀº ¼­¹ö¿¡¼­¸¸ °¡´ÉÇÏ´Ù
-#define ERR_PROTOCOL_QUEST_COUPON_INVALID_NUMBER				0x2710		// ÄíÆù¹øÈ£°¡ DB¿¡ Á¸ÀçÇÏÁö ¾Ê°Å³ª
-#define ERR_PROTOCOL_QUEST_COUPON_ALREADY_USED					0x2711		// ÀÌ¹Ì »ç¿ëµÈ ÄíÆù
-#define ERR_PROTOCOL_QUEST_COUPON_EXPIRED						0x2712		// ÄíÆù À¯È¿±â°£ °æ°ú
-#define ERR_PROTOCOL_QUEST_COUPON_USE_ERROR						0x2713		// ÄíÆù »ç¿ë Error
-#define ERR_PROTOCOL_QUEST_NO_LEVEL_UP							0x2714		// ·¹º§¾÷ÀÌ µÇÁö ¾ÊÀ½
-#define ERR_PROTOCOL_QUEST_IS_IN_PROGRESS						0x2715		// Äù½ºÆ®°¡ ÁøÇàÁßÀÓ
-#define ERR_PROTOCOL_QUEST_IMPOSSIBLE_GIVEUP					0x2716		// Æ÷±â ÇÒ ¼ö ¾ø´Â Äù½ºÆ®.
+#define ERR_PROTOCOL_QUEST_ALREADY_COMPLETED					0x2701		// ì´ë¯¸ ìˆ˜í–‰ ì™„ë£Œëœ questìž„
+#define ERR_PROTOCOL_QUEST_NOT_IN_PROGRESS						0x2702		// ì§„í–‰ì¤‘ì¸ í€˜ìŠ¤íŠ¸ê°€ ì•„ë‹˜
+#define ERR_PROTOCOL_QUEST_RESULT_PROCESS_FAILED				0x2703		// í€˜ìŠ¤íŠ¸ ê²°ê³¼ ì²˜ë¦¬ ì‹¤íŒ¨
+#define ERR_PROTOCOL_QUEST_GENERAL_ERROR						0x2704		// í€˜ìŠ¤íŠ¸ ì¼ë°˜ ì—ëŸ¬
+#define ERR_PROTOCOL_TIME_LIMIT_ERROR							0x2705		// ì‹œê°„ ì œí•œìœ¼ë¡œ ì¸í•œ ì—ëŸ¬
+#define ERR_PROTOCOL_REQ_NOT_GUILD_MASTER						0x2706		// ê¸¸ë“œìž¥ë§Œ ê°€ëŠ¥í•œ í€˜ìŠ¤íŠ¸ì´ë‹¤
+#define ERR_PROTOCOL_QUEST_ALREADY_EXIST_CITYWAR				0x2707		// ì´ë¯¸ ë‹¤ë¥¸ ë„ì‹œì ë ¹ì „ í€˜ìŠ¤íŠ¸ê°€ ì§„í–‰ì¤‘ì´ë‹¤
+#define ERR_PROTOCOL_QUEST_NEVER_COMPLITION_BY_USER				0x2708		// ìœ ì €ì— ì˜í•´ì„œ í€˜ìŠ¤íŠ¸ê°€ ì™„ë£Œë¶ˆê°€ëŠ¥
+#define ERR_PROTOCOL_QUEST_INVALID_CITYWAR_QUEST_INDEX			0x2709		// í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ê°€ ìœ íš¨í•˜ì§€ ì•Šë‹¤
+#define ERR_PROTOCOL_QUEST_CANNOT_CITYWAR_QUEST					0x270A		// ë„ì‹œì ë ¹ì „ í€˜ìŠ¤íŠ¸ë¥¼ ë°›ì„ìˆ˜ ì—†ë‹¤(ì ë ¹ì „ì´ ì§„í–‰ì¤‘ì¸ ìƒíƒœ)
+#define ERR_PROTOCOL_QUEST_CITYWAR_MGAMESERVERID_NOT_MATCHED	0x270B		// ë„ì‹œì ë ¹ì „ í€˜ìŠ¤íŠ¸ì˜ ì·¨ì†ŒëŠ” ë°›ì€ ì„œë²„ì—ì„œë§Œ ê°€ëŠ¥í•˜ë‹¤
+#define ERR_PROTOCOL_QUEST_COUPON_INVALID_NUMBER				0x2710		// ì¿ í°ë²ˆí˜¸ê°€ DBì— ì¡´ìž¬í•˜ì§€ ì•Šê±°ë‚˜
+#define ERR_PROTOCOL_QUEST_COUPON_ALREADY_USED					0x2711		// ì´ë¯¸ ì‚¬ìš©ëœ ì¿ í°
+#define ERR_PROTOCOL_QUEST_COUPON_EXPIRED						0x2712		// ì¿ í° ìœ íš¨ê¸°ê°„ ê²½ê³¼
+#define ERR_PROTOCOL_QUEST_COUPON_USE_ERROR						0x2713		// ì¿ í° ì‚¬ìš© Error
+#define ERR_PROTOCOL_QUEST_NO_LEVEL_UP							0x2714		// ë ˆë²¨ì—…ì´ ë˜ì§€ ì•ŠìŒ
+#define ERR_PROTOCOL_QUEST_IS_IN_PROGRESS						0x2715		// í€˜ìŠ¤íŠ¸ê°€ ì§„í–‰ì¤‘ìž„
+#define ERR_PROTOCOL_QUEST_IMPOSSIBLE_GIVEUP					0x2716		// í¬ê¸° í•  ìˆ˜ ì—†ëŠ” í€˜ìŠ¤íŠ¸.
 
-// ¼­ºñ½º °ü·Ã ¿¡·¯
-#define ERR_PROTOCOL_QUEST_SERVICE_PAUSED						0x2740		// Äù½ºÆ® ±â´É ÀÏ½Ã Á¤ÁöµÊ
+// ì„œë¹„ìŠ¤ ê´€ë ¨ ì—ëŸ¬
+#define ERR_PROTOCOL_QUEST_SERVICE_PAUSED						0x2740		// í€˜ìŠ¤íŠ¸ ê¸°ëŠ¥ ì¼ì‹œ ì •ì§€ë¨
 
-// GET_INFO °ü·Ã ¿¡·¯
+// GET_INFO ê´€ë ¨ ì—ëŸ¬
 #define ERR_PROTOCOL_NO_SUCH_MONSTER_INFO						0x2780
 #define ERR_PROTOCOL_NO_SUCH_MAPOBJECT_INFO						0x2781
 #define ERR_PROTOCOL_NO_SUCH_QUEST_INFO							0x2782
 #define ERR_PROTOCOL_NO_SUCH_ITEM_INFO							0x2783
 
-#define ERR_PROTOCOL_SELECTIVE_SHUTDOWN_NOT_ALLOWED_TIME		0x2790		// 2012-07-11 by hskim, ¼±ÅÃÀû ¼Ë´Ù¿î - ÇöÀç ½Ã°£¿¡´Â °ÔÀÓÀ» ÇÃ·¹ÀÌ ÇÒ¼ö ¾øÀ½
-#define ERR_PROTOCOL_SELECTIVE_SHUTDOWN_APPLY_LOGOUT			0x2791		// 2012-07-11 by hskim, ¼±ÅÃÀû ¼Ë´Ù¿î - ¼±ÅÃÀû ¼Ë´Ù¿î Àû¿ë
+#define ERR_PROTOCOL_SELECTIVE_SHUTDOWN_NOT_ALLOWED_TIME		0x2790		// 2012-07-11 by hskim, ì„ íƒì  ì…§ë‹¤ìš´ - í˜„ìž¬ ì‹œê°„ì—ëŠ” ê²Œìž„ì„ í”Œë ˆì´ í• ìˆ˜ ì—†ìŒ
+#define ERR_PROTOCOL_SELECTIVE_SHUTDOWN_APPLY_LOGOUT			0x2791		// 2012-07-11 by hskim, ì„ íƒì  ì…§ë‹¤ìš´ - ì„ íƒì  ì…§ë‹¤ìš´ ì ìš©
 
 ///////////////////////////////////////////////////////////////////////////////
 // Chatting Error (0x2800 ~ 0x28FF)
-#define ERR_CHAT_CHARACTER_NAME_NOT_MATCHED				0x2800		// Ä³¸¯ÅÍ ÀÌ¸§ ºÒÀÏÄ¡
-#define ERR_CHAT_NOT_ALLOWED_STRING						0x2801		// ¾È ÁÁÀº ´Ü¾î°¡ »ç¿ëµÊ
-#define ERR_CHAT_PERMISSION_DENIED						0x2802		// ÇØ´ç Ã¤ÆÃ ±ÇÇÑ ºÎÁ·
-#define ERR_CHAT_INVALID_COMMAND						0x2803		// ÇØ´ç Ã¤ÆÃ ±ÇÇÑ ºÎÁ·
-#define ERR_CHAT_CHAT_NOT_TRANSFERED					0x2804		// ÇØ´ç Ã¤ÆÃÀÌ Àü´ÞµÇÁö ¾Ê¾Ò½À´Ï´Ù
-#define ERR_CHAT_CHAT_BLOCKED							0x2805		// Ã¤ÆÃ±ÝÁö »óÅÂ
+#define ERR_CHAT_CHARACTER_NAME_NOT_MATCHED				0x2800		// ìºë¦­í„° ì´ë¦„ ë¶ˆì¼ì¹˜
+#define ERR_CHAT_NOT_ALLOWED_STRING						0x2801		// ì•ˆ ì¢‹ì€ ë‹¨ì–´ê°€ ì‚¬ìš©ë¨
+#define ERR_CHAT_PERMISSION_DENIED						0x2802		// í•´ë‹¹ ì±„íŒ… ê¶Œí•œ ë¶€ì¡±
+#define ERR_CHAT_INVALID_COMMAND						0x2803		// í•´ë‹¹ ì±„íŒ… ê¶Œí•œ ë¶€ì¡±
+#define ERR_CHAT_CHAT_NOT_TRANSFERED					0x2804		// í•´ë‹¹ ì±„íŒ…ì´ ì „ë‹¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤
+#define ERR_CHAT_CHAT_BLOCKED							0x2805		// ì±„íŒ…ê¸ˆì§€ ìƒíƒœ
 	
 
-// Ä£±¸, °ÅºÎ ¸ñ·Ï °ü·Ã ¿¡·¯
-#define ERR_FRIEND_INVALID_CHARACTER_NAME				0x2900		// Ä³¸¯ÅÍÀÌ¸§ÀÌ ºñ¾îÀÖ°Å³ª À¯È¿ÇÏÁö ¾Ê´Ù
-#define ERR_FRIEND_REGISTERED_PEER_REJECTLIST			0x2901		// »ó´ë¹æ °ÅºÎ¸®½ºÆ®¿¡ µî·ÏµÇ¾î ÀÖÀ½
-#define ERR_FRIEND_ALREADY_REGISTERED					0x2902		// ÀÌ¹Ì ¸®½ºÆ®(Ä£±¸, °ÅºÎ)¿¡ µî·ÏµÇ¾îÀÖÀ½
-#define ERR_FRIEND_ALREADY_MAX_LIST						0x2903		// ÀÌ¹Ì ¸®½ºÆ® ÃÖ´ëÀÎ¿øÀÌ µî·ÏµÇ¾îÀÖÀ½
-#define ERR_FRIEND_NO_SUCH_CHARACTER_IN_LIST			0x2904		// ¸®½ºÆ®¿¡¼­ Ä³¸¯ÅÍÀÌ¸§ÀÌ ¾øÀ½
+// ì¹œêµ¬, ê±°ë¶€ ëª©ë¡ ê´€ë ¨ ì—ëŸ¬
+#define ERR_FRIEND_INVALID_CHARACTER_NAME				0x2900		// ìºë¦­í„°ì´ë¦„ì´ ë¹„ì–´ìžˆê±°ë‚˜ ìœ íš¨í•˜ì§€ ì•Šë‹¤
+#define ERR_FRIEND_REGISTERED_PEER_REJECTLIST			0x2901		// ìƒëŒ€ë°© ê±°ë¶€ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡ë˜ì–´ ìžˆìŒ
+#define ERR_FRIEND_ALREADY_REGISTERED					0x2902		// ì´ë¯¸ ë¦¬ìŠ¤íŠ¸(ì¹œêµ¬, ê±°ë¶€)ì— ë“±ë¡ë˜ì–´ìžˆìŒ
+#define ERR_FRIEND_ALREADY_MAX_LIST						0x2903		// ì´ë¯¸ ë¦¬ìŠ¤íŠ¸ ìµœëŒ€ì¸ì›ì´ ë“±ë¡ë˜ì–´ìžˆìŒ
+#define ERR_FRIEND_NO_SUCH_CHARACTER_IN_LIST			0x2904		// ë¦¬ìŠ¤íŠ¸ì—ì„œ ìºë¦­í„°ì´ë¦„ì´ ì—†ìŒ
 	
-// Countdown °ü·Ã ¿¡·¯	
-#define ERR_COUNTDOWN_INVALID_COUNTDOWN_TYPE			0x2910		// Countdown TypeÀÌ À¯È¿ÇÏÁö ¾ÊÀ½
-#define ERR_COUNTDOWN_NOT_ENOUGH_TIME					0x2911		// ½Ã°£ÀÌ °æ°ú µÇÁö ¾Ê¾Ò´Ù
-#define ERR_INTERVAL_SYSTEM_SECOND						0x2912		// 2008-08-18 by dhjin, 1ÃÊ ÅÒ ½Ã½ºÅÛ ±âÈ¹¾È
+// Countdown ê´€ë ¨ ì—ëŸ¬	
+#define ERR_COUNTDOWN_INVALID_COUNTDOWN_TYPE			0x2910		// Countdown Typeì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define ERR_COUNTDOWN_NOT_ENOUGH_TIME					0x2911		// ì‹œê°„ì´ ê²½ê³¼ ë˜ì§€ ì•Šì•˜ë‹¤
+#define ERR_INTERVAL_SYSTEM_SECOND						0x2912		// 2008-08-18 by dhjin, 1ì´ˆ í…€ ì‹œìŠ¤í…œ ê¸°íšì•ˆ
 
-// µµ½ÃÁ¡·ÉÀü °ü·Ã
-#define ERR_CITYWAR_NO_SUCH_CITYWAR_INFO				0x2A00		// µµ½ÃÁ¡·ÉÀü °ü·Ã Á¤º¸°¡ ¾ø´Ù
-#define ERR_CITYWAR_NOT_MATCHED_CITY_MAP_INDEX			0x2A01		// µµ½ÃÁ¡·ÉÀü µµ½Ã ¸ÊÀÌ ¾Æ´Ï´Ù
-#define ERR_CITYWAR_SETOCCUPYINFO_PERMISSION_DENIED		0x2A02		// µµ½ÃÁ¡·ÉÀü ¼³Á¤ ±ÇÇÑ ºÎÁ·
-#define ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_STATE		0x2A03		// µµ½ÃÁ¡·ÉÀü ¼³Á¤ ºÒ°¡´É »óÅÂÀÌ´Ù(Nomal »óÅÂ°¡ ¾Æ´Ï´Ù)
-#define ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_TIME		0x2A04		// ÇöÀç ½Ã°£ÀÌ µµ½ÃÁ¡·ÉÀü ¼³Á¤ ºÒ°¡´É ½Ã°£ÀÌ´Ù
-#define ERR_CITYWAR_SETOCCUPYINFO_INVALID_WARTIME		0x2A05		// µµ½ÃÁ¡·ÉÀü ¼³Á¤ ½Ã°£ÀÌ À¯È¿ÇÏÁö ¾Ê´Ù
+// ë„ì‹œì ë ¹ì „ ê´€ë ¨
+#define ERR_CITYWAR_NO_SUCH_CITYWAR_INFO				0x2A00		// ë„ì‹œì ë ¹ì „ ê´€ë ¨ ì •ë³´ê°€ ì—†ë‹¤
+#define ERR_CITYWAR_NOT_MATCHED_CITY_MAP_INDEX			0x2A01		// ë„ì‹œì ë ¹ì „ ë„ì‹œ ë§µì´ ì•„ë‹ˆë‹¤
+#define ERR_CITYWAR_SETOCCUPYINFO_PERMISSION_DENIED		0x2A02		// ë„ì‹œì ë ¹ì „ ì„¤ì • ê¶Œí•œ ë¶€ì¡±
+#define ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_STATE		0x2A03		// ë„ì‹œì ë ¹ì „ ì„¤ì • ë¶ˆê°€ëŠ¥ ìƒíƒœì´ë‹¤(Nomal ìƒíƒœê°€ ì•„ë‹ˆë‹¤)
+#define ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_TIME		0x2A04		// í˜„ìž¬ ì‹œê°„ì´ ë„ì‹œì ë ¹ì „ ì„¤ì • ë¶ˆê°€ëŠ¥ ì‹œê°„ì´ë‹¤
+#define ERR_CITYWAR_SETOCCUPYINFO_INVALID_WARTIME		0x2A05		// ë„ì‹œì ë ¹ì „ ì„¤ì • ì‹œê°„ì´ ìœ íš¨í•˜ì§€ ì•Šë‹¤
 
-// MGameMoney/MGameCash °ü·Ã
-#define ERR_CASH_mgQueryMall_ERROR						0x3000		// mgQueryMall¿¡¼­ false¸¦ ¸®ÅÏÇÔ
-#define ERR_CASH_mgQueryMall_RESULT_CANNOT_PAYMENT		0x3001		// mgQueryMall¿¡¼­ °á°ú°ª ¿¡·¯(Ãâ±Ý½ÇÆÐ)
-#define ERR_CASH_mgQueryMall_RESULT_NO_ACCOUNT			0x3002		// mgQueryMall¿¡¼­ °á°ú°ª ¿¡·¯(°èÁÂ Á¸ÀçÇÏÁö ¾ÊÀ½)
-#define ERR_CASH_NOT_CHARGE_USER						0x3003		// 2006-06-01 by cmkwon, À¯·á »ç¿ëÀÚ°¡ ¾Æ´Ï´Ù
+// MGameMoney/MGameCash ê´€ë ¨
+#define ERR_CASH_mgQueryMall_ERROR						0x3000		// mgQueryMallì—ì„œ falseë¥¼ ë¦¬í„´í•¨
+#define ERR_CASH_mgQueryMall_RESULT_CANNOT_PAYMENT		0x3001		// mgQueryMallì—ì„œ ê²°ê³¼ê°’ ì—ëŸ¬(ì¶œê¸ˆì‹¤íŒ¨)
+#define ERR_CASH_mgQueryMall_RESULT_NO_ACCOUNT			0x3002		// mgQueryMallì—ì„œ ê²°ê³¼ê°’ ì—ëŸ¬(ê³„ì¢Œ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ)
+#define ERR_CASH_NOT_CHARGE_USER						0x3003		// 2006-06-01 by cmkwon, ìœ ë£Œ ì‚¬ìš©ìžê°€ ì•„ë‹ˆë‹¤
 #define ERR_CASH_INVALID_EXT_ACCOUNTID_NUM				0x3004		// 2006-06-02 by cmkwon
 #define ERR_CASH_INVALID_ITEM_INFORMATION				0x3005		// 2006-06-05 by cmkwon
 #define ERR_CASH_NORMAL_ERROR							0x3006		// 2006-06-05 by cmkwon
-#define ERR_CASH_CASH_SHOP_NO_SERVICE					0x3007		// 2007-01-10 by cmkwon, À¯·á »óÁ¡ ¼­ºñ½º ¾ÈÇÔ
-#define ERR_CASH_LIBRARY_INIT_ERROR						0x3008		// 2007-08-22 by cmkwon, Áß±¹ Yetime ºô¸µ ¶óÀÌºê·¯¸® Àû¿ë - ¿¡·¯ Ãß°¡, ¶óÀÌºê·¯¸® ÃÊ±âÈ­ ¿¡·¯
-#define ERR_CASH_INVALID_GIVE_TARGET_ACCOUNT			0x3009		// 2009-08-18 by cmkwon, ¿¹´ç Ä³½¬˜Þ ºí·° °èÁ¤ Ã¼Å© Ãß°¡ - °èÁ¤ ºí·° »óÅÂ
+#define ERR_CASH_CASH_SHOP_NO_SERVICE					0x3007		// 2007-01-10 by cmkwon, ìœ ë£Œ ìƒì  ì„œë¹„ìŠ¤ ì•ˆí•¨
+#define ERR_CASH_LIBRARY_INIT_ERROR						0x3008		// 2007-08-22 by cmkwon, ì¤‘êµ­ Yetime ë¹Œë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì ìš© - ì—ëŸ¬ ì¶”ê°€, ë¼ì´ë¸ŒëŸ¬ë¦¬ ì´ˆê¸°í™” ì—ëŸ¬
+#define ERR_CASH_INVALID_GIVE_TARGET_ACCOUNT			0x3009		// 2009-08-18 by cmkwon, ì˜ˆë‹¹ ìºì‰¬Â˜?ë¸”ëŸ­ ê³„ì • ì²´í¬ ì¶”ê°€ - ê³„ì • ë¸”ëŸ­ ìƒíƒœ
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // 2005-12-02 by cmkwon
-#define ERR_INVALID_CHARACTER							0x4000		// Character°¡ À¯È¿ÇÏÁö ¾Ê´Ù(Á¢¼ÓÁ¾·á, Á×Àº)
-#define ERR_INVALID_PEER_CHARACTER						0x4001		// ³ª ¾Æ´Ñ ´Ù¸¥ Character°¡ À¯È¿ÇÏÁö ¾Ê´Ù(Á¢¼ÓÁ¾·á, Á×Àº)
-#define ERR_WARPING										0x4002		// ¿öÇÁÁß
-#define ERR_IN_PARTY_BATTLE								0x4003		// ÆÄÆ¼ÀüÁß
-#define ERR_REQ_WARP_COMPLETIONQUEST_NOT_MATCHED		0x4004		// ¿öÇÁ ¿ä°Ç ¿À·ù, ÇÊ¿ä Äù½ºÆ®¸¦ ¿Ï·áÇØ¾ß ÇÑ´Ù
-#define ERR_REQ_CHOOSE_INFLUENCE_TYPE					0x4005		// ¼¼·Â ¼±ÅÃÀÌ ÇÊ¿äÇÏ´Ù
-#define ERR_CANNOT_WARP_CONNFLICT_AREA					0x4006		// ºÐÀï Áö¿ªÀ¸·Î ¿öÇÁ ºÒ°¡,// 2006-02-14 by cmkwon
-#define ERR_CANNOT_WARP_POSSESSED_CONNFLICT_AREA		0x4007		// Á¡À¯µÈ ºÐÀï Áö¿ªÀ¸·Î ¿öÇÁ ºÒ°¡,// 2006-02-14 by cmkwon
-#define ERR_CANNOT_WARP_BY_TRADING						0x4008		// °Å·¡ÁßÀÌ¹Ç·Î ¿öÇÁ ºÒ°¡, 2006-03-23 by cmkwon
-#define ERR_CANNOT_WARP_BY_SHOPPING						0x4009		// »óÁ¡ ÀÌ¿ëÁßÀÌ¹Ç·Î ¿öÇÁ ºÒ°¡, 2006-03-23 by cmkwon
-#define ERR_CANNOT_ATTACHED_USING_PREMIUM_CARD			0x400A		// 2006-03-30 by cmkwon, ÀÌ ¾ÆÀÌÅÛÀº ÇÁ¸®¹Ì¾ö Ä«µå »ç¿ë Áß¿¡´Â ÀåÂø ÇÒ ¼ö ¾ø´Ù
-#define ERR_CANNOT_BUY_PREMIUM_CARD_USING_SPEC_ITEM		0x400B		// 2006-03-30 by cmkwon, Æ¯Á¤ ¾ÆÀÌÅÛ »ç¿ë Áß ¿¡´Â ÇÁ¸®¹Ì¾ö Ä«µå¸¦ ±¸ÀÔ ÇÒ ¼ö ¾ø´Ù
-#define ERR_EXPIRED_ITEM								0x400C		// 2006-03-31 by cmkwon, »ç¿ë ½Ã°£ÀÌ °æ°úµÈ ¾ÆÀÌÅÛÀÌ´Ù
-#define ERR_FAILURE_USE_RESTORE_ITEM					0x400D		// 2006-04-10 by cmkwon, ºÎÈ° ¾ÆÀÌÅÛ(Ãµ»çÀÇ °¡È£/³¯°³/±êÅÐ) »ç¿ë ½ÇÆÐ - È®·ü·Î ½ÇÆÐ
-#define ERR_DOING_GAMEEVENT								0x400E		// 2006-04-21 by cmkwon, ÀÌ¹Ì °ÔÀÓÀÌº¥Æ® ÁøÇàÁß
+#define ERR_INVALID_CHARACTER							0x4000		// Characterê°€ ìœ íš¨í•˜ì§€ ì•Šë‹¤(ì ‘ì†ì¢…ë£Œ, ì£½ì€)
+#define ERR_INVALID_PEER_CHARACTER						0x4001		// ë‚˜ ì•„ë‹Œ ë‹¤ë¥¸ Characterê°€ ìœ íš¨í•˜ì§€ ì•Šë‹¤(ì ‘ì†ì¢…ë£Œ, ì£½ì€)
+#define ERR_WARPING										0x4002		// ì›Œí”„ì¤‘
+#define ERR_IN_PARTY_BATTLE								0x4003		// íŒŒí‹°ì „ì¤‘
+#define ERR_REQ_WARP_COMPLETIONQUEST_NOT_MATCHED		0x4004		// ì›Œí”„ ìš”ê±´ ì˜¤ë¥˜, í•„ìš” í€˜ìŠ¤íŠ¸ë¥¼ ì™„ë£Œí•´ì•¼ í•œë‹¤
+#define ERR_REQ_CHOOSE_INFLUENCE_TYPE					0x4005		// ì„¸ë ¥ ì„ íƒì´ í•„ìš”í•˜ë‹¤
+#define ERR_CANNOT_WARP_CONNFLICT_AREA					0x4006		// ë¶„ìŸ ì§€ì—­ìœ¼ë¡œ ì›Œí”„ ë¶ˆê°€,// 2006-02-14 by cmkwon
+#define ERR_CANNOT_WARP_POSSESSED_CONNFLICT_AREA		0x4007		// ì ìœ ëœ ë¶„ìŸ ì§€ì—­ìœ¼ë¡œ ì›Œí”„ ë¶ˆê°€,// 2006-02-14 by cmkwon
+#define ERR_CANNOT_WARP_BY_TRADING						0x4008		// ê±°ëž˜ì¤‘ì´ë¯€ë¡œ ì›Œí”„ ë¶ˆê°€, 2006-03-23 by cmkwon
+#define ERR_CANNOT_WARP_BY_SHOPPING						0x4009		// ìƒì  ì´ìš©ì¤‘ì´ë¯€ë¡œ ì›Œí”„ ë¶ˆê°€, 2006-03-23 by cmkwon
+#define ERR_CANNOT_ATTACHED_USING_PREMIUM_CARD			0x400A		// 2006-03-30 by cmkwon, ì´ ì•„ì´í…œì€ í”„ë¦¬ë¯¸ì—„ ì¹´ë“œ ì‚¬ìš© ì¤‘ì—ëŠ” ìž¥ì°© í•  ìˆ˜ ì—†ë‹¤
+#define ERR_CANNOT_BUY_PREMIUM_CARD_USING_SPEC_ITEM		0x400B		// 2006-03-30 by cmkwon, íŠ¹ì • ì•„ì´í…œ ì‚¬ìš© ì¤‘ ì—ëŠ” í”„ë¦¬ë¯¸ì—„ ì¹´ë“œë¥¼ êµ¬ìž… í•  ìˆ˜ ì—†ë‹¤
+#define ERR_EXPIRED_ITEM								0x400C		// 2006-03-31 by cmkwon, ì‚¬ìš© ì‹œê°„ì´ ê²½ê³¼ëœ ì•„ì´í…œì´ë‹¤
+#define ERR_FAILURE_USE_RESTORE_ITEM					0x400D		// 2006-04-10 by cmkwon, ë¶€í™œ ì•„ì´í…œ(ì²œì‚¬ì˜ ê°€í˜¸/ë‚ ê°œ/ê¹ƒí„¸) ì‚¬ìš© ì‹¤íŒ¨ - í™•ë¥ ë¡œ ì‹¤íŒ¨
+#define ERR_DOING_GAMEEVENT								0x400E		// 2006-04-21 by cmkwon, ì´ë¯¸ ê²Œìž„ì´ë²¤íŠ¸ ì§„í–‰ì¤‘
 #define ERR_INVALID_GAMEUSER							0x400F		// 
 #define ERR_INVALID_CALL_WARP_EVENT_ID					0x4010		// 2006-07-21 by cmkwon 
 #define ERR_TIMEOVER_CALL_WARP_EVENT					0x4011		// 2006-07-21 by cmkwon 
@@ -394,247 +394,247 @@
 #define ERR_OVER_COUNT									0x4013		// 2006-07-26 by cmkwon
 #define ERR_INVALID_BAZAAR								0x4014		// 2006-07-26 by cmkwon
 #define ERR_USING_BAZAAR								0x4015		// 2006-07-26 by cmkwon
-#define ERR_INVISIBLE_STATE								0x4016		// 2006-08-03 by cmkwon, Ä³¸¯ÅÍ°¡ Åõ¸í »óÅÂÀÌ´Ù
-#define ERR_DOING_SERVER_SHUTDOWN						0x4017		// 2006-08-04 by cmkwon, ¼­¹ö ´Ù¿î ÁøÇà»óÅÂ
-#define ERR_NO_SEARCH_CHARACTER							0x4018		// 2006-09-15 by dhjin, Ä³¸¯ÅÍ¸¦ Ã£Áö ¸øÇßÀ»¶§
-#define ERR_NO_MEMBERSHIP_USER							0x4019		// 2006-09-15 by dhjin, ¸É¹ö½± À¯Àú°¡ ¾Æ´Ò¶§
-#define ERR_ALREADY_OPEN_OTHER_STORE					0x401A		// 2006-09-15 by cmkwon, ´Ù¸¥ Ã¢°í°¡ ¿­·Á ÀÖ´Ù
-#define ERR_ALREADY_LOADING_GUILD_STORE					0x401B		// 2006-09-15 by cmkwon, ¿©´Ü Ã¢°í ¾ÆÀÌÅÛ ·ÎµùÁß
-#define ERR_NO_SUCH_GUILD_STORE							0x401C		// 2006-09-25 by cmkwon, ¿©´Ü UID·Î ¿©´Ü Ã¢°í°¡ ¾øÀ½
-#define ERR_PERMISSION_DENIED							0x401D		// 2006-09-27 by cmkwon, Á¢±Ù ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.
-#define ERR_INVALID_EXCUTE_PARAMETER_COUNT				0x401E		// 2006-10-02 by cmkwon, ½ÇÇà ÀÎÀÚ °³¼ö ¿À·ù
-#define ERR_INVALID_EXCUTE_PARAMETER					0x401F		// 2006-10-02 by cmkwon, ½ÇÇà ÀÎÀÚ ¿À·ù
-#define ERR_NOT_RANK_DRAW_GUILD_STORE					0x4020		// 2006-10-09 by dhjin, ´ë´ë¿ø ÀÌ»ó¸¸ Ã£À» ¼ö ÀÖ´Ù.
-#define ERR_CANNOT_BOOSTER								0x4021		// 2006-10-13 by cmkwon, ºÎ½ºÅÍ »ç¿ë ºÒ°¡
-#define ERR_NOT_INVISIBLE_STATE							0x4022		// 2007-04-02 by cmkwon, Ä³¸¯ÅÍ°¡ Åõ¸í »óÅÂ°¡ ¾Æ´Ï´Ù
-#define ERR_JAMBOREE_NO_SUCH_CHARACTER					0x4023		// 2007-04-09 by cmkwon, ´ëÈ¸ ¼­¹ö¿¡ Ä³¸¯ÅÍ°¡ ¾ø´Ù, Á¢¼Ó ºÒ°¡
-#define ERR_JAMBOREE_FAIL_CREATE_CHARACTER				0x4024		// 2007-04-09 by cmkwon, ´ëÈ¸ ¼­¹ö¿¡ Ä³¸¯ÅÍ »ý¼º ºÒ°¡
-#define ERR_BOSS_STRATEGYPOINT_STATE_SUMMON				0x4025		// 2007-04-26 by dhjin, ÀüÇÔÀÌ³ª Àü·«Æ÷ÀÎÆ®°¡ ¼ÒÈ¯µÇ¾î ÀÖ´Â »óÅÂ				
-#define ERR_CANNOT_WARP_TO_CITY							0x4026		// 2007-05-22 by cmkwon, µµ½Ã¸ÊÀ¸·Î ¿öÇÁ ºÒ°¡(´Ù¸¥ ¼¼·ÂÀÇ µµ½Ã¸Ê)
-#define ERR_INVALID_WEAPON_INDEX						0x4027		// 2007-06-08 by cmkwon, 2Çü ÅºµÎ ÀÎµ¦½º ¿À·ù
-#define ERR_INVALID_TUTORIAL							0x4028		// 2007-07-23 by dhjin, Tutorial Á¤º¸¸¦ Ã£À» ¼ö ¾ø´Ù.
-#define ERR_CANNOT_USE_SPEAKER_ITEM						0x4029		// 2007-08-24 by cmkwon, ½ºÇÇÄ¿¾ÆÀÌÅÛ »ç¿ë °¡´É/±ÝÁö ¼³Á¤ ±â´É Ãß°¡ - ¿¡·¯Ãß°¡
-#define ERR_CANNOT_WARP_TO_OUTPOST						0x402A		// 2007-08-28 by dhjin, ÀüÁø±âÁö ¸ÊÀ¸·Î ¿öÇÁ ºÒ°¡
-#define ERR_CANNOT_SEARCH_OUTPOST						0x402B		// 2007-08-28 by dhjin, ÀüÁø±âÁö Ã£Áö ¸øÇßÀ» ¶§
-#define ERR_ALREADY_SET_OUTPOST_NEXTWARTIME				0x402C		// 2007-08-28 by dhjin, ÀüÁø±âÁö ½Ã°£ ¼³Á¤ÀÌ ÀÌ¹Ì µÇ¾îÀÖ´Ù.
-#define ERR_CANNOT_SEARCH_OUTPOST_NEXTWARTIME			0x402D		// 2007-08-28 by dhjin, ÀüÁø±âÁö ½Ã°£ ¼³Á¤À» Ã£Áö ¸øÇßÀ» ¶§
-#define ERR_CONFERENCEROOM_PERMISSION_DENIED			0x402E		// 2007-08-30 by cmkwon, È¸ÀÇ·ë ½Ã½ºÅÛ ±¸Çö - ¿öÇÁ ºÒ°¡ ¿¡·¯ Ãß°¡
-#define ERR_CANNOT_WARP_TO_OUTPOST_CITY_MAP				0x402F		// 2007-09-12 by dhjin, ÀüÁø±âÁö µµ½Ã ¸ÊÀ¸·Î ¿öÇÁ ºÒ°¡
+#define ERR_INVISIBLE_STATE								0x4016		// 2006-08-03 by cmkwon, ìºë¦­í„°ê°€ íˆ¬ëª… ìƒíƒœì´ë‹¤
+#define ERR_DOING_SERVER_SHUTDOWN						0x4017		// 2006-08-04 by cmkwon, ì„œë²„ ë‹¤ìš´ ì§„í–‰ìƒíƒœ
+#define ERR_NO_SEARCH_CHARACTER							0x4018		// 2006-09-15 by dhjin, ìºë¦­í„°ë¥¼ ì°¾ì§€ ëª»í–ˆì„ë•Œ
+#define ERR_NO_MEMBERSHIP_USER							0x4019		// 2006-09-15 by dhjin, ë§´ë²„ì‰½ ìœ ì €ê°€ ì•„ë‹ë•Œ
+#define ERR_ALREADY_OPEN_OTHER_STORE					0x401A		// 2006-09-15 by cmkwon, ë‹¤ë¥¸ ì°½ê³ ê°€ ì—´ë ¤ ìžˆë‹¤
+#define ERR_ALREADY_LOADING_GUILD_STORE					0x401B		// 2006-09-15 by cmkwon, ì—¬ë‹¨ ì°½ê³  ì•„ì´í…œ ë¡œë”©ì¤‘
+#define ERR_NO_SUCH_GUILD_STORE							0x401C		// 2006-09-25 by cmkwon, ì—¬ë‹¨ UIDë¡œ ì—¬ë‹¨ ì°½ê³ ê°€ ì—†ìŒ
+#define ERR_PERMISSION_DENIED							0x401D		// 2006-09-27 by cmkwon, ì ‘ê·¼ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.
+#define ERR_INVALID_EXCUTE_PARAMETER_COUNT				0x401E		// 2006-10-02 by cmkwon, ì‹¤í–‰ ì¸ìž ê°œìˆ˜ ì˜¤ë¥˜
+#define ERR_INVALID_EXCUTE_PARAMETER					0x401F		// 2006-10-02 by cmkwon, ì‹¤í–‰ ì¸ìž ì˜¤ë¥˜
+#define ERR_NOT_RANK_DRAW_GUILD_STORE					0x4020		// 2006-10-09 by dhjin, ëŒ€ëŒ€ì› ì´ìƒë§Œ ì°¾ì„ ìˆ˜ ìžˆë‹¤.
+#define ERR_CANNOT_BOOSTER								0x4021		// 2006-10-13 by cmkwon, ë¶€ìŠ¤í„° ì‚¬ìš© ë¶ˆê°€
+#define ERR_NOT_INVISIBLE_STATE							0x4022		// 2007-04-02 by cmkwon, ìºë¦­í„°ê°€ íˆ¬ëª… ìƒíƒœê°€ ì•„ë‹ˆë‹¤
+#define ERR_JAMBOREE_NO_SUCH_CHARACTER					0x4023		// 2007-04-09 by cmkwon, ëŒ€íšŒ ì„œë²„ì— ìºë¦­í„°ê°€ ì—†ë‹¤, ì ‘ì† ë¶ˆê°€
+#define ERR_JAMBOREE_FAIL_CREATE_CHARACTER				0x4024		// 2007-04-09 by cmkwon, ëŒ€íšŒ ì„œë²„ì— ìºë¦­í„° ìƒì„± ë¶ˆê°€
+#define ERR_BOSS_STRATEGYPOINT_STATE_SUMMON				0x4025		// 2007-04-26 by dhjin, ì „í•¨ì´ë‚˜ ì „ëžµí¬ì¸íŠ¸ê°€ ì†Œí™˜ë˜ì–´ ìžˆëŠ” ìƒíƒœ				
+#define ERR_CANNOT_WARP_TO_CITY							0x4026		// 2007-05-22 by cmkwon, ë„ì‹œë§µìœ¼ë¡œ ì›Œí”„ ë¶ˆê°€(ë‹¤ë¥¸ ì„¸ë ¥ì˜ ë„ì‹œë§µ)
+#define ERR_INVALID_WEAPON_INDEX						0x4027		// 2007-06-08 by cmkwon, 2í˜• íƒ„ë‘ ì¸ë±ìŠ¤ ì˜¤ë¥˜
+#define ERR_INVALID_TUTORIAL							0x4028		// 2007-07-23 by dhjin, Tutorial ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤.
+#define ERR_CANNOT_USE_SPEAKER_ITEM						0x4029		// 2007-08-24 by cmkwon, ìŠ¤í”¼ì»¤ì•„ì´í…œ ì‚¬ìš© ê°€ëŠ¥/ê¸ˆì§€ ì„¤ì • ê¸°ëŠ¥ ì¶”ê°€ - ì—ëŸ¬ì¶”ê°€
+#define ERR_CANNOT_WARP_TO_OUTPOST						0x402A		// 2007-08-28 by dhjin, ì „ì§„ê¸°ì§€ ë§µìœ¼ë¡œ ì›Œí”„ ë¶ˆê°€
+#define ERR_CANNOT_SEARCH_OUTPOST						0x402B		// 2007-08-28 by dhjin, ì „ì§„ê¸°ì§€ ì°¾ì§€ ëª»í–ˆì„ ë•Œ
+#define ERR_ALREADY_SET_OUTPOST_NEXTWARTIME				0x402C		// 2007-08-28 by dhjin, ì „ì§„ê¸°ì§€ ì‹œê°„ ì„¤ì •ì´ ì´ë¯¸ ë˜ì–´ìžˆë‹¤.
+#define ERR_CANNOT_SEARCH_OUTPOST_NEXTWARTIME			0x402D		// 2007-08-28 by dhjin, ì „ì§„ê¸°ì§€ ì‹œê°„ ì„¤ì •ì„ ì°¾ì§€ ëª»í–ˆì„ ë•Œ
+#define ERR_CONFERENCEROOM_PERMISSION_DENIED			0x402E		// 2007-08-30 by cmkwon, íšŒì˜ë£¸ ì‹œìŠ¤í…œ êµ¬í˜„ - ì›Œí”„ ë¶ˆê°€ ì—ëŸ¬ ì¶”ê°€
+#define ERR_CANNOT_WARP_TO_OUTPOST_CITY_MAP				0x402F		// 2007-09-12 by dhjin, ì „ì§„ê¸°ì§€ ë„ì‹œ ë§µìœ¼ë¡œ ì›Œí”„ ë¶ˆê°€
 
 
-#define ERR_ARENA_NO_SUCH_TEAM							0x4030		// 2007-04-23 by dhjin, ¾Æ·¹³ª Á¶°Ç¿¡ ¸Â´Â ÆÀÀ» Ã£À» ¼ö ¾ø´Ù
-#define ERR_ARENA_CREATE_TEAM							0x4031		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ »ý¼º ½ÇÆÐ
-#define ERR_ARENA_NOT_MATCH_MODE						0x4032		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ ¸ðµå°¡ Æ²¸®´Ù
-#define ERR_ARENA_NOT_MATCH_LEVEL						0x4033		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ ·¹º§ÀÌ Æ²¸®´Ù
-#define ERR_ARENA_NOT_MATCH_PW							0x4034		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ ÆÐ½º¿ö°¡ Æ²¸®´Ù
-#define ERR_ARENA_FULL_TEAMLIST							0x4035		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀÀÌ ²Ë Â÷ÀÖ´Ù
-#define ERR_ARENA_STATE									0x4036		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ »óÅÂ¿©¼­ ¿À·ù ÀÏ¶§
-#define ERR_ARENA_STATE_TEAM_READY						0x4037		// 2007-06-05 by dhjin, ¾Æ·¹³ª ÆÀ ¸ÅÄªÁßÀÌ¾î¼­ ÆÀ¿¡ Âü°¡ ÇÒ ¼ö ¾øÀ»¶§
-#define ERR_ARENA_STATE_TEAM_WARING						0x4038		// 2007-04-23 by dhjin, ¾Æ·¹³ª ÆÀ ÁøÇàÁßÀÌ¾î¼­ ÆÀ¿¡ Âü°¡ ÇÒ ¼ö ¾øÀ»¶§
-#define ERR_ARENA_BLOCKED								0x4039		// 2007-07-11 by cmkwon, ¾Æ·¹³ªºí·° ½Ã½ºÅÛ ±¸Çö - 
+#define ERR_ARENA_NO_SUCH_TEAM							0x4030		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ ì¡°ê±´ì— ë§žëŠ” íŒ€ì„ ì°¾ì„ ìˆ˜ ì—†ë‹¤
+#define ERR_ARENA_CREATE_TEAM							0x4031		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ ìƒì„± ì‹¤íŒ¨
+#define ERR_ARENA_NOT_MATCH_MODE						0x4032		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ ëª¨ë“œê°€ í‹€ë¦¬ë‹¤
+#define ERR_ARENA_NOT_MATCH_LEVEL						0x4033		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ ë ˆë²¨ì´ í‹€ë¦¬ë‹¤
+#define ERR_ARENA_NOT_MATCH_PW							0x4034		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ íŒ¨ìŠ¤ì›Œê°€ í‹€ë¦¬ë‹¤
+#define ERR_ARENA_FULL_TEAMLIST							0x4035		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ì´ ê½‰ ì°¨ìžˆë‹¤
+#define ERR_ARENA_STATE									0x4036		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ ìƒíƒœì—¬ì„œ ì˜¤ë¥˜ ì¼ë•Œ
+#define ERR_ARENA_STATE_TEAM_READY						0x4037		// 2007-06-05 by dhjin, ì•„ë ˆë‚˜ íŒ€ ë§¤ì¹­ì¤‘ì´ì–´ì„œ íŒ€ì— ì°¸ê°€ í•  ìˆ˜ ì—†ì„ë•Œ
+#define ERR_ARENA_STATE_TEAM_WARING						0x4038		// 2007-04-23 by dhjin, ì•„ë ˆë‚˜ íŒ€ ì§„í–‰ì¤‘ì´ì–´ì„œ íŒ€ì— ì°¸ê°€ í•  ìˆ˜ ì—†ì„ë•Œ
+#define ERR_ARENA_BLOCKED								0x4039		// 2007-07-11 by cmkwon, ì•„ë ˆë‚˜ë¸”ëŸ­ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
-#define ERR_NO_SEARCH_CITYLEADER_INFO					0x4040		// 2007-08-22 by dhjin, CityLeader Á¤º¸¸¦ Ã£Áö ¸øÇßÀ» ¶§
-#define ERR_REQ_NOT_LEADER_CANDIDATE					0x4041		// 2007-10-30 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï Á¶°Ç¿¡ ÀûÇÕÇÏÁö ¾Ê´Ù.
-#define ERR_REQ_NOT_POLLDATE_APPLICATION				0x4042		// 2007-10-30 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï ±â°£ÀÌ ¾Æ´Ï´Ù.
-#define ERR_FAIL_REG_LEADER_CANDIDATE_BY_DB				0x4043		// 2007-10-30 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï¿¡ ½ÇÆÐ DB
-#define ERR_FAIL_REG_LEADER_CANDIDATE_BY_REQ			0x4044		// 2007-10-30 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï¿¡ ¿ä±¸ Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇØ ½ÇÆÐ
-#define ERR_REQ_NOT_POLLDATE_VOTE						0x4045		// 2007-10-30 by dhjin, ÅõÇ¥ ±â°£ÀÌ ¾Æ´Ï´Ù.
-#define ERR_REQ_NOT_VOTE								0x4046		// 2007-10-31 by dhjin, ÅõÇ¥ Á¶°Ç¿¡ ÀûÇÕÇÏÁö ¾Ê´Ù.
-#define ERR_ALREADY_VOTE								0x4047		// 2007-10-31 by dhjin, ÀÌ¹Ì ÅõÇ¥ÇÑ À¯ÀúÀÌ´Ù.
-#define ERR_INVALID_LEADER_CANDIDATE					0x4048		// 2007-10-31 by dhjin, À¯È¿ÇÑ ÁöµµÀÚ ÈÄº¸°¡ ¾Æ´Ï´Ù.
-#define ERR_ALREADY_LEADER_CANDIDATE					0x4049		// 2007-11-01 by dhjin, ÀÌ¹Ì ÁöµµÀÚ ÈÄº¸ÀÌ´Ù.
-#define ERR_ALREADY_DELETE_LEADER_CANDIDATE				0x404A		// 2007-11-01 by dhjin, ÀÌ¹Ì Å»ÅðÇÑ ÁöµµÀÚ ÈÄº¸ÀÌ°Å³ª Å»Åð°¡ ºÒ°¡´ÉÇÑ À¯ÀúÀÌ´Ù.
-#define ERR_REQ_NOT_POLLDATE_ALL_RANGE					0x404B		// 2007-11-20 by dhjin, ¼±°Å ±â°£ÀÌ ¾Æ´Ï´Ù.
-#define ERR_REQ_REG_LEADER_CANDIDATE					0x404C		// 2007-11-20 by dhjin, ÁöµµÀÚ ÈÄº¸¿¡ µî·ÏÀÌ µÇ¾îÀÖ´Ù.
+#define ERR_NO_SEARCH_CITYLEADER_INFO					0x4040		// 2007-08-22 by dhjin, CityLeader ì •ë³´ë¥¼ ì°¾ì§€ ëª»í–ˆì„ ë•Œ
+#define ERR_REQ_NOT_LEADER_CANDIDATE					0x4041		// 2007-10-30 by dhjin, ì§€ë„ìž í›„ë³´ ë“±ë¡ ì¡°ê±´ì— ì í•©í•˜ì§€ ì•Šë‹¤.
+#define ERR_REQ_NOT_POLLDATE_APPLICATION				0x4042		// 2007-10-30 by dhjin, ì§€ë„ìž í›„ë³´ ë“±ë¡ ê¸°ê°„ì´ ì•„ë‹ˆë‹¤.
+#define ERR_FAIL_REG_LEADER_CANDIDATE_BY_DB				0x4043		// 2007-10-30 by dhjin, ì§€ë„ìž í›„ë³´ ë“±ë¡ì— ì‹¤íŒ¨ DB
+#define ERR_FAIL_REG_LEADER_CANDIDATE_BY_REQ			0x4044		// 2007-10-30 by dhjin, ì§€ë„ìž í›„ë³´ ë“±ë¡ì— ìš”êµ¬ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í•´ ì‹¤íŒ¨
+#define ERR_REQ_NOT_POLLDATE_VOTE						0x4045		// 2007-10-30 by dhjin, íˆ¬í‘œ ê¸°ê°„ì´ ì•„ë‹ˆë‹¤.
+#define ERR_REQ_NOT_VOTE								0x4046		// 2007-10-31 by dhjin, íˆ¬í‘œ ì¡°ê±´ì— ì í•©í•˜ì§€ ì•Šë‹¤.
+#define ERR_ALREADY_VOTE								0x4047		// 2007-10-31 by dhjin, ì´ë¯¸ íˆ¬í‘œí•œ ìœ ì €ì´ë‹¤.
+#define ERR_INVALID_LEADER_CANDIDATE					0x4048		// 2007-10-31 by dhjin, ìœ íš¨í•œ ì§€ë„ìž í›„ë³´ê°€ ì•„ë‹ˆë‹¤.
+#define ERR_ALREADY_LEADER_CANDIDATE					0x4049		// 2007-11-01 by dhjin, ì´ë¯¸ ì§€ë„ìž í›„ë³´ì´ë‹¤.
+#define ERR_ALREADY_DELETE_LEADER_CANDIDATE				0x404A		// 2007-11-01 by dhjin, ì´ë¯¸ íƒˆí‡´í•œ ì§€ë„ìž í›„ë³´ì´ê±°ë‚˜ íƒˆí‡´ê°€ ë¶ˆê°€ëŠ¥í•œ ìœ ì €ì´ë‹¤.
+#define ERR_REQ_NOT_POLLDATE_ALL_RANGE					0x404B		// 2007-11-20 by dhjin, ì„ ê±° ê¸°ê°„ì´ ì•„ë‹ˆë‹¤.
+#define ERR_REQ_REG_LEADER_CANDIDATE					0x404C		// 2007-11-20 by dhjin, ì§€ë„ìž í›„ë³´ì— ë“±ë¡ì´ ë˜ì–´ìžˆë‹¤.
 
-#define ERR_WARING_OUTPOST_TO_OWNMAP					0x404D		// 2007-11-09 by dhjin, ÀüÁø±âÁö°¡ ÁøÇà ÁßÀÌ´Ù.
+#define ERR_WARING_OUTPOST_TO_OWNMAP					0x404D		// 2007-11-09 by dhjin, ì „ì§„ê¸°ì§€ê°€ ì§„í–‰ ì¤‘ì´ë‹¤.
 
-#define ERR_DELETE_CHARACTER_GUILDCOMMANDER				0x404E		// 2008-10-20 by dhjin, ¿©´ÜÀåÀº ÄÉ¸¯ÅÍ »èÁ¦ ºÒ°¡·Î º¯°æ
+#define ERR_DELETE_CHARACTER_GUILDCOMMANDER				0x404E		// 2008-10-20 by dhjin, ì—¬ë‹¨ìž¥ì€ ì¼€ë¦­í„° ì‚­ì œ ë¶ˆê°€ë¡œ ë³€ê²½
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆÐ½º¿öµå ±¸Çö - 2Â÷ÆÐ½º¿öµå ½Ã½ºÅÛ ¿¡·¯ Ãß°¡
-#define ERR_SECPASS_NOT_USE_SYSTEM						0x4050		// 2007-09-12 by cmkwon, 2Â÷ÆÐ½º¿öµå ½Ã½ºÅÛÀ» »ç¿ëÇÏÁö ¾Ê´Â´Ù
-#define ERR_SECPASS_PASSWORD_NOT_SETTING				0x4051		// 2007-09-12 by cmkwon, 2Â÷ÆÐ½º¿öµå°¡ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀ½
-#define ERR_SECPASS_ALREADY_LOCK						0x4052		// 2007-09-12 by cmkwon, ÀÌ¹Ì Lock »óÅÂÀÓ
-#define ERR_SECPASS_ALREADY_UNLOCK						0x4053		// 2007-09-12 by cmkwon, ÀÌ¹Ì Unlock »óÅÂÀÓ
-#define ERR_SECPASS_PASSWORD_NOT_MATCHED				0x4054		// 2007-09-12 by cmkwon, ÀÌ¹Ì Unlock »óÅÂÀÓ
-#define ERR_SECPASS_NEW_PASSWORD_NOT_SETTING			0x4055		// 2007-09-12 by cmkwon, ½Å±Ô ÆÐ½º¿öµå°¡ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀ½
-#define ERR_SECPASS_LOCKED								0x4056		// 2007-09-12 by cmkwon, 2Â÷ÆÐ½º¿öµå°¡ Lock »óÅÂÀÓ
+// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - 2ì°¨íŒ¨ìŠ¤ì›Œë“œ ì‹œìŠ¤í…œ ì—ëŸ¬ ì¶”ê°€
+#define ERR_SECPASS_NOT_USE_SYSTEM						0x4050		// 2007-09-12 by cmkwon, 2ì°¨íŒ¨ìŠ¤ì›Œë“œ ì‹œìŠ¤í…œì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
+#define ERR_SECPASS_PASSWORD_NOT_SETTING				0x4051		// 2007-09-12 by cmkwon, 2ì°¨íŒ¨ìŠ¤ì›Œë“œê°€ ì„¤ì •ë˜ì–´ ìžˆì§€ ì•ŠìŒ
+#define ERR_SECPASS_ALREADY_LOCK						0x4052		// 2007-09-12 by cmkwon, ì´ë¯¸ Lock ìƒíƒœìž„
+#define ERR_SECPASS_ALREADY_UNLOCK						0x4053		// 2007-09-12 by cmkwon, ì´ë¯¸ Unlock ìƒíƒœìž„
+#define ERR_SECPASS_PASSWORD_NOT_MATCHED				0x4054		// 2007-09-12 by cmkwon, ì´ë¯¸ Unlock ìƒíƒœìž„
+#define ERR_SECPASS_NEW_PASSWORD_NOT_SETTING			0x4055		// 2007-09-12 by cmkwon, ì‹ ê·œ íŒ¨ìŠ¤ì›Œë“œê°€ ì„¤ì •ë˜ì–´ ìžˆì§€ ì•ŠìŒ
+#define ERR_SECPASS_LOCKED								0x4056		// 2007-09-12 by cmkwon, 2ì°¨íŒ¨ìŠ¤ì›Œë“œê°€ Lock ìƒíƒœìž„
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-11-10 by dhjin. ·°Å°¸Ó½Å
-#define ERR_LUCKYITEM_INSERT_BUT_COINITEM_DELETE		0x4060		// 2008-11-10 by dhjin, ·°Å°¸Ó½Å ¾ÆÀÌÅÛÀÌ ÇÏ³ª¶óµµ Áö±ÞµÇ¾úÁö¸¸ ½Ã½ºÅÛ¿¡ ¿À·ù°¡ ÀÖ¾î Á¤»óÁö±ÞÀÌ µÇÁö´Â ¾Ê¾ÒÀ» °æ¿ì
+// 2008-11-10 by dhjin. ëŸ­í‚¤ë¨¸ì‹ 
+#define ERR_LUCKYITEM_INSERT_BUT_COINITEM_DELETE		0x4060		// 2008-11-10 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ì•„ì´í…œì´ í•˜ë‚˜ë¼ë„ ì§€ê¸‰ë˜ì—ˆì§€ë§Œ ì‹œìŠ¤í…œì— ì˜¤ë¥˜ê°€ ìžˆì–´ ì •ìƒì§€ê¸‰ì´ ë˜ì§€ëŠ” ì•Šì•˜ì„ ê²½ìš°
 
-#define ERR_CANNOT_WARP_DURING_MSWAR					0x4061		// 2012-07-02 by hskim, ¸ð¼±Àü °³¼± - ¸ð¼±Àü ÁøÇà½Ã ½ºÅæÁî ·çÀÎ ÁøÀÔ ºÒ°¡
-
-///////////////////////////////////////////////////////////////////////////////
-// ¾ÆÀÌÅÛ °ü·Ã
-#define ERR_INVALID_ARMOR_ITEM							0x4100		// ¾Æ¸Ó ¾ÆÀÌÅÛÀÌ À¯È¿ÇÏÁö ¾Ê´Ù(¾ø°Å³ª ItemKind ¿À·ù)
-#define ERR_ITEM_TRADING								0x4101		// 2005-12-26 by cmkwon, °Å·¡ÁßÀÔ´Ï´Ù. (»óÁ¡ÀÌ¿ë ºÒ°¡, Ã¢°í ÀÌ¿ë ºÒ°¡, ...)
-#define ERR_USING_SHOP									0x4102		// 2006-05-11 by cmkwon, »óÁ¡ ÀÌ¿ëÁß(°Å·¡ ºÒ°¡)
-#define ERR_NO_SUCH_WEAPON_ITEM							0x4103		// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - ¿¡·¯ÄÚµå Ãß°¡
-#define ERR_ALREADY_FULL_BULLET							0x4104		// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - ¿¡·¯ÄÚµå Ãß°¡
-#define ERR_INVALID_ITEMEVENT_UID						0x4105		// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
-#define ERR_NOT_ACCOUNT_BLOCKED							0x4106		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - ºí·° »óÅÂ°¡ ¾Æ´Ï´Ù
-#define ERR_SOLD_OUT_SHOP_ITEM							0x4107		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
-#define ERR_NO_SUCH_ENCHANT_INFO						0x4108		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-#define ERR_NOT_DISSOLVED_ITEM							0x4109		// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ½Ã½ºÅÛ ÆÐÅ¶ Ã³¸®
-#define ERR_CANNOT_DO_GIFT_UNDER_LEVEL					0x4119		// 2013-07-08 by bckim, Ä³³ª´Ù¿äÃ» ·¹º§70 ¹Ì¸¸Àº ¼±¹°ÇÏ±â ºÒ°¡
-#define ERR_NOT_INSERT_DISSOLVED_ITEMS					0x4128		// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ½Ã½ºÅÛ ÆÐÅ¶ Ã³¸®
-
-// 2007-10-12 by dhjin, ºÎÁöµµÀÚ ¼³Á¤ °ü·Ã ¿À·ù
-#define ERR_PROTOCOL_SUBLEADER_SET_FAIL					0x4110		// 2007-10-06 by dhjin, ºÎÁöµµÀÚ ¼³Á¤ ½ÇÆÐ 
-#define ERR_PROTOCOL_SUBLEADER_SET_ALEADY				0x4111		// 2007-10-06 by dhjin, ºÎÁöµµÀÚ°¡ ÀÌ¹Ì ¼³Á¤ µÇ¾îÀÖÀ½
-
-#define ERR_CANNOT_USE_GUILD_STORE						0x4120		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - ¿©´ÜÃ¢°í »ç¿ë ºÒ°¡
-#define ERR_CANNOT_USE_STORE							0x4121		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - Ã¢°í »ç¿ë ºÒ°¡
-#define ERR_CANNOT_USE_FIELD_STORE						0x4122		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - ÇÊµåÃ¢°í »ç¿ë ºÒ°¡
-#define ERR_ALREADY_USING_BUILDING						0x4123		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - »óÁ¡ ÀÌ¿ë Áß
-#define ERR_NO_SUCH_BUILDINGINDEX						0x4124		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-#define ERR_CANNOT_BUY_ITEM								0x4125		// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-#define ERR_ALREADY_USE_ITEMPARAM						0x4126		// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
-#define ERR_INSUFFICIENT_NUMBER_SHOP_ITEM				0x4129		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ±¸¸ÅÇÒ¼ö ÀÖ´Â ¼ö·®ÀÌ ºÎÁ·ÇÔ
-#define ERR_NOT_OWNER_SHOP								0x4130		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ¼ÒÀ¯ »óÁ¡ÀÌ ¾Æ´Ô
+#define ERR_CANNOT_WARP_DURING_MSWAR					0x4061		// 2012-07-02 by hskim, ëª¨ì„ ì „ ê°œì„  - ëª¨ì„ ì „ ì§„í–‰ì‹œ ìŠ¤í†¤ì¦ˆ ë£¨ì¸ ì§„ìž… ë¶ˆê°€
 
 ///////////////////////////////////////////////////////////////////////////////
-// ¸Ê °ü·Ã
+// ì•„ì´í…œ ê´€ë ¨
+#define ERR_INVALID_ARMOR_ITEM							0x4100		// ì•„ë¨¸ ì•„ì´í…œì´ ìœ íš¨í•˜ì§€ ì•Šë‹¤(ì—†ê±°ë‚˜ ItemKind ì˜¤ë¥˜)
+#define ERR_ITEM_TRADING								0x4101		// 2005-12-26 by cmkwon, ê±°ëž˜ì¤‘ìž…ë‹ˆë‹¤. (ìƒì ì´ìš© ë¶ˆê°€, ì°½ê³  ì´ìš© ë¶ˆê°€, ...)
+#define ERR_USING_SHOP									0x4102		// 2006-05-11 by cmkwon, ìƒì  ì´ìš©ì¤‘(ê±°ëž˜ ë¶ˆê°€)
+#define ERR_NO_SUCH_WEAPON_ITEM							0x4103		// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - ì—ëŸ¬ì½”ë“œ ì¶”ê°€
+#define ERR_ALREADY_FULL_BULLET							0x4104		// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - ì—ëŸ¬ì½”ë“œ ì¶”ê°€
+#define ERR_INVALID_ITEMEVENT_UID						0x4105		// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
+#define ERR_NOT_ACCOUNT_BLOCKED							0x4106		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - ë¸”ëŸ­ ìƒíƒœê°€ ì•„ë‹ˆë‹¤
+#define ERR_SOLD_OUT_SHOP_ITEM							0x4107		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+#define ERR_NO_SUCH_ENCHANT_INFO						0x4108		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+#define ERR_NOT_DISSOLVED_ITEM							0x4109		// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì‹œìŠ¤í…œ íŒ¨í‚· ì²˜ë¦¬
+#define ERR_CANNOT_DO_GIFT_UNDER_LEVEL					0x4119		// 2013-07-08 by bckim, ìºë‚˜ë‹¤ìš”ì²­ ë ˆë²¨70 ë¯¸ë§Œì€ ì„ ë¬¼í•˜ê¸° ë¶ˆê°€
+#define ERR_NOT_INSERT_DISSOLVED_ITEMS					0x4128		// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì‹œìŠ¤í…œ íŒ¨í‚· ì²˜ë¦¬
+
+// 2007-10-12 by dhjin, ë¶€ì§€ë„ìž ì„¤ì • ê´€ë ¨ ì˜¤ë¥˜
+#define ERR_PROTOCOL_SUBLEADER_SET_FAIL					0x4110		// 2007-10-06 by dhjin, ë¶€ì§€ë„ìž ì„¤ì • ì‹¤íŒ¨ 
+#define ERR_PROTOCOL_SUBLEADER_SET_ALEADY				0x4111		// 2007-10-06 by dhjin, ë¶€ì§€ë„ìžê°€ ì´ë¯¸ ì„¤ì • ë˜ì–´ìžˆìŒ
+
+#define ERR_CANNOT_USE_GUILD_STORE						0x4120		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - ì—¬ë‹¨ì°½ê³  ì‚¬ìš© ë¶ˆê°€
+#define ERR_CANNOT_USE_STORE							0x4121		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - ì°½ê³  ì‚¬ìš© ë¶ˆê°€
+#define ERR_CANNOT_USE_FIELD_STORE						0x4122		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - í•„ë“œì°½ê³  ì‚¬ìš© ë¶ˆê°€
+#define ERR_ALREADY_USING_BUILDING						0x4123		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - ìƒì  ì´ìš© ì¤‘
+#define ERR_NO_SUCH_BUILDINGINDEX						0x4124		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+#define ERR_CANNOT_BUY_ITEM								0x4125		// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+#define ERR_ALREADY_USE_ITEMPARAM						0x4126		// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+#define ERR_INSUFFICIENT_NUMBER_SHOP_ITEM				0x4129		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - êµ¬ë§¤í• ìˆ˜ ìžˆëŠ” ìˆ˜ëŸ‰ì´ ë¶€ì¡±í•¨
+#define ERR_NOT_OWNER_SHOP								0x4130		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - ì†Œìœ  ìƒì ì´ ì•„ë‹˜
+
+///////////////////////////////////////////////////////////////////////////////
+// ë§µ ê´€ë ¨
 #define ERR_MAP_CHECKSUM_NOT_MATCHED					0x4200		// 2007-04-06 by cmkwon, 
-#define ERR_REQ_WARP_ONE_TIME_LIMITED					0x4201		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - 1¹ø¸¸ ÀÔÀå ÇÒ ¼öÀÖÀ½
-#define ERR_REQ_WARP_GUILD_NOT_MATCHED					0x4202		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ÇöÀç ÀÔÀåÇÒ ¼ö ÀÖ´Â ±æµå°¡ ¾Æ´Ô
-#define ERR_REQ_WARP_MAXIMUM_USER_LIMITED				0x4203		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ÃÖ´ë Á¢¼ÓÇÒ ¼ö ÀÖ´Â ÀÎ¿øÀ» ³Ñ¾úÀ½
-#define ERR_REQ_WARP_NO_QUEST_ITEM						0x4204		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ÀÔÀå¿¡ ÇÊ¿äÇÑ Äù½ºÆ® ¾ÆÀÌÅÛÀÌ ¾øÀ½
-#define ERR_REQ_WARP_GAME_START_NOT_ALLOWED_USER		0x4205		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - °ÔÀÓ ½ÃÀÛ½Ã¿¡ ¸Ê¿¡ ÀÔÀåÀÌ Çã¿ëµÈ À¯Àú°¡ ¾Æ´Ô
-#define ERR_REQ_WARP_INFLUENCE_NOT_MATCHED				0x4206		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ÇöÀç ÀÔÀåÇÒ ¼ö ÀÖ´Â ¼¼·ÂÀÌ ¾Æ´Ô
+#define ERR_REQ_WARP_ONE_TIME_LIMITED					0x4201		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - 1ë²ˆë§Œ ìž…ìž¥ í•  ìˆ˜ìžˆìŒ
+#define ERR_REQ_WARP_GUILD_NOT_MATCHED					0x4202		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - í˜„ìž¬ ìž…ìž¥í•  ìˆ˜ ìžˆëŠ” ê¸¸ë“œê°€ ì•„ë‹˜
+#define ERR_REQ_WARP_MAXIMUM_USER_LIMITED				0x4203		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - ìµœëŒ€ ì ‘ì†í•  ìˆ˜ ìžˆëŠ” ì¸ì›ì„ ë„˜ì—ˆìŒ
+#define ERR_REQ_WARP_NO_QUEST_ITEM						0x4204		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - ìž…ìž¥ì— í•„ìš”í•œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì´ ì—†ìŒ
+#define ERR_REQ_WARP_GAME_START_NOT_ALLOWED_USER		0x4205		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - ê²Œìž„ ì‹œìž‘ì‹œì— ë§µì— ìž…ìž¥ì´ í—ˆìš©ëœ ìœ ì €ê°€ ì•„ë‹˜
+#define ERR_REQ_WARP_INFLUENCE_NOT_MATCHED				0x4206		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - í˜„ìž¬ ìž…ìž¥í•  ìˆ˜ ìžˆëŠ” ì„¸ë ¥ì´ ì•„ë‹˜
 
 ///////////////////////////////////////////////////////////////////////////////
-// Ä³¸¯ÅÍ °ü·Ã
-#define ERR_REQ_CHOOSE_START_CIIY_MAP_INDEX				0x4250		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - ÀÏ¹Ý¼¼·ÂÀÇ ½ÃÀÛ µµ½Ã¸Ê ¼³Á¤ÀÌ ÇÊ¿äÇÏ´Ù
+// ìºë¦­í„° ê´€ë ¨
+#define ERR_REQ_CHOOSE_START_CIIY_MAP_INDEX				0x4250		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - ì¼ë°˜ì„¸ë ¥ì˜ ì‹œìž‘ ë„ì‹œë§µ ì„¤ì •ì´ í•„ìš”í•˜ë‹¤
 
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
-#define ERR_INVALID_ARENASERVER							0x4300		// 2007-12-28 by dhjin, ¾Æ·¹³ª ¼­¹ö°¡ ¾Æ´Ï´Ù.
-#define ERR_NO_SUCH_FIELDSERVER							0x4301		// 2007-12-28 by dhjin, ÇÊµå ¼­¹ö¸¦ Ã£À» ¼ö ¾ø´Ù.
-#define ERR_INVALID_MAINSERVER_CHARACTER				0x4302		// 2007-12-28 by dhjin, À¯È¿ÇÏÁö ¾ÊÀº ¼­¹ö À¯ÀúÀÌ´Ù.
-#define ERR_INVALID_ARENASERVER_CHARACTER				0x4303		// 2007-12-28 by dhjin, À¯È¿ÇÏÁö ¾ÊÀº ¾Æ·¹³ª À¯ÀúÀÌ´Ù.
-#define ERR_CANNOT_USE_ARENASERVER						0x4304		// 2008-02-26 by dhjin, ¾Æ·¹³ª ¼­¹ö¿¡¼­´Â »ç¿ë ºÒ°¡ÀÌ´Ù.
-#define ERR_NOT_CONNECT_TO_ARENASERVER					0x4305		// 2008-03-07 by dhjin, ¾Æ·¹³ª ¼­¹ö¿Í ¿¬°áÀÌ µÇ¾î ÀÖÁö ¾Ê´Ù.	
+// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
+#define ERR_INVALID_ARENASERVER							0x4300		// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ê°€ ì•„ë‹ˆë‹¤.
+#define ERR_NO_SUCH_FIELDSERVER							0x4301		// 2007-12-28 by dhjin, í•„ë“œ ì„œë²„ë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤.
+#define ERR_INVALID_MAINSERVER_CHARACTER				0x4302		// 2007-12-28 by dhjin, ìœ íš¨í•˜ì§€ ì•Šì€ ì„œë²„ ìœ ì €ì´ë‹¤.
+#define ERR_INVALID_ARENASERVER_CHARACTER				0x4303		// 2007-12-28 by dhjin, ìœ íš¨í•˜ì§€ ì•Šì€ ì•„ë ˆë‚˜ ìœ ì €ì´ë‹¤.
+#define ERR_CANNOT_USE_ARENASERVER						0x4304		// 2008-02-26 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì—ì„œëŠ” ì‚¬ìš© ë¶ˆê°€ì´ë‹¤.
+#define ERR_NOT_CONNECT_TO_ARENASERVER					0x4305		// 2008-03-07 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì™€ ì—°ê²°ì´ ë˜ì–´ ìžˆì§€ ì•Šë‹¤.	
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-30 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ -
-#define ERR_NO_SUCH_LETTER								0x4310		// 2008-04-30 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö¸¦ Ã£Áö ¸øÇÏ¿´´Ù.
+// 2008-04-30 by dhjin, EP3 íŽ¸ì§€ ì‹œìŠ¤í…œ -
+#define ERR_NO_SUCH_LETTER								0x4310		// 2008-04-30 by dhjin, EP3 íŽ¸ì§€ ì‹œìŠ¤í…œ - íŽ¸ì§€ë¥¼ ì°¾ì§€ ëª»í•˜ì˜€ë‹¤.
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-30 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-#define ERR_ALREADY_REG									0x4320		// 2008-04-30 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀÚ±â ¼Ò°³°¡ µî·ÏÀÌ µÇ¾îÀÖ´Ù.
-#define ERR_CANNOT_USE_NEW_COMMANDER_BY_CITYLEADER      0x4321		// 2008-06-19 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÁöµµÀÚ³ª ÀüÁø±âÁö ¿©´ÜÀåÀº ¿©´ÜÀå À§ÀÓ ºÒ°¡ 
-#define ERR_CANNOT_USE_NEW_COMMANDER_BY_POLL		    0x4322		// 2008-06-19 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¼±°Å¿¡ Ãâ¸¶ÇÑ »ç¶÷Àº ¿©´ÜÀå À§ÀÓ ºÒ°¡
-#define ERR_POSSESS_OUTPOST							    0x4323		// 2009-06-30 by cmkwon, ¿©´Ü ÇØÃ¼½Ã Ã¼Å© ¼öÁ¤ - ÀüÁø ±âÁö¸¦ ¼ÒÀ¯ÇÏ°í ÀÖ´Ù.
+// 2008-04-30 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+#define ERR_ALREADY_REG									0x4320		// 2008-04-30 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ìžê¸° ì†Œê°œê°€ ë“±ë¡ì´ ë˜ì–´ìžˆë‹¤.
+#define ERR_CANNOT_USE_NEW_COMMANDER_BY_CITYLEADER      0x4321		// 2008-06-19 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì§€ë„ìžë‚˜ ì „ì§„ê¸°ì§€ ì—¬ë‹¨ìž¥ì€ ì—¬ë‹¨ìž¥ ìœ„ìž„ ë¶ˆê°€ 
+#define ERR_CANNOT_USE_NEW_COMMANDER_BY_POLL		    0x4322		// 2008-06-19 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì„ ê±°ì— ì¶œë§ˆí•œ ì‚¬ëžŒì€ ì—¬ë‹¨ìž¥ ìœ„ìž„ ë¶ˆê°€
+#define ERR_POSSESS_OUTPOST							    0x4323		// 2009-06-30 by cmkwon, ì—¬ë‹¨ í•´ì²´ì‹œ ì²´í¬ ìˆ˜ì • - ì „ì§„ ê¸°ì§€ë¥¼ ì†Œìœ í•˜ê³  ìžˆë‹¤.
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ -
-#define ERR_INVALID_DATA_FROM_CLIENT					0x4330		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Å¬¶óÀÌ¾ðÆ®·ÎºÎÅÍ ¹ÞÀº Àß¸øµÈ µ¥ÀÌÅ¸
-#define ERR_CHATROOM_NO_SUCH_CREATE_NUM					0x4331		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - »ý¼º ¹æ ¹øÈ£°¡ ¾ø´Ù
-#define ERR_CHATROOM_NO_SUCH							0x4332		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æÀÌ ¾ø´Ù.
-#define ERR_CHATROOM_ALREADY_USING						0x4333		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - ÀÌ¹Ì Ã¤ÆÃ¹æ ÀÌ¿ëÁßÀÌ´Ù.
-#define ERR_CHATROOM_PERMISSION_DENIED					0x4334		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - ±ÇÇÑÀÌ ¾ø´Ù.
-#define ERR_CHATROOM_FULL_MEMBER						0x4335		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÀÎ¿øÀÌ ¸¸¶¥ÀÌ´Ù.
-#define ERR_CHATROOM_NO_SUCH_NEW_MASTER					0x4336		// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - »õ·Î¿î ¹æÀåÀ» Ã£Áö ¸øÇß´Ù.
-#define ERR_NOT_MATCH_PW								0x4337		// 2008-07-15 by dhjin, EP3 Ã¤ÆÃ¹æ - ¾ÏÈ£ ºÒÀÏÄ¡.
+// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© -
+#define ERR_INVALID_DATA_FROM_CLIENT					0x4330		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° ë°›ì€ ìž˜ëª»ëœ ë°ì´íƒ€
+#define ERR_CHATROOM_NO_SUCH_CREATE_NUM					0x4331		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ìƒì„± ë°© ë²ˆí˜¸ê°€ ì—†ë‹¤
+#define ERR_CHATROOM_NO_SUCH							0x4332		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°©ì´ ì—†ë‹¤.
+#define ERR_CHATROOM_ALREADY_USING						0x4333		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì´ë¯¸ ì±„íŒ…ë°© ì´ìš©ì¤‘ì´ë‹¤.
+#define ERR_CHATROOM_PERMISSION_DENIED					0x4334		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ê¶Œí•œì´ ì—†ë‹¤.
+#define ERR_CHATROOM_FULL_MEMBER						0x4335		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì¸ì›ì´ ë§Œë•…ì´ë‹¤.
+#define ERR_CHATROOM_NO_SUCH_NEW_MASTER					0x4336		// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ìƒˆë¡œìš´ ë°©ìž¥ì„ ì°¾ì§€ ëª»í–ˆë‹¤.
+#define ERR_NOT_MATCH_PW								0x4337		// 2008-07-15 by dhjin, EP3 ì±„íŒ…ë°© - ì•”í˜¸ ë¶ˆì¼ì¹˜.
 
 //////////////////////////////////////////////////////////////////////////
-// 2009-01-12 by dhjin, ¼±Àü Æ÷°í
-#define ERR_NO_SUCH_DECLARATION_MSWAR_INFO				0x4340		// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±Àü Æ÷°í Á¤º¸ ¸øÃ£À½
-#define ERR_NO_MORE_DECLARATION_MSWAR_SET				0x4341		// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±Àü Æ÷°í ½Ã°£À» ´õ ÀÌ»ó ¼³Á¤ ÇÒ ¼ö ¾ø´Ù.
-#define ERR_INVALID_DECLARATION_MSWAR_TIME				0x4342		// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±Àü Æ÷°í ½Ã°£ ¼³Á¤ÀÌ Àß¸øµÊ.
+// 2009-01-12 by dhjin, ì„ ì „ í¬ê³ 
+#define ERR_NO_SUCH_DECLARATION_MSWAR_INFO				0x4340		// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „ í¬ê³  ì •ë³´ ëª»ì°¾ìŒ
+#define ERR_NO_MORE_DECLARATION_MSWAR_SET				0x4341		// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „ í¬ê³  ì‹œê°„ì„ ë” ì´ìƒ ì„¤ì • í•  ìˆ˜ ì—†ë‹¤.
+#define ERR_INVALID_DECLARATION_MSWAR_TIME				0x4342		// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „ í¬ê³  ì‹œê°„ ì„¤ì •ì´ ìž˜ëª»ë¨.
 
-#define ERR_CANNOT_CHOOSE_INFLUENCE_TYPE				0x4350		// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - ÇØ´ç ¼¼·ÂÀ» ¼±ÅÃ ÇÒ ¼ö ¾÷´Ù
+#define ERR_CANNOT_CHOOSE_INFLUENCE_TYPE				0x4350		// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - í•´ë‹¹ ì„¸ë ¥ì„ ì„ íƒ í•  ìˆ˜ ì—…ë‹¤
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2007-01-05 by cmkwon, ÀÚµ¿ ¾÷µ¥ÀÌÆ® °ü·Ã
-#define ERR_CANNOT_CONNECT_INTERNET						0x5000		// 2007-01-05 by cmkwon, ÀÎÅÍ³Ý ¿¬°á ¾ÈµÊ
-#define ERR_CANNOT_CONNECT_AUTO_UPDATE_SERVER			0x5001		// 2007-01-05 by cmkwon, ÀÚµ¿¾÷µ¥ÀÌÆ® ¼­¹ö¿¡ ¿¬°á ÇÒ ¼ö ¾ø´Ù
-#define ERR_LOCAL_FILE_CREATE_FAIL						0x5002		// 2007-01-05 by cmkwon, ·ÎÄÃÆÄÀÏ »ý¼º ¿À·ù
-#define ERR_AUTO_UPDATE_SERVER_PERMISSION_DENIED		0x5003		// 2007-01-05 by cmkwon, ÀÚµ¿¾÷µ¥ÀÌÆ® ¼­¹ö Á¢±Ù ±ÇÇÑ ¿À·ù
-#define ERR_UPDATE_FILE_NOT_FOUND						0x5004		// 2007-01-05 by cmkwon, ¾÷µ¥ÀÌÆ® ÆÄÀÏÀ» Ã£À» ¼ö ¾ø´Ù
-#define ERR_UPDATE_FILE_DOWNLOADING_FAIL				0x5005		// 2007-01-05 by cmkwon, ¾÷µ¥ÀÌÆ® ÆÄÀÏ ´Ù¿î·Îµù ½ÇÆÐ
-#define ERR_UPDATE_FILE_DOWNLOADING_CANCEL				0x5006		// 2007-01-05 by cmkwon, ¾÷µ¥ÀÌÆ® ÆÄÀÏ ´Ù¿î·Îµù Ãë¼Ò
-#define ERR_FUNC_HttpOpenRequest						0x5007		// 2007-01-05 by cmkwon, HttpOpenRequest ÇÔ¼ö¿¡¼­ ¿¡·¯¸¦ ¸®ÅÏÇÔ
-#define ERR_FUNC_HttpSendRequest						0x5008		// 2007-01-05 by cmkwon, HttpSendRequest ÇÔ¼ö¿¡¼­ ¿¡·¯¸¦ ¸®ÅÏÇÔ
-#define ERR_FUNC_HttpQueryInfo							0x5009		// 2007-01-05 by cmkwon, HttpQueryInfo ÇÔ¼ö¿¡¼­ ¿¡·¯¸¦ ¸®ÅÏÇÔ
+// 2007-01-05 by cmkwon, ìžë™ ì—…ë°ì´íŠ¸ ê´€ë ¨
+#define ERR_CANNOT_CONNECT_INTERNET						0x5000		// 2007-01-05 by cmkwon, ì¸í„°ë„· ì—°ê²° ì•ˆë¨
+#define ERR_CANNOT_CONNECT_AUTO_UPDATE_SERVER			0x5001		// 2007-01-05 by cmkwon, ìžë™ì—…ë°ì´íŠ¸ ì„œë²„ì— ì—°ê²° í•  ìˆ˜ ì—†ë‹¤
+#define ERR_LOCAL_FILE_CREATE_FAIL						0x5002		// 2007-01-05 by cmkwon, ë¡œì»¬íŒŒì¼ ìƒì„± ì˜¤ë¥˜
+#define ERR_AUTO_UPDATE_SERVER_PERMISSION_DENIED		0x5003		// 2007-01-05 by cmkwon, ìžë™ì—…ë°ì´íŠ¸ ì„œë²„ ì ‘ê·¼ ê¶Œí•œ ì˜¤ë¥˜
+#define ERR_UPDATE_FILE_NOT_FOUND						0x5004		// 2007-01-05 by cmkwon, ì—…ë°ì´íŠ¸ íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ë‹¤
+#define ERR_UPDATE_FILE_DOWNLOADING_FAIL				0x5005		// 2007-01-05 by cmkwon, ì—…ë°ì´íŠ¸ íŒŒì¼ ë‹¤ìš´ë¡œë”© ì‹¤íŒ¨
+#define ERR_UPDATE_FILE_DOWNLOADING_CANCEL				0x5006		// 2007-01-05 by cmkwon, ì—…ë°ì´íŠ¸ íŒŒì¼ ë‹¤ìš´ë¡œë”© ì·¨ì†Œ
+#define ERR_FUNC_HttpOpenRequest						0x5007		// 2007-01-05 by cmkwon, HttpOpenRequest í•¨ìˆ˜ì—ì„œ ì—ëŸ¬ë¥¼ ë¦¬í„´í•¨
+#define ERR_FUNC_HttpSendRequest						0x5008		// 2007-01-05 by cmkwon, HttpSendRequest í•¨ìˆ˜ì—ì„œ ì—ëŸ¬ë¥¼ ë¦¬í„´í•¨
+#define ERR_FUNC_HttpQueryInfo							0x5009		// 2007-01-05 by cmkwon, HttpQueryInfo í•¨ìˆ˜ì—ì„œ ì—ëŸ¬ë¥¼ ë¦¬í„´í•¨
 #define ERR_VERSIONINFO_FILE_NOT_FOUND					0x500A		// 2007-05-09 by cmkwon, 
 #define ERR_VERSIONINFO_FILE_CAN_NOT_CREATE				0x500B		// 2007-05-09 by cmkwon, 
-#define ERR_NOT_ALLOWED_IP								0x500C		// 2007-10-19 by cmkwon, AllowedIP ½Ã½ºÅÛ º¯°æ - Á¢¼Ó Çã°¡µÈ IP°¡ ¾Æ´Ï´Ù
+#define ERR_NOT_ALLOWED_IP								0x500C		// 2007-10-19 by cmkwon, AllowedIP ì‹œìŠ¤í…œ ë³€ê²½ - ì ‘ì† í—ˆê°€ëœ IPê°€ ì•„ë‹ˆë‹¤
 
 ////////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
-#define ERR_DEBUFF_SKILL_APPLYING_SLIENCE				0x6000		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - »çÀÏ·±½º µð¹öÇÁ°¡ Àû¿ëÁßÀÌ´Ù.
-#define ERR_RELEASE_SKILL_NOT_FIND						0x6001		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇØÁ¦ÇÒ ½ºÅ³À» Ã£À»¼ö°¡ ¾ø´Ù.
-#define ERR_DEBUFF_SKILL_APPLYING_NOT_HP_RECOVERY		0x6002		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - HPÈ¸º¹ ±ÝÁö
-#define ERR_DEBUFF_SKILL_APPLYING_NOT_DP_RECOVERY		0x6003		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - DPÈ¸º¹ ±ÝÁö
-#define ERR_DEBUFF_SKILL_APPLYING_NOT_SP_RECOVERY		0x6004		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - SPÈ¸º¹ ±ÝÁö
-#define ERR_INFINITY_NO_SUCH_MODE_LIST					0x6005		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ ¸®½ºÆ®¸¦ Ã£Áö ¸øÇßÀ» °æ¿ì
-#define ERR_INFINITY_NO_SUCH_READY_LIST					0x6006		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ ´ë±â ¸®½ºÆ®¸¦ Ã£Áö ¸øÇßÀ» °æ¿ì
-#define ERR_INFINITY_OVER_ENTRANCECOUNT					0x6007		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ ÀÔÀå °¡´ÉÇÑ ¼ö¸¦ ³Ñ°å´Ù.
-#define ERR_INFINITY_CREATE_FAIL						0x6008		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ »ý¼º ½ÇÆÐ
-#define ERR_INFINITY_JOIN_FAIL_SOCKET					0x6009		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ °¡ÀÔ ½ÇÆÐ - ¼ÒÄÏ NULL°ª
-#define ERR_INFINITY_MAX_ADMISSIONCNT					0x600A		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ °¡ÀÔ ½ÇÆÐ - ÃÖ´ë ÀÎ¿ø
-#define ERR_INFINITY_MISMATCH_LEVEL						0x600B		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ - ·¹º§ ¿À·ù
-#define ERR_INFINITY_JOIN_FAIL_ENTRANCECOUNT			0x600C		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ °¡ÀÔ ½ÇÆÐ - ÀÔÀå ¼ö Á¦ÇÑ
-#define ERR_INFINITY_MODE								0x600D		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àß¸øµÈ ¸ðµå
-#define ERR_INFINITY_CREATEUID							0x600E		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àß¸øµÈ »ý¼º ¹øÈ£
-#define ERR_INFINITY_NO_SUCH_MASTER_USER				0x600F		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ °¡ÀÔ ½ÇÆÐ - ÀÎÇÇ ¸¶½ºÅÍ
-#define ERR_INFINITY_JOIN_FAIL_MASTERUSER_REJECT		0x6010		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ °¡ÀÔ ½ÇÆÐ - »ý¼º ¹øÈ£
-#define ERR_INFINITY_NO_SUCH_MEMBER_LIST				0x6011		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ À¯Àú ¸®½ºÆ®¸¦ Ã£Áö ¸øÇßÀ» °æ¿ì
-#define ERR_INFINITY_STATE								0x6012		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼ Àß¸øµÈ »óÅÂ°ª
-#define ERR_INFINITY_SAME_MASTER						0x6013		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - µ¿ÀÏ ÀÎ¹°!
-#define ERR_INFINITY_MASTER								0x6014		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸¶½ºÅÍ°¡ ¾Æ´Ï´Ù.
-#define ERR_INFINITY_CREATE_MAPCHANNEL					0x6015		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸Ê »ý¼º Áß Ã¤³Î »ý¼º ¿À·ù
-#define ERR_INFINITY_NOT_ALL_READY						0x6016		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸ðµç À¯Àú°¡ ·¡µð »óÅÂ°¡ ¾Æ´Ï´Ù.
-#define ERR_INFINITY_CANNOT_USE_ITEM					0x6017		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼¿¡¼­ »ç¿ë ºÒ°¡
-#define ERR_INFINITY_MIN_ADMISSIONCNT					0x6018		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ÀÌ¿ë ÃÖ¼Ò ÀÎ¿ø ¿À·ù
-#define ERR_INFINITY_TENDER_PROCESSING					0x6019		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - TenderÁßÀÌ´Ù.
-#define ERR_INFINITY_NOT_PROCESSING_TENDERITEM			0x601A		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - TenderÁøÇàÁßÀÎ ¾ÆÀÌÅÛÀÌ ¾Æ´Ï´Ù.
-#define ERR_INFINITY_ONLY_USE_ITEM						0x601B		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ´ÏÆ¼¿¡¼­¸¸ »ç¿ë °¡´É
-#define ERR_INFINITY_CANNOT_SUCH_TEAM					0x601C		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®, Á¸ÀçÇÏ´Â ÆÀÀÌ ¾ø´Ù.
-#define ERR_INFINITY_NULL_VALUE							0x601D		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©, NULL°ª °ü·Ã
-#define ERR_INFINITY_CANNOT_ALL_START					0x601E		// 2010-04-06 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤ - 
-#define ERR_INFINITY_TENDER_ALREADY_CHOICED				0x601F		// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - ÀÌ¹Ì ¼±ÅÃÇÑ À¯Àú
-#define ERR_INFINITY_DIFFICLUTY_NOT_FIND				0x6020		// // 2010-05-04 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àý - ³­ÀÌµµ¸¦ Ã£Áö ¸øÇßÀ» ¶§
-#define ERR_INFINITY_DIFFICULTY_LEVEL_SAME				0x6021		// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àý. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - °°Àº ³­ÀÌµµ·Î º¯°æ ¿äÃ» ¿À·ù.
-#define ERR_INFINITY_DIFFICULTY_LEVEL_INVALID			0x6022		// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àý. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - À¯È¿ÇÏÁö ¾ÊÀº ³­ÀÌµµ º¯°æ°ª ¿äÃ» ¿À·ù.
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
+#define ERR_DEBUFF_SKILL_APPLYING_SLIENCE				0x6000		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì‚¬ì¼ëŸ°ìŠ¤ ë””ë²„í”„ê°€ ì ìš©ì¤‘ì´ë‹¤.
+#define ERR_RELEASE_SKILL_NOT_FIND						0x6001		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - í•´ì œí•  ìŠ¤í‚¬ì„ ì°¾ì„ìˆ˜ê°€ ì—†ë‹¤.
+#define ERR_DEBUFF_SKILL_APPLYING_NOT_HP_RECOVERY		0x6002		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - HPíšŒë³µ ê¸ˆì§€
+#define ERR_DEBUFF_SKILL_APPLYING_NOT_DP_RECOVERY		0x6003		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - DPíšŒë³µ ê¸ˆì§€
+#define ERR_DEBUFF_SKILL_APPLYING_NOT_SP_RECOVERY		0x6004		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - SPíšŒë³µ ê¸ˆì§€
+#define ERR_INFINITY_NO_SUCH_MODE_LIST					0x6005		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆì„ ê²½ìš°
+#define ERR_INFINITY_NO_SUCH_READY_LIST					0x6006		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ëŒ€ê¸° ë¦¬ìŠ¤íŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆì„ ê²½ìš°
+#define ERR_INFINITY_OVER_ENTRANCECOUNT					0x6007		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ìž…ìž¥ ê°€ëŠ¥í•œ ìˆ˜ë¥¼ ë„˜ê²¼ë‹¤.
+#define ERR_INFINITY_CREATE_FAIL						0x6008		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ìƒì„± ì‹¤íŒ¨
+#define ERR_INFINITY_JOIN_FAIL_SOCKET					0x6009		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ê°€ìž… ì‹¤íŒ¨ - ì†Œì¼“ NULLê°’
+#define ERR_INFINITY_MAX_ADMISSIONCNT					0x600A		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ê°€ìž… ì‹¤íŒ¨ - ìµœëŒ€ ì¸ì›
+#define ERR_INFINITY_MISMATCH_LEVEL						0x600B		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° - ë ˆë²¨ ì˜¤ë¥˜
+#define ERR_INFINITY_JOIN_FAIL_ENTRANCECOUNT			0x600C		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ê°€ìž… ì‹¤íŒ¨ - ìž…ìž¥ ìˆ˜ ì œí•œ
+#define ERR_INFINITY_MODE								0x600D		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìž˜ëª»ëœ ëª¨ë“œ
+#define ERR_INFINITY_CREATEUID							0x600E		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìž˜ëª»ëœ ìƒì„± ë²ˆí˜¸
+#define ERR_INFINITY_NO_SUCH_MASTER_USER				0x600F		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ê°€ìž… ì‹¤íŒ¨ - ì¸í”¼ ë§ˆìŠ¤í„°
+#define ERR_INFINITY_JOIN_FAIL_MASTERUSER_REJECT		0x6010		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ê°€ìž… ì‹¤íŒ¨ - ìƒì„± ë²ˆí˜¸
+#define ERR_INFINITY_NO_SUCH_MEMBER_LIST				0x6011		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ìœ ì € ë¦¬ìŠ¤íŠ¸ë¥¼ ì°¾ì§€ ëª»í–ˆì„ ê²½ìš°
+#define ERR_INFINITY_STATE								0x6012		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹° ìž˜ëª»ëœ ìƒíƒœê°’
+#define ERR_INFINITY_SAME_MASTER						0x6013		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë™ì¼ ì¸ë¬¼!
+#define ERR_INFINITY_MASTER								0x6014		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë§ˆìŠ¤í„°ê°€ ì•„ë‹ˆë‹¤.
+#define ERR_INFINITY_CREATE_MAPCHANNEL					0x6015		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë§µ ìƒì„± ì¤‘ ì±„ë„ ìƒì„± ì˜¤ë¥˜
+#define ERR_INFINITY_NOT_ALL_READY						0x6016		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ëª¨ë“  ìœ ì €ê°€ ëž˜ë”” ìƒíƒœê°€ ì•„ë‹ˆë‹¤.
+#define ERR_INFINITY_CANNOT_USE_ITEM					0x6017		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹°ì—ì„œ ì‚¬ìš© ë¶ˆê°€
+#define ERR_INFINITY_MIN_ADMISSIONCNT					0x6018		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì´ìš© ìµœì†Œ ì¸ì› ì˜¤ë¥˜
+#define ERR_INFINITY_TENDER_PROCESSING					0x6019		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Tenderì¤‘ì´ë‹¤.
+#define ERR_INFINITY_NOT_PROCESSING_TENDERITEM			0x601A		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Tenderì§„í–‰ì¤‘ì¸ ì•„ì´í…œì´ ì•„ë‹ˆë‹¤.
+#define ERR_INFINITY_ONLY_USE_ITEM						0x601B		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ë‹ˆí‹°ì—ì„œë§Œ ì‚¬ìš© ê°€ëŠ¥
+#define ERR_INFINITY_CANNOT_SUCH_TEAM					0x601C		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ìž¬ì ‘ì† ì²˜ë¦¬, ì¡´ìž¬í•˜ëŠ” íŒ€ì´ ì—†ë‹¤.
+#define ERR_INFINITY_NULL_VALUE							0x601D		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬, NULLê°’ ê´€ë ¨
+#define ERR_INFINITY_CANNOT_ALL_START					0x601E		// 2010-04-06 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì • - 
+#define ERR_INFINITY_TENDER_ALREADY_CHOICED				0x601F		// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - ì´ë¯¸ ì„ íƒí•œ ìœ ì €
+#define ERR_INFINITY_DIFFICLUTY_NOT_FIND				0x6020		// // 2010-05-04 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ë‚œì´ë„ë¥¼ ì°¾ì§€ ëª»í–ˆì„ ë•Œ
+#define ERR_INFINITY_DIFFICULTY_LEVEL_SAME				0x6021		// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ê°™ì€ ë‚œì´ë„ë¡œ ë³€ê²½ ìš”ì²­ ì˜¤ë¥˜.
+#define ERR_INFINITY_DIFFICULTY_LEVEL_INVALID			0x6022		// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ìœ íš¨í•˜ì§€ ì•Šì€ ë‚œì´ë„ ë³€ê²½ê°’ ìš”ì²­ ì˜¤ë¥˜.
 
-#define ERR_INFINITY_MISMATCH_CREATEUID					0x6023		// ÀÎÇÇ´ÏÆ¼ - ¹æ »ý¼º¹øÈ£ ºÒÀÏÄ¡.	// 2010. 07. 27 by hsLee ÀÎÇÇ´ÏÆ¼ 2Â÷ °ÅÁ¡ ¹æ¾î ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ Ã³¸®.
-#define ERR_INFINITY_PLAYING_STATE						0x6024		// ÀÎÇÇ´ÏÆ¼ - °ÔÀÓ ÁøÇà ÁßÀÌ ¾Æ´Ñ °æ¿ì. ( STATE - PLAYING ~ ¿£µù ) // 2010. 07. 27 by hsLee ÀÎÇÇ´ÏÆ¼ 2Â÷ °ÅÁ¡ ¹æ¾î ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ Ã³¸®.
-#define ERR_INFINITY_ALWAYS_SKIP_ENDINGCINEMA			0x6025		// ÀÎÇÇ´ÏÆ¼ - ÀÌ¹Ì ¿¬Ãâ ½ºÅµ È°¼ºÈ­ µÇ¾î ÀÖÀ½. // 2010. 07. 27 by hsLee ÀÎÇÇ´ÏÆ¼ 2Â÷ °ÅÁ¡ ¹æ¾î ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ Ã³¸®.
+#define ERR_INFINITY_MISMATCH_CREATEUID					0x6023		// ì¸í”¼ë‹ˆí‹° - ë°© ìƒì„±ë²ˆí˜¸ ë¶ˆì¼ì¹˜.	// 2010. 07. 27 by hsLee ì¸í”¼ë‹ˆí‹° 2ì°¨ ê±°ì  ë°©ì–´ ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ì²˜ë¦¬.
+#define ERR_INFINITY_PLAYING_STATE						0x6024		// ì¸í”¼ë‹ˆí‹° - ê²Œìž„ ì§„í–‰ ì¤‘ì´ ì•„ë‹Œ ê²½ìš°. ( STATE - PLAYING ~ ì—”ë”© ) // 2010. 07. 27 by hsLee ì¸í”¼ë‹ˆí‹° 2ì°¨ ê±°ì  ë°©ì–´ ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ì²˜ë¦¬.
+#define ERR_INFINITY_ALWAYS_SKIP_ENDINGCINEMA			0x6025		// ì¸í”¼ë‹ˆí‹° - ì´ë¯¸ ì—°ì¶œ ìŠ¤í‚µ í™œì„±í™” ë˜ì–´ ìžˆìŒ. // 2010. 07. 27 by hsLee ì¸í”¼ë‹ˆí‹° 2ì°¨ ê±°ì  ë°©ì–´ ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ì²˜ë¦¬.
 
-#define ERR_DEBUFF_SKILL_APPLYING_STOPMAGIC				0x6026		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ½ºÅ³ Ãß°¡ : Ä§¹¬ ´çÇØ ½ºÅ³À» »ç¿ëÇÒ¼ö ¾ø½À´Ï´Ù.
+#define ERR_DEBUFF_SKILL_APPLYING_STOPMAGIC				0x6026		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ìŠ¤í‚¬ ì¶”ê°€ : ì¹¨ë¬µ ë‹¹í•´ ìŠ¤í‚¬ì„ ì‚¬ìš©í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-#define ERR_KNOWN_ERROR									0x6100		// 2010-04-26 by cmkwon, ·¯½Ã¾Æ Innva ÀÎÁõ/ºô¸µ ½Ã½ºÅÛ º¯°æ - 
-#define ERR_INVALID_HANDLE								0x6101		// 2010-04-26 by cmkwon, ·¯½Ã¾Æ Innva ÀÎÁõ/ºô¸µ ½Ã½ºÅÛ º¯°æ - 
-
-///////////////////////////////////////////////////////////////////////////////
-// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
-
-#define ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DATA		0x7001		// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - PreServer ·Î ºÎÅÍ ¹ÞÀº Data Size°¡ Authentication Packet Type¿¡ µû¸¥ Data Sizeº¸´Ù ÀÛÀ½
-#define ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DB			0x7002		// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - PreServer ·Î ºÎÅÍ ¹ÞÀºµ¥ÀÌÅ¸¸¦ »ç¿ëÇØ ÀÎÁõÀýÂ÷¸¦ °ÅÃÆÁö¸¸ Áß°£¿¡ Á¤»óÀûÀ¸·Î Ã³¸®µÇÁö ¾Ê¾Ò´Ù
+#define ERR_KNOWN_ERROR									0x6100		// 2010-04-26 by cmkwon, ëŸ¬ì‹œì•„ Innva ì¸ì¦/ë¹Œë§ ì‹œìŠ¤í…œ ë³€ê²½ - 
+#define ERR_INVALID_HANDLE								0x6101		// 2010-04-26 by cmkwon, ëŸ¬ì‹œì•„ Innva ì¸ì¦/ë¹Œë§ ì‹œìŠ¤í…œ ë³€ê²½ - 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
 
-#define ERR_PET_NUMERIC_VALUE_OUT_OF_RANGE				0x7101		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - °ªÀÌ ¹üÀ§¸¦ ¹þ¾î³²
-#define ERR_PET_NOT_EQUIPPED							0x7102		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆêÀÌ ÀåÂøµÇ¾î ÀÖÁö ¾Ê´Ù
-#define ERR_PET_EMPTY_NAME								0x7103		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÌ¸§ÀÌ ºñ¿© ÀÖÀ½
-#define ERR_PET_NOT_ALLOW_LEVEL_UP						0x7104		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ·¹º§¾÷ Çã¿ë ¾ÈÇÔ
-#define ERR_PET_NOT_ALLOW_CHANGE_NAME					0x7105		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÌ¸§ º¯°æ Çã¿ë ¾ÈÇÔ
-#define ERR_PET_NOT_ALLOW_SOCKET_INDEX					0x7106		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Çã¿ë¾ÈµÇ´Â ¼ÒÄÏ ÀÎµ¦½º
-#define ERR_PET_ALREADY_USE_SOCKET						0x7107		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÌ¹Ì »ç¿ëµÈ ¼ÒÄÏ
-#define ERR_PET_INVALID_SOCKET							0x7108		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Àß¸øµÈ ¼ÒÄÏ
-#define ERR_PET_NO_SUCH_INFO							0x7109		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Æê°ü·Ã Á¤º¸¸¦ Ã£À»¼ö ¾øÀ½
-#define ERR_PET_INVALID_AUTOSKILL						0x710a		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Àß¸øµÈ ÀÚµ¿ ½ºÅ³
-#define ERR_PET_INVALID_AUTOKIT							0x710b		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Àß¸øµÈ ¿ÀÆ® ½ºÅ³
-#define ERR_PET_NOT_MATCH_SOCKET						0x710c		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ¼ÒÄÏ¾ÆÀÌÅÛÀÌ ¼­¹öÁ¤º¸¿Í ÀÏÄ¡ÇÏÁö ¾Ê´Â´Ù
+#define ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DATA		0x7001		// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - PreServer ë¡œ ë¶€í„° ë°›ì€ Data Sizeê°€ Authentication Packet Typeì— ë”°ë¥¸ Data Sizeë³´ë‹¤ ìž‘ìŒ
+#define ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DB			0x7002		// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - PreServer ë¡œ ë¶€í„° ë°›ì€ë°ì´íƒ€ë¥¼ ì‚¬ìš©í•´ ì¸ì¦ì ˆì°¨ë¥¼ ê±°ì³¤ì§€ë§Œ ì¤‘ê°„ì— ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì§€ ì•Šì•˜ë‹¤
+
+///////////////////////////////////////////////////////////////////////////////
+// 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
+
+#define ERR_PET_NUMERIC_VALUE_OUT_OF_RANGE				0x7101		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê°’ì´ ë²”ìœ„ë¥¼ ë²—ì–´ë‚¨
+#define ERR_PET_NOT_EQUIPPED							0x7102		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŽ«ì´ ìž¥ì°©ë˜ì–´ ìžˆì§€ ì•Šë‹¤
+#define ERR_PET_EMPTY_NAME								0x7103		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì´ë¦„ì´ ë¹„ì—¬ ìžˆìŒ
+#define ERR_PET_NOT_ALLOW_LEVEL_UP						0x7104		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ë ˆë²¨ì—… í—ˆìš© ì•ˆí•¨
+#define ERR_PET_NOT_ALLOW_CHANGE_NAME					0x7105		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì´ë¦„ ë³€ê²½ í—ˆìš© ì•ˆí•¨
+#define ERR_PET_NOT_ALLOW_SOCKET_INDEX					0x7106		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - í—ˆìš©ì•ˆë˜ëŠ” ì†Œì¼“ ì¸ë±ìŠ¤
+#define ERR_PET_ALREADY_USE_SOCKET						0x7107		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì´ë¯¸ ì‚¬ìš©ëœ ì†Œì¼“
+#define ERR_PET_INVALID_SOCKET							0x7108		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìž˜ëª»ëœ ì†Œì¼“
+#define ERR_PET_NO_SUCH_INFO							0x7109		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŽ«ê´€ë ¨ ì •ë³´ë¥¼ ì°¾ì„ìˆ˜ ì—†ìŒ
+#define ERR_PET_INVALID_AUTOSKILL						0x710a		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìž˜ëª»ëœ ìžë™ ìŠ¤í‚¬
+#define ERR_PET_INVALID_AUTOKIT							0x710b		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìž˜ëª»ëœ ì˜¤íŠ¸ ìŠ¤í‚¬
+#define ERR_PET_NOT_MATCH_SOCKET						0x710c		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì†Œì¼“ì•„ì´í…œì´ ì„œë²„ì •ë³´ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ”ë‹¤
 
 #define ERR_IS_LEADER									0x8000		// 2015-12-17 Future, Leaders cant use a nation change card
 #define	ERR_NOT_ENOUGH_FAME								0x8001		// 2015-12-17 Future, Too low fame for usage
@@ -645,13 +645,13 @@
 #define ERR_WARP_RESTRICTED								0x8005		// 2016-01-04 Future, User is having a warp restriction
 
 ///////////////////////////////////////////////////////////////////////////////
-// º¸¾È °ü·Ã
+// ë³´ì•ˆ ê´€ë ¨
 #define ERR_SECURITY_NOT_CHECK_VERSION					0xE000		// 
 #define ERR_SECURITY_HACKING_GUID						0xE001		// 
 #define ERR_SECURITY_HACKING_CRC						0xE002		// 
 #define ERR_SECURITY_HACKING_CLIENT						0xE003		// 
-#define ERR_SECURITY_ANTICPX_INVALID_HANDLE				0xE004		// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿¬µ¿ ½Ã½ºÅÛ ¼öÁ¤ - 
-#define ERR_SECURITY_CREATE_CLIENT_FAIL					0xE005		// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿¬µ¿ ½Ã½ºÅÛ ¼öÁ¤ - 
+#define ERR_SECURITY_ANTICPX_INVALID_HANDLE				0xE004		// 2008-04-03 by cmkwon, í•µì‰´ë“œ ì„œë²„ ì—°ë™ ì‹œìŠ¤í…œ ìˆ˜ì • - 
+#define ERR_SECURITY_CREATE_CLIENT_FAIL					0xE005		// 2008-04-03 by cmkwon, í•µì‰´ë“œ ì„œë²„ ì—°ë™ ì‹œìŠ¤í…œ ìˆ˜ì • - 
 
 #define ERR_AHNHS_ENGINE_DETECT_GAME_HACK				0xE100
 #define ERR_AHNHS_ACTAPC_DETECT_AUTOMOUSE				0xE101
@@ -665,76 +665,76 @@
 #define ERR_AHNHS_ACTAPC_DETECT_MESSAGEHOOK				0xE109
 #define ERR_AHNHS_ACTAPC_DETECT_MODULE_CHANGE			0xE10A
 #define ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_ACCESS	0xE10B		// 2007-04-09 by cmkwon
-#define ERR_AHNHS_ACTAPC_DETECT_ENGINEFAILED			0xE10C		// 2008-03-24 by cmkwon, ÇÙ½¯µå 2.0 Àû¿ë - AHNHS_ACTAPC_DETECT_ENGINEFAILED Ãß°¡µÊ
-#define ERR_AHNHS_ACTAPC_DETECT_AUTOMACRO					0xE10D		// 2009-07-17 by cmkwon, ÇÙ½¯µå ÀÚÃ¼ Á¾·á Ã³¸® ¿¡·¯Å¸ÀÔÃß°¡(Å¬¶óÀÌ¾ðÆ®¸¸ »ç¿ë) - 
-#define ERR_AHNHS_ACTAPC_DETECT_CODEMISMATCH				0xE10E		// 2009-07-17 by cmkwon, ÇÙ½¯µå ÀÚÃ¼ Á¾·á Ã³¸® ¿¡·¯Å¸ÀÔÃß°¡(Å¬¶óÀÌ¾ðÆ®¸¸ »ç¿ë) - 
-#define ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS	0xE10F		// 2009-07-17 by cmkwon, ÇÙ½¯µå ÀÚÃ¼ Á¾·á Ã³¸® ¿¡·¯Å¸ÀÔÃß°¡(Å¬¶óÀÌ¾ðÆ®¸¸ »ç¿ë) - 
-#define ERR_AHNHS_ACTAPC_DETECT_LMP_FAILED					0xE110		// 2009-07-17 by cmkwon, ÇÙ½¯µå ÀÚÃ¼ Á¾·á Ã³¸® ¿¡·¯Å¸ÀÔÃß°¡(Å¬¶óÀÌ¾ðÆ®¸¸ »ç¿ë) - 
+#define ERR_AHNHS_ACTAPC_DETECT_ENGINEFAILED			0xE10C		// 2008-03-24 by cmkwon, í•µì‰´ë“œ 2.0 ì ìš© - AHNHS_ACTAPC_DETECT_ENGINEFAILED ì¶”ê°€ë¨
+#define ERR_AHNHS_ACTAPC_DETECT_AUTOMACRO					0xE10D		// 2009-07-17 by cmkwon, í•µì‰´ë“œ ìžì²´ ì¢…ë£Œ ì²˜ë¦¬ ì—ëŸ¬íƒ€ìž…ì¶”ê°€(í´ë¼ì´ì–¸íŠ¸ë§Œ ì‚¬ìš©) - 
+#define ERR_AHNHS_ACTAPC_DETECT_CODEMISMATCH				0xE10E		// 2009-07-17 by cmkwon, í•µì‰´ë“œ ìžì²´ ì¢…ë£Œ ì²˜ë¦¬ ì—ëŸ¬íƒ€ìž…ì¶”ê°€(í´ë¼ì´ì–¸íŠ¸ë§Œ ì‚¬ìš©) - 
+#define ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS	0xE10F		// 2009-07-17 by cmkwon, í•µì‰´ë“œ ìžì²´ ì¢…ë£Œ ì²˜ë¦¬ ì—ëŸ¬íƒ€ìž…ì¶”ê°€(í´ë¼ì´ì–¸íŠ¸ë§Œ ì‚¬ìš©) - 
+#define ERR_AHNHS_ACTAPC_DETECT_LMP_FAILED					0xE110		// 2009-07-17 by cmkwon, í•µì‰´ë“œ ìžì²´ ì¢…ë£Œ ì²˜ë¦¬ ì—ëŸ¬íƒ€ìž…ì¶”ê°€(í´ë¼ì´ì–¸íŠ¸ë§Œ ì‚¬ìš©) - 
 
 
 
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// À¯·áÈ­ ¾ÆÀÌÅÛ °ü·Ã
-#define ERR_CASH_PREMIUM_CARD_INVALID_ITEMNUM			0xF000		// ÇÁ¸®¹Ì¾ö(ÀÏ¹Ý, ½´ÆÛ, ¾÷±×·¹ÀÌµå) Ä«µå ItemNumÀÌ ¾Æ´Ï´Ù
-#define ERR_CASH_PREMIUM_CARD_ALREADY_USING				0xF001		// ÇÁ¸®¹Ì¾ö(ÀÏ¹Ý, ½´ÆÛ, ¾÷±×·¹ÀÌµå) Ä«µå°¡ ÀÌ¹Ì ´Ù¸¥ Ã³¸®ÁßÀÓ
-#define ERR_CASH_PREMIUM_CARD_NOT_MATCHED				0xF002		// ÇÁ¸®¹Ì¾ö(ÀÏ¹Ý, ½´ÆÛ, ¾÷±×·¹ÀÌµå) Ä«µå°¡ ´Ù¸¥ Á¾·ùÀÓ
-#define ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE			0xF003		// ÇÁ¸®¹Ì¾ö(ÀÏ¹Ý, ½´ÆÛ, ¾÷±×·¹ÀÌµå) Ä«µå°¡ ±¸ÀÔÇÒ¼ö ÀÖ´Â »óÅÂ°¡ ¾Æ´Ï´Ù
+// ìœ ë£Œí™” ì•„ì´í…œ ê´€ë ¨
+#define ERR_CASH_PREMIUM_CARD_INVALID_ITEMNUM			0xF000		// í”„ë¦¬ë¯¸ì—„(ì¼ë°˜, ìŠˆí¼, ì—…ê·¸ë ˆì´ë“œ) ì¹´ë“œ ItemNumì´ ì•„ë‹ˆë‹¤
+#define ERR_CASH_PREMIUM_CARD_ALREADY_USING				0xF001		// í”„ë¦¬ë¯¸ì—„(ì¼ë°˜, ìŠˆí¼, ì—…ê·¸ë ˆì´ë“œ) ì¹´ë“œê°€ ì´ë¯¸ ë‹¤ë¥¸ ì²˜ë¦¬ì¤‘ìž„
+#define ERR_CASH_PREMIUM_CARD_NOT_MATCHED				0xF002		// í”„ë¦¬ë¯¸ì—„(ì¼ë°˜, ìŠˆí¼, ì—…ê·¸ë ˆì´ë“œ) ì¹´ë“œê°€ ë‹¤ë¥¸ ì¢…ë¥˜ìž„
+#define ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE			0xF003		// í”„ë¦¬ë¯¸ì—„(ì¼ë°˜, ìŠˆí¼, ì—…ê·¸ë ˆì´ë“œ) ì¹´ë“œê°€ êµ¬ìž…í• ìˆ˜ ìžˆëŠ” ìƒíƒœê°€ ì•„ë‹ˆë‹¤
 
-// start 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö
+// start 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„
 ///////////////////////////////////////////////////////////////////////////////
-// ¿¹´ç ¼Ë´Ù¿îÁ¦ 
-#define ERR_SHUTDOWNMINORS_USER							0xF004		// 16¼¼ ¹Ì¸¸ÀÇ À¯ÀúÀÓÀ¸·Î ·±Ã³¿¡¼­ 1Â÷·Î ¸·´Â´Ù.
-// end 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö
+// ì˜ˆë‹¹ ì…§ë‹¤ìš´ì œ 
+#define ERR_SHUTDOWNMINORS_USER							0xF004		// 16ì„¸ ë¯¸ë§Œì˜ ìœ ì €ìž„ìœ¼ë¡œ ëŸ°ì²˜ì—ì„œ 1ì°¨ë¡œ ë§‰ëŠ”ë‹¤.
+// end 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„
 
-// 2012-08-17 by jhseol, ¸¶»ó BPSoft ºô¸µ½Ã½ºÅÛ
-#define ERR_CASH_BPSOFT_COM_LIBRARY_INIT				0xF011		// COM ¶óÀÌºê·¯¸® ÃÊ±âÈ­ ½ÇÆÐ
-#define ERR_CASH_BPSOFT_CREATION_OBJECK					0xF012		// COM °´Ã¼ »ý¼º ½ÇÆÐ
-#define ERR_CASH_BPSOFT_METHOD_CALL						0xF013		// ÇÔ¼ö È£Ãâ ½ÇÆÐ
-#define ERR_CASH_BPSOFT_EXCEPTION						0xF014		// COM ¶óÀÌºê·¯¸® ¿¹¿Ü»çÇ× ¿¡·¯
-// end 2012-08-17 by jhseol, ¸¶»ó BPSoft ºô¸µ½Ã½ºÅÛ
+// 2012-08-17 by jhseol, ë§ˆìƒ BPSoft ë¹Œë§ì‹œìŠ¤í…œ
+#define ERR_CASH_BPSOFT_COM_LIBRARY_INIT				0xF011		// COM ë¼ì´ë¸ŒëŸ¬ë¦¬ ì´ˆê¸°í™” ì‹¤íŒ¨
+#define ERR_CASH_BPSOFT_CREATION_OBJECK					0xF012		// COM ê°ì²´ ìƒì„± ì‹¤íŒ¨
+#define ERR_CASH_BPSOFT_METHOD_CALL						0xF013		// í•¨ìˆ˜ í˜¸ì¶œ ì‹¤íŒ¨
+#define ERR_CASH_BPSOFT_EXCEPTION						0xF014		// COM ë¼ì´ë¸ŒëŸ¬ë¦¬ ì˜ˆì™¸ì‚¬í•­ ì—ëŸ¬
+// end 2012-08-17 by jhseol, ë§ˆìƒ BPSoft ë¹Œë§ì‹œìŠ¤í…œ
 
 ///////////////////////////////////////////////////////////////////////////////
 // String Conversion Functions
 const char* GetErrorString(Err_t err);
 
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 /////////////////////////////////////////////////////////////////////////////////
 // XMLRPC ERROR
 
-// ¾Æ·¡ Á¤ÀÇ ¼öÁ¤½Ã´Â atum_insertStoreItem_FromXMLRPC ÇÁ·Î½ÃÁ®µµ °°ÀÌ ¼öÁ¤ ÇØ¾ßÇÔ
+// ì•„ëž˜ ì •ì˜ ìˆ˜ì •ì‹œëŠ” atum_insertStoreItem_FromXMLRPC í”„ë¡œì‹œì ¸ë„ ê°™ì´ ìˆ˜ì • í•´ì•¼í•¨
 
-#define XMLRPC_ERROR_INTERNAL_SERVER					-1			// ¼­¹ö ³»ºÎ ¿¡·¯
-#define XMLRPC_ERROR_INVALID_SERVER_ID					-2			// ¼­¹ö ID À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_DISABLE_SERVER						-3			// ¼­¹ö Ã³¸® ºÒ°¡ »óÅÂ
-#define XMLRPC_ERROR_DISABLE_REQUEST					-4			// ¼­¹ö ÇØ´ç ¿äÃ» Ã³¸® ºÒ°¡ »óÅÂ
-#define XMLRPC_ERROR_INVALID_USER_IP					-5			// À¯Àú IP ÁÖ¼Ò°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_NOT_MATCHED_USER_INFO				-6			// °èÁ¤°ú Ä³¸¯ÅÍ Á¤º¸°¡ °°Áö ¾ÊÀ½
-#define XMLRPC_ERROR_INVALID_ACCOUNTUID					-7			// °èÁ¤ Á¤º¸°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_INVALID_CHARACTERUID				-8			// Ä³¸¯ÅÍ Á¤º¸°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_INVALID_ITEMNUM					-9			// ¾ÆÀÌÅÛ ¹øÈ£°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_OUT_OF_RANGE_ITEMCOUNT				-10			// ¾ÆÀÌÅÛ ¼öÀÇ ¹üÀ§°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_INVALID_AUTHENTICATION_KEY			-11			// ±¸¸Å »óÁ¡ ÀÎÁõÅ°°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_NOT_ACCEPTED_USER					-12			// ÇØ´ç À¯ÀúÀÇ ¿äÃ» Ã³¸® ºÒ°¡
-#define XMLRPC_ERROR_INVALID_ITEM_STORAGE				-13			// ¾ÆÀÌÅÛ À§Ä¡°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_NEED_MORE_CASH						-16			// ±¸¸Å¿¡ ÇÊ¿äÇÑ Ä³½Ã ºÎÁ·
-#define XMLRPC_ERROR_BILLING_ERROR						-17			// ºô¸µ ¿¬µ¿ ¿¡·¯
-#define XMLRPC_ERROR_INVALID_GET_CHARACTERUID			-18			// ¼±¹° ¹ÞÀ» °èÁ¤ Á¤º¸°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_NOT_FOUND_BILLING_ITEM_LIST		-19			// ºô¸µ ¸ñ·Ï¿¡ ¾ø´Â ¾ÆÀÌÅÛ (±¸¸Å ºÒ°¡)
-#define XMLRPC_ERROR_NOT_ACCEPTED_ITEMNUM				-20			// Çã¿ëÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ (Ãß°¡ / »èÁ¦)
-#define XMLRPC_ERROR_SUPPORT_ONLY_COUNTABLE_ITEM		-21			// Ä«¿îÅÍºí ¾ÆÀÌÅÛ¸¸ Áö¿ø
-#define XMLRPC_ERROR_NOT_ENOUGH_ITEM_COUNT				-22			// ¾ÆÀÌÅÛ ¼ö ºÎÁ·
-#define XMLRPC_ERROR_CASH_SHOP_NO_SERVICE				-23			// Ä³½Ã¼¥À» ¼­ºñ½º ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_INVALID_PEER_CHARACTER				-24			// ´ë»ó Ä³¸¯ÅÍ Á¤º¸°¡ À¯È¿ÇÏÁö ¾ÊÀ½
-#define XMLRPC_ERROR_DISABLE_WEBCASH_SHOP				-25			// À¥ Ä³½Ã¼¥ »ç¿ë ¾ÈÇÔ (ÇÁ·ÎÅäÄÝ)
-#define XMLRPC_ERROR_UNKNOWN_ERROR						-10000		// ¾Ë¼ö ¾ø´Â ¿¡·¯
-#define XMLRPC_ERROR_NOT_FOUND_RPC_METHOD				-10001		// RPC ¸Þ¼Òµå¸¦ Ã£À» ¼ö ¾øÀ½
-#define XMLRPC_ERROR_NOT_MATCHED_PARAMETER_TYPE			-10002		// RPC ¸Þ¼ÒµåÀÇ ÆÄ¶ó¹ÌÅÍ Çü½ÄÀÌ Æ²¸²
-#define XMLRPC_ERROR_INVALID_XML						-10003		// XML Çü½ÄÀÌ Æ²¸²
+#define XMLRPC_ERROR_INTERNAL_SERVER					-1			// ì„œë²„ ë‚´ë¶€ ì—ëŸ¬
+#define XMLRPC_ERROR_INVALID_SERVER_ID					-2			// ì„œë²„ ID ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_DISABLE_SERVER						-3			// ì„œë²„ ì²˜ë¦¬ ë¶ˆê°€ ìƒíƒœ
+#define XMLRPC_ERROR_DISABLE_REQUEST					-4			// ì„œë²„ í•´ë‹¹ ìš”ì²­ ì²˜ë¦¬ ë¶ˆê°€ ìƒíƒœ
+#define XMLRPC_ERROR_INVALID_USER_IP					-5			// ìœ ì € IP ì£¼ì†Œê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_NOT_MATCHED_USER_INFO				-6			// ê³„ì •ê³¼ ìºë¦­í„° ì •ë³´ê°€ ê°™ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_INVALID_ACCOUNTUID					-7			// ê³„ì • ì •ë³´ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_INVALID_CHARACTERUID				-8			// ìºë¦­í„° ì •ë³´ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_INVALID_ITEMNUM					-9			// ì•„ì´í…œ ë²ˆí˜¸ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_OUT_OF_RANGE_ITEMCOUNT				-10			// ì•„ì´í…œ ìˆ˜ì˜ ë²”ìœ„ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_INVALID_AUTHENTICATION_KEY			-11			// êµ¬ë§¤ ìƒì  ì¸ì¦í‚¤ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_NOT_ACCEPTED_USER					-12			// í•´ë‹¹ ìœ ì €ì˜ ìš”ì²­ ì²˜ë¦¬ ë¶ˆê°€
+#define XMLRPC_ERROR_INVALID_ITEM_STORAGE				-13			// ì•„ì´í…œ ìœ„ì¹˜ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_NEED_MORE_CASH						-16			// êµ¬ë§¤ì— í•„ìš”í•œ ìºì‹œ ë¶€ì¡±
+#define XMLRPC_ERROR_BILLING_ERROR						-17			// ë¹Œë§ ì—°ë™ ì—ëŸ¬
+#define XMLRPC_ERROR_INVALID_GET_CHARACTERUID			-18			// ì„ ë¬¼ ë°›ì„ ê³„ì • ì •ë³´ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_NOT_FOUND_BILLING_ITEM_LIST		-19			// ë¹Œë§ ëª©ë¡ì— ì—†ëŠ” ì•„ì´í…œ (êµ¬ë§¤ ë¶ˆê°€)
+#define XMLRPC_ERROR_NOT_ACCEPTED_ITEMNUM				-20			// í—ˆìš©í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œ (ì¶”ê°€ / ì‚­ì œ)
+#define XMLRPC_ERROR_SUPPORT_ONLY_COUNTABLE_ITEM		-21			// ì¹´ìš´í„°ë¸” ì•„ì´í…œë§Œ ì§€ì›
+#define XMLRPC_ERROR_NOT_ENOUGH_ITEM_COUNT				-22			// ì•„ì´í…œ ìˆ˜ ë¶€ì¡±
+#define XMLRPC_ERROR_CASH_SHOP_NO_SERVICE				-23			// ìºì‹œìƒµì„ ì„œë¹„ìŠ¤ í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_INVALID_PEER_CHARACTER				-24			// ëŒ€ìƒ ìºë¦­í„° ì •ë³´ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
+#define XMLRPC_ERROR_DISABLE_WEBCASH_SHOP				-25			// ì›¹ ìºì‹œìƒµ ì‚¬ìš© ì•ˆí•¨ (í”„ë¡œí† ì½œ)
+#define XMLRPC_ERROR_UNKNOWN_ERROR						-10000		// ì•Œìˆ˜ ì—†ëŠ” ì—ëŸ¬
+#define XMLRPC_ERROR_NOT_FOUND_RPC_METHOD				-10001		// RPC ë©”ì†Œë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ
+#define XMLRPC_ERROR_NOT_MATCHED_PARAMETER_TYPE			-10002		// RPC ë©”ì†Œë“œì˜ íŒŒë¼ë¯¸í„° í˜•ì‹ì´ í‹€ë¦¼
+#define XMLRPC_ERROR_INVALID_XML						-10003		// XML í˜•ì‹ì´ í‹€ë¦¼
 
 char* GetErrorXMLRPCString(int err);
 
-// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 
 #endif // _ATUM_ERROR_H_

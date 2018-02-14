@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 //  GlobalFunc.cpp : 
 //
 //  Date	: 2008-06-26 by cmkwon
@@ -7,7 +7,7 @@
 #include "GlobalFunc.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
+// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
 //! INTORFLOAT union for easy access to bits of a float.
 typedef union
 {
@@ -26,10 +26,10 @@ INTORFLOAT  FTOIBIAS = {((23 - 0 + 127) << 23) + (1 << 22)};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int f2i(float f) 
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ý : Game Programming Gems2 chapter 2.1¿¡ Yossarian King¾¾°¡ ÀÛ¼ºÇÑ ¹æ¹ýÀÔ´Ï´Ù
-///					ÀåÁ¡ : FPU¸ðµå¿¡ µû¶ó ÀÏ¹ÝÀûÀ¸·Î ÀÏ¹Ý intÇüº¯È¯°ú Á¤È®È÷ ÀÏÄ¡ÇÕ´Ï´Ù.
-///					´ÜÁ¡ : floatÀÇ °ªÀÌ 2ÀÇ 23½Â(8388608)º¸´Ù ÀÛ¾Æ¾ß ÇÕ´Ï´Ù. ¶ÇÇÑ, FPU¸ðµå°¡ ChoppingÀÌ ¾Æ´Ñ °æ¿ì. ¿¹¸¦ µé¸é À§ÀÇ fastf2i_round³ª fastf2i¿Í °°ÀÌ »ç¿ëÇÏ¸é ¾ÈµË´Ï´Ù. fastf2i_round³ª fastf2i´Â FPU¸ðµå¸¦ ¹Ý¿Ã¸²¸ðµå·Î »ç¿ëÇÏ´Âµ¥, f2iÇÔ¼ö´Â FPU¸ðµå¸¦ µû·Î ¼³Á¤ÇÏÁö ¾Ê±â ¶§¹®¿¡ ÇöÀç FPU¸ðµå ±×´ë·Î º¯È¯À» ½ÃµµÇÕ´Ï´Ù. (FPU¸ðµå´Â À§ÀÇ Âü°í¸¦ º¸½Ã±â ¹Ù¶ø´Ï´Ù)
+/// \brief		// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///					ë°©ë²• : Game Programming Gems2 chapter 2.1ì— Yossarian Kingì”¨ê°€ ìž‘ì„±í•œ ë°©ë²•ìž…ë‹ˆë‹¤
+///					ìž¥ì  : FPUëª¨ë“œì— ë”°ë¼ ì¼ë°˜ì ìœ¼ë¡œ ì¼ë°˜ intí˜•ë³€í™˜ê³¼ ì •í™•ížˆ ì¼ì¹˜í•©ë‹ˆë‹¤.
+///					ë‹¨ì  : floatì˜ ê°’ì´ 2ì˜ 23ìŠ¹(8388608)ë³´ë‹¤ ìž‘ì•„ì•¼ í•©ë‹ˆë‹¤. ë˜í•œ, FPUëª¨ë“œê°€ Choppingì´ ì•„ë‹Œ ê²½ìš°. ì˜ˆë¥¼ ë“¤ë©´ ìœ„ì˜ fastf2i_roundë‚˜ fastf2iì™€ ê°™ì´ ì‚¬ìš©í•˜ë©´ ì•ˆë©ë‹ˆë‹¤. fastf2i_roundë‚˜ fastf2iëŠ” FPUëª¨ë“œë¥¼ ë°˜ì˜¬ë¦¼ëª¨ë“œë¡œ ì‚¬ìš©í•˜ëŠ”ë°, f2ií•¨ìˆ˜ëŠ” FPUëª¨ë“œë¥¼ ë”°ë¡œ ì„¤ì •í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— í˜„ìž¬ FPUëª¨ë“œ ê·¸ëŒ€ë¡œ ë³€í™˜ì„ ì‹œë„í•©ë‹ˆë‹¤. (FPUëª¨ë“œëŠ” ìœ„ì˜ ì°¸ê³ ë¥¼ ë³´ì‹œê¸° ë°”ëžë‹ˆë‹¤)
 /// \author		cmkwon
 /// \date		2008-06-26 ~ 2008-06-26
 /// \warning	
@@ -49,10 +49,10 @@ inline int f2i(float f)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int fastf2i_round(float f)
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///				¹æ¹ý : FPU¸¦ ÀÌ¿ëÇÑ ÀÎ¶óÀÎ ¾î¼ÀÄÚµåÀÔ´Ï´Ù. 
-///				ÀåÁ¡ : °¡Àå ºü¸¨´Ï´Ù.
-///				´ÜÁ¡ : ¹Ý¿Ã¸²ÀÌ µË´Ï´Ù. µû¶ó¼­ int a = int(1234.56f) ¿Í °°Àº °ªÀÌ ¾È ³ª¿Â´Ù´Â °ÍÀÔ´Ï´Ù. ¹Ý¿Ã¸²µÇ¾î¼­ 1235°¡ ³ª¿É´Ï´Ù. 	
+/// \brief		// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///				ë°©ë²• : FPUë¥¼ ì´ìš©í•œ ì¸ë¼ì¸ ì–´ì…ˆì½”ë“œìž…ë‹ˆë‹¤. 
+///				ìž¥ì  : ê°€ìž¥ ë¹ ë¦…ë‹ˆë‹¤.
+///				ë‹¨ì  : ë°˜ì˜¬ë¦¼ì´ ë©ë‹ˆë‹¤. ë”°ë¼ì„œ int a = int(1234.56f) ì™€ ê°™ì€ ê°’ì´ ì•ˆ ë‚˜ì˜¨ë‹¤ëŠ” ê²ƒìž…ë‹ˆë‹¤. ë°˜ì˜¬ë¦¼ë˜ì–´ì„œ 1235ê°€ ë‚˜ì˜µë‹ˆë‹¤. 	
 /// \author		cmkwon
 /// \date		2008-06-26 ~ 2008-06-26
 /// \warning	
@@ -78,10 +78,10 @@ inline int fastf2i_round(float f)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int fastf2i(float fValue)
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ý : ¿ª½Ã FPU¸¦ ÀÌ¿ëÇÑ ÀÎ¶óÀÎ ¾î¼ÀÄÚµåÀÌÁö¸¸ ¹Ý¿Ã¸²À» ¾ÈÇÏµµ·Ï ¾à°£ÀÇ Á¶Á¤À» ÇÕ´Ï´Ù.
-///					ÀåÁ¡ : ¿ª½Ã ¹æ¹ý1°ú Èí»çÇÏ°Ô ºü¸¨´Ï´Ù.
-///					´ÜÁ¡ : ¹æ¹ý1¿¡¼­ ¹Ý¿Ã¸²ÀÌ ¾ÈµÇµµ·Ï ¹Ý¿Ã¸²°ªÀ» »©ÁÖ°í ÀÖ½À´Ï´Ù¸¸ 0.9999999f½ÄÀÇ °ªÀÌ µé¾î¿À¸é ¿ª½Ã ¹Ý¿Ã¸²µË´Ï´Ù. ¹°·Ð round_to_nearest ¸¦ ¾à°£ »óÈ²¿¡ ¸Â°Ô ¼öÁ¤ÇÏ¸é µÇ´Â °ÍÀÔ´Ï´Ù¸¸ ¾à°£ ÂóÂóÇÑ °Í »ç½ÇÀÔ´Ï´Ù.
+/// \brief		// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///					ë°©ë²• : ì—­ì‹œ FPUë¥¼ ì´ìš©í•œ ì¸ë¼ì¸ ì–´ì…ˆì½”ë“œì´ì§€ë§Œ ë°˜ì˜¬ë¦¼ì„ ì•ˆí•˜ë„ë¡ ì•½ê°„ì˜ ì¡°ì •ì„ í•©ë‹ˆë‹¤.
+///					ìž¥ì  : ì—­ì‹œ ë°©ë²•1ê³¼ í¡ì‚¬í•˜ê²Œ ë¹ ë¦…ë‹ˆë‹¤.
+///					ë‹¨ì  : ë°©ë²•1ì—ì„œ ë°˜ì˜¬ë¦¼ì´ ì•ˆë˜ë„ë¡ ë°˜ì˜¬ë¦¼ê°’ì„ ë¹¼ì£¼ê³  ìžˆìŠµë‹ˆë‹¤ë§Œ 0.9999999fì‹ì˜ ê°’ì´ ë“¤ì–´ì˜¤ë©´ ì—­ì‹œ ë°˜ì˜¬ë¦¼ë©ë‹ˆë‹¤. ë¬¼ë¡  round_to_nearest ë¥¼ ì•½ê°„ ìƒí™©ì— ë§žê²Œ ìˆ˜ì •í•˜ë©´ ë˜ëŠ” ê²ƒìž…ë‹ˆë‹¤ë§Œ ì•½ê°„ ì°ì°í•œ ê²ƒ ì‚¬ì‹¤ìž…ë‹ˆë‹¤.
 /// \author		cmkwon
 /// \date		2008-06-26 ~ 2008-06-26
 /// \warning	
@@ -109,10 +109,10 @@ inline int fastf2i(float fValue)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int Float2Int( float a )
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ý : intº¯È¯À» ±×´ë·Î ÀÎ¶óÀÎ ¾î¼ÀÈ­ ÇÏ¿´½À´Ï´Ù.
-///					ÀåÁ¡ : ÀÏ¹Ý intÇüº¯È¯°ú Á¤È®È÷ ÀÏÄ¡ÇÕ´Ï´Ù.
-///					´ÜÁ¡ : ±×´ÙÁö ¸¹ÀÌ ºü¸£Áö ¾Ê³×¿ä.
+/// \brief		// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///					ë°©ë²• : intë³€í™˜ì„ ê·¸ëŒ€ë¡œ ì¸ë¼ì¸ ì–´ì…ˆí™” í•˜ì˜€ìŠµë‹ˆë‹¤.
+///					ìž¥ì  : ì¼ë°˜ intí˜•ë³€í™˜ê³¼ ì •í™•ížˆ ì¼ì¹˜í•©ë‹ˆë‹¤.
+///					ë‹¨ì  : ê·¸ë‹¤ì§€ ë§Žì´ ë¹ ë¥´ì§€ ì•Šë„¤ìš”.
 /// \author		cmkwon
 /// \date		2008-06-26 ~ 2008-06-26
 /// \warning	

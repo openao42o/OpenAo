@@ -1,4 +1,4 @@
-// MapWorkspace.cpp: implementation of the CMapWorkspace class.
+ï»¿// MapWorkspace.cpp: implementation of the CMapWorkspace class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -32,10 +32,10 @@ CMapWorkspace::CMapWorkspace(CIOCP* pIOCP, int nSizeBlockX, int nSizeBlockZ)
 	m_vectorPtrMapProject.clear();
 	m_vectorPtrMapProject.reserve(10);
 	m_mapMapObjectInfo.clear();
-	m_CinemaObjectNumList.clear();	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!!
+	m_CinemaObjectNumList.clear();	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!!
 
 	////////////////////////////////////////////////////////////////////////////
-	// DB¿¡¼­ MapObjectInfo Loading
+	// DBì—ì„œ MapObjectInfo Loading
 	if (LoadAllObjectInfofromDB() == FALSE)
 	{
 		char	szError[1024];
@@ -58,16 +58,16 @@ CMapWorkspace::~CMapWorkspace()
 	m_vectorPtrMapProject.clear();
 
 	m_mapMapObjectInfo.clear();
-	m_CinemaObjectNumList.clear();	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!!
+	m_CinemaObjectNumList.clear();	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!!
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapWorkspace::GetMapProjectByMapIndex
-// ¹İÈ¯µÇ´Â Çü  : CMapProject*
-// ÇÔ ¼ö ÀÎ ÀÚ  : MapIndex_t Mapindex
-// ÇÔ ¼ö ¼³ ¸í  : ÀÎÀÚ·Î ¹ŞÀº ¸ÊÀÇ ÀÌ¸§¿¡ ÇØ´çÇÏ´Â CMapProject¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
-//					FieldServer¿Í PreServer¿¡¼­ »ç¿ëÇÔ
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapWorkspace::GetMapProjectByMapIndex
+// ë°˜í™˜ë˜ëŠ” í˜•  : CMapProject*
+// í•¨ ìˆ˜ ì¸ ì  : MapIndex_t Mapindex
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì¸ìë¡œ ë°›ì€ ë§µì˜ ì´ë¦„ì— í•´ë‹¹í•˜ëŠ” CMapProjectë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
+//					FieldServerì™€ PreServerì—ì„œ ì‚¬ìš©í•¨
 CMapProject* CMapWorkspace::GetMapProjectByMapIndex(MapIndex_t MapIndex)
 {
 	if (MapIndex > 0)
@@ -81,11 +81,11 @@ CMapProject* CMapWorkspace::GetMapProjectByMapIndex(MapIndex_t MapIndex)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapWorkspace::GetMapProjectByIndex
-// ¹İÈ¯µÇ´Â Çü  : CMapProject*
-// ÇÔ ¼ö ÀÎ ÀÚ  : const int index
-// ÇÔ ¼ö ¼³ ¸í  : ÀÎµ¦½º·Î CMapProject¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
-//					NPC Server¿¡¼­ »ç¿ë
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapWorkspace::GetMapProjectByIndex
+// ë°˜í™˜ë˜ëŠ” í˜•  : CMapProject*
+// í•¨ ìˆ˜ ì¸ ì  : const int index
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì¸ë±ìŠ¤ë¡œ CMapProjectë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
+//					NPC Serverì—ì„œ ì‚¬ìš©
 CMapProject* CMapWorkspace::GetMapProjectByIndex(int index)
 {
 	if (index >= 0 && index < m_vectorPtrMapProject.size())
@@ -112,7 +112,7 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 	ret = SQLSetEnvAttr(henv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, SQL_IS_INTEGER);
 
 	ret = SQLAllocHandle(SQL_HANDLE_DBC, henv, &hdbc);
-	// 2008-07-11 by cmkwon, MySQL Áö¿øÀ» À§ÇØ ¼öÁ¤(IP,Port ·Î DB ¼­¹ö ¿¬°á) - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ ÇÔ
+	// 2008-07-11 by cmkwon, MySQL ì§€ì›ì„ ìœ„í•´ ìˆ˜ì •(IP,Port ë¡œ DB ì„œë²„ ì—°ê²°) - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì • í•¨
 	//	ret = SQLConnect(hdbc, g_pGlobal->GetODBCDSN(), SQL_NTS, g_pGlobal->GetODBCUID(), SQL_NTS, g_pGlobal->GetODBCPASSWORD(), SQL_NTS);
 	char szConnectionString[512];
 	char szOutConnectionString[512]; SQLSMALLINT pcb;
@@ -127,7 +127,7 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 
 	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
 	{
-		// 2008-09-05 by cmkwon, DBServer ¿¬°á ½ÇÆĞ ½Ã½ºÅÛ ·Î±× ³²±â±â - 
+		// 2008-09-05 by cmkwon, DBServer ì—°ê²° ì‹¤íŒ¨ ì‹œìŠ¤í…œ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 		g_pGlobal->WriteSystemLogEX(TRUE, "[DB Error] fail to connect DBServer(CMapWorkspace::LoadAllObjectInfofromDB_) !! %s,%d %s %s %s\r\n"
 			, g_pGlobal->GetDBServerIP(), g_pGlobal->GetDBServerPort(), g_pGlobal->GetDBServerDatabaseName(), (CHAR*)g_pGlobal->GetODBCUID(), (CHAR*)g_pGlobal->GetODBCPASSWORD());
 		// error
@@ -145,10 +145,10 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 
 	ret = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &hstmt);
 
-	// 2008-07-02 by cmkwon, MySQL Áö¿ø ±¸Çö - 
+	// 2008-07-02 by cmkwon, MySQL ì§€ì› êµ¬í˜„ - 
 	//ret = SQLExecDirect(hstmt, (UCHAR*)"SELECT Code, Alpha, Collision, CollisionForServer,\
 	//											RenderIndex, ObjectRenderType FROM ti_MapObject WITH (NOLOCK)", SQL_NTS);
-// 2008-08-27 by cmkwon, ³¯Äõ¸®¸¦ Procedure·Î ¼öÁ¤ - 
+// 2008-08-27 by cmkwon, ë‚ ì¿¼ë¦¬ë¥¼ Procedureë¡œ ìˆ˜ì • - 
 //	ret = SQLExecDirect(hstmt, (UCHAR*)QUERY_080702_0244, SQL_NTS);
 	ret = SQLExecDirect(hstmt, (UCHAR*)PROCEDURE_080827_0244, SQL_NTS);
 
@@ -184,7 +184,7 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 	SQLFreeStmt(hstmt, SQL_CLOSE);
 
 	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!!
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!!
 	m_CinemaObjectNumList.clear();
 	ret = SQLExecDirect(hstmt, (UCHAR*)PROCEDURE_090909_0501, SQL_NTS);
 
@@ -199,10 +199,10 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 	CINEMAINFO		tmCinemaInfo;
 	util::zero(&tmCinemaInfo, sizeof(CINEMAINFO));
 
-	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - 
+	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - 
 	SQLINTEGER	arrCB[28] = { SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS,	SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS
 							, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS,	SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS
-							, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS,	SQL_NTS, SQL_NTS, SQL_NTS };	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - // 2011-03-09 by hskim, ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡ - // 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡
+							, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS, SQL_NTS,	SQL_NTS, SQL_NTS, SQL_NTS };	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - // 2011-03-09 by hskim, ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€ - // 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€
 	SQLBindCol(hstmt, 1, SQL_C_ULONG, &tmCinemaInfo.CinemaNum, 0, &arrCB[1]);
 	SQLBindCol(hstmt, 2, SQL_C_ULONG, &tmCinemaInfo.CinemaOrder, 0, &arrCB[2]);
 	SQLBindCol(hstmt, 3, SQL_C_ULONG, &tmCinemaInfo.StartTime, 0, &arrCB[3]);
@@ -225,13 +225,13 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 	SQLBindCol(hstmt, 20, SQL_C_CHAR, tmCinemaInfo.TipFileName, SIZE_MAX_FILE_NAME, &arrCB[20]);
 	SQLBindCol(hstmt, 21, SQL_C_CHAR, tmCinemaInfo.SkyFileName, SIZE_MAX_FILE_NAME, &arrCB[21]);
 	SQLBindCol(hstmt, 22, SQL_C_CHAR, tmCinemaInfo.CinemaTalk, SIZE_MAX_CINEMATALK_DESCRIPTION, &arrCB[22]);
-	SQLBindCol(hstmt, 23, SQL_C_CHAR, tmCinemaInfo.SoundFileName, SIZE_MAX_FILE_NAME, &arrCB[23]);		// 2010-03-29 by cmkwon, ÀÎÇÇ2Â÷ ½Ã³×¸¶¿¡ È¿°úÀ½ ÆÄÀÏ ¼³Á¤ Ãß°¡ - 
-	// start 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡
-	SQLBindCol(hstmt, 24, SQL_C_ULONG, &tmCinemaInfo.QuestIndex, 0, &arrCB[24]);		// 2011-03-09 by hskim, ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡ -
+	SQLBindCol(hstmt, 23, SQL_C_CHAR, tmCinemaInfo.SoundFileName, SIZE_MAX_FILE_NAME, &arrCB[23]);		// 2010-03-29 by cmkwon, ì¸í”¼2ì°¨ ì‹œë„¤ë§ˆì— íš¨ê³¼ìŒ íŒŒì¼ ì„¤ì • ì¶”ê°€ - 
+	// start 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€
+	SQLBindCol(hstmt, 24, SQL_C_ULONG, &tmCinemaInfo.QuestIndex, 0, &arrCB[24]);		// 2011-03-09 by hskim, ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€ -
 	SQLBindCol(hstmt, 25, SQL_C_ULONG, &tmCinemaInfo.MonsterIdxType, 0, &arrCB[25]);
 	SQLBindCol(hstmt, 26, SQL_C_ULONG, &tmCinemaInfo.CustomIdx, 0, &arrCB[26]);
 	SQLBindCol(hstmt, 27, SQL_C_ULONG, &tmCinemaInfo.UpdateMonsterIdx, 0, &arrCB[27]);
-	// end 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡
+	// end 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€
 
 	while ((ret = SQLFetch(hstmt)) != SQL_NO_DATA) {
 		m_CinemaObjectNumList.push_back(tmCinemaInfo.ChangeObjectIdx);
@@ -252,22 +252,22 @@ BOOL CMapWorkspace::LoadAllObjectInfofromDB()
 }
 
 
-int CMapWorkspace::ChangeMapInfluenceType2AllConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼¼·Â Ãß°¡ ºñÆ®
+int CMapWorkspace::ChangeMapInfluenceType2AllConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„¸ë ¥ ì¶”ê°€ ë¹„íŠ¸
 {
 	int nCount = 0;
 	for (int i = 0; i < m_vectorPtrMapProject.size(); i++)
 	{
-		if (m_vectorPtrMapProject[i]->SetMapInfluenceType2ConflictArea(i_sMapInflTy, i_bAdd))	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼¼·Â Ãß°¡ ºñÆ®)
+		if (m_vectorPtrMapProject[i]->SetMapInfluenceType2ConflictArea(i_sMapInflTy, i_bAdd))	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„¸ë ¥ ì¶”ê°€ ë¹„íŠ¸)
 		{
 			nCount++;
 		}
 	}
 
-	return nCount;		// 2006-02-09 by cmkwon, Àû¿ëµÈ MapProject Ä«¿îÆ®
+	return nCount;		// 2006-02-09 by cmkwon, ì ìš©ëœ MapProject ì¹´ìš´íŠ¸
 }
 
 
-// 2008-09-10 by cmkwon, ÅëÇÕ¾Æ·¹³ª ¸Ê¼³Á¤(map.cfg) °ü·Ã ¼öÁ¤ - 
+// 2008-09-10 by cmkwon, í†µí•©ì•„ë ˆë‚˜ ë§µì„¤ì •(map.cfg) ê´€ë ¨ ìˆ˜ì • - 
 //BOOL CMapWorkspace::LoadAllProject(const char* pFileName)
 BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer, vectMapIndexList *i_pvectArenaMapIndexList)
 {
@@ -354,7 +354,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		PROJECTINFO		tempProjectInfo;
 		memset(&tempProjectInfo, 0x00, sizeof(PROJECTINFO));
 
-		// DefaultMapIndex¸¦ ¼³Á¤
+		// DefaultMapIndexë¥¼ ì„¤ì •
 		tempProjectInfo.m_DeadDefaultMapIndex = m_DefaultMapIndex1;
 
 		// MapName
@@ -377,7 +377,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		//		token = config.strtok(NULL, seps);
 		//		tempProjectInfo.m_sWaterAltitude = atoi(token);
 
-				// AutoCreateMonster, ¸Ê¿¡ ¼³Á¤µÈ »ı¼º Á¤º¸¿¡ µû¶ó ¸ó½ºÅÍ¸¦ »ı¼ºÇÏ´ÂÁöÀÇ Flag
+				// AutoCreateMonster, ë§µì— ì„¤ì •ëœ ìƒì„± ì •ë³´ì— ë”°ë¼ ëª¬ìŠ¤í„°ë¥¼ ìƒì„±í•˜ëŠ”ì§€ì˜ Flag
 		token = config.strtok(NULL, seps);
 		if (stricmp(token, "TRUE") == 0) { tempProjectInfo.m_bAutoCreateMonster = TRUE; }
 		else { tempProjectInfo.m_bAutoCreateMonster = FALSE; }
@@ -418,11 +418,11 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		token = config.strtok(NULL, seps);
 		tempProjectInfo.m_sYSize = atoi(token);
 		// 2005-06-22 by cmkwon
-		//		// FrontPositionDistance ¸ó½ºÅÍÀÇ ¸Ê, ¿ÀºêÁ§Æ® Ãæµ¹ Ã¼Å©¸¦ À§ÇÑ ´ÙÀ½ ÁÂÇ¥ÀÇ °Å¸®°ª, Å©¸é ¹Ì¸® È¸ÀüÀ» ÇÑ´Ù 
+		//		// FrontPositionDistance ëª¬ìŠ¤í„°ì˜ ë§µ, ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ì²´í¬ë¥¼ ìœ„í•œ ë‹¤ìŒ ì¢Œí‘œì˜ ê±°ë¦¬ê°’, í¬ë©´ ë¯¸ë¦¬ íšŒì „ì„ í•œë‹¤ 
 		//		token = config.strtok(NULL, seps); 
 		//		tempProjectInfo.m_fFrontPositionDistance = atof(token);
 
-				// CreateNPCThread, NPC Server¿¡¼­ ¸Ê¿¡ ¸ó½ºÅÍ¸¦ À§ÇÑ Thread¸¦ »ı¼ºÇÏ´ÂÁöÀÇ Flag
+				// CreateNPCThread, NPC Serverì—ì„œ ë§µì— ëª¬ìŠ¤í„°ë¥¼ ìœ„í•œ Threadë¥¼ ìƒì„±í•˜ëŠ”ì§€ì˜ Flag
 		token = config.strtok(NULL, seps);
 		if (stricmp(token, "TRUE") == 0) { tempProjectInfo.m_bCreateNPCThread = TRUE; }
 		else { tempProjectInfo.m_bCreateNPCThread = FALSE; }
@@ -433,7 +433,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		//		if (stricmp(token, "TRUE") == 0) { tempProjectInfo.m_bTutorialMap = TRUE; }
 		//		else { tempProjectInfo.m_bTutorialMap = FALSE; }
 		//
-		//		// Ä³¸¯ÀÌ ÇöÀç ¸Ê¿¡¼­ Á×¾úÀ»¶§ µ¹¾Æ°¥ DefaultMap
+		//		// ìºë¦­ì´ í˜„ì¬ ë§µì—ì„œ ì£½ì—ˆì„ë•Œ ëŒì•„ê°ˆ DefaultMap
 		//		token = config.strtok(NULL, seps);
 		//		tempProjectInfo.m_DeadDefaultMapIndex = atoi(token);
 		//
@@ -447,7 +447,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		//		if (stricmp(token, "TRUE") == 0) { tempProjectInfo.m_bAutoDPRecovery = TRUE; }
 		//		else { tempProjectInfo.m_bAutoDPRecovery = FALSE; }
 		//
-		//		// µµ½Ã ¸ÊÀÌ¸é °­Á¦ ¿öÇÁ Å¸°Ù ÁÂÇ¥ ¼³Á¤
+		//		// ë„ì‹œ ë§µì´ë©´ ê°•ì œ ì›Œí”„ íƒ€ê²Ÿ ì¢Œí‘œ ì„¤ì •
 		//		if (IS_CITY_MAP_INDEX(tempProjectInfo.m_nMapIndex))
 		//		{
 		//			tempProjectInfo.m_CityWarpTargetPosition = config.getPosition(NULL);
@@ -457,15 +457,15 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		//			tempProjectInfo.m_CityWarpTargetPosition = D3DXVECTOR3(0, 0, 0);
 		//		}
 
-		// check: MapChannel µµÀÔÁß, 20040322, kelovon
+		// check: MapChannel ë„ì…ì¤‘, 20040322, kelovon
 		//		///////////////////////////////////////////////////////////////////////
-		//		// User-Friedly Map Name ÇÒ´ç -> check: ½Ã°£³ª¸é config·Î ¿Å±â±â!
+		//		// User-Friedly Map Name í• ë‹¹ -> check: ì‹œê°„ë‚˜ë©´ configë¡œ ì˜®ê¸°ê¸°!
 		//		///////////////////////////////////////////////////////////////////////
 		//		strncpy(pMapProject->m_bUserFriendlyMapName
 		//			, GetUserFriendlyMapName(tempProjectInfo.m_strFieldIP)
 		//			, SIZE_MAX_MAP_NAME);
 		//		///////////////////////////////////////////////////////////////////////
-		//		// User-Friedly Map Name ÇÒ´ç -> check: ½Ã°£³ª¸é config·Î ¿Å±â±â!
+		//		// User-Friedly Map Name í• ë‹¹ -> check: ì‹œê°„ë‚˜ë©´ configë¡œ ì˜®ê¸°ê¸°!
 		//		///////////////////////////////////////////////////////////////////////
 		token = strtok(NULL, seps);
 
@@ -476,7 +476,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		}
 
 		if (ST_FIELD_SERVER == m_pIOCPServer->GetServerType())
-		{	// Field Server´Â ÀÚ½ÅÀÌ ¼­ºñ½ºÇÏÁö ¾Ê´Â ¸Êµµ ¸ğµÎ loading ÇÑ´Ù
+		{	// Field ServerëŠ” ìì‹ ì´ ì„œë¹„ìŠ¤í•˜ì§€ ì•ŠëŠ” ë§µë„ ëª¨ë‘ loading í•œë‹¤
 
 		}
 		else if (ST_NPC_SERVER == m_pIOCPServer->GetServerType())
@@ -494,12 +494,12 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		}
 
 		///////////////////////////////////////////////////////////////////////////////
-		// 2008-09-10 by cmkwon, ÅëÇÕ¾Æ·¹³ª ¸Ê¼³Á¤(map.cfg) °ü·Ã ¼öÁ¤ - 
+		// 2008-09-10 by cmkwon, í†µí•©ì•„ë ˆë‚˜ ë§µì„¤ì •(map.cfg) ê´€ë ¨ ìˆ˜ì • - 
 		if (FALSE == i_bIsArenaServer)
 		{
 			vectMapIndexList::iterator itr = find(i_pvectArenaMapIndexList->begin(), i_pvectArenaMapIndexList->end(), tempProjectInfo.m_nMapIndex);
 			if (itr != i_pvectArenaMapIndexList->end())
-			{// 2008-09-10 by cmkwon, ¾Æ·¹³ª¸Ê(ArenaMap)ÀÌ¶ó¸é ·Îµù ÇÊ¿ä ¾øÀ½.
+			{// 2008-09-10 by cmkwon, ì•„ë ˆë‚˜ë§µ(ArenaMap)ì´ë¼ë©´ ë¡œë”© í•„ìš” ì—†ìŒ.
 				continue;
 			}
 		}
@@ -509,14 +509,14 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 			{
 				vectMapIndexList::iterator itr = find(i_pvectArenaMapIndexList->begin(), i_pvectArenaMapIndexList->end(), tempProjectInfo.m_nMapIndex);
 				if (itr == i_pvectArenaMapIndexList->end())
-				{// 2008-09-10 by cmkwon, ¾Æ·¹³ª¸Ê(ArenaMap)ÀÌ ¾Æ´Ï¶ó¸é ·Îµù ÇÊ¿ä ¾øÀ½.
+				{// 2008-09-10 by cmkwon, ì•„ë ˆë‚˜ë§µ(ArenaMap)ì´ ì•„ë‹ˆë¼ë©´ ë¡œë”© í•„ìš” ì—†ìŒ.
 					continue;
 				}
 			}
 		}
 
 		///////////////////////////////////////////////////////////////////////////////
-		// DB¿¡ ¼³Á¤µÈ Map ÆÄ¶ó¹ÌÅÍ ¼³Á¤ÇÏ±â
+		// DBì— ì„¤ì •ëœ Map íŒŒë¼ë¯¸í„° ì„¤ì •í•˜ê¸°
 		const MAP_INFO *pMapInfo = CAtumSJ::GetMapInfo(tempProjectInfo.m_nMapIndex);
 		if (NULL == pMapInfo)
 		{
@@ -545,7 +545,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		tempProjectInfo.m_VCNWarpObjectIndex = pMapInfo->VCNWarpObjectIndex;				// 2006-12-08 by cmkwon
 		tempProjectInfo.m_ANIWarpObjectIndex = pMapInfo->ANIWarpObjectIndex;				// 2006-12-08 by cmkwon
 		tempProjectInfo.m_TeleportWarpObjectIndex = pMapInfo->TeleportWarpObjectIndex;		// 2007-09-15 by dhjin
-		tempProjectInfo.m_nBeforeMapIndex2 = pMapInfo->BeforeMapIndex2;				// 2008-06-20 by cmkwon, EP3 ¹é¸Ê ½Ã½ºÅÛ ¼öÁ¤(¸Ê´ç ¹é¸ÊÀ» 2°³ ¼³Á¤ ÇÒ ¼ö ÀÖ´Ù) - 
+		tempProjectInfo.m_nBeforeMapIndex2 = pMapInfo->BeforeMapIndex2;				// 2008-06-20 by cmkwon, EP3 ë°±ë§µ ì‹œìŠ¤í…œ ìˆ˜ì •(ë§µë‹¹ ë°±ë§µì„ 2ê°œ ì„¤ì • í•  ìˆ˜ ìˆë‹¤) - 
 
 		///////////////////////////////////////////////////////////////////////////////
 		// 
@@ -576,7 +576,7 @@ BOOL CMapWorkspace::LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer,
 		}
 
 		///////////////////////////////////////////////////////////////////////////////		
-		// 2010-04-08 by cmkwon, ¼­¹ö¿¡¼­ ¸Ê·Îµù½Ã AlivePacket Àü¼Û Ãß°¡ - ¸ÊÀ» 10°³ ·ÎµùÇÏ°í ÆĞÅ¶À» Àü¼ÛÇÑ´Ù.
+		// 2010-04-08 by cmkwon, ì„œë²„ì—ì„œ ë§µë¡œë”©ì‹œ AlivePacket ì „ì†¡ ì¶”ê°€ - ë§µì„ 10ê°œ ë¡œë”©í•˜ê³  íŒ¨í‚·ì„ ì „ì†¡í•œë‹¤.
 		if (0 == m_vectorPtrMapProject.size() % 10)
 		{
 			g_pGlobal->WriteSystemLogEX(TRUE, "  [Notify] CMapWorkspace::LoadAllProject# sent AlivePacket ! MapProjectListCnt(%d) \r\n", m_vectorPtrMapProject.size());

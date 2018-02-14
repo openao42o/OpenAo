@@ -1,4 +1,4 @@
-// UserVariable.h: interface for the CUserVariable class.
+ï»¿// UserVariable.h: interface for the CUserVariable class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -11,8 +11,8 @@
 
 #include "mt_stl.h"
 
-#define SIZE_MAX_STRING_VALUE_NAME		256			// 2008-01-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ® ÀüÃ³¸®±â ¹öÆÛ ¼öÁ¤ - Ãß°¡ Á¤ÀÇ ÇÔ 
-#define SIZE_MAX_STRING_VALUE			2000		// 2008-01-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ® ÀüÃ³¸®±â ¹öÆÛ ¼öÁ¤ - ¼öÁ¤ÇÔ, SIZE_MAX_NPC_TALK_STRING º¸´Ù Å©°Ô ÇØ¾ß ÇÑ´Ù.
+#define SIZE_MAX_STRING_VALUE_NAME		256			// 2008-01-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ ì „ì²˜ë¦¬ê¸° ë²„í¼ ìˆ˜ì • - ì¶”ê°€ ì •ì˜ í•¨ 
+#define SIZE_MAX_STRING_VALUE			2000		// 2008-01-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ ì „ì²˜ë¦¬ê¸° ë²„í¼ ìˆ˜ì • - ìˆ˜ì •í•¨, SIZE_MAX_NPC_TALK_STRING ë³´ë‹¤ í¬ê²Œ í•´ì•¼ í•œë‹¤.
 
 enum EnumElementType
 {
@@ -22,7 +22,7 @@ enum EnumElementType
 
 struct USER_VAR_ELEMENT
 {
-	char			UserVariableName[SIZE_MAX_STRING_VALUE_NAME];		// 2008-01-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ® ÀüÃ³¸®±â ¹öÆÛ ¼öÁ¤ - ¼öÁ¤ÇÔ(<--SIZE_MAX_STRING_VALUE)
+	char			UserVariableName[SIZE_MAX_STRING_VALUE_NAME];		// 2008-01-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ ì „ì²˜ë¦¬ê¸° ë²„í¼ ìˆ˜ì • - ìˆ˜ì •í•¨(<--SIZE_MAX_STRING_VALUE)
 	EnumElementType	Type;
 	int				IntValue;
 	char			StringValue[SIZE_MAX_STRING_VALUE];
@@ -43,7 +43,7 @@ public:
 	bool				AddUserVariableInteger(char *i_pUserVar, int i_intValue);
 	bool				AddUserVariableString(char *i_pUserVar, char *i_strValue);
 
-	// µğ¹ö±ë¿ë
+	// ë””ë²„ê¹…ìš©
 	void Print();
 
 private:

@@ -1,30 +1,30 @@
-#ifndef _BILLING_NETPOWERTPE_H_
+ï»¿#ifndef _BILLING_NETPOWERTPE_H_
 #define _BILLING_NETPOWERTPE_H_
 
-// 2008-11-13 by cmkwon, ´ë¸¸ Netpower_Tpe ºô¸µ ½Ã½ºÅÛ ±¸Ãà - BillingNetpower.h ÆÄÀÏ Ãß°¡
+// 2008-11-13 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ë¹Œë§ ì‹œìŠ¤í…œ êµ¬ì¶• - BillingNetpower.h íŒŒì¼ ì¶”ê°€
 
-#define NETBILL_SIZE_MAX_ACCOUNT_NAME			50		// ÃÖ´ë °èÁ¤¸í
-#define NETBILL_SIZE_MAX_CHARACTER_NAME			50		// ÃÖ´ë Ä³¸¯ÅÍ¸í
-#define NETBILL_SIZE_MAX_ITEM_NUM				50		// ÃÖ´ë ¾ÆÀÌÅÛ¹øÈ£ ±æÀÌ
-#define NETBILL_SIZE_MAX_ITEM_NAME				50		// ÃÖ´ë ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ
+#define NETBILL_SIZE_MAX_ACCOUNT_NAME			50		// ìµœëŒ€ ê³„ì •ëª…
+#define NETBILL_SIZE_MAX_CHARACTER_NAME			50		// ìµœëŒ€ ìºë¦­í„°ëª…
+#define NETBILL_SIZE_MAX_ITEM_NUM				50		// ìµœëŒ€ ì•„ì´í…œë²ˆí˜¸ ê¸¸ì´
+#define NETBILL_SIZE_MAX_ITEM_NAME				50		// ìµœëŒ€ ì•„ì´í…œ ì´ë¦„ ê¸¸ì´
 #define NETBILL_SIZE_MAX_IPADDRESS				16		// 
 
-#define NETBILL_SERVICE_CODE_FOR_BILLING		"00003"		// 2008-11-13 by cmkwon, ´ë¸¸ Netpower_Tpe ºô¸µ ½Ã½ºÅÛ ±¸Ãà - ´ë¸¸ Netpower_Tpe ºô¸µ ¼­ºñ½º ÄÚµå
+#define NETBILL_SERVICE_CODE_FOR_BILLING		"00003"		// 2008-11-13 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ë¹Œë§ ì‹œìŠ¤í…œ êµ¬ì¶• - ëŒ€ë§Œ Netpower_Tpe ë¹Œë§ ì„œë¹„ìŠ¤ ì½”ë“œ
 
 
 //----------------------------------------------------------------
-//-- Àü¼Ûµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ì „ì†¡ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 struct SNETBILL_REQ_DATA
 {
-	int  nCommand;												// ¸í·ÉÁ¾·ù(1:ÀÜ¾×Á¶È¸, 2:¾ÆÀÌÅÛ±¸¸Å)
-	char szAccountName[NETBILL_SIZE_MAX_ACCOUNT_NAME];		// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚ¹øÈ£)
-	char szCharacterName[NETBILL_SIZE_MAX_CHARACTER_NAME];	// ±¸¸ÅÀÚÁ¤º¸(°ÔÀÓ³»ÀÇ Ä³¸¯ÅÍ¸í)
-	char szItemNum[NETBILL_SIZE_MAX_ITEM_NUM];				// ±¸¸Å ¾ÆÀÌÅÛ ±¸ºÐÀÚ(ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ ¾ÆÀÌÅÛ¸¸ ±¸¸Å°¡´É)
-	char szItemName[NETBILL_SIZE_MAX_ITEM_NAME];				// ±¸¸Å ¾ÆÀÌÅÛ ÀÌ¸§
-	int  nBuyItemCount;											// ±¸¸Å ¾ÆÀÌÅÛ Ä«¿îÆ®
-	int  nItemUnitPrice;										// ±¸¸Å ¾ÆÀÌÅÛÀÇ 1°³´ç °¡°Ý
-	char szUserIP[NETBILL_SIZE_MAX_IPADDRESS];				// ±¸¸ÅÀÚÁ¤º¸(±¸¸ÅÀÚ IP)	
+	int  nCommand;												// ëª…ë ¹ì¢…ë¥˜(1:ìž”ì•¡ì¡°íšŒ, 2:ì•„ì´í…œêµ¬ë§¤)
+	char szAccountName[NETBILL_SIZE_MAX_ACCOUNT_NAME];		// êµ¬ë§¤ìžì •ë³´(ì‚¬ìš©ìžë²ˆí˜¸)
+	char szCharacterName[NETBILL_SIZE_MAX_CHARACTER_NAME];	// êµ¬ë§¤ìžì •ë³´(ê²Œìž„ë‚´ì˜ ìºë¦­í„°ëª…)
+	char szItemNum[NETBILL_SIZE_MAX_ITEM_NUM];				// êµ¬ë§¤ ì•„ì´í…œ êµ¬ë¶„ìž(ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœ ì•„ì´í…œë§Œ êµ¬ë§¤ê°€ëŠ¥)
+	char szItemName[NETBILL_SIZE_MAX_ITEM_NAME];				// êµ¬ë§¤ ì•„ì´í…œ ì´ë¦„
+	int  nBuyItemCount;											// êµ¬ë§¤ ì•„ì´í…œ ì¹´ìš´íŠ¸
+	int  nItemUnitPrice;										// êµ¬ë§¤ ì•„ì´í…œì˜ 1ê°œë‹¹ ê°€ê²©
+	char szUserIP[NETBILL_SIZE_MAX_IPADDRESS];				// êµ¬ë§¤ìžì •ë³´(êµ¬ë§¤ìž IP)	
 	int		GiftAccountUID;
 	char	GiftAccountName[NETBILL_SIZE_MAX_ACCOUNT_NAME];
 	char	GiftCharacterName[NETBILL_SIZE_MAX_CHARACTER_NAME];
@@ -32,13 +32,13 @@ struct SNETBILL_REQ_DATA
 
 
 //----------------------------------------------------------------
-//-- ¼ö½Åµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ìˆ˜ì‹ ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 struct SNETBILL_RET_DATA
 {
-	int  nRetErrCode;				// Ã³¸®°á°ú (=0: ¼º°ø, <>0: ¿¡·¯), ERR_DB_XXXX
-	int  nCashPoint;				// ½ÇÁ¦·Î °áÁ¦ÇÏ¿© ¼ÒÀ¯ÇÑ Point
-	int  nBonusPoint;				// ÀÌº¥Æ® È¤Àº ´Ù¸¥ »çÀ¯·Î ÀÎÇØ ¼ÒÀ¯ÇÑ Point
+	int  nRetErrCode;				// ì²˜ë¦¬ê²°ê³¼ (=0: ì„±ê³µ, <>0: ì—ëŸ¬), ERR_DB_XXXX
+	int  nCashPoint;				// ì‹¤ì œë¡œ ê²°ì œí•˜ì—¬ ì†Œìœ í•œ Point
+	int  nBonusPoint;				// ì´ë²¤íŠ¸ í˜¹ì€ ë‹¤ë¥¸ ì‚¬ìœ ë¡œ ì¸í•´ ì†Œìœ í•œ Point
 };
 
 

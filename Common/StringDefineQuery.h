@@ -1,17 +1,17 @@
-
+Ôªø
 // 2008-07-02 by cmkwon
 // #include "StringDefineQuery.h"
 #ifndef _STRING_DEFINE_QUERY_H_
 #define _STRING_DEFINE_QUERY_H_
 
-// 2008-08-20 by cmkwon, MySQL ∞¸∑√ º“Ω∫ ≈Î«’ - 
+// 2008-08-20 by cmkwon, MySQL Í¥ÄÎ†® ÏÜåÏä§ ÌÜµÌï© - 
 //#define DB_SERVER_MYSQL
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-07-02 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ -  
+// 2008-07-02 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ -  
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0001		"select AccountName, Password, AccountType,Sex, BirthYear, RegisteredDate, LastLoginDate,IsBlocked, ChattingBlocked, SecondaryPassword from atum2_db_account.dbo.td_account WITH (NOLOCK) where accountname = \'%s\';"
 // #define QUERY_080702_0002		"update atum2_db_account.dbo.td_account set AccountType = %d, Password = \'%s\', SecondaryPassword = \'%s\' where accountname = \'%s\';"
 // #define QUERY_080702_0003		"SELECT AccountName, BlockedType, StartDate,	EndDate, AdminAccountName, BlockedReason, BlockedReasonForOnlyAdmin FROM td_blockedaccounts WITH (NOLOCK);"
@@ -40,8 +40,8 @@
 #define QUERY_080702_0010_8		" and CAST(CAST(substring(IPAddress, 1, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 2, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 3, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 4, 1) AS INT) AS VARCHAR(3)) like \'%s\'"
 #define QUERY_080702_0010_8_1	" and l.MACAddress = \'%s\'"	// 2015-09-23 Future, added logging of MAC Address
 #define QUERY_080702_0010_9		" order by l.time desc "
-#define QUERY_080702_0010_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0010_10_B	" ;"					// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0010_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0010_10_B	" ;"					// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0011_1_A	"select top %d "
 #define QUERY_080702_0011_1_B	"select "
@@ -57,8 +57,8 @@
 #define QUERY_080702_0011_11	" and l.ItemNum = %d "
 #define QUERY_080702_0011_12	" and l.ItemUID = %d "
 #define QUERY_080702_0011_13	" order by time desc "
-#define QUERY_080702_0011_14_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0011_14_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0011_14_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0011_14_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0012_1_A	"select top %d "
 #define QUERY_080702_0012_1_B	"select "
@@ -74,8 +74,8 @@
 #define QUERY_080702_0012_9		" and l.ItemNum = %d "
 #define QUERY_080702_0012_10	" and l.ItemUniqueNumber = %d "
 #define QUERY_080702_0012_11	" order by l.time desc "
-#define QUERY_080702_0012_12_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0012_12_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0012_12_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0012_12_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0013_1_A	"select top %d "
 #define QUERY_080702_0013_1_B	"select "
@@ -91,10 +91,10 @@
 #define QUERY_080702_0013_7_B	" and c.charactername = \'%s\' "
 #define QUERY_080702_0013_8		" and l.time > \'%s\' and l.time < \'%s\' "
 #define QUERY_080702_0013_9		" order by l.time desc "
-#define QUERY_080702_0013_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0013_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0013_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0013_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0014		"select UniqueNumber, ItemNum, CreatedTime,	UpdatedTime, ExpireTime from td_accountcashstore WITH (NOLOCK) where AccountUniqueNumber = %d;"
 // #define QUERY_080702_0015		"INSERT INTO td_accountcashstore(AccountUniqueNumber,ItemNum,CreatedTime,UpdatedTime,ExpireTime) VALUES (%u, %d, \'%s\', \'%s\', \'%s\');"
 // #define QUERY_080702_0016		"select * from td_accountblock where EndTime > GetDate();"
@@ -155,9 +155,9 @@
 #define QUERY_080702_0050_8		" and l.AdminAccountName = \'%s\' "
 #define QUERY_080702_0050_9		" AND l.Time >= '%s' AND l.Time <= '%s' "
 #define QUERY_080702_0050_10	" order by l.time desc "
-#define QUERY_080702_0050_11	" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySQL
+#define QUERY_080702_0050_11	" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySQL
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0051		"INSERT INTO atum2_db_account.dbo.ti_EventMonster(ServerGroupID,StartDateTime,EndDateTime,SummonerMapIndex,SummonerReqMinLevel,SummonerReqMaxLevel,SummonerExceptMonster,SummonMonsterNum,SummonMonsterCount,SummonDelayTime,SummonProbability) VALUES(%d, '%s', '%s', %d, %d, %d, %d, %d, %d, %d, %d);"
 // #define QUERY_080702_0052		"UPDATE atum2_db_account.dbo.ti_EventMonster SET ServerGroupID= %d, StartDateTime= '%s', EndDateTime= '%s', SummonerMapIndex= %d, SummonerReqMinLevel= %d, SummonerReqMaxLevel= %d, SummonerExceptMonster= %d, SummonMonsterNum= %d, SummonMonsterCount= %d, SummonDelayTime= %d, SummonProbability= %d WHERE EventMonsterUID = %d;"
 // #define QUERY_080702_0053		"DELETE atum2_db_account.dbo.ti_EventMonster WHERE EventMonsterUID = %d;"
@@ -181,7 +181,7 @@
 // 
 // #define QUERY_080702_0064		"SELECT * FROM atum2_db_account.dbo.ti_MapInfo WITH (NOLOCK);"
 
-// 2008-09-12 by cmkwon, «—±π Yedang_Kor PCBang ∏Æ∑ŒµÂ πˆ±◊ ºˆ¡§ - ƒı∏Æ∑Œ «ÿæﬂ «‘.
+// 2008-09-12 by cmkwon, ÌïúÍµ≠ Yedang_Kor PCBang Î¶¨Î°úÎìú Î≤ÑÍ∑∏ ÏàòÏ†ï - ÏøºÎ¶¨Î°ú Ìï¥Ïïº Ìï®.
 //#define QUERY_080702_0065		"Select TempIp.UID, TempIp.ST_IP, TempIp.ED_IP, TempBr.User_Id,	\
 // 									TempBr.Branch_Name, TempBr.Branch_RegNO, TempBr.Branch_Tel, \
 // 									TempBr.ZipCode, TempBr.Addr_Sido, TempBr.Addr_SiGugun, TempBr.Addr_Dong, \
@@ -205,7 +205,7 @@
 // #define QUERY_080702_0066		"DELETE atum2_db_account.dbo.td_pcbang;"
 //#define QUERY_080702_0067		"INSERT INTO atum2_db_account.dbo.td_pcbang VALUES(?,?,?,?,?, ?,?,?,?,?, ?,?,?);"
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0068		"SELECT InfluenceType, InflLeaderCharacterUID FROM td_influencewardata WITH (NOLOCK) WHERE MGameServerID = %d;"
 // #define QUERY_080702_0069		"SELECT InfluenceType, InflSub1LeaderCharacterUID FROM td_influencewardata WITH (NOLOCK) WHERE MGameServerID = %d;"
 // #define QUERY_080702_0070		"SELECT InfluenceType, InflSub2LeaderCharacterUID FROM td_influencewardata WITH (NOLOCK) WHERE MGameServerID = %d;"
@@ -253,8 +253,8 @@
 #define QUERY_080702_0092_7		" and l.time > \'%s\' and l.time < \'%s\' "
 #define QUERY_080702_0092_8		" and CAST(CAST(substring(IPAddress, 1, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 2, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 3, 1) AS INT) AS VARCHAR(3)) + '.' + CAST(CAST(substring(IPAddress, 4, 1) AS INT) AS VARCHAR(3)) like \'%s\'"
 #define QUERY_080702_0092_9		" order by l.time desc "
-#define QUERY_080702_0092_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0092_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0092_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0092_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0093_1_A	"select top %d "
 #define QUERY_080702_0093_1_B	"select "
@@ -270,8 +270,8 @@
 #define QUERY_080702_0093_11	" and l.ItemNum = %d "
 #define QUERY_080702_0093_12	" and l.ItemUID = %d "
 #define QUERY_080702_0093_13	" order by time desc "
-#define QUERY_080702_0093_14_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0093_14_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0093_14_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0093_14_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0094_1_A	"select top %d "
 #define QUERY_080702_0094_1_B	"select "
@@ -287,8 +287,8 @@
 #define QUERY_080702_0094_9		" and l.ItemNum = %d "
 #define QUERY_080702_0094_10	" and l.ItemUniqueNumber = %d "
 #define QUERY_080702_0094_11	" order by l.time desc "
-#define QUERY_080702_0094_12_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0094_12_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0094_12_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0094_12_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0095_1_A	"select top %d "
 #define QUERY_080702_0095_1_B	"select "
@@ -304,15 +304,15 @@
 #define QUERY_080702_0095_7_B	" and c.charactername = \'%s\' "
 #define QUERY_080702_0095_8		" and l.time > \'%s\' and l.time < \'%s\' "
 #define QUERY_080702_0095_9		" order by l.time desc "
-#define QUERY_080702_0095_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
-#define QUERY_080702_0095_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySql
+#define QUERY_080702_0095_10_A	" LIMIT 0,%d;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
+#define QUERY_080702_0095_10_B	" ;"				// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySql
 
 #define QUERY_080702_0096		"select MapIndex, RenderMapIndex, MapName, MapInfluenceType, CityMapIndex, CityWarQuestIndex, CityWarQuestNPCIndex, CityWarQuestMonsterUID, MaxUserCount, MaxGroundHeight, MinGroundHeight, WaterHeight, UserVisibleDistance, MonsterVisibleDistance, QuestIndexForWarp, FrontPositionDistance, AutoRecoveryFlag, DefaultMapIndex, CityWarpTargetPositionX, CityWarpTargetPositionY, CityWarpTargetPositionZ, ClientMaxAltitudeHeight, DayFogColor, NightFogColor, DayFogStartDistance, DayFogEndDistance, NightFogStartDistance, NightFogEndDistance, DaySunDirectionX, DaySunDirectionY, DaySunDirectionZ, NightSunDirectionX, NightSunDirectionY, NightSunDirectionZ, WaterType, PKZoneFlag, TileRenderingFlag, SkyRenderingFlag, SunRenderingFlag, FogRenderingFlag from atum2_db_account.dbo.ti_MapInfo;"
 #define QUERY_080702_0097		"delete atum2_db_account.dbo.ti_MapInfo where MapIndex = %s;"
 #define QUERY_080702_0098		"Update atum2_db_account.dbo.ti_MapInfo set RenderMapIndex = %s, MapName = '%s', MapInfluenceType = %s, CityMapIndex = %s, CityWarQuestIndex = %s, CityWarQuestNPCIndex = %s, CityWarQuestMonsterUID = %s, MaxUserCount = %s, MaxGroundHeight = %s, MinGroundHeight = %s, WaterHeight = %s, UserVisibleDistance = %s, MonsterVisibleDistance = %s, QuestIndexForWarp = %s, FrontPositionDistance = %s, AutoRecoveryFlag = %s, DefaultMapIndex = %s, CityWarpTargetPositionX = %s, CityWarpTargetPositionY = %s, CityWarpTargetPositionZ = %s, ClientMaxAltitudeHeight = %s, DayFogColor = %s, NightFogColor = %s, DayFogStartDistance = %s, DayFogEndDistance = %s, NightFogStartDistance = %s, NightFogEndDistance = %s, DaySunDirectionX = %s, DaySunDirectionY = %s, DaySunDirectionZ = %s, NightSunDirectionX = %s, NightSunDirectionY = %s, NightSunDirectionZ = %s, WaterType = %s, PKZoneFlag = %s, TileRenderingFlag = %s, SkyRenderingFlag = %s, SunRenderingFlag = %s, FogRenderingFlag = %s where MapIndex = %s;"
 #define QUERY_080702_0099		"Insert into atum2_db_account.dbo.ti_MapInfo(MapIndex, RenderMapIndex, MapName, MapInfluenceType, CityMapIndex, CityWarQuestIndex, CityWarQuestNPCIndex, CityWarQuestMonsterUID, MaxUserCount, MaxGroundHeight, MinGroundHeight, WaterHeight, UserVisibleDistance, MonsterVisibleDistance, QuestIndexForWarp, FrontPositionDistance, AutoRecoveryFlag, DefaultMapIndex, CityWarpTargetPositionX, CityWarpTargetPositionY, CityWarpTargetPositionZ, ClientMaxAltitudeHeight, DayFogColor, NightFogColor, DayFogStartDistance, DayFogEndDistance, NightFogStartDistance, NightFogEndDistance, DaySunDirectionX, DaySunDirectionY, DaySunDirectionZ, NightSunDirectionX, NightSunDirectionY, NightSunDirectionZ, WaterType, PKZoneFlag, TileRenderingFlag, SkyRenderingFlag, SunRenderingFlag, FogRenderingFlag) values ( %s, %s, '%s', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
 
-// 2009-04-21 by cmkwon, ITEMø° DesParam « µÂ ∞≥ºˆ 8∞≥∑Œ ¥√∏Æ±‚ - «ˆ¿Á ªÁøÎ«œ¡ˆ æ ¿∏π«∑Œ ¡÷ºÆ √≥∏Æ
+// 2009-04-21 by cmkwon, ITEMÏóê DesParam ÌïÑÎìú Í∞úÏàò 8Í∞úÎ°ú ÎäòÎ¶¨Í∏∞ - ÌòÑÏû¨ ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÏúºÎØÄÎ°ú Ï£ºÏÑù Ï≤òÎ¶¨
 //#define QUERY_080702_0100		"select ItemNum, ItemName, AbilityMin, AbilityMax, ReqRace, ReqMinLevel, Hitrate, SpeedPenalty, Range, Charging, RangeAngle, Shotnum, Multinum, Attacktime, ReqSP, Summonmonster, Orbittype, CameraPattern, Kind, SourceIndex, DestParameter1, ParameterValue1, DestParameter2, ParameterValue2, DestParameter3, ParameterValue3, DestParameter4, ParameterValue4 from atum2_db_account.dbo.ti_Item where ItemNum like '75%%';"
 //
 //#define QUERY_080702_0101		"select ItemNum, ItemName, AbilityMin, AbilityMax, ReqRace, ReqMinLevel, Hitrate, SpeedPenalty, Range, Charging, RangeAngle, Shotnum, Multinum, Attacktime, ReqSP, Summonmonster, Orbittype, CameraPattern, Kind, SourceIndex, DestParameter1, ParameterValue1, DestParameter2, ParameterValue2, DestParameter3, ParameterValue3, DestParameter4, ParameterValue4 from atum2_db_account.dbo.ti_Item where ItemNum like '75%%' and ItemNum in (%d, %d, %d, %d, %d, %d);"
@@ -338,7 +338,7 @@
 #define QUERY_080702_0118		"Update atum2_db_account.dbo.ti_MonsterItem set ItemNum =%s,MinCount=%s ,MaxCount=%s ,Probability=%s ,PrefixProbability=%s ,SuffixProbability=%s where monsteruniquenumber = %s;"
 #define QUERY_080702_0119		"Insert into atum2_db_account.dbo.ti_MonsterItem(MonsterUniqueNumber ,ItemNum ,MinCount ,MaxCount ,Probability ,PrefixProbability ,SuffixProbability) values ( %s, %s, %s, %s, %s, %s, %s);"
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0120		"select accounttype from atum2_db_account.dbo.td_account where accountname = '%s' and password = '%s';"
 // 
 // #define QUERY_080702_0121		"select accounttype from atum2_db_account.dbo.td_account where accountname = '%s' and password = '%s';"
@@ -368,7 +368,7 @@
 									and PCBangUID IN \
 									(select UID from atum2_db_account.dbo.td_pcbang WITH (NOLOCK) \
 									where Addr_Sido like '%%%s%%' and Addr_SiGuGun like '%%%s%%' and Branch_Name like '%%%s%%') "
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0125		"select a.AccountName, a.CharacterName, c.Level, a.START_TIME, b.END_TIME, b.PlayTime, b.PCBangUID, c.CreatedTime \
 // 									from \
 // 									(select CharacterUniqueNumber, AccountName, CharacterName, Time as START_TIME, TotalPlayTime \
@@ -396,7 +396,7 @@
 									from dbo.atum_backup_log_user_game_start_end WITH (NOLOCK) where LogType = 20 and Time >= '%s' and Time <= '%s'\
 									group by PCBangUID having PCBangUID IS NOT NULL "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0129		"select TotalTime.PCBangUID, PCBang.Branch_Name, TotalTime.TotalPCBangPlayTime, \
 // 									PCBang.Branch_Tel, PCBang.ZipCode, PCBang.Addr_Sido, PCBang.Addr_SiGuGun, \
 // 									PCBang.Addr_Dong, PCBang.Addr_Detail, PCBang.User_Level \
@@ -421,7 +421,7 @@
 									and PCBangUID IN \
 									(select UID from atum2_db_account.dbo.td_pcbang WITH (NOLOCK)) "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0133		"Select Time, PCBangUID, PCBangPlayTime From dbo.log_pcbangtotalplaytimebyeachday WITH (NOLOCK);"
 // #define QUERY_080702_0134		"SELECT TOP %d accountname, charactername, dbo.atum_GetGearString(unitkind), InfluenceType, level, WarPoint, CumulativeWarPoint, ArenaWin, ArenaLose, ArenaDisConnect \
 // 									FROM td_character WITH (NOLOCK) \
@@ -452,12 +452,12 @@
 									FROM atum_log_server_map WITH (NOLOCK) \
 									WHERE MapIndex = 0 and time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0141		"SELECT time, clientCount FROM log_server_map ORDER BY time DESC;"
 // #define QUERY_080702_0142		"SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account WITH (NOLOCK) ORDER BY AccountUniqueNumber DESC;"
 // #define QUERY_080702_0143		"SELECT COUNT(*) FROM atum2_db_account.dbo.td_account WITH (NOLOCK);"
 // #define QUERY_080702_0144		"SELECT ((SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account WITH (NOLOCK) ORDER BY AccountUniqueNumber DESC) - COUNT(*)) FROM atum2_db_account.dbo.td_account;"
-// #define QUERY_080702_0145		"SELECT (SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account WITH (NOLOCK) ORDER BY AccountUniqueNumber DESC) - ((SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account ORDER BY AccountUniqueNumber DESC) - COUNT(*))/datediff(dd, min(registereddate), getdate()) AS '«ˆ ¿·¡§ »∏ø¯ºˆ' FROM atum2_db_account.dbo.td_account;"
+// #define QUERY_080702_0145		"SELECT (SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account WITH (NOLOCK) ORDER BY AccountUniqueNumber DESC) - ((SELECT TOP 1 (AccountUniqueNumber) FROM atum2_db_account.dbo.td_account ORDER BY AccountUniqueNumber DESC) - COUNT(*))/datediff(dd, min(registereddate), getdate()) AS 'ÌòÑ Ïû†Ï†ï ÌöåÏõêÏàò' FROM atum2_db_account.dbo.td_account;"
 
 #define QUERY_080702_0146		"DROP VIEW user_count_timeline;"
 #define QUERY_080702_0147		"DROP VIEW tm_user_count_timeline;"
@@ -479,7 +479,7 @@
 									SELECT * FROM atum_log_server_map NOLOCK where MapIndex = 0 and time > '%s' and time < '%s' "
 #define QUERY_080702_0154		"CREATE VIEW user_count_timeline	as	select	time, dbo.atum_GetOnlyDate(time) as date, CAST(DATENAME(yy, time)+'-'+DATENAME(mm, time)+'-'+DATENAME(dd, time)+' '+DATENAME(hh, time)+':00' as datetime) as datehour,	DATEPART(hh, time) as hour,	sum(clientcount) as clientcount	from tm_user_count_timeline where MapIndex = 0 and time > '%s' and time < '%s'	group by time "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0155		"select hour, max(clientcount) as maxcount, min(clientcount) as mincount,avg(clientcount) as avgcount from user_count_timeline group by hour order by hour ;"
 
 #define QUERY_080702_0156		"drop view user_count_timeline;"
@@ -490,7 +490,7 @@
 									SELECT * FROM atum_log_server_map WITH (NOLOCK) where MapIndex = 0 and time > '%s' and time < '%s' "
 #define QUERY_080702_0159		"create view user_count_timeline	as	select	time, dbo.atum_GetOnlyDate(time) as date, CAST(DATENAME(yy, time)+'-'+DATENAME(mm, time)+'-'+DATENAME(dd, time)+' '+DATENAME(hh, time)+':00' as datetime) as datehour,	DATEPART(hh, time) as hour,	sum(clientcount) as clientcount	from tm_user_count_timeline where MapIndex = 0 and time > '%s' and time < '%s'	group by time "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0160		"select date, max(clientcount) as maxcount, avg(clientcount) as avgcount, min(clientcount) as mincount from user_count_timeline group by date	order by date;"
 
 #define QUERY_080702_0161		"drop view user_count_timeline;"
@@ -501,7 +501,7 @@
 									SELECT * FROM atum_log_server_map WITH (NOLOCK) where MapIndex = 0 and time > '%s' and time < '%s' "
 #define QUERY_080702_0164		"create view user_count_timeline	as	select	time, dbo.atum_GetOnlyDate(time) as date, CAST(DATENAME(yy, time)+'-'+DATENAME(mm, time)+'-'+DATENAME(dd, time)+' '+DATENAME(hh, time)+':00' as datetime) as datehour,	DATEPART(hh, time) as hour,	sum(clientcount) as clientcount	from tm_user_count_timeline where MapIndex = 0 and time > '%s' and time < '%s'	group by time "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0165		"select datehour, max(clientcount) as maxcount, min(clientcount) as mincount, avg(clientcount) as avgcount from user_count_timeline group by datehour	order by datehour desc;"
 
 #define QUERY_080702_0166		"drop view view_levelranking;"
@@ -512,14 +512,14 @@
 									WHERE 0 = c.Race&%d AND c.race < 128 AND c.accountuniquenumber = c2.accountuniquenumber and c.experience >= c2.maxexp \
 									AND (c2.maxexp != 0 OR charactername in (select max(charactername) FROM td_character group by accountuniquenumber)) \
 									AND a.accountuniquenumber = c.accountuniquenumber "
-// 2008-08-28 by cmkwon, MySQL ∞¸∑√ ≥Ø¬•Ω√∞£ ∞¸∑√ ø¿∑˘ ºˆ¡§ - 
+// 2008-08-28 by cmkwon, MySQL Í¥ÄÎ†® ÎÇ†ÏßúÏãúÍ∞Ñ Í¥ÄÎ†® Ïò§Î•ò ÏàòÏ†ï - 
 //#define QUERY_080702_0167_2_A	" %s AND a.LastLoginDate >= '%04d%02d%02d %02d:%02d:%02d' ORDER BY c2.maxexp desc "
 #define QUERY_080702_0167_2_A	" %s AND a.LastLoginDate >= '%s' ORDER BY c2.maxexp desc "
 
 #define QUERY_080702_0167_2_B	" %s ORDER BY c2.maxexp desc "
-#define QUERY_080702_0167_3		" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySQL
+#define QUERY_080702_0167_3		" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySQL
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0168		"SELECT * FROM view_levelranking;"
 
 #define QUERY_080702_0169		"drop view view_levelranking;"
@@ -531,13 +531,13 @@
 									WHERE 0 = c.Race&%d AND c.race < 128 and c.accountuniquenumber = c2.accountuniquenumber and c.experience >= c2.maxexp \
 									AND (c2.maxexp != 0 OR charactername in (select max(charactername) FROM td_character group by accountuniquenumber)) "
 
-// 2008-08-28 by cmkwon, MySQL ∞¸∑√ ≥Ø¬•Ω√∞£ ∞¸∑√ ø¿∑˘ ºˆ¡§ - 
+// 2008-08-28 by cmkwon, MySQL Í¥ÄÎ†® ÎÇ†ÏßúÏãúÍ∞Ñ Í¥ÄÎ†® Ïò§Î•ò ÏàòÏ†ï - 
 //#define QUERY_080702_0170_2		" %s AND c.CreatedTime >= '%04d%02d%02d %02d:%02d:%02d' AND c.CreatedTime <= '%04d%02d%02d %02d:%02d:%02d' ORDER BY c2.maxexp desc "
 #define QUERY_080702_0170_2		" %s AND c.CreatedTime >= '%s' AND c.CreatedTime <= '%s' ORDER BY c2.maxexp desc "
 
-#define QUERY_080702_0170_3		" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ¡ˆø¯ ±∏«ˆ - Only for MySQL
+#define QUERY_080702_0170_3		" LIMIT 0,%d ;"		// 2008-07-08 by cmkwon, MySQL ÏßÄÏõê Íµ¨ÌòÑ - Only for MySQL
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0171		"SELECT * FROM view_levelranking;"
 
 #define QUERY_080702_0172		"drop view view_levelranking;"
@@ -547,13 +547,13 @@
 									FROM td_character c, atum2_db_account.dbo.td_account a WITH (NOLOCK) \
 									WHERE 0 = c.Race&%d AND c.Race < 128 AND a.accountuniquenumber = c.accountuniquenumber "
 
-// 2008-08-28 by cmkwon, MySQL ∞¸∑√ ≥Ø¬•Ω√∞£ ∞¸∑√ ø¿∑˘ ºˆ¡§ - 
+// 2008-08-28 by cmkwon, MySQL Í¥ÄÎ†® ÎÇ†ÏßúÏãúÍ∞Ñ Í¥ÄÎ†® Ïò§Î•ò ÏàòÏ†ï - 
 //#define QUERY_080702_0174_2_A	" %s AND a.LastLoginDate >= '%04d%02d%02d %02d:%02d:%02d' GROUP BY c.InfluenceType, c.level "
 #define QUERY_080702_0174_2_A	" %s AND a.LastLoginDate >= '%s' GROUP BY c.InfluenceType, c.level "
 
 #define QUERY_080702_0174_2_B	" %s GROUP BY c.InfluenceType, c.level "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0175		"SELECT * FROM view_levelranking ORDER BY InfluenceType, Level desc;"
 
 #define QUERY_080702_0176		"drop view view_levelranking;"
@@ -563,16 +563,16 @@
 									FROM td_character c, atum2_db_account.dbo.td_account a WITH (NOLOCK) \
 									WHERE 0 = c.Race&%d AND c.Race < 128 AND a.accountuniquenumber = c.accountuniquenumber "
 
-// 2008-08-28 by cmkwon, MySQL ∞¸∑√ ≥Ø¬•Ω√∞£ ∞¸∑√ ø¿∑˘ ºˆ¡§ - 
+// 2008-08-28 by cmkwon, MySQL Í¥ÄÎ†® ÎÇ†ÏßúÏãúÍ∞Ñ Í¥ÄÎ†® Ïò§Î•ò ÏàòÏ†ï - 
 //#define QUERY_080702_0177_2		" %s AND c.CreatedTime >= '%04d%02d%02d %02d:%02d:%02d' AND c.CreatedTime <= '%04d%02d%02d %02d:%02d:%02d' GROUP BY c.InfluenceType, c.level "
 #define QUERY_080702_0177_2		" %s AND c.CreatedTime >= '%s' AND c.CreatedTime <= '%s' GROUP BY c.InfluenceType, c.level "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0178		"SELECT * FROM view_levelranking ORDER BY InfluenceType, Level desc;"
 
 #define QUERY_080702_0179		"use atum2_db_%d;"
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 //#define QUERY_080702_0180		"select i.ItemNum, count(i.ItemNum) as Sellcount, count(i.ItemNum)*i.CashPrice as SellCash \
 //									from atum_log_item_buy_sell il, ti_Item i WITH (NOLOCK) where il.ItemNum = i.ItemNum and 0 <> i.ItemAttribute & 65536 and il.time >= '%s' and il.time <= '%s' \
 //									group by i.ItemNum, i.CashPrice;"
@@ -585,7 +585,7 @@
 									GROUP BY s.accountuniqueNumber, s.ItemNum \
 									ORDER BY SUM(CAST(s.CurrentCount AS FLOAT)) DESC "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0183		"SELECT c.accountname, c.charactername, dbo.atum_GetGearString(c.unitkind) as unit, c.InfluenceType, c.level, tm.Count \
 // 									FROM td_character c, (SELECT accountuniquenumber, max(experience) as maxexp, count(*) as numofcharacter	FROM td_character \
 // 									WHERE 0 = Race&%d AND race < 128 and charactername not like 'loadtest%%'	group by accountuniquenumber) c2, atum2_db_account.dbo.td_account a, view_itemcount tm \
@@ -601,7 +601,7 @@
 									GROUP BY s.accountuniqueNumber, s.ItemNum \
 									ORDER BY count(*) DESC "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0186		"SELECT c.accountname, c.charactername, dbo.atum_GetGearString(c.unitkind) as unit, c.InfluenceType, c.level, tm.Count \
 // 									FROM td_character c, (SELECT accountuniquenumber, max(experience) as maxexp, count(*) as numofcharacter	FROM td_character \
 // 									WHERE 0 = Race&%d AND race < 128 and charactername not like 'loadtest%%'	group by accountuniquenumber) c2, atum2_db_account.dbo.td_account a, view_itemcount tm \
@@ -642,7 +642,7 @@
 									SELECT TOP %d s.Possess, SUM(CAST(s.CurrentCount AS FLOAT)) AS TotalCount FROM td_store s, td_character c WITH (NOLOCK) \
 									WHERE s.ItemNum=%d and s.Possess = c.uniqueNumber and 0 = c.Race&%d AND c.Race < 128 GROUP BY s.Possess ORDER BY SUM(CAST(s.CurrentCount AS FLOAT)) DESC "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0195		"select c.AccountName, c.charactername, dbo.atum_GetGearString(c.unitkind), c.InfluenceType, c.level, c.TotalPlayTime, m.TotalCount from moneyitemtable m, td_character c WITH (NOLOCK) \
 // 									where c.uniquenumber = m.possess and c.race < 128 order by m.TotalCount desc;"
 
@@ -654,7 +654,7 @@
 									GROUP BY s.AccountUniqueNumber \
 									ORDER BY SUM(CAST(s.CurrentCount AS FLOAT)) DESC "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0198		"SELECT c.accountname, c.charactername, dbo.atum_GetGearString(c.unitkind) as unit, c.InfluenceType, c.level, tmM.TotalCount \
 // 									FROM td_character c, (SELECT accountuniquenumber, max(experience) as maxexp, count(*) as numofcharacter	FROM td_character \
 // 									WHERE 0 = Race&%d AND race < 128 and charactername not like 'loadtest%%'	group by accountuniquenumber) c2, atum2_db_account.dbo.td_account a, moneyitemtable tmM \
@@ -677,7 +677,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_user_quest_pk_dead WITH (NOLOCK) WHERE logtype = 22 and time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0203		"select date, count(*) from (select time, dbo.atum_getonlydate(time) as date	from temp_view l where logtype = 22 and time > '%s' and time < '%s') ll group by date	order by date;"
 // #define QUERY_080702_0204		"DROP VIEW temp_view;"
 #define QUERY_080702_0205		"CREATE VIEW temp_view AS \
@@ -685,7 +685,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_user_quest_pk_dead WITH (NOLOCK) WHERE logtype = 22 and time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0206		"select time, c1.charactername, c1.level,  c2.charactername, c2.level, l.MapIndex, dbo.atum_getonlydate(time) \
 // 									from temp_view l, td_character c1, td_character c2 where logtype = 22 and time > '%s' and time < '%s' \
 // 									and l.characteruniquenumber = c1.uniquenumber and l.param1 = c2.uniquenumber AND 0 = c1.Race&%d\
@@ -696,7 +696,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_user_quest_pk_dead WITH (NOLOCK) WHERE (logtype = 22 or logtype = 23) and time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0209		"select time, c1.charactername, c1.level,  c2.charactername, c2.level, l.MapIndex, dbo.atum_getonlydate(time) \
 // 									from temp_view l, td_character c1, td_character c2 where (logtype = 22 or logtype = 23) and time > '%s' and time < '%s' \
 // 									and l.characteruniquenumber = c1.uniquenumber and l.param1 = c2.uniquenumber AND 0 = c1.Race&%d\
@@ -708,7 +708,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_user_quest_pk_dead WITH (NOLOCK) WHERE (logtype = 22 or logtype = 23) and time > '%s' and time < '%s' "
 									
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0212		"select c1.charactername, (select level from td_character where charactername = c1.charactername) as level, count(*) as count \
 // 									from temp_view l, td_character c1, td_character c2 where (logtype = 22 or logtype = 23) and time > '%s' and time < '%s' \
 // 									and l.characteruniquenumber = c1.uniquenumber and c1.uniquenumber = c2.uniquenumber AND 0 = c1.Race&%d\
@@ -720,7 +720,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_user_quest_pk_dead WITH (NOLOCK) WHERE logtype = 21 and time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0215		"select date, count(*) from (select time, dbo.atum_getonlydate(time) as date	from temp_view l	where logtype = 21 and time > '%s' and time < '%s') ll group by date order by date;"
 // 
 // #define QUERY_080702_0216		"SELECT c.AccountName, c.CharacterName, dbo.atum_GetGearString(c.unitkind), c.InfluenceType, c.level, q.QuestTimeStamp \
@@ -737,7 +737,7 @@
 									UNION ALL \
 									SELECT * FROM  atum_log_monster_boss WITH (NOLOCK) WHERE time > '%s' and time < '%s' "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0220		"SELECT l.MonsterUnitKind, l.MapIndex, l.ChannelIndex, l.CreatedTime, l.DeadTime, l.AttackUser1, l.AttackUser2, l.AttackUser3, l.AttackUser4, l.AttackUser5 \
 // 									, l.AttackUser6, l.AttackUser7, l.AttackUser8, l.AttackUser9, l.AttackUser10, l.DropItemList \
 // 									FROM temp_view l\
@@ -756,7 +756,7 @@
 // 									ORDER BY c.Propensity DESC;"
 // #define QUERY_080702_0224		"DROP VIEW tm_user_connection;"
 
-// 2009-02-10 by cmkwon, ºº∑¬ ¿Ø¿˙ ƒ´øÓ∆Æ ∞¸∑√ ºˆ¡§ - æ∆∑°ø° QUERY_090209_0300√≥∑≥ ºˆ¡§«‘.
+// 2009-02-10 by cmkwon, ÏÑ∏Î†• Ïú†Ï†Ä Ïπ¥Ïö¥Ìä∏ Í¥ÄÎ†® ÏàòÏ†ï - ÏïÑÎûòÏóê QUERY_090209_0300Ï≤òÎüº ÏàòÏ†ïÌï®.
 // #define QUERY_080702_0225		"CREATE VIEW tm_user_connection AS \
 // 									SELECT DISTINCT c.AccountUniqueNumber, c.SelectableInfluenceMask \
 // 									FROM atum2_db_account.dbo.atum_log_connection l WITH (NOLOCK) inner join td_character c WITH (NOLOCK) \
@@ -767,13 +767,13 @@
 // 									ON c.accountuniquenumber = l.accountuniquenumber \
 // 									WHERE time > '%s' and time < '%s') "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0226		"SELECT SelectableInfluenceMask, COUNT(SelectableInfluenceMask) \
 // 									FROM tm_user_connection \
 // 									GROUP BY SelectableInfluenceMask;"
 // #define QUERY_080702_0227		"DROP VIEW tm_user_connection;"
 
-// 2009-02-10 by cmkwon, ºº∑¬ ¿Ø¿˙ ƒ´øÓ∆Æ ∞¸∑√ ºˆ¡§ - æ∆∑°ø° QUERY_090209_0301√≥∑≥ ºˆ¡§«‘.
+// 2009-02-10 by cmkwon, ÏÑ∏Î†• Ïú†Ï†Ä Ïπ¥Ïö¥Ìä∏ Í¥ÄÎ†® ÏàòÏ†ï - ÏïÑÎûòÏóê QUERY_090209_0301Ï≤òÎüº ÏàòÏ†ïÌï®.
 // #define QUERY_080702_0228		"CREATE VIEW tm_user_connection AS \
 // 									SELECT dbo.atum_getonlydate(Time) AS conntedDate, c.AccountUniqueNumber, c.SelectableInfluenceMask \
 // 									FROM atum2_db_account.dbo.atum_log_connection l WITH(NOLOCK) INNER JOIN td_character c ON c.AccountUniqueNumber = l.AccountUniqueNumber \
@@ -784,7 +784,7 @@
 // 									WHERE Time >= '%s' and Time <= '%s' \
 // 									GROUP BY dbo.atum_getonlydate(Time), c.AccountUniqueNumber, c.SelectableInfluenceMask) "
 
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0229		"SELECT l.conntedDate, l.SelectableInfluenceMask, COUNT(l.AccountUniqueNumber) \
 // 									FROM tm_user_connection l WITH(NOLOCK) \
 // 									GROUP BY l.conntedDate, l.SelectableInfluenceMask \
@@ -796,10 +796,10 @@
 #define QUERY_080702_0233		"Insert into atum2_db_account.dbo.ti_Item(ItemNum, kind, ItemName, abilitymin, abilitymax, rangeangle, reqrace, reqattackpart, reqdefensepart, ReqFuelPart, reqsoulpart, reqshieldpart, reqdodgepart, requnitkind, reqminlevel, reqmaxlevel, ReqItemKind, weight, hitrate, defense, range, position, abrasionrate, charging, mintradequantity, price, cashprice, reattacktime, [time], LinkItem, multitarget, explosionrange, reactionrange, shotnum, multinum, attacktime, ItemAttribute, [description], caliber, orbittype, camerapattern, SourceIndex) values ( %s, %s, '%s', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, '%s', %s, %s, %s, %s);"
 #define QUERY_080702_0234		"select ItemNum from atum2_db_account.dbo.ti_Item WITH (NOLOCK) where kind = %d;"
 
-// 2009-04-21 by cmkwon, ITEMø° DesParam « µÂ ∞≥ºˆ 8∞≥∑Œ ¥√∏Æ±‚ - «ˆ¿Á ªÁøÎ«œ¡ˆ æ ¿∏π«∑Œ ¡÷ºÆ √≥∏Æ
+// 2009-04-21 by cmkwon, ITEMÏóê DesParam ÌïÑÎìú Í∞úÏàò 8Í∞úÎ°ú ÎäòÎ¶¨Í∏∞ - ÌòÑÏû¨ ÏÇ¨Ïö©ÌïòÏßÄ ÏïäÏúºÎØÄÎ°ú Ï£ºÏÑù Ï≤òÎ¶¨
 //#define QUERY_080702_0235		"select ItemNum, ItemName, AbilityMin, AbilityMax, ReqRace, ReqMinLevel, Hitrate, SpeedPenalty, Range, Charging, RangeAngle, Shotnum, Multinum, Attacktime, ReqSP, Summonmonster, Orbittype, Kind, SourceIndex, DestParameter1, ParameterValue1, DestParameter2, ParameterValue2, DestParameter3, ParameterValue3, DestParameter4, ParameterValue4 from atum2_db_account.dbo.ti_Item where ItemNum like '75%%' and ItemNum in (%s);"
 								
-// 2008-08-27 by cmkwon, ≥Øƒı∏Æ∏¶ Procedure∑Œ ºˆ¡§ - 
+// 2008-08-27 by cmkwon, ÎÇ†ÏøºÎ¶¨Î•º ProcedureÎ°ú ÏàòÏ†ï - 
 // #define QUERY_080702_0236		"SELECT a.AccountName, a.Password as TempPassword, ak.Password as OrgPassword \
 // 									FROM atum2_db_account.dbo.td_account a, td_accountbackup ak \
 // 									WHERE a.accountname = ak.accountname;"
@@ -851,7 +851,7 @@
 
 									
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-08-25 by cmkwon, MySQL º“Ω∫ ≈Î«’(∫¸¡¯ ƒı∏Æ ¡§∏Æ) - 
+// 2008-08-25 by cmkwon, MySQL ÏÜåÏä§ ÌÜµÌï©(Îπ†ÏßÑ ÏøºÎ¶¨ Ï†ïÎ¶¨) - 
 #define QUERY_080825_0001 "CAST(l.CurrentCount AS VARCHAR(10)) + 'counts'"
 #define QUERY_080825_0002 "CAST(l.ChangeCount AS VARCHAR(10)) + 'counts Pick up, ' + CAST(l.CurrentCount AS VARCHAR(10)) + 'counts'"
 #define QUERY_080825_0003 "'Gave ' + CAST(l.ChangeCount AS VARCHAR(10)) + 'counts ' + 'to ''' + l.PeerCharacterName + ''', ' + CAST(l.CurrentCount AS VARCHAR(10)) + 'counts'"
@@ -864,25 +864,25 @@
 #define QUERY_080825_0009 "'Received ' + CAST(l.ChangeCount AS VARCHAR(10)) + 'counts ' + 'from ''' + l.PeerCharacterName + ''', ' + CAST(l.CurrentCount AS VARCHAR(10)) + 'counts'"
 #define QUERY_080825_0010 "'Change EXP: ' + CAST(l.Param1 AS VARCHAR(15)) + ', Total EXP: ' + CAST(l.Param2 AS VARCHAR(15))"
 
-// 2012-11-21 by bckim, øÓøµ≈¯±‚¥…√ﬂ∞°, ¿Œ√¶∆Ææ∆¿Ã≈€¡¶∞≈±‚¥…
+// 2012-11-21 by bckim, Ïö¥ÏòÅÌà¥Í∏∞Îä•Ï∂îÍ∞Ä, Ïù∏Ï±àÌä∏ÏïÑÏù¥ÌÖúÏ†úÍ±∞Í∏∞Îä•
 #define QUERY_130708_0001 "'''' + l.PeerCharacterName + '''worked ['+CAST(l.EnchantCardNumber AS VARCHAR(10)) + '] : ' + CAST(l.ChangeEnchantCount AS VARCHAR(10)) + ' Count Enchanted,  Current :  ' + CAST(l.ResultEnchantCount AS VARCHAR(10)) + ' Enchant'"
 #define QUERY_130708_0002 "'''' + l.PeerCharacterName + '''worked ['+CAST(l.EnchantCardNumber AS VARCHAR(10)) + '] : ' + CAST(l.ChangeEnchantCount AS VARCHAR(10)) + ' Count DisEnchanted,  Current : ' + CAST(l.ResultEnchantCount AS VARCHAR(10)) + ' Enchant'"
-// 2012-11-21 by bckim, øÓøµ≈¯±‚¥…√ﬂ∞°, ¿Œ√¶∆Ææ∆¿Ã≈€¡¶∞≈±‚¥…. End
+// 2012-11-21 by bckim, Ïö¥ÏòÅÌà¥Í∏∞Îä•Ï∂îÍ∞Ä, Ïù∏Ï±àÌä∏ÏïÑÏù¥ÌÖúÏ†úÍ±∞Í∏∞Îä•. End
 
-#define QUERY_130708_0003 " '['+l.ResultType+']' + l.CardList"		// 2013-07-01 by bckim, 10¿Œ√¶∆Æ πÃ∏∏ «œ¿Ã∆€ƒ´µÂ√≥∏Æ, ∑Œ±◊√ﬂ∞°, øÓøµ≈¯ ∫∏øœ
+#define QUERY_130708_0003 " '['+l.ResultType+']' + l.CardList"		// 2013-07-01 by bckim, 10Ïù∏Ï±àÌä∏ ÎØ∏Îßå ÌïòÏù¥ÌçºÏπ¥ÎìúÏ≤òÎ¶¨, Î°úÍ∑∏Ï∂îÍ∞Ä, Ïö¥ÏòÅÌà¥ Î≥¥ÏôÑ
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-09-01 by cmkwon, StringDefineQuery.h∑Œ √ﬂ√‚ - 
+// 2008-09-01 by cmkwon, StringDefineQuery.hÎ°ú Ï∂îÏ∂ú - 
 #define QUERY_080901_0001 "atum2_db_account.dbo.atum_log_connection"
 #define QUERY_080901_0002 "atum2_db_account.dbo.atum_backup_log_connection"
 #define QUERY_080901_0003 "atum2_db_account.dbo.atum_log_blockedAccount"
-// 2009-01-02 by cmkwon, ∞Ë¡§ Unblock ∑Œ±◊ ∞Àªˆ πˆ±◊ ºˆ¡§ -  
+// 2009-01-02 by cmkwon, Í≥ÑÏ†ï Unblock Î°úÍ∑∏ Í≤ÄÏÉâ Î≤ÑÍ∑∏ ÏàòÏ†ï -  
 //#define QUERY_080901_0004 "atum2_db_account.dbo.atum_backup_log_blockedAccount"
-#define QUERY_080901_0004 "atum2_db_account.dbo.atum_log_blockedAccount"	// 2009-01-02 by cmkwon, ∞Ë¡§ Unblock ∑Œ±◊ ∞Àªˆ πˆ±◊ ºˆ¡§ -  
+#define QUERY_080901_0004 "atum2_db_account.dbo.atum_log_blockedAccount"	// 2009-01-02 by cmkwon, Í≥ÑÏ†ï Unblock Î°úÍ∑∏ Í≤ÄÏÉâ Î≤ÑÍ∑∏ ÏàòÏ†ï -  
 
-// 2009-03-30 by cmkwon, AdminTool ¿Ø¿˙ ƒ´øÓ∆Æ πˆ±◊ ºˆ¡§(∑Œ±◊∑Œ ∞Àªˆ «ÿæﬂ «‘) - æ∆∑°øÕ ∞∞¿Ã ∑Œ±◊∑Œ∫Œ≈Õ ∞Àªˆ «ÿæﬂ«‘.
-// // 2009-02-10 by cmkwon, ºº∑¬ ¿Ø¿˙ ƒ´øÓ∆Æ ∞¸∑√ ºˆ¡§ - QUERY_080702_0225, QUERY_080702_0228¿ª  ¡÷ºÆ √≥∏Æ«œ∞Ì æ∆∑°√≥∑≥ ∫Ø∞Ê«‘. ±‚¡∏ ∞Ë¡§¿« ∑Œ±◊¿Œ ¡§∫∏∑Œ ∞Àªˆ «œ¥¯∞Õ¿ª ƒ≥∏Ø≈Õ √÷¡æ ¡¢º”Ω√∞£ ∞Àªˆ¿∏∑Œ ºˆ¡§
+// 2009-03-30 by cmkwon, AdminTool Ïú†Ï†Ä Ïπ¥Ïö¥Ìä∏ Î≤ÑÍ∑∏ ÏàòÏ†ï(Î°úÍ∑∏Î°ú Í≤ÄÏÉâ Ìï¥Ïïº Ìï®) - ÏïÑÎûòÏôÄ Í∞ôÏù¥ Î°úÍ∑∏Î°úÎ∂ÄÌÑ∞ Í≤ÄÏÉâ Ìï¥ÏïºÌï®.
+// // 2009-02-10 by cmkwon, ÏÑ∏Î†• Ïú†Ï†Ä Ïπ¥Ïö¥Ìä∏ Í¥ÄÎ†® ÏàòÏ†ï - QUERY_080702_0225, QUERY_080702_0228ÏùÑ  Ï£ºÏÑù Ï≤òÎ¶¨ÌïòÍ≥† ÏïÑÎûòÏ≤òÎüº Î≥ÄÍ≤ΩÌï®. Í∏∞Ï°¥ Í≥ÑÏ†ïÏùò Î°úÍ∑∏Ïù∏ Ï†ïÎ≥¥Î°ú Í≤ÄÏÉâ ÌïòÎçòÍ≤ÉÏùÑ Ï∫êÎ¶≠ÌÑ∞ ÏµúÏ¢Ö Ï†ëÏÜçÏãúÍ∞Ñ Í≤ÄÏÉâÏúºÎ°ú ÏàòÏ†ï
 // #define QUERY_090209_0300		"CREATE VIEW tm_user_connection AS \
 // 									SELECT DISTINCT AccountUniqueNumber, SelectableInfluenceMask \
 // 									FROM td_character WITH (NOLOCK) \
@@ -892,7 +892,7 @@
 // 									FROM td_character WITH (NOLOCK) \
 // 									WHERE (Race & 0x4000 = 0) AND LastStartedTime > '%s' AND LastStartedTime < '%s' "
 
-// 2009-03-30 by cmkwon, AdminTool ¿Ø¿˙ ƒ´øÓ∆Æ πˆ±◊ ºˆ¡§(∑Œ±◊∑Œ ∞Àªˆ «ÿæﬂ «‘) - æ∆∑°øÕ ∞∞¿Ã ∑Œ±◊∑Œ∫Œ≈Õ ∞Àªˆ «ÿæﬂ«‘.
+// 2009-03-30 by cmkwon, AdminTool Ïú†Ï†Ä Ïπ¥Ïö¥Ìä∏ Î≤ÑÍ∑∏ ÏàòÏ†ï(Î°úÍ∑∏Î°ú Í≤ÄÏÉâ Ìï¥Ïïº Ìï®) - ÏïÑÎûòÏôÄ Í∞ôÏù¥ Î°úÍ∑∏Î°úÎ∂ÄÌÑ∞ Í≤ÄÏÉâ Ìï¥ÏïºÌï®.
 #define QUERY_090330_0302		"CREATE VIEW tm_user_connection AS \
 									SELECT DISTINCT c.AccountUniqueNumber, c.SelectableInfluenceMask \
 									FROM dbo.atum_log_user_game_start_end l WITH (NOLOCK) inner join td_character c WITH(NOLOCK) ON c.accountuniquenumber = l.accountuniquenumber \

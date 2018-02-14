@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <thread>
 #include <timeapi.h>
@@ -8,8 +8,8 @@
 #include "QueueINT.h"
 
 
-constexpr auto COUNT_MAX_IOCP_THREAD = 500;		// IOCP ½º·¹µå ÃÖ´ë °³¼ö, IOCP ½º·¹µå ¹è¿­ÀÇ Å©±â, ½ÇÁ¦ »ı¼ºµÇ´Â ½º·¹µå °³¼ö´Â ¾Æ´Ô
-constexpr auto COUNT_SOCKET_WRITE_THREAD = 50;		// IOCP Wirte OperationÀ» À§ÇÑ ½º·¹µå¼ö
+constexpr auto COUNT_MAX_IOCP_THREAD = 500;		// IOCP ìŠ¤ë ˆë“œ ìµœëŒ€ ê°œìˆ˜, IOCP ìŠ¤ë ˆë“œ ë°°ì—´ì˜ í¬ê¸°, ì‹¤ì œ ìƒì„±ë˜ëŠ” ìŠ¤ë ˆë“œ ê°œìˆ˜ëŠ” ì•„ë‹˜
+constexpr auto COUNT_SOCKET_WRITE_THREAD = 50;		// IOCP Wirte Operationì„ ìœ„í•œ ìŠ¤ë ˆë“œìˆ˜
 
 enum : BitFlag8_t
 {
@@ -26,7 +26,7 @@ DWORD WINAPI ListenerThread(void* lpParam);
 struct IOCPWorkerTLSDATA
 {
 #ifdef _ATUM_FIELD_SERVER
-	vector<ClientIndex_t> clientIndexVector;		// ´Ù¸¥ Ä³¸¯ÅÍµé¿¡°Ô Á¤º¸¸¦ º¸³¾ ¶§ set¿¡ ´ëÇÑ buffer·Î »ç¿ë
+	vector<ClientIndex_t> clientIndexVector;		// ë‹¤ë¥¸ ìºë¦­í„°ë“¤ì—ê²Œ ì •ë³´ë¥¼ ë³´ë‚¼ ë•Œ setì— ëŒ€í•œ bufferë¡œ ì‚¬ìš©
 
 	IOCPWorkerTLSDATA() : clientIndexVector { } { clientIndexVector.reserve(1000); }
 #endif
@@ -75,8 +75,8 @@ public:
 	// this call may block
 	void ListenerClose();
 	
-	DWORD GetCurrentServerTime() const { return m_dwTimeStarted + (timeGetTime() - m_dwTickStarted) / 1000; }	// ¼­¹ö°¡ ½ÇÇàµÈ ÀÌÈÄ Áö³­ ½Ã°£À» ÃÊ´ÜÀ§·Î ¹İÈ¯
-	DWORD GetCurrentServerTimeInMilliSeconds() const { return timeGetTime() - m_dwTickStarted; }	// ¼­¹ö°¡ ½ÇÇàµÈ ÀÌÈÄ Áö³­ ½Ã°£À» Milli-Seconds ´ÜÀ§·Î ¹İÈ¯
+	DWORD GetCurrentServerTime() const { return m_dwTimeStarted + (timeGetTime() - m_dwTickStarted) / 1000; }	// ì„œë²„ê°€ ì‹¤í–‰ëœ ì´í›„ ì§€ë‚œ ì‹œê°„ì„ ì´ˆë‹¨ìœ„ë¡œ ë°˜í™˜
+	DWORD GetCurrentServerTimeInMilliSeconds() const { return timeGetTime() - m_dwTickStarted; }	// ì„œë²„ê°€ ì‹¤í–‰ëœ ì´í›„ ì§€ë‚œ ì‹œê°„ì„ Milli-Seconds ë‹¨ìœ„ë¡œ ë°˜í™˜
 	
 	static void GetLocalAddress(char *o_szIP);
 	
@@ -96,7 +96,7 @@ public:
 	void UpdateTCPTrafficInfo(STrafficInfo *pTCPTraffic) { LockTotalTrafficInfo(); m_TCPTrafficInfo[0] += *pTCPTraffic; UnlockTotalTrafficInfo(); }
 	void UpdateUDPTrafficInfo(STrafficInfo *pUDPTraffic) { LockTotalTrafficInfo(); m_UDPTrafficInfo[0] += *pUDPTraffic; UnlockTotalTrafficInfo(); }
 
-	// TLS °ü·Ã
+	// TLS ê´€ë ¨
 
 	//BOOL TLSDataInit(void* &lpvData);
 	//BOOL TLSDataClean(void* &lpvData);
@@ -104,8 +104,8 @@ public:
 
 	thread_local static IOCPWorkerTLSDATA workerdata;
 
-	// virtual¸â¹öÇÔ¼ö
-	// CIOCP °´Ã¼ ÃÊ±âÈ­ °ü·Ã
+	// virtualë©¤ë²„í•¨ìˆ˜
+	// CIOCP ê°ì²´ ì´ˆê¸°í™” ê´€ë ¨
 	virtual BOOL IOCPInit();
 	virtual void IOCPClean();
 
@@ -114,16 +114,16 @@ public:
 	virtual BOOL Listen();
 	BOOL Writer();
 
-	// Á¢¼ÓÀÚ Alive Check
+	// ì ‘ì†ì Alive Check
 	virtual void CalcTotalTrafficInfo();
 	virtual SThreadInfo *CheckIOCPThread(DWORD i_dwThreadIdToExclude);
 	void ClientCheck();
 
-	// 2010-04-08 by cmkwon, ¼­¹ö¿¡¼­ ¸Ê·Îµù½Ã AlivePacket Àü¼Û Ãß°¡ - 
+	// 2010-04-08 by cmkwon, ì„œë²„ì—ì„œ ë§µë¡œë”©ì‹œ AlivePacket ì „ì†¡ ì¶”ê°€ - 
 	virtual void SendAlivePacket2OtherServers() { } // do nothing
 
-	// static ¸â¹öÇÔ¼ö
-	// WinSock Library ÃÊ±âÈ­ °ü·Ã
+	// static ë©¤ë²„í•¨ìˆ˜
+	// WinSock Library ì´ˆê¸°í™” ê´€ë ¨
 	static bool SocketInit();
 	static void SocketClean();
 
@@ -141,59 +141,59 @@ public:
 
 protected:
 
-	DWORD				m_nServerType;							// IOCP Server Type, »ı¼ºÀÚÀÇ ÀÎÀÚ·Î ¼³Á¤µÊ										
-	HANDLE				m_hCompletionPort;						// IOCompletionPort ÇÚµé	
-	//HANDLE				m_hWorkerThread[COUNT_MAX_IOCP_THREAD];	// Worker Thread ÇÚµé ¹è¿­
-	//HANDLE				m_hThreadSocketWriteArray[COUNT_SOCKET_WRITE_THREAD];	// ½ÇÁ¦ Socket¿¡ µ¥ÀÌÅ¸¸¦ WriteÇÏ´Â ½º·¹µå ÇÚµé ¹è¿­
+	DWORD				m_nServerType;							// IOCP Server Type, ìƒì„±ìì˜ ì¸ìë¡œ ì„¤ì •ë¨										
+	HANDLE				m_hCompletionPort;						// IOCompletionPort í•¸ë“¤	
+	//HANDLE				m_hWorkerThread[COUNT_MAX_IOCP_THREAD];	// Worker Thread í•¸ë“¤ ë°°ì—´
+	//HANDLE				m_hThreadSocketWriteArray[COUNT_SOCKET_WRITE_THREAD];	// ì‹¤ì œ Socketì— ë°ì´íƒ€ë¥¼ Writeí•˜ëŠ” ìŠ¤ë ˆë“œ í•¸ë“¤ ë°°ì—´
 	thread				m_threadWorker[COUNT_MAX_IOCP_THREAD];
 	thread				m_threadSocketWrite[COUNT_SOCKET_WRITE_THREAD];
-	BOOL				m_bThreadSocketWriteEndFlag;			// Write Thread Á¾·á ÇÃ·¡±×
+	BOOL				m_bThreadSocketWriteEndFlag;			// Write Thread ì¢…ë£Œ í”Œë˜ê·¸
 
-	// ¼ÒÄÏ Listenning °ü·Ã
-	//HANDLE				m_hListenerThread;						// ¸®½º³Ê ½º·¹µå ÇÚµé
+	// ì†Œì¼“ Listenning ê´€ë ¨
+	//HANDLE				m_hListenerThread;						// ë¦¬ìŠ¤ë„ˆ ìŠ¤ë ˆë“œ í•¸ë“¤
 	thread				m_threadListener;
-	int					m_nListenerPort;						// Listener port, OpenÇÒ Æ÷Æ® È¤Àº Opened Æ÷Æ®
-	SOCKET				m_hListener;							// ¸®½º³Ê ¼ÒÄÏ ÇÚµé	
-	BOOL				m_bListeningFlag;						// ¸®½º³Ê°¡ ½º·¹µå°¡ Á¤»óÀûÀ¸·Î ÀÛµ¿ÇÏ´ÂÁöÀÇ ÇÃ·¡±×
-	BOOL				m_bServiceStartFlag;					// ¼­ºñ½º ÇÃ·¡±×(FALSEÀÌ¸é ¼­ºñ½º ÁßÁöÁß, TRUEÀÌ¸é Á¤»óµ¿ÀÛÁß)	
+	int					m_nListenerPort;						// Listener port, Opení•  í¬íŠ¸ í˜¹ì€ Opened í¬íŠ¸
+	SOCKET				m_hListener;							// ë¦¬ìŠ¤ë„ˆ ì†Œì¼“ í•¸ë“¤	
+	BOOL				m_bListeningFlag;						// ë¦¬ìŠ¤ë„ˆê°€ ìŠ¤ë ˆë“œê°€ ì •ìƒì ìœ¼ë¡œ ì‘ë™í•˜ëŠ”ì§€ì˜ í”Œë˜ê·¸
+	BOOL				m_bServiceStartFlag;					// ì„œë¹„ìŠ¤ í”Œë˜ê·¸(FALSEì´ë©´ ì„œë¹„ìŠ¤ ì¤‘ì§€ì¤‘, TRUEì´ë©´ ì •ìƒë™ì‘ì¤‘)	
 
-	DWORD				m_nCurrentClientCounts;					// ÇöÀç ¿¬°áµÈ IOCPSocket Counts
-	CIOCPSocket*		m_pArrayIOCPSocket;					// CIOCPSocketÀÇ Æ÷ÀÎÅÍ, »ı¼ºÀÚ¿¡¼­ µ¿ÀûÀ¸·Î ÃÖ´ë Áö¿ø¼ö ¸¸Å­ »ı¼ºµÇ¾î ÇÒ´çµÈ´Ù.
-	//CIOCPSocket*		m_ArrayClient[COUNT_MAX_SOCKET_SESSION];// CIOCPSocketÀÇ Æ÷ÀÎÅÍ ¹è¿­·Î À§ÀÇ m_pArrayIOCPSocketÀ» Æí¸®ÇÏ°Ô »ç¿ëÇÏ±â À§ÇÑ º¯¼ö
+	DWORD				m_nCurrentClientCounts;					// í˜„ì¬ ì—°ê²°ëœ IOCPSocket Counts
+	CIOCPSocket*		m_pArrayIOCPSocket;					// CIOCPSocketì˜ í¬ì¸í„°, ìƒì„±ìì—ì„œ ë™ì ìœ¼ë¡œ ìµœëŒ€ ì§€ì›ìˆ˜ ë§Œí¼ ìƒì„±ë˜ì–´ í• ë‹¹ëœë‹¤.
+	//CIOCPSocket*		m_ArrayClient[COUNT_MAX_SOCKET_SESSION];// CIOCPSocketì˜ í¬ì¸í„° ë°°ì—´ë¡œ ìœ„ì˜ m_pArrayIOCPSocketì„ í¸ë¦¬í•˜ê²Œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
 	const size_t		m_SizeOfSocket;
 	CIOCPSocket*		getSocket(size_t index) const { return reinterpret_cast<CIOCPSocket*>(reinterpret_cast<char*>(m_pArrayIOCPSocket) + (index * m_SizeOfSocket)); }
 
 	CQueueINT			m_queueClientIndex;
-	DWORD				m_dwArrayClientSize;					// ÃÖ´ë Áö¿ø Á¢¼ÓÀÚ¼ö, »ı¼ºÀÚÀÇ ÀÎÀÚ·Î ¹ŞÀ½
+	DWORD				m_dwArrayClientSize;					// ìµœëŒ€ ì§€ì› ì ‘ì†ììˆ˜, ìƒì„±ìì˜ ì¸ìë¡œ ë°›ìŒ
 
-	DWORD				m_dwStartClientIndex;					// »ç¿ëµÇÁö ¾Ê´Â IOCPSocketÀ» ¿äÃ»½Ã ÀÌº¯¼öº¸´Ù Å« Index·Î ÇÒ´çµÊ
-	DWORD				m_dwLastClientIndex;					// IOCPSocketÀ» ¿øÇüÀ¸·Î ÇÒ´çÇÏ±â À§ÇÑº¯¼ö
-	int					m_dwWorkerCount;						// ½ÇÇàµÉ Worker ½º·¹µå ¼ıÀÚ, Worker Thread count = CPU_NUM + 2
-	CRITICAL_SECTION	m_crtlClientArray;						// ¼ÒÄÏ ¹è¿­ÀÇ ÀÎµ¦½º°ªÀÇ µ¿±âÈ­¸¦ À§ÇÑ criticalsection
+	DWORD				m_dwStartClientIndex;					// ì‚¬ìš©ë˜ì§€ ì•ŠëŠ” IOCPSocketì„ ìš”ì²­ì‹œ ì´ë³€ìˆ˜ë³´ë‹¤ í° Indexë¡œ í• ë‹¹ë¨
+	DWORD				m_dwLastClientIndex;					// IOCPSocketì„ ì›í˜•ìœ¼ë¡œ í• ë‹¹í•˜ê¸° ìœ„í•œë³€ìˆ˜
+	int					m_dwWorkerCount;						// ì‹¤í–‰ë  Worker ìŠ¤ë ˆë“œ ìˆ«ì, Worker Thread count = CPU_NUM + 2
+	CRITICAL_SECTION	m_crtlClientArray;						// ì†Œì¼“ ë°°ì—´ì˜ ì¸ë±ìŠ¤ê°’ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•œ criticalsection
 
-	time_t				m_dwTimeStarted;						// ¼­¹ö°¡ ½ÇÇàµÈ ½Ã°£, ÃÊ´ÜÀ§
-	DWORD				m_dwTickStarted;						// ¼­¹ö°¡ ½ÇÇàµÈ ½Ã°£, ¹Ğ¸®¼¼ÄÁµå´ÜÀ§
-	char				m_szLocalIPAddress[SIZE_MAX_IPADDRESS];	// ¼­¹ö°¡ ½ÇÇàµÈ PCÀÇ LocalIP Address
+	time_t				m_dwTimeStarted;						// ì„œë²„ê°€ ì‹¤í–‰ëœ ì‹œê°„, ì´ˆë‹¨ìœ„
+	DWORD				m_dwTickStarted;						// ì„œë²„ê°€ ì‹¤í–‰ëœ ì‹œê°„, ë°€ë¦¬ì„¸ì»¨ë“œë‹¨ìœ„
+	char				m_szLocalIPAddress[SIZE_MAX_IPADDRESS];	// ì„œë²„ê°€ ì‹¤í–‰ëœ PCì˜ LocalIP Address
 
-	// TLS °ü·Ã
+	// TLS ê´€ë ¨
 	//DWORD				m_dwTlsIndex;							// For TLS
 
-	// Bandwidth °è»ê °ü·Ã
-	CRITICAL_SECTION	m_crtlTotalTrafficInfo;					// Bandwidth °è»êÀ» À§ÇÑ º¯¼öµéÀÇ µ¿±âÈ­¸¦ À§ÇÑ Å©¸®Æ¼ÄÃ ¼½¼Ç
-	BOOL				m_bFlagCalcTrafficInfo;					// Bandwidth °è»êÀ» ÇÒ°ÍÀÎÁöÀÇ ÇÃ·¡±×
-	STrafficInfo		m_TCPTrafficInfo[2];					// TCP Åë½Å Bandwidth °è»êÀ» À§ÇÑ º¯¼ö, µÎ¹øÂ°´Â °è»êµÈ°á°ú´Ù ÀúÀåµÈ´Ù.
-	STrafficInfo		m_UDPTrafficInfo[2];					// UDP Åë½Å Bandwidth °è»êÀ» À§ÇÑ º¯¼ö, µÎ¹øÂ°´Â °è»êµÈ°á°ú´Ù ÀúÀåµÈ´Ù.
+	// Bandwidth ê³„ì‚° ê´€ë ¨
+	CRITICAL_SECTION	m_crtlTotalTrafficInfo;					// Bandwidth ê³„ì‚°ì„ ìœ„í•œ ë³€ìˆ˜ë“¤ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•œ í¬ë¦¬í‹°ì»¬ ì„¹ì…˜
+	BOOL				m_bFlagCalcTrafficInfo;					// Bandwidth ê³„ì‚°ì„ í• ê²ƒì¸ì§€ì˜ í”Œë˜ê·¸
+	STrafficInfo		m_TCPTrafficInfo[2];					// TCP í†µì‹  Bandwidth ê³„ì‚°ì„ ìœ„í•œ ë³€ìˆ˜, ë‘ë²ˆì§¸ëŠ” ê³„ì‚°ëœê²°ê³¼ë‹¤ ì €ì¥ëœë‹¤.
+	STrafficInfo		m_UDPTrafficInfo[2];					// UDP í†µì‹  Bandwidth ê³„ì‚°ì„ ìœ„í•œ ë³€ìˆ˜, ë‘ë²ˆì§¸ëŠ” ê³„ì‚°ëœê²°ê³¼ë‹¤ ì €ì¥ëœë‹¤.
 
-	// ½º·¹µå Ã¼Å© °ü·Ã
-	CThreadCheck		m_IOCPThreadCheck;						// Worker È¤Àº Listener ½º·¹µå°¡ Á×°Å³ª Block »óÅÂ¸¦ Ã¼Å©ÇÏ±âÀ§ÇÑ º¯¼ö
+	// ìŠ¤ë ˆë“œ ì²´í¬ ê´€ë ¨
+	CThreadCheck		m_IOCPThreadCheck;						// Worker í˜¹ì€ Listener ìŠ¤ë ˆë“œê°€ ì£½ê±°ë‚˜ Block ìƒíƒœë¥¼ ì²´í¬í•˜ê¸°ìœ„í•œ ë³€ìˆ˜
 
-	// IOCP Server ÆĞÅ¶ ·¹º§ ½Ã½ºÅÛ °ü·Ã
+	// IOCP Server íŒ¨í‚· ë ˆë²¨ ì‹œìŠ¤í…œ ê´€ë ¨
 	EN_NETWORK_STATE	m_enIOCPNetworkState;
-	UINT				m_uTrafficMaxBandwidth;					// ÆĞÅ¶ ·¹º§ ½Ã½ºÅÛ¿¡¼­ »ç¿ëÇÒ ±âÁØ Bandwidth·Î ´ÜÀ§´Â bps(bit per second)
+	UINT				m_uTrafficMaxBandwidth;					// íŒ¨í‚· ë ˆë²¨ ì‹œìŠ¤í…œì—ì„œ ì‚¬ìš©í•  ê¸°ì¤€ Bandwidthë¡œ ë‹¨ìœ„ëŠ” bps(bit per second)
 
-	// static ¸â¹ö º¯¼ö
-	static bool			m_bSocketInitFlag;						// WinSock Library ÃÊ±âÈ­ ÇÃ·¡±×
+	// static ë©¤ë²„ ë³€ìˆ˜
+	static bool			m_bSocketInitFlag;						// WinSock Library ì´ˆê¸°í™” í”Œë˜ê·¸
 	
 	// Monitor
 	mtvectorIOCPSocket	m_MonitorIOCPSocketPtrVector;

@@ -1,4 +1,4 @@
-// Quest.h: interface for the CQuest class.
+ï»¿// Quest.h: interface for the CQuest class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -18,22 +18,22 @@
 #include "AtumDataLoader.h"
 #include "QuestLoaderParser.h"
 
-#define LAST_SCENARIO_QUEST_NEXT_QUEST_INDEX			-1			// 2006-08-07 by cmkwon, ½Ã³ª¸®¿À ¹Ì¼ÇÀÏ °æ¿ì NextQuestIndex°¡ -1ÀÌ¸é ¸¶Áö¸· Äù½ºÆ®ÀÓ
+#define LAST_SCENARIO_QUEST_NEXT_QUEST_INDEX			-1			// 2006-08-07 by cmkwon, ì‹œë‚˜ë¦¬ì˜¤ ë¯¸ì…˜ì¼ ê²½ìš° NextQuestIndexê°€ -1ì´ë©´ ë§ˆì§€ë§‰ í€˜ìŠ¤íŠ¸ì„
 
 
 
 struct QUEST_DROP_ITEM
 {
-	INT				MonsterUniqueNumber;	// ¸ó½ºÅÍ Á¾·ù
-	INT				ItemNumber;				// ¾ÆÀÌÅÛ°íÀ¯³Ñ¹ö
-	INT				MinCount;				// »ı¼ºÇÒ ¾ÆÀÌÅÛÀÇ ÃÖ¼Ò °³¼ö
-	INT				MaxCount;				// »ı¼ºÇÒ ¾ÆÀÌÅÛÀÇ ÃÖ´ë °³¼ö, ¸¸¾à °³¼ö°¡ Á¤ÇØÁ® ÀÖ´Ù¸é MinCount = MixCount
-	INT				Probability;			// »ı¼º È®·ü: 0 ~ 10000, Prob10K_t
+	INT				MonsterUniqueNumber;	// ëª¬ìŠ¤í„° ì¢…ë¥˜
+	INT				ItemNumber;				// ì•„ì´í…œê³ ìœ ë„˜ë²„
+	INT				MinCount;				// ìƒì„±í•  ì•„ì´í…œì˜ ìµœì†Œ ê°œìˆ˜
+	INT				MaxCount;				// ìƒì„±í•  ì•„ì´í…œì˜ ìµœëŒ€ ê°œìˆ˜, ë§Œì•½ ê°œìˆ˜ê°€ ì •í•´ì ¸ ìˆë‹¤ë©´ MinCount = MixCount
+	INT				Probability;			// ìƒì„± í™•ë¥ : 0 ~ 10000, Prob10K_t
 };
 struct QUEST_DROP_CHARACTER2ITEM
 {
-	BYTE			InfluenceType0;			// ¼¼·Â Å¸ÀÔÀ¸·Î
-	USHORT			UnitKindMask0;			// À¯´ÖÀÇ Á¾·ù
+	BYTE			InfluenceType0;			// ì„¸ë ¥ íƒ€ì…ìœ¼ë¡œ
+	USHORT			UnitKindMask0;			// ìœ ë‹›ì˜ ì¢…ë¥˜
 	CHARACTER2ITEM	Character2Item;
 };
 
@@ -51,8 +51,8 @@ public:
 	BOOL IsFirstScenarioQuest(BYTE i_byInflTy);
 
 	
-	BOOL IsEndTypeTimeOver(void);			// 2007-12-06 by cmkwon, ½Ã°£Á¦ÇÑ Äù½ºÆ® ¼­¹ö¿¡¼­ ½Ã°£ Ã¼Å©ÇÏ°Ô ¼öÁ¤ - CQuest::IsEndTypeTimeOver() Ãß°¡
-	BOOL IsCompleteEndTypeTimeOver(int i_nSpentTimeInSec);	// 2007-12-06 by cmkwon, ½Ã°£Á¦ÇÑ Äù½ºÆ® ¼­¹ö¿¡¼­ ½Ã°£ Ã¼Å©ÇÏ°Ô ¼öÁ¤ - CQuest::IsCompleteEndTypeTimeOver() Ãß°¡
+	BOOL IsEndTypeTimeOver(void);			// 2007-12-06 by cmkwon, ì‹œê°„ì œí•œ í€˜ìŠ¤íŠ¸ ì„œë²„ì—ì„œ ì‹œê°„ ì²´í¬í•˜ê²Œ ìˆ˜ì • - CQuest::IsEndTypeTimeOver() ì¶”ê°€
+	BOOL IsCompleteEndTypeTimeOver(int i_nSpentTimeInSec);	// 2007-12-06 by cmkwon, ì‹œê°„ì œí•œ í€˜ìŠ¤íŠ¸ ì„œë²„ì—ì„œ ì‹œê°„ ì²´í¬í•˜ê²Œ ìˆ˜ì • - CQuest::IsCompleteEndTypeTimeOver() ì¶”ê°€
 
 
 
@@ -60,29 +60,29 @@ public:
 	// Basic Info
 	INT					QuestIndex;
 	char				QuestName[SIZE_MAX_QUEST_NAME];
-	BYTE				QuestEpisodeType;				// 2008-06-16 by cmkwon, EP3 Äù½ºÆ® ±âÁ¸ Äù½ºÆ®¿Í ±¸º° - QUEST_EPISODE_TYPE_XXX
-	BYTE				QuestPartyType;			// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ		
-	BYTE				QuestKind;			// ÀÏ¹İ, Äİ·º¼Ç, ½Ã³ª¸®¿À
-	BYTE				QuestType;			// 1È¸¼º, ¿¬¼Ó¼º: QUEST_TYPE_SINGLE, QUEST_TYPE_SERIES
-	BYTE				QuestStartType;		// QUEST°¡ ¹ß»ıÇÏ´Â ½ÃÁ¡¿¡ µû¸¥ ºĞ·ù: QUEST_START_TYPE_XXX
-	BYTE				QuestEndType;		// QUEST°¡ Á¾·á ¹æ½Ä¿¡ µû¸¥ ºĞ·ù: QUEST_END_TYPE_XXX
-	BYTE				QuestPartyMembers;	// 2006-03-24 by cmkwon, ÆÄÆ¼Äù½ºÆ® ¿©ºÎ, ÆÄÆ¼¿ø¼ö, À¯È¿°ª:0 ~ SIZE_MAX_PARTY_MEMBER(6)
-	QUEST_NPC_INFO		QuestNPCInfo;		// Äù½ºÆ®¸¦ ÁÖ´Â NPC Á¤º¸ ¹× Talk
-	char				QuestDescription[SIZE_MAX_NPC_TALK_STRING];	// Äù½ºÆ®¿¡ ´ëÇÑ ¼³¸í
-	MapIndex_t			EventMapIndex;					// Äù½ºÆ®°¡ ÀÏ¾î³ª´Â ¸Ê, ex)ÇØ´ç ¸Ê¿¡¼­ ¸ó½ºÅÍ¸¦ ÀâÀ» ¶§¸¸ ¾ÆÀÌÅÛÀÌ ¶³ÀÌÁø´Ù.
-	INT					NextQuestIndex;					// ´ÙÀ½ Äù½ºÆ® ¹øÈ£, QuestTypeÀÌ ¿¬¼Ó¼ºÀÏ ¶§¸¸ ÀÇ¹Ì °¡Áü
-	INT					PartyQuestMemberCount;			// 1 ÀÌ»óÀÌ¸é ÆÄÆ¼ Äù½ºÆ®ÀÓ, ÇØ´ç ÀÎ¿ø¸¸Å­ ÆÄÆ¼¸¦ ¸Î°í »ç³ÉÀ» ÇØ¾ß ¾ÆÀÌÅÛÀÌ ¶³¾îÁü.
-	BOOL				DropItemToAllAttackCharacter;	// ÇÑ¹øÀÌ¶óµµ µ¥¹ÌÁö¸¦ ÁØ ¸ğµç Ä³¸¯ÅÍ¿¡°Ô Quest Drop ItemÀ» ÁÖ´Â Áö ¿©ºÎ, µğÆúÆ®´Â ÃÖ´ë µ¥¹ÌÁö¸¦ ÁØ Ä³¸¯¿¡°Ô¸¸ ¾ÆÀÌÅÛÀ» ÁÜ.
-	INT					TimeLimitInMinutes;				// Äù½ºÆ® Á¾·á Å¸ÀÔÀÌ QUEST_END_TYPE_TIME_OVERÀÏ¶§´Â °æ°úÈÄ Äù½ºÆ® ¿Ï·á °¡´É, ±×¿Ü¿¡´Â ½Ã°£ Á¦ÇÑ(ºĞ´ÜÀ§)
-	BOOL				IsDiscardable;					// Äù½ºÆ® ½ÃÀÛ ½Ã YES È¤Àº NO°¡ ÀÖÀ¸¸ç ÇØ´çÇÏ´Â Á¶°Ç¿¡ µû¶ó ³»¿ëÀÌ ´Ş¶óÁö´Â Á¶°Ç(YES Äù½ºÆ®¸¦ ¼öÇàÇÔ, NO ±×³É ³Ñ±è), ±âº»°ªÀº FALSE
-	BOOL				IsCityWar;						// µµ½ÃÁ¡·ÉÀü Äù½ºÆ® ÀÎ°¡? - µµ½ÃÁ¡·ÉÀü Äù½ºÆ®´Â ¹ŞÀ»¶§ QuestParam1¿¡ ¼­¹ö±º ID¸¦ ÀúÀåÇÑ´Ù.
-	BOOL				IsNeverCompletionByUser;		// À¯ÀúÀÇ ¿äÃ»À¸·Î Äù½ºÆ®°¡ ¿Ï·áµÇÁö ¾Ê´Â´Ù
-	BOOL				IsDropItemToAllPartyMembers;	// 2009-01-13 by cmkwon, ¹Ì¼Ç º¸»óÀ» ÆÄÆ¼¿ø ¸ğµÎ¿¡°Ô ÁÖ±â ¸í·É¾î Ãß°¡ - CQuest¿¡ ¸â¹ö º¯¼ö Ãß°¡
+	BYTE				QuestEpisodeType;				// 2008-06-16 by cmkwon, EP3 í€˜ìŠ¤íŠ¸ ê¸°ì¡´ í€˜ìŠ¤íŠ¸ì™€ êµ¬ë³„ - QUEST_EPISODE_TYPE_XXX
+	BYTE				QuestPartyType;			// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°		
+	BYTE				QuestKind;			// ì¼ë°˜, ì½œë ‰ì…˜, ì‹œë‚˜ë¦¬ì˜¤
+	BYTE				QuestType;			// 1íšŒì„±, ì—°ì†ì„±: QUEST_TYPE_SINGLE, QUEST_TYPE_SERIES
+	BYTE				QuestStartType;		// QUESTê°€ ë°œìƒí•˜ëŠ” ì‹œì ì— ë”°ë¥¸ ë¶„ë¥˜: QUEST_START_TYPE_XXX
+	BYTE				QuestEndType;		// QUESTê°€ ì¢…ë£Œ ë°©ì‹ì— ë”°ë¥¸ ë¶„ë¥˜: QUEST_END_TYPE_XXX
+	BYTE				QuestPartyMembers;	// 2006-03-24 by cmkwon, íŒŒí‹°í€˜ìŠ¤íŠ¸ ì—¬ë¶€, íŒŒí‹°ì›ìˆ˜, ìœ íš¨ê°’:0 ~ SIZE_MAX_PARTY_MEMBER(6)
+	QUEST_NPC_INFO		QuestNPCInfo;		// í€˜ìŠ¤íŠ¸ë¥¼ ì£¼ëŠ” NPC ì •ë³´ ë° Talk
+	char				QuestDescription[SIZE_MAX_NPC_TALK_STRING];	// í€˜ìŠ¤íŠ¸ì— ëŒ€í•œ ì„¤ëª…
+	MapIndex_t			EventMapIndex;					// í€˜ìŠ¤íŠ¸ê°€ ì¼ì–´ë‚˜ëŠ” ë§µ, ex)í•´ë‹¹ ë§µì—ì„œ ëª¬ìŠ¤í„°ë¥¼ ì¡ì„ ë•Œë§Œ ì•„ì´í…œì´ ë–¨ì´ì§„ë‹¤.
+	INT					NextQuestIndex;					// ë‹¤ìŒ í€˜ìŠ¤íŠ¸ ë²ˆí˜¸, QuestTypeì´ ì—°ì†ì„±ì¼ ë•Œë§Œ ì˜ë¯¸ ê°€ì§
+	INT					PartyQuestMemberCount;			// 1 ì´ìƒì´ë©´ íŒŒí‹° í€˜ìŠ¤íŠ¸ì„, í•´ë‹¹ ì¸ì›ë§Œí¼ íŒŒí‹°ë¥¼ ë§ºê³  ì‚¬ëƒ¥ì„ í•´ì•¼ ì•„ì´í…œì´ ë–¨ì–´ì§.
+	BOOL				DropItemToAllAttackCharacter;	// í•œë²ˆì´ë¼ë„ ë°ë¯¸ì§€ë¥¼ ì¤€ ëª¨ë“  ìºë¦­í„°ì—ê²Œ Quest Drop Itemì„ ì£¼ëŠ” ì§€ ì—¬ë¶€, ë””í´íŠ¸ëŠ” ìµœëŒ€ ë°ë¯¸ì§€ë¥¼ ì¤€ ìºë¦­ì—ê²Œë§Œ ì•„ì´í…œì„ ì¤Œ.
+	INT					TimeLimitInMinutes;				// í€˜ìŠ¤íŠ¸ ì¢…ë£Œ íƒ€ì…ì´ QUEST_END_TYPE_TIME_OVERì¼ë•ŒëŠ” ê²½ê³¼í›„ í€˜ìŠ¤íŠ¸ ì™„ë£Œ ê°€ëŠ¥, ê·¸ì™¸ì—ëŠ” ì‹œê°„ ì œí•œ(ë¶„ë‹¨ìœ„)
+	BOOL				IsDiscardable;					// í€˜ìŠ¤íŠ¸ ì‹œì‘ ì‹œ YES í˜¹ì€ NOê°€ ìˆìœ¼ë©° í•´ë‹¹í•˜ëŠ” ì¡°ê±´ì— ë”°ë¼ ë‚´ìš©ì´ ë‹¬ë¼ì§€ëŠ” ì¡°ê±´(YES í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰í•¨, NO ê·¸ëƒ¥ ë„˜ê¹€), ê¸°ë³¸ê°’ì€ FALSE
+	BOOL				IsCityWar;						// ë„ì‹œì ë ¹ì „ í€˜ìŠ¤íŠ¸ ì¸ê°€? - ë„ì‹œì ë ¹ì „ í€˜ìŠ¤íŠ¸ëŠ” ë°›ì„ë•Œ QuestParam1ì— ì„œë²„êµ° IDë¥¼ ì €ì¥í•œë‹¤.
+	BOOL				IsNeverCompletionByUser;		// ìœ ì €ì˜ ìš”ì²­ìœ¼ë¡œ í€˜ìŠ¤íŠ¸ê°€ ì™„ë£Œë˜ì§€ ì•ŠëŠ”ë‹¤
+	BOOL				IsDropItemToAllPartyMembers;	// 2009-01-13 by cmkwon, ë¯¸ì…˜ ë³´ìƒì„ íŒŒí‹°ì› ëª¨ë‘ì—ê²Œ ì£¼ê¸° ëª…ë ¹ì–´ ì¶”ê°€ - CQuestì— ë©¤ë²„ ë³€ìˆ˜ ì¶”ê°€
 
 	// Start Requirements
 	USHORT					ReqUnitKind;
-	INT_RANGE				ReqLevel;			// ÇÊ¿ä ·¹º§ ÇÏÇÑ
-	Experience_t			ReqExperience;		// check: ³ªÁß¿¡ ÇÊ¿äÇÏ¸é »ç¿ëÇÏ±â, Áö±İÀº »ç¿ëÇÏÁö ¾Ê°í ÀÖÀ½! 20040422, kelovon
+	INT_RANGE				ReqLevel;			// í•„ìš” ë ˆë²¨ í•˜í•œ
+	Experience_t			ReqExperience;		// check: ë‚˜ì¤‘ì— í•„ìš”í•˜ë©´ ì‚¬ìš©í•˜ê¸°, ì§€ê¸ˆì€ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìˆìŒ! 20040422, kelovon
 	INT_RANGE				ReqAttackPart;
 	INT_RANGE				ReqDefensePart;
 	INT_RANGE				ReqFuelPart;
@@ -93,103 +93,103 @@ public:
 	vector<INT>				ReqRecvQuestIndexVector;
 	vector<ITEM_W_COUNT>	ReqItemVector;
 	INT						ReqGuild;
-	BYTE					ReqInfluenceType;				// ¼¼·Â Å¸ÀÔ ¸¶½ºÅ©		
-	MAP_AREA				ReqStartArea;			// 2005-08-22 by cmkwon, ¹Ì¼Ç ½ÃÀÛ Á¶°Ç¿¡ Æ¯Á¤ ÁÂÇ¥ ¼³Á¤
+	BYTE					ReqInfluenceType;				// ì„¸ë ¥ íƒ€ì… ë§ˆìŠ¤í¬		
+	MAP_AREA				ReqStartArea;			// 2005-08-22 by cmkwon, ë¯¸ì…˜ ì‹œì‘ ì¡°ê±´ì— íŠ¹ì • ì¢Œí‘œ ì„¤ì •
 
 	// Start Action
-	vector<QUEST_PAY_ITEM>	StartPayItemVector;		// ½ÃÀÛ ½Ã ÁÖ´Â ¾ÆÀÌÅÛ
-	vector<ITEM_W_COUNT>	StartDelItemVector;		// ½ÃÀÛ ½Ã Áö¿ì´Â ¾ÆÀÌÅÛ
-	MapIndex_t				StartMapIndex;			// ½ÃÀÛ½Ã ¿öÇÁµÉ MapIndex
-	BOOL					StartPartyWarpFlag;		// StartMapIndex°¡ À¯È¿ ÇÒ ¶§ ÆÄÆ¼¿ø ¸ğµÎ ¿öÇÁÇÏ´ÂÁöÀÇ ÇÃ·¡±×(TRUE:¸ğµç ÆÄÆ¼¿ø ¹Ì¼Ç¸ÊÀ¸·Î ÀÌµ¿, FALSEÀÚ½Å¸¸ ¹Ì¼Ç¸ÊÀ¸·Î ÀÌµ¿)
+	vector<QUEST_PAY_ITEM>	StartPayItemVector;		// ì‹œì‘ ì‹œ ì£¼ëŠ” ì•„ì´í…œ
+	vector<ITEM_W_COUNT>	StartDelItemVector;		// ì‹œì‘ ì‹œ ì§€ìš°ëŠ” ì•„ì´í…œ
+	MapIndex_t				StartMapIndex;			// ì‹œì‘ì‹œ ì›Œí”„ë  MapIndex
+	BOOL					StartPartyWarpFlag;		// StartMapIndexê°€ ìœ íš¨ í•  ë•Œ íŒŒí‹°ì› ëª¨ë‘ ì›Œí”„í•˜ëŠ”ì§€ì˜ í”Œë˜ê·¸(TRUE:ëª¨ë“  íŒŒí‹°ì› ë¯¸ì…˜ë§µìœ¼ë¡œ ì´ë™, FALSEìì‹ ë§Œ ë¯¸ì…˜ë§µìœ¼ë¡œ ì´ë™)
 
 	// Completion Requirements
-	vector<ITEM_W_COUNT>			TargetItemVector;			// Äù½ºÆ® ¿Ï·á¸¦ À§ÇØ ÇÊ¿äÇÑ ¾ÆÀÌÅÛ ¸®½ºÆ®
-	vector<ITEM_W_COUNT_MAP_AREA>	TargetMonsterItemVector;	// ¸ó½ºÅÍ »ç³É Äù½ºÆ®¿¡¼­ Àâ¾ÒÀ» ¶§ ¶³¾îÁö´Â ¾ÆÀÌÅÛ ¹× »ç³É ¹üÀ§, 0ÀÌ¸é ¹«½Ã
-	QUEST_NPC_INFO					TargetMeetNPCInfo;			// NPC¸¦ ¸¸³ª¸é ÇØ°áµÇ´Â Äù½ºÆ®¿¡¼­, ¸¸³ª¾ß ÇÒ NPC, 0ÀÌ¸é ¹«½Ã
-	INT								TargetMeetObjectIndex;		// object¸¦ ¸¸³ª¸é ÇØ°áµÇ´Â Äù½ºÆ®¿¡¼­, ¸¸³ª¾ß ÇÒ object, 0ÀÌ¸é ¹«½Ã
-	MAP_AREA						TargetMeetObjectMapArea;	// object¸¦ ¸¸³ª¸é ÇØ°áµÇ´Â Äù½ºÆ®¿¡¼­, ¸¸³ª¾ß ÇÒ objectÀÇ À§Ä¡, 2005-07-07 by cmkwon, ¿öÇÁÅ¸°ÙÀ» ¸¸³ª¸é ÇØ°áµÇ´Â Äù½ºÆ®¿¡¼­, ¸¸³ª¾ß ÇÒ ¿öÇÁÅ¸°ÙÀÎµ¦½º - ¼­¹ö¿¡¼­ ÀÚµ¿À¸·Î ¿Ï·á Ã³¸®µÊ
-	INT								TargetDeadByMonsterUniquenumber;	// ¼³Á¤µÈ ¸ó½ºÅÍ¿¡ ÀÇÇØ Á×À»¶§ Äù½ºÆ® ÇØ°á Á¶°Ç
-	MAP_AREA						TargetMeetMapArea;			// 2005-08-29 by cmkwon, ¹Ì¼Ç Á¾·á Á¶°Ç¿¡ Æ¯Á¤ ÁÂÇ¥ ¼³Á¤
-	vectMONSTER_W_COUNT				TargetMonsterVector;		// 2005-10-19 by cmkwon, Äù½ºÆ® ¿Ï·á¸¦ À§ÇØ »ç³ÉÇØ¾ßÇÏ´Â ¸ó½ºÅÍ Ä«¿îÆ® ¸®½ºÆ®
-	ITEM_W_COUNT					TargetMixItemTarget;		// 2007-04-02 by cmkwon, ¹Ì¼Ç Á¾·á Á¶°Ç¿¡ Á¶ÇÕÀ» À§ÇØ Ãß°¡ÇÔ º¯¼ö·Î
-																// Á¶ÇÕ °á°ú¹° ÇÊ¿ä ¾ÆÀÌÅÛÀÌ¸ç, ÀÌ ¾ÆÀÌÅÛÀÌ ¼³Á¤µÇ¾î ÀÖÀ¸¸é ´Ù¸¥ ÇÊ¿ä¾ÆÀÌÅÛ Ã¼Å©´Â ÇÊ¿ä ¾ø´Ù
+	vector<ITEM_W_COUNT>			TargetItemVector;			// í€˜ìŠ¤íŠ¸ ì™„ë£Œë¥¼ ìœ„í•´ í•„ìš”í•œ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
+	vector<ITEM_W_COUNT_MAP_AREA>	TargetMonsterItemVector;	// ëª¬ìŠ¤í„° ì‚¬ëƒ¥ í€˜ìŠ¤íŠ¸ì—ì„œ ì¡ì•˜ì„ ë•Œ ë–¨ì–´ì§€ëŠ” ì•„ì´í…œ ë° ì‚¬ëƒ¥ ë²”ìœ„, 0ì´ë©´ ë¬´ì‹œ
+	QUEST_NPC_INFO					TargetMeetNPCInfo;			// NPCë¥¼ ë§Œë‚˜ë©´ í•´ê²°ë˜ëŠ” í€˜ìŠ¤íŠ¸ì—ì„œ, ë§Œë‚˜ì•¼ í•  NPC, 0ì´ë©´ ë¬´ì‹œ
+	INT								TargetMeetObjectIndex;		// objectë¥¼ ë§Œë‚˜ë©´ í•´ê²°ë˜ëŠ” í€˜ìŠ¤íŠ¸ì—ì„œ, ë§Œë‚˜ì•¼ í•  object, 0ì´ë©´ ë¬´ì‹œ
+	MAP_AREA						TargetMeetObjectMapArea;	// objectë¥¼ ë§Œë‚˜ë©´ í•´ê²°ë˜ëŠ” í€˜ìŠ¤íŠ¸ì—ì„œ, ë§Œë‚˜ì•¼ í•  objectì˜ ìœ„ì¹˜, 2005-07-07 by cmkwon, ì›Œí”„íƒ€ê²Ÿì„ ë§Œë‚˜ë©´ í•´ê²°ë˜ëŠ” í€˜ìŠ¤íŠ¸ì—ì„œ, ë§Œë‚˜ì•¼ í•  ì›Œí”„íƒ€ê²Ÿì¸ë±ìŠ¤ - ì„œë²„ì—ì„œ ìë™ìœ¼ë¡œ ì™„ë£Œ ì²˜ë¦¬ë¨
+	INT								TargetDeadByMonsterUniquenumber;	// ì„¤ì •ëœ ëª¬ìŠ¤í„°ì— ì˜í•´ ì£½ì„ë•Œ í€˜ìŠ¤íŠ¸ í•´ê²° ì¡°ê±´
+	MAP_AREA						TargetMeetMapArea;			// 2005-08-29 by cmkwon, ë¯¸ì…˜ ì¢…ë£Œ ì¡°ê±´ì— íŠ¹ì • ì¢Œí‘œ ì„¤ì •
+	vectMONSTER_W_COUNT				TargetMonsterVector;		// 2005-10-19 by cmkwon, í€˜ìŠ¤íŠ¸ ì™„ë£Œë¥¼ ìœ„í•´ ì‚¬ëƒ¥í•´ì•¼í•˜ëŠ” ëª¬ìŠ¤í„° ì¹´ìš´íŠ¸ ë¦¬ìŠ¤íŠ¸
+	ITEM_W_COUNT					TargetMixItemTarget;		// 2007-04-02 by cmkwon, ë¯¸ì…˜ ì¢…ë£Œ ì¡°ê±´ì— ì¡°í•©ì„ ìœ„í•´ ì¶”ê°€í•¨ ë³€ìˆ˜ë¡œ
+																// ì¡°í•© ê²°ê³¼ë¬¼ í•„ìš” ì•„ì´í…œì´ë©°, ì´ ì•„ì´í…œì´ ì„¤ì •ë˜ì–´ ìˆìœ¼ë©´ ë‹¤ë¥¸ í•„ìš”ì•„ì´í…œ ì²´í¬ëŠ” í•„ìš” ì—†ë‹¤
 	
 	// Completion Action
-	vector<ITEM_W_COUNT>			EndDeleteItemVector;	// Äù½ºÆ® ¼öÇà ½Ã ¾ø¾îÁö´Â ¾ÆÀÌÅÛ
-	vector<QUEST_PAY_ITEM>			EndPayItemVector;		// Äù½ºÆ® ¼öÇà ½Ã ÁÖ¾îÁö´Â ¾ÆÀÌÅÛ
-	vector<QUEST_PAY_ITEM>			EndMissionMasterPayItemVector;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ - Äù½ºÆ® ¼öÇà ½Ã ¹Ì¼Ç¸¶½ºÅÍ¿¡°Ô ÁÖ¾îÁö´Â ¾ÆÀÌÅÛ	
-	vector<QUEST_RANDOM_PAY_ITEM>	EndRandomPayItemVector;	// Äù½ºÆ® ¼öÇà ½Ã RANDOMÇÏ°Ô ÁÖ¾îÁö´Â ¾ÆÀÌÅÛ
-	vector<ITEM_MIXING_INFO>		EndPayMixItemVector;	// Äù½ºÆ® ¼öÇà ½Ã Á¶ÇÕ¿¡ ÀÇÇØ ÁÖ¾îÁö´Â ¾ÆÀÌÅÛ
+	vector<ITEM_W_COUNT>			EndDeleteItemVector;	// í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹œ ì—†ì–´ì§€ëŠ” ì•„ì´í…œ
+	vector<QUEST_PAY_ITEM>			EndPayItemVector;		// í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹œ ì£¼ì–´ì§€ëŠ” ì•„ì´í…œ
+	vector<QUEST_PAY_ITEM>			EndMissionMasterPayItemVector;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° - í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹œ ë¯¸ì…˜ë§ˆìŠ¤í„°ì—ê²Œ ì£¼ì–´ì§€ëŠ” ì•„ì´í…œ	
+	vector<QUEST_RANDOM_PAY_ITEM>	EndRandomPayItemVector;	// í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹œ RANDOMí•˜ê²Œ ì£¼ì–´ì§€ëŠ” ì•„ì´í…œ
+	vector<ITEM_MIXING_INFO>		EndPayMixItemVector;	// í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹œ ì¡°í•©ì— ì˜í•´ ì£¼ì–´ì§€ëŠ” ì•„ì´í…œ
 	BYTE							EndPayBonusStat;
-// 2005-11-15 by cmkwon, »èÁ¦ÇÔ
+// 2005-11-15 by cmkwon, ì‚­ì œí•¨
 //	BYTE							EndPayBonusSkillPoint;
-	INT								EndPayFame;			// ¸í¼ºÀÌ ³ô¾ÆÁü
-	INT								EndPayStatus;		// ½ÅºĞ »ó½ÂÇÔ
-	BYTE							EndPayLevel;		// ·¹º§ »ó½Â·®(+1, +2 µî)
-	INT								EndPayExperience;	// °æÇèÄ¡ »ó½Â·®(+100, +200 µî)
-	MapIndex_t						EndPayWarpMapIndex;	// ¿öÇÁÇÒ ¸Ê
-	INT								EndPayPropensity;	// ½ÅºĞ »ó½Â º¸³Ê½º
+	INT								EndPayFame;			// ëª…ì„±ì´ ë†’ì•„ì§
+	INT								EndPayStatus;		// ì‹ ë¶„ ìƒìŠ¹í•¨
+	BYTE							EndPayLevel;		// ë ˆë²¨ ìƒìŠ¹ëŸ‰(+1, +2 ë“±)
+	INT								EndPayExperience;	// ê²½í—˜ì¹˜ ìƒìŠ¹ëŸ‰(+100, +200 ë“±)
+	MapIndex_t						EndPayWarpMapIndex;	// ì›Œí”„í•  ë§µ
+	INT								EndPayPropensity;	// ì‹ ë¶„ ìƒìŠ¹ ë³´ë„ˆìŠ¤
 	INT								EndCinemaNum;		// CinemaNum
-	INT								EndInfluenceType;	// 0ÀÌ ¾Æ´Ï¸é ¼¼·ÂÀ» º¯°æÇÑ´Ù.
+	INT								EndInfluenceType;	// 0ì´ ì•„ë‹ˆë©´ ì„¸ë ¥ì„ ë³€ê²½í•œë‹¤.
 
-	// Quest¿ë Drop Item List, ·Îµù ÈÄ CFieldIOCP::m_mapMonster2Item¿¡ ³Ö¾î ÁÖ¾î¾ß ÇÔ
+	// Questìš© Drop Item List, ë¡œë”© í›„ CFieldIOCP::m_mapMonster2Itemì— ë„£ì–´ ì£¼ì–´ì•¼ í•¨
 	vector<QUEST_DROP_ITEM>			vecQuestDropItem;
-	vector<QUEST_DROP_CHARACTER2ITEM>	vecQuestDropCharacter2Item;		// 2006-03-02 by cmkwon, ¼¼·ÂÀü°ü
+	vector<QUEST_DROP_CHARACTER2ITEM>	vecQuestDropCharacter2Item;		// 2006-03-02 by cmkwon, ì„¸ë ¥ì „ê´€
 
-	// ±âÅ¸ Ãß°¡ Á¤º¸
+	// ê¸°íƒ€ ì¶”ê°€ ì •ë³´
 public:
-	float							StartPayItemWeight;	// FieldServer¿¡¼­ Äù½ºÆ® ·Îµù ÈÄ °è»êÇØ¼­ ÇÒ´çÇØ¾ß ÇÔ
-	float							EndPayItemWeight;	// FieldServer¿¡¼­ Äù½ºÆ® ·Îµù ÈÄ °è»êÇØ¼­ ÇÒ´çÇØ¾ß ÇÔ
-	float							EndMissionMasterPayItemWeight; // 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ - // FieldServer¿¡¼­ Äù½ºÆ® ·Îµù ÈÄ °è»êÇØ¼­ ÇÒ´çÇØ¾ß ÇÔ
+	float							StartPayItemWeight;	// FieldServerì—ì„œ í€˜ìŠ¤íŠ¸ ë¡œë”© í›„ ê³„ì‚°í•´ì„œ í• ë‹¹í•´ì•¼ í•¨
+	float							EndPayItemWeight;	// FieldServerì—ì„œ í€˜ìŠ¤íŠ¸ ë¡œë”© í›„ ê³„ì‚°í•´ì„œ í• ë‹¹í•´ì•¼ í•¨
+	float							EndMissionMasterPayItemWeight; // 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° - // FieldServerì—ì„œ í€˜ìŠ¤íŠ¸ ë¡œë”© í›„ ê³„ì‚°í•´ì„œ í• ë‹¹í•´ì•¼ í•¨
 };
-typedef vector<CQuest*>		vectCQuestPtr;		// 2007-07-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ®¸¦ Á¤º¸¸¦ vector·Î ¹Ş±â À§ÇØ - 
+typedef vector<CQuest*>		vectCQuestPtr;		// 2007-07-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì •ë³´ë¥¼ vectorë¡œ ë°›ê¸° ìœ„í•´ - 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-06-16 by cmkwon, EP3 Äù½ºÆ® ±âÁ¸ Äù½ºÆ®¿Í ±¸º° - 
+// 2008-06-16 by cmkwon, EP3 í€˜ìŠ¤íŠ¸ ê¸°ì¡´ í€˜ìŠ¤íŠ¸ì™€ êµ¬ë³„ - 
 // QuestEpisodeType
 #define QUEST_EPISODE_TYPE_1AND2			(BYTE)0		// Episode1 ~ 2
 #define QUEST_EPISODE_TYPE_3				(BYTE)1		// Episode3
-#define QUEST_INFINITY_TYPE_3				(BYTE)2		// Infinity3		// 2011-03-07 by hskim ÀÎÇÇ´ÏÆ¼ 3Â÷ Quest ½ÃÀÛ ¾Ë¸² ±â´É
-#define QUEST_EPISODE_TYPE_4				(BYTE)3		// Episode4			// 2011-11-04 by hskim, EP4 [Äù½ºÆ® ½Ã½ºÅÛ]
+#define QUEST_INFINITY_TYPE_3				(BYTE)2		// Infinity3		// 2011-03-07 by hskim ì¸í”¼ë‹ˆí‹° 3ì°¨ Quest ì‹œì‘ ì•Œë¦¼ ê¸°ëŠ¥
+#define QUEST_EPISODE_TYPE_4				(BYTE)3		// Episode4			// 2011-11-04 by hskim, EP4 [í€˜ìŠ¤íŠ¸ ì‹œìŠ¤í…œ]
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-12-08 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ
+// 2008-12-08 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°
 #define QUEST_PARTYTYPE_NONE				(BYTE)0			
 #define QUEST_PARTYTYPE_PARTY				(BYTE)1			
 
 // QuestKind
-#define QUEST_KIND_NORMAL					(BYTE)0		// ÀÏ¹İ Quest
-#define QUEST_KIND_SIDESTORY				(BYTE)1		// ¹ø¿Ü ¹Ì¼Ç ,// 2006-03-15 by cmkwon, QUEST_KIND_COLLECTION¿¡¼­ º¯°æÇÑ°Í
-#define QUEST_KIND_SCENARIO					(BYTE)2		// ½Ã³ª¸®¿À Quest
+#define QUEST_KIND_NORMAL					(BYTE)0		// ì¼ë°˜ Quest
+#define QUEST_KIND_SIDESTORY				(BYTE)1		// ë²ˆì™¸ ë¯¸ì…˜ ,// 2006-03-15 by cmkwon, QUEST_KIND_COLLECTIONì—ì„œ ë³€ê²½í•œê²ƒ
+#define QUEST_KIND_SCENARIO					(BYTE)2		// ì‹œë‚˜ë¦¬ì˜¤ Quest
 
 // QuestType
-#define QUEST_TYPE_SINGLE					(BYTE)0		// ÀÏÈ¸¼º Quest
-#define QUEST_TYPE_SERIES					(BYTE)1		// ¿¬¼Ó¼º Quest
-#define QUEST_TYPE_REPEATABLE				(BYTE)2		// ¹«ÇÑ ¹İº¹ Quest
+#define QUEST_TYPE_SINGLE					(BYTE)0		// ì¼íšŒì„± Quest
+#define QUEST_TYPE_SERIES					(BYTE)1		// ì—°ì†ì„± Quest
+#define QUEST_TYPE_REPEATABLE				(BYTE)2		// ë¬´í•œ ë°˜ë³µ Quest
 
 // QuestStartType
-#define QUEST_START_TYPE_LEVEL_CHANGE		(BYTE)0		// Level º¯È­ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â Quest
-#define QUEST_START_TYPE_EXP_CHANGE			(BYTE)1		// EXP º¯È­ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â Quest
-#define QUEST_START_TYPE_MEET_NPC			(BYTE)2		// Æ¯Á¤ NPC¸¦ ¸¸³µÀ» ¶§ ÀÏ¾î³¯ ¼ö ÀÖ´Â Quest
-#define QUEST_START_TYPE_ENTER_BUILDING		(BYTE)3		// Æ¯Á¤ °Ç¹°¿¡ µé¾î°¬À» ¶§ ÀÏ¾î³¯ ¼ö ÀÖ´Â Quest
-#define QUEST_START_TYPE_ITEM_CLICK			(BYTE)4		// ¾ÆÀÌÅÛÀ» Å¬¸¯ ½Ã ÀÏ¾î³¯ ¼ö ÀÖ´Â QUEST
-#define QUEST_START_TYPE_COUPON				(BYTE)5		// ÄíÆù Äù½ºÆ® - ¹«ÇÑ ¹İº¹, ½ÃÀÛ½Ã ÄíÆù¹øÈ£ Ã¼Å© ÈÄ ¿Ï·á°¡ ¹Ù·Î ÁøÇàµÊ
+#define QUEST_START_TYPE_LEVEL_CHANGE		(BYTE)0		// Level ë³€í™” ì‹œ ì¼ì–´ë‚  ìˆ˜ ìˆëŠ” Quest
+#define QUEST_START_TYPE_EXP_CHANGE			(BYTE)1		// EXP ë³€í™” ì‹œ ì¼ì–´ë‚  ìˆ˜ ìˆëŠ” Quest
+#define QUEST_START_TYPE_MEET_NPC			(BYTE)2		// íŠ¹ì • NPCë¥¼ ë§Œë‚¬ì„ ë•Œ ì¼ì–´ë‚  ìˆ˜ ìˆëŠ” Quest
+#define QUEST_START_TYPE_ENTER_BUILDING		(BYTE)3		// íŠ¹ì • ê±´ë¬¼ì— ë“¤ì–´ê°”ì„ ë•Œ ì¼ì–´ë‚  ìˆ˜ ìˆëŠ” Quest
+#define QUEST_START_TYPE_ITEM_CLICK			(BYTE)4		// ì•„ì´í…œì„ í´ë¦­ ì‹œ ì¼ì–´ë‚  ìˆ˜ ìˆëŠ” QUEST
+#define QUEST_START_TYPE_COUPON				(BYTE)5		// ì¿ í° í€˜ìŠ¤íŠ¸ - ë¬´í•œ ë°˜ë³µ, ì‹œì‘ì‹œ ì¿ í°ë²ˆí˜¸ ì²´í¬ í›„ ì™„ë£Œê°€ ë°”ë¡œ ì§„í–‰ë¨
 
 // QuestEndType
-#define QUEST_END_TYPE_IMMEDIATE			(BYTE)0		// ½ÃÀÛ°ú ÇÔ²² ¹Ù·Î ³¡³ª´Â Quest, Å¬¶óÀÌ¾ğÆ®´Â ¼­¹öÀÇ Quest Á¾·á ¸Ş½ÃÁö¸¦ ¹ŞÀ» ¶§ ±îÁö ±â´Ù¸®¸é µÊ
-#define QUEST_END_TYPE_REQESTED_BY_CLIENT	(BYTE)1		// Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»°ú ±×¿¡ ´ëÇÑ ¼­¹öÀÇ °Ë»ç¿¡ ÀÇÇØ ³¡³ª´Â Quest
-#define QUEST_END_TYPE_LEVEL_UP				(BYTE)2		// ·¹º§¾÷½Ã¿¡ Äù½ºÆ®°¡ Á¾·áµÇ´Â Å¸ÀÔ, QuestParam1¿¡ ÇöÀç ·¹º§ ÀúÀåµÊ - ´Ù¸¥ Á¾·á Á¶°Ç Ã¼Å©´Â ¾øÀ½, µµ½ÃÁ¡·ÉÀü°ú °ãÄ¥¼ö ¾øÀ½
-#define QUEST_END_TYPE_TIME_OVER			(BYTE)3		// ÀÏÁ¤½Ã°£(TimeLimitInMinutes) °æ°ú½Ã Äù½ºÆ®°¡ Á¾·áµÇ´Â Å¸ÀÔ - ´Ù¸¥ Á¾·á Á¶°Ç Ã¼Å©´Â ¾øÀ½
-#define QUEST_END_TYPE_SELECT_INFLUENCE		(BYTE)4		// 2005-08-17 by cmkwon, ¼¼·Â ¼±ÅÃ ¹Ì¼ÇÀ¸·Î QuestResult¿¡ ¼±ÅÃÇÑ ¼¼·ÂÀÌ µé¾î¿Â´Ù.
+#define QUEST_END_TYPE_IMMEDIATE			(BYTE)0		// ì‹œì‘ê³¼ í•¨ê»˜ ë°”ë¡œ ëë‚˜ëŠ” Quest, í´ë¼ì´ì–¸íŠ¸ëŠ” ì„œë²„ì˜ Quest ì¢…ë£Œ ë©”ì‹œì§€ë¥¼ ë°›ì„ ë•Œ ê¹Œì§€ ê¸°ë‹¤ë¦¬ë©´ ë¨
+#define QUEST_END_TYPE_REQESTED_BY_CLIENT	(BYTE)1		// í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ê³¼ ê·¸ì— ëŒ€í•œ ì„œë²„ì˜ ê²€ì‚¬ì— ì˜í•´ ëë‚˜ëŠ” Quest
+#define QUEST_END_TYPE_LEVEL_UP				(BYTE)2		// ë ˆë²¨ì—…ì‹œì— í€˜ìŠ¤íŠ¸ê°€ ì¢…ë£Œë˜ëŠ” íƒ€ì…, QuestParam1ì— í˜„ì¬ ë ˆë²¨ ì €ì¥ë¨ - ë‹¤ë¥¸ ì¢…ë£Œ ì¡°ê±´ ì²´í¬ëŠ” ì—†ìŒ, ë„ì‹œì ë ¹ì „ê³¼ ê²¹ì¹ ìˆ˜ ì—†ìŒ
+#define QUEST_END_TYPE_TIME_OVER			(BYTE)3		// ì¼ì •ì‹œê°„(TimeLimitInMinutes) ê²½ê³¼ì‹œ í€˜ìŠ¤íŠ¸ê°€ ì¢…ë£Œë˜ëŠ” íƒ€ì… - ë‹¤ë¥¸ ì¢…ë£Œ ì¡°ê±´ ì²´í¬ëŠ” ì—†ìŒ
+#define QUEST_END_TYPE_SELECT_INFLUENCE		(BYTE)4		// 2005-08-17 by cmkwon, ì„¸ë ¥ ì„ íƒ ë¯¸ì…˜ìœ¼ë¡œ QuestResultì— ì„ íƒí•œ ì„¸ë ¥ì´ ë“¤ì–´ì˜¨ë‹¤.
 
 struct CharacterQuest{
 	UID32_t			CharacterUniqueNumber;
 	INT				QuestIndex;
 	BYTE			QuestState;				// QUEST_STATE_XXX
-	INT				QuestParam1;			// µµ½ÃÁ¡·ÉÀü¹Ì¼Ç(µµ½ÃÁ¡·ÉÀü¼­¹ö±º ÀÎµ¦½º), Á¾·á Å¸ÀÔÀÌ QUEST_END_TYPE_LEVEL_UPÀÎ ¹Ì¼Ç(ÇöÀç ·¹º§) <== °ãÃÄ¼­ »ç¿ëµÇ¸é ¾ÈµÈ´Ù.
-	ATUM_DATE_TIME	QuestTimeStamp;			// Äù½ºÆ® ½ÃÀÛ ½Ã°£
-	LONGLONG		QuestPlayTimeStamp;		// Äù½ºÆ® ½ÃÀÛ ½Ã°£(PlayTime)
-};							// Ä³¸¯ÅÍÀÇ Äù½ºÆ® ÁøÇà »óÈ²
+	INT				QuestParam1;			// ë„ì‹œì ë ¹ì „ë¯¸ì…˜(ë„ì‹œì ë ¹ì „ì„œë²„êµ° ì¸ë±ìŠ¤), ì¢…ë£Œ íƒ€ì…ì´ QUEST_END_TYPE_LEVEL_UPì¸ ë¯¸ì…˜(í˜„ì¬ ë ˆë²¨) <== ê²¹ì³ì„œ ì‚¬ìš©ë˜ë©´ ì•ˆëœë‹¤.
+	ATUM_DATE_TIME	QuestTimeStamp;			// í€˜ìŠ¤íŠ¸ ì‹œì‘ ì‹œê°„
+	LONGLONG		QuestPlayTimeStamp;		// í€˜ìŠ¤íŠ¸ ì‹œì‘ ì‹œê°„(PlayTime)
+};							// ìºë¦­í„°ì˜ í€˜ìŠ¤íŠ¸ ì§„í–‰ ìƒí™©
 
 struct DBCharacterQuestMonsterCount			// 2005-10-19 by cmkwon
 {
@@ -208,8 +208,8 @@ typedef vector<CharacterQuestMonsterCount>	vectCharacterQuestMonsterCount;
 
 
 // QusetState
-#define QUEST_STATE_NONE			(BYTE)0		// ½ÃÀÛÇÏÁö ¾ÊÀº »óÅÂ
-#define QUEST_STATE_IN_PROGRESS		(BYTE)1		// ÁøÇàÁß
-#define QUEST_STATE_COMPLETED		(BYTE)2		// ¿Ï·á
+#define QUEST_STATE_NONE			(BYTE)0		// ì‹œì‘í•˜ì§€ ì•Šì€ ìƒíƒœ
+#define QUEST_STATE_IN_PROGRESS		(BYTE)1		// ì§„í–‰ì¤‘
+#define QUEST_STATE_COMPLETED		(BYTE)2		// ì™„ë£Œ
 
 #endif // !defined(AFX_QUEST_H__C9FFDA46_B3F8_4FBF_AA50_4547696C4FEF__INCLUDED_)

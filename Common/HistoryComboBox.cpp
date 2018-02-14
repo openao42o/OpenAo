@@ -1,8 +1,8 @@
-// historycombobox.cpp : implementation file
+Ôªø// historycombobox.cpp : implementation file
 //
 
 #include "stdafx.h"
-// 2008-12-23 by cmkwon, « ø‰ æ¯¿Ω
+// 2008-12-23 by cmkwon, ÌïÑÏöî ÏóÜÏùå
 //#include "..\AtumMonitor\AtumMonitor.h"
 #include "historycombobox.h"
 
@@ -35,7 +35,7 @@ struct CompareCString
 
 void CHistoryComboBox::InitHistoryComboBox(LPCSTR i_szSelectedString, LPCSTR i_szHistoryString, BOOL i_bSort)
 {
-	// sorting ø©∫Œ ∞·¡§
+	// sorting Ïó¨Î∂Ä Í≤∞Ï†ï
 	m_bSort = i_bSort;
 
 	// reset
@@ -48,7 +48,7 @@ void CHistoryComboBox::InitHistoryComboBox(LPCSTR i_szSelectedString, LPCSTR i_s
 	char buffer[2048];
 	strncpy(buffer, i_szHistoryString, 2048);
 
-	// ¡ﬂ∫π ¡¶∞≈
+	// Ï§ëÎ≥µ Ï†úÍ±∞
 	token = strtok(buffer, seps);
 	while (token != NULL)
 	{
@@ -56,7 +56,7 @@ void CHistoryComboBox::InitHistoryComboBox(LPCSTR i_szSelectedString, LPCSTR i_s
 
 		token = strtok(NULL, seps);
 	}
-	// ±‚∫ª Ω∫∆Æ∏µ ª¿‘
+	// Í∏∞Î≥∏ Ïä§Ìä∏ÎßÅ ÏÇΩÏûÖ
 	DeleteAndPushBackString(i_szSelectedString);
 
 	if (m_bSort)

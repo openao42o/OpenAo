@@ -1,4 +1,4 @@
-// FunctionLog.cpp: implementation of the CFunctionLog class.
+ï»¿// FunctionLog.cpp: implementation of the CFunctionLog class.
 //
 //////////////////////////////////////////////////////////////////////
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
@@ -22,7 +22,7 @@ CRITICAL_SECTION		m_csFunctionLog;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GInitFunctionLogSharedMemory(void)
-/// \brief		Æã¼Ç·Î±ëÀ» À§ÇÑ °øÀ¯ ¸Ş¸ğ¸® ÃÊ±âÈ­
+/// \brief		í‘ì…˜ë¡œê¹…ì„ ìœ„í•œ ê³µìœ  ë©”ëª¨ë¦¬ ì´ˆê¸°í™”
 /// \author		dhkwon
 /// \date		2004-03-15 ~ 2004-03-15
 /// \warning	
@@ -68,7 +68,7 @@ BOOL GInitFunctionLogSharedMemory(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GCloseFunctionLogSharedMemory(void)
-/// \brief		Æã¼Ç·Î±ëÀ» À§ÇÑ °øÀ¯¸Ş¸ğ¸® ÇØÁ¦
+/// \brief		í‘ì…˜ë¡œê¹…ì„ ìœ„í•œ ê³µìœ ë©”ëª¨ë¦¬ í•´ì œ
 /// \author		dhkwon
 /// \date		2004-03-15 ~ 2004-03-15
 /// \warning	
@@ -87,7 +87,7 @@ BOOL GCloseFunctionLogSharedMemory(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
-/// \brief		Æã¼Ç·Î±ëÀÇ °øÀ¯¸Ş¸ğ¸®·Î Àü¼Û
+/// \brief		í‘ì…˜ë¡œê¹…ì˜ ê³µìœ ë©”ëª¨ë¦¬ë¡œ ì „ì†¡
 /// \author		dhkwon
 /// \date		2004-03-15 ~ 2004-03-15
 /// \warning	
@@ -103,7 +103,7 @@ BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
 	}
 	if( g_nCurrentSharedMemoryLine * SIZE_OF_LOG > (MAX_FUNCTION_LOG_LINE-1)*SIZE_OF_LOG )
 	{
-		DBGOUT("ERROR : GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize ) CurrentLineÀÌ ³Ê¹« Å©´Ù.\n");
+		DBGOUT("ERROR : GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize ) CurrentLineì´ ë„ˆë¬´ í¬ë‹¤.\n");
 		return FALSE;
 	}
 
@@ -122,10 +122,10 @@ BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GReadFunctionLogSharedMemory( int *io_nStartIndex, char *io_pBuffer, int *io_nSize )
-/// \brief		Æã¼Ç·Î±ëÀÇ °øÀ¯¸Ş¸ğ¸®¸¦ ÀĞÀ½
+/// \brief		í‘ì…˜ë¡œê¹…ì˜ ê³µìœ ë©”ëª¨ë¦¬ë¥¼ ì½ìŒ
 /// \author		dhkwon
 /// \date		2004-03-15 ~ 2004-03-15
-/// \warning	ÀüÃ¼¸¦ ÀĞ¾î¿Â´Ù.
+/// \warning	ì „ì²´ë¥¼ ì½ì–´ì˜¨ë‹¤.
 ///
 /// \param		
 /// \return		

@@ -1,4 +1,4 @@
-// HttpManager.cpp: implementation of the CHttpManager class.
+ï»¿// HttpManager.cpp: implementation of the CHttpManager class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -129,14 +129,14 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
 {
 	HINTERNET hInternetSession = ::InternetOpen(STRMSG_WINDOW_TEXT, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 	if(NULL == hInternetSession)
-	{// 2007-01-05 by cmkwon, ÀÎÅÍ³İÀÌ ¿¬°áµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù
+	{// 2007-01-05 by cmkwon, ì¸í„°ë„·ì´ ì—°ê²°ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤
 
 		return ERR_CANNOT_CONNECT_INTERNET;
 	}
 
 	HINTERNET hHttpConnection = ::InternetConnect(hInternetSession, m_szServerName, m_nServerPort, NULL, NULL, INTERNET_SERVICE_HTTP, 0, (DWORD)this );
 	if(NULL == hHttpConnection)
-	{// 2007-01-05 by cmkwon, ¼­¹ö ¿À·ù·Î ¿¬°áÇÒ ¼ö ¾ø½À´Ï´Ù
+	{// 2007-01-05 by cmkwon, ì„œë²„ ì˜¤ë¥˜ë¡œ ì—°ê²°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
 		::InternetCloseHandle(hInternetSession);
 		hInternetSession	= NULL;
 
@@ -214,13 +214,13 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
 	DWORD dwContentLen = 0;
 	dwInfoSize			= sizeof(dwContentLen);
 	if (FALSE == ::HttpQueryInfo(hHttpFile,  HTTP_QUERY_CONTENT_LENGTH | HTTP_QUERY_FLAG_NUMBER, (LPVOID)&dwContentLen, &dwInfoSize, NULL))
-	{// 2007-01-05 by cmkwon, ´Ù¿î ·Îµå ÆÄÀÏ Å©±â °¡Á®¿À±â
+	{// 2007-01-05 by cmkwon, ë‹¤ìš´ ë¡œë“œ íŒŒì¼ í¬ê¸° ê°€ì ¸ì˜¤ê¸°
 
 		dwContentLen	= 104857600;	// 2007-01-05 by cmkwon, 100MB = 100 * 1024 * 1024
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// ´Ù¿î·Îµå ÆÄÀÏ Å©±â¸¦ Post ÇÑ´Ù
+	// ë‹¤ìš´ë¡œë“œ íŒŒì¼ í¬ê¸°ë¥¼ Post í•œë‹¤
 	if(m_hUpdateWindow)
 	{
 		::PostMessage(m_hUpdateWindow, WM_UPDATEFILE_DOWNLOAD_INIT, dwContentLen, 0);
@@ -267,7 +267,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
 		}
 
 		if(m_bDownloadThreadCancelFlag)
-		{// 2007-01-05 by cmkwon, ´Ù¿î ·Îµå Ãë¼Ò
+		{// 2007-01-05 by cmkwon, ë‹¤ìš´ ë¡œë“œ ì·¨ì†Œ
 			
 			fileObject.Close();
 			::DeleteFile(m_szLocalFileName);
@@ -293,7 +293,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
 			}
 		}
 
-		// 2009-01-21 by cmkwon, ÀÚµ¿ ¾÷µ¥ÀÌÆ® ´Ù¿î·Îµå ¼Óµµ °³¼± - HTTP, Sleep(10)À» ÁÖ¼® Ã³¸®ÇÔ.
+		// 2009-01-21 by cmkwon, ìë™ ì—…ë°ì´íŠ¸ ë‹¤ìš´ë¡œë“œ ì†ë„ ê°œì„  - HTTP, Sleep(10)ì„ ì£¼ì„ ì²˜ë¦¬í•¨.
 		//Sleep(10);
 	} while(0 != dwRead);
 

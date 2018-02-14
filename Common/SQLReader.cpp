@@ -1,4 +1,4 @@
-// SQLReader.cpp: implementation of the CSQLReader class.
+ï»¿// SQLReader.cpp: implementation of the CSQLReader class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -64,7 +64,7 @@ BOOL CSQLReader::GetSQLType(string &type)
 
 BOOL CSQLReader::CreateAccessCode(char *szTableName, BOOL bCBArray)
 {
-	// output text ÃÊ±âÈ­
+	// output text ì´ˆê¸°í™”
 	m_szOutText = "";
 
 	char		*token;
@@ -94,7 +94,7 @@ BOOL CSQLReader::CreateAccessCode(char *szTableName, BOOL bCBArray)
 		memset(buff, 0x00, LINE_BUFF);
 		BOOL bFlagFileEnd = fin.getline(buff, LINE_BUFF).eof();
 
-		// table Á¤ÀÇÀÇ ³¡ÀÌ¸é cbXX Ãâ·Â
+		// table ì •ì˜ì˜ ëì´ë©´ cbXX ì¶œë ¥
 		if (strcmp(")", buff) == 0)
 		{
 			printf2("\r\nSQLINTEGER\t");
@@ -136,7 +136,7 @@ BOOL CSQLReader::CreateAccessCode(char *szTableName, BOOL bCBArray)
 			continue;
 		}
 
-		// Ã¹ ÅäÅ« ÇÒ´ç
+		// ì²« í† í° í• ë‹¹
 
 		arrToken[nTokenOffset] = token;
 #ifdef _DEBUG

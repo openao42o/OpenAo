@@ -1,3 +1,4 @@
+ï»¿//Copyright [2002] MasangSoft
 #ifndef _ATUM_DB_LOG_WRITER_H_
 #define _ATUM_DB_LOG_WRITER_H_
 
@@ -10,7 +11,7 @@ class CAtumDBLogWriter
 public:
 	CAtumDBLogWriter();
 	virtual ~CAtumDBLogWriter();
-// 2006-09-14 by cmkwon, »ç¿ëÇÏÁö ¾Ê´Â ÇÔ¼öµé
+// 2006-09-14 by cmkwon, ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í•¨ìˆ˜ë“¤
 // 	static BOOL InsertLog_Connection(
 // 							CODBCStatement	*i_pODBCStmt,
 // 							BYTE			i_nLogType,
@@ -35,7 +36,7 @@ public:
 // 							LONGLONG			i_nParam2);
 // 
 	
-	// 2008-01-17 by cmkwon, T_A: »èÁ¦ »óÅÂÀÇ Ä³¸¯ÅÍ ¿µ±¸È÷ »èÁ¦ÇÏ´Â ±â´É Ãß°¡ - CAtumDBLogWriter::InsertLog_User_Game_Start_End() ¸¦ ÁÖ¼®»óÅÂ¸¦ º¹¿ø ½ÃÅ´
+	// 2008-01-17 by cmkwon, T_A: ì‚­ì œ ìƒíƒœì˜ ìºë¦­í„° ì˜êµ¬íˆ ì‚­ì œí•˜ëŠ” ê¸°ëŠ¥ ì¶”ê°€ - CAtumDBLogWriter::InsertLog_User_Game_Start_End() ë¥¼ ì£¼ì„ìƒíƒœë¥¼ ë³µì› ì‹œí‚´
 	static BOOL InsertLog_User_Game_Start_End(
 							CODBCStatement		*i_pODBCStmt,
 							T1<T0::FL_LOG>		i_nLogType,
@@ -84,21 +85,21 @@ public:
 // 
 
 
-	// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É
+	// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥
 	static BOOL CAtumDBLogWriter::InsertLog_Item_Enchant_Change_By_Admin(
 							CODBCStatement		*i_pODBCStmt,
 							T1<T0::FL_LOG>		i_nLogType,
-							FL_ITEM_LOG_BASE	*i_pItemLogBase,		// ÄÉ¸¯ÅÍ À¯´ÏÅ© ³Ñ¹ö 
+							FL_ITEM_LOG_BASE	*i_pItemLogBase,		// ì¼€ë¦­í„° ìœ ë‹ˆí¬ ë„˜ë²„ 
 							ITEM_FOR_LOG		*i_pItem4Log,			// ItemUniqueNumber;  ItemNum; CurrentCount;
-							INT					i_EnchantCardNumber,	// ÀÎÃ¦Æ® ¾ÆÀÌÅÛ³Ñ¹ö
-							INT					i_ChangeEnchantCount,	// Á¶Á¤µÉ ÀÎÃ¦Æ® Ä«¿îÆ® 
-							INT					i_ResultEnchantCount,	// °á°ú ÀÎÃ¦Æ® Ä«¿îÆ®	
-							char				*i_szCharacterName);		// ¿î¿µÀÚ °èÁ¤
+							INT					i_EnchantCardNumber,	// ì¸ì±ˆíŠ¸ ì•„ì´í…œë„˜ë²„
+							INT					i_ChangeEnchantCount,	// ì¡°ì •ë  ì¸ì±ˆíŠ¸ ì¹´ìš´íŠ¸ 
+							INT					i_ResultEnchantCount,	// ê²°ê³¼ ì¸ì±ˆíŠ¸ ì¹´ìš´íŠ¸	
+							char				*i_szCharacterName);		// ìš´ì˜ì ê³„ì •
 
-	// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É
+	// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥
 
 
-	// 2006-09-21 by cmkwon, SCAdminTool¿¡¼­ »ç¿ëÇÏ°í ÀÖÀ½
+	// 2006-09-21 by cmkwon, SCAdminToolì—ì„œ ì‚¬ìš©í•˜ê³  ìˆìŒ
  	static BOOL InsertLog_Item_Trade(
  							CODBCStatement		*i_pODBCStmt,
 							T1<T0::FL_LOG>		i_nLogType,
@@ -129,7 +130,7 @@ public:
 	static BOOL InserLog_Live_Deleted_Character(
 							CODBCStatement			*i_pODBCStmt,
 							T1<T0::FL_LOG>		i_nLogType,
-							SDELETED_CHARACTER_INFO	*i_pDeletedCharacterInfo);	// 2007-02-22 by dhjin, ÄÉ¸¯ÅÍ º¹±¸ ·Î±× ³²±â±â.
+							SDELETED_CHARACTER_INFO	*i_pDeletedCharacterInfo);	// 2007-02-22 by dhjin, ì¼€ë¦­í„° ë³µêµ¬ ë¡œê·¸ ë‚¨ê¸°ê¸°.
 };
 
 #endif // _ATUM_DB_LOG_WRITER_H_

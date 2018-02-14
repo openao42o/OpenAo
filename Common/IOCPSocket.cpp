@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 //  IOCPSocket.cpp :
 //
 //  Date	: 2004-03-17 by cmkwon
@@ -10,7 +10,7 @@
 #include "IOCP.h"
 #include "MTAutoCriticalSection.h"
 
-CIOCP* CIOCPSocket::ms_pIOCP = nullptr;							// IOCP ÀÎ½ºÅÏ½º Æ÷ÀÎÅÍ
+CIOCP* CIOCPSocket::ms_pIOCP = nullptr;							// IOCP ì¸ìŠ¤í„´ìŠ¤ í¬ì¸í„°
 
 CIOCPSocket::CIOCPSocket() :
 	m_nClientArrayIndex { },
@@ -58,7 +58,7 @@ CIOCPSocket::~CIOCPSocket()
 	DeleteCriticalSection(&m_crtlTrafficInfo);
 }
 
-// Listener·Î ºÎÅÍ »ı¼ºµÈ ¼ÒÄÏÀ» CIOCPSocket ÀÎ½ºÅÏ½º¿Í ¿¬°áÇÑ´Ù.
+// Listenerë¡œ ë¶€í„° ìƒì„±ëœ ì†Œì¼“ì„ CIOCPSocket ì¸ìŠ¤í„´ìŠ¤ì™€ ì—°ê²°í•œë‹¤.
 BOOL CIOCPSocket::SetSocket(SOCKET s)
 {
 	if (m_bUsing || m_bUDPFlag) return false;
@@ -76,7 +76,7 @@ int CIOCPSocket::Read()
 	DWORD	dwRecvBytes = 0;
 	DWORD	dwFlag = 0;
 
-	m_bRecvOperationFlag = TRUE;					// Overlapped µ¿ÀÛ ÇÃ·¡±×¸¦ TRUE·Î º¯°æ
+	m_bRecvOperationFlag = TRUE;					// Overlapped ë™ì‘ í”Œë˜ê·¸ë¥¼ TRUEë¡œ ë³€ê²½
 	m_ovRecvBuf.ResetOverlapped();
 
 	auto nRet = m_bUDPFlag ?
@@ -115,7 +115,7 @@ int CIOCPSocket::Write(BOOL bWaitFlag)
 
 	if (m_dwCountOverlappedSending > 3) return 0;
 
-	m_mtlistWriteBuf.lock();	// 2008-03-25 by cmkwon, bWaitFlag ¿Í »ó°ü¾øÀÌ ¹«Á¶°Ç lock() À» Àâ¾Æ¾ß ÇÒ °Í °°À½
+	m_mtlistWriteBuf.lock();	// 2008-03-25 by cmkwon, bWaitFlag ì™€ ìƒê´€ì—†ì´ ë¬´ì¡°ê±´ lock() ì„ ì¡ì•„ì•¼ í•  ê²ƒ ê°™ìŒ
 
 	if (m_mtlistWriteBuf.empty())
 	{
@@ -127,14 +127,14 @@ int CIOCPSocket::Write(BOOL bWaitFlag)
 	m_mtlistWriteBuf.pop_front();
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - pOver °ü·Ã Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.
+	// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - pOver ê´€ë ¨ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.
 	DeleteSendedOverlappedInfo(pOver);
 
 	///////////////////////////////////////////////////////////////////////
-	// TCP Àü¼Û
+	// TCP ì „ì†¡
 	if (!m_bUDPFlag)
 	{
-		if (COverlapped::ENDataType::EN_DATA_TYPE_ACEONLINE == pOver->GetDataType())		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+		if (COverlapped::ENDataType::EN_DATA_TYPE_ACEONLINE == pOver->GetDataType())		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 		{
 			pOver->EncodePacket(m_byHostSequenceNumber);
 
@@ -175,7 +175,7 @@ int CIOCPSocket::Write(BOOL bWaitFlag)
 	}
 
 	///////////////////////////////////////////////////////////////////////
-	// UDP Àü¼Û
+	// UDP ì „ì†¡
 	if (strncmp(m_szPeerIP, "", SIZE_MAX_IPADDRESS) == 0
 		|| 0 == m_nPeerPort
 		|| this->GetPeerUDPReady() == FALSE)
@@ -216,7 +216,7 @@ int CIOCPSocket::Write(BOOL bWaitFlag)
 	return TRUE;
 }
 
-// Àü¼ÛÀÌ ¿Ï·áµÈ COverlapped ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ¸¦ ÀÎÀÚ·Î ¹Ş´Â´Ù. TCP¿Í UDP¿¡¼­ ´Ù¸¥ ¹æ½ÄÀ¸·Î Ã³¸®
+// ì „ì†¡ì´ ì™„ë£Œëœ COverlapped êµ¬ì¡°ì²´ì˜ í¬ì¸í„°ë¥¼ ì¸ìë¡œ ë°›ëŠ”ë‹¤. TCPì™€ UDPì—ì„œ ë‹¤ë¥¸ ë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬
 void CIOCPSocket::OnWrite(COverlapped *pOverlapped, int nWriteBytes)
 {
 	InterlockedDecrement((LPLONG)&m_dwCountOverlappedSending);
@@ -231,7 +231,7 @@ void CIOCPSocket::OnWrite(COverlapped *pOverlapped, int nWriteBytes)
 	}
 }
 
-// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - CIOCPSocket::CheckNetworkState() Ãß°¡
+// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - CIOCPSocket::CheckNetworkState() ì¶”ê°€
 void CIOCPSocket::CheckNetworkState()
 {
 	auto dwCur = timeGetTime();
@@ -243,7 +243,7 @@ void CIOCPSocket::CheckNetworkState()
 		m_dwBadNetworkContinueTime += dwCur - m_dwTickLastCheckTimeNetwork;
 		if (m_nBeforMaxWriteBufCountsAtCheckTime < m_nMaxWriteBufCounts || 50 < m_nCurrentWriteBufCounts)
 		{
-			// 2004-11-13 by cmkwon, m_dwTickLastCheckTimeNetwork¸¦ UpdateÇÏ°í È£ÃâÇØ¾ßÇÑ´Ù(±×·¸Áö ¾ÊÀº¸é ·çÇÁ°¡ ¹ß»ıÇÑ´Ù)
+			// 2004-11-13 by cmkwon, m_dwTickLastCheckTimeNetworkë¥¼ Updateí•˜ê³  í˜¸ì¶œí•´ì•¼í•œë‹¤(ê·¸ë ‡ì§€ ì•Šì€ë©´ ë£¨í”„ê°€ ë°œìƒí•œë‹¤)
 			m_dwTickLastCheckTimeNetwork = dwCur;
 			this->SendNetworkErrorMessage(m_nCurrentWriteBufCounts, m_dwBadNetworkContinueTime);
 		}
@@ -280,18 +280,18 @@ void CIOCPSocket::Close(int reason/*=0*/, BOOL bDelayCloseFlag/*=FALSE*/, DWORD 
 	OnClose(reason);
 
 	///////////////////////////////////////////////////////////////////////////
-	// Àü¼ÛÀ» À§ÇÑ list¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// ì „ì†¡ì„ ìœ„í•œ listë¥¼ ì´ˆê¸°í™” í•œë‹¤.
 	m_nMaxWriteBufCounts = 0;
 	m_nCurrentWriteBufCounts = 0;
 	m_mtlistWriteBuf.lock();
 	for (auto ptr : m_mtlistWriteBuf) delete ptr;
 	m_mtlistWriteBuf.clear();
-	m_vectSendedOverlappedInfoList.clear();		// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
+	m_vectSendedOverlappedInfoList.clear();		// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
 	m_mtlistWriteBuf.unlock();
 	m_bRecvOperationFlag = FALSE;
 	m_ovRecvBuf.ResetOverlapped();
 	m_RecvPacket.Init();
-	//m_RecvHTTPPacket.Init();		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+	//m_RecvHTTPPacket.Init();		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 
 	if (ms_pIOCP->GetFlagCalcTrafficInfo())
 	{
@@ -504,13 +504,13 @@ void CIOCPSocket::OnConnect()
 
 	m_dwCountOverlappedSending = 0;
 	m_RecvPacket.Init();
-	//m_RecvHTTPPacket.Init();		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+	//m_RecvHTTPPacket.Init();		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 	m_dwCountClientCheck = 0;
-	m_byHostSequenceNumber = RANDI(SEQNO_VAR_C);								// TCP ÃÊ±â°ªÀ» SEQNO_VAR_C °ªº¸´Ù ÀÛ°Ô ¼³Á¤
+	m_byHostSequenceNumber = RANDI(SEQNO_VAR_C);								// TCP ì´ˆê¸°ê°’ì„ SEQNO_VAR_C ê°’ë³´ë‹¤ ì‘ê²Œ ì„¤ì •
 	if (m_byHostSequenceNumber == 116) m_byHostSequenceNumber++;
 	m_bPeerSequenceNumberInitFlag = FALSE;
 
-	m_LastRecvedMsgType = 0;		// 2008-03-06 by cmkwon, IOCPSocket ¿¡ ¸¶Áö¸· ¸Ş½ÃÁö Å¸ÀÔ Ã¼Å© ½Ã½ºÅÛ Ãß°¡ - 
+	m_LastRecvedMsgType = 0;		// 2008-03-06 by cmkwon, IOCPSocket ì— ë§ˆì§€ë§‰ ë©”ì‹œì§€ íƒ€ì… ì²´í¬ ì‹œìŠ¤í…œ ì¶”ê°€ - 
 
 	mt_auto_lock autolock { m_mtlistWriteBuf };
 	m_vectSendedOverlappedInfoList.clear();

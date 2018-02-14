@@ -1,4 +1,4 @@
-// GlobalGameServer.cpp: implementation of the CGlobalGameServer class.
+Ôªø// GlobalGameServer.cpp: implementation of the CGlobalGameServer class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -42,26 +42,26 @@ char *ArrCommandList[] = {
 	STRCMD_CS_COMMAND_POWERUP_HELP,
 	STRCMD_CS_COMMAND_VARIABLESET_HELP,
 	STRCMD_CS_COMMAND_LEVELSET_HELP,
-	STRCMD_CS_COMMAND_PARTNERLEVELSET_HELP,		// 2011-09-05 by hskim, ∆ƒ∆Æ≥  Ω√Ω∫≈€ 2¬˜
+	STRCMD_CS_COMMAND_PARTNERLEVELSET_HELP,		// 2011-09-05 by hskim, ÌååÌä∏ÎÑà ÏãúÏä§ÌÖú 2Ï∞®
 	STRCMD_CS_COMMAND_DEBUGPRINTMSGF_HELP,
 	STRCMD_CS_COMMAND_GAMEEVENT_HELP,
 	STRCMD_CS_COMMAND_PREMEUM_HELP,
-	// 2008-02-14 by cmkwon, µµΩ√¡°∑…¿¸ ∏Ì∑…æÓ ¡¶∞≈
+	// 2008-02-14 by cmkwon, ÎèÑÏãúÏ†êÎ†πÏ†Ñ Î™ÖÎ†πÏñ¥ Ï†úÍ±∞
 	//	STRCMD_CS_COMMAND_CITYWAR_HELP,
 	STRCMD_CS_COMMAND_HAPPYHOUREVENT_HELP,
 	STRCMD_CS_COMMAND_BONUSSTAT_HELP,
 
-	// 2008-09-09 by cmkwon, /ºº∑¬º“»Ø ∏Ì∑…æÓ ¿Œ¿⁄ ∏ÆΩ∫∆Æø° ±‚æÓ≈∏¿‘ √ﬂ∞° - 
+	// 2008-09-09 by cmkwon, /ÏÑ∏Î†•ÏÜåÌôò Î™ÖÎ†πÏñ¥ Ïù∏Ïûê Î¶¨Ïä§Ìä∏Ïóê Í∏∞Ïñ¥ÌÉÄÏûÖ Ï∂îÍ∞Ä - 
 	//	STRCMD_CS_COMMAND_COMEONINFL_HELP,				// 2006-07-27 by cmkwon
-	STRCMD_CS_COMMAND_COMEONINFL_HELP2,				// 2008-09-09 by cmkwon, /ºº∑¬º“»Ø ∏Ì∑…æÓ ¿Œ¿⁄ ∏ÆΩ∫∆Æø° ±‚æÓ≈∏¿‘ √ﬂ∞° - 
+	STRCMD_CS_COMMAND_COMEONINFL_HELP2,				// 2008-09-09 by cmkwon, /ÏÑ∏Î†•ÏÜåÌôò Î™ÖÎ†πÏñ¥ Ïù∏Ïûê Î¶¨Ïä§Ìä∏Ïóê Í∏∞Ïñ¥ÌÉÄÏûÖ Ï∂îÍ∞Ä - 
 
 	STRCMD_CS_COMMAND_ITEMINMAP_HELP,				// 2006-07-27 by cmkwon
 	STRCMD_CS_COMMAND_DISTRIBUTIONLEVEL_HELP,		// 2006-08-09 by dhjin
 	STRCMD_CS_COMMAND_BONUSSTAT_POINT_HELP,
 	STRCMD_CS_COMMAND_PCBANGUSERCOUNT_HELP,
 	STRMSG_CS_COMMAND_WARPOINT_HELP,
-	STRCMD_CS_COMMAND_WAPPOINTINMAP_HELP,		// 2007-11-05 by cmkwon, WP ¡ˆ±ﬁ ∏Ì∑…æÓ ±∏«ˆ -
-	STRCMD_CS_COMMAND_ITEMALLUSER_HELP,			// 2008-02-20 by cmkwon, ∏Ì∑…æÓ √ﬂ∞°(¡¢º” ¡ﬂ¿Œ ¿Ø¿˙ ∏µŒø°∞‘ æ∆¿Ã≈€ ¡ˆ±ﬁ - 
+	STRCMD_CS_COMMAND_WAPPOINTINMAP_HELP,		// 2007-11-05 by cmkwon, WP ÏßÄÍ∏â Î™ÖÎ†πÏñ¥ Íµ¨ÌòÑ -
+	STRCMD_CS_COMMAND_ITEMALLUSER_HELP,			// 2008-02-20 by cmkwon, Î™ÖÎ†πÏñ¥ Ï∂îÍ∞Ä(Ï†ëÏÜç Ï§ëÏù∏ Ïú†Ï†Ä Î™®ÎëêÏóêÍ≤å ÏïÑÏù¥ÌÖú ÏßÄÍ∏â - 
 
 	// 2015-11-25 Future, IP Restriction System Commands
 	STRCMD_CS_COMMAND_MULTI_IP_RESTRICTION_HELP_0,
@@ -80,7 +80,7 @@ char *ArrCommandList[] = {
 	nullptr
 };
 
-// 2007-11-08 by cmkwon, GM ∏Ì∑…æÓ ¡§∏Æ - øÓøµ¿⁄ Command List
+// 2007-11-08 by cmkwon, GM Î™ÖÎ†πÏñ¥ Ï†ïÎ¶¨ - Ïö¥ÏòÅÏûê Command List
 char *ArrGameMasterCommandList[] = {
 	// Field Server
 	STRCMD_CS_COMMAND_MOVE_HELP,
@@ -101,22 +101,22 @@ char *ArrGameMasterCommandList[] = {
 	STRMSG_CS_COMMAND_WATCH_START_INFO_HELP,
 	STRMSG_CS_COMMAND_WATCH_END_INFO_HELP,
 	STRMSG_CS_COMMAND_ARENA_TEAM_INFO_HELP,
-	STRCMD_CS_COMMAND_ARENAFORBID_HELP,			// 2007-07-11 by cmkwon, æ∆∑π≥™∫Ì∑∞ Ω√Ω∫≈€ ±∏«ˆ - /? ∞·∞˙∏ÆΩ∫∆Æø° √ﬂ∞°
-	STRCMD_CS_COMMAND_ARENAFORBIDRelease_HELP,	// 2007-07-11 by cmkwon, æ∆∑π≥™∫Ì∑∞ Ω√Ω∫≈€ ±∏«ˆ - /? ∞·∞˙∏ÆΩ∫∆Æø° √ﬂ∞°
-	STRCMD_CS_COMMAND_UsableSpeakerItem_HELP,	// 2007-08-27 by cmkwon, √ﬂ∞°
-	STRCMD_CS_COMMAND_NEWACCOUNTBLOCK_HELP,		// 2008-01-31 by cmkwon, ∞Ë¡§ ∫Ì∑∞/«ÿ¡¶ ∏Ì∑…æÓ∑Œ ∞°¥…«— Ω√Ω∫≈€ ±∏«ˆ -
-	STRCMD_CS_COMMAND_NEWACCOUNTUNBLOCK_HELP,	// 2008-01-31 by cmkwon, ∞Ë¡§ ∫Ì∑∞/«ÿ¡¶ ∏Ì∑…æÓ∑Œ ∞°¥…«— Ω√Ω∫≈€ ±∏«ˆ -
+	STRCMD_CS_COMMAND_ARENAFORBID_HELP,			// 2007-07-11 by cmkwon, ÏïÑÎ†àÎÇòÎ∏îÎü≠ ÏãúÏä§ÌÖú Íµ¨ÌòÑ - /? Í≤∞Í≥ºÎ¶¨Ïä§Ìä∏Ïóê Ï∂îÍ∞Ä
+	STRCMD_CS_COMMAND_ARENAFORBIDRelease_HELP,	// 2007-07-11 by cmkwon, ÏïÑÎ†àÎÇòÎ∏îÎü≠ ÏãúÏä§ÌÖú Íµ¨ÌòÑ - /? Í≤∞Í≥ºÎ¶¨Ïä§Ìä∏Ïóê Ï∂îÍ∞Ä
+	STRCMD_CS_COMMAND_UsableSpeakerItem_HELP,	// 2007-08-27 by cmkwon, Ï∂îÍ∞Ä
+	STRCMD_CS_COMMAND_NEWACCOUNTBLOCK_HELP,		// 2008-01-31 by cmkwon, Í≥ÑÏ†ï Î∏îÎü≠/Ìï¥Ï†ú Î™ÖÎ†πÏñ¥Î°ú Í∞ÄÎä•Ìïú ÏãúÏä§ÌÖú Íµ¨ÌòÑ -
+	STRCMD_CS_COMMAND_NEWACCOUNTUNBLOCK_HELP,	// 2008-01-31 by cmkwon, Í≥ÑÏ†ï Î∏îÎü≠/Ìï¥Ï†ú Î™ÖÎ†πÏñ¥Î°ú Í∞ÄÎä•Ìïú ÏãúÏä§ÌÖú Íµ¨ÌòÑ -
 
-	STRCMD_CS_COMMAND_TEAMARENALEAVE_HELP, 		// 2008-03-10 by dhjin, æ∆∑π≥™ ≈Î«’ - 
-	STRCMD_CS_COMMAND_TARGETARENALEAVE_HELP, 	// 2008-03-10 by dhjin, æ∆∑π≥™ ≈Î«’ - 
-	STRCMD_CS_COMMAND_ARENAEVENT_HELP, 			// 2008-03-10 by dhjin, æ∆∑π≥™ ≈Î«’ - 
-	STRCMD_CS_COMMAND_ARENAEVENTRELEASE_HELP,	// 2008-03-10 by dhjin, æ∆∑π≥™ ≈Î«’ -
-	STRCMD_CS_COMMAND_INFLUENCEMARKEVENT_HELP,	// 2008-08-18 by dhjin, ºº∑¬∏∂≈©¿Ã∫•∆Æ
-	STRCMD_CS_COMMAND_INFLUENCEMARKEVENTEND_HELP,	// 2008-08-18 by dhjin, ºº∑¬∏∂≈©¿Ã∫•∆Æ
-	STRCMD_CS_COMMAND_PCBANGRELOADTIME_HELP,	// 2008-08-25 by dhjin, ≈¬±π PCπÊ IP¡§∫∏ ∑Œµ˘
-	STRCMD_CS_COMMAND_KICK_HELP,				// 2008-09-09 by cmkwon, "/kick" ∏Ì∑…æÓ √ﬂ∞° - 
+	STRCMD_CS_COMMAND_TEAMARENALEAVE_HELP, 		// 2008-03-10 by dhjin, ÏïÑÎ†àÎÇò ÌÜµÌï© - 
+	STRCMD_CS_COMMAND_TARGETARENALEAVE_HELP, 	// 2008-03-10 by dhjin, ÏïÑÎ†àÎÇò ÌÜµÌï© - 
+	STRCMD_CS_COMMAND_ARENAEVENT_HELP, 			// 2008-03-10 by dhjin, ÏïÑÎ†àÎÇò ÌÜµÌï© - 
+	STRCMD_CS_COMMAND_ARENAEVENTRELEASE_HELP,	// 2008-03-10 by dhjin, ÏïÑÎ†àÎÇò ÌÜµÌï© -
+	STRCMD_CS_COMMAND_INFLUENCEMARKEVENT_HELP,	// 2008-08-18 by dhjin, ÏÑ∏Î†•ÎßàÌÅ¨Ïù¥Î≤§Ìä∏
+	STRCMD_CS_COMMAND_INFLUENCEMARKEVENTEND_HELP,	// 2008-08-18 by dhjin, ÏÑ∏Î†•ÎßàÌÅ¨Ïù¥Î≤§Ìä∏
+	STRCMD_CS_COMMAND_PCBANGRELOADTIME_HELP,	// 2008-08-25 by dhjin, ÌÉúÍµ≠ PCÎ∞© IPÏ†ïÎ≥¥ Î°úÎî©
+	STRCMD_CS_COMMAND_KICK_HELP,				// 2008-09-09 by cmkwon, "/kick" Î™ÖÎ†πÏñ¥ Ï∂îÍ∞Ä - 
 
-	STRCMD_CS_COMMAND_INFINITY_NEXT_SCENE,		// 2010. 06. 04 by hsLee ¿Œ∆º««¥œ « µÂ 2¬˜ ≥≠¿Ãµµ ¡∂¿˝. (GM ∏Ì∑…æÓ √ﬂ∞°. /nextscene(¥Ÿ¿Ω Ω√≥◊∏∂ æ¿ »£√‚.) )
+	STRCMD_CS_COMMAND_INFINITY_NEXT_SCENE,		// 2010. 06. 04 by hsLee Ïù∏Ìã∞ÌîºÎãà ÌïÑÎìú 2Ï∞® ÎÇúÏù¥ÎèÑ Ï°∞Ï†à. (GM Î™ÖÎ†πÏñ¥ Ï∂îÍ∞Ä. /nextscene(Îã§Ïùå ÏãúÎÑ§Îßà Ïî¨ Ìò∏Ï∂ú.) )
 
 	// IM Server
 	STRCMD_CS_COMMAND_WHO_HELP,
@@ -128,9 +128,9 @@ char *ArrGameMasterCommandList[] = {
 	STRCMD_CS_COMMAND_CHATFORBIDRELEASE_HELP,
 	STRCMD_CS_COMMAND_VIEWCALLGM_HELP,				// 2006-05-09 by cmkwon
 	STRCMD_CS_COMMAND_BRINGCALLGM_HELP,				// 2006-05-09 by cmkwon
-	STRCMD_CS_COMMAND_PrepareShutdown_HELP,			// 2007-08-27 by cmkwon, º≠πˆ¥ŸøÓ¡ÿ∫Ò ∏Ì∑…æÓ √ﬂ∞°(SCAdminToolø°º≠ SCMonitor¿« PrepareShutdown¿ª ¡¯«‡ «“ ºˆ ¿÷∞‘) - 
-	STRCMD_CS_COMMAND_STARTCALLGM_HELP,				// 2007-11-19 by cmkwon, ¡¯¡§Ω√Ω∫≈€ æ˜µ•¿Ã∆Æ - /? ∞·∞˙ø° √ﬂ∞°
-	STRCMD_CS_COMMAND_ENDCALLGM_HELP,				// 2007-11-19 by cmkwon, ¡¯¡§Ω√Ω∫≈€ æ˜µ•¿Ã∆Æ - /? ∞·∞˙ø° √ﬂ∞°
+	STRCMD_CS_COMMAND_PrepareShutdown_HELP,			// 2007-08-27 by cmkwon, ÏÑúÎ≤ÑÎã§Ïö¥Ï§ÄÎπÑ Î™ÖÎ†πÏñ¥ Ï∂îÍ∞Ä(SCAdminToolÏóêÏÑú SCMonitorÏùò PrepareShutdownÏùÑ ÏßÑÌñâ Ìï† Ïàò ÏûàÍ≤å) - 
+	STRCMD_CS_COMMAND_STARTCALLGM_HELP,				// 2007-11-19 by cmkwon, ÏßÑÏ†ïÏãúÏä§ÌÖú ÏóÖÎç∞Ïù¥Ìä∏ - /? Í≤∞Í≥ºÏóê Ï∂îÍ∞Ä
+	STRCMD_CS_COMMAND_ENDCALLGM_HELP,				// 2007-11-19 by cmkwon, ÏßÑÏ†ïÏãúÏä§ÌÖú ÏóÖÎç∞Ïù¥Ìä∏ - /? Í≤∞Í≥ºÏóê Ï∂îÍ∞Ä
 	nullptr
 };
 
@@ -149,7 +149,7 @@ char *ArrCommandListforUser[] = {
 	STRCMD_CS_COMMAND_SUBLEADER1_HELP,			// 2007-10-06 by dhjin
 	STRCMD_CS_COMMAND_SUBLEADER2_HELP,			// 2007-10-06 by dhjin
 
-	// 2006-08-24 by cmkwon, ≈¨∂Û¿Ãæ∆Æø°º≠∏∏ ªÁøÎ«œ¥¬ ∏Ì∑…æÓ ∏ÆΩ∫∆Æ
+	// 2006-08-24 by cmkwon, ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ÏóêÏÑúÎßå ÏÇ¨Ïö©ÌïòÎäî Î™ÖÎ†πÏñ¥ Î¶¨Ïä§Ìä∏
 	STRCMD_C_COMMAND_BATTLE_HELP,
 	STRCMD_C_COMMAND_SURRENDER_HELP,
 	STRCMD_C_COMMAND_PARTYBATTLE_HELP,
@@ -288,7 +288,7 @@ bool CGlobalGameServer::InitGlobal(const char* servername, const char* logfilena
 
 	g_pGlobal->SetInstanceHandle(hInstance); // Store instance handle in our global variable
 
-	auto hWnd = CreateWindow(_T(servername), _T(servername), WS_OVERLAPPEDWINDOW, 350, 150, 400, 120, NULL, NULL, hInstance, NULL);		// 2013-06-12 by hskim, «œ≥™¿« OS ø°º≠ º≠πˆ µøΩ√ Ω««‡
+	auto hWnd = CreateWindow(_T(servername), _T(servername), WS_OVERLAPPEDWINDOW, 350, 150, 400, 120, NULL, NULL, hInstance, NULL);		// 2013-06-12 by hskim, ÌïòÎÇòÏùò OS ÏóêÏÑú ÏÑúÎ≤Ñ ÎèôÏãú Ïã§Ìñâ
 
 	if (!hWnd) return FALSE;
 
@@ -396,7 +396,7 @@ CGlobalGameServer::CGlobalGameServer() :
 	util::zero(m_szODBCUID);
 	util::zero(m_szODBCPASSWORD);
 
-	// 2007-12-03 by cmkwon, ∞‘¿” ∑Œ±◊ DB µ˚∑Œ ±∏√‡ «œ±‚ πˆ±◊ ºˆ¡§ - √ ±‚»≠
+	// 2007-12-03 by cmkwon, Í≤åÏûÑ Î°úÍ∑∏ DB Îî∞Î°ú Íµ¨Ï∂ï ÌïòÍ∏∞ Î≤ÑÍ∑∏ ÏàòÏ†ï - Ï¥àÍ∏∞Ìôî
 	util::zero(m_szLogDBODBCDSN);			// LogDB_ODBC_DSN
 	util::zero(m_szLogDBODBCUID);			// LogDB_ODBC_UID
 	util::zero(m_szLogDBODBCPASSWORD);		// LogDB_ODBC_PASSWD
@@ -562,7 +562,7 @@ void CGlobalGameServer::CheckServerThread()
 
 void CGlobalGameServer::CalculateIOCPTraffic()
 {
-	// Bandwidth ∞ËªÍ
+	// Bandwidth Í≥ÑÏÇ∞
 	if (m_pGIOCP && m_pGIOCP->GetListeningFlag()) m_pGIOCP->CalcTotalTrafficInfo();					
 }
 
@@ -574,7 +574,7 @@ void CGlobalGameServer::CheckClientAlive() const
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			USHORT CGlobalGameServer::AuthAdminToolUser(const char *i_pUID, const char *i_pPWD)
 /// \brief		
-///				// 2006-04-15 by cmkwon, ∏Æ≈œ∞™¿« ¿⁄∑·«¸ ∫Ø∞Ê - BOOL ==> USHORT
+///				// 2006-04-15 by cmkwon, Î¶¨ÌÑ¥Í∞íÏùò ÏûêÎ£åÌòï Î≥ÄÍ≤Ω - BOOL ==> USHORT
 /// \author		cmkwon
 /// \date		2006-04-15 ~ 2006-04-15
 /// \warning	
@@ -585,12 +585,12 @@ void CGlobalGameServer::CheckClientAlive() const
 USHORT CGlobalGameServer::AuthAdminToolUser(const char *i_pUID, const char *i_pPWD)
 {
 	CODBCStatement ODBCStmt;
-	// 2008-07-11 by cmkwon, MySQL ¡ˆø¯¿ª ¿ß«ÿ ºˆ¡§(IP,Port ∑Œ DB º≠πˆ ø¨∞·) - æ∆∑°øÕ ∞∞¿Ã ºˆ¡§ «‘
+	// 2008-07-11 by cmkwon, MySQL ÏßÄÏõêÏùÑ ÏúÑÌï¥ ÏàòÏ†ï(IP,Port Î°ú DB ÏÑúÎ≤Ñ Ïó∞Í≤∞) - ÏïÑÎûòÏôÄ Í∞ôÏù¥ ÏàòÏ†ï Ìï®
 	//ODBCStmt.Init((char*)GetODBCDSN(), (char*)GetODBCUID(), (char*)GetODBCPASSWORD());
 	BOOL bRet = ODBCStmt.Init(this->GetDBServerIP(), this->GetDBServerPort(), this->GetDBServerDatabaseName(), (char*)this->GetODBCUID(), (char*)this->GetODBCPASSWORD(), this->GetMainWndHandle());
 	if (FALSE == bRet)
 	{
-		// 2008-09-05 by cmkwon, DBServer ø¨∞· Ω«∆– Ω√Ω∫≈€ ∑Œ±◊ ≥≤±‚±‚ - 
+		// 2008-09-05 by cmkwon, DBServer Ïó∞Í≤∞ Ïã§Ìå® ÏãúÏä§ÌÖú Î°úÍ∑∏ ÎÇ®Í∏∞Í∏∞ - 
 		g_pGlobal->WriteSystemLogEX(TRUE, "[DB Error] fail to connect DBServer(CGlobalGameServer::AuthAdminToolUser_) !! %s,%d %s %s %s\r\n"
 			, g_pGlobal->GetDBServerIP(), g_pGlobal->GetDBServerPort(), g_pGlobal->GetDBServerDatabaseName(), (CHAR*)g_pGlobal->GetODBCUID(), (CHAR*)g_pGlobal->GetODBCPASSWORD());
 		return 0;
@@ -627,7 +627,7 @@ USHORT CGlobalGameServer::AuthAdminToolUser(const char *i_pUID, const char *i_pP
 	{
 		/*if(FALSE == COMPARE_RACE(usRetRace, RACE_OPERATION|RACE_GAMEMASTER))*/
 		if (FALSE == COMPARE_RACE(usRetRace, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
-		{// 2006-04-15 by cmkwon, ∞¸∏Æ¿⁄/GM¿Ã æ∆¥œ∏È 0¿∏∑Œ √ ±‚»≠ «—¥Ÿ.
+		{// 2006-04-15 by cmkwon, Í¥ÄÎ¶¨Ïûê/GMÏù¥ ÏïÑÎãàÎ©¥ 0ÏúºÎ°ú Ï¥àÍ∏∞Ìôî ÌïúÎã§.
 			usRetRace = 0;
 		}
 	}
@@ -702,7 +702,7 @@ bool CGlobalGameServer::CheckProhibitedName(const char *i_szName)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CGlobalGameServer::AddAllowedToolIP(char *i_szAllowedToolIP)
-/// \brief		// 2008-06-05 by cmkwon, AdminTool, Monitor ¡¢±Ÿ ∞°¥… IP∏¶ server config file ø° º≥¡§«œ±‚ - 
+/// \brief		// 2008-06-05 by cmkwon, AdminTool, Monitor Ï†ëÍ∑º Í∞ÄÎä• IPÎ•º server config file Ïóê ÏÑ§Ï†ïÌïòÍ∏∞ - 
 /// \author		cmkwon
 /// \date		2008-06-05
 ///////////////////////////////////////////////////////////////////////////////
@@ -715,7 +715,7 @@ void CGlobalGameServer::AddAllowedToolIP(const char *i_szAllowedToolIP)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CGlobalGameServer::CheckAllowedToolIP(char *i_szToolIP)
-/// \brief		// 2008-06-05 by cmkwon, AdminTool, Monitor ¡¢±Ÿ ∞°¥… IP∏¶ server config file ø° º≥¡§«œ±‚ - 
+/// \brief		// 2008-06-05 by cmkwon, AdminTool, Monitor Ï†ëÍ∑º Í∞ÄÎä• IPÎ•º server config file Ïóê ÏÑ§Ï†ïÌïòÍ∏∞ - 
 /// \author		cmkwon
 /// \date		2008-06-05
 ///////////////////////////////////////////////////////////////////////////////

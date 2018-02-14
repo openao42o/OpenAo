@@ -1,25 +1,25 @@
-/*******************************************************************************************
+ï»¿/*******************************************************************************************
   ATUM Character, Monster, Object, Texture define
 
-  ¿¹> 
+  ì˜ˆ> 
       RC_C_D_BT01				13001200
-        -RC : Resource			 -13 : type(Ä³¸¯ÅÍ(01),¸ó½ºÅÍ(02),¿ÀºêÁ§Æ®(03),GUI(04), TileTex(05) ,Effect(06)µî)
-		-C : Character			 -0012 : object Á¾·ù
-		-D : Deca				 -00 : XÆÄÀÏÀÇ TextureÆÄÀÏ(-ff : XÆÄÀÏÀÇ ShadowÆÄÀÏ)
+        -RC : Resource			 -13 : type(ìºë¦­í„°(01),ëª¬ìŠ¤í„°(02),ì˜¤ë¸Œì íŠ¸(03),GUI(04), TileTex(05) ,Effect(06)ë“±)
+		-C : Character			 -0012 : object ì¢…ë¥˜
+		-D : Deca				 -00 : XíŒŒì¼ì˜ TextureíŒŒì¼(-ff : XíŒŒì¼ì˜ ShadowíŒŒì¼)
 							
-		-BT01 : Á¾·ù
+		-BT01 : ì¢…ë¥˜
 
 	  RC_G_INIT_BACKGROUND
 		-RC : Resource
 		-G : GUI
 		-INIT : Init state
-		-BACKGROUND : ¼¼ºÎ Á¾·ù
+		-BACKGROUND : ì„¸ë¶€ ì¢…ë¥˜
 
-  ÀÛ¼ºÀÚ : ±Çµ¿Çõ
-  ÀÛ¼ºÀÏ : 2002.10.30
+  ìž‘ì„±ìž : ê¶Œë™í˜
+  ìž‘ì„±ì¼ : 2002.10.30
 
-  ÀÛ¼ºÀÚ : ÀÌÁøÇÏ
-  ÀÛ¼ºÀÏ : 2003.07.30
+  ìž‘ì„±ìž : ì´ì§„í•˜
+  ìž‘ì„±ì¼ : 2003.07.30
 
 ********************************************************************************************/
 
@@ -35,7 +35,7 @@ struct SPRITEVERTEX
     DWORD       color;
     FLOAT       tu, tv;
 };
-// FVF ÇÃ·¡±×
+// FVF í”Œëž˜ê·¸
 #define D3DFVF_SPRITEVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE|D3DFVF_TEX1)
 
 // Map
@@ -55,32 +55,32 @@ struct SPRITEVERTEX
 #define RC_EFF_OTHER_WARP				1100011	
 #define RC_EFF_BOOSTER					1100012	
 #define RC_EFF_SELECT					1100013
-//#define RC_EFF_HELP00					1100013	//	Á¶ÀÛ¹ý
-//#define RC_EFF_HELP01					1100014	//	Âø·ú
-#define RC_EFF_HELP02					1100015	//	°ø°Ý
-#define RC_EFF_HELP03					1100016	//	»óÁ¡
-#define RC_EFF_HELP04					1100017	//	¹°°Ç»ç°í ÆÈ±â
-#define RC_EFF_HELP05					1100018	//	±â´ÉÅ°
+//#define RC_EFF_HELP00					1100013	//	ì¡°ìž‘ë²•
+//#define RC_EFF_HELP01					1100014	//	ì°©ë¥™
+#define RC_EFF_HELP02					1100015	//	ê³µê²©
+#define RC_EFF_HELP03					1100016	//	ìƒì 
+#define RC_EFF_HELP04					1100017	//	ë¬¼ê±´ì‚¬ê³  íŒ”ê¸°
+#define RC_EFF_HELP05					1100018	//	ê¸°ëŠ¥í‚¤
 
-#define RC_EFF_USEITEM_REPAIR_HP		1100022	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	Ã¼·Â(ÀÏ¹Ý ¾ÆÀÌÅÛ - A~ÀÏ¹Ý)
-#define RC_EFF_USEITEM_REPAIR_DP		1100073	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½¯µå(ÀÏ¹Ý ¾ÆÀÌÅÛ - A~ÀÏ¹Ý)
-#define RC_EFF_USEITEM_REPAIR_HPS		1100056	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	Ã¼·Â(ÀÏ¹Ý ¾ÆÀÌÅÛ - S)
-#define RC_EFF_USEITEM_REPAIR_HPA		1100058	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	Ã¼·Â(ÀÏ¹Ý ¾ÆÀÌÅÛ - A+)
-#define RC_EFF_USEITEM_REPAIR_DPS		1100057	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½¯µå(ÀÏ¹Ý ¾ÆÀÌÅÛ - S)
-#define RC_EFF_USEITEM_REPAIR_DPA		1100059	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½¯µå(ÀÏ¹Ý ¾ÆÀÌÅÛ - A+)
-#define RC_EFF_USEITEM_REPAIR_SPS		7002840	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½ºÅ³(ÀÏ¹Ý ¾ÆÀÌÅÛ - A)
-#define RC_EFF_USEITEM_REPAIR_SPA		7002850	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½ºÅ³(ÀÏ¹Ý ¾ÆÀÌÅÛ - B)
-#define RC_EFF_USEITEM_REPAIR_SP		7002860	//	¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®	½ºÅ³(ÀÏ¹Ý ¾ÆÀÌÅÛ - C)
+#define RC_EFF_USEITEM_REPAIR_HP		1100022	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì²´ë ¥(ì¼ë°˜ ì•„ì´í…œ - A~ì¼ë°˜)
+#define RC_EFF_USEITEM_REPAIR_DP		1100073	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì‰´ë“œ(ì¼ë°˜ ì•„ì´í…œ - A~ì¼ë°˜)
+#define RC_EFF_USEITEM_REPAIR_HPS		1100056	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì²´ë ¥(ì¼ë°˜ ì•„ì´í…œ - S)
+#define RC_EFF_USEITEM_REPAIR_HPA		1100058	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì²´ë ¥(ì¼ë°˜ ì•„ì´í…œ - A+)
+#define RC_EFF_USEITEM_REPAIR_DPS		1100057	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì‰´ë“œ(ì¼ë°˜ ì•„ì´í…œ - S)
+#define RC_EFF_USEITEM_REPAIR_DPA		1100059	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ì‰´ë“œ(ì¼ë°˜ ì•„ì´í…œ - A+)
+#define RC_EFF_USEITEM_REPAIR_SPS		7002840	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ìŠ¤í‚¬(ì¼ë°˜ ì•„ì´í…œ - A)
+#define RC_EFF_USEITEM_REPAIR_SPA		7002850	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ìŠ¤í‚¬(ì¼ë°˜ ì•„ì´í…œ - B)
+#define RC_EFF_USEITEM_REPAIR_SP		7002860	//	ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸	ìŠ¤í‚¬(ì¼ë°˜ ì•„ì´í…œ - C)
 
-#define RC_EFF_USEITEM_REPAIR_EP		1100055 //  ¾ÆÀÌÅÛ ¼ö¸® ÀÌÆåÆ®
-#define RC_EFF_BGEAR_TRACE				1100074	//	B±â¾î ÀÜ»ó ÀÌÆåÆ®
-#define RC_EFF_IGEAR_TRACE				1100075	//	I±â¾î ÀÜ»ó ÀÌÆåÆ®
-#define RC_EFF_MGEAR_TRACE				1100076	//	M±â¾î ÀÜ»ó ÀÌÆåÆ®
-#define RC_EFF_AGEAR_TRACE				1100077	//	A±â¾î ÀÜ»ó ÀÌÆåÆ®
-#define RC_EFF_DUMMY_BACK_POSITION		"00000000.eff"	//	ÁÂÇ¥¸¸ °¡Áø ´õ¹Ì µÞÁÂÇ¥ÀÌÆåÆ®(A±â¾î 1Çü¹«±â¸¸ °¡Áü)
-#define RC_EFF_DUMMY_POSITION			"00000001.eff"	//	ÁÂÇ¥¸¸ °¡Áø ´õ¹Ì ÀÌÆåÆ® 
-#define RC_EFF_LANDING_TAKEOFF			1100014	//	ÀÌÂø·ú ÀÌÆåÆ®
-// 1Çü
+#define RC_EFF_USEITEM_REPAIR_EP		1100055 //  ì•„ì´í…œ ìˆ˜ë¦¬ ì´íŽ™íŠ¸
+#define RC_EFF_BGEAR_TRACE				1100074	//	Bê¸°ì–´ ìž”ìƒ ì´íŽ™íŠ¸
+#define RC_EFF_IGEAR_TRACE				1100075	//	Iê¸°ì–´ ìž”ìƒ ì´íŽ™íŠ¸
+#define RC_EFF_MGEAR_TRACE				1100076	//	Mê¸°ì–´ ìž”ìƒ ì´íŽ™íŠ¸
+#define RC_EFF_AGEAR_TRACE				1100077	//	Aê¸°ì–´ ìž”ìƒ ì´íŽ™íŠ¸
+#define RC_EFF_DUMMY_BACK_POSITION		"00000000.eff"	//	ì¢Œí‘œë§Œ ê°€ì§„ ë”ë¯¸ ë’·ì¢Œí‘œì´íŽ™íŠ¸(Aê¸°ì–´ 1í˜•ë¬´ê¸°ë§Œ ê°€ì§)
+#define RC_EFF_DUMMY_POSITION			"00000001.eff"	//	ì¢Œí‘œë§Œ ê°€ì§„ ë”ë¯¸ ì´íŽ™íŠ¸ 
+#define RC_EFF_LANDING_TAKEOFF			1100014	//	ì´ì°©ë¥™ ì´íŽ™íŠ¸
+// 1í˜•
 #define RC_EFF_LOCKON_AUTOMATIC			1100056
 #define RC_EFF_LOCKON_VULCAN			1100020	
 #define RC_EFF_LOCKON_GRENADE			1100057
@@ -89,7 +89,7 @@ struct SPRITEVERTEX
 #define RC_EFF_LOCKON_GATLING			1100060
 #define RC_EFF_LOCKON_LAUNCHER			1100061
 #define RC_EFF_LOCKON_MASSDRIVE			1100062
-// 2Çü
+// 2í˜•
 #define RC_EFF_LOCKON_ROCKET			1100063
 #define RC_EFF_LOCKON_MISSILE			1100021	
 #define RC_EFF_LOCKON_BUNDLE			1100064
@@ -100,14 +100,14 @@ struct SPRITEVERTEX
 #define RC_EFF_LOCKON_DECOY				1100069
 
 
-#define RC_EFF_SNOW						1100040	//	´«
+#define RC_EFF_SNOW						1100040	//	ëˆˆ
 
 #define RC_EFF_IGEAR_UPGRADE			1100042 //	- I-Gear Upgrade
 #define RC_EFF_AGEAR_UPGRADE			1100043 //	- A-Gear Upgrade
 #define RC_EFF_MGEAR_UPGRADE			1100044 //	- M-Gear Upgrade
 #define RC_EFF_BGEAR_UPGRADE			1100045 //	- B-Gear Upgrade
 
-#define RC_EFF_TARGET_ARROW				1100070	//	Å¸°Ù ¹æÇâ È­»ìÇ¥
+#define RC_EFF_TARGET_ARROW				1100070	//	íƒ€ê²Ÿ ë°©í–¥ í™”ì‚´í‘œ
 //ysw 9_19
 #define RC_EFF_GAGE_BOX					1100019
 #define RC_EFF_INTRO					1100023
@@ -129,50 +129,50 @@ struct SPRITEVERTEX
 #define RC_EFF_EXP_MIDDLE_GAGE			1100039
 
 #define RC_EFF_SUN						1100047
-#define RC_EFF_SHIELD_HIT				1100050	// ½¯µå µ¥¹ÌÁö ½Ã
-#define RC_EFF_SHIELD_HIT2				7900790 // ½¯µå µ¥¹ÌÁö ½Ã
+#define RC_EFF_SHIELD_HIT				1100050	// ì‰´ë“œ ë°ë¯¸ì§€ ì‹œ
+#define RC_EFF_SHIELD_HIT2				7900790 // ì‰´ë“œ ë°ë¯¸ì§€ ì‹œ
 
 #define RC_EFF_QUEST_MAP_POSITION		01100079
 
-#define RC_EFF_AGEAR_FIRE				1100072	// ÀÓ½ÃA-Gear ¿ë ¹ß»ç È­ÀÌ¾î ÀÌÆåÆ®
+#define RC_EFF_AGEAR_FIRE				1100072	// ìž„ì‹œA-Gear ìš© ë°œì‚¬ í™”ì´ì–´ ì´íŽ™íŠ¸
 #define RC_EFF_GET_SKILL				1100078
 
-#define RC_EFF_CHAFF_SKILL				1100080		//Ã¼ÇÁ ½ºÅ³ ÀÌÆåÆ®.
-#define RC_EFF_SCAN_SKILL				1100081		//½ºÄµ ½ºÅ³ ÀÌÆåÆ®.
-// 2007-04-19 by bhsohn ¼­Ä¡¾ÆÀÌ ¾ÆÀÌÅÛ Ãß°¡
-#define RC_EFF_SCAN_ITEM				1100082		//½ºÄµ ½ºÅ³ ÀÌÆåÆ®.
-#define RC_EFF_SCAN_ITEM2				1100086		//½ºÄµ ½ºÅ³ ÀÌÆåÆ®.
-// 2008-12-26 by bhsohn ·°Å°¸Ó½Å ÀÌÆåÆ® Ãß°¡
-#define RC_EFF_LUCKY_SUCCESS			1100083		//·°Å°¸Ó½Å ÀÌÆåÆ®
-// end 2008-12-26 by bhsohn ·°Å°¸Ó½Å ÀÌÆåÆ® Ãß°¡
+#define RC_EFF_CHAFF_SKILL				1100080		//ì²´í”„ ìŠ¤í‚¬ ì´íŽ™íŠ¸.
+#define RC_EFF_SCAN_SKILL				1100081		//ìŠ¤ìº” ìŠ¤í‚¬ ì´íŽ™íŠ¸.
+// 2007-04-19 by bhsohn ì„œì¹˜ì•„ì´ ì•„ì´í…œ ì¶”ê°€
+#define RC_EFF_SCAN_ITEM				1100082		//ìŠ¤ìº” ìŠ¤í‚¬ ì´íŽ™íŠ¸.
+#define RC_EFF_SCAN_ITEM2				1100086		//ìŠ¤ìº” ìŠ¤í‚¬ ì´íŽ™íŠ¸.
+// 2008-12-26 by bhsohn ëŸ­í‚¤ë¨¸ì‹  ì´íŽ™íŠ¸ ì¶”ê°€
+#define RC_EFF_LUCKY_SUCCESS			1100083		//ëŸ­í‚¤ë¨¸ì‹  ì´íŽ™íŠ¸
+// end 2008-12-26 by bhsohn ëŸ­í‚¤ë¨¸ì‹  ì´íŽ™íŠ¸ ì¶”ê°€
 
-// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
-#define RC_EFF_ROBOTAMOR_FIRE_EFFECT	1100084		// ·Îº¿¾Æ¸Ó¿ë 1Çü ¹ß»ç ÀÌÆåÆ®
-// end 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+// 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
+#define RC_EFF_ROBOTAMOR_FIRE_EFFECT	1100084		// ë¡œë´‡ì•„ë¨¸ìš© 1í˜• ë°œì‚¬ ì´íŽ™íŠ¸
+// end 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 
 #define RC_EFF_BOOSTER_00000		"06010000"
 
-// 2006-01-12 by ispark, 1Çü, 2Çü ¹«±â ¸ðµâ
+// 2006-01-12 by ispark, 1í˜•, 2í˜• ë¬´ê¸° ëª¨ë“ˆ
 #define RC_EFF_PRIMARY_RIGHT_POSITION	"00000000.eff"
 #define RC_EFF_PRIMARY_LEFT_POSITION	"00000001.eff"
 #define RC_EFF_SECONDARY_RIGHT_POSITION	"00000002.eff"
 #define RC_EFF_SECONDARY_LEFT_POSITION	"00000003.eff"
 
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¹«±â »ý¼º
+// 2010-06-15 by shcho&hslee íŽ«ì‹œìŠ¤í…œ - íŽ« ë¬´ê¸° ìƒì„±
 #define RC_EFF_PET_RIGHT_POSITION	"00000000.eff"
 #define RC_EFF_PET_LEFT_POSITION	"00000001.eff"
-// end 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¹«±â »ý¼º
+// end 2010-06-15 by shcho&hslee íŽ«ì‹œìŠ¤í…œ - íŽ« ë¬´ê¸° ìƒì„±
 
-#define RC_EFF_PET_LEVEL_CHANGE		1100085				 //2011-10-06 by jhahn ÆÄÆ®³Ê ¼ºÀåÇü ½Ã½ºÅÛ
-// 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ý¼º
+#define RC_EFF_PET_LEVEL_CHANGE		1100085				 //2011-10-06 by jhahn íŒŒíŠ¸ë„ˆ ì„±ìž¥í˜• ì‹œìŠ¤í…œ
+// 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 #define RC_EFF_MARK_POSITION		"00000004.eff"
-// end 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ý¼º
+// end 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 
-// 2012-10-13 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// 2012-10-13 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 #define RC_EFF_KILL_COUNT_MAX		1100087
-// end 2012-10-13 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// end 2012-10-13 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
-// 2006-10-11 by ispark, Ä¸½¶ ÀÌÆåÆ®
+// 2006-10-11 by ispark, ìº¡ìŠ ì´íŽ™íŠ¸
 #define RC_EFF_POWER_ENERGY_CAPSULE		7800110
 #define RC_EFF_POWER_SHIELD_CAPSULE		7810100
 #define RC_EFF_POWER_SP_CAPSULE			7813010
@@ -184,19 +184,19 @@ struct SPRITEVERTEX
 #define RC_TEX_GUI_LOADING_BACK		"back"
 #define RC_TEX_GUI_LOADING_BAR		"bar"
 
-// 2012-11-29 by mspark, ¼­Ä¡¾ÆÀÌ À§Ä¡°¡ ÀÌµ¿ÇÏ´Â Ä³¸¯ÅÍÀÇ À§Ä¡¿Í µ¿ÀÏÇÏµµ·Ï ¼öÁ¤
+// 2012-11-29 by mspark, ì„œì¹˜ì•„ì´ ìœ„ì¹˜ê°€ ì´ë™í•˜ëŠ” ìºë¦­í„°ì˜ ìœ„ì¹˜ì™€ ë™ì¼í•˜ë„ë¡ ìˆ˜ì •
 #define RC_EFF_SEARCHEYE_SHUTTLE_POSITION	1100088
 #define RC_EFF_SEARCHEYE_SHUTTLE_POSITION2	1100089
 
 #define RC_ITEM_SEARCHEYE_NUM				7004680
 #define RC_ITEM_SEARCHEYE2_NUM				7037070
-// end 2012-11-29 by mspark, ¼­Ä¡¾ÆÀÌ À§Ä¡°¡ ÀÌµ¿ÇÏ´Â Ä³¸¯ÅÍÀÇ À§Ä¡¿Í µ¿ÀÏÇÏµµ·Ï ¼öÁ¤
+// end 2012-11-29 by mspark, ì„œì¹˜ì•„ì´ ìœ„ì¹˜ê°€ ì´ë™í•˜ëŠ” ìºë¦­í„°ì˜ ìœ„ì¹˜ì™€ ë™ì¼í•˜ë„ë¡ ìˆ˜ì •
 
-#define AGEAR_SKILL_BASENUM_BARIAL		    	7821060	// ½Ã°£  	- º£¸®¾î	// 2012-12-17 by bhsohn A±â¾î ¹è¸®¾î ÀÌÆåÆ® ¿öÇÁÈÄ »ç¶óÁö´Â ¿À·ù Ã³¸®
+#define AGEAR_SKILL_BASENUM_BARIAL		    	7821060	// ì‹œê°„  	- ë² ë¦¬ì–´	// 2012-12-17 by bhsohn Aê¸°ì–´ ë°°ë¦¬ì–´ ì´íŽ™íŠ¸ ì›Œí”„í›„ ì‚¬ë¼ì§€ëŠ” ì˜¤ë¥˜ ì²˜ë¦¬
 
 #define FILTER_ENCODESTRING "ud830pwkldlkv[]f\20jdmvld;"
 
-//Ã¤ÆÃ Color	B|G|R
+//ì±„íŒ… Color	B|G|R
 #define COLOR_CHARACTER_ID00		0xFFFFFF				// white
 #define COLOR_CHARACTER_ID01		0x0000FF				// red
 #define COLOR_CHARACTER_ID02		0x00FF00				// green
@@ -253,19 +253,19 @@ enum State {
 	_INITIALIZING=-1, 
 	_NORMAL,
 	_WARP, 
-	_FALLING,						//Ãß¶ôµÇ°íÀÖ´Â »óÅÂ.
-	_FALLEN,						//Ãß¶ôµÈ»óÅÂ.
+	_FALLING,						//ì¶”ë½ë˜ê³ ìžˆëŠ” ìƒíƒœ.
+	_FALLEN,						//ì¶”ë½ëœìƒíƒœ.
 	_LANDING,
 	_LANDED,
 	_TAKINGOFF,
-	_EXPLODING,						//Æø¹ßÁß.
-	_EXPLODED,						//Æø¹ß
+	_EXPLODING,						//í­ë°œì¤‘.
+	_EXPLODED,						//í­ë°œ
 	_CLOSE,
 	_NCITYIN,
 	_STAND,
 	_WALK,
 	_RUN,
-	_FUELALLIN,						//¿¬·á°¡ ¾ø¾î¼­ Ãß¶ôÇÏ´Â »óÅÂ.
+	_FUELALLIN,						//ì—°ë£Œê°€ ì—†ì–´ì„œ ì¶”ë½í•˜ëŠ” ìƒíƒœ.
 	_AUTODESTROYED
 };
 
@@ -279,8 +279,8 @@ enum GameState {
 	_MAPLOAD,
 	_GAME,
 	_SHOP,
-	_CITY, // µµ½Ã
-	_SCRIPT, // ¼º¿ì ½ºÅ©¸³Æ®
+	_CITY, // ë„ì‹œ
+	_SCRIPT, // ì„±ìš° ìŠ¤í¬ë¦½íŠ¸
 	_WAITING,
 	_GAMEOVER,
 	_COMPLETE, 
@@ -290,28 +290,28 @@ enum GameState {
 	_SELECTCHANNEL, 
 	_BOSSMONSTERSUMMONREADY,
 	_BOSSMONSTERSUMMON,
-	_SERVER_DOWN,			// 2013-07-05 by bhsohn ¼­¹öÁ¾·á½Ã, °æ°íÀ½ ½Ã½ºÅÛ
+	_SERVER_DOWN,			// 2013-07-05 by bhsohn ì„œë²„ì¢…ë£Œì‹œ, ê²½ê³ ìŒ ì‹œìŠ¤í…œ
 	_MOVIEPLAYER
 };
-enum PartType {	_ADMIN,_SHUTTLE, _ENEMY, _MONSTER,				// Shuttle ¹× Enemy, Monster
-				_ITEMFIELD,										// ÇÊµå¿¡ ¶³¾îÁø ¾ÆÀÌÅÛ
-//				_CYCLOPSE,_ARROW,_HAMMERHEAD,					// Missile ·ù ( Shuttle )
-				_MISSILE,										// Missile ·ù ( Shuttle )
-//				_FATBIRD,_BALLISTAR,_MOSQUITO,					// Rocket ·ù ( Shuttle )
-				_ROCKET,										// Rocket ·ù ( Shuttle )
-				_BUNDLE,										// Bundle ·ù ( Shuttle )
-				_MINE, //_SPOREMINE,_AXISMINE,_OCTOPUSMINE,		// Mine ·ù ( Shuttle )
-				_SHIELD,										// Shield ·ù (Shuttle )
-				_DUMMY,											// Dummy ·ù
-				_FIXER,											// Fixer ·ù
-				_LAY,											// °íÁ¤Çü ¾ÆÀÌÅÛ (Shuttle : ½ºÄµ¿ÀºêÁ§Æ®)
+enum PartType {	_ADMIN,_SHUTTLE, _ENEMY, _MONSTER,				// Shuttle ë° Enemy, Monster
+				_ITEMFIELD,										// í•„ë“œì— ë–¨ì–´ì§„ ì•„ì´í…œ
+//				_CYCLOPSE,_ARROW,_HAMMERHEAD,					// Missile ë¥˜ ( Shuttle )
+				_MISSILE,										// Missile ë¥˜ ( Shuttle )
+//				_FATBIRD,_BALLISTAR,_MOSQUITO,					// Rocket ë¥˜ ( Shuttle )
+				_ROCKET,										// Rocket ë¥˜ ( Shuttle )
+				_BUNDLE,										// Bundle ë¥˜ ( Shuttle )
+				_MINE, //_SPOREMINE,_AXISMINE,_OCTOPUSMINE,		// Mine ë¥˜ ( Shuttle )
+				_SHIELD,										// Shield ë¥˜ (Shuttle )
+				_DUMMY,											// Dummy ë¥˜
+				_FIXER,											// Fixer ë¥˜
+				_LAY,											// ê³ ì •í˜• ì•„ì´í…œ (Shuttle : ìŠ¤ìº”ì˜¤ë¸Œì íŠ¸)
 				_WMHONIAN, _WMAMMON, _WMNATING,_WMMONSTERMISSILE,_WMWATCHER,_WMFLYSEED,_WMOVERWATCHER,_WMSCOUT,_WMSPOTTIE,_WMTETINO,_WMBALDRE,
 				_WMFRIGG,_WMTHOR,_WMFENRIR,_WMLUCANUS,_WMLOKI,_WMCURSESTORM,
 				_FASTDATA,_FIREDATA
 };
 // Party Type
 enum PARTY_TYPE { _NOPARTY,_PARTYMASTER,_PARTYMEMBER,_PARTYOTHERMAPMASTER,_PARTYOTHERMAPMEMBER,_PARTYRESTARTMEMBER};//,_ATTACKENEMY };
-// _NOPARTY:ÆÄÆ¼°¡ ¾Æ´Ô,_PARTYMASTER:ÆÄÆ¼Àå,_PARTYMEMBER:ÆÄÆ¼¿ø,_ATTACKENEMY:°áÅõ »ó´ë
+// _NOPARTY:íŒŒí‹°ê°€ ì•„ë‹˜,_PARTYMASTER:íŒŒí‹°ìž¥,_PARTYMEMBER:íŒŒí‹°ì›,_ATTACKENEMY:ê²°íˆ¬ ìƒëŒ€
 
 //#define DIRECTINPUT_VERSION         0x0800
 
@@ -360,11 +360,11 @@ struct TWO_BLOCK_INDEXES
 #define SHUTTLE_TARGET_MOUSE_CIRCLE_RADIUS	20.0f
 #define SHUTTLE_ATTACK_CENTER_RADIUS		30.0f
 #define SHUTTLE_MAX_RENDER_DISTANCE			1020.0f			// 
-#define SHUTTLE_MAX_UPVEC_RATE				0.8f			//	Up Vector ÀÇ ±â¿ïÀÓ ÃÖ´ë °ª
-#define SHUTTLE_MAX_SIDERATE				1.5f			//	ÁÂ¿ì È¸Àü ÃÖ´ë °ª
-#define SHUTTLE_MAX_UPDOWNRATE				1.9f			//	¾Æ·¡À§ ±â¿ïÀÓ ÃÖ´ë °ª
-#define SHUTTLE_LRUPRECOVERY_RATE			1.5f			//	ÁÂ¿ì Up VecÀÇ ±â¿ïÀÓ È¸º¹ ¼Óµµ Á¶Àý
-#define SHUTTLE_LRUPLEAN_RATE				1.0f			// ÁÂ¿ì Up VecÀÇ ±â¿ïÀÓ ¼Óµµ Á¶Àý
+#define SHUTTLE_MAX_UPVEC_RATE				0.8f			//	Up Vector ì˜ ê¸°ìš¸ìž„ ìµœëŒ€ ê°’
+#define SHUTTLE_MAX_SIDERATE				1.5f			//	ì¢Œìš° íšŒì „ ìµœëŒ€ ê°’
+#define SHUTTLE_MAX_UPDOWNRATE				1.9f			//	ì•„ëž˜ìœ„ ê¸°ìš¸ìž„ ìµœëŒ€ ê°’
+#define SHUTTLE_LRUPRECOVERY_RATE			1.5f			//	ì¢Œìš° Up Vecì˜ ê¸°ìš¸ìž„ íšŒë³µ ì†ë„ ì¡°ì ˆ
+#define SHUTTLE_LRUPLEAN_RATE				1.0f			// ì¢Œìš° Up Vecì˜ ê¸°ìš¸ìž„ ì†ë„ ì¡°ì ˆ
 
 #define SHADOW_MAX_DISTANCE					500.0f
 
@@ -372,14 +372,14 @@ struct TWO_BLOCK_INDEXES
 //#define MAX_CAMERA_TYPE						2
 
 #define MAX_SOUND_ITEM						100
-#define MAX_SOUND_GROUND_BIRD				10				//	1~~~000¹ø´ë
-#define MAX_SOUND_GROUND_WORM				10				//	1~~~100¹ø´ë
-#define MAX_SOUND_GROUND_ANIMAL				10				//	1~~~200¹ø´ë
-#define MAX_SOUND_GROUND_WATER	 			20				//	1~~~300¹ø´ë
-#define MAX_SOUND_GROUND_WIND				10				//	1~~~400¹ø´ë
-#define MAX_SOUND_GROUND_EXPLODE			5				//	1~~~500¹ø´ë
-#define MAX_SOUND_GROUND_MACHINE			5				//	1~~~600¹ø´ë
-#define MAX_SOUND_GROUND_HUMAN				10				//	1~~~700¹ø´ë
+#define MAX_SOUND_GROUND_BIRD				10				//	1~~~000ë²ˆëŒ€
+#define MAX_SOUND_GROUND_WORM				10				//	1~~~100ë²ˆëŒ€
+#define MAX_SOUND_GROUND_ANIMAL				10				//	1~~~200ë²ˆëŒ€
+#define MAX_SOUND_GROUND_WATER	 			20				//	1~~~300ë²ˆëŒ€
+#define MAX_SOUND_GROUND_WIND				10				//	1~~~400ë²ˆëŒ€
+#define MAX_SOUND_GROUND_EXPLODE			5				//	1~~~500ë²ˆëŒ€
+#define MAX_SOUND_GROUND_MACHINE			5				//	1~~~600ë²ˆëŒ€
+#define MAX_SOUND_GROUND_HUMAN				10				//	1~~~700ë²ˆëŒ€
 #define MAX_SOUND_GROUND					(MAX_SOUND_GROUND_BIRD + MAX_SOUND_GROUND_WORM + MAX_SOUND_GROUND_ANIMAL + MAX_SOUND_GROUND_WATER + MAX_SOUND_GROUND_WIND + MAX_SOUND_GROUND_EXPLODE + MAX_SOUND_GROUND_MACHINE + MAX_SOUND_GROUND_HUMAN)
 #define MAX_SOUND_GUI						100
 #define MAX_SOUND_VOICE						100
@@ -399,7 +399,7 @@ struct TWO_BLOCK_INDEXES
 
 
 // by dhkwon, GAGE BOX BODYCONDITION
-#define GAGEBOX_NORMAL			0x000000000000007E		// °ÔÀÌÁö ¹Ú½º,¹öÆ°µé ³ë¸»
+#define GAGEBOX_NORMAL			0x000000000000007E		// ê²Œì´ì§€ ë°•ìŠ¤,ë²„íŠ¼ë“¤ ë…¸ë§
 #define GAGEBOX_INFO_NORMAL		0x0000000000000004		// info button up
 #define GAGEBOX_INVEN_NORMAL	0x0000000000000008		// inventory button up
 #define GAGEBOX_PARTY_NORMAL	0x0000000000000010		// party button up
@@ -421,199 +421,199 @@ struct TWO_BLOCK_INDEXES
 #define GAGEBOX_ACTIVE_MODE_OFF	0x0000000001000000
 
 // messagebox
-enum { _Q_PARTY_CREATE,				// Æí´ë »ý¼º
-	   _Q_PARTY_INVITE,				// Æí´ë¿¡ ÇÕ·ùÇÏ°Ú½À´Ï±î?"
-	   _Q_PARTY_BAN_MEMBER,			// Æí´ë¿ø Ãß¹æ
-	   _Q_PARTY_SECEDE,				// Æí´ë Å»Åð
-	   _Q_PARTY_LEAVE,				// ¾øÀ½
-	   _Q_PARTY_FORMATION,			// ¾øÀ½
-	   _Q_PARTY_TRANSFER_MASTER,	// Æí´ëÀå À§ÀÓ
-	   _Q_PARTY_INVITE_USER,		// ´©±¸¸¦ Æí´ë¿¡ ÃÊ´ëÇÏ°Ú½À´Ï±î?
-	   _Q_PARTY_INVITE_USER_OK,		// »ç¿ë ¾ÈÇÔ
-	   _Q_GUILD_CREATE,				// ºñÇà´Ü »ý¼º
-	   _Q_GUILD_MARK,				// ºñÇà´Ü ¹®Àå ÆÄÀÏÀÌ¸§ ?
-	   _Q_GUILD_INVITE,				// ºñÇà´Ü ÃÊ´ë( C -> IM )
-	   _Q_GUILD_INVITE_QUESTION,	// ºñÇà´Ü ÃÊ´ë ¹°¾îº½( IM -> C )
-	   _Q_GUILD_BAN_MEMBER,			// Ãß¹æ
-	   _Q_GUILD_LEAVE,				// Å»Åð
-	   _Q_GUILD_DISBAND,			// ºñÇà´Ü ÇØÃ¼ ?
-	   _Q_GUILD_CANCEL,				// ºñÇà´Ü ÇØÃ¼ Ãë¼Ò ?
-	   _Q_TRADE_INPUT_NAME,			// °Å·¡ÇÒ À¯´ÖÀº ?
-	   _Q_TRADE_REQUEST,			// ~¿Í °Å·¡ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_TRADE_OK,					// °Å·¡ ¿Ï·áÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_TRADE_CANCEL,				// °Å·¡ Ãë¼Ò ?
+enum { _Q_PARTY_CREATE,				// íŽ¸ëŒ€ ìƒì„±
+	   _Q_PARTY_INVITE,				// íŽ¸ëŒ€ì— í•©ë¥˜í•˜ê² ìŠµë‹ˆê¹Œ?"
+	   _Q_PARTY_BAN_MEMBER,			// íŽ¸ëŒ€ì› ì¶”ë°©
+	   _Q_PARTY_SECEDE,				// íŽ¸ëŒ€ íƒˆí‡´
+	   _Q_PARTY_LEAVE,				// ì—†ìŒ
+	   _Q_PARTY_FORMATION,			// ì—†ìŒ
+	   _Q_PARTY_TRANSFER_MASTER,	// íŽ¸ëŒ€ìž¥ ìœ„ìž„
+	   _Q_PARTY_INVITE_USER,		// ëˆ„êµ¬ë¥¼ íŽ¸ëŒ€ì— ì´ˆëŒ€í•˜ê² ìŠµë‹ˆê¹Œ?
+	   _Q_PARTY_INVITE_USER_OK,		// ì‚¬ìš© ì•ˆí•¨
+	   _Q_GUILD_CREATE,				// ë¹„í–‰ë‹¨ ìƒì„±
+	   _Q_GUILD_MARK,				// ë¹„í–‰ë‹¨ ë¬¸ìž¥ íŒŒì¼ì´ë¦„ ?
+	   _Q_GUILD_INVITE,				// ë¹„í–‰ë‹¨ ì´ˆëŒ€( C -> IM )
+	   _Q_GUILD_INVITE_QUESTION,	// ë¹„í–‰ë‹¨ ì´ˆëŒ€ ë¬¼ì–´ë´„( IM -> C )
+	   _Q_GUILD_BAN_MEMBER,			// ì¶”ë°©
+	   _Q_GUILD_LEAVE,				// íƒˆí‡´
+	   _Q_GUILD_DISBAND,			// ë¹„í–‰ë‹¨ í•´ì²´ ?
+	   _Q_GUILD_CANCEL,				// ë¹„í–‰ë‹¨ í•´ì²´ ì·¨ì†Œ ?
+	   _Q_TRADE_INPUT_NAME,			// ê±°ëž˜í•  ìœ ë‹›ì€ ?
+	   _Q_TRADE_REQUEST,			// ~ì™€ ê±°ëž˜í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_TRADE_OK,					// ê±°ëž˜ ì™„ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_TRADE_CANCEL,				// ê±°ëž˜ ì·¨ì†Œ ?
 	   _Q_WARF_OK,					
-	   _Q_SHOP_SELL_ENERGY,			// ¸î°³¸¦ ÆÄ½Ã°Ú½À´Ï±î?
-	   _Q_SHOP_SELL_ITEM,			// ¾ÆÀÌÅÛÀ» ÆÄ½Ã°Ú½À´Ï±î?
-	   _Q_AUCTION_INPUT_ITEM,		// ¾ÆÀÌÅÛÀ» °æ¸Å¿¡ ¿Ã¸®½Ã°Ú½À´Ï±î?
-	   _Q_AUCTION_DELETE_ITEM,		// µî·ÏÇÑ ¾ÆÀÌÅÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_ITEM_DELETE,				// ¾ÆÀÌÅÛ 1°³¸¦ Áö¿ì°Ú½À´Ï±î?
-	   _Q_ITEM_DELETE_NUM,			// ¾ÆÀÌÅÛ ¸î°³¸¦ Áö¿ì°Ú½À´Ï±î?
-	   _Q_TRADE_ITEM_NUMBER,		// ¸î°³(¾ó¸¶)¸¦ ¿Ã¸®°Ú½À´Ï±î?
-	   _Q_TRADE_COMPLETE_OK,		// »ç¿ë¾ÈÇÔ
-	   _Q_VOIP_OK,					// ~¿Í À½¼º±³½ÅÀ» ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_VOIP_NAME,				// À½¼º±³½ÅÇÒ ¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ½Ã¿ä
-	   _Q_DEAD_RETURN,				// Á×Àº ÈÄ µµ½Ã·Î ÀÌµ¿
-	   _Q_PK_REQUEST,				// ~¿Í 1:1 ÀüÅõ¸¦ ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_PK_LOSE_REQUEST,			// Ç×º¹ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_PK_LOSE_REQUEST_OK,		// Ç×º¹À» ¹Þ¾ÆµéÀÌ°Ú½À´Ï±î?
-	   _Q_USE_ENCHANT_ITEM_CARD,	// ÀÎÃ¦Æ® ¾ÆÀÌÅÛ ´õºíÅ¬¸¯(ÀÎÃ¦Æ®ÇÒ ¾ÆÀÌÅÛÀ» Å¬¸¯ÇÏ½Ã¿À)
-	   _Q_REQUEST_PARTY_BATTLE,		// ÆÄÆ¼ÀüÅõ¸¦ ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_SELECT_DELETE,			// Ä³¸¯ÅÍ¸¦ Áö¿ì½Ã°Ú½À´Ï±î?
-	   _MESSAGE,					// ÀÏ¹Ý ¸Þ½ÃÁö
-	   _MESSAGE_ERROR_CREATE,		// Ä³¸¯ÅÍ »ý¼º ½Ã¿¡ ³ªÅ¸³ª´Â ¸Þ½ÃÁö(Á¸ÀçÇÏ´Â ÀÌ¸§, Àß¸øµÈ ÀÌ¸§, ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä)
-	   _MESSAGE_ERROR_NETWORK,		// ³×Æ®¿÷ Á¢¼Ó ¿¡·¯(±âÁ¸ CGUITextBox´ë½Å »ç¿ë)
-	   _Q_BATTLE_NAME,				// 1:1 ´ë°áÇÒ À¯´Ö?
-	   _Q_OUTDOOR_WARP,				// ¿Ü°ûÀ¸·Î ¿öÇÁ?
-	   _Q_LAB_ITEM_NUMBER,			// ¸î°³¸¦ ¿Ã¸®½Ã°Ú½À´Ï±î?
-	   _Q_REQUEST_GUILD_WAR,		// ¿©´ÜÀü¸¦ ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_STORE_PUT_COUNTABLE_ITEM,	// Ã¢°í¿¡ ¸î°³ ¸Ã±â½Ã°Ú½À´Ï±î?
-	   _Q_INPUT_AUCTION_PRICE,		// °æ¸Å¿¡ ¿Ã¸± °¡°ÝÀº ¾ó¸¶·Î ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_STORE_PUT_ITEM,			// Ã¢°í¿¡ ¾ÆÀÌÅÛÀ» ¸Ã±â½Ã°Ú½À´Ï±î?
-	   _Q_STORE_PUSH_ITEM,			// Ã¢°í¿¡¼­ ¸î°³ÀÇ ¾ÆÀÌÅÛÀ» Ã£À¸½Ã°Ú½À´Ï±î?
-	   _Q_QUEST_DISCARD,			// ¹Ì¼Ç Æ÷±â?
-	   _Q_PARTYMASTER_VOIP,			// Æí´ë°£ ÅëÈ­ »ý¼º
-	   _Q_JOIN_PARTY_VOIP,			// Æí´ë°£ ÅëÈ­ Âü¿© ?
-	   _Q_USE_HELP_SYSTEM,			// ÃÊº¸ µµ¿ì¹Ì ÀÌ¿ë?
-	   _Q_GUILDMASTER_VOIP,			// ¿©´Ü ÅëÈ­ »ý¼º
-	   _Q_JOIN_GUILD_VOIP,			// ¿©´Ü ÅëÈ­ Âü¿© ?
-	   _Q_PUT_ITEM_SPI,				// Ã¢°í¿¡ ¾ó¸¶¸¦ ¸Â±â½Ã°Ú½À´Ï±î?
-	   _Q_GET_ITEM_SPI,				// Ã¢°í¿¡¼­ ¾ó¸¶¸¦ Ã£°Ú½À´Ï±î?
-	   _Q_ADD_FRIEND,				// Ä£±¸Ãß°¡
-       _Q_DELETE_FRIEND,			// Ä£±¸¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?
-       _Q_ADD_REJECT,				// °ÅºÎÃß°¡
-       _Q_DELETE_REJECT,			// °ÅºÎ¸ñ·Ï¿¡¼­ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_ITEM_DELETE_SKILL,		// ½ºÅ³À» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_GUILD_VOIP_END,			// ¿©´ÜÅëÈ­¸¦ Á¾·á ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_PARTY_VOIP_END,			// ÆÄÆ¼ÅëÈ­¸¦ Á¾·á ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_VOIP_USING,				// ÀÌ¹Ì À½¼ºÅëÈ­¸¦ »ç¿ëÇÏ½Ã°í ÀÖ½À´Ï´Ù.	   
-	   _Q_TEX_SET,					// ¼¼±Ý ¼³Á¤ÇÏ±â
-	   _Q_DATE_WAR,					// ´ÙÀ½¹æ¾îÀü ³¯Â¥ ½Ã°£ ¼³Á¤
-	   _Q_STORE_USE,				// ¿©´Ü¿ø ¿Ü Ã¢°í»ç¿ëÀ» ±ÝÁöÇÏ½Ã°Ú½À´Ï±î?	   
-	   _Q_GREATING_SET,				// ¿©´ÜÀå ÃÊ±â ÀÎ»ç¸» ¼³Á¤
-	   _Q_GET_TEX,					// ¼¼±ÝÀ» °¡Á®¿À½Ã°Ú½À´Ï±î?
-	   _Q_CASHITEM_BUY,				// Ä³½¬¾ÆÀÌÅÛÀ» ±¸ÀÔÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_CASHITEM_SHOP_OPEN,		// Ä³½¬»óÁ¡À» »ç¿ëÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_INPUT_SERIAL_NUM,			// ½Ã¸®¾ó ³Ñ¹ö ÀÔ·Â
-	   _Q_SUPER_RESTORE,			// ½´ÆÛ ºÎÈ° Ä«µå
-	   _Q_MEMBER_SUMMON,			// ¿©´Ü¿ø ÇÑ ¸í ¼ÒÈ¯ Ä«µå
-	   _Q_USE_SUPER_RESTORE,		// ½´ÆÛ ºÎÈ° Ä«µå¸¦ »ç¿ëÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_USE_NORMAL_RESTORE,		// ÀÏ¹Ý ºÎÈ° Ä«µå¸¦ »ç¿ëÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_MP3_DIRECTORY,			// MP3 µð·ºÅä¸® ÀÔ·Â
+	   _Q_SHOP_SELL_ENERGY,			// ëª‡ê°œë¥¼ íŒŒì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_SHOP_SELL_ITEM,			// ì•„ì´í…œì„ íŒŒì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_AUCTION_INPUT_ITEM,		// ì•„ì´í…œì„ ê²½ë§¤ì— ì˜¬ë¦¬ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_AUCTION_DELETE_ITEM,		// ë“±ë¡í•œ ì•„ì´í…œì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_ITEM_DELETE,				// ì•„ì´í…œ 1ê°œë¥¼ ì§€ìš°ê² ìŠµë‹ˆê¹Œ?
+	   _Q_ITEM_DELETE_NUM,			// ì•„ì´í…œ ëª‡ê°œë¥¼ ì§€ìš°ê² ìŠµë‹ˆê¹Œ?
+	   _Q_TRADE_ITEM_NUMBER,		// ëª‡ê°œ(ì–¼ë§ˆ)ë¥¼ ì˜¬ë¦¬ê² ìŠµë‹ˆê¹Œ?
+	   _Q_TRADE_COMPLETE_OK,		// ì‚¬ìš©ì•ˆí•¨
+	   _Q_VOIP_OK,					// ~ì™€ ìŒì„±êµì‹ ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_VOIP_NAME,				// ìŒì„±êµì‹ í•  ì•„ì´ë””ë¥¼ ìž…ë ¥í•˜ì‹œìš”
+	   _Q_DEAD_RETURN,				// ì£½ì€ í›„ ë„ì‹œë¡œ ì´ë™
+	   _Q_PK_REQUEST,				// ~ì™€ 1:1 ì „íˆ¬ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_PK_LOSE_REQUEST,			// í•­ë³µí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_PK_LOSE_REQUEST_OK,		// í•­ë³µì„ ë°›ì•„ë“¤ì´ê² ìŠµë‹ˆê¹Œ?
+	   _Q_USE_ENCHANT_ITEM_CARD,	// ì¸ì±ˆíŠ¸ ì•„ì´í…œ ë”ë¸”í´ë¦­(ì¸ì±ˆíŠ¸í•  ì•„ì´í…œì„ í´ë¦­í•˜ì‹œì˜¤)
+	   _Q_REQUEST_PARTY_BATTLE,		// íŒŒí‹°ì „íˆ¬ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_SELECT_DELETE,			// ìºë¦­í„°ë¥¼ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _MESSAGE,					// ì¼ë°˜ ë©”ì‹œì§€
+	   _MESSAGE_ERROR_CREATE,		// ìºë¦­í„° ìƒì„± ì‹œì— ë‚˜íƒ€ë‚˜ëŠ” ë©”ì‹œì§€(ì¡´ìž¬í•˜ëŠ” ì´ë¦„, ìž˜ëª»ëœ ì´ë¦„, ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”)
+	   _MESSAGE_ERROR_NETWORK,		// ë„¤íŠ¸ì› ì ‘ì† ì—ëŸ¬(ê¸°ì¡´ CGUITextBoxëŒ€ì‹  ì‚¬ìš©)
+	   _Q_BATTLE_NAME,				// 1:1 ëŒ€ê²°í•  ìœ ë‹›?
+	   _Q_OUTDOOR_WARP,				// ì™¸ê³½ìœ¼ë¡œ ì›Œí”„?
+	   _Q_LAB_ITEM_NUMBER,			// ëª‡ê°œë¥¼ ì˜¬ë¦¬ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_REQUEST_GUILD_WAR,		// ì—¬ë‹¨ì „ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_STORE_PUT_COUNTABLE_ITEM,	// ì°½ê³ ì— ëª‡ê°œ ë§¡ê¸°ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_INPUT_AUCTION_PRICE,		// ê²½ë§¤ì— ì˜¬ë¦´ ê°€ê²©ì€ ì–¼ë§ˆë¡œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_STORE_PUT_ITEM,			// ì°½ê³ ì— ì•„ì´í…œì„ ë§¡ê¸°ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_STORE_PUSH_ITEM,			// ì°½ê³ ì—ì„œ ëª‡ê°œì˜ ì•„ì´í…œì„ ì°¾ìœ¼ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_QUEST_DISCARD,			// ë¯¸ì…˜ í¬ê¸°?
+	   _Q_PARTYMASTER_VOIP,			// íŽ¸ëŒ€ê°„ í†µí™” ìƒì„±
+	   _Q_JOIN_PARTY_VOIP,			// íŽ¸ëŒ€ê°„ í†µí™” ì°¸ì—¬ ?
+	   _Q_USE_HELP_SYSTEM,			// ì´ˆë³´ ë„ìš°ë¯¸ ì´ìš©?
+	   _Q_GUILDMASTER_VOIP,			// ì—¬ë‹¨ í†µí™” ìƒì„±
+	   _Q_JOIN_GUILD_VOIP,			// ì—¬ë‹¨ í†µí™” ì°¸ì—¬ ?
+	   _Q_PUT_ITEM_SPI,				// ì°½ê³ ì— ì–¼ë§ˆë¥¼ ë§žê¸°ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_GET_ITEM_SPI,				// ì°½ê³ ì—ì„œ ì–¼ë§ˆë¥¼ ì°¾ê² ìŠµë‹ˆê¹Œ?
+	   _Q_ADD_FRIEND,				// ì¹œêµ¬ì¶”ê°€
+       _Q_DELETE_FRIEND,			// ì¹œêµ¬ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+       _Q_ADD_REJECT,				// ê±°ë¶€ì¶”ê°€
+       _Q_DELETE_REJECT,			// ê±°ë¶€ëª©ë¡ì—ì„œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_ITEM_DELETE_SKILL,		// ìŠ¤í‚¬ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_GUILD_VOIP_END,			// ì—¬ë‹¨í†µí™”ë¥¼ ì¢…ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_PARTY_VOIP_END,			// íŒŒí‹°í†µí™”ë¥¼ ì¢…ë£Œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_VOIP_USING,				// ì´ë¯¸ ìŒì„±í†µí™”ë¥¼ ì‚¬ìš©í•˜ì‹œê³  ìžˆìŠµë‹ˆë‹¤.	   
+	   _Q_TEX_SET,					// ì„¸ê¸ˆ ì„¤ì •í•˜ê¸°
+	   _Q_DATE_WAR,					// ë‹¤ìŒë°©ì–´ì „ ë‚ ì§œ ì‹œê°„ ì„¤ì •
+	   _Q_STORE_USE,				// ì—¬ë‹¨ì› ì™¸ ì°½ê³ ì‚¬ìš©ì„ ê¸ˆì§€í•˜ì‹œê² ìŠµë‹ˆê¹Œ?	   
+	   _Q_GREATING_SET,				// ì—¬ë‹¨ìž¥ ì´ˆê¸° ì¸ì‚¬ë§ ì„¤ì •
+	   _Q_GET_TEX,					// ì„¸ê¸ˆì„ ê°€ì ¸ì˜¤ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_CASHITEM_BUY,				// ìºì‰¬ì•„ì´í…œì„ êµ¬ìž…í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_CASHITEM_SHOP_OPEN,		// ìºì‰¬ìƒì ì„ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_INPUT_SERIAL_NUM,			// ì‹œë¦¬ì–¼ ë„˜ë²„ ìž…ë ¥
+	   _Q_SUPER_RESTORE,			// ìŠˆí¼ ë¶€í™œ ì¹´ë“œ
+	   _Q_MEMBER_SUMMON,			// ì—¬ë‹¨ì› í•œ ëª… ì†Œí™˜ ì¹´ë“œ
+	   _Q_USE_SUPER_RESTORE,		// ìŠˆí¼ ë¶€í™œ ì¹´ë“œë¥¼ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_USE_NORMAL_RESTORE,		// ì¼ë°˜ ë¶€í™œ ì¹´ë“œë¥¼ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_MP3_DIRECTORY,			// MP3 ë””ë ‰í† ë¦¬ ìž…ë ¥
 	   _Q_MP3_PLAYLIST_DEL,
-       _Q_PART_STAT_RESET,			// ½ºÅÝ ÃÊ±âÈ­(ÆÄÆ®)
-	   _Q_QUIT_MESSAGE,				// Á¾·á ¸Þ¼¼Áö ¹Ú½º
+       _Q_PART_STAT_RESET,			// ìŠ¤í…Ÿ ì´ˆê¸°í™”(íŒŒíŠ¸)
+	   _Q_QUIT_MESSAGE,				// ì¢…ë£Œ ë©”ì„¸ì§€ ë°•ìŠ¤
 	   _Q_USEITEM_NAME_CHANGE,
-	   _Q_UNIT_STOP,				// À¯´Ö Á¤Áö ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_AGEAR_FUEL_ALLIN,			// ¿¬·á°¡ ¼Ò¸ðµÇ¾î µµ½Ã·Î ¿öÇÁµË´Ï´Ù.
-	   _Q_MISSION_START,			// ~ ¹Ì¼ÇÀ» ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_VOIP_ONE_NAME,			// ÅëÈ­ ÇÒ À¯Àú ¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä.
-	   _Q_VOIP_MENU,				// ¸Þ´º¸¦ ¼±ÅÃÇÏ¼¼¿ä.
-	   _Q_SKILL_CALLOFHERO,			// ÄÝ¿ÀºêÈ÷¾î·Î¸¦ ¾²¼Ì½À´Ï´Ù. Çã¶ôÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_FUELALLIN_DEAD_RETURN,	// °Ý³³°í·Î ÀÌµ¿ÇÕ´Ï´Ù.
-	   _Q_INFLUENCEMAP_DEAD_RETURN,	// ´Ù¸¥ ¼¼·Â¸Ê¿¡¼­ Á×¾úÀ» ¶§ ÀÚ½ÅÀÇ ¼¼·ÂÀÇ µµ½Ã¸ÊÀ¸·Î ÀÌµ¿
-	   _Q_EVENT_CALL_WARP_REQUEST,	// ÀÌº¥Æ®¸Ê 
-	   _Q_BAZAAR_OPEN_SHOP_END,		// »óÁ¡(°³ÀÎ)À» ´ÝÀ¸½Ã°Ú½À´Ï±î?
-	   _Q_BAZAAR_INVALID_SHOP_END,	// »óÁ¡ÀÌ Á¾·á µÇ¾ú½À´Ï´Ù.
-	   _Q_BAZAAR_SELL_OK,			// (¹æ¹®ÀÚ)¾ÆÀÌÅÛÀ» ±¸¸ÅÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_BAZAAR_BUY_OK,			// (¹æ¹®ÀÚ)¾ÆÀÌÅÛÀ» ÆÇ¸ÅÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_USEITEM_KILL_MARK,		// Å³¸¶Å©¸¦ EXP·Î ÀüÈ­
-	   _Q_QUEST_REQUEST_PARTY_WARP,	// Äù½ºÆ® Âü¿© È®ÀÎ ¿äÃ» ¸Þ¼¼Áö
-	   _Q_SHOP_MULTI_SELL_ITEM,		// ¾ÆÀÌÅÛµéÀ» ÆÄ½Ã°Ú½À´Ï±î?// 2007-02-12 by bhsohn Item ´ÙÁß ¼±ÅÃ Ã³¸®
-	   _Q_STORE_MULTI_PUT_ITEM,		// ¾ÆÀÌÅÛµéÀ» ¸Ã±â °Ú½À´Ï±î?// 2007-02-12 by bhsohn Item ´ÙÁß ¼±ÅÃ Ã³¸®
-	   _Q_STORE_MULTI_GET_ITEM,	    // ¼±ÅÃµÈ ¸ðµç ¾ÆÀÌÅÛÀ» °¡Á®¿À½Ã°Ú½À´Ï±î?.?// 2007-02-12 by bhsohn Item ´ÙÁß ¼±ÅÃ Ã³¸®
-       _Q_UPDATE_SUBLEADER_1,		// %s¸¦(À») ºÎÁöµµÀÚ1·Î ¼±ÃâÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_UPDATE_SUBLEADER_2,		// %s¸¦(À») ºÎÁöµµÀÚ1·Î ¼±ÃâÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_ARENA_PASSWORD,			// ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿ä.
-	   _Q_ARENA_WARP,				// ¾Æ·¹³ª·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_ARENA_RESTART,			// ½ÃÀÛÁöÁ¡À¸·Î ÀÌµ¿ÇÕ´Ï´Ù.
-	   _Q_TUTORIAL_START,			// Æ©Åä¸®¾ó ¸ðµå·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?
+	   _Q_UNIT_STOP,				// ìœ ë‹› ì •ì§€ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_AGEAR_FUEL_ALLIN,			// ì—°ë£Œê°€ ì†Œëª¨ë˜ì–´ ë„ì‹œë¡œ ì›Œí”„ë©ë‹ˆë‹¤.
+	   _Q_MISSION_START,			// ~ ë¯¸ì…˜ì„ ì‹œìž‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_VOIP_ONE_NAME,			// í†µí™” í•  ìœ ì € ì•„ì´ë””ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.
+	   _Q_VOIP_MENU,				// ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”.
+	   _Q_SKILL_CALLOFHERO,			// ì½œì˜¤ë¸Œížˆì–´ë¡œë¥¼ ì“°ì…¨ìŠµë‹ˆë‹¤. í—ˆë½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_FUELALLIN_DEAD_RETURN,	// ê²©ë‚©ê³ ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+	   _Q_INFLUENCEMAP_DEAD_RETURN,	// ë‹¤ë¥¸ ì„¸ë ¥ë§µì—ì„œ ì£½ì—ˆì„ ë•Œ ìžì‹ ì˜ ì„¸ë ¥ì˜ ë„ì‹œë§µìœ¼ë¡œ ì´ë™
+	   _Q_EVENT_CALL_WARP_REQUEST,	// ì´ë²¤íŠ¸ë§µ 
+	   _Q_BAZAAR_OPEN_SHOP_END,		// ìƒì (ê°œì¸)ì„ ë‹«ìœ¼ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_BAZAAR_INVALID_SHOP_END,	// ìƒì ì´ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.
+	   _Q_BAZAAR_SELL_OK,			// (ë°©ë¬¸ìž)ì•„ì´í…œì„ êµ¬ë§¤í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_BAZAAR_BUY_OK,			// (ë°©ë¬¸ìž)ì•„ì´í…œì„ íŒë§¤í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_USEITEM_KILL_MARK,		// í‚¬ë§ˆí¬ë¥¼ EXPë¡œ ì „í™”
+	   _Q_QUEST_REQUEST_PARTY_WARP,	// í€˜ìŠ¤íŠ¸ ì°¸ì—¬ í™•ì¸ ìš”ì²­ ë©”ì„¸ì§€
+	   _Q_SHOP_MULTI_SELL_ITEM,		// ì•„ì´í…œë“¤ì„ íŒŒì‹œê² ìŠµë‹ˆê¹Œ?// 2007-02-12 by bhsohn Item ë‹¤ì¤‘ ì„ íƒ ì²˜ë¦¬
+	   _Q_STORE_MULTI_PUT_ITEM,		// ì•„ì´í…œë“¤ì„ ë§¡ê¸° ê² ìŠµë‹ˆê¹Œ?// 2007-02-12 by bhsohn Item ë‹¤ì¤‘ ì„ íƒ ì²˜ë¦¬
+	   _Q_STORE_MULTI_GET_ITEM,	    // ì„ íƒëœ ëª¨ë“  ì•„ì´í…œì„ ê°€ì ¸ì˜¤ì‹œê² ìŠµë‹ˆê¹Œ?.?// 2007-02-12 by bhsohn Item ë‹¤ì¤‘ ì„ íƒ ì²˜ë¦¬
+       _Q_UPDATE_SUBLEADER_1,		// %së¥¼(ì„) ë¶€ì§€ë„ìž1ë¡œ ì„ ì¶œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_UPDATE_SUBLEADER_2,		// %së¥¼(ì„) ë¶€ì§€ë„ìž1ë¡œ ì„ ì¶œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_ARENA_PASSWORD,			// ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì‹­ì‹œìš”.
+	   _Q_ARENA_WARP,				// ì•„ë ˆë‚˜ë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_ARENA_RESTART,			// ì‹œìž‘ì§€ì ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+	   _Q_TUTORIAL_START,			// íŠœí† ë¦¬ì–¼ ëª¨ë“œë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 	   _Q_USEITEM_SPEAKER_MSG,		// Message
-	   _Q_INFLUENCE_WAR_EXPENCE_OK_MSG,		// È¯±Þ¹ÞÀ» ±Ý¾×À» ÀÔ·ÂÇÏ¼¼¿ä.
-	   _Q_SECOND_PASS_CANCEL_MSG,		// È¯±Þ¹ÞÀ» ±Ý¾×À» ÀÔ·ÂÇÏ¼¼¿ä.
-	   _Q_POLL_CANDIDATE_VOTE,			// %s ÈÄº¸¿¡°Ô ÅõÇ¥ÇÏ½Ã°Ú½À´Ï±î?
-	   _Q_POLL_CANDIDATE_DELETE,			// "ÈÄº¸¿¡¼­ Å»ÅðÇÏ½Ã¸é, ´ÙÀ½ ¼±°Å¿¡ Ãâ¸¶ °¡´ÉÇÕ´Ï´Ù. Å»ÅðÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_GIFT_CHARACTER_TEXT,			// "¾ÆÀÌÅÛÀ» ¼±¹°ÇÒ Ä³¸®ÅÍ ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä."
-	   _Q_GIFT_ITEM,						// "%s ¾ÆÀÌÅÛÀ» ¼±¹° ÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_GIFT_ITEM_RING_IN,				// %s´ÔÀÌ %s¾ÆÀÌÅÛ %d°³¸¦ ¼±¹° ÇÏ¿´½À´Ï´Ù. Ã¢°í¿¡¼­ È®ÀÎÇÏ¼¼¿ä.
-	   _Q_COUPON,						// "ÄíÆù °ü·Ã ¸Þ½ÃÁö.
-	   // 2008-04-04 by bhsohn Ep3 Ä¿¹Â´ÏÆ¼ Ã¢
-	   _Q_GUILD_GIVE_SUBLEADER,			// "\\y%s\\y´ÔÀ» ºÎ¿©´ÜÀåÀ¸·Î ÀÓ¸íÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_GUILD_FALL_SUBLEADER,			// "ºÎ¿©´ÜÀå Á÷À§¸¦ °ø¼®À¸·Î ºñ¿öµÎ½Ã°Ú½À´Ï±î?"
-	   _Q_GUILD_CHARGE_LEADER,			// "\\y%s\\y´Ô¿¡°Ô ¿©´ÜÀåÀ» À§ÀÓÇÏ½Ã°Ú½À´Ï±î?"	   
-	   _Q_GUILD_REQUEST,				// "\\y%s\\y¿©´Ü¿¡ °¡ÀÔ ½ÅÃ» ÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_GUILD_REQUEST_CANCEL,			// "\\y%s\\y¿©´Ü¿¡ °¡ÀÔ ½ÅÃ»À» Ãë¼ÒÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_PARTY_JOIN_PASSWORD,			// ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿ä.
-	   // end 2008-04-04 by bhsohn Ep3 Ä¿¹Â´ÏÆ¼ Ã¢	   
-	   _Q_CHATROOM_INVITE,				// "ÃÊ´ëÇÒ À¯´ÖÀ» ÀÔ·ÂÇÏ½Ã¿À."
-	   _Q_CHATROOM_INVITE_FROM,			// "%s´ÔÀÌ Ã¤ÆÃ¿¡ ÃÊ´ëÇÏ¼Ì½À´Ï´Ù."
-	   _Q_CHATROOM_OUT,					//"Ã¤ÆÃ¹æ¿¡¼­ ³ª°¡½Ã°Ú½À´Ï±î?"
-	   _Q_CHATROOM_PASSWORD,			//"ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."
-	   // 2008-09-17 by dgwoo Æí´ë ¿©´ÜÀüÅõ ¹öÆ° ±âÈ¹¾È 
-	   _Q_PARTY_BATTLE,					//"»ó´ëÆí Æí´ëÀå Ä³¸¯ÅÍ ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä"
-	   _Q_GUILD_BATTLE,					//"»ó´ëÆí ¿©´ÜÀå Ä³¸¯ÅÍ ¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä"
-	   // 2008-11-13 by bhsohn Á¶ÀÌ½ºÆ½ ÀÛ¾÷
-	   _Q_JOYSTICK_SETUP,				// Á¶ÀÌ½ºÆ½ ¿É¼Ç ÆÄÀÏ
-	   // end 2008-11-13 by bhsohn Á¶ÀÌ½ºÆ½ ÀÛ¾÷
-// 2008-12-09 by dgwoo ¹Ì¼Ç¸¶½ºÅÍ.
-	   _Q_MISSION_MASTER_CANCEL,			// ""¹Ì¼Ç ¸¶½ºÅÍ µî·ÏÀ» ÇØÁ¦ ÇÏ½Ã°Ú½À´Ï±î?"
-	   _Q_MISSION_MASTER_HELPER,			//"%s´ÔÀÇ ¹Ì¼Ç µµ¿òÀ» ¿äÃ» ÇÏ¿´½À´Ï´Ù."
-// end 2008-12-09 by dgwoo ¹Ì¼Ç¸¶½ºÅÍ.
-	// 2008-12-30 by bhsohn ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±âÈ¹¾È
+	   _Q_INFLUENCE_WAR_EXPENCE_OK_MSG,		// í™˜ê¸‰ë°›ì„ ê¸ˆì•¡ì„ ìž…ë ¥í•˜ì„¸ìš”.
+	   _Q_SECOND_PASS_CANCEL_MSG,		// í™˜ê¸‰ë°›ì„ ê¸ˆì•¡ì„ ìž…ë ¥í•˜ì„¸ìš”.
+	   _Q_POLL_CANDIDATE_VOTE,			// %s í›„ë³´ì—ê²Œ íˆ¬í‘œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+	   _Q_POLL_CANDIDATE_DELETE,			// "í›„ë³´ì—ì„œ íƒˆí‡´í•˜ì‹œë©´, ë‹¤ìŒ ì„ ê±°ì— ì¶œë§ˆ ê°€ëŠ¥í•©ë‹ˆë‹¤. íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_GIFT_CHARACTER_TEXT,			// "ì•„ì´í…œì„ ì„ ë¬¼í•  ìºë¦¬í„° ëª…ì„ ìž…ë ¥í•˜ì„¸ìš”."
+	   _Q_GIFT_ITEM,						// "%s ì•„ì´í…œì„ ì„ ë¬¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_GIFT_ITEM_RING_IN,				// %së‹˜ì´ %sì•„ì´í…œ %dê°œë¥¼ ì„ ë¬¼ í•˜ì˜€ìŠµë‹ˆë‹¤. ì°½ê³ ì—ì„œ í™•ì¸í•˜ì„¸ìš”.
+	   _Q_COUPON,						// "ì¿ í° ê´€ë ¨ ë©”ì‹œì§€.
+	   // 2008-04-04 by bhsohn Ep3 ì»¤ë®¤ë‹ˆí‹° ì°½
+	   _Q_GUILD_GIVE_SUBLEADER,			// "\\y%s\\yë‹˜ì„ ë¶€ì—¬ë‹¨ìž¥ìœ¼ë¡œ ìž„ëª…í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_GUILD_FALL_SUBLEADER,			// "ë¶€ì—¬ë‹¨ìž¥ ì§ìœ„ë¥¼ ê³µì„ìœ¼ë¡œ ë¹„ì›Œë‘ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_GUILD_CHARGE_LEADER,			// "\\y%s\\yë‹˜ì—ê²Œ ì—¬ë‹¨ìž¥ì„ ìœ„ìž„í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"	   
+	   _Q_GUILD_REQUEST,				// "\\y%s\\yì—¬ë‹¨ì— ê°€ìž… ì‹ ì²­ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_GUILD_REQUEST_CANCEL,			// "\\y%s\\yì—¬ë‹¨ì— ê°€ìž… ì‹ ì²­ì„ ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_PARTY_JOIN_PASSWORD,			// ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì‹­ì‹œìš”.
+	   // end 2008-04-04 by bhsohn Ep3 ì»¤ë®¤ë‹ˆí‹° ì°½	   
+	   _Q_CHATROOM_INVITE,				// "ì´ˆëŒ€í•  ìœ ë‹›ì„ ìž…ë ¥í•˜ì‹œì˜¤."
+	   _Q_CHATROOM_INVITE_FROM,			// "%së‹˜ì´ ì±„íŒ…ì— ì´ˆëŒ€í•˜ì…¨ìŠµë‹ˆë‹¤."
+	   _Q_CHATROOM_OUT,					//"ì±„íŒ…ë°©ì—ì„œ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_CHATROOM_PASSWORD,			//"ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”."
+	   // 2008-09-17 by dgwoo íŽ¸ëŒ€ ì—¬ë‹¨ì „íˆ¬ ë²„íŠ¼ ê¸°íšì•ˆ 
+	   _Q_PARTY_BATTLE,					//"ìƒëŒ€íŽ¸ íŽ¸ëŒ€ìž¥ ìºë¦­í„° ëª…ì„ ìž…ë ¥í•˜ì„¸ìš”"
+	   _Q_GUILD_BATTLE,					//"ìƒëŒ€íŽ¸ ì—¬ë‹¨ìž¥ ìºë¦­í„° ëª…ì„ ìž…ë ¥í•˜ì„¸ìš”"
+	   // 2008-11-13 by bhsohn ì¡°ì´ìŠ¤í‹± ìž‘ì—…
+	   _Q_JOYSTICK_SETUP,				// ì¡°ì´ìŠ¤í‹± ì˜µì…˜ íŒŒì¼
+	   // end 2008-11-13 by bhsohn ì¡°ì´ìŠ¤í‹± ìž‘ì—…
+// 2008-12-09 by dgwoo ë¯¸ì…˜ë§ˆìŠ¤í„°.
+	   _Q_MISSION_MASTER_CANCEL,			// ""ë¯¸ì…˜ ë§ˆìŠ¤í„° ë“±ë¡ì„ í•´ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+	   _Q_MISSION_MASTER_HELPER,			//"%së‹˜ì˜ ë¯¸ì…˜ ë„ì›€ì„ ìš”ì²­ í•˜ì˜€ìŠµë‹ˆë‹¤."
+// end 2008-12-09 by dgwoo ë¯¸ì…˜ë§ˆìŠ¤í„°.
+	// 2008-12-30 by bhsohn ì§€ë„ìž ì±„íŒ… ì œí•œ ì¹´ë“œ ê¸°íšì•ˆ
 		_Q_USEITEM_LEADER_BAN_CHAT,
-		// 2009-01-12 by bhsohn Ä£±¸ µî·Ï ´çÇÏ´Â À¯Àú ¸Þ½ÃÁöÃ¢ ±â´É Ãß°¡
+		// 2009-01-12 by bhsohn ì¹œêµ¬ ë“±ë¡ ë‹¹í•˜ëŠ” ìœ ì € ë©”ì‹œì§€ì°½ ê¸°ëŠ¥ ì¶”ê°€
 		_Q_FRIEND_LIST_INSERT,
 
-		// 2009. 01. 12 by ckPark ¼±Àü Æ÷°í ½Ã½ºÅÛ
-		_Q_WAR_DECLARE_GIVE_UP,				//"´ÙÀ½ÁÖ °ø°Ý ¸ð¼±ÀüÀ» Æ÷±âÇÏ½Ã°Ú½À´Ï±î?"
-		_Q_WAR_DECLARE,						//"%d³â %d¿ù %02d½Ã %02dºÐ¿¡ %s ¼¼·Â¿¡°Ô ¼±ÀüÆ÷°í¸¦ ÇÏ½Ã°Ú½À´Ï±î?"
-		// end 2009. 01. 12 by ckPark ¼±Àü Æ÷°í ½Ã½ºÅÛ
-		_Q_GUILD_CREATE_CONFIRM,				// ºñÇà´Ü »ý¼º È®ÀÎÃ¢ // 2009-02-02 by bhsohn ¿©´Ü »ý¼º½Ã È®ÀÎÃ¢ Ãß°¡
-		// 2009-02-13 by bhsohn ¿ùµå ·©Å· ½Ã½ºÅÛ
-		_Q_CREATE_NICKNAME_OKCANCEL,	// ´Ð³×ÀÓ »ý¼º È®ÀÎÃ¢
-		_Q_CREATE_NICKNAME,				// ´Ð³×ÀÓ »ý¼ºÃ¢		
-		// end 2009-02-13 by bhsohn ¿ùµå ·©Å· ½Ã½ºÅÛ
-		// 2009-04-08 by bhsohn ´ÙÁß ¼±ÅÃ½Ã, À¯´ÏÅ© ¹× ÀÎÃ¦Æ® µÈ ¾ÆÀÌÅÛ ÆÇ¸Å½Ã °æ°í ¸Þ½ÃÁö Ãâ·Â ±âÈ¹ ¹®¼­(K0000174)
-		_Q_MULTI_SEL_WARNING,		// "%s ¾ÆÀÌÅÛÀº \\yÀ¯´ÏÅ©\\y ¾ÆÀÌÅÛÀÔ´Ï´Ù. Á¤¸»·Î ¼±ÅÃ ÇÏ½Ã°Ú½À´Ï±î?"
-		// end 2009-04-08 by bhsohn ´ÙÁß ¼±ÅÃ½Ã, À¯´ÏÅ© ¹× ÀÎÃ¦Æ® µÈ ¾ÆÀÌÅÛ ÆÇ¸Å½Ã °æ°í ¸Þ½ÃÁö Ãâ·Â ±âÈ¹ ¹®¼­(K0000174)
+		// 2009. 01. 12 by ckPark ì„ ì „ í¬ê³  ì‹œìŠ¤í…œ
+		_Q_WAR_DECLARE_GIVE_UP,				//"ë‹¤ìŒì£¼ ê³µê²© ëª¨ì„ ì „ì„ í¬ê¸°í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		_Q_WAR_DECLARE,						//"%dë…„ %dì›” %02dì‹œ %02dë¶„ì— %s ì„¸ë ¥ì—ê²Œ ì„ ì „í¬ê³ ë¥¼ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		// end 2009. 01. 12 by ckPark ì„ ì „ í¬ê³  ì‹œìŠ¤í…œ
+		_Q_GUILD_CREATE_CONFIRM,				// ë¹„í–‰ë‹¨ ìƒì„± í™•ì¸ì°½ // 2009-02-02 by bhsohn ì—¬ë‹¨ ìƒì„±ì‹œ í™•ì¸ì°½ ì¶”ê°€
+		// 2009-02-13 by bhsohn ì›”ë“œ ëž­í‚¹ ì‹œìŠ¤í…œ
+		_Q_CREATE_NICKNAME_OKCANCEL,	// ë‹‰ë„¤ìž„ ìƒì„± í™•ì¸ì°½
+		_Q_CREATE_NICKNAME,				// ë‹‰ë„¤ìž„ ìƒì„±ì°½		
+		// end 2009-02-13 by bhsohn ì›”ë“œ ëž­í‚¹ ì‹œìŠ¤í…œ
+		// 2009-04-08 by bhsohn ë‹¤ì¤‘ ì„ íƒì‹œ, ìœ ë‹ˆí¬ ë° ì¸ì±ˆíŠ¸ ëœ ì•„ì´í…œ íŒë§¤ì‹œ ê²½ê³  ë©”ì‹œì§€ ì¶œë ¥ ê¸°íš ë¬¸ì„œ(K0000174)
+		_Q_MULTI_SEL_WARNING,		// "%s ì•„ì´í…œì€ \\yìœ ë‹ˆí¬\\y ì•„ì´í…œìž…ë‹ˆë‹¤. ì •ë§ë¡œ ì„ íƒ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		// end 2009-04-08 by bhsohn ë‹¤ì¤‘ ì„ íƒì‹œ, ìœ ë‹ˆí¬ ë° ì¸ì±ˆíŠ¸ ëœ ì•„ì´í…œ íŒë§¤ì‹œ ê²½ê³  ë©”ì‹œì§€ ì¶œë ¥ ê¸°íš ë¬¸ì„œ(K0000174)
 
-		// 2009. 10. 08 by ckPark ÇÊµå Ã¢°í ¾ÆÀÌÅÛ Áßº¹ ºÒ°¡ Ã³¸®
-		_Q_ALREADY_HAVE_ITEM,		// "°°Àº Á¾·ù ¾ÆÀÌÅÛÀÇ »ç¿ë±â°£ÀÌ ¸¸·á µÇÁö ¾Ê¾Æ ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. »ç¿ë±â°£ÀÌ ¸¸·áµÈ ÈÄ »ç¿ëÇØ ÁÖ¼¼¿ä."
-		// end 2009. 10. 08 by ckPark ÇÊµå Ã¢°í ¾ÆÀÌÅÛ Áßº¹ ºÒ°¡ Ã³¸®
+		// 2009. 10. 08 by ckPark í•„ë“œ ì°½ê³  ì•„ì´í…œ ì¤‘ë³µ ë¶ˆê°€ ì²˜ë¦¬
+		_Q_ALREADY_HAVE_ITEM,		// "ê°™ì€ ì¢…ë¥˜ ì•„ì´í…œì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œ ë˜ì§€ ì•Šì•„ ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œëœ í›„ ì‚¬ìš©í•´ ì£¼ì„¸ìš”."
+		// end 2009. 10. 08 by ckPark í•„ë“œ ì°½ê³  ì•„ì´í…œ ì¤‘ë³µ ë¶ˆê°€ ì²˜ë¦¬
 
-		// 2009. 11. 02 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ÀÎ½ºÅÏ½º ´øÁ¯ ½Ã½ºÅÛ
-		_Q_INFINITY_GIVE_UP,		// "ÀÎÇÇ´ÏÆ¼ ÇÊµåÀÇ ÁøÇàÀ» ÁßÁö ÇÏ°í µµ½Ã·Î ±ÍÈ¯ ÇÏ½Ã°Ú½À´Ï±î?"
-		_Q_REVIVE_WAIT_5SECOND,		// "\\r%dÃÊ\\r ÈÄ¿¡ ºÎÈ°ÀÌ °¡´ÉÇÕ´Ï´Ù."
-		_Q_BUY_INFINITYSHOP_ITEM,	// "¾ÆÀÌÅÛÀ» ±¸¸Å ÇÏ½Ã°Ú½À´Ï±î?"
-		_Q_INFINITY_RETURN_TO_CITY,	// "ÀÎÇÇ´ÏÆ¼ ÇÊµå¸¦ Á¾·áÇÏ°í µµ½Ã·Î ±ÍÈ¯ ÇÏ½Ã°Ú½À´Ï±î?"
-		_Q_RETURN_TO_PROGRESS_INFINITY,// ºñÁ¤»ó Á¾·á°¡ µÇ¾ú½À´Ï´Ù. ÁøÇàÁßÀÎ ÀÎÇÇ´ÏÆ¼ ÇÊµå·Î ÀÌµ¿ ÇÏ½Ã°Ú½À´Ï±î?
-		// end 2009. 11. 02 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ÀÎ½ºÅÏ½º ´øÁ¯ ½Ã½ºÅÛ
-		// 2010. 06. 07 by jskim ÆÄÆ®³Ê ½Ã½ºÅÛ ±¸Çö - ÆÄÆ®³Ê Á¤º¸Ã¢
+		// 2009. 11. 02 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ì¸ìŠ¤í„´ìŠ¤ ë˜ì ¼ ì‹œìŠ¤í…œ
+		_Q_INFINITY_GIVE_UP,		// "ì¸í”¼ë‹ˆí‹° í•„ë“œì˜ ì§„í–‰ì„ ì¤‘ì§€ í•˜ê³  ë„ì‹œë¡œ ê·€í™˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		_Q_REVIVE_WAIT_5SECOND,		// "\\r%dì´ˆ\\r í›„ì— ë¶€í™œì´ ê°€ëŠ¥í•©ë‹ˆë‹¤."
+		_Q_BUY_INFINITYSHOP_ITEM,	// "ì•„ì´í…œì„ êµ¬ë§¤ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		_Q_INFINITY_RETURN_TO_CITY,	// "ì¸í”¼ë‹ˆí‹° í•„ë“œë¥¼ ì¢…ë£Œí•˜ê³  ë„ì‹œë¡œ ê·€í™˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
+		_Q_RETURN_TO_PROGRESS_INFINITY,// ë¹„ì •ìƒ ì¢…ë£Œê°€ ë˜ì—ˆìŠµë‹ˆë‹¤. ì§„í–‰ì¤‘ì¸ ì¸í”¼ë‹ˆí‹° í•„ë“œë¡œ ì´ë™ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+		// end 2009. 11. 02 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ì¸ìŠ¤í„´ìŠ¤ ë˜ì ¼ ì‹œìŠ¤í…œ
+		// 2010. 06. 07 by jskim íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ êµ¬í˜„ - íŒŒíŠ¸ë„ˆ ì •ë³´ì°½
 		_Q_PARTNER_NEW_NAME_CHANGE,
 		_Q_PARTNER_NAME_OKCANCLE,
-		//end 2010. 06. 07 by jskim ÆÄÆ®³Ê ½Ã½ºÅÛ ±¸Çö - ÆÄÆ®³Ê Á¤º¸Ã¢
-		// 2010. 06. 18 by jskim ÀÎÃ¦Æ® °æ°í ¸Þ½ÃÁö Ãß°¡
+		//end 2010. 06. 07 by jskim íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ êµ¬í˜„ - íŒŒíŠ¸ë„ˆ ì •ë³´ì°½
+		// 2010. 06. 18 by jskim ì¸ì±ˆíŠ¸ ê²½ê³  ë©”ì‹œì§€ ì¶”ê°€
 		_Q_ENCHANT_PREVENTION,
-		//end 2010. 06. 18 by jskim ÀÎÃ¦Æ® °æ°í ¸Þ½ÃÁö Ãß°¡
-		_Q_DIS_BOOM,			 // 2010-08-31 by shcho&&jskim, ¿ëÇØ ½Ã½ºÅÛ ±¸Çö
+		//end 2010. 06. 18 by jskim ì¸ì±ˆíŠ¸ ê²½ê³  ë©”ì‹œì§€ ì¶”ê°€
+		_Q_DIS_BOOM,			 // 2010-08-31 by shcho&&jskim, ìš©í•´ ì‹œìŠ¤í…œ êµ¬í˜„
 
-		_Q_SETTING_SOCKET_OKCANCLE,		  //2011-10-06 by jhahn ÆÄÆ®³Ê ¼ºÀåÇü ½Ã½ºÅÛ
+		_Q_SETTING_SOCKET_OKCANCLE,		  //2011-10-06 by jhahn íŒŒíŠ¸ë„ˆ ì„±ìž¥í˜• ì‹œìŠ¤í…œ
 
-		_Q_INVEN_ITEM_SORT,		// 2012-08-13 by mspark, ÀÎº¥Åä¸® ÀÚµ¿ Á¤·Ä È®ÀÎÃ¢ Ãß°¡ ÀÛ¾÷
+		_Q_INVEN_ITEM_SORT,		// 2012-08-13 by mspark, ì¸ë²¤í† ë¦¬ ìžë™ ì •ë ¬ í™•ì¸ì°½ ì¶”ê°€ ìž‘ì—…
 
-		_Q_APPEARANCE_CHANGE_PREVENTION,		// 2012-10-30 by mspark, ¿ÜÇü º¯°æ °æ°í ¸Þ½ÃÁö Ãß°¡
+		_Q_APPEARANCE_CHANGE_PREVENTION,		// 2012-10-30 by mspark, ì™¸í˜• ë³€ê²½ ê²½ê³  ë©”ì‹œì§€ ì¶”ê°€
 
-		_Q_INCHANT_ITEM_DELETE,				// 2013-04-23 by ssjung Áß¿ä ¾ÆÀÌÅÛ »èÁ¦½Ã 2Â÷ °æ°í(Áú¹®) ÆË¾÷Ã¢ ±¸Çö
+		_Q_INCHANT_ITEM_DELETE,				// 2013-04-23 by ssjung ì¤‘ìš” ì•„ì´í…œ ì‚­ì œì‹œ 2ì°¨ ê²½ê³ (ì§ˆë¬¸) íŒì—…ì°½ êµ¬í˜„
 
 		_Q_AUTO_KICK,
 
 		_Q_USEITEM_NATION_CHANGE,			// 2015-12-17 Future, Nation Change Card
 		
 };
-// ÀÎÅÍÆäÀÌ½º MsgProc ¸®ÅÏ°ª
-#define INF_MSGPROC_CLOSE	0	// ÀÌ °ªÀ» ¸®ÅÏÇÑ ³ðÀ» Áö¿î´Ù.
-#define INF_MSGPROC_NORMAL	1	// Á¤»óÀûÀ¸·Î Ã³¸®¸¦ °è¼ÓÇÑ´Ù.
-#define INF_MSGPROC_BREAK	2	// ¸Þ½ÃÁö¸¦ »©³½´Ù.Áï, ¾Æ·¡ Msg Proc¿¡¼­´Â ÇöÀç msg¸¦ ¼öÇàÇÏÁö ¾Ê´Â´Ù.
+// ì¸í„°íŽ˜ì´ìŠ¤ MsgProc ë¦¬í„´ê°’
+#define INF_MSGPROC_CLOSE	0	// ì´ ê°’ì„ ë¦¬í„´í•œ ë†ˆì„ ì§€ìš´ë‹¤.
+#define INF_MSGPROC_NORMAL	1	// ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë¥¼ ê³„ì†í•œë‹¤.
+#define INF_MSGPROC_BREAK	2	// ë©”ì‹œì§€ë¥¼ ë¹¼ë‚¸ë‹¤.ì¦‰, ì•„ëž˜ Msg Procì—ì„œëŠ” í˜„ìž¬ msgë¥¼ ìˆ˜í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 #define TIME_HOUR		4
 #define TIME_MINUTE		60
@@ -621,7 +621,7 @@ enum { _Q_PARTY_CREATE,				// Æí´ë »ý¼º
 #define TIME_DAY_CHANGE	300.0f
 
 
-#define MAX_BEGIN_QUEST_COUNT	70	// ÃÊº¸ ¸ðµå(Æ©Åä¸®¾ó) Äù½ºÆ® ¼ö
+#define MAX_BEGIN_QUEST_COUNT	70	// ì´ˆë³´ ëª¨ë“œ(íŠœí† ë¦¬ì–¼) í€˜ìŠ¤íŠ¸ ìˆ˜
 
 
 typedef struct _VERTEXINFO
@@ -632,21 +632,21 @@ typedef struct _VERTEXINFO
 
 typedef struct _TILEINFOCLIENT // tile type
 {
-	INT			useTexNumber;		// »ç¿ëÅØ½ºÃÄÀÇ ÀÎµ¦½º
-	// 2005-04-06 by jschoi ¹°Å¸ÀÔ Ãß°¡
-	DWORD		dwWaterType;		// useWater´ë½Å ¹°Å¸ÀÔÀ¸·Î º¯°æ
-//	BOOL		useWater;			// Water »ç¿ë
-	INT			waterHeight;		// Water ³ôÀÌ
+	INT			useTexNumber;		// ì‚¬ìš©í…ìŠ¤ì³ì˜ ì¸ë±ìŠ¤
+	// 2005-04-06 by jschoi ë¬¼íƒ€ìž… ì¶”ê°€
+	DWORD		dwWaterType;		// useWaterëŒ€ì‹  ë¬¼íƒ€ìž…ìœ¼ë¡œ ë³€ê²½
+//	BOOL		useWater;			// Water ì‚¬ìš©
+	INT			waterHeight;		// Water ë†’ì´
 	SHORT		waterTexNumber;		// Water Texture
 	BYTE		bMove;				// Move Type
-	BOOL		bEnableLand;		// Âø·ú°¡´É
-	BYTE		bEventType;			// ÀÌº¥Æ® Å¸ÀÔ 1:(¿öÇÁ ÀÔ±¸) 2:(¿öÇÁ Ãâ±¸) 3:»óÁ¡
+	BOOL		bEnableLand;		// ì°©ë¥™ê°€ëŠ¥
+	BYTE		bEventType;			// ì´ë²¤íŠ¸ íƒ€ìž… 1:(ì›Œí”„ ìž…êµ¬) 2:(ì›Œí”„ ì¶œêµ¬) 3:ìƒì 
 } TILEINFOCLIENT;
 
 
 typedef struct _OBJECTINFOCLIENT
 {
-	DWORD		dwObjType;			// Object Å¸ÀÔ
+	DWORD		dwObjType;			// Object íƒ€ìž…
 	INT			nObjCount;
 	D3DXVECTOR3 vPos;
 	D3DXVECTOR3 vVel;
@@ -663,12 +663,12 @@ typedef struct _OBJECTINFOCLIENT
 	char		strEventParam[40];
 } OBJECTINFOCLIENT;
 
-// 2012-05-02 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Á¤º¸
+// 2012-05-02 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì •ë³´
 typedef struct _OBJECTSCALEINFO
 {
 	D3DXVECTOR3 vObjScale;	
 } OBJECTSCALEINFO;
-// end 2012-05-02 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Á¤º¸
+// end 2012-05-02 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì •ë³´
 
 typedef struct _MAP_DATA
 {
@@ -721,28 +721,28 @@ struct GROUNDVERTEX
     D3DXVECTOR3 n;
     FLOAT       tu, tv;
 
-	// 2008. 12. 11 by ckPark ¹°·»´õ¸µ
-	// ¹üÇÁ ¸Ê ÅØ½ºÃÄ ÁÂÇ¥·Î »ç¿ë
-	// FLOAT       tu2, tv2;				// »èÁ¦ÇÏ°í WATERBUMPVERTEX »õ·Î ¸¸µë
-	// end 2008. 12. 11 by ckPark ¹°·»´õ¸µ
+	// 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
+	// ë²”í”„ ë§µ í…ìŠ¤ì³ ì¢Œí‘œë¡œ ì‚¬ìš©
+	// FLOAT       tu2, tv2;				// ì‚­ì œí•˜ê³  WATERBUMPVERTEX ìƒˆë¡œ ë§Œë“¬
+	// end 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
 };
 
 
-// 2008. 12. 11 by ckPark ¹°·»´õ¸µ
+// 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
 struct WATERBUMPVERTEX
 {
 	D3DXVECTOR3 p;
     D3DXVECTOR3 n;
     FLOAT       tu, tv;
-	FLOAT       tu2, tv2;		// ¹üÆÛ ¸Ê ÅØ½ºÃÄ ÁÂÇ¥·Î »ç¿ë
+	FLOAT       tu2, tv2;		// ë²”í¼ ë§µ í…ìŠ¤ì³ ì¢Œí‘œë¡œ ì‚¬ìš©
 };
-// end 2008. 12. 11 by ckPark ¹°·»´õ¸µ
+// end 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
 
 
 typedef struct _WATERINFO
 {
-	BOOL		useWater;			// Water »ç¿ë
-	INT			waterHeight;		// Water ³ôÀÌ
+	BOOL		useWater;			// Water ì‚¬ìš©
+	INT			waterHeight;		// Water ë†’ì´
 	SHORT		waterTexNumber;		// Water Texture
 } WATERINFO;
 
@@ -793,13 +793,13 @@ typedef struct _PARTYINFO
 	PARTY_TYPE	bPartyType;
 	BYTE		bFormationFlyingType;
 	BYTE		bFormationFlyingPositionType;
-	UINT		nMasterUniqueNumber;	// ÆÄÆ¼(Àå)ÀÇ ¹øÈ£, added!
+	UINT		nMasterUniqueNumber;	// íŒŒí‹°(ìž¥)ì˜ ë²ˆí˜¸, added!
 }PARTYINFO;
 
 struct ENEMYINFO
 {
 	MEX_OTHER_CHARACTER_INFO CharacterInfo;
-	CHARACTER_RENDER_INFO	 CharacterRenderInfo;			// ÀåÂø¾ÆÀÌÅÛÀÇ Á¤º¸
+	CHARACTER_RENDER_INFO	 CharacterRenderInfo;			// ìž¥ì°©ì•„ì´í…œì˜ ì •ë³´
 	MAP_CHANNEL_INDEX		 MapChannelIndex;
 	SHORT			HP;
 	float			CurrentHP;
@@ -815,31 +815,31 @@ struct ENEMYINFO
 struct GUIUnitRenderInfo
 {
 	D3DXMATRIX	matrix;
-	UINT		rendertype;	// À¯´ÖÄ«ÀÎµå --> ¾Æ¸Ó Æ÷ÇÔ
+	UINT		rendertype;	// ìœ ë‹›ì¹´ì¸ë“œ --> ì•„ë¨¸ í¬í•¨
 };
 
 struct MONSTERINFO
 {
 	char		strRegionName[40];
-	UINT		nMonType;				//	¸ó½ºÅÍ Å¸ÀÔ(ÀÎµ¦½º)
-	short		sStartx;				//	¿µ¿ªÀÇ ½ÃÀÛÁÂÇ¥ X
-	short		sStartz;				//	¿µ¿ªÀÇ ½ÃÀÛÁÂÇ¥ Y
-	short		sEndx;					//	¿µ¿ªÀÇ ³¡ÁÂÇ¥ X
-	short		sEndz;					//	¿µ¿ªÀÇ ³¡ÁÂÇ¥ Y
+	UINT		nMonType;				//	ëª¬ìŠ¤í„° íƒ€ìž…(ì¸ë±ìŠ¤)
+	short		sStartx;				//	ì˜ì—­ì˜ ì‹œìž‘ì¢Œí‘œ X
+	short		sStartz;				//	ì˜ì—­ì˜ ì‹œìž‘ì¢Œí‘œ Y
+	short		sEndx;					//	ì˜ì—­ì˜ ëì¢Œí‘œ X
+	short		sEndz;					//	ì˜ì—­ì˜ ëì¢Œí‘œ Y
 	short		sMaxMon;				//	
 	short		sResNum;				//
 	short		sResTime;				//
-	BYTE		bMonType;				// 0:º¸½º 1:´ëÇü 2:ÁßÇü 3:¼ÒÇü
+	BYTE		bMonType;				// 0:ë³´ìŠ¤ 1:ëŒ€í˜• 2:ì¤‘í˜• 3:ì†Œí˜•
 };
 
 struct INVEN_DISPLAY_INFO
 {
 	char IconName[20];
 	char Name[50];
-	ITEM_BASE* pItem;//ITEM_BASE·Î ÇÑ ÀÌÀ¯´Â ITEM_GENERAL°ú ITEM_SKILLÀ» Æ÷ÇÔÇÏ±â À§ÇØ¼­..
+	ITEM_BASE* pItem;//ITEM_BASEë¡œ í•œ ì´ìœ ëŠ” ITEM_GENERALê³¼ ITEM_SKILLì„ í¬í•¨í•˜ê¸° ìœ„í•´ì„œ..
 };
 
-// »óÁ¡¿¡¼­ ·¹º§·Î ¾ÆÀÌÅÛ ¼ÒÆÃ½Ã¿¡ »ç¿ë
+// ìƒì ì—ì„œ ë ˆë²¨ë¡œ ì•„ì´í…œ ì†ŒíŒ…ì‹œì— ì‚¬ìš©
 struct CompareLevel
 {
 	template<typename T>
@@ -877,32 +877,32 @@ struct STAGE_EFFECT_DATA
 #define D3DFVF_NOSPRITE (D3DFVF_XYZ|D3DFVF_DIFFUSE)
 
 
-// 2008. 12. 11 by ckPark ¹°·»´õ¸µ
+// 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
 //#define D3DFVF_GROUNDVERTEX (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX2)
 #define D3DFVF_GROUNDVERTEX (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX1)
 
 #define D3DFVF_WATERBUMPVERTEX		(D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX2)
-// end 2008. 12. 11 by ckPark ¹°·»´õ¸µ
+// end 2008. 12. 11 by ckPark ë¬¼ë Œë”ë§
 
 
 
 
-#define MOUSE_TYPE_0	0	// ¸¶¿ì½º ÀÏ¹Ý
-#define MOUSE_TYPE_1	1	// ¹æÇâ Áö½Ã
-#define MOUSE_TYPE_2	2	// ¸¶¿ì½º »¡°£»ö
-#define MOUSE_TYPE_3	3	// ¸¶¿ì½º ÆÄ¶õ»ö
-#define MOUSE_TYPE_4	4	// ¸¶¿ì½º »¡°£»ö È¸Àü
-#define MOUSE_TYPE_5	5	// ¸¶¿ì½º ÆÄ¶õ»ö È¸Àü
+#define MOUSE_TYPE_0	0	// ë§ˆìš°ìŠ¤ ì¼ë°˜
+#define MOUSE_TYPE_1	1	// ë°©í–¥ ì§€ì‹œ
+#define MOUSE_TYPE_2	2	// ë§ˆìš°ìŠ¤ ë¹¨ê°„ìƒ‰
+#define MOUSE_TYPE_3	3	// ë§ˆìš°ìŠ¤ íŒŒëž€ìƒ‰
+#define MOUSE_TYPE_4	4	// ë§ˆìš°ìŠ¤ ë¹¨ê°„ìƒ‰ íšŒì „
+#define MOUSE_TYPE_5	5	// ë§ˆìš°ìŠ¤ íŒŒëž€ìƒ‰ íšŒì „
 
-#define MOUSE_TYPE_6	6	// ¿ÞÂÊ À§ ¿À¸¥ÂÊ ¾Æ·¡ È­»ìÇ¥
-#define MOUSE_TYPE_7	7	// ¿ÞÂÊ ¾Æ·¡ ¿À¸¥ÂÊ À§ È­»ìÇ¥
-#define MOUSE_TYPE_8	8	// ¿ÞÂÊ ¿À¸¥ÂÊ È­»ìÇ¥
-#define MOUSE_TYPE_9	9	// À§ ¾Æ·¡ È­»ìÇ¥
-#define MOUSE_TYPE_10	10	// ½ÊÀÚ È­»ìÇ¥
+#define MOUSE_TYPE_6	6	// ì™¼ìª½ ìœ„ ì˜¤ë¥¸ìª½ ì•„ëž˜ í™”ì‚´í‘œ
+#define MOUSE_TYPE_7	7	// ì™¼ìª½ ì•„ëž˜ ì˜¤ë¥¸ìª½ ìœ„ í™”ì‚´í‘œ
+#define MOUSE_TYPE_8	8	// ì™¼ìª½ ì˜¤ë¥¸ìª½ í™”ì‚´í‘œ
+#define MOUSE_TYPE_9	9	// ìœ„ ì•„ëž˜ í™”ì‚´í‘œ
+#define MOUSE_TYPE_10	10	// ì‹­ìž í™”ì‚´í‘œ
 
-#define MOUSE_TYPE_11	11	// ½ºÅ³ Å¸°Ù ¸¶¿ì½º
+#define MOUSE_TYPE_11	11	// ìŠ¤í‚¬ íƒ€ê²Ÿ ë§ˆìš°ìŠ¤
 
-// Å°º¸µå ¸Þ½ÃÁö LPARAM °ª
+// í‚¤ë³´ë“œ ë©”ì‹œì§€ LPARAM ê°’
 #define WM_KEYDOWN_LPARAM_Q				0x00100001
 #define WM_KEYDOWN_LPARAM_R				0x00130001
 #define WM_KEYUP_LPARAM_R				0xc0130001
@@ -930,40 +930,40 @@ struct STAGE_EFFECT_DATA
 #define WM_KEYUP_LPARAM_D				0xc0200001
 #define WM_KEYDOWN_LPARAM_L				0x00260001
 #define WM_KEYDOWN_LPARAM_K				0x00250001
-#define WM_KEYDOWN_LPARAM_FLOW			0x00290001	// `Å° // 2008-10-23 by bhsohn ÀÚ±â ÀÚ½ÅÇÑÅ× Èú ´ÜÃàÅ° Ãß°¡
+#define WM_KEYDOWN_LPARAM_FLOW			0x00290001	// `í‚¤ // 2008-10-23 by bhsohn ìžê¸° ìžì‹ í•œí…Œ íž ë‹¨ì¶•í‚¤ ì¶”ê°€
 
 
 #define DEFAULT_OBJECT_MONSTER_OBJECT	90000000
 #define IS_OBJECT_MONSTER_OBJECT_CODE(x)		(( (int)((x)/DEFAULT_OBJECT_MONSTER_OBJECT) == 1 ) ? TRUE:FALSE)
 
 #define WARP_GATE_OBJECT_NUM			3003500
-#define WARP_GATE_OBJECT_NUM_2			3151300					// 2008-06-24 by dgwoo ¿öÇÁ °ÔÀÌÆ® Ãß°¡.
-#define WARP_GATE_OBJECT_NUM_3			3204600					// 2012-06-13 by jhahn ¿öÇÁ °ÔÀÌÆ® Ãß°¡2.
-// 2007-07-10 by dgwoo ¾Æ·¡¿Í °°ÀÌ Æ©Åä¸®¾ó °ÔÀÌÆ® º¯°æ.
+#define WARP_GATE_OBJECT_NUM_2			3151300					// 2008-06-24 by dgwoo ì›Œí”„ ê²Œì´íŠ¸ ì¶”ê°€.
+#define WARP_GATE_OBJECT_NUM_3			3204600					// 2012-06-13 by jhahn ì›Œí”„ ê²Œì´íŠ¸ ì¶”ê°€2.
+// 2007-07-10 by dgwoo ì•„ëž˜ì™€ ê°™ì´ íŠœí† ë¦¬ì–¼ ê²Œì´íŠ¸ ë³€ê²½.
 #define TUTORIAL_GATE					3107400
 #define TUTORIAL_LAND_GATE				3107500
 //#define TUTORIAL_GATE					3024500
 #define ARENA_MAP_01_DOOR_OBJECT				3099100
-#define ARENA_MAP_02_DOOR_OBJECT				3207800		// 2012-05-29 by mspark, ¾Æ·¹³ª 2¹ø ¸Ê(¶ó±×³ª·ÎÅ©) ¹®
+#define ARENA_MAP_02_DOOR_OBJECT				3207800		// 2012-05-29 by mspark, ì•„ë ˆë‚˜ 2ë²ˆ ë§µ(ë¼ê·¸ë‚˜ë¡œí¬) ë¬¸
 
 
-#define ZERO_MEMORY(x)					memset( x, 0x00, sizeof(x));	// º¯¼ö ÃÊ±âÈ­ °ü·Ã
+#define ZERO_MEMORY(x)					memset( x, 0x00, sizeof(x));	// ë³€ìˆ˜ ì´ˆê¸°í™” ê´€ë ¨
 
 #define SKILL_OBJECT_ALPHA_NONE				255
 #define SKILL_OBJECT_ALPHA_DEFAULT			135
 #define SKILL_OBJECT_ALPHA_OTHER_INFLUENCE	0
 
-// 2007-04-19 by bhsohn ¼­Ä¡¾ÆÀÌ ¾ÆÀÌÅÛ Ãß°¡
-// ½ºÄµ °ü·Ã Æ¯¼ºµé
+// 2007-04-19 by bhsohn ì„œì¹˜ì•„ì´ ì•„ì´í…œ ì¶”ê°€
+// ìŠ¤ìº” ê´€ë ¨ íŠ¹ì„±ë“¤
 #define SCAN_SKILL						0
 #define SCAN_ITEM						1
-// 2012-11-29 by mspark, ¼­Ä¡¾ÆÀÌ À§Ä¡°¡ ÀÌµ¿ÇÏ´Â Ä³¸¯ÅÍÀÇ À§Ä¡¿Í µ¿ÀÏÇÏµµ·Ï ¼öÁ¤
+// 2012-11-29 by mspark, ì„œì¹˜ì•„ì´ ìœ„ì¹˜ê°€ ì´ë™í•˜ëŠ” ìºë¦­í„°ì˜ ìœ„ì¹˜ì™€ ë™ì¼í•˜ë„ë¡ ìˆ˜ì •
 #define SCAN_ITEM2						2
 //#define MAX_SCAN						2
 #define MAX_SCAN						3
-// end 2012-11-29 by mspark, ¼­Ä¡¾ÆÀÌ À§Ä¡°¡ ÀÌµ¿ÇÏ´Â Ä³¸¯ÅÍÀÇ À§Ä¡¿Í µ¿ÀÏÇÏµµ·Ï ¼öÁ¤
+// end 2012-11-29 by mspark, ì„œì¹˜ì•„ì´ ìœ„ì¹˜ê°€ ì´ë™í•˜ëŠ” ìºë¦­í„°ì˜ ìœ„ì¹˜ì™€ ë™ì¼í•˜ë„ë¡ ìˆ˜ì •
 
-// 2007-09-06 by dgwoo ÀüÁø±âÁö »óÅÂ
+// 2007-09-06 by dgwoo ì „ì§„ê¸°ì§€ ìƒíƒœ
 #define OUTPOST_STATE_BEFORE				1	
 #define OUTPOST_STATE_WAR_START				2
 #define OUTPOST_STATE_WAR_END				3
@@ -972,104 +972,104 @@ struct STAGE_EFFECT_DATA
 #define OUTPOST_STATE_RESET_DESTROY			6
 #define OUTPOST_STATE_RESET_SUCCESS			7
 
-// ¸ð¼±Àü ÁøÇü
-#define	MOTHERSHIP_MAX_INFLUENCE					2	// ÃÖ´ë Áø¿µ¼ö 
-#define	MOTHERSHIP_INFLUENCE_VCN					0	// ¹ÙÀÌÁ¦´ÏÀ¯
-#define	MOTHERSHIP_INFLUENCE_ANI					1	// ¾Ë¸µÅÏ
+// ëª¨ì„ ì „ ì§„í˜•
+#define	MOTHERSHIP_MAX_INFLUENCE					2	// ìµœëŒ€ ì§„ì˜ìˆ˜ 
+#define	MOTHERSHIP_INFLUENCE_VCN					0	// ë°”ì´ì œë‹ˆìœ 
+#define	MOTHERSHIP_INFLUENCE_ANI					1	// ì•Œë§í„´
 
-// 2007-11-22 by bhsohn ¾Æ·¹³ª ÅëÇÕ¼­¹ö
-// ¾Æ·¹³ª ÇöÀç ÁøÇà»óÈ²
-#define	ARENA_STATE_NONE					0	// ÀÏ¹Ý °ÔÀÓ »óÅÂ
-#define	ARENA_STATE_CONNECTING_FS			1	// ¾Æ·¹³ª ÇÊµå ¼­¹ö ¿¬°áÁß
-#define	ARENA_STATE_ARENA_WAIT				2	// ¾Æ·¹³ª ÅÂ±â»óÅÂ
-#define	ARENA_STATE_ARENA_MAIN_TO_ARENA		3	// ¾Æ·¹³ª Çã¿ëÇÏ°í ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â »óÅÂ
-#define	ARENA_STATE_ARENA_LOAD_GAME_INFO	4	// ¾Æ·¹³ª ¸Ê¿¡ ÀÌµ¿ÇØ¼­ °ü·Ã Á¤º¸µé ·Îµå 
-#define	ARENA_STATE_ARENA_GAMING			5	// ¾Æ·¹³ª °ÔÀÓÁß 
-#define	ARENA_STATE_ARENA_ARENA_TO_MAIN		6	// ¾Æ·¹³ª ³¡³ª°í ¸ÞÀÎ¼­¹ö·Î ÀÌµ¿
+// 2007-11-22 by bhsohn ì•„ë ˆë‚˜ í†µí•©ì„œë²„
+// ì•„ë ˆë‚˜ í˜„ìž¬ ì§„í–‰ìƒí™©
+#define	ARENA_STATE_NONE					0	// ì¼ë°˜ ê²Œìž„ ìƒíƒœ
+#define	ARENA_STATE_CONNECTING_FS			1	// ì•„ë ˆë‚˜ í•„ë“œ ì„œë²„ ì—°ê²°ì¤‘
+#define	ARENA_STATE_ARENA_WAIT				2	// ì•„ë ˆë‚˜ íƒœê¸°ìƒíƒœ
+#define	ARENA_STATE_ARENA_MAIN_TO_ARENA		3	// ì•„ë ˆë‚˜ í—ˆìš©í•˜ê³  ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì„ ê¸°ë‹¤ë¦¬ëŠ” ìƒíƒœ
+#define	ARENA_STATE_ARENA_LOAD_GAME_INFO	4	// ì•„ë ˆë‚˜ ë§µì— ì´ë™í•´ì„œ ê´€ë ¨ ì •ë³´ë“¤ ë¡œë“œ 
+#define	ARENA_STATE_ARENA_GAMING			5	// ì•„ë ˆë‚˜ ê²Œìž„ì¤‘ 
+#define	ARENA_STATE_ARENA_ARENA_TO_MAIN		6	// ì•„ë ˆë‚˜ ëë‚˜ê³  ë©”ì¸ì„œë²„ë¡œ ì´ë™
 
-// 2008-02-15 by bhsohn ³×Æ®¿öÅ© ¼Óµµ Ã¼Å©
+// 2008-02-15 by bhsohn ë„¤íŠ¸ì›Œí¬ ì†ë„ ì²´í¬
 typedef struct
 {
-	int nMaxRepeatCnt;			// ÃÖ´ë ¹Ýº¹¼ö
-	int nCurruntRepeatCnt;		// ÇöÀç ¹Ýº¹¼ö
-	DWORD dwLastCheckTime;		// ¸¶Áö¸· Ã¼Å© Å¸ÀÓ
-	DWORD dwSumCheckTime;		// ½Ã°£ °£°Ý Ãß°¡
+	int nMaxRepeatCnt;			// ìµœëŒ€ ë°˜ë³µìˆ˜
+	int nCurruntRepeatCnt;		// í˜„ìž¬ ë°˜ë³µìˆ˜
+	DWORD dwLastCheckTime;		// ë§ˆì§€ë§‰ ì²´í¬ íƒ€ìž„
+	DWORD dwSumCheckTime;		// ì‹œê°„ ê°„ê²© ì¶”ê°€
 } structNetCheckInfo;
 
-// 2008-02-25 by bhsohn ¾Æ·¹³ª À¯Àú Á¤º¸ ¼­¹öµµ Ç¥½ÃÇÏ°Ô º¯°æ
+// 2008-02-25 by bhsohn ì•„ë ˆë‚˜ ìœ ì € ì •ë³´ ì„œë²„ë„ í‘œì‹œí•˜ê²Œ ë³€ê²½
 #define SIZE_MAX_ARENA_FULL_NAME	(SIZE_MAX_CHARACTER_NAME+SIZE_MAX_SERVER_NAME+1)
 
-// 2008-05-19 by dgwoo Ã¤ÆÃ ¸Þ´º ¸®½ºÆ® ÀÎµ¦½º.
-#define CHAT_TAB_SPEAKER						0							// ½ºÇÇÄ¿.	
-#define CHAT_TAB_ALLUSER						1							// ¸ðµç À¯Àú¿¡°Ô Ã¤ÆÃ.
-#define CHAT_TAB_NORMAL							2							// ÀÏ¹Ý Ã¤ÆÃ
-#define CHAT_TAB_WAR							3							// ÀüÀï Ã¤ÆÃ
-#define CHAT_TAB_TRADE							4							// °Å·¡ Ã¤ÆÃ
-#define CHAT_TAB_MAP							5							// ¸Ê Ã¤ÆÃ
-#define CHAT_TAB_GUILD							6							// ¿©´Ü Ã¤ÆÃ
-#define CHAT_TAB_PARTY							7							// Æí´ë Ã¤ÆÃ
-#define CHAT_TAB_ARENA							8							// ¾Æ·¹³ª Ã¤ÆÃ  
-#define CHAT_TAB_CHATROOM						9							// Ã¤ÆÃ¹æ
-#define CHAT_TAB_SYSTEM							10							// ½Ã½ºÅÛ ¸Þ½ÃÁö
-#define CHAT_TAB_HELPDESK						11							// µµ¿ò¸»
+// 2008-05-19 by dgwoo ì±„íŒ… ë©”ë‰´ ë¦¬ìŠ¤íŠ¸ ì¸ë±ìŠ¤.
+#define CHAT_TAB_SPEAKER						0							// ìŠ¤í”¼ì»¤.	
+#define CHAT_TAB_ALLUSER						1							// ëª¨ë“  ìœ ì €ì—ê²Œ ì±„íŒ….
+#define CHAT_TAB_NORMAL							2							// ì¼ë°˜ ì±„íŒ…
+#define CHAT_TAB_WAR							3							// ì „ìŸ ì±„íŒ…
+#define CHAT_TAB_TRADE							4							// ê±°ëž˜ ì±„íŒ…
+#define CHAT_TAB_MAP							5							// ë§µ ì±„íŒ…
+#define CHAT_TAB_GUILD							6							// ì—¬ë‹¨ ì±„íŒ…
+#define CHAT_TAB_PARTY							7							// íŽ¸ëŒ€ ì±„íŒ…
+#define CHAT_TAB_ARENA							8							// ì•„ë ˆë‚˜ ì±„íŒ…  
+#define CHAT_TAB_CHATROOM						9							// ì±„íŒ…ë°©
+#define CHAT_TAB_SYSTEM							10							// ì‹œìŠ¤í…œ ë©”ì‹œì§€
+#define CHAT_TAB_HELPDESK						11							// ë„ì›€ë§
 #define CHAT_TAB_CNC							12							// 2015-07-19 Future, adding Cross Nation Chat
-#define CHAT_TAB_INFLUENCE_LEADER				13							// ¼¼·Â ÁöµµÀÚ
-#define CHAT_TAB_SOUND					        14							// À½¼º Ã¤ÆÃ
-#define CHAT_TAB_PTOP							15							// ±Ó¼Ó¸»
-#define CHAT_TAB_CASH							16							// À¯·á Ã¤ÆÃ
-#define CHAT_TAB_GAMEMASTER						17							// °ÔÀÓ ¸¶½ºÅÍ.
-#define CHAT_TAB_NUMBER_ALL						18							// Ã¤ÆÃÁ¾·ù ¼ö(ÀüÃ¼)
+#define CHAT_TAB_INFLUENCE_LEADER				13							// ì„¸ë ¥ ì§€ë„ìž
+#define CHAT_TAB_SOUND					        14							// ìŒì„± ì±„íŒ…
+#define CHAT_TAB_PTOP							15							// ê·“ì†ë§
+#define CHAT_TAB_CASH							16							// ìœ ë£Œ ì±„íŒ…
+#define CHAT_TAB_GAMEMASTER						17							// ê²Œìž„ ë§ˆìŠ¤í„°.
+#define CHAT_TAB_NUMBER_ALL						18							// ì±„íŒ…ì¢…ë¥˜ ìˆ˜(ì „ì²´)
 
-// 2008-04-04 by bhsohn Ep3 Ä¿¹Â´ÏÆ¼ Ã¢
+// 2008-04-04 by bhsohn Ep3 ì»¤ë®¤ë‹ˆí‹° ì°½
 struct structReadLetterItemInfo
 {
 	UID64_t   LetterUID;	
-	char chSendUser[SIZE_MAX_ARENA_FULL_NAME];					//º¸³½ À¯Àú
-	char chLetterTitle[SIZE_MAX_ARENA_FULL_NAME];				// ÆíÁö Á¦¸ñ	
-	ATUM_DATE_TIME	atimeMail;									// ¹ÞÀº ¸ÞÀÏ µî·ÏÀÏÀÚ
-	BOOL bReadMail;												// ÀÐ¾ú´ø ¸ÞÀÏÀÌ³Ä?
-	BOOL bAllMail;												// ÀüÃ¼ ¸ÞÀÏÀÌ³Ä?
+	char chSendUser[SIZE_MAX_ARENA_FULL_NAME];					//ë³´ë‚¸ ìœ ì €
+	char chLetterTitle[SIZE_MAX_ARENA_FULL_NAME];				// íŽ¸ì§€ ì œëª©	
+	ATUM_DATE_TIME	atimeMail;									// ë°›ì€ ë©”ì¼ ë“±ë¡ì¼ìž
+	BOOL bReadMail;												// ì½ì—ˆë˜ ë©”ì¼ì´ëƒ?
+	BOOL bAllMail;												// ì „ì²´ ë©”ì¼ì´ëƒ?
 };
 
 
-// ¿©´Ü °ü¸®
+// ì—¬ë‹¨ ê´€ë¦¬
 struct structGuildInfo
 {
-	char	MemberName[SIZE_MAX_CHARACTER_NAME];		// À¯Àú¸í
+	char	MemberName[SIZE_MAX_CHARACTER_NAME];		// ìœ ì €ëª…
 	UID32_t	MemberUniqueNumber;
 	
-	USHORT	UnitKind;						// À¯´ÖÀÇ Á¾·ù
-	int		nUnitIdx;						// À¯´Ö¼ø¼­
-	char	chUnitKind[SIZE_MAX_CHARACTER_NAME];		// À¯´ÖÀÇ Á¾·ù
+	USHORT	UnitKind;						// ìœ ë‹›ì˜ ì¢…ë¥˜
+	int		nUnitIdx;						// ìœ ë‹›ìˆœì„œ
+	char	chUnitKind[SIZE_MAX_CHARACTER_NAME];		// ìœ ë‹›ì˜ ì¢…ë¥˜
 
 	char 	chLevel[SIZE_MAX_CHARACTER_NAME];							//
 	BYTE	GuildRank;				// GUILD_RANK_XXX
-	BYTE	GuildOrderIdx;			// ±æµå ¿ì¼±¼øÀ§
+	BYTE	GuildOrderIdx;			// ê¸¸ë“œ ìš°ì„ ìˆœìœ„
 	BYTE	IsUseVOIP;				// 1: TRUE, 0: FALSE
 	BYTE	IsOnline;				// 1: TRUE, 0: FALSE
-	BYTE	IsUseSpeakeingVOIP;		// ¸»ÇÏ°í ÀÖ´ÂÁö ¿©ºÎ // 2008-10-14 by bhsohn VOIP°³¼±
+	BYTE	IsUseSpeakeingVOIP;		// ë§í•˜ê³  ìžˆëŠ”ì§€ ì—¬ë¶€ // 2008-10-14 by bhsohn VOIPê°œì„ 
 };
 
-// end 2008-04-04 by bhsohn Ep3 Ä¿¹Â´ÏÆ¼ Ã¢
+// end 2008-04-04 by bhsohn Ep3 ì»¤ë®¤ë‹ˆí‹° ì°½
 
-// 2008-06-16 by bhsohn ÅÂ±¹ °ÔÀÓ Á¾·áÈÄ À¥ÆäÀÌÁö ¶ß¿ì°Ô ÇÔ
+// 2008-06-16 by bhsohn íƒœêµ­ ê²Œìž„ ì¢…ë£Œí›„ ì›¹íŽ˜ì´ì§€ ëœ¨ìš°ê²Œ í•¨
 #define CLOSE_WEBSTIE		_T("http://ace.winner.co.th/ads/promotion.asp")
 
-// 2008-06-20 by bhsohn EP3 ¿É¼Ç°ü·Ã Ã³¸®
-// °¢°¢ÀÇ ¼Â¾÷Á¤º¸
-#define		OPTION_RADIO_MAN_TO_MAN			0	// 1:1ÀüÅõ
-#define		OPTION_RADIO_FORMATIONWAR		1	// Æí´ëÀüÅõ
-#define		OPTION_RADIO_GUILD_WAR			2	// ¿©´ÜÀüÅõ
-#define		OPTION_RADIO_WHISPER			3	// ±Ó¼Ó¸»
-#define		OPTION_RADIO_FORMATION_INVITE	4	// Æí´ëÃÊ´ë
-#define		OPTION_RADIO_GUILD_INVITE		5	// ¿©´ÜÃÊ´ë
-#define		OPTION_RADIO_EXCHANGE			6	// ±³È¯
-#define		OPTION_RADIO_INTERFACE_POS		7	// ÀÎÅÍÆäÀÌ½º À§Ä¡ ÀúÀå
-#define		OPTION_RADIO_INTERFACE_HIDE		8	// ÀÎÅÍÆäÀÌ½º ¸ðµÎ °¨Ãß±â
-#define		OPTION_RADIO_FRIEND_ID_HIDE		9	// °°Àº ¼¼·Â ¾ÆÀÌµð °¨Ãß±â
-#define		OPTION_RADIO_ENEMY_ID_HIDE		10	// ´Ù¸¥ ¼¼·Â ¾ÆÀÌµð °¨Ãß±â
-#define		OPTION_RADIO_MOUSE_LOCK			11	// ¸¶¿ì½º °¡µÎ±â(À©µµ¿ì ¸ðµå½Ã)
-#define		OPTION_RADIO_CHAT_FILTER		12	// ¿åÆÞÅÍ
+// 2008-06-20 by bhsohn EP3 ì˜µì…˜ê´€ë ¨ ì²˜ë¦¬
+// ê°ê°ì˜ ì…‹ì—…ì •ë³´
+#define		OPTION_RADIO_MAN_TO_MAN			0	// 1:1ì „íˆ¬
+#define		OPTION_RADIO_FORMATIONWAR		1	// íŽ¸ëŒ€ì „íˆ¬
+#define		OPTION_RADIO_GUILD_WAR			2	// ì—¬ë‹¨ì „íˆ¬
+#define		OPTION_RADIO_WHISPER			3	// ê·“ì†ë§
+#define		OPTION_RADIO_FORMATION_INVITE	4	// íŽ¸ëŒ€ì´ˆëŒ€
+#define		OPTION_RADIO_GUILD_INVITE		5	// ì—¬ë‹¨ì´ˆëŒ€
+#define		OPTION_RADIO_EXCHANGE			6	// êµí™˜
+#define		OPTION_RADIO_INTERFACE_POS		7	// ì¸í„°íŽ˜ì´ìŠ¤ ìœ„ì¹˜ ì €ìž¥
+#define		OPTION_RADIO_INTERFACE_HIDE		8	// ì¸í„°íŽ˜ì´ìŠ¤ ëª¨ë‘ ê°ì¶”ê¸°
+#define		OPTION_RADIO_FRIEND_ID_HIDE		9	// ê°™ì€ ì„¸ë ¥ ì•„ì´ë”” ê°ì¶”ê¸°
+#define		OPTION_RADIO_ENEMY_ID_HIDE		10	// ë‹¤ë¥¸ ì„¸ë ¥ ì•„ì´ë”” ê°ì¶”ê¸°
+#define		OPTION_RADIO_MOUSE_LOCK			11	// ë§ˆìš°ìŠ¤ ê°€ë‘ê¸°(ìœˆë„ìš° ëª¨ë“œì‹œ)
+#define		OPTION_RADIO_CHAT_FILTER		12	// ìš•íŽ„í„°
 #define		MAX_OPTION_RADIO				13	
 
 enum
@@ -1125,97 +1125,97 @@ typedef struct
 
 typedef struct 
 {
-	BOOL		bRadioInfo[MAX_OPTION_RADIO];			// ¶óµð¿À ¹öÆ° Á¤º¸
+	BOOL		bRadioInfo[MAX_OPTION_RADIO];			// ë¼ë””ì˜¤ ë²„íŠ¼ ì •ë³´
 	stcuctRateRect	stRateRect;
 
-	// 2009. 02. 03 by ckPark Ã¤ÆÃÃ¢ ÀÎÅÍÆäÀÌ½º Å©±â ÀúÀå
+	// 2009. 02. 03 by ckPark ì±„íŒ…ì°½ ì¸í„°íŽ˜ì´ìŠ¤ í¬ê¸° ì €ìž¥
 	stcuctRateRect	stChatRect;
-	// end 2009. 02. 03 by ckPark Ã¤ÆÃÃ¢ ÀÎÅÍÆäÀÌ½º Å©±â ÀúÀå
+	// end 2009. 02. 03 by ckPark ì±„íŒ…ì°½ ì¸í„°íŽ˜ì´ìŠ¤ í¬ê¸° ì €ìž¥
 }sOPTION_ETC;
-// end 2008-06-20 by bhsohn EP3 ¿É¼Ç°ü·Ã Ã³¸®
+// end 2008-06-20 by bhsohn EP3 ì˜µì…˜ê´€ë ¨ ì²˜ë¦¬
 
-// 2008-07-10 by bhsohn Å¸ÄÏÈúÀÌ ¾ÈµÇ´Â ¹®Á¦ ÇØ°á
+// 2008-07-10 by bhsohn íƒ€ì¼“ížì´ ì•ˆë˜ëŠ” ë¬¸ì œ í•´ê²°
 #define FRAME_START_Y		250//85
 #define PARTY_FRAME_SIZE_X			130
 #define PARTY_FRAME_SIZE_Y			34
-// end 2008-07-10 by bhsohn Å¸ÄÏÈúÀÌ ¾ÈµÇ´Â ¹®Á¦ ÇØ°á
+// end 2008-07-10 by bhsohn íƒ€ì¼“ížì´ ì•ˆë˜ëŠ” ë¬¸ì œ í•´ê²°
 
 
-// 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+// 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 #define PARTY_FRAME_DEBUFF_ICON_SIZE	15
 #define PARTY_FRAME_DEBUFF_START_X		(PARTY_FRAME_SIZE_X + 5)
 #define PARTY_FRAME_DEBUFF_Y			(PARTY_FRAME_SIZE_X + 5)
 #define PARTY_FRAME_DEBUFF_LINE_PER_ICON 5
-// end 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+// end 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 
 
-// 2008-08-19 by bhsohn ¼¼·Â ¸¶Å© ½Ã½ºÅÛ Ãß°¡
-// ¸¶Å© ¿ÀºêÁ§Æ®
-#define MARK_INFLUENCE_VCU_OBJECT		7014740		// ¹ÙÀÌÁ¦´ÏÀ¯
-#define MARK_INFLUENCE_ANI_OBJECT		7014770		// ¾Ë¸µÅÏ
-// end 2008-08-19 by bhsohn ¼¼·Â ¸¶Å© ½Ã½ºÅÛ Ãß°¡
+// 2008-08-19 by bhsohn ì„¸ë ¥ ë§ˆí¬ ì‹œìŠ¤í…œ ì¶”ê°€
+// ë§ˆí¬ ì˜¤ë¸Œì íŠ¸
+#define MARK_INFLUENCE_VCU_OBJECT		7014740		// ë°”ì´ì œë‹ˆìœ 
+#define MARK_INFLUENCE_ANI_OBJECT		7014770		// ì•Œë§í„´
+// end 2008-08-19 by bhsohn ì„¸ë ¥ ë§ˆí¬ ì‹œìŠ¤í…œ ì¶”ê°€
 
-// 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
+// 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
 typedef struct 
 {
 	POINT				ptItemIvenPos;
 	POINT				ptEqIvenPos;
-	BOOL				bItemSetPos;		// À§Ä¡¸¦ ÁöÁ¤Çß³Ä?
-	BOOL				bEqSetPos;		// À§Ä¡¸¦ ÁöÁ¤Çß³Ä?
-	BOOL				bShowEqWnd;		// ÀÏ¹Ý ÀÎº¥ÀåºñÃ¢
-	BOOL				bShowEqShopWnd;	// »óÁ¡ ÀåºñÃ¢
+	BOOL				bItemSetPos;		// ìœ„ì¹˜ë¥¼ ì§€ì •í–ˆëƒ?
+	BOOL				bEqSetPos;		// ìœ„ì¹˜ë¥¼ ì§€ì •í–ˆëƒ?
+	BOOL				bShowEqWnd;		// ì¼ë°˜ ì¸ë²¤ìž¥ë¹„ì°½
+	BOOL				bShowEqShopWnd;	// ìƒì  ìž¥ë¹„ì°½
 	POINT				ptEqIvenShopPos;	 
 	BOOL				bEqShopSetPos;
 } structInvenPosInfo;
 
-// end 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
+// end 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
 
-// 2008-10-15 by bhsohn ¸®¼Ò½º ¸Þ¸ð¸® º¸È£ ±â´É Ãß°¡
+// 2008-10-15 by bhsohn ë¦¬ì†ŒìŠ¤ ë©”ëª¨ë¦¬ ë³´í˜¸ ê¸°ëŠ¥ ì¶”ê°€
 #define NOT_HAVE_OBJECT					3157700
 #define INTERFCE_NOT_HAVE_TEXTURE		"xxx"
-// end 2008-10-15 by bhsohn ¸®¼Ò½º ¸Þ¸ð¸® º¸È£ ±â´É Ãß°¡
+// end 2008-10-15 by bhsohn ë¦¬ì†ŒìŠ¤ ë©”ëª¨ë¦¬ ë³´í˜¸ ê¸°ëŠ¥ ì¶”ê°€
 
-// 2008-10-16 by bhsohn ÀüÁø±âÁö ¸ð¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢
+// 2008-10-16 by bhsohn ì „ì§„ê¸°ì§€ ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½
 struct structMotherShipInfo
 {
-	ATUM_DATE_TIME SummonTime;					// 2008-08-19 by bhsohn ¼¼·ÂÀü, ¸ð¼±Àü Á¤º¸ ¼ÒÈ¯ ½Ã°£À¸·Î Á¤·Ä
-	char chAttackInfluence[64];							// °ø°Ý ¼¼·Â
-	char chWinInfluence[64];							// ½Â¸® ¼¼·Â
-	char chMotherShipName[SIZE_MAX_MONSTER_NAME];		// °ø°Ý ¼¼·Â ¸ð¼±
-	char chWarPoint[64];								// ¼¼·ÂÆ÷ÀÎÆ®
-	char chTimeCap[512];								// ¼¼·ÂÀü ÁøÇà ½Ã°£	
+	ATUM_DATE_TIME SummonTime;					// 2008-08-19 by bhsohn ì„¸ë ¥ì „, ëª¨ì„ ì „ ì •ë³´ ì†Œí™˜ ì‹œê°„ìœ¼ë¡œ ì •ë ¬
+	char chAttackInfluence[64];							// ê³µê²© ì„¸ë ¥
+	char chWinInfluence[64];							// ìŠ¹ë¦¬ ì„¸ë ¥
+	char chMotherShipName[SIZE_MAX_MONSTER_NAME];		// ê³µê²© ì„¸ë ¥ ëª¨ì„ 
+	char chWarPoint[64];								// ì„¸ë ¥í¬ì¸íŠ¸
+	char chTimeCap[512];								// ì„¸ë ¥ì „ ì§„í–‰ ì‹œê°„	
 };
 
 struct structWarPointInfo
 {
-	ATUM_DATE_TIME SummonTime;					// 2008-08-19 by bhsohn ¼¼·ÂÀü, ¸ð¼±Àü Á¤º¸ ¼ÒÈ¯ ½Ã°£À¸·Î Á¤·Ä
-	char chAttackInfluence[64];							// °ø°Ý ¼¼·Â
-	char chWinInfluence[64];							// ½Â¸® ¼¼·Â
-	char MapName[SIZE_MAX_MAP_NAME];					// °ÅÁ¡Àü ¸ÊÀÌ¸§	
-	char chTimeCap[512];								// ¼¼·ÂÀü ÁøÇà ½Ã°£	
+	ATUM_DATE_TIME SummonTime;					// 2008-08-19 by bhsohn ì„¸ë ¥ì „, ëª¨ì„ ì „ ì •ë³´ ì†Œí™˜ ì‹œê°„ìœ¼ë¡œ ì •ë ¬
+	char chAttackInfluence[64];							// ê³µê²© ì„¸ë ¥
+	char chWinInfluence[64];							// ìŠ¹ë¦¬ ì„¸ë ¥
+	char MapName[SIZE_MAX_MAP_NAME];					// ê±°ì ì „ ë§µì´ë¦„	
+	char chTimeCap[512];								// ì„¸ë ¥ì „ ì§„í–‰ ì‹œê°„	
 };
-// end 2008-10-16 by bhsohn ÀüÁø±âÁö ¸ð¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢
+// end 2008-10-16 by bhsohn ì „ì§„ê¸°ì§€ ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½
 
-// 2008-11-13 by bhsohn Á¶ÀÌ½ºÆ½ ÀÛ¾÷
-// Á¶ÀÌ½ºÆ½ ±â´É¸ðÀ½ ¿É¼Ç
-#define	JOSTICK_OPTION_MOUSE_UP					0		// ¸¶¿ì½º(»ó)
-#define	JOSTICK_OPTION_MOUSE_DOWN				1		// ¸¶¿ì½º(ÇÏ)
-#define	JOSTICK_OPTION_MOUSE_LEFT				2		// ¸¶¿ì½º(ÁÂ)
-#define	JOSTICK_OPTION_MOUSE_RIGHT				3		// ¸¶¿ì½º(¿ì)
+// 2008-11-13 by bhsohn ì¡°ì´ìŠ¤í‹± ìž‘ì—…
+// ì¡°ì´ìŠ¤í‹± ê¸°ëŠ¥ëª¨ìŒ ì˜µì…˜
+#define	JOSTICK_OPTION_MOUSE_UP					0		// ë§ˆìš°ìŠ¤(ìƒ)
+#define	JOSTICK_OPTION_MOUSE_DOWN				1		// ë§ˆìš°ìŠ¤(í•˜)
+#define	JOSTICK_OPTION_MOUSE_LEFT				2		// ë§ˆìš°ìŠ¤(ì¢Œ)
+#define	JOSTICK_OPTION_MOUSE_RIGHT				3		// ë§ˆìš°ìŠ¤(ìš°)
 #define	JOSTICK_OPTION_UNIT_GO					4		// go
-#define	JOSTICK_OPTION_UNIT_MIN_SPEED			5		// ÃÖ¼Ò ¼Óµµ·Î 's'Å°
+#define	JOSTICK_OPTION_UNIT_MIN_SPEED			5		// ìµœì†Œ ì†ë„ë¡œ 's'í‚¤
 #define	JOSTICK_OPTION_UNIT_LEFT				6		// Left
 #define	JOSTICK_OPTION_UNIT_RIGHT				7		// Right
-#define	JOSTICK_OPTION_TARGET_ME				8		// ÀÚ½Å Å¸ÄÏ
-#define	JOSTICK_OPTION_WEAPON_1					9		// 1Çü¹«±â
-#define	JOSTICK_OPTION_WEAPON_2					10		// 2Çü¹«±â
-#define	JOSTICK_OPTION_TARGET_LOCKON			11		// Å¸ÄÏ ¶ô¿Â
-#define	JOSTICK_OPTION_BOSTER					12		// ºÎ½ºÅÍ
-#define	JOSTICK_OPTION_UNITSTOP					13		// À¯´ÖÁ¤Áö
-#define	JOSTICK_OPTION_TAKEOFF					14		// ÀÌÂø·ú
-#define	JOSTICK_OPTION_BACKVIEW					15		// •üº?
-#define	JOSTICK_OPTION_JOIN_FORMATION			16		// Æí´ë ´ëÇü Âü¿©
-#define	JOSTICK_OPTION_SLOT_CHANGE				17		// ½ºÅ³ ½½·Ô º¯°æ 
+#define	JOSTICK_OPTION_TARGET_ME				8		// ìžì‹  íƒ€ì¼“
+#define	JOSTICK_OPTION_WEAPON_1					9		// 1í˜•ë¬´ê¸°
+#define	JOSTICK_OPTION_WEAPON_2					10		// 2í˜•ë¬´ê¸°
+#define	JOSTICK_OPTION_TARGET_LOCKON			11		// íƒ€ì¼“ ë½ì˜¨
+#define	JOSTICK_OPTION_BOSTER					12		// ë¶€ìŠ¤í„°
+#define	JOSTICK_OPTION_UNITSTOP					13		// ìœ ë‹›ì •ì§€
+#define	JOSTICK_OPTION_TAKEOFF					14		// ì´ì°©ë¥™
+#define	JOSTICK_OPTION_BACKVIEW					15		// Â•ç…¥?
+#define	JOSTICK_OPTION_JOIN_FORMATION			16		// íŽ¸ëŒ€ ëŒ€í˜• ì°¸ì—¬
+#define	JOSTICK_OPTION_SLOT_CHANGE				17		// ìŠ¤í‚¬ ìŠ¬ë¡¯ ë³€ê²½ 
 #define	JOSTICK_OPTION_SLOT_0					18		// 1
 #define	JOSTICK_OPTION_SLOT_1					19		// 2
 #define	JOSTICK_OPTION_SLOT_2					20		// 3
@@ -1226,54 +1226,54 @@ struct structWarPointInfo
 #define	JOSTICK_OPTION_SLOT_7					25		// 8
 #define	JOSTICK_OPTION_SLOT_8					26		// 9
 #define	JOSTICK_OPTION_SLOT_9					27		// 10
-// 2009-01-16 by bhsohn Á¶ÀÌ½ºÆ½ Ãß°¡ ½ÂÀÎ/Ãë¼Ò Ãß°¡
+// 2009-01-16 by bhsohn ì¡°ì´ìŠ¤í‹± ì¶”ê°€ ìŠ¹ì¸/ì·¨ì†Œ ì¶”ê°€
 //#define	JOSTICK_OPTION_SLOT_EMPTY				28		// empty
 //#define	MAX_JOSTICK_OPTION						30		
 #define	JOSTICK_OPTION_OK						28		// 
 #define	JOSTICK_OPTION_CANCEL					29		// 
 #define	MAX_JOSTICK_OPTION						40		
-// end 2009-01-16 by bhsohn Á¶ÀÌ½ºÆ½ Ãß°¡ ½ÂÀÎ/Ãë¼Ò Ãß°¡
+// end 2009-01-16 by bhsohn ì¡°ì´ìŠ¤í‹± ì¶”ê°€ ìŠ¹ì¸/ì·¨ì†Œ ì¶”ê°€
 struct structJoystickKey
 {
-	int nKeyIdx;					// Å°
-	int nKeyValue;					// Å°°ª
+	int nKeyIdx;					// í‚¤
+	int nKeyValue;					// í‚¤ê°’
 };
 
 typedef struct 
 {		
-	BOOL		bUseJoystick;				// Á¶ÀÌ½ºÆ½ »ç¿ë ¿©ºÎ
-	char		chJoySelJoy[MAX_PATH];		// ¼±ÅÃ ÇÑ Á¶ÀÌ½ºÆ½ ÀåÄ¡
-	BOOL		bUseFeedJoyStick;			// Áøµ¿ »ç¿ë ¿©ºÎ
-	int			nJoysticSense;				// °¨µµ Á¶Àý
-	char		chJoyKeyFile[MAX_PATH];		// Å° ÆÄÀÏ¸í Á¶Àý	
+	BOOL		bUseJoystick;				// ì¡°ì´ìŠ¤í‹± ì‚¬ìš© ì—¬ë¶€
+	char		chJoySelJoy[MAX_PATH];		// ì„ íƒ í•œ ì¡°ì´ìŠ¤í‹± ìž¥ì¹˜
+	BOOL		bUseFeedJoyStick;			// ì§„ë™ ì‚¬ìš© ì—¬ë¶€
+	int			nJoysticSense;				// ê°ë„ ì¡°ì ˆ
+	char		chJoyKeyFile[MAX_PATH];		// í‚¤ íŒŒì¼ëª… ì¡°ì ˆ	
 		
 } structJoyStickOptionInfo;
 
-// ÃÖ´ë ½½·Ô ¼ö
+// ìµœëŒ€ ìŠ¬ë¡¯ ìˆ˜
 #define		MAX_JOSTICK_OPTION_SLOT				5
-// ÃÖ´ë Çàµ¿ µî·Ï¼ö
+// ìµœëŒ€ í–‰ë™ ë“±ë¡ìˆ˜
 #define		MAX_JOSTICK_OPTION_BEHAVIOR			10
 
 struct structJoystickSetupKeyTable
 {
-	int nKeySetup;					// Å°
-	int nBehavior[MAX_JOSTICK_OPTION_SLOT];					// Çàµ¿ Å×ÀÌºí
+	int nKeySetup;					// í‚¤
+	int nBehavior[MAX_JOSTICK_OPTION_SLOT];					// í–‰ë™ í…Œì´ë¸”
 };
-// end 2008-11-13 by bhsohn Á¶ÀÌ½ºÆ½ ÀÛ¾÷
+// end 2008-11-13 by bhsohn ì¡°ì´ìŠ¤í‹± ìž‘ì—…
 
-// 2009-02-05 by bhsohn Ä«¸Þ¶ó ±úÁö´Â Çö»ó Ã³¸®
-#define CHARACTER_CAMERA_DISTANCE		30.0f	// ÃÊ±â°Å¸®
-#define CHARACTER_CAMERA_HEIGHT			30.0f	// ÃÊ±â³ôÀÌ
-#define CHARACTER_CAMERA_WHEEL_DISTANCE 6.0f	// ÈÙ °£°Ý
-// end 2009-02-05 by bhsohn Ä«¸Þ¶ó ±úÁö´Â Çö»ó Ã³¸®
+// 2009-02-05 by bhsohn ì¹´ë©”ë¼ ê¹¨ì§€ëŠ” í˜„ìƒ ì²˜ë¦¬
+#define CHARACTER_CAMERA_DISTANCE		30.0f	// ì´ˆê¸°ê±°ë¦¬
+#define CHARACTER_CAMERA_HEIGHT			30.0f	// ì´ˆê¸°ë†’ì´
+#define CHARACTER_CAMERA_WHEEL_DISTANCE 6.0f	// íœ  ê°„ê²©
+// end 2009-02-05 by bhsohn ì¹´ë©”ë¼ ê¹¨ì§€ëŠ” í˜„ìƒ ì²˜ë¦¬
 
-// 2009-02-13 by bhsohn ¿ùµå ·©Å· ½Ã½ºÅÛ
+// 2009-02-13 by bhsohn ì›”ë“œ ëž­í‚¹ ì‹œìŠ¤í…œ
 #define	INFLUENCE_NAME_ANI			"ANI"			
 #define	INFLUENCE_NAME_BCU			"BCU"	
 
 #define	WORLD_RANKING_LEVEL			"LEVEL"			
 #define	WORLD_RANKING_FAME			"FAME"
 #define	WORLD_RANKING_PVP			"PVP"
-// end 2009-02-13 by bhsohn ¿ùµå ·©Å· ½Ã½ºÅÛ
+// end 2009-02-13 by bhsohn ì›”ë“œ ëž­í‚¹ ì‹œìŠ¤í…œ
 
 #endif

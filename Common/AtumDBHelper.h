@@ -1,17 +1,17 @@
-#ifndef _ATUM_DB_HELPER_H_
+ï»¿#ifndef _ATUM_DB_HELPER_H_
 #define _ATUM_DB_HELPER_H_
-
+//Copyright [2002] MasangSoft
 #include "AtumParam.h"
 #include "AtumProtocol.h"
 #include "ODBCStatement.h"
 
-class CWayPointManager;		// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
+class CWayPointManager;		// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
 
 struct CHARACTER_DB_EX
 {
 	SQL_TIMESTAMP_STRUCT	CreatedTime;
 	SQL_TIMESTAMP_STRUCT	LastStartedTime;
-	SQL_TIMESTAMP_STRUCT	LevelUpTime;			// 2006-12-18 by dhjin, ·¹º§¾÷ ½Ã°£
+	SQL_TIMESTAMP_STRUCT	LevelUpTime;			// 2006-12-18 by dhjin, ë ˆë²¨ì—… ì‹œê°„
 
 	CHARACTER_DB_EX()
 	{
@@ -32,45 +32,45 @@ public:
 	static int LoadMapObjectInfo(CODBCStatement *i_pODBCStmt, ez_map<int, MAPOBJECTINFO> *o_mapMapObjectInfo);
 	static int LoadMapInfo(CODBCStatement *i_pODBCStmt, vectorMAP_INFO *o_mapMapInfo);
 	static int LoadMysteryItemDropInfo(mtmapINT2MYSTERY_ITEM_DROP *o_pmmapMysteryItemDropList, CODBCStatement *i_pODBCStmt, ez_map<INT, ITEM*> *i_pemapItemInfoList);		// 2007-05-11 by cmkwon
-	static int LoadMysteryItemDropInfoByOmi(mmapINT2MYSTERY_ITEM_DROP *o_pmmapMysteryItemDropList, CODBCStatement *i_pODBCStmt, ez_map<INT, ITEM> *i_pemapItemInfoList);		// 2008-11-04 by dhjin, ·°Å°¸Ó½Å, omi¿ë
-	static int LoadLuckyMachineOmi(CODBCStatement *i_pODBCStmt, vector<LUCKY_MACHINE_OMI> *o_pvectLuckyMachine);			// 2009-03-03 by dhjin, ·°Å°¸Ó½Å ¼öÁ¤¾È
-	static int LoadInvokingWearItemDestParamNum(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *o_pInvokingWearItemDestParamNumList);			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	static int LoadInvokingWearItemDestParamNumByUse(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *o_pInvokingWearItemDestParamNumByUseList);			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	static int LoadBurningMap(CODBCStatement *i_pODBCStmt, BurningMapInfoList *o_pBurningMapInfo);			// 2010-08-05 by dhjin, ¹ö´×¸Ê - 
+	static int LoadMysteryItemDropInfoByOmi(mmapINT2MYSTERY_ITEM_DROP *o_pmmapMysteryItemDropList, CODBCStatement *i_pODBCStmt, ez_map<INT, ITEM> *i_pemapItemInfoList);		// 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ , omiìš©
+	static int LoadLuckyMachineOmi(CODBCStatement *i_pODBCStmt, vector<LUCKY_MACHINE_OMI> *o_pvectLuckyMachine);			// 2009-03-03 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ìˆ˜ì •ì•ˆ
+	static int LoadInvokingWearItemDestParamNum(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *o_pInvokingWearItemDestParamNumList);			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	static int LoadInvokingWearItemDestParamNumByUse(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *o_pInvokingWearItemDestParamNumByUseList);			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	static int LoadBurningMap(CODBCStatement *i_pODBCStmt, BurningMapInfoList *o_pBurningMapInfo);			// 2010-08-05 by dhjin, ë²„ë‹ë§µ - 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ -
+	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ -
 	static int DBLoadPetBaseDataInfo(CODBCStatement *i_pODBCStmt, vectorPetDataInfo* o_PetDataInfo );
 	static int DBLoadPetLevelDataInfo(CODBCStatement *i_pODBCStmt, vectorPetDataInfo* o_PetDataInfo );
 
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - omi Ãß°¡ ÀÛ¾÷. - Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
+	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - omi ì¶”ê°€ ì‘ì—…. - í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
 	static int SaveOperatorData(CODBCStatement *i_pODBCStmt, vectorOperatorInfo* i_OperatorData, HWND hwnd );
 	static int DBLoadOperatorDataInfo(CODBCStatement *i_pODBCStmt, vectorOperatorInfo* o_OperatorInfo);
-	// END 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - omi Ãß°¡ ÀÛ¾÷. - Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
+	// END 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - omi ì¶”ê°€ ì‘ì—…. - í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
 
-	// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ¾ÆÀÌÅÛ Á¤º¸.		
+	// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì•„ì´í…œ ì •ë³´.		
 	static int SaveDissolutionItemData(CODBCStatement *i_pODBCStmt, vectorDissolutionItemInfo* i_DissolutionItemInfo,HWND hWnd);
 	static int DBLoadDissolutionItemDataInfo(CODBCStatement *i_pODBCStmt, void* o_DissolutionItemInfo, BOOL ToolFlag = TRUE);
-	// END 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ¾ÆÀÌÅÛ Á¤º¸.		
-	// 2011-03-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	// END 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì•„ì´í…œ ì •ë³´.		
+	// 2011-03-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	static int SaveMonsterMultiTargetData(CODBCStatement *i_pODBCStmt, vectorMonsterMultiTarget* i_MonsterMultiTargetInfo,HWND hWnd);
 	static int DBLoadMonsterMultiTargetData(CODBCStatement *i_pODBCStmt, void* o_MonsterMultiTargetInfo, BOOL ToolFlag = TRUE);
-	// end 2011-03-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	// end 2011-03-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 
-	// start 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
+	// start 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
 	static int SaveWayPointData(CODBCStatement *i_pODBCStmt, vectorWayPoint *i_pWayPoint,HWND hWnd);
 	static int DBLoadWayPointDataInfo(CODBCStatement *i_pODBCStmt, void *o_pWayPointManager, BOOL ToolFlag = TRUE);
 
 	static int SaveWayPointMoveData(CODBCStatement *i_pODBCStmt, vectorWayPointMove *i_pWayPointMove,HWND hWnd);
 	static int DBLoadWayPointMoveDataInfo(CODBCStatement *i_pODBCStmt, void* o_pWayPointManager, BOOL ToolFlag = TRUE);
-	// end 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
+	// end 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
 
-	// start 2011-10-10 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
+	// start 2011-10-10 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
 	static int SaveTriggerMapBuff(CODBCStatement *i_pODBCStmt, vectorTriggerMapBuff *i_pTriggerMapBuff, HWND hWnd);
 	static int DBLoadTriggerMapBuffInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerMapBuff, BOOL ToolFlag = TRUE);
-	// end 2011-10-10 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
+	// end 2011-10-10 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
 
-	// start 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+	// start 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 	static int SaveTriggerMap(CODBCStatement *i_pODBCStmt, vectorTriggerMap *i_pTriggerMap, HWND hWnd);
 	static int DBLoadTriggerMapInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerMap, BOOL ToolFlag = TRUE);
 	static int SaveTriggerFunctionCrystal(CODBCStatement *i_pODBCStmt, vectorTriggerFunctionCrystal *i_pTriggerFunctionCrystal, HWND hWnd);
@@ -79,34 +79,34 @@ public:
 	static int DBLoadTriggerCrystalGroupInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerCrystalGroup, BOOL ToolFlag = TRUE);
 	static int SaveTriggerCrystalDestroyGroup(CODBCStatement *i_pODBCStmt, vectorTriggerCrystalDestroyGroup *i_pTriggerCrystalDestroyGroup, HWND hWnd);
 	static int DBLoadTriggerCrystalDestroyGroupInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerCrystalDestroyGroup, BOOL ToolFlag = TRUE);
-	// end 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+	// end 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 
-	// start 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
+	// start 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
 	static int SaveTriggerFunctionNGCInflWar(CODBCStatement *i_pODBCStmt, vectorTriggerFunctionNGCInflWar *i_pTriggerFunctionNGCInflWar, HWND hWnd);
 	static int DBLoadTriggerFunctionNGCInflWarInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerFunctionNGCInflWar, BOOL ToolFlag = TRUE);
 	static int SaveTriggerNGCInflWarMonsterGroup(CODBCStatement *i_pODBCStmt, vectorTriggerNGCInflWarMonsterGroup *i_pTriggerNGCInflWarMonsterGroup, HWND hWnd);
 	static int DBLoadTriggerNGCInflWarMonsterGroupInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerNGCInflWarMonsterGroup, BOOL ToolFlag = TRUE);
-	// end 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
+	// end 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
 
-	// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
+	// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
 	static int SaveTriggerFunctionNGCOutPost(CODBCStatement *i_pODBCStmt, vectorTriggerFunctionNGCOutPost *i_pTriggerFunctionNGCOutPost, HWND hWnd);
 	static int SaveTriggerOutPostBossKill(CODBCStatement *i_pODBCStmt, vectorTriggerOutPostBossKillInfo *i_pTriggerOutPostBossKillInfo, HWND hWnd);
 	static int DBLoadTriggerFunctionNGCOutPostInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerFunctionNGCOutPost, BOOL ToolFlag = TRUE);
 	static int DBLoadTriggerOutPostBossKillInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerOutPostBossKillInfo, BOOL ToolFlag = TRUE);
 	static INT SaveTriggerCrystalBuff(CODBCStatement *i_pODBCStmt, vectorTriggerCrystalBuff *i_pTriggerCrystalBuff, HWND hWnd);
 	static int DBLoadTriggerCrystalBuffInfo(CODBCStatement *i_pODBCStmt, void *i_pTriggerCrystalBuffInfo, BOOL ToolFlag = TRUE);
-	// end 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
+	// end 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
 
-	// 2011-12-21 by hskim, EP4 [µ¿¿µ»ó 1È¸ Àç»ı]
+	// 2011-12-21 by hskim, EP4 [ë™ì˜ìƒ 1íšŒ ì¬ìƒ]
 	static int DBLoadSystemEventInfo(CODBCStatement *i_pODBCStmt , ATUM_DATE_TIME *i_pEventDateTime, BOOL ToolFlag = TRUE);
-	// 2011-12-21 by hskim, EP4 [µ¿¿µ»ó 1È¸ Àç»ı]
+	// 2011-12-21 by hskim, EP4 [ë™ì˜ìƒ 1íšŒ ì¬ìƒ]
 
 	//static int LoadPCBangInfo(CODBCStatement *i_pODBCStmt, vectorPCBANG_INFO *o_pPCbangInfo, char *o_ErrorString);
 	//static int InsertPCBangInfo(CODBCStatement *i_pODBCStmt, vectorPCBANG_INFO *o_pPCbangInfo);
 
-	// 2006-04-20 by cmkwon, ¼¼·Â¸®´õ CharacterUID °¡Á®¿À±â
+	// 2006-04-20 by cmkwon, ì„¸ë ¥ë¦¬ë” CharacterUID ê°€ì ¸ì˜¤ê¸°
 	static BOOL LoadInfluenceLeader(UID32_t *o_pVCNLeader, UID32_t *o_pANILeader, CODBCStatement *i_pOdbcStmt);
-	// 2006-12-08 by dhjin, ¼¼·ÂºÎÁöµµÀÚ
+	// 2006-12-08 by dhjin, ì„¸ë ¥ë¶€ì§€ë„ì
 	static BOOL LoadInfluenceSub1Leader(UID32_t *o_pVCNSub1Leader, UID32_t *o_pANISub1Leader, CODBCStatement *i_pOdbcStmt);
 	static BOOL LoadInfluenceSub2Leader(UID32_t *o_pVCNSub2Leader, UID32_t *o_pANISub2Leader, CODBCStatement *i_pOdbcStmt);
 
@@ -115,10 +115,10 @@ public:
 	static int LoadInfluenceWarInfo(CODBCStatement *i_pODBCStmt, vectDB_INFLUENCE_WAR_INFO *i_pvectDB_INFLUENCE_WAR_INFO);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-04-16 by cmkwon, ¸ó½ºÅÍ »ç¸Á ½Ã ¸ó½ºÅÍ ¼ÒÈ¯ ÀÌº¥Æ® ½Ã½ºÅÛ ±¸Çö - 
+	// 2008-04-16 by cmkwon, ëª¬ìŠ¤í„° ì‚¬ë§ ì‹œ ëª¬ìŠ¤í„° ì†Œí™˜ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	static BOOL LoadEventMonster(mtvectSEVENT_MONSTER *o_pEventMonsterList, CODBCStatement *i_pOdbcStmt);
 
-	// 2008-09-10 by cmkwon, ÅëÇÕ¾Æ·¹³ª ¸Ê¼³Á¤(map.cfg) °ü·Ã ¼öÁ¤ - 
+	// 2008-09-10 by cmkwon, í†µí•©ì•„ë ˆë‚˜ ë§µì„¤ì •(map.cfg) ê´€ë ¨ ìˆ˜ì • - 
 	static BOOL LoadArenaMapList(vectMapIndexList *o_pArenaMapIndexList, CODBCStatement *i_pODBCStmt);
 
 	
@@ -126,16 +126,16 @@ public:
 	static int LoadAllBUILDINGNPC(CODBCStatement *i_pODBCStmt, vector<BUILDINGNPC> *o_pVectorBuildingNPC);
 	static int Load_MEX_MONSTER_INFO(CODBCStatement *i_pODBCStmt, vector<MEX_MONSTER_INFO> *o_pVectorMonsterInfo);
 
-	// 2008-04-16 by cmkwon, ¸ó½ºÅÍ »ç¸Á ½Ã ¸ó½ºÅÍ ¼ÒÈ¯ ÀÌº¥Æ® ½Ã½ºÅÛ ±¸Çö - 
+	// 2008-04-16 by cmkwon, ëª¬ìŠ¤í„° ì‚¬ë§ ì‹œ ëª¬ìŠ¤í„° ì†Œí™˜ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	static MEX_MONSTER_INFO * FindMEX_MONSTER_INFO(vector<MEX_MONSTER_INFO> *i_pVectorMonsterInfo, int i_nMonsterNum);
 
 	////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - HPAction ·Îµù
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - HPAction ë¡œë”©
 	static int  LoadHPActionByDB(CODBCStatement *i_pODBCStmt, ez_map<INT, vectHPAction> * o_pMapHPAction);
 	static BOOL DBLoadInfinityModeInfo(CODBCStatement *i_pODBCStmt, vectorInfinityModeInfo * o_pvectInfinityModeInfo, vectMapIndexList *o_pArenaMapIndexList);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	static BOOL WRK_LoadSelfServiceInfor8ServerGroupInfo(CODBCStatement *i_pODBCStmt, SWRK_SERVICE_INFO *o_pServiInfo, SWRK_SERVER_GROUP *io_pServGroup) { return false; }
 
 	static constexpr bool WRK_LevelArrangeRanking(CODBCStatement *i_pODBCStmt, SWRK_SERVICE_INFO *i_pServiInfo, SWRK_SERVER_GROUP *i_pServGroup) { return false; }
@@ -160,19 +160,19 @@ public:
 	static void BindColITEM(SQLHSTMT &hstmt, ITEM &item, SQLINTEGER *cb);
 	static void BindColCharacter(SQLHSTMT &hstmt, CHARACTER &character, CHARACTER_DB_EX &characterDBEX, SQLINTEGER *cb);
 	static void BindColMONSTER(SQLHSTMT &hstmt, MONSTER_INFO &monster, SQLINTEGER *cb);
-	static void BindColMonsterMultiTarget(SQLHSTMT &hstmt, MONSTER_MULTI_TARGET &target, SQLINTEGER *cb);		// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	static void BindColMonsterMultiTarget(SQLHSTMT &hstmt, MONSTER_MULTI_TARGET &target, SQLINTEGER *cb);		// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	static void BindColRareItemInfo(SQLHSTMT &hstmt, RARE_ITEM_INFO &rareItemInfo, SQLINTEGER *cb);
 
 	// process log messages
 	void ProcessLogMessages(SQLSMALLINT plm_handle_type, SQLHANDLE &plm_handle, const char *logstring, BOOL ConnInd);
-	// 2009. 10. 27 by jskim ÁøÇà·ü È®ÀÎ
+	// 2009. 10. 27 by jskim ì§„í–‰ë¥  í™•ì¸
 	static void ProcessLoopMessage(HWND hWnd);
-	// 2009. 10. 27 by jskim ÁøÇà·ü È®ÀÎ
+	// 2009. 10. 27 by jskim ì§„í–‰ë¥  í™•ì¸
 	static void ProcessLogMessagesStatic(SQLSMALLINT plm_handle_type, SQLHANDLE &plm_handle, const char *logstring, BOOL ConnInd);
 
-	// 2009-07-09 by jwlee, °ÔÀÓ Á¤º¸ Å×ÀÌºí µ¥ÀÌÅÍ DB¿¡ ¹Ğ¾î³Ö±â Åø ±¸Çö - 
+	// 2009-07-09 by jwlee, ê²Œì„ ì •ë³´ í…Œì´ë¸” ë°ì´í„° DBì— ë°€ì–´ë„£ê¸° íˆ´ êµ¬í˜„ - 
 	// ExcelData to DB Saving..
-// 2009. 10. 27 by jskim ÁøÇà·ü È®ÀÎ
+// 2009. 10. 27 by jskim ì§„í–‰ë¥  í™•ì¸
 // 	static int SaveItem(CODBCStatement *i_pODBCStmt, vector<ITEM> *o_pItem);
 // 	static int SaveMonsterItem(CODBCStatement *i_pODBCStmt, vector<MONSTER2ITEM> *o_pMonsterItemInfo);
 // 	static int SaveRareItemInfo(CODBCStatement *i_pODBCStmt, vector<RARE_ITEM_INFO> *o_pRareItemInfo);
@@ -196,15 +196,15 @@ public:
 // 	static int SaveQuestMatching(CODBCStatement *i_pODBCStmt, vectSQUEST_MATCHING *o_pQuestMatching);
 // 	static int SaveItemMatching(CODBCStatement *i_pODBCStmt, vectSITEM_MATCHING *o_pItemMatching);
 // 	static int SaveItemInfo(CODBCStatement *i_pODBCStmt, vectItem_Info *o_pItemInfo);
-// 	static int SaveInfluenceRate(CODBCStatement *i_pODBCStmt, vectSTI_INFLUENCERATE *o_pInfluenceRate);		// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - ti_InfluenceRate Å×ÀÌºí Ãß°¡, 
+// 	static int SaveInfluenceRate(CODBCStatement *i_pODBCStmt, vectSTI_INFLUENCERATE *o_pInfluenceRate);		// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - ti_InfluenceRate í…Œì´ë¸” ì¶”ê°€, 
 
 	static int SaveItem(CODBCStatement *i_pODBCStmt, vector<ITEM> *o_pItem, HWND hWnd);
 	static int SaveMonsterItem(CODBCStatement *i_pODBCStmt, vector<MONSTER2ITEM> *o_pMonsterItemInfo, HWND hWnd);
 	static int SaveRareItemInfo(CODBCStatement *i_pODBCStmt, vector<RARE_ITEM_INFO> *o_pRareItemInfo, HWND hWnd);
 	static int SaveShop(CODBCStatement *i_pODBCStmt, vectSHOP_INFO *o_pShopInfo, HWND hWnd);
 	static int SaveCityTargetWarpMap(CODBCStatement *i_pODBCStmt, vectCITY_TARGET_WARPMAP *o_pTargetWarp, HWND hWnd);
-	static int SaveItemMixingInfo(CODBCStatement *i_pODBCStmt, vector<ITEM_MIXING_INFO_TOOL> *o_pMapItemMixingInfo, HWND hWnd);				// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
-	static int SaveItemMixingElement(CODBCStatement *i_pODBCStmt, vector<ITEM_MIXING_ELEMENT_TOOL> *o_pMapItemMixingElement, HWND hWnd);	// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+	static int SaveItemMixingInfo(CODBCStatement *i_pODBCStmt, vector<ITEM_MIXING_INFO_TOOL> *o_pMapItemMixingInfo, HWND hWnd);				// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
+	static int SaveItemMixingElement(CODBCStatement *i_pODBCStmt, vector<ITEM_MIXING_ELEMENT_TOOL> *o_pMapItemMixingElement, HWND hWnd);	// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 	static int SaveEnchantInfo(CODBCStatement *i_pODBCStmt, vector<ENCHANT_INFO> *o_pEnchantInfo, HWND hWnd);
 	static int SaveStrategyPointSummonMapIndex(CODBCStatement *i_pODBCStmt, vectSTRATEGYPOINT_SUMMON_MAPINDEX *o_pStrategyPoint, HWND hWnd);
 	static int SaveArenaInfo(CODBCStatement *i_pODBCStmt, vectorSDBARENA_INFO *o_pArenaInfo, HWND hWnd);
@@ -222,31 +222,31 @@ public:
 	static int SaveQuestMatching(CODBCStatement *i_pODBCStmt, vectSQUEST_MATCHING *o_pQuestMatching, HWND hWnd);
 	static int SaveItemMatching(CODBCStatement *i_pODBCStmt, vectSITEM_MATCHING *o_pItemMatching, HWND hWnd);
 	static int SaveItemInfo(CODBCStatement *i_pODBCStmt, vectItem_Info *o_pItemInfo, HWND hWnd);
-	static int SaveInfluenceRate(CODBCStatement *i_pODBCStmt, vectSTI_INFLUENCERATE *o_pInfluenceRate, HWND hWnd);		// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - ti_InfluenceRate Å×ÀÌºí Ãß°¡, 
+	static int SaveInfluenceRate(CODBCStatement *i_pODBCStmt, vectSTI_INFLUENCERATE *o_pInfluenceRate, HWND hWnd);		// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - ti_InfluenceRate í…Œì´ë¸” ì¶”ê°€, 
 	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Excel -> DB ¹Ğ±â
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Excel -> DB ë°€ê¸°
 	static int SaveHPAction(CODBCStatement *i_pODBCStmt, vectHPAction *i_pHPActionList, HWND hWnd);
 	static int SaveCinema(CODBCStatement *i_pODBCStmt, vectorCinemaInfo *i_pCinemaInfoList, HWND hWnd);
 	static int SaveRevision(CODBCStatement *i_pODBCStmt, vectorRevisionInfo *i_pRevisionInfoList, HWND hWnd);
 	static int SaveInfinityMonster(CODBCStatement *i_pODBCStmt, vectorInfinityMonsterInfo *i_pInfinityMonsterInfoList, HWND hWnd);
 	static int SaveInfinityMode(CODBCStatement *i_pODBCStmt, vectorInfinityModeInfo *i_pInfinityModeInfoList, HWND hWnd);
 	static int SaveTender(CODBCStatement *i_pODBCStmt, vectorTenderInfo *i_pTenderInfoList, HWND hWnd);
-	static int SaveInfinityShop(CODBCStatement *i_pODBCStmt, vectorInfinityShopInfo *i_pInfinityShopInfoList, HWND hWnd);		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-	static int SaveInvokingWearItemDPNum(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *i_pInvokingItemDPList, HWND hWnd);		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	static int SaveInvokingWearItemDPNumByUse(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *i_pInvokingItemDPList, HWND hWnd);		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	//end 2009. 10. 27 by jskim ÁøÇà·ü È®ÀÎ	
+	static int SaveInfinityShop(CODBCStatement *i_pODBCStmt, vectorInfinityShopInfo *i_pInfinityShopInfoList, HWND hWnd);		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+	static int SaveInvokingWearItemDPNum(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *i_pInvokingItemDPList, HWND hWnd);		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	static int SaveInvokingWearItemDPNumByUse(CODBCStatement *i_pODBCStmt, InvokingWearItemDestParamList *i_pInvokingItemDPList, HWND hWnd);		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	//end 2009. 10. 27 by jskim ì§„í–‰ë¥  í™•ì¸	
 
-	static int SaveLevelAdjustmentList(CODBCStatement *i_pODBCStmt, vectorInfinity_DifficultyInfo_Monster  *i_InvokingItemDPByUseList, HWND hWnd); // 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-	static int SaveLevelAdjustmentRewardList(CODBCStatement *i_pODBCStmt, vectorInfinity_DifficultyInfo_Bonus *i_InvokingItemDPByUseList, HWND hWnd); // 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-	static int SaveBurningMapList(CODBCStatement *i_pODBCStmt, BurningMapInfoList *i_pBurningMapList, HWND hWnd); // 2010-08-05 by dhjin, ¹ö´×¸Ê - 
+	static int SaveLevelAdjustmentList(CODBCStatement *i_pODBCStmt, vectorInfinity_DifficultyInfo_Monster  *i_InvokingItemDPByUseList, HWND hWnd); // 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+	static int SaveLevelAdjustmentRewardList(CODBCStatement *i_pODBCStmt, vectorInfinity_DifficultyInfo_Bonus *i_InvokingItemDPByUseList, HWND hWnd); // 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+	static int SaveBurningMapList(CODBCStatement *i_pODBCStmt, BurningMapInfoList *i_pBurningMapList, HWND hWnd); // 2010-08-05 by dhjin, ë²„ë‹ë§µ - 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ Á¤º¸ ¿¢¼¿ ¹Ğ±â
+	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ì •ë³´ ì—‘ì…€ ë°€ê¸°
 	static int SavePetBaseData(CODBCStatement *i_pODBCStmt, vectorPetBaseData  *i_InvokingItemDPByUseList, HWND hWnd);
 	static int SavePetLevelData(CODBCStatement *i_pODBCStmt, vectorPetLevelData  *i_InvokingItemDPByUseList, HWND hWnd);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
+	// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	static BOOL LoadItemParamOverlap(CODBCStatement *i_pODBCStmt, vectSITEM_PARAM_OVERLAP *o_ItemParamOverList);
 	static int SaveItemParamOverlap(CODBCStatement *i_pODBCStmt, vectSITEM_PARAM_OVERLAP *i_pItemParamOverlapList, HWND hWnd);
 
@@ -259,23 +259,23 @@ public:
 	#define CB_COUNT_ITEM				79
 #endif
 #else	// SHOP_PRICES_PER_BUILDING_NPC
-	#define CB_COUNT_ITEM				80	// # of fields + 1	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ 77 -> 80	// 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - ±âÁ¸ 69
+	#define CB_COUNT_ITEM				80	// # of fields + 1	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ 77 -> 80	// 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - ê¸°ì¡´ 69
 #endif	// SHOP_PRICES_PER_BUILDING_NPC
 
-#define CB_COUNT_CHARACTER			64	// # of fields + 1	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 64·Î¼öÁ¤, // 2008-06-23 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç - // 2007-06-07 by dhjin
-#define CB_COUNT_MONSTER			58	// # of fields + 1	// 2010-04-14 by cmkwon, ÀÎÇÇ2Â÷ ¸ó½ºÅÍ ·£ÅÒ Å¸°Ù º¯°æ Ã³¸® - ChangeTargetTime ÇÊµå Ãß°¡, // 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - 54 -> 56 // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 41 -> 54À¸·Î ¼öÁ¤, // 2007-09-05 by dhjin, // 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - WayPointPattern ÇÊµå Ãß°¡
+#define CB_COUNT_CHARACTER			64	// # of fields + 1	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 64ë¡œìˆ˜ì •, // 2008-06-23 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ - // 2007-06-07 by dhjin
+#define CB_COUNT_MONSTER			58	// # of fields + 1	// 2010-04-14 by cmkwon, ì¸í”¼2ì°¨ ëª¬ìŠ¤í„° ëœí…€ íƒ€ê²Ÿ ë³€ê²½ ì²˜ë¦¬ - ChangeTargetTime í•„ë“œ ì¶”ê°€, // 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - 54 -> 56 // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 41 -> 54ìœ¼ë¡œ ìˆ˜ì •, // 2007-09-05 by dhjin, // 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - WayPointPattern í•„ë“œ ì¶”ê°€
 #define CB_COUNT_RARE_ITEM_INFO		32	// # of fields + 1
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-10-23 by cmkwon, Monitor ¿¢¼¿ÆÄÀÏ ¹Ğ¾î³Ö±â½Ã Ã¼Å© Ãß°¡ - CB_COUNT_### of fields + 1
+// 2009-10-23 by cmkwon, Monitor ì—‘ì…€íŒŒì¼ ë°€ì–´ë„£ê¸°ì‹œ ì²´í¬ ì¶”ê°€ - CB_COUNT_### of fields + 1
 #define SIZE_MAX_TB_FIELD_COUNT						100
 #define CB_COUNT_ti_Item							CB_COUNT_ITEM
-#define CB_COUNT_ti_MonsterItem						9				// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - ÇÊµå 1°³Ãß°¡
+#define CB_COUNT_ti_MonsterItem						9				// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - í•„ë“œ 1ê°œì¶”ê°€
 #define CB_COUNT_ti_RareItemInfo               		32
 #define CB_COUNT_ti_Shop                       		4
 #define CB_COUNT_ti_CityTargetWarpMap          		7
-#define CB_COUNT_ti_ItemMixingInfo             		5				// 2013-05-06 by hskim, ¾ÆÀÌÅÛ ¹Ì¸® º¸±â (¼Ó¼º °ª Ãß°¡) - // 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
-#define CB_COUNT_ti_ItemMixingElement				3				// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+#define CB_COUNT_ti_ItemMixingInfo             		5				// 2013-05-06 by hskim, ì•„ì´í…œ ë¯¸ë¦¬ ë³´ê¸° (ì†ì„± ê°’ ì¶”ê°€) - // 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
+#define CB_COUNT_ti_ItemMixingElement				3				// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 #define CB_COUNT_ti_EnchantInfo                		44
 #define CB_COUNT_ti_StrategyPointSummonMapIndex		4
 #define CB_COUNT_ti_ArenaInfo                  		7
@@ -284,55 +284,55 @@ public:
 #define CB_COUNT_ti_InfluenceWar               		57
 #define CB_COUNT_ti_OutPostNextWarTime         		2
 #define CB_COUNT_ti_ActionByLevel              		3
-#define CB_COUNT_ti_MapInfo                    		54						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	
+#define CB_COUNT_ti_MapInfo                    		54						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	
 #define CB_COUNT_ti_BuildingNPC                		10
-#define CB_COUNT_ti_Monster                    		(CB_COUNT_MONSTER + 1) // Ãß°¡ ÀÌÀ¯: SizeForServer, SizeForClient
+#define CB_COUNT_ti_Monster                    		(CB_COUNT_MONSTER + 1) // ì¶”ê°€ ì´ìœ : SizeForServer, SizeForClient
 #define CB_COUNT_ti_TutorialInfo               		8
 #define CB_COUNT_ti_MapObject                  		11
 #define CB_COUNT_ti_LuckyMachine               		11
 #define CB_COUNT_ti_QuestMatching              		3
 #define CB_COUNT_ti_ItemMatching               		3
 #define CB_COUNT_ti_InfluenceRate              		3
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Excel -> DB ¹Ğ±â
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Excel -> DB ë°€ê¸°
 #define CB_COUNT_ti_HPAction	              		15
-#define CB_COUNT_ti_Cinema	              			24			// 2010-03-29 by cmkwon, ÀÎÇÇ2Â÷ ½Ã³×¸¶¿¡ È¿°úÀ½ ÆÄÀÏ ¼³Á¤ Ãß°¡ - ±âÁ¸(23), // 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - 	
+#define CB_COUNT_ti_Cinema	              			24			// 2010-03-29 by cmkwon, ì¸í”¼2ì°¨ ì‹œë„¤ë§ˆì— íš¨ê³¼ìŒ íŒŒì¼ ì„¤ì • ì¶”ê°€ - ê¸°ì¡´(23), // 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - 	
 #define CB_COUNT_ti_InfinityMonster	            	6
 #define CB_COUNT_ti_Revision	              		8
-#define CB_COUNT_ti_InfinityMode	              	15			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ç¸Á½Ã ÆĞ³ÎÆ¼ Ãß°¡
+#define CB_COUNT_ti_InfinityMode	              	15			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‚¬ë§ì‹œ íŒ¨ë„í‹° ì¶”ê°€
 #define CB_COUNT_ti_Tender			              	3
-#define CB_COUNT_ti_InfinityShop	              	14			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-#define CB_COUNT_ti_ItemParamOverlap              	3			// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
-#define CB_COUNT_ti_InvokingWearItemDPNum          	5			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ 
-#define CB_COUNT_ti_InvokingWearItemDPNumByUse      5			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ 
-#define CB_COUNT_ti_LevelAdjustment					7			// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define CB_COUNT_ti_LevelAdjustmentReward			5			// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define CB_COUNT_ti_BurningMap						6			// 2010-08-05 by dhjin, ¹ö´×¸Ê - 
-#define CB_COUNT_ti_Pet								7			// 2011-08-05 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ±âº» Á¤º¸ ¿¢¼¿ ¹Ğ±â
-#define CB_COUNT_ti_petLevel						9			// 2011-08-05 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ·¹º§ Á¤º¸ ¿¢¼¿ ¹Ğ±â
-#define CB_COUNT_ti_OperatorAction					6			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - DB ¹Ğ±â Ãß°¡ ÀÛ¾÷ Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.				
-#define CB_COUNT_ti_DissolutionItem					13			// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ¾ÆÀÌÅÛ Á¤º¸.
-#define CB_COUNT_ti_MonsterMultiTarget				5			// 2011-03-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
-// start 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
+#define CB_COUNT_ti_InfinityShop	              	14			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+#define CB_COUNT_ti_ItemParamOverlap              	3			// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+#define CB_COUNT_ti_InvokingWearItemDPNum          	5			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ 
+#define CB_COUNT_ti_InvokingWearItemDPNumByUse      5			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ 
+#define CB_COUNT_ti_LevelAdjustment					7			// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define CB_COUNT_ti_LevelAdjustmentReward			5			// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define CB_COUNT_ti_BurningMap						6			// 2010-08-05 by dhjin, ë²„ë‹ë§µ - 
+#define CB_COUNT_ti_Pet								7			// 2011-08-05 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ê¸°ë³¸ ì •ë³´ ì—‘ì…€ ë°€ê¸°
+#define CB_COUNT_ti_petLevel						9			// 2011-08-05 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ë ˆë²¨ ì •ë³´ ì—‘ì…€ ë°€ê¸°
+#define CB_COUNT_ti_OperatorAction					6			// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - DB ë°€ê¸° ì¶”ê°€ ì‘ì—… í« ì˜¤í¼ë ˆì´í„° ì •ë³´.				
+#define CB_COUNT_ti_DissolutionItem					13			// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì•„ì´í…œ ì •ë³´.
+#define CB_COUNT_ti_MonsterMultiTarget				5			// 2011-03-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
+// start 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
 #define CB_COUNT_ti_WayPoint						6
 #define CB_COUNT_ti_WayPointMove					2
-// end 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
-#define CB_COUNT_ti_MapBuff							2			// 2011-10-10 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
-// start 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// end 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
+#define CB_COUNT_ti_MapBuff							2			// 2011-10-10 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
+// start 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 #define CB_COUNT_ti_MapTrigger						4
 #define CB_COUNT_ti_TriggerFunctionCrystal			4
 #define CB_COUNT_ti_TriggerCrystalGroup				3
 #define CB_COUNT_ti_TriggerCrystalDestroyGroup		3
-// end 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-// start 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
+// end 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+// start 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
 #define CB_COUNT_ti_TriggerFunctionNGCInflWar		8
 #define CB_COUNT_ti_TriggerNGCInflWarMonsterGroup	4
-// end 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
-// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
+// end 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
+// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
 #define CB_COUNT_ti_TriggerFunctionNGCOutPost		8
 #define CB_COUNT_ti_TriggerOutPostBossKill			4
 #define CB_COUNT_ti_TriggercrystalBuff				2
-// end 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
-#define CB_COUNT_ti_ti_OverlapItem					4			// 2012-03-13 by hskim, ÇöÁöÈ­ °ü·Ã DB ±¸Á¶ º¯°æ
+// end 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
+#define CB_COUNT_ti_ti_OverlapItem					4			// 2012-03-13 by hskim, í˜„ì§€í™” ê´€ë ¨ DB êµ¬ì¡° ë³€ê²½
 
 #define TB_NAME_ti_Item								"ti_Item"
 #define TB_NAME_ti_MonsterItem						"ti_MonsterItem"
@@ -340,7 +340,7 @@ public:
 #define TB_NAME_ti_Shop                       		"ti_Shop"
 #define TB_NAME_ti_CityTargetWarpMap          		"ti_CityTargetWarpMap"
 #define TB_NAME_ti_ItemMixingInfo             		"ti_ItemMixingInfo"
-#define TB_NAME_ti_ItemMixingElement             	"ti_ItemMixingElement"		// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+#define TB_NAME_ti_ItemMixingElement             	"ti_ItemMixingElement"		// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 #define TB_NAME_ti_EnchantInfo                		"ti_EnchantInfo"
 #define TB_NAME_ti_StrategyPointSummonMapIndex		"ti_StrategyPointSummonMapIndex"
 #define TB_NAME_ti_ArenaInfo                  		"ti_ArenaInfo"
@@ -358,41 +358,41 @@ public:
 #define TB_NAME_ti_QuestMatching              		"ti_QuestMatching"
 #define TB_NAME_ti_ItemMatching               		"ti_ItemMatching"
 #define TB_NAME_ti_InfluenceRate              		"ti_InfluenceRate"
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Excel -> DB ¹Ğ±â
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Excel -> DB ë°€ê¸°
 #define TB_NAME_ti_HPAction              			"ti_HPAction"
 #define TB_NAME_ti_Cinema	              			"ti_Cinema"
 #define TB_NAME_ti_InfinityMonster	            	"ti_InfinityMonster"
 #define TB_NAME_ti_Revision	              			"ti_Revision"
 #define TB_NAME_ti_InfinityMode						"ti_InfinityMode"
 #define TB_NAME_ti_Tender							"ti_Tender"
-#define TB_NAME_ti_InfinityShop						"ti_InfinityShop"		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-#define TB_NAME_ti_ItemParamOverlap					"ti_ItemParamOverlap"		// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
-#define TB_NAME_ti_InvokingWearItemDPNum			"ti_InvokingWearItemDPNum"		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-#define TB_NAME_ti_InvokingWearItemDPNumByUse		"ti_InvokingWearItemDPNumByUse"		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-#define TB_NAME_ti_LevelAdjustment					"ti_LevelAdjustment"		// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define TB_NAME_ti_LevelAdjustmentReward			"ti_LevelAdjustmentReward"	// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define TB_NAME_ti_BurningMap						"ti_BurningMap"		// 2010-08-05 by dhjin, ¹ö´×¸Ê - 
-#define TB_NAME_ti_Pet								"ti_pet"			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ±âº» Á¤º¸ ¿¢¼¿ ¹Ğ±â
-#define TB_NAME_ti_PetLevel							"ti_PetLevel"		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ·¹º§ Á¤º¸ ¿¢¼¿ ¹Ğ±â
-#define TB_NAME_ti_OperatorAction					"ti_OperatorAction" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - DB ¹Ğ±â Ãß°¡ ÀÛ¾÷ Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
-#define TB_NAME_ti_DissolutionItem					"ti_DissolutionItem"	// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ¾ÆÀÌÅÛ Á¤º¸.
-#define TB_NAME_ti_MonsterMultiTarget				"ti_MonsterMultiTarget"	// 2011-03-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
-#define TB_NAME_ti_WayPoint							"ti_WayPoint"		// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
-#define TB_NAME_ti_WayPointMove						"ti_WayPointMove"	// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
-#define TB_NAME_ti_MapBuff							"ti_MapBuff"		// 2011-10-10 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
-#define TB_NAME_ti_MapTrigger						"ti_MapTrigger"					// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerFunctionCrystal			"ti_TriggerFunctionCrystal"		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerCrystalGroup				"ti_TriggerCrystalGroup"		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerCrystalDestroyGroup		"ti_TriggerCrystalDestroyGroup"	// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerFunctionNGCInflWar		"ti_TriggerFunctionNGCInflWar"	// 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerNGCInflWarMonsterGroup	"ti_TriggerNGCInflWarMonsterGrou"	// 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ - ¿¢¼¿ ÀÌ¸§ ±æÀÌ Á¦ÇÑ ‹š¹®¿¡ ¸¶Áö¸· 'p' »èÁ¦
-#define TB_NAME_ti_TriggerFunctionNGCOutPost		"ti_TriggerFunctionNGCOutPost"	// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerOutPostBossKill			"ti_TriggerOutPostBossKill"		// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
-#define TB_NAME_ti_TriggerCrystalBuff				"ti_TriggerCrystalBuff"			// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
-#define TB_NAME_ti_OverlapItem						"ti_OverlapItem"		// 2012-03-13 by hskim, ÇöÁöÈ­ °ü·Ã DB ±¸Á¶ º¯°æ
+#define TB_NAME_ti_InfinityShop						"ti_InfinityShop"		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+#define TB_NAME_ti_ItemParamOverlap					"ti_ItemParamOverlap"		// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+#define TB_NAME_ti_InvokingWearItemDPNum			"ti_InvokingWearItemDPNum"		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+#define TB_NAME_ti_InvokingWearItemDPNumByUse		"ti_InvokingWearItemDPNumByUse"		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+#define TB_NAME_ti_LevelAdjustment					"ti_LevelAdjustment"		// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define TB_NAME_ti_LevelAdjustmentReward			"ti_LevelAdjustmentReward"	// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define TB_NAME_ti_BurningMap						"ti_BurningMap"		// 2010-08-05 by dhjin, ë²„ë‹ë§µ - 
+#define TB_NAME_ti_Pet								"ti_pet"			// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ê¸°ë³¸ ì •ë³´ ì—‘ì…€ ë°€ê¸°
+#define TB_NAME_ti_PetLevel							"ti_PetLevel"		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ë ˆë²¨ ì •ë³´ ì—‘ì…€ ë°€ê¸°
+#define TB_NAME_ti_OperatorAction					"ti_OperatorAction" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - DB ë°€ê¸° ì¶”ê°€ ì‘ì—… í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
+#define TB_NAME_ti_DissolutionItem					"ti_DissolutionItem"	// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì•„ì´í…œ ì •ë³´.
+#define TB_NAME_ti_MonsterMultiTarget				"ti_MonsterMultiTarget"	// 2011-03-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
+#define TB_NAME_ti_WayPoint							"ti_WayPoint"		// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
+#define TB_NAME_ti_WayPointMove						"ti_WayPointMove"	// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
+#define TB_NAME_ti_MapBuff							"ti_MapBuff"		// 2011-10-10 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
+#define TB_NAME_ti_MapTrigger						"ti_MapTrigger"					// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerFunctionCrystal			"ti_TriggerFunctionCrystal"		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerCrystalGroup				"ti_TriggerCrystalGroup"		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerCrystalDestroyGroup		"ti_TriggerCrystalDestroyGroup"	// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerFunctionNGCInflWar		"ti_TriggerFunctionNGCInflWar"	// 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerNGCInflWarMonsterGroup	"ti_TriggerNGCInflWarMonsterGrou"	// 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ - ì—‘ì…€ ì´ë¦„ ê¸¸ì´ ì œí•œ Â‹Âšë¬¸ì— ë§ˆì§€ë§‰ 'p' ì‚­ì œ
+#define TB_NAME_ti_TriggerFunctionNGCOutPost		"ti_TriggerFunctionNGCOutPost"	// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerOutPostBossKill			"ti_TriggerOutPostBossKill"		// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
+#define TB_NAME_ti_TriggerCrystalBuff				"ti_TriggerCrystalBuff"			// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
+#define TB_NAME_ti_OverlapItem						"ti_OverlapItem"		// 2012-03-13 by hskim, í˜„ì§€í™” ê´€ë ¨ DB êµ¬ì¡° ë³€ê²½
 
-// 2008-08-27 by cmkwon, ³¯Äõ¸®¸¦ Procedure·Î ¼öÁ¤ - 
-// // 2008-07-02 by cmkwon, MySQL Áö¿ø ±¸Çö - 
+// 2008-08-27 by cmkwon, ë‚ ì¿¼ë¦¬ë¥¼ Procedureë¡œ ìˆ˜ì • - 
+// // 2008-07-02 by cmkwon, MySQL ì§€ì› êµ¬í˜„ - 
 // // #define MONSTER_SQL_QUERY_FOR_CLIENT	"SELECT UniqueNumber, MonsterName, Level, Experience, HP, \
 // // 								Race, Speed, MonsterItem01, MonsterItem02, MonsterItem03, \
 // // 								MonsterItem04, MonsterItem05, ControlSkill, SizeForClient, Faction, \
@@ -403,7 +403,7 @@ public:
 // // 								Range, TurnAngle, MonsterHabit, ClickEvent FROM ti_Monster WITH (NOLOCK)"
 // #define MONSTER_SQL_QUERY_FOR_CLIENT	QUERY_080702_0062		
 // 
-// // 2008-07-02 by cmkwon, MySQL Áö¿ø ±¸Çö - 
+// // 2008-07-02 by cmkwon, MySQL ì§€ì› êµ¬í˜„ - 
 // // #define MONSTER_SQL_QUERY_FOR_SERVER	"SELECT UniqueNumber, MonsterName, Level, Experience, HP, \
 // // 								Race, Speed, MonsterItem01, MonsterItem02, MonsterItem03, \
 // // 								MonsterItem04, MonsterItem05, ControlSkill, SizeForServer, Faction, \

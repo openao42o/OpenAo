@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "AtumParam.h"
 #include "AtumTime.h"
@@ -15,13 +15,13 @@ struct LEVEL_EXPERIENCE
 	INT				PenaltySPIOnDead;
 };
 
-// start 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// start 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 struct BURNING_MAP_LEVEL_ADD_EXPERIENCE
 {
-	INT				Level;						// ·¹º§
-	FLOAT			IncrementPercent;			// Ãß°¡ °æÇèÄ¡·® (ÆÛ¼¾Æ®)
+	INT				Level;						// ë ˆë²¨
+	FLOAT			IncrementPercent;			// ì¶”ê°€ ê²½í—˜ì¹˜ëŸ‰ (í¼ì„¼íŠ¸)
 };
-// end 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// end 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 
 struct GEAR_STAT_CHANGE_VALUE
 {
@@ -35,18 +35,18 @@ struct GEAR_AUTO_STAT_VALUE_PER_LEVEL
 	GEAR_STAT	GearStat1;
 };
 
-// Level È¤Àº Stat¿¡ ´ëÇÑ °¢Á¾ °ª
+// Level í˜¹ì€ Statì— ëŒ€í•œ ê°ì¢… ê°’
 struct LEVEL_STAT_VALUE
 {
 	INT		LevelOrStat;
-	double	AttackPart_AttackIncreaseRate;			// °ø°İ ½ºÅÈ¿¡ ÀÇÇÑ attack Áõ°¡À², @GetAttackC()
-	double	AttackPart_AttackIncreaseProbability;	// ¸íÁß·ü - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ °ø°İÈ®·ü°ú µ¿ÀÏÇÑ ±â´ÉÀ» °¡Áö´Â Ãß°¡ È®·ü
-	INT		AttackPart_PierceAttackProbability;		// ÇÇ¾î½ºÀ²(256È®·ü) - »ó´ë¹æ ¹æ¾îÀ²¿¡¼­ ÀÌ °ªÀ» Â÷°¨ÇÑ°ÍÀÌ ½ÇÁ¦ »ó´ë¹æ ¹æ¾îÀ²ÀÌ µÈ´Ù.
-	double	DefensePart_DefenseDecreaseRate;		// ¹æ¾î ½ºÅÈ¿¡ ÀÇÇÑ defense °¨¼ÒºĞ, @GetDefenseC()
-	double	ShieldPart_DP;							// ShieldPart¿¡ ´ëÇÑ Shield(DP)°ª
-	double	DodgePart_DefenseProbabilityRate;		// È¸ÇÇ ½ºÅÈ¿¡ ÀÇÇÑ ¹æ¾îÈ®·üÀÇ ºñÀ², @GetDefenseProbabilityC()
-	INT		HPOfLevel;								// Level¿¡ ´ëÇÑ HP
-	INT		Level_MonsertPierceAttackProbability;	// MonsterLevel¿¡ ´ëÇÑ ¸ó½ºÅÍ PierceAttackÈ®·ü
+	double	AttackPart_AttackIncreaseRate;			// ê³µê²© ìŠ¤íƒ¯ì— ì˜í•œ attack ì¦ê°€ìœ¨, @GetAttackC()
+	double	AttackPart_AttackIncreaseProbability;	// ëª…ì¤‘ë¥  - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ê³µê²©í™•ë¥ ê³¼ ë™ì¼í•œ ê¸°ëŠ¥ì„ ê°€ì§€ëŠ” ì¶”ê°€ í™•ë¥ 
+	INT		AttackPart_PierceAttackProbability;		// í”¼ì–´ìŠ¤ìœ¨(256í™•ë¥ ) - ìƒëŒ€ë°© ë°©ì–´ìœ¨ì—ì„œ ì´ ê°’ì„ ì°¨ê°í•œê²ƒì´ ì‹¤ì œ ìƒëŒ€ë°© ë°©ì–´ìœ¨ì´ ëœë‹¤.
+	double	DefensePart_DefenseDecreaseRate;		// ë°©ì–´ ìŠ¤íƒ¯ì— ì˜í•œ defense ê°ì†Œë¶„, @GetDefenseC()
+	double	ShieldPart_DP;							// ShieldPartì— ëŒ€í•œ Shield(DP)ê°’
+	double	DodgePart_DefenseProbabilityRate;		// íšŒí”¼ ìŠ¤íƒ¯ì— ì˜í•œ ë°©ì–´í™•ë¥ ì˜ ë¹„ìœ¨, @GetDefenseProbabilityC()
+	INT		HPOfLevel;								// Levelì— ëŒ€í•œ HP
+	INT		Level_MonsertPierceAttackProbability;	// MonsterLevelì— ëŒ€í•œ ëª¬ìŠ¤í„° PierceAttackí™•ë¥ 
 };
 
 struct STATUS_NAME
@@ -59,9 +59,9 @@ struct STATUS_NAME
 struct ITEMKIND_STRING				// 2006-07-28 by cmkwon
 {
 	BYTE		byItemKind0;	
-	char		*szItemKindString;		// 2006-07-28 by cmkwon, ITEMKIND_XXX --> "ITEMKIND_XXX"·Î º¯È¯
-	char		*szItemKindName;		// 2006-07-28 by cmkwon, À¯Àú¿¡°Ô º¸¿©ÁÖ´Â ItemKindString
-	BOOL		bIsBazaarItemKind;		// 2006-07-28 by cmkwon, °³ÀÎ »óÁ¡¿¡¼­ °Å·¡ °¡´É ITEMKIND_XXX
+	char		*szItemKindString;		// 2006-07-28 by cmkwon, ITEMKIND_XXX --> "ITEMKIND_XXX"ë¡œ ë³€í™˜
+	char		*szItemKindName;		// 2006-07-28 by cmkwon, ìœ ì €ì—ê²Œ ë³´ì—¬ì£¼ëŠ” ItemKindString
+	BOOL		bIsBazaarItemKind;		// 2006-07-28 by cmkwon, ê°œì¸ ìƒì ì—ì„œ ê±°ë˜ ê°€ëŠ¥ ITEMKIND_XXX
 };
 extern const ITEMKIND_STRING g_arrItemKindString[];
 
@@ -74,7 +74,7 @@ struct MEX_TARGET_INFO;
 ///////////////////////////////////////////////////////////////////////////////
 /// \class		CAtumSJ
 ///
-/// \brief		°¢Á¾ °è»ê½Ä ±¸ÇÏ´Â Class - ±âÈ¹ »çÇ× Àû¿ë
+/// \brief		ê°ì¢… ê³„ì‚°ì‹ êµ¬í•˜ëŠ” Class - ê¸°íš ì‚¬í•­ ì ìš©
 /// \author		kelovon
 /// \version
 /// \date		2004-04-10 ~ 2004-04-10
@@ -85,105 +85,105 @@ class CLocalization;
 namespace AtumSJ
 {
 #ifdef _ATUM_SERVER
-	// °¢Á¾ ¼öÄ¡ µ¥ÀÌÅÍ ·Îµù
+	// ê°ì¢… ìˆ˜ì¹˜ ë°ì´í„° ë¡œë”©
 	BOOL LoadData(CODBCStatement *i_pOdbcStmt);
 	vectorMAP_INFO *GetVectPtrALL_MAP_INFO();
 #endif // _ATUM_SERVER
 
-	// ¸Ê Á¤º¸
+	// ë§µ ì •ë³´
 	const MAP_INFO* GetMapInfo(MapIndex_t i_nMapIndex);
 	const char* GetMapName(MapIndex_t i_nMapIndex);
 
-	// ·¹º§ & °æÇèÄ¡ °ü·Ã
+	// ë ˆë²¨ & ê²½í—˜ì¹˜ ê´€ë ¨
 	const LEVEL_EXPERIENCE* GetLevelExperience(int level);
-	float GetBurningMapAddExperience(int level);		// start 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+	float GetBurningMapAddExperience(int level);		// start 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 	Experience_t GetInitialExperienceOfLevel(int level);
 	float GetPercentageOfExperience(Experience_t exp, int level);
 	Experience_t GetExperienceFromPercentage(float i_fPercentage, int level);
 
-	// Ä³¸¯ÅÍ ¼Ó¼º °ü·Ã
-	USHORT GetTransport(CHARACTER *pCharacter);				// ¿î¹İ·Â
-	float GetSpeed(CHARACTER *pCharacter, ITEM *pItem);		// ÀÌµ¿ ¼Óµµ
+	// ìºë¦­í„° ì†ì„± ê´€ë ¨
+	USHORT GetTransport(CHARACTER *pCharacter);				// ìš´ë°˜ë ¥
+	float GetSpeed(CHARACTER *pCharacter, ITEM *pItem);		// ì´ë™ ì†ë„
 
-	// 2007-11-02 by cmkwon, Áß·® ±¸ÇÏ´Â ½Ã½ºÅÛ º¯°æ - ¸®ÅÏ°ª ÀÚ·áÇü º¯°æ(<--int)
-	float GetItemWeight(ITEM *i_pItem, int i_nCountableItemCount, float i_fDesWeight = 0.0f);	// ¾ÆÀÌÅÛÀÇ ¹«°Ô¸¦ ¹İÈ¯, countable itemÀÎ °æ¿ì¸¸ i_nCountableItemCount°¡ ÀÇ¹Ì¸¦ °¡Áü
+	// 2007-11-02 by cmkwon, ì¤‘ëŸ‰ êµ¬í•˜ëŠ” ì‹œìŠ¤í…œ ë³€ê²½ - ë¦¬í„´ê°’ ìë£Œí˜• ë³€ê²½(<--int)
+	float GetItemWeight(ITEM *i_pItem, int i_nCountableItemCount, float i_fDesWeight = 0.0f);	// ì•„ì´í…œì˜ ë¬´ê²Œë¥¼ ë°˜í™˜, countable itemì¸ ê²½ìš°ë§Œ i_nCountableItemCountê°€ ì˜ë¯¸ë¥¼ ê°€ì§
 	BYTE GetStatusByPropensity(INT i_nPropensity);
-	const char*  GetStatusByLevel(BYTE i_byLevel);				// 2008-06-20 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
+	const char*  GetStatusByLevel(BYTE i_byLevel);				// 2008-06-20 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
 	const char* GetStatusNameKO(BYTE i_nStatus);
 	const char* GetStatusNameEN(BYTE i_nStatus);
 
-	// °ø°İ °ü·Ã
+	// ê³µê²© ê´€ë ¨
 	BOOL CheckTargetErrorAngle(CHARACTER* i_pAttackCharacter, D3DXVECTOR3& i_ServerAttackPosition, D3DXVECTOR3& i_ServerTargetPosition, D3DXVECTOR3& i_ClientTargetPosition, float& o_fServerDistance);
-	float GetAttackProbabilityC(ITEM *pItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, Stat_t i_nAttackPart, BYTE i_byLevel, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// Ä³¸¯ÅÍÀÇ °ø°İ È®·ü
-	float GetDefenseProbabilityC(CHARACTER *pCharacter, ITEM *pDefenseItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ ¹æ¾î È®·ü
-	float GetAttackProbabilityM(const MONSTER_INFO *a_pMonsterInfo, const ITEM *a_pItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ¸ó½ºÅÍÀÇ °ø°İ È®·ü	// 2010. 06. 14 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¸ó½ºÅÍ °ø°İ·Â Ãß°¡ ¼öÁ¤, PierceÈ®·ü°ú ÀûÁß·ü Àû¿ë. )
-	float GetDefenseProbabilityM(const MONSTER_INFO *a_pMonster, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ¸ó½ºÅÍÀÇ ¹æ¾î È®·ü // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡.
+	float GetAttackProbabilityC(ITEM *pItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, Stat_t i_nAttackPart, BYTE i_byLevel, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// ìºë¦­í„°ì˜ ê³µê²© í™•ë¥ 
+	float GetDefenseProbabilityC(CHARACTER *pCharacter, ITEM *pDefenseItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ë°©ì–´ í™•ë¥ 
+	float GetAttackProbabilityM(const MONSTER_INFO *a_pMonsterInfo, const ITEM *a_pItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ëª¬ìŠ¤í„°ì˜ ê³µê²© í™•ë¥ 	// 2010. 06. 14 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ëª¬ìŠ¤í„° ê³µê²©ë ¥ ì¶”ê°€ ìˆ˜ì •, Pierceí™•ë¥ ê³¼ ì ì¤‘ë¥  ì ìš©. )
+	float GetDefenseProbabilityM(const MONSTER_INFO *a_pMonster, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ëª¬ìŠ¤í„°ì˜ ë°©ì–´ í™•ë¥  // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€.
 
-	float GetAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ °ø°İ·Â
-	float GetMinAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ ÃÖ¼Ò°ø°İ·Â
-	float GetMaxAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ ÃÖ´ë°ø°İ·Â
+	float GetAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ê³µê²©ë ¥
+	float GetMinAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ìµœì†Œê³µê²©ë ¥
+	float GetMaxAttackC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ìµœëŒ€ê³µê²©ë ¥
 	
 	// returns defense percentage in [0, 100]
 	float GetDefenseC(CHARACTER *pCharacter, const CParamFactor *pParamFactor,
 		bool bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);		
 	
-	float GetAttackM(const ITEM *a_pItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);							// ¸ó½ºÅÍÀÇ °ø°İ·Â // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡.
-	float GetMinAttackM(const ITEM *a_pMonsterAttackItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);			// ¸ó½ºÅÍÀÇ ÃÖ¼Ò °ø°İ·Â // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡.
-	float GetMaxAttackM(const ITEM *a_pMonsterAttackItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);			// ¸ó½ºÅÍÀÇ ÃÖ´ë °ø°İ·Â // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡.
-	float GetDefenseM(const MONSTER_INFO *a_pMonster, BOOL i_bIsArenaServer = FALSE, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);		// ¸ó½ºÅÍÀÇ ¹æ¾î·Â // 2009-12-24 by cmkwon, ¸ó½ºÅÍ Defense¸¦ ÀÎÇÇ´ÏÆ¼¼­¹ö(¾Æ·¹³ªÆ÷ÇÔ)¿¡¼­ °íÁ¤°ªÀ¸·Î Ã³¸® - // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®ÀåÁ¤º¸ ÀÎÀÚ Ãß°¡.
+	float GetAttackM(const ITEM *a_pItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);							// ëª¬ìŠ¤í„°ì˜ ê³µê²©ë ¥ // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€.
+	float GetMinAttackM(const ITEM *a_pMonsterAttackItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);			// ëª¬ìŠ¤í„°ì˜ ìµœì†Œ ê³µê²©ë ¥ // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€.
+	float GetMaxAttackM(const ITEM *a_pMonsterAttackItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);			// ëª¬ìŠ¤í„°ì˜ ìµœëŒ€ ê³µê²©ë ¥ // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€.
+	float GetDefenseM(const MONSTER_INFO *a_pMonster, BOOL i_bIsArenaServer = FALSE, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);		// ëª¬ìŠ¤í„°ì˜ ë°©ì–´ë ¥ // 2009-12-24 by cmkwon, ëª¬ìŠ¤í„° Defenseë¥¼ ì¸í”¼ë‹ˆí‹°ì„œë²„(ì•„ë ˆë‚˜í¬í•¨)ì—ì„œ ê³ ì •ê°’ìœ¼ë¡œ ì²˜ë¦¬ - // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ì •ë³´ ì¸ì ì¶”ê°€.
 
-	// 2009-12-17 by cmkwon, µ¥¹ÌÁö °è»ê½Ä °ü·ÃÇÑ ÇÊµå(¹æ¾î·Â,È¸ÇÇ,ÇÇ¾î½º,È®·ü)¿¡ 255ÀÌ»ó °ªÀ» ¼³Á¤ °¡´ÉÇÏ°Ô ¼öÁ¤ - ¹«±â ÀÎÀÚ Ãß°¡
-	float GetPierceAttackProbabilityM(const int i_MonsterLevel, const ITEM *i_pAttItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ¸ó½ºÅÍÀÇ PierceAttackÈ®·ü // 2010. 06. 14 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¸ó½ºÅÍ °ø°İ·Â Ãß°¡ ¼öÁ¤, PierceÈ®·ü°ú ÀûÁß·ü Àû¿ë. )
+	// 2009-12-17 by cmkwon, ë°ë¯¸ì§€ ê³„ì‚°ì‹ ê´€ë ¨í•œ í•„ë“œ(ë°©ì–´ë ¥,íšŒí”¼,í”¼ì–´ìŠ¤,í™•ë¥ )ì— 255ì´ìƒ ê°’ì„ ì„¤ì • ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì • - ë¬´ê¸° ì¸ì ì¶”ê°€
+	float GetPierceAttackProbabilityM(const int i_MonsterLevel, const ITEM *i_pAttItem, const MONSTER_INFO_EXTEND *a_pMonInfoExtend = NULL);	// ëª¬ìŠ¤í„°ì˜ PierceAttackí™•ë¥  // 2010. 06. 14 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ëª¬ìŠ¤í„° ê³µê²©ë ¥ ì¶”ê°€ ìˆ˜ì •, Pierceí™•ë¥ ê³¼ ì ì¤‘ë¥  ì ìš©. )
 
-	float GetMinAttackPerSecondC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ ÃÊ´ç ÃÖ¼Ò °ø°İ·Â
-	float GetMaxAttackPerSecondC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // Ä³¸¯ÅÍÀÇ ÃÊ´ç ÃÖ´ë °ø°İ·Â
+	float GetMinAttackPerSecondC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ì´ˆë‹¹ ìµœì†Œ ê³µê²©ë ¥
+	float GetMaxAttackPerSecondC(CHARACTER *pCharacter, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ìºë¦­í„°ì˜ ì´ˆë‹¹ ìµœëŒ€ ê³µê²©ë ¥
 
-	// ¾ÆÀÌÅÛ ¼Ó¼º °ü·Ã
-	int GetTotalPrimaryShotCountPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ´ÜÀ§ Reattack Time µ¿¾È ½ò ¼ö ÀÖ´Â 1Çü ¹«±âÀÇ ÃÖ´ë ÃÑ¾Ë ¼ö
-	int GetTotalSecondaryShotCountPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ´ÜÀ§ Reattack Time µ¿¾È ½ò ¼ö ÀÖ´Â 2Çü ¹«±âÀÇ ÃÖ´ë ÃÑ¾Ë ¼ö
-	int GetTotalPrimaryShotNumPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// ´ÜÀ§ Reattack Time µ¿¾È ½ò ¼ö ÀÖ´Â 1Çü ¹«±âÀÇ ÃÖ´ë ¹ß»ç È½¼ö
-	int GetTotalSecondaryShotNumPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ´ÜÀ§ Reattack Time µ¿¾È ½ò ¼ö ÀÖ´Â 2Çü ¹«±âÀÇ ÃÖ´ë ¹ß»ç È½¼ö
-	int GetSecondaryMultiNumCount(ITEM *pItem, const CParamFactor *pParamFactor);		// ÇÑ ¹ø¿¡ ³ª°¡´Â ÃÑ¾Ë ¼ö
-	DWORD GetReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);				// Àç°ø°İ ½Ã°£
-	float GetAttackRange(ITEM *pItem, const CParamFactor *pParamFactor);				// °ø°İ ¹üÀ§
-	float GetOverheatTime(ITEM *pItem, const CParamFactor *pParamFactor);				// °ú¿­ ½Ã°£
-	float GetShotCountReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// shotnum ÀÌ °¢°¢ ¹ß»ç½Ã »çÀÌ ½Ã°£
-	float GetShotNumReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// ReattackTime µ¿¾È ShotNum ¸¸Å­ ¹ß»ç µÉ¶§ »çÀÌ °£°İ ½Ã°£
-	float GetPrepareTime(ITEM *pItem, const CParamFactor *pParamFactor);				// ¹ßµ¿ ½Ã°£
-	int GetMultiTargetNum(ITEM *pItem, const CParamFactor *pParamFactor);				// Multi Target ¼ö
-	float GetAttackRangeAngle(ITEM *pItem, const CParamFactor *pParamFactor);			// È­¸Á °¢µµ
-	UINT GetItemSellingPriceAtShop(ITEM* pItem);									// ¾ÆÀÌÅÛ »óÁ¡¿¡ ÆÈ¶§ °¡°İ
-	float GetItemSellingPriceRate();												// ¾ÆÀÌÅÛ »óÁ¡¿¡ ÆÈ¶§ ºñÀ²
-	float GetExplosionRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// ÆøÆÄ ¹İ°æ
-	int GetCountMineAtATime(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// ÇÑ Ä³¸¯ÅÍ´ç »Ñ·ÁÁú ¼ö ÀÖ´Â ÃÖ´ë ¸¶ÀÎÀÇ °³¼ö
-	USHORT GetReactionRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// ¹İÀÀ ¹İ°æ
-	float GetMinAttackPerSecond(ITEM *i_pRealItem);								// ¾ÆÀÌÅÛÀÇ ÃÊ´ç ÃÖ¼Ò °ø°İ·Â
-	float GetMaxAttackPerSecond(ITEM *i_pRealItem);								// ¾ÆÀÌÅÛÀÇ ÃÊ´ç ÃÖ´ë °ø°İ·Â
-	float GetPrimaryRadarRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// 1Çü ·¹ÀÌ´õ »çÁ¤ °Å¸®
-	float GetSecondaryRadarRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);	// 2Çü ·¹ÀÌ´õ »çÁ¤ °Å¸®
-	float GetCircularAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);				// ÇÏÀÌÆÛ ¹«ºù(¹İÀÀ¼Óµµ), 2005-12-02 by cmkwon
-	float GetEngineRangeAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);			// ÇÏÀÌÆÛ ¹«ºù(¼±È¸°¢), 2005-12-02 by cmkwon
-	float GetEngineBoosterRangeAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);	// ÇÏÀÌÆÛ ¹«ºù(ºÎ½ºÅÍ ¼±È¸°¢), 2005-12-02 by cmkwon
-	float GetWarHeadSpeed(ITEM *i_pItem, const CParamFactor *i_pParamFactor);				// 176, 2007-06-11 by cmkwon, ÅºµÎÀÇ ¼Óµµ
+	// ì•„ì´í…œ ì†ì„± ê´€ë ¨
+	int GetTotalPrimaryShotCountPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ë‹¨ìœ„ Reattack Time ë™ì•ˆ ì  ìˆ˜ ìˆëŠ” 1í˜• ë¬´ê¸°ì˜ ìµœëŒ€ ì´ì•Œ ìˆ˜
+	int GetTotalSecondaryShotCountPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ë‹¨ìœ„ Reattack Time ë™ì•ˆ ì  ìˆ˜ ìˆëŠ” 2í˜• ë¬´ê¸°ì˜ ìµœëŒ€ ì´ì•Œ ìˆ˜
+	int GetTotalPrimaryShotNumPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// ë‹¨ìœ„ Reattack Time ë™ì•ˆ ì  ìˆ˜ ìˆëŠ” 1í˜• ë¬´ê¸°ì˜ ìµœëŒ€ ë°œì‚¬ íšŸìˆ˜
+	int GetTotalSecondaryShotNumPerReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);	// ë‹¨ìœ„ Reattack Time ë™ì•ˆ ì  ìˆ˜ ìˆëŠ” 2í˜• ë¬´ê¸°ì˜ ìµœëŒ€ ë°œì‚¬ íšŸìˆ˜
+	int GetSecondaryMultiNumCount(ITEM *pItem, const CParamFactor *pParamFactor);		// í•œ ë²ˆì— ë‚˜ê°€ëŠ” ì´ì•Œ ìˆ˜
+	DWORD GetReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);				// ì¬ê³µê²© ì‹œê°„
+	float GetAttackRange(ITEM *pItem, const CParamFactor *pParamFactor);				// ê³µê²© ë²”ìœ„
+	float GetOverheatTime(ITEM *pItem, const CParamFactor *pParamFactor);				// ê³¼ì—´ ì‹œê°„
+	float GetShotCountReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// shotnum ì´ ê°ê° ë°œì‚¬ì‹œ ì‚¬ì´ ì‹œê°„
+	float GetShotNumReattackTime(ITEM *pItem, const CParamFactor *pParamFactor);		// ReattackTime ë™ì•ˆ ShotNum ë§Œí¼ ë°œì‚¬ ë ë•Œ ì‚¬ì´ ê°„ê²© ì‹œê°„
+	float GetPrepareTime(ITEM *pItem, const CParamFactor *pParamFactor);				// ë°œë™ ì‹œê°„
+	int GetMultiTargetNum(ITEM *pItem, const CParamFactor *pParamFactor);				// Multi Target ìˆ˜
+	float GetAttackRangeAngle(ITEM *pItem, const CParamFactor *pParamFactor);			// í™”ë§ ê°ë„
+	UINT GetItemSellingPriceAtShop(ITEM* pItem);									// ì•„ì´í…œ ìƒì ì— íŒ”ë•Œ ê°€ê²©
+	float GetItemSellingPriceRate();												// ì•„ì´í…œ ìƒì ì— íŒ”ë•Œ ë¹„ìœ¨
+	float GetExplosionRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// í­íŒŒ ë°˜ê²½
+	int GetCountMineAtATime(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// í•œ ìºë¦­í„°ë‹¹ ë¿Œë ¤ì§ˆ ìˆ˜ ìˆëŠ” ìµœëŒ€ ë§ˆì¸ì˜ ê°œìˆ˜
+	USHORT GetReactionRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// ë°˜ì‘ ë°˜ê²½
+	float GetMinAttackPerSecond(ITEM *i_pRealItem);								// ì•„ì´í…œì˜ ì´ˆë‹¹ ìµœì†Œ ê³µê²©ë ¥
+	float GetMaxAttackPerSecond(ITEM *i_pRealItem);								// ì•„ì´í…œì˜ ì´ˆë‹¹ ìµœëŒ€ ê³µê²©ë ¥
+	float GetPrimaryRadarRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);		// 1í˜• ë ˆì´ë” ì‚¬ì • ê±°ë¦¬
+	float GetSecondaryRadarRange(ITEM *i_pItem, const CParamFactor *i_pParamFactor);	// 2í˜• ë ˆì´ë” ì‚¬ì • ê±°ë¦¬
+	float GetCircularAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);				// í•˜ì´í¼ ë¬´ë¹™(ë°˜ì‘ì†ë„), 2005-12-02 by cmkwon
+	float GetEngineRangeAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);			// í•˜ì´í¼ ë¬´ë¹™(ì„ íšŒê°), 2005-12-02 by cmkwon
+	float GetEngineBoosterRangeAngle(ITEM *i_pItem, const CParamFactor *i_pParamFactor);	// í•˜ì´í¼ ë¬´ë¹™(ë¶€ìŠ¤í„° ì„ íšŒê°), 2005-12-02 by cmkwon
+	float GetWarHeadSpeed(ITEM *i_pItem, const CParamFactor *i_pParamFactor);				// 176, 2007-06-11 by cmkwon, íƒ„ë‘ì˜ ì†ë„
 
 
-	// °æÇèÄ¡ °ü·Ã
-	float GetMonsterDeadExpWeight(int i_nCharacterLevel, int i_nMonsterLevel);	// ¸ó½ºÅÍ°¡ Á×¾úÀ» ¶§ ºĞ¹èÇÏ´Â °æÇèÄ¡¿¡ ´ëÇÑ weight °ü·Ã
+	// ê²½í—˜ì¹˜ ê´€ë ¨
+	float GetMonsterDeadExpWeight(int i_nCharacterLevel, int i_nMonsterLevel);	// ëª¬ìŠ¤í„°ê°€ ì£½ì—ˆì„ ë•Œ ë¶„ë°°í•˜ëŠ” ê²½í—˜ì¹˜ì— ëŒ€í•œ weight ê´€ë ¨
 	float GetPartyBonusExpWeight(int nPartyMemberCnts);							// 
 
-	// ¸ó½ºÅÍ µå¶ø ¾ÆÀÌÅÜ ½Àµæ ½Ã ·¹º§ Â÷¿¡ ÀÇÇÑ ½Àµæ ¿©ºÎ
+	// ëª¬ìŠ¤í„° ë“œë ì•„ì´í… ìŠµë“ ì‹œ ë ˆë²¨ ì°¨ì— ì˜í•œ ìŠµë“ ì—¬ë¶€
 	BOOL CanPickUpDropMoney(int i_nCharacterLevel, MONSTER_INFO *i_pMonInfo);
 	BOOL CanPickUpDropItem(int i_nCharacterLevel, MONSTER_INFO *i_pMonInfo);
 	BOOL CanPickUpDropRare(int i_nCharacterLevel, MONSTER_INFO *i_pMonInfo);
 
-	// º¸³Ê½º ½ºÅÈ Àû¿ë ¼öÄ¡ °ü·Ã
+	// ë³´ë„ˆìŠ¤ ìŠ¤íƒ¯ ì ìš© ìˆ˜ì¹˜ ê´€ë ¨
 	const GEAR_STAT_CHANGE_VALUE* GetGearStatChangeValueStruct(USHORT i_UnitKind);
 	Stat_t GetGearStatChangeValue(USHORT i_UnitKind, BYTE i_nStatKind);
 	BOOL GetGearStatBYAutoStatTypeAndLevel(GEAR_AUTO_STAT_VALUE_PER_LEVEL *o_pAutoStatValue, INT i_autoStatType, INT i_level);
 	char * GetAutoStatTypeString(INT i_autoStatType);
 
-	// ½ºÆ®¸µ º¯È¯
-// 2006-07-28 by cmkwon, ÇÊ¿ä ¾ø´Â ÇÔ¼ö
+	// ìŠ¤íŠ¸ë§ ë³€í™˜
+// 2006-07-28 by cmkwon, í•„ìš” ì—†ëŠ” í•¨ìˆ˜
 //	const char *GetItemKindString(BYTE i_nKind);
 	const char *GetItemKindName(BYTE i_nKind);
 	BYTE GetItemKindByItemKindName(char *i_szItemKindString);
@@ -196,24 +196,24 @@ namespace AtumSJ
 	const char *GetReqUnitKindString(USHORT i_usUnitKind);
 	const char *GetGuildRankString(BYTE i_byGuildRank);
 
-	// ½ºÅÈ °ü·Ã
+	// ìŠ¤íƒ¯ ê´€ë ¨
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 	INT GetCharacterHP(BYTE i_nLevel);
-	INT GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// DP(½¯µå)·®
+	INT GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// DP(ì‰´ë“œ)ëŸ‰
 #else
 	SHORT GetCharacterHP(BYTE i_nLevel);
-	SHORT GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// DP(½¯µå)·®
+	SHORT GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// DP(ì‰´ë“œ)ëŸ‰
 #endif	
-	SHORT GetCharacterSP(Stat_t i_nSoulPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
-	SHORT GetCharacterEP(Stat_t i_nFuelPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
-	float GetAttackC_IncreaseRate(Stat_t i_nAttackPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)		// AttackC Áõ°¡À²
-	float GetAttackC_IncreaseProbability(Stat_t i_nAttackPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// ¸íÁß·ü - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ °ø°İÈ®·ü°ú µ¿ÀÏÇÑ ±â´ÉÀ» °¡Áö´Â Ãß°¡ È®·ü
-	float GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, BYTE i_byLevel, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®, // PierceAttackÀ² - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ ¹æ¾îÀ²°ú »ó¼â°¡ µÇ´Â °ø°İ ¹æ¹ı Áß ÇÏ³ª
-	double GetDefenseC_DecreaseRate(Stat_t i_nDefensePart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// DefenseC¿¡ ÀÇÇÑ Damage °¨¼Ò ºñÀ²
-	double GetDefenseProbabilityC_Rate(Stat_t i_nDodgePart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)// ¹æ¾î È®·üÀÇ ºñÀ²
+	SHORT GetCharacterSP(Stat_t i_nSoulPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
+	SHORT GetCharacterEP(Stat_t i_nFuelPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
+	float GetAttackC_IncreaseRate(Stat_t i_nAttackPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)		// AttackC ì¦ê°€ìœ¨
+	float GetAttackC_IncreaseProbability(Stat_t i_nAttackPart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// ëª…ì¤‘ë¥  - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ê³µê²©í™•ë¥ ê³¼ ë™ì¼í•œ ê¸°ëŠ¥ì„ ê°€ì§€ëŠ” ì¶”ê°€ í™•ë¥ 
+	float GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM *pAttackItem, const CParamFactor *pParamFactor, BOOL bIsPrimaryAttack, BYTE i_byLevel, enumAttackToTarget eAttackToTarget = NULL2NULL, float i_PvPBuffPercent = 0.0f);	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸, // PierceAttackìœ¨ - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ë°©ì–´ìœ¨ê³¼ ìƒì‡„ê°€ ë˜ëŠ” ê³µê²© ë°©ë²• ì¤‘ í•˜ë‚˜
+	double GetDefenseC_DecreaseRate(Stat_t i_nDefensePart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// DefenseCì— ì˜í•œ Damage ê°ì†Œ ë¹„ìœ¨
+	double GetDefenseProbabilityC_Rate(Stat_t i_nDodgePart, BYTE i_byLevel);	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)// ë°©ì–´ í™•ë¥ ì˜ ë¹„ìœ¨
 	const LEVEL_STAT_VALUE* GetLevelStatValue(int i_nLevelOrStat);
 
-	BOOL GetRepairCost(int *o_pnCost, int *o_pnRealAmountToRepair, int i_nDesParam, int i_nRequestAmountToRepair, ITEM *i_pBulletItem = NULL);	// ¼ö¸® ºñ¿ë °è»ê(´ÜÀ§:spi)
+	BOOL GetRepairCost(int *o_pnCost, int *o_pnRealAmountToRepair, int i_nDesParam, int i_nRequestAmountToRepair, ITEM *i_pBulletItem = NULL);	// ìˆ˜ë¦¬ ë¹„ìš© ê³„ì‚°(ë‹¨ìœ„:spi)
 
 	enumAttackToTarget GetAttackToTarget(ClientIndex_t i_AttackIndex, MEX_TARGET_INFO &i_MexTargetInfo);
 	enumAttackToTarget GetAttackToTarget(ClientIndex_t i_AttackIndex, ClientIndex_t i_TargetIndex, UINT i_TargetItemFieldIndex);
@@ -232,11 +232,11 @@ namespace AtumSJ
 
 	float GetPenaltyCollisionBYSpeed(INT i_nCurSpeed);
 
-	// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - ÀÎÀÚÃß°¡(MapIndex_t i_nStartCityMapIdx)
+	// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - ì¸ìì¶”ê°€(MapIndex_t i_nStartCityMapIdx)
 	MapIndex_t GetCityMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx = VCN_CITY_MAP_INDEX);
 
-	// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CAtumSJ::IsOtherInfluenceMap#, Ãß°¡
-	MapIndex_t GetGargenMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx = VCN_CITY_MAP_INDEX, BOOL i_bMotherShipWar = FALSE);		// 2012-07-02 by hskim, ¸ğ¼±Àü °³¼± - ¸ğ¼±Àü ÁøÇà½Ã ½ºÅæÁî ·çÀÎ ÁøÀÔ ºÒ°¡	
+	// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CAtumSJ::IsOtherInfluenceMap#, ì¶”ê°€
+	MapIndex_t GetGargenMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx = VCN_CITY_MAP_INDEX, BOOL i_bMotherShipWar = FALSE);		// 2012-07-02 by hskim, ëª¨ì„ ì „ ê°œì„  - ëª¨ì„ ì „ ì§„í–‰ì‹œ ìŠ¤í†¤ì¦ˆ ë£¨ì¸ ì§„ì… ë¶ˆê°€	
 	BOOL IsOtherInfluenceMap(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx, int i_nMapInflTy);
 	BOOL IsSameCharacterInfluence8MapInfluence(BYTE i_byInflTy, int i_nMapInflTy);
 
@@ -246,46 +246,46 @@ namespace AtumSJ
 	BOOL IsValidCharacterName(char *i_szCharName);
 	BOOL IsValidGuildName(char *i_szGuildName);
 	BOOL LoadAllLetterList(const char *i_szFilePath);
-	BOOL IsValidOneByteCharacter(const char *i_szSource);	// 2007-12-05 by cmkwon, Ä³¸¯ÅÍ¸í Ã¼Å©½Ã Æ¯¼ö¹®ÀÚ Ã¼Å© ·çÆ¾ ¼öÁ¤ - CAtumSJ::IsValidOneByteCharacter() Ãß°¡
+	BOOL IsValidOneByteCharacter(const char *i_szSource);	// 2007-12-05 by cmkwon, ìºë¦­í„°ëª… ì²´í¬ì‹œ íŠ¹ìˆ˜ë¬¸ì ì²´í¬ ë£¨í‹´ ìˆ˜ì • - CAtumSJ::IsValidOneByteCharacter() ì¶”ê°€
 
 	// 2006-09-05 by cmkwon
 	INT GetSPIPenaltyOnDead(int i_nLevel);
 
-	// 2006-09-14 by dhjin, ¸É¹ö½± ¼­ºñ½º½Ã Àû¿ë°ú ¼­ºñ½º ¾øÀ» ¶§ Àû¿ëµÇ´Â ÀÎº¥Åä¸®, Ã¢°í, ¿©´Ü¿ø ¸Æ½º°ª ¾ò¾î¿À±â
-// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - ÀÎÀÚ º¯°æ
+	// 2006-09-14 by dhjin, ë§´ë²„ì‰½ ì„œë¹„ìŠ¤ì‹œ ì ìš©ê³¼ ì„œë¹„ìŠ¤ ì—†ì„ ë•Œ ì ìš©ë˜ëŠ” ì¸ë²¤í† ë¦¬, ì°½ê³ , ì—¬ë‹¨ì› ë§¥ìŠ¤ê°’ ì–»ì–´ì˜¤ê¸°
+// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì¸ì ë³€ê²½
 //	INT GetMaxInventorySize(BOOL i_IsMembership);
 //	INT GetMaxStoreSize(BOOL i_IsMembership);
-	INT GetMaxInventorySize(BOOL i_IsMembership, int i_nAddedCnt);		// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - ÀÎÀÚ º¯°æ
-	INT GetMaxStoreSize(BOOL i_IsMembership, int i_nAddedCnt);			// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - ÀÎÀÚ º¯°æ
-	INT GetMaxGuildSize(INT i_nGuildMemberCapacity, BOOL i_IsMembership);	// 2008-05-27 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø Áõ°¡ Ä³½¬ ¾ÆÀÌÅÛ
+	INT GetMaxInventorySize(BOOL i_IsMembership, int i_nAddedCnt);		// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì¸ì ë³€ê²½
+	INT GetMaxStoreSize(BOOL i_IsMembership, int i_nAddedCnt);			// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì¸ì ë³€ê²½
+	INT GetMaxGuildSize(INT i_nGuildMemberCapacity, BOOL i_IsMembership);	// 2008-05-27 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ì¦ê°€ ìºì‰¬ ì•„ì´í…œ
 
 	// 2007-04-10 by cmkwon
 	char * GetJamboreePreAddCharacterString(int i_nNumber);
 
-	// 2007-11-21 by cmkwon, PilotFace º¯°æ Ä«µå ±¸Çö - 
+	// 2007-11-21 by cmkwon, PilotFace ë³€ê²½ ì¹´ë“œ êµ¬í˜„ - 
 	BOOL IsValidPiotFace(BYTE i_byPilotFace);
 
-	// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - 
-	// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - CAtumSJ::GetTimeSecondByItemKind8ItemAttribute#, ¼öÁ¤
+	// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - 
+	// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - CAtumSJ::GetTimeSecondByItemKind8ItemAttribute#, ìˆ˜ì •
 	INT GetTimeSecondByItemKind8ItemAttribute(ITEM *i_pItemInfo, TIME_TERM_t i_enTimeTermTy = TIME_TERM_USING_ITEM);
 	INT GetTimeMinuteByItemKind8ItemAttribute(ITEM *i_pItemInfo, TIME_TERM_t i_enTimeTermTy = TIME_TERM_USING_ITEM);
 
-	BOOL IsAlphaNum(char *i_szString);				// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-	BOOL IsValidNickName(char *i_szNickName);		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+	BOOL IsAlphaNum(char *i_szString);				// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	BOOL IsValidNickName(char *i_szNickName);		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - 
+	// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - 
 	INT FindPartyFormationSkillNum(BYTE i_byFormationTy);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-01-14 by cmkwon, ¿ùµå·©Å·½Ã½ºÅÛ ¹ö±× ¼öÁ¤(¼­ºñ½º»èÁ¦,¼­¹ö±×·ì»èÁ¦) - 
+	// 2010-01-14 by cmkwon, ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •(ì„œë¹„ìŠ¤ì‚­ì œ,ì„œë²„ê·¸ë£¹ì‚­ì œ) - 
 	BOOL IsValidWRankingServiceName(char *i_szServiceName);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+	// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 	int GetLuckyMachineSlotCount(int i_machineKind);
 	int GetRareItemInfoList(vectRARE_ITEM_INFOPtrList *o_pValidRareList, BOOL i_bIsPrefix, mapRARE_ITEM_INFOPtrList *i_pRareItemInfoList, ITEM *i_pTargetItemInfo, ITEM *i_pRareItemInfo);
-	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	const char* GetInfluenceTypeGLogString(BYTE i_byInfluenceTy);
 	const char* GetGLOGUnitKindString(USHORT i_nUnitKind);
 
@@ -297,29 +297,29 @@ namespace AtumSJ
 namespace CAtumSJ = AtumSJ;
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
+// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
 struct BitS_CParamFactor
 {
-	UINT	pfb_SKILL_ROLLING_TIME			:1;		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
-	UINT	pfb_SKILL_Barrier				:1;		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
-	UINT	pfb_SKILL_SHIELD_PARALYZE		:1;		// 2009-09-09 ~ 2010-02-18 by dhjin, ÀÎÇÇ´ÏÆ¼ - Debuff Ã¼Å©µµ Ãß°¡ // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Debuff Ã¼Å©·Î º¯°æ	// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
-	UINT	pfb_SKILL_Invincible			:1;		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
-	UINT	pfb_SKILL_DamageDistribution	:1;		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, Ãß°¡ÇÔ
-	UINT	pfb_ITEM_IgnoreDefence			:1;		// 203, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹æ¾î·Â ¹«½Ã ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
-	UINT	pfb_ITEM_IgnoreAvoid			:1;		// 204, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - È¸ÇÇ·Â ¹«½Ã ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
+	UINT	pfb_SKILL_ROLLING_TIME			:1;		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
+	UINT	pfb_SKILL_Barrier				:1;		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
+	UINT	pfb_SKILL_SHIELD_PARALYZE		:1;		// 2009-09-09 ~ 2010-02-18 by dhjin, ì¸í”¼ë‹ˆí‹° - Debuff ì²´í¬ë„ ì¶”ê°€ // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Debuff ì²´í¬ë¡œ ë³€ê²½	// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
+	UINT	pfb_SKILL_Invincible			:1;		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
+	UINT	pfb_SKILL_DamageDistribution	:1;		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, ì¶”ê°€í•¨
+	UINT	pfb_ITEM_IgnoreDefence			:1;		// 203, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°©ì–´ë ¥ ë¬´ì‹œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
+	UINT	pfb_ITEM_IgnoreAvoid			:1;		// 204, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íšŒí”¼ë ¥ ë¬´ì‹œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \class		CParamFactor
 ///
-/// \brief		Ä³¸¯ÅÍÀÇ °¢Á¾ ÆÄ¶ó¹ÌÅÍ¿¡ Àû¿ëµÉ factors, DES_XXX¿¡ ´ëÀÀµÊ
-///				pfp:Plus ÇØÁÖ´Â Param, ParamÀ» ´õÇØÁØ´Â Ã³¸®
-///				pfp:Multiple ÇØÁÖ´Â Param, ParamÀ» °öÇØÁÖ´Â Ã³¸®
+/// \brief		ìºë¦­í„°ì˜ ê°ì¢… íŒŒë¼ë¯¸í„°ì— ì ìš©ë  factors, DES_XXXì— ëŒ€ì‘ë¨
+///				pfp:Plus í•´ì£¼ëŠ” Param, Paramì„ ë”í•´ì¤€ëŠ” ì²˜ë¦¬
+///				pfp:Multiple í•´ì£¼ëŠ” Param, Paramì„ ê³±í•´ì£¼ëŠ” ì²˜ë¦¬
 /// \author		kelovon
 /// \version
 /// \date		2004-04-10 ~ 2004-04-10
-/// \warning	Ä³¸¯ÅÍÀÇ ParamFactor´Â ITEM¿¡ Àû¿ë½Ã¿¡ ÀåÀüµÈ ¹«±â¿¡¸¸ ÇØ´çµÈ´Ù.
+/// \warning	ìºë¦­í„°ì˜ ParamFactorëŠ” ITEMì— ì ìš©ì‹œì— ì¥ì „ëœ ë¬´ê¸°ì—ë§Œ í•´ë‹¹ëœë‹¤.
 ///////////////////////////////////////////////////////////////////////////////
 struct CParamFactor
 {
@@ -333,123 +333,123 @@ struct CParamFactor
 	CParamFactor operator-(const CParamFactor &rhs) const;
 	CParamFactor& operator-=(const CParamFactor &rhs);
 
-	float		pfp_ATTACK_PART;			// 1, °ø°İ ÆÄÆ®
-	float		pfp_DEFENSE_PART;			// 2, ¹æ¾î ÆÄÆ®
-	float		pfp_FUEL_PART;				// 3, ¿¬·á ÆÄÆ®
-	float		pfp_SOUL_PART;				// 4, °¨ÀÀ ÆÄÆ®
-	float		pfp_SHIELD_PART;			// 5, ½¯µå ÆÄÆ®
-	float		pfp_DODGE_PART;				// 6, È¸ÇÇ ÆÄÆ®
-	float		pfp_BODYCONDITION;			// 7, ¸ö»óÅÂ
-	float		pfp_ENDURANCE_01 ;			// 8, ³»±¸µµ 01
-	float		pfp_ENDURANCE_02;			// 9, ³»±¸µµ 02
-	float		pfp_CHARGING_01;			// 10, ÀåÅº¼ö 01
-	float		pfp_CHARGING_02;			// 11, ÀåÅº¼ö 02
-	INT			pfp_PROPENSITY;				// 12, ¼ºÇâ
-	float		pfp_HP;						// 13, È÷Æ®Æ÷ÀÎÆ®
-	float		pfp_SP;						// 14, ¼Ò¿ïÆ÷ÀÎÆ®, ÀÏÁ¤ ½Ã°£ ÈÄ¿¡ SP¸¦ Áõ°¡½ÃÅ°±â¸¸ ÇÏ¸é µÊ
-	float		pfp_DP;						// 89, ½¯µå(DEFENSE)Æ÷ÀÎÆ®
-	float		pfp_EP;						// 15, ¿£ÁøÆ÷ÀÎÆ®
-	float		pfp_SPRECOVERY;				// 16, ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
-	float		pfp_HPRECOVERY;				// 17, ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
-	float		pfm_MINATTACK_01;			// 18, (*) ÃÖ¼Ò °ø°İ·Â 01
-	float		pfm_MAXATTACK_01;			// 71, (*) ÃÖ´ë °ø°İ·Â 02
-	float		pfm_MINATTACK_02;			// 19, (*) ÃÖ¼Ò °ø°İ·Â 01
-	float		pfm_MAXATTACK_02;			// 72, (*) ÃÖ´ë °ø°İ·Â 02
-	float		pfp_ATTACKPROBABILITY_01;	// 20, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ °ø°İÈ®·ü 01, 0 ~ 255	
-	float		pfp_ATTACKPROBABILITY_02;	// 21, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ°ø°İÈ®·ü 02, 0 ~ 255
-	float		pfp_DEFENSE_01;				// 22, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ¹æ¾î·Â 01, 0 ~ 255
-	float		pfp_DEFENSE_02;				// 23, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ¹æ¾î·Â 02, 0 ~ 255
-	float		pfp_DEFENSEPROBABILITY_01;	// 24, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ¹æ¾îÈ®·ü 01, 0 ~ 255
-	float		pfp_DEFENSEPROBABILITY_02;	// 25, // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ¹æ¾îÈ®·ü 02, 0 ~ 255
-	Prob255_t	pfp_SKILLPROBABILITY;		// 26, ½ºÅ³°ø°İÈ®·ü, 0 ~ 255
-	Prob255_t	pfp_FACTIONRESISTANCE;		// 27, ¼Ó¼ºÀúÇ×·Â, 0 ~ 255
-	float		pfm_SPEED;					// 28, (*) ÀÌµ¿¼Óµµ
-	float		pfp_TRANSPORT;				// 29, ¿î¹İ·Â
-	float		pfp_MATERIAL;				// 30, ÀçÁú
-	float		pfm_REATTACKTIME_01;		// 31, (*) ¸®¾îÅÃÅ¸ÀÓ 01
-	float		pfm_REATTACKTIME_02;		// 32, (*) ¸®¾îÅÃÅ¸ÀÓ 02
-	Prob255_t	pfp_ABRASIONRATE_01;		// 33, ¸¶¸ğÀ² 01, 0 ~ 255
-	Prob255_t	pfp_ABRASIONRATE_02;		// 34, ¸¶¸ğÀ² 02, 0 ~ 255
-	float		pfm_RANGE_01;				// 35, (*) À¯È¿°Å¸® 01
-	float		pfm_RANGE_02;				// 36, (*) À¯È¿°Å¸® 02
-	float		pfp_RANGEANGLE_01;			// 37, À¯È¿°¢µµ 01, ¼­¹ö¿¡¼± ºÒÇÊ¿ä
-	float		pfp_RANGEANGLE_02;			// 38, À¯È¿°¢µµ 02, ¼­¹ö¿¡¼± ºÒÇÊ¿ä
-	int			pfp_MULTITAGET;				// 39, ¸ÖÆ¼Å¸°Ù, ¼­¹ö¿¡¼± ºÒÇÊ¿ä
-	float		pfp_EXPLOSIONRANGE_01;		// 40, Æø¹ß¹İ°æ 01
-	float		pfp_EXPLOSIONRANGE_02;		// 67, Æø¹ß¹İ°æ 02
-	float		pfp_UNIT;					// 41, À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-	float		pfp_REVISION;				// 42, À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-	Prob255_t	pfp_FACTIONPROBABILITY;		// 43, ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü, 0 ~ 255
-	int			pfp_SHOTNUM_01;				// 44, ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 01
-	int			pfp_SHOTNUM_02;				// 69, ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 02
-	int			pfp_MULTINUM_01;			// 45, µ¿½Ã ¹ß»ç ¼ö 01
-	int			pfp_MULTINUM_02;			// 70, µ¿½Ã ¹ß»ç ¼ö 02
-	float		pfp_ATTACKTIME_01;			// 46, Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 01
-	float		pfp_ATTACKTIME_02;			// 47, Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 02
-	float		pfm_TIME_01;				// 48, (*) Áö¼Ó ½Ã°£ 01
-	float		pfm_TIME_02;				// 49, (*) Áö¼Ó ½Ã°£ 02
-	float		pfm_WEIGHT_01;				// 75, (*) ¹«°Ô 01
-	float		pfm_WEIGHT_02;				// 76, (*) ¹«°Ô 02
-	USHORT		pfp_REACTION_RANGE;			// 91, ITEMÀÇ ReactionRange º¯°æ
-	int			pfp_REQ_MIN_LEVEL;			// 96, (¼­¹ö¹Ì»ç¿ë)¾ÆÀÌÅÛÀåÂø ¿ä±¸ MinLevelÀ» ³·Ãá´Ù
-	int			pfp_REQ_MAX_LEVEL;			// 97, (¼­¹ö¹Ì»ç¿ë)¾ÆÀÌÅÛÀåÂø ¿ä±¸ MaxLevelÀ» ³·Ãá´Ù
-	float		pfm_SKILL_REDUCE_SHIELD_DAMAGE;		// 121, 2005-11-21 by cmkwon - ½¯µå¿¡ °¡´Â µ¥¹ÌÁö¸¦ ÁÙ¿©ÁØ´Ù.(*)
-	float		pfm_ATTACK_RANGE_01;				// 129, 2005-11-21 by cmkwon - ·¹ÀÌ´ÙÀÇ ±âº» ¹«±â Á¶ÁØ °Å¸®¸¦ Áõ°¡½ÃÅ²´Ù.(*)
-	float		pfm_ATTACK_RANGE_02;				// 130, 2005-11-21 by cmkwon - ·¹ÀÌ´ÙÀÇ °í±Ş ¹«±â Á¶ÁØ °Å¸®¸¦ Áõ°¡½ÃÅ²´Ù.(*)
-// 2005-12-02 by cmkwon	float		pfm_SKILL_HYPERMOVING;				// 132, 2005-11-28 by cmkwon - À¯´ÖÀÇ ÀüÃ¼ ÀÌµ¿¼Óµµ°¡ ÁÁ¾ÆÁö°í, ºÎ½ºÅÍ »ç¿ëÀÌ µÇÁö ¾Ê´Â´Ù.(*)
-	float		pfm_SKILL_COLLISIONDAMAGE_DOWN;		// 140, 2005-11-21 by cmkwon - ¹è°æ ¿ÀºêÁ§Æ®,¹Ù´Ú Ãæµ¹½Ã µ¥¹ÌÁö¸¦ °¨¼Ò½ÃÅ²´Ù.(*)
-	float		pfm_SKILL_SMARTSP;					// 148, 2005-11-21 by cmkwon - ÀÚ½ÅÀÌ »ç¿ëÇÏ´Â ¸ğµç ½ºÅ³ÀÇ »ç¿ë·®À» ÁÙ¿©ÁØ´Ù.(*)	
-	float		pfm_SKILL_REACTIONSPEED;			// 154, 2005-12-02 by cmkwon - ÇÏÀÌÆÛ ¹«ºù(¹İÀÀ¼Óµµ)
-	float		pfm_SKILL_ENGINEANGLE;				// 155, 2005-12-02 by cmkwon - ÇÏÀÌÆÛ ¹«ºù(¼±È¸°¢)
-	float		pfm_SKILL_ENGINEBOOSTERANGLE;		// 156, 2005-12-02 by cmkwon - ÇÏÀÌÆÛ ¹«ºù(ºÎ½ºÅÍ ¼±È¸°¢)
+	float		pfp_ATTACK_PART;			// 1, ê³µê²© íŒŒíŠ¸
+	float		pfp_DEFENSE_PART;			// 2, ë°©ì–´ íŒŒíŠ¸
+	float		pfp_FUEL_PART;				// 3, ì—°ë£Œ íŒŒíŠ¸
+	float		pfp_SOUL_PART;				// 4, ê°ì‘ íŒŒíŠ¸
+	float		pfp_SHIELD_PART;			// 5, ì‰´ë“œ íŒŒíŠ¸
+	float		pfp_DODGE_PART;				// 6, íšŒí”¼ íŒŒíŠ¸
+	float		pfp_BODYCONDITION;			// 7, ëª¸ìƒíƒœ
+	float		pfp_ENDURANCE_01 ;			// 8, ë‚´êµ¬ë„ 01
+	float		pfp_ENDURANCE_02;			// 9, ë‚´êµ¬ë„ 02
+	float		pfp_CHARGING_01;			// 10, ì¥íƒ„ìˆ˜ 01
+	float		pfp_CHARGING_02;			// 11, ì¥íƒ„ìˆ˜ 02
+	INT			pfp_PROPENSITY;				// 12, ì„±í–¥
+	float		pfp_HP;						// 13, íˆíŠ¸í¬ì¸íŠ¸
+	float		pfp_SP;						// 14, ì†Œìš¸í¬ì¸íŠ¸, ì¼ì • ì‹œê°„ í›„ì— SPë¥¼ ì¦ê°€ì‹œí‚¤ê¸°ë§Œ í•˜ë©´ ë¨
+	float		pfp_DP;						// 89, ì‰´ë“œ(DEFENSE)í¬ì¸íŠ¸
+	float		pfp_EP;						// 15, ì—”ì§„í¬ì¸íŠ¸
+	float		pfp_SPRECOVERY;				// 16, ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
+	float		pfp_HPRECOVERY;				// 17, ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
+	float		pfm_MINATTACK_01;			// 18, (*) ìµœì†Œ ê³µê²©ë ¥ 01
+	float		pfm_MAXATTACK_01;			// 71, (*) ìµœëŒ€ ê³µê²©ë ¥ 02
+	float		pfm_MINATTACK_02;			// 19, (*) ìµœì†Œ ê³µê²©ë ¥ 01
+	float		pfm_MAXATTACK_02;			// 72, (*) ìµœëŒ€ ê³µê²©ë ¥ 02
+	float		pfp_ATTACKPROBABILITY_01;	// 20, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ ê³µê²©í™•ë¥  01, 0 ~ 255	
+	float		pfp_ATTACKPROBABILITY_02;	// 21, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ê³µê²©í™•ë¥  02, 0 ~ 255
+	float		pfp_DEFENSE_01;				// 22, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ë°©ì–´ë ¥ 01, 0 ~ 255
+	float		pfp_DEFENSE_02;				// 23, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ë°©ì–´ë ¥ 02, 0 ~ 255
+	float		pfp_DEFENSEPROBABILITY_01;	// 24, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ë°©ì–´í™•ë¥  01, 0 ~ 255
+	float		pfp_DEFENSEPROBABILITY_02;	// 25, // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½ë°©ì–´í™•ë¥  02, 0 ~ 255
+	Prob255_t	pfp_SKILLPROBABILITY;		// 26, ìŠ¤í‚¬ê³µê²©í™•ë¥ , 0 ~ 255
+	Prob255_t	pfp_FACTIONRESISTANCE;		// 27, ì†ì„±ì €í•­ë ¥, 0 ~ 255
+	float		pfm_SPEED;					// 28, (*) ì´ë™ì†ë„
+	float		pfp_TRANSPORT;				// 29, ìš´ë°˜ë ¥
+	float		pfp_MATERIAL;				// 30, ì¬ì§ˆ
+	float		pfm_REATTACKTIME_01;		// 31, (*) ë¦¬ì–´íƒíƒ€ì„ 01
+	float		pfm_REATTACKTIME_02;		// 32, (*) ë¦¬ì–´íƒíƒ€ì„ 02
+	Prob255_t	pfp_ABRASIONRATE_01;		// 33, ë§ˆëª¨ìœ¨ 01, 0 ~ 255
+	Prob255_t	pfp_ABRASIONRATE_02;		// 34, ë§ˆëª¨ìœ¨ 02, 0 ~ 255
+	float		pfm_RANGE_01;				// 35, (*) ìœ íš¨ê±°ë¦¬ 01
+	float		pfm_RANGE_02;				// 36, (*) ìœ íš¨ê±°ë¦¬ 02
+	float		pfp_RANGEANGLE_01;			// 37, ìœ íš¨ê°ë„ 01, ì„œë²„ì—ì„  ë¶ˆí•„ìš”
+	float		pfp_RANGEANGLE_02;			// 38, ìœ íš¨ê°ë„ 02, ì„œë²„ì—ì„  ë¶ˆí•„ìš”
+	int			pfp_MULTITAGET;				// 39, ë©€í‹°íƒ€ê²Ÿ, ì„œë²„ì—ì„  ë¶ˆí•„ìš”
+	float		pfp_EXPLOSIONRANGE_01;		// 40, í­ë°œë°˜ê²½ 01
+	float		pfp_EXPLOSIONRANGE_02;		// 67, í­ë°œë°˜ê²½ 02
+	float		pfp_UNIT;					// 41, ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+	float		pfp_REVISION;				// 42, ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+	Prob255_t	pfp_FACTIONPROBABILITY;		// 43, ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥ , 0 ~ 255
+	int			pfp_SHOTNUM_01;				// 44, ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 01
+	int			pfp_SHOTNUM_02;				// 69, ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 02
+	int			pfp_MULTINUM_01;			// 45, ë™ì‹œ ë°œì‚¬ ìˆ˜ 01
+	int			pfp_MULTINUM_02;			// 70, ë™ì‹œ ë°œì‚¬ ìˆ˜ 02
+	float		pfp_ATTACKTIME_01;			// 46, ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 01
+	float		pfp_ATTACKTIME_02;			// 47, ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 02
+	float		pfm_TIME_01;				// 48, (*) ì§€ì† ì‹œê°„ 01
+	float		pfm_TIME_02;				// 49, (*) ì§€ì† ì‹œê°„ 02
+	float		pfm_WEIGHT_01;				// 75, (*) ë¬´ê²Œ 01
+	float		pfm_WEIGHT_02;				// 76, (*) ë¬´ê²Œ 02
+	USHORT		pfp_REACTION_RANGE;			// 91, ITEMì˜ ReactionRange ë³€ê²½
+	int			pfp_REQ_MIN_LEVEL;			// 96, (ì„œë²„ë¯¸ì‚¬ìš©)ì•„ì´í…œì¥ì°© ìš”êµ¬ MinLevelì„ ë‚®ì¶˜ë‹¤
+	int			pfp_REQ_MAX_LEVEL;			// 97, (ì„œë²„ë¯¸ì‚¬ìš©)ì•„ì´í…œì¥ì°© ìš”êµ¬ MaxLevelì„ ë‚®ì¶˜ë‹¤
+	float		pfm_SKILL_REDUCE_SHIELD_DAMAGE;		// 121, 2005-11-21 by cmkwon - ì‰´ë“œì— ê°€ëŠ” ë°ë¯¸ì§€ë¥¼ ì¤„ì—¬ì¤€ë‹¤.(*)
+	float		pfm_ATTACK_RANGE_01;				// 129, 2005-11-21 by cmkwon - ë ˆì´ë‹¤ì˜ ê¸°ë³¸ ë¬´ê¸° ì¡°ì¤€ ê±°ë¦¬ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.(*)
+	float		pfm_ATTACK_RANGE_02;				// 130, 2005-11-21 by cmkwon - ë ˆì´ë‹¤ì˜ ê³ ê¸‰ ë¬´ê¸° ì¡°ì¤€ ê±°ë¦¬ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.(*)
+// 2005-12-02 by cmkwon	float		pfm_SKILL_HYPERMOVING;				// 132, 2005-11-28 by cmkwon - ìœ ë‹›ì˜ ì „ì²´ ì´ë™ì†ë„ê°€ ì¢‹ì•„ì§€ê³ , ë¶€ìŠ¤í„° ì‚¬ìš©ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤.(*)
+	float		pfm_SKILL_COLLISIONDAMAGE_DOWN;		// 140, 2005-11-21 by cmkwon - ë°°ê²½ ì˜¤ë¸Œì íŠ¸,ë°”ë‹¥ ì¶©ëŒì‹œ ë°ë¯¸ì§€ë¥¼ ê°ì†Œì‹œí‚¨ë‹¤.(*)
+	float		pfm_SKILL_SMARTSP;					// 148, 2005-11-21 by cmkwon - ìì‹ ì´ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  ìŠ¤í‚¬ì˜ ì‚¬ìš©ëŸ‰ì„ ì¤„ì—¬ì¤€ë‹¤.(*)	
+	float		pfm_SKILL_REACTIONSPEED;			// 154, 2005-12-02 by cmkwon - í•˜ì´í¼ ë¬´ë¹™(ë°˜ì‘ì†ë„)
+	float		pfm_SKILL_ENGINEANGLE;				// 155, 2005-12-02 by cmkwon - í•˜ì´í¼ ë¬´ë¹™(ì„ íšŒê°)
+	float		pfm_SKILL_ENGINEBOOSTERANGLE;		// 156, 2005-12-02 by cmkwon - í•˜ì´í¼ ë¬´ë¹™(ë¶€ìŠ¤í„° ì„ íšŒê°)
 
-	float		pfm_DROP_EXP;						// 157, 2006-03-30 by cmkwon - °æÇèÄ¡, ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	float		pfm_DROP_SPI;						// 158, 2006-03-30 by cmkwon - SPI, ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	float		pfm_DROP_ITEM;						// 159, 2006-03-30 by cmkwon - ¾ÆÀÌÅÛ µå¶øÀ², ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	float		pfm_DROP_RAREITEM;					// 238, 2010-11-30 by shcho, ·¹¾î¾ÆÀÌÅÛ µå¶ø È®·ü Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	float		pfm_HP_REPAIR_RATE_FLIGHTING;		// 160, 2006-03-30 by cmkwon - ºñÇà½Ã HP È¸º¹À²
-	float		pfm_DP_REPAIR_RATE;					// 161, 2006-03-30 by cmkwon - DP È¸º¹À²
-	float		pfm_SP_REPAIR_RATE;					// 162, 2006-03-30 by cmkwon - SP È¸º¹À²
-// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, ¾Æ·¡¿Í °°ÀÌ ºñÆ®±¸Á¶Ã¼·Î º¯°æ
-// 	BOOL		pfb_SKILL_ROLLING_TIME;				// 170, 2006-11-17 by dhjin - 30ÃÊ°£ ·Ñ¸µ Àç»ç¿ë ½Ã°£À» ¾ø¾ÖÁØ´Ù 
-// 	BOOL		pfb_SKILL_Barrier;					// 173, 2006-11-24 by dhjin - A±â¾îÀÇ °í±Ş¹«±â¿¡ ´ëÇÑ ¹«Àû½ºÅ³
-// 	BOOL		pfb_SKILL_SHIELD_PARALYZE;			// 175,	2006-11-24 by dhjin - A±â¾îÀÇ ½¯µå¸¶ºñ ½ºÅ³, »ó´ë±â¾îÀÇ ½¯µå È¸º¹À²À» 0À¸·Î ¸¸µç´Ù
-// 	BOOL		pfb_SKILL_Invincible;				// 122, 2006-11-27 by dhjin - M±â¾îÀÇ ¹«Àû ½ºÅ³
+	float		pfm_DROP_EXP;						// 157, 2006-03-30 by cmkwon - ê²½í—˜ì¹˜, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	float		pfm_DROP_SPI;						// 158, 2006-03-30 by cmkwon - SPI, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	float		pfm_DROP_ITEM;						// 159, 2006-03-30 by cmkwon - ì•„ì´í…œ ë“œëìœ¨, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	float		pfm_DROP_RAREITEM;					// 238, 2010-11-30 by shcho, ë ˆì–´ì•„ì´í…œ ë“œë í™•ë¥  ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	float		pfm_HP_REPAIR_RATE_FLIGHTING;		// 160, 2006-03-30 by cmkwon - ë¹„í–‰ì‹œ HP íšŒë³µìœ¨
+	float		pfm_DP_REPAIR_RATE;					// 161, 2006-03-30 by cmkwon - DP íšŒë³µìœ¨
+	float		pfm_SP_REPAIR_RATE;					// 162, 2006-03-30 by cmkwon - SP íšŒë³µìœ¨
+// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, ì•„ë˜ì™€ ê°™ì´ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½
+// 	BOOL		pfb_SKILL_ROLLING_TIME;				// 170, 2006-11-17 by dhjin - 30ì´ˆê°„ ë¡¤ë§ ì¬ì‚¬ìš© ì‹œê°„ì„ ì—†ì• ì¤€ë‹¤ 
+// 	BOOL		pfb_SKILL_Barrier;					// 173, 2006-11-24 by dhjin - Aê¸°ì–´ì˜ ê³ ê¸‰ë¬´ê¸°ì— ëŒ€í•œ ë¬´ì ìŠ¤í‚¬
+// 	BOOL		pfb_SKILL_SHIELD_PARALYZE;			// 175,	2006-11-24 by dhjin - Aê¸°ì–´ì˜ ì‰´ë“œë§ˆë¹„ ìŠ¤í‚¬, ìƒëŒ€ê¸°ì–´ì˜ ì‰´ë“œ íšŒë³µìœ¨ì„ 0ìœ¼ë¡œ ë§Œë“ ë‹¤
+// 	BOOL		pfb_SKILL_Invincible;				// 122, 2006-11-27 by dhjin - Mê¸°ì–´ì˜ ë¬´ì  ìŠ¤í‚¬
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ±âÁ¸ BOOL º¯¼ö¸¦ ºñÆ®±¸Á¶Ã¼·Î º¯°æ, 
+	// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - ê¸°ì¡´ BOOL ë³€ìˆ˜ë¥¼ ë¹„íŠ¸êµ¬ì¡°ì²´ë¡œ ë³€ê²½, 
 	BitS_CParamFactor	pfb_BitFlag;				
 
-	float		pf_SKILL_Big_Boom_damage;			// 174, 2006-11-29 by dhjin - A±â¾îÀÇ ±âº»¹«±â Â÷Â¡¼¦, ½ºÇÃ·¡½¬ µ¥¹ÌÁö´Â Range
+	float		pf_SKILL_Big_Boom_damage;			// 174, 2006-11-29 by dhjin - Aê¸°ì–´ì˜ ê¸°ë³¸ë¬´ê¸° ì°¨ì§•ìƒ·, ìŠ¤í”Œë˜ì‰¬ ë°ë¯¸ì§€ëŠ” Range
 
-	float		pfm_WARHEAD_SPEED;					// 176, 2007-06-11 by cmkwon, ÅºµÎÀÇ ¼Óµµ
+	float		pfm_WARHEAD_SPEED;					// 176, 2007-06-11 by cmkwon, íƒ„ë‘ì˜ ì†ë„
 
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®
-	float		pfn_ENGINE_BOOSTER_TIME_UP;			// 178		// 2008-09-22 by dhjin, ºÎ½ºÅÍ ½Ã°£ Áõ°¡
-	float		pfn_ENGINE_MAX_SPEED_UP;			// 179,	// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡
-	float		pfn_ENGINE_MIN_SPEED_UP;			// 180,	// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
-	float		pfn_ENGINE_BOOSTER_SPEED_UP;		// 181,	// 2008-09-22 by dhjin, ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
-	float		pfn_ENGINE_GROUND_SPEED_UP;			// 182,	// 2008-09-22 by dhjin, ¿£Áø Áö»ó¼Óµµ Áõ°¡
-	int			pfn_RADAR_OBJECT_DETECT_RANGE;		// 183, // 2008-09-22 by dhjin, ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
-	float		pfm_PIERCE_UP_01;					// 184, // 2008-09-22 by dhjin, ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	float		pfm_PIERCE_UP_02;					// 185, // 2008-09-22 by dhjin, °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	float		pfm_ENGINE_ANGLE_UP;				// 186,	// 2008-09-30 by dhjin, ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
-	float		pfm_ENGINE_BOOSTERANGLE_UP;			// 187,	// 2008-09-30 by dhjin, ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå	
-	ParamValue_t	pf_ITEM_Resistance;				// 201, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀúÇ× ¾ÆÀÌÅÛ »ç¿ë Ã¼Å© 
-	ParamValue_t	pf_ITEM_AddAttack;				// 202, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àı´ë°ª Å¸°İÄ¡ ¾ÆÀÌÅÛ »ç¿ë Ã¼Å© 
-	ParamValue_t	pf_ITEM_ReduceDamage;			// 205, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - µ¥¹ÌÁö Àı´ë°ª °¨¼Ò ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
-	ParamValue_t	pf_ITEM_AddAttack_Sec;			// 206, // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àı´ë°ª Å¸°İÄ¡ ¾ÆÀÌÅÛ °í±Ş¹«±â¿ë(±â¹«¿Í ºĞ·ù)
-	ParamValue_t	pf_ITEM_OnceResistance;			// 207, // 2009-09-09 ~ 2010-01-19 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¹ø¸¸ ÀúÇ×ÇÏ°í ¾ø¾îÁö´Â ÀúÇ× ¾ÆÀÌÅÛ Ãß°¡
-	float			pfm_PLUS_WARPOINT_RATE;			// 234, // 2010-05-18 by cmkwon, WarPoint Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö(ÀÏº»¿äÃ») - 
-	ParamValue_t	pf_ITEMS_MOVE_SPEED_RATE;		// 239, // 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸
+	float		pfn_ENGINE_BOOSTER_TIME_UP;			// 178		// 2008-09-22 by dhjin, ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
+	float		pfn_ENGINE_MAX_SPEED_UP;			// 179,	// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
+	float		pfn_ENGINE_MIN_SPEED_UP;			// 180,	// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
+	float		pfn_ENGINE_BOOSTER_SPEED_UP;		// 181,	// 2008-09-22 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
+	float		pfn_ENGINE_GROUND_SPEED_UP;			// 182,	// 2008-09-22 by dhjin, ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
+	int			pfn_RADAR_OBJECT_DETECT_RANGE;		// 183, // 2008-09-22 by dhjin, ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
+	float		pfm_PIERCE_UP_01;					// 184, // 2008-09-22 by dhjin, ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	float		pfm_PIERCE_UP_02;					// 185, // 2008-09-22 by dhjin, ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	float		pfm_ENGINE_ANGLE_UP;				// 186,	// 2008-09-30 by dhjin, ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
+	float		pfm_ENGINE_BOOSTERANGLE_UP;			// 187,	// 2008-09-30 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ	
+	ParamValue_t	pf_ITEM_Resistance;				// 201, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì €í•­ ì•„ì´í…œ ì‚¬ìš© ì²´í¬ 
+	ParamValue_t	pf_ITEM_AddAttack;				// 202, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì ˆëŒ€ê°’ íƒ€ê²©ì¹˜ ì•„ì´í…œ ì‚¬ìš© ì²´í¬ 
+	ParamValue_t	pf_ITEM_ReduceDamage;			// 205, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°ë¯¸ì§€ ì ˆëŒ€ê°’ ê°ì†Œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
+	ParamValue_t	pf_ITEM_AddAttack_Sec;			// 206, // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì ˆëŒ€ê°’ íƒ€ê²©ì¹˜ ì•„ì´í…œ ê³ ê¸‰ë¬´ê¸°ìš©(ê¸°ë¬´ì™€ ë¶„ë¥˜)
+	ParamValue_t	pf_ITEM_OnceResistance;			// 207, // 2009-09-09 ~ 2010-01-19 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ë²ˆë§Œ ì €í•­í•˜ê³  ì—†ì–´ì§€ëŠ” ì €í•­ ì•„ì´í…œ ì¶”ê°€
+	float			pfm_PLUS_WARPOINT_RATE;			// 234, // 2010-05-18 by cmkwon, WarPoint ì¦ê°€ ì•„ì´í…œ êµ¬í˜„(ì¼ë³¸ìš”ì²­) - 
+	ParamValue_t	pf_ITEMS_MOVE_SPEED_RATE;		// 239, // 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
 
-	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_POWER;			// 300, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â Áõ°¡ : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY;		// 301, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â È®À² : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_PIERCE;			// 302, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // ¸ó½ºÅÍ °ø°İ½Ã - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_MON_DEFENCE;					// 303, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // ¸ó½ºÅÍ ¹æ¾î½Ã - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_MON_DEFENCE_AVOID;			// 304, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // ¸ó½ºÅÍ ¹æ¾î½Ã - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK;					// 305, // 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼± - // PVP - °ø°İ·Â Áõ°¡ : Value Áõ°¡ %
-	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK_PROBABILITY;		// 306,	// PVP - ¸íÁß·ü Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK_PIERCE;			// 307,	// PVP - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	ParamValue_t	pfp_SKILL_BUFF_PVP_DEFENCE;					// 308,	// PVP - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	ParamValue_t	pfp_SKILL_BUFF_PVP_DEFENCE_PROBABILITY;		// 309,	// PVP - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
+	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_POWER;			// 300, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY;		// 301, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ í™•ìœ¨ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_MON_ATTACK_PIERCE;			// 302, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ëª¬ìŠ¤í„° ê³µê²©ì‹œ - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_MON_DEFENCE;					// 303, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_MON_DEFENCE_AVOID;			// 304, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK;					// 305, // 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - // PVP - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK_PROBABILITY;		// 306,	// PVP - ëª…ì¤‘ë¥  ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	ParamValue_t	pfp_SKILL_BUFF_PVP_ATTACK_PIERCE;			// 307,	// PVP - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	ParamValue_t	pfp_SKILL_BUFF_PVP_DEFENCE;					// 308,	// PVP - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	ParamValue_t	pfp_SKILL_BUFF_PVP_DEFENCE_PROBABILITY;		// 309,	// PVP - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
 };

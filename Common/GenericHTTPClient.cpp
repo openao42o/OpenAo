@@ -1,4 +1,4 @@
-// GenericHTTPClient.cpp: implementation of the GenericHTTPClient class.
+ï»¿// GenericHTTPClient.cpp: implementation of the GenericHTTPClient class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -18,7 +18,7 @@ GenericHTTPClient::GenericHTTPClient()
 
 GenericHTTPClient::~GenericHTTPClient()
 {
-	this->Close(); // 2008-11-13 by cmkwon, ´ë¸¸ Netpower_Tpe ºô¸µ ½Ã½ºÅÛ ±¸Ãà - 
+	this->Close(); // 2008-11-13 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ë¹Œë§ ì‹œìŠ¤í…œ êµ¬ì¶• - 
 	_hHTTPOpen = _hHTTPConnection = _hHTTPRequest = NULL;
 }
 
@@ -132,41 +132,41 @@ BOOL GenericHTTPClient::Request(LPCTSTR szURL, int nMethod, LPCTSTR szAgent)
 	TCHAR szURI[__SIZE_BUFFER] = "";
 	DWORD dwSize = 0;
 
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 11000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 11000 \r\n");
 	ParseURL(szURL, szProtocol, szAddress, dwPort, szURI);
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 12000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 12000 \r\n");
 
 	if (Connect(szAddress, szAgent, dwPort))
 	{
-		// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 12000 \r\n");
+		// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 12000 \r\n");
 		if (!RequestOfURI(szURI, nMethod))
 		{
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 14000 \r\n");
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 14000 \r\n");
 			bReturn = FALSE;
 		}
 		else
 		{
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 15000 \r\n");
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 15000 \r\n");
 			if (!Response((PBYTE)_szHTTPResponseHeader, __SIZE_HTTP_BUFFER, (PBYTE)_szHTTPResponseHTML, __SIZE_HTTP_BUFFER, dwSize))
 			{
 				bReturn = FALSE;
 			}
 		}
-		// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 16000 \r\n");
+		// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 16000 \r\n");
 		Close();
 	}
 	else
 	{
 		bReturn = FALSE;
 	}
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("  GenericHTTPClient::Request 17000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("  GenericHTTPClient::Request 17000 \r\n");
 
 	return bReturn;
 }
 
 BOOL GenericHTTPClient::RequestOfURI(LPCTSTR szURI, int nMethod)
 {
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("    GenericHTTPClient::RequestOfURI 21000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("    GenericHTTPClient::RequestOfURI 21000 \r\n");
 	BOOL bReturn = TRUE;
 	try
 	{
@@ -177,9 +177,9 @@ BOOL GenericHTTPClient::RequestOfURI(LPCTSTR szURI, int nMethod)
 			bReturn = RequestGet(szURI);
 			break;
 		case GenericHTTPClient::RequestPostMethod:
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("    GenericHTTPClient::RequestOfURI 22000 \r\n");
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("    GenericHTTPClient::RequestOfURI 22000 \r\n");
 			bReturn = RequestPost(szURI);
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("    GenericHTTPClient::RequestOfURI 23000 \r\n");
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("    GenericHTTPClient::RequestOfURI 23000 \r\n");
 			break;
 		case GenericHTTPClient::RequestPostMethodMultiPartsFormData:
 			bReturn = RequestPostMultiPartsFormData(szURI);
@@ -189,9 +189,9 @@ BOOL GenericHTTPClient::RequestOfURI(LPCTSTR szURI, int nMethod)
 	catch (...)
 	{
 		g_pGlobal->WriteSystemLogEX(TRUE, "[ERROR] GenericHTTPClient::RequestOfURI# try.catch %d, %d\r\n", ::GetLastError(), this->GetLastError());
-		bReturn = FALSE; // 2009-12-21 by cmkwon, HTTPÅë½Å ¿¹¿ÜÃ³¸® ¹ö±× ¼öÁ¤ - 
+		bReturn = FALSE; // 2009-12-21 by cmkwon, HTTPí†µì‹  ì˜ˆì™¸ì²˜ë¦¬ ë²„ê·¸ ìˆ˜ì • - 
 	}
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("    GenericHTTPClient::RequestOfURI 24000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("    GenericHTTPClient::RequestOfURI 24000 \r\n");
 	return bReturn;
 }
 
@@ -273,7 +273,7 @@ BOOL GenericHTTPClient::RequestGet(LPCTSTR szURI)
 
 BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 {
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 31000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 31000 \r\n");
 
 	CONST TCHAR *szAcceptType = __HTTP_ACCEPT_TYPE
 	;
@@ -281,7 +281,7 @@ BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 	LPCTSTR szContentType = TEXT("Content-Type: application/x-www-form-urlencoded\r\n");
 
 	DWORD dwPostArgumentsLegnth = GetPostArguments(szPostArguments, __SIZE_BUFFER);
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 32000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 32000 \r\n");
 
 	try
 	{
@@ -294,7 +294,7 @@ BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 		                                  INTERNET_FLAG_KEEP_CONNECTION | INTERNET_FLAG_NO_CACHE_WRITE | INTERNET_FLAG_FORMS_SUBMIT,
 		                                  0); // context call-back point
 
-		// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 33000 \r\n");
+		// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 33000 \r\n");
 		if (!_hHTTPRequest)
 		{
 			_dwError = ::GetLastError();
@@ -309,10 +309,10 @@ BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 			// 														  NULL);
 			// 		LocalFree(lpMsgBuffer);		
 			// #endif
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 34000 \r\n");
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 34000 \r\n");
 			return FALSE;
 		}
-		// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 35000 \r\n");
+		// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 35000 \r\n");
 
 		// REPLACE HEADER
 		if (!::HttpAddRequestHeaders(_hHTTPRequest, __HTTP_ACCEPT, _tcslen(__HTTP_ACCEPT), HTTP_ADDREQ_FLAG_REPLACE))
@@ -333,9 +333,9 @@ BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 			return FALSE;
 		}
 
-		// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 36000 \r\n");
+		// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 36000 \r\n");
 
-		// 2009-12-21 by cmkwon, ¾Ë¼ö ¾ø´Â Çö»ó ¼öÁ¤(¾Æ·¡ÀÇ ÄÚµå°¡ ¾øÀ¸¸é ¿¡·¯°¡ ¹ß»ıµÊ) - 
+		// 2009-12-21 by cmkwon, ì•Œìˆ˜ ì—†ëŠ” í˜„ìƒ ìˆ˜ì •(ì•„ë˜ì˜ ì½”ë“œê°€ ì—†ìœ¼ë©´ ì—ëŸ¬ê°€ ë°œìƒë¨) - 
 		DbgOut("[Temporary Code] 20091221 by cmkwon\r\n");
 
 		// SEND REQUEST
@@ -359,16 +359,16 @@ BOOL GenericHTTPClient::RequestPost(LPCTSTR szURI)
 			// //		TRACE("\n%d : %s\n", _dwError, reinterpret_cast<LPTSTR>(lpMsgBuffer));
 			// 		LocalFree(lpMsgBuffer);		
 			// #endif
-			// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 37000 GetLastError(%d)\r\n", _dwError);
+			// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 37000 GetLastError(%d)\r\n", _dwError);
 			return FALSE;
 		}
 	}
 	catch (...)
 	{
 		g_pGlobal->WriteSystemLogEX(TRUE, "[ERROR] GenericHTTPClient::RequestPost# try.catch %d, %d\r\n", ::GetLastError(), this->GetLastError());
-		return FALSE; // 2009-12-21 by cmkwon, HTTPÅë½Å ¿¹¿ÜÃ³¸® ¹ö±× ¼öÁ¤ - 
+		return FALSE; // 2009-12-21 by cmkwon, HTTPí†µì‹  ì˜ˆì™¸ì²˜ë¦¬ ë²„ê·¸ ìˆ˜ì • - 
 	}
-	// 2009-08-19 by cmkwon, ÁÖ¼®Ã³¸® - DbgOut("      GenericHTTPClient::RequestPost 38000 \r\n");
+	// 2009-08-19 by cmkwon, ì£¼ì„ì²˜ë¦¬ - DbgOut("      GenericHTTPClient::RequestPost 38000 \r\n");
 
 	return TRUE;
 }
@@ -1091,11 +1091,11 @@ BOOL GenericHTTPClient::GetParameterValue(char* o_szParamValue, int i_nValueBuff
 		util::strncpy(szName, token, 1024);
 		token = strtok(NULL, i_szSepStr);
 		if (0 == stricmp(i_szParameterName, szName))
-		{// 2008-10-09 by cmkwon, Ã£´Â ÀÌ¸§ÀÌ¸é
+		{// 2008-10-09 by cmkwon, ì°¾ëŠ” ì´ë¦„ì´ë©´
 			util::strncpy(o_szParamValue, token, i_nValueBuffSize);
 			return TRUE;
 		}
-		token = strtok(NULL, i_szSepStr); // ´ÙÀ½ ParameterNameÀ» °¡¸£Å°°Ô ÇÑ´Ù.
+		token = strtok(NULL, i_szSepStr); // ë‹¤ìŒ ParameterNameì„ ê°€ë¥´í‚¤ê²Œ í•œë‹¤.
 	}
 
 	return FALSE;

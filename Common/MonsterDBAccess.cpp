@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MonsterDBAccess.h"
 #include "AtumDBManager.h"
 #include "Monster.h"
@@ -20,7 +20,7 @@ CMonsterDBAccess::CMonsterDBAccess()
 	}
 
 	ret = SQLAllocHandle(SQL_HANDLE_DBC, henv, &hdbc);
-	// 2008-07-11 by cmkwon, MySQL Áö¿øÀ» À§ÇØ ¼öÁ¤(IP,Port ·Î DB ¼­¹ö ¿¬°á) - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ ÇÔ
+	// 2008-07-11 by cmkwon, MySQL ì§€ì›ì„ ìœ„í•´ ìˆ˜ì •(IP,Port ë¡œ DB ì„œë²„ ì—°ê²°) - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì • í•¨
 	//	ret = SQLConnect(hdbc, g_pGlobal->GetODBCDSN(), SQL_NTS, g_pGlobal->GetODBCUID(), SQL_NTS, g_pGlobal->GetODBCPASSWORD(), SQL_NTS);
 	char szConnectionString[512];
 	char szOutConnectionString[512];
@@ -36,7 +36,7 @@ CMonsterDBAccess::CMonsterDBAccess()
 
 	if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO)
 	{
-		// 2008-09-05 by cmkwon, DBServer ¿¬°á ½ÇÆĞ ½Ã½ºÅÛ ·Î±× ³²±â±â - 
+		// 2008-09-05 by cmkwon, DBServer ì—°ê²° ì‹¤íŒ¨ ì‹œìŠ¤í…œ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 		g_pGlobal->WriteSystemLogEX(TRUE, "[DB Error] fail to connect DBServer(CMonsterDBAccess::CMonsterDBAccess_) !! %s,%d %s %s %s\r\n"
 		                                , g_pGlobal->GetDBServerIP(), g_pGlobal->GetDBServerPort(), g_pGlobal->GetDBServerDatabaseName(), (CHAR*)g_pGlobal->GetODBCUID(), (CHAR*)g_pGlobal->GetODBCPASSWORD());
 		CAtumDBHelper::ProcessLogMessagesStatic(SQL_HANDLE_DBC, hstmt, "GetMONSTER() Failed!\n", TRUE);
@@ -77,17 +77,17 @@ bool CMonsterDBAccess::MonsterMoveTypeCheck(const MONSTER_INFO* pMon)
 	case FORM_SWIMMINGFLYING_RIGHT:
 		switch (pMon->MovePattern)
 		{
-			//case MOVPAT_STOP:						// ÀüÆøÇü ¸ó½ºÅÍ´Â Á¤Áö ÀÌµ¿ Å¸ÀÔÀÌ ¾ÈµÊ
+			//case MOVPAT_STOP:						// ì „í­í˜• ëª¬ìŠ¤í„°ëŠ” ì •ì§€ ì´ë™ íƒ€ì…ì´ ì•ˆë¨
 		case MOVPAT_STRAIGHT:
 		case MOVPAT_RIGHTANDLEFT:
 		case MOVPAT_8RIGHTANDLEFT:
-		case MOVPAT_PATROL: // check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_PARTY:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
+		case MOVPAT_PATROL: // check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_PARTY:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
 		case MOVPAT_UPANDDOWN:
 		case MOVPAT_OBLIQUE:
-			//case MOVPAT_OBLIQUEANDCURVE:			// ÀüÆøÇüÀº ±¸ÇöÇÏÁö ¾ÊÀ½
-		case MOVPAT_TELEPORT: // check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-		case MOVPAT_FOLLOWPATH: // 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ¸¸ Áö¿ø
+			//case MOVPAT_OBLIQUEANDCURVE:			// ì „í­í˜•ì€ êµ¬í˜„í•˜ì§€ ì•ŠìŒ
+		case MOVPAT_TELEPORT: // check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+		case MOVPAT_FOLLOWPATH: // 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ë§Œ ì§€ì›
 			return TRUE;
 		}
 		break;
@@ -99,13 +99,13 @@ bool CMonsterDBAccess::MonsterMoveTypeCheck(const MONSTER_INFO* pMon)
 		case MOVPAT_STRAIGHT:
 		case MOVPAT_RIGHTANDLEFT:
 		case MOVPAT_8RIGHTANDLEFT:
-		case MOVPAT_PATROL: // check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_PARTY:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
+		case MOVPAT_PATROL: // check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_PARTY:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
 		case MOVPAT_UPANDDOWN:
 		case MOVPAT_OBLIQUE:
 		case MOVPAT_OBLIQUEANDCURVE:
-		case MOVPAT_TELEPORT: // check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-		case MOVPAT_FOLLOWPATH: // 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ¸¸ Áö¿ø
+		case MOVPAT_TELEPORT: // check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+		case MOVPAT_FOLLOWPATH: // 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ë§Œ ì§€ì›
 			return TRUE;
 		}
 		break;
@@ -116,30 +116,30 @@ bool CMonsterDBAccess::MonsterMoveTypeCheck(const MONSTER_INFO* pMon)
 		case MOVPAT_STRAIGHT:
 		case MOVPAT_RIGHTANDLEFT:
 		case MOVPAT_8RIGHTANDLEFT:
-			//case MOVPAT_PATROL:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_PARTY:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
+			//case MOVPAT_PATROL:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_PARTY:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
 			//case MOVPAT_UPANDDOWN:
 			//case MOVPAT_OBLIQUE:
 			//case MOVPAT_OBLIQUEANDCURVE:
-			//case MOVPAT_TELEPORT:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ¸¸ Áö¿ø
+			//case MOVPAT_TELEPORT:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ë§Œ ì§€ì›
 			return TRUE;
 		}
 		break;
 	case FORM_FLYINGandGROUND_RIGHT:
 		switch (pMon->MovePattern)
 		{
-			//case MOVPAT_STOP:						// ÀüÆøÇü ¸ó½ºÅÍ´Â Á¤Áö ÀÌµ¿ Å¸ÀÔÀÌ ¾ÈµÊ
+			//case MOVPAT_STOP:						// ì „í­í˜• ëª¬ìŠ¤í„°ëŠ” ì •ì§€ ì´ë™ íƒ€ì…ì´ ì•ˆë¨
 		case MOVPAT_STRAIGHT:
 		case MOVPAT_RIGHTANDLEFT:
 		case MOVPAT_8RIGHTANDLEFT:
-			//case MOVPAT_PATROL:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_PARTY:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
+			//case MOVPAT_PATROL:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_PARTY:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
 			//case MOVPAT_UPANDDOWN:
 			//case MOVPAT_OBLIQUE:
 			//case MOVPAT_OBLIQUEANDCURVE:
 			//case MOVPAT_TELEPORT:
-			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ¸¸ Áö¿ø
+			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ë§Œ ì§€ì›
 			return TRUE;
 		}
 		break;
@@ -150,13 +150,13 @@ bool CMonsterDBAccess::MonsterMoveTypeCheck(const MONSTER_INFO* pMon)
 		case MOVPAT_STRAIGHT:
 		case MOVPAT_RIGHTANDLEFT:
 		case MOVPAT_8RIGHTANDLEFT:
-			//case MOVPAT_PATROL:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
-			//case MOVPAT_PARTY:					// check cmkwon ¾ÆÁ÷ ±¸ÇöÀÌ ¾ÈµÈ°Í, ÇâÈÄ ±¸Çö ÇØ¾ßÇÔ
+			//case MOVPAT_PATROL:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
+			//case MOVPAT_PARTY:					// check cmkwon ì•„ì§ êµ¬í˜„ì´ ì•ˆëœê²ƒ, í–¥í›„ êµ¬í˜„ í•´ì•¼í•¨
 			//case MOVPAT_UPANDDOWN:
 			//case MOVPAT_OBLIQUE:
 			//case MOVPAT_OBLIQUEANDCURVE:
 			//case MOVPAT_TELEPORT:
-			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ¸¸ Áö¿ø
+			//case MOVPAT_FOLLOWPATH:				// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - FORM_FLYING_RIGHT / FORM_FLYING_COPTER ë§Œ ì§€ì›
 			return TRUE;
 		}
 		break;
@@ -190,7 +190,7 @@ bool CMonsterDBAccess::CheckMPOption(MONSTER_INFO* pMonInfo)
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-03-26 by cmkwon, ÀÎÇÇ2Â÷ ¼öÁ¤ - µÎ°³ÀÇ ¼³Á¤ÀÌ µÑ´Ù µÉ¼ö´Â ¾ø´Ù
+	// 2010-03-26 by cmkwon, ì¸í”¼2ì°¨ ìˆ˜ì • - ë‘ê°œì˜ ì„¤ì •ì´ ë‘˜ë‹¤ ë ìˆ˜ëŠ” ì—†ë‹¤
 	if (COMPARE_MPOPTION_BIT(pMonInfo->MPOption, MPOPTION_BIT_KEY_MONSTER)
 		&& COMPARE_MPOPTION_BIT(pMonInfo->MPOption, MPOPTION_BIT_KEY_MONSTER_ALIVE_FOR_GAMECLEAR))
 	{
@@ -199,7 +199,7 @@ bool CMonsterDBAccess::CheckMPOption(MONSTER_INFO* pMonInfo)
 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-04-14 by cmkwon, ÀÎÇÇ2Â÷ ¸ó½ºÅÍ ·£ÅÒ Å¸°Ù º¯°æ Ã³¸® - À¯È¿°ª(1ÃÊ ~ 15ÃÊ)
+	// 2010-04-14 by cmkwon, ì¸í”¼2ì°¨ ëª¬ìŠ¤í„° ëœí…€ íƒ€ê²Ÿ ë³€ê²½ ì²˜ë¦¬ - ìœ íš¨ê°’(1ì´ˆ ~ 15ì´ˆ)
 	if (pMonInfo->ChangeTarget)
 	{
 		pMonInfo->ChangeTargetTime = max(1000, pMonInfo->ChangeTargetTime);
@@ -284,7 +284,7 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 		for (auto i = 0; i < ARRAY_SIZE_MONSTER_ITEM - 1; i++)
 		{
 			auto nTmItemNum = INT(retMonsterInfo.ItemInfo[i].pItemInfo);
-			retMonsterInfo.ItemInfo[i].pItemInfo = NULL; // ItemNumÀ» °¡Á®¿À°í NULL·Î ÇÒ´çÇÑ´Ù.
+			retMonsterInfo.ItemInfo[i].pItemInfo = NULL; // ItemNumì„ ê°€ì ¸ì˜¤ê³  NULLë¡œ í• ë‹¹í•œë‹¤.
 			if (nTmItemNum)
 			{
 				if (i < ARRAY_SIZE_MONSTER_ITEM - ARRAY_SIZE_MONSTER_SKILL_ITEM - 1)
@@ -352,7 +352,7 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 			                                , retMonsterInfo.MonsterName, retMonsterInfo.MonsterUnitKind, pLastItem->dwUsingPercent);
 		}
 
-		// 5. ÄÁÆ®·Ñ ½ºÅ³ ¾ÆÀÌÅÛ ÇÒ´ç
+		// 5. ì»¨íŠ¸ë¡¤ ìŠ¤í‚¬ ì•„ì´í…œ í• ë‹¹
 		auto nTmItemNum = INT(retMonsterInfo.ItemInfo[ARRAY_INDEX_MONSTER_SKILL_ITEM].pItemInfo);
 		if (nTmItemNum)
 		{
@@ -367,7 +367,7 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 			}
 		}
 
-		// 6. ¸ó½ºÅÍ Ã¼Å©
+		// 6. ëª¬ìŠ¤í„° ì²´í¬
 		if (MonsterMoveTypeCheck(&retMonsterInfo) == FALSE)
 		{
 			char szSystemLog[1024];
@@ -377,7 +377,7 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 			DBGOUT(szSystemLog);
 		}
 
-		// 7. MPOption Ã¼Å©
+		// 7. MPOption ì²´í¬
 		if (FALSE == CheckMPOption(&retMonsterInfo))
 		{
 			char szSystemLog[1024];
@@ -387,13 +387,13 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 			DBGOUT(szSystemLog);
 		}
 
-		// check_cmkwon, ´Ù¸¥ °÷¿¡ Ãß°¡ÇØ¾ß ÇÔ, 20040327
-		//		retMonsterInfo.HP = retMonsterInfo.CurrentHP;						// HP¸¦ ÇÒ´çÇÑ´Ù.
-		retMonsterInfo.Size = retMonsterInfo.Size * retMonsterInfo.ScaleValue; // ¼­¹ö¿¡¼­ »ç¿ëÇÏ´Â »çÀÌÁî¸¦ °è»êÇÏ¿© ¼³Á¤ÇÑ´Ù.
-		retMonsterInfo.QuickSpeed = retMonsterInfo.QuickSpeed / (1000 / MONSTER_UPDATE_MOVE_TERM_TICK); // DB¿¡´Â 1ÃÊµ¿¾ÈÀÇ ½ºÇÇµå°¡ ÀÖÁö¸¸ ½ÇÁ¦ »ç¿ëÀº 200msµ¿¾ÈÀÇ ¼Óµµ¸¦ »ç¿ëÇÏ¹Ç·Î ´Ù½Ã ¼³Á¤
+		// check_cmkwon, ë‹¤ë¥¸ ê³³ì— ì¶”ê°€í•´ì•¼ í•¨, 20040327
+		//		retMonsterInfo.HP = retMonsterInfo.CurrentHP;						// HPë¥¼ í• ë‹¹í•œë‹¤.
+		retMonsterInfo.Size = retMonsterInfo.Size * retMonsterInfo.ScaleValue; // ì„œë²„ì—ì„œ ì‚¬ìš©í•˜ëŠ” ì‚¬ì´ì¦ˆë¥¼ ê³„ì‚°í•˜ì—¬ ì„¤ì •í•œë‹¤.
+		retMonsterInfo.QuickSpeed = retMonsterInfo.QuickSpeed / (1000 / MONSTER_UPDATE_MOVE_TERM_TICK); // DBì—ëŠ” 1ì´ˆë™ì•ˆì˜ ìŠ¤í”¼ë“œê°€ ìˆì§€ë§Œ ì‹¤ì œ ì‚¬ìš©ì€ 200msë™ì•ˆì˜ ì†ë„ë¥¼ ì‚¬ìš©í•˜ë¯€ë¡œ ë‹¤ì‹œ ì„¤ì •
 		retMonsterInfo.TurnAngle = retMonsterInfo.TurnAngle / (1000 / MONSTER_UPDATE_MOVE_TERM_TICK);
 
-		// start 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+		// start 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 		
 		for (auto itMT = vectMonsterMultiTargetinfo.begin(); itMT != vectMonsterMultiTargetinfo.end(); ++itMT)
 		{
@@ -410,7 +410,7 @@ BOOL CMonsterDBAccess::GetAllMonsters(ez_map<int, MONSTER_INFO>& mapMonster, ez_
 				retMonsterInfo.MultiTargetInfo[itMT->PointIndex - 1].Position = itMT->TargetPosition;
 			}
 		}
-		// end 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+		// end 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 
 		// mapMonster.insert(map<int, MONSTER_INFO>::value_type(retMonsterInfo.MonsterUnitKind, retMonsterInfo));
 

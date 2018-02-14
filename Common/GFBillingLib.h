@@ -1,4 +1,4 @@
-#ifndef _GFBILLING_LIB_H_
+Ôªø#ifndef _GFBILLING_LIB_H_
 #define _GFBILLING_LIB_H_
 
 // 0.011
@@ -66,7 +66,7 @@ struct GFSBILLING_RET_DATA
 //----------------------------------------------------------------
 GFMSBILLING_API void GFBillingReqExecute(const char* i_szServerIP, const int i_nServerPort, GFSBILLING_REQ_DATA * i_pReqData, GFSBILLING_RET_DATA * o_pRetData);
 
-// 2008-03-17 by cmkwon, Gameforge4D_Eng ∫Ù∏µ ∏µ‚ ø¨µø«œ±‚ - 
+// 2008-03-17 by cmkwon, Gameforge4D_Eng ÎπåÎßÅ Î™®Îìà Ïó∞ÎèôÌïòÍ∏∞ - 
 typedef void (*PGFBILLINGREQUEST)(const char* i_szServerIP, const int i_nServerPort, GFSBILLING_REQ_DATA * i_pReqData, GFSBILLING_RET_DATA * o_pRetData);
 
 

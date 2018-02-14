@@ -1,11 +1,11 @@
-/*****************************************************************************\
+ï»¿/*****************************************************************************\
 IExplore.h
 Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
 You may use this code in your applications at no cost, so long as credit
 is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
 \*****************************************************************************/
 
-// 2009-09-02 by cmkwon, Gameforge4D °ÔÀÓ °¡µå µ¿ÀÇÃ¢ WebPage·Î Ã³¸® - 
+// 2009-09-02 by cmkwon, Gameforge4D ê²Œì„ ê°€ë“œ ë™ì˜ì°½ WebPageë¡œ ì²˜ë¦¬ - 
 #if !defined(_IEXPLORE_H_)
 #define		_IEXPLORE_H_
 
@@ -135,4 +135,4 @@ private:
     Host *m_pHost;
 };
 
-#endif	// 2009-09-02 by cmkwon, Gameforge4D °ÔÀÓ °¡µå µ¿ÀÇÃ¢ WebPage·Î Ã³¸® - 
+#endif	// 2009-09-02 by cmkwon, Gameforge4D ê²Œì„ ê°€ë“œ ë™ì˜ì°½ WebPageë¡œ ì²˜ë¦¬ - 

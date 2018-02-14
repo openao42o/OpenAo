@@ -1,88 +1,88 @@
-#ifndef _BILLING_LIB_H_
+ï»¿#ifndef _BILLING_LIB_H_
 #define _BILLING_LIB_H_
 
 
-// 2008-09-18 by cmkwon, ÅÂ±¹ WinnerOnline_Tha, ÇÑ±¹ Masang140_Kor ºô¸µ DBServer Á¢±ÙÀ» Direct ·Î ¼öÁ¤ - dll Á¦°Å ÇÔ.
+// 2008-09-18 by cmkwon, íƒœêµ­ WinnerOnline_Tha, í•œêµ­ Masang140_Kor ë¹Œë§ DBServer ì ‘ê·¼ì„ Direct ë¡œ ìˆ˜ì • - dll ì œê±° í•¨.
 //#ifdef BILLINGDLL_EXPORTS
 //	#define MSBILLING_API extern "C" __declspec(dllexport)
 //#else
 //	#define MSBILLING_API extern "C" __declspec(dllimport)
-//	#pragma comment(lib, "BillingDll.lib")					// 2007-09-13 by cmkwon, °¢ ¼­¹öº° ºô¸µ ¶óÀÌºê·¯¸® µû·Î ·Îµù
+//	#pragma comment(lib, "BillingDll.lib")					// 2007-09-13 by cmkwon, ê° ì„œë²„ë³„ ë¹Œë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ ë”°ë¡œ ë¡œë”©
 //#endif
 
-// 2008-09-18 by cmkwon, ÅÂ±¹ WinnerOnline_Tha, ÇÑ±¹ Masang140_Kor ºô¸µ DBServer Á¢±ÙÀ» Direct ·Î ¼öÁ¤ - ¿¹´ç°ú ´Ù¸£°Ô º¯°æÇÔ.
-//#define MSBILLING_SIZE_MAX_ACCOUNT_NAME			50		// ÃÖ´ë °èÁ¤¸í
-//#define MSBILLING_SIZE_MAX_CHARACTER_NAME		50		// ÃÖ´ë Ä³¸¯ÅÍ¸í
-//#define MSBILLING_SIZE_MAX_ITEM_NUM				50		// ÃÖ´ë ¾ÆÀÌÅÛ¹øÈ£ ±æÀÌ
-//#define MSBILLING_SIZE_MAX_ITEM_NAME			50		// ÃÖ´ë ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ
+// 2008-09-18 by cmkwon, íƒœêµ­ WinnerOnline_Tha, í•œêµ­ Masang140_Kor ë¹Œë§ DBServer ì ‘ê·¼ì„ Direct ë¡œ ìˆ˜ì • - ì˜ˆë‹¹ê³¼ ë‹¤ë¥´ê²Œ ë³€ê²½í•¨.
+//#define MSBILLING_SIZE_MAX_ACCOUNT_NAME			50		// ìµœëŒ€ ê³„ì •ëª…
+//#define MSBILLING_SIZE_MAX_CHARACTER_NAME		50		// ìµœëŒ€ ìºë¦­í„°ëª…
+//#define MSBILLING_SIZE_MAX_ITEM_NUM				50		// ìµœëŒ€ ì•„ì´í…œë²ˆí˜¸ ê¸¸ì´
+//#define MSBILLING_SIZE_MAX_ITEM_NAME			50		// ìµœëŒ€ ì•„ì´í…œ ì´ë¦„ ê¸¸ì´
 //#define MSBILLING_SIZE_MAX_IPADDRESS			16		// 
-#define MasangBILL_SIZE_MAX_ACCOUNT_NAME			50		// ÃÖ´ë °èÁ¤¸í
-#define MasangBILL_SIZE_MAX_CHARACTER_NAME			50		// ÃÖ´ë Ä³¸¯ÅÍ¸í
-#define MasangBILL_SIZE_MAX_ITEM_NUM				50		// ÃÖ´ë ¾ÆÀÌÅÛ¹øÈ£ ±æÀÌ
-#define MasangBILL_SIZE_MAX_ITEM_NAME				50		// ÃÖ´ë ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ
+#define MasangBILL_SIZE_MAX_ACCOUNT_NAME			50		// ìµœëŒ€ ê³„ì •ëª…
+#define MasangBILL_SIZE_MAX_CHARACTER_NAME			50		// ìµœëŒ€ ìºë¦­í„°ëª…
+#define MasangBILL_SIZE_MAX_ITEM_NUM				50		// ìµœëŒ€ ì•„ì´í…œë²ˆí˜¸ ê¸¸ì´
+#define MasangBILL_SIZE_MAX_ITEM_NAME				50		// ìµœëŒ€ ì•„ì´í…œ ì´ë¦„ ê¸¸ì´
 #define MasangBILL_SIZE_MAX_IPADDRESS				16		// 
 
 //-------------------------------------------------------------------------------
-//--						Error code Á¤ÀÇ
+//--						Error code ì •ì˜
 #define ERR_DB_NO_ERROR							0
-#define ERR_DB_IS_NOT_ACCOUNTNAME				1			// td_cash_bonus_point Å×ÀÌºí¿¡ °èÁ¤¸íÀÌ ¾øÀ½
-#define ERR_DB_NOT_ENOUGH_MONEY					2			// ¼ÒÀ¯ÇÑ Point(CashPoint+BonusPoint)°¡ ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÇ °¡°İº¸´Ù ÀÛ´Ù
-#define ERR_DB_IS_NOT_GAMEUID					3			// ±¸¸ÅÇÏ·Á´Â °ÔÀÓÀÌ ºô¸µ ¼­¹ö¿¡ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀ½
-#define ERR_DB_INVALID_ITEM						4			// ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ À¯È¿ÇÏÁö ¾ÊÀ½ - ti_item_info Å×ÀÌºí¿¡ ¾ø°Å³ª IsDisable ÇÊµå°¡ 0ÀÌ ¾Æ´Ï´Ù
-#define ERR_DB_IS_NOT_EQUAL_ITEM_UNIT_PRICE		5			// ±¸¸Å ¾ÆÀÌÅÛÀÇ 1°³´ç °¡°İÀÌ ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ°Í°ú ´Ù¸£´Ù
+#define ERR_DB_IS_NOT_ACCOUNTNAME				1			// td_cash_bonus_point í…Œì´ë¸”ì— ê³„ì •ëª…ì´ ì—†ìŒ
+#define ERR_DB_NOT_ENOUGH_MONEY					2			// ì†Œìœ í•œ Point(CashPoint+BonusPoint)ê°€ êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì˜ ê°€ê²©ë³´ë‹¤ ì‘ë‹¤
+#define ERR_DB_IS_NOT_GAMEUID					3			// êµ¬ë§¤í•˜ë ¤ëŠ” ê²Œì„ì´ ë¹Œë§ ì„œë²„ì— ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŒ
+#define ERR_DB_INVALID_ITEM						4			// êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ - ti_item_info í…Œì´ë¸”ì— ì—†ê±°ë‚˜ IsDisable í•„ë“œê°€ 0ì´ ì•„ë‹ˆë‹¤
+#define ERR_DB_IS_NOT_EQUAL_ITEM_UNIT_PRICE		5			// êµ¬ë§¤ ì•„ì´í…œì˜ 1ê°œë‹¹ ê°€ê²©ì´ ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœê²ƒê³¼ ë‹¤ë¥´ë‹¤
 
-#define ERR_DB_CONNECT_FAIL						100			// ºô¸µ DB Server·Î ¿¬°á ½ÇÆĞ
-#define ERR_DB_QUERY_ERROR						101			// DB Query ½ÇÆĞ
-#define ERR_DB_QUERY_FETCH_ERROR				102			// DB Query ½ÇÆĞ
+#define ERR_DB_CONNECT_FAIL						100			// ë¹Œë§ DB Serverë¡œ ì—°ê²° ì‹¤íŒ¨
+#define ERR_DB_QUERY_ERROR						101			// DB Query ì‹¤íŒ¨
+#define ERR_DB_QUERY_FETCH_ERROR				102			// DB Query ì‹¤íŒ¨
 #define ERR_DB_INVALID_BILLING_COMMAND			110			// 
 //-------------------------------------------------------------------------------
 
 
 
 //----------------------------------------------------------------
-//-- Àü¼Ûµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ì „ì†¡ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
-// 2008-09-18 by cmkwon, ÅÂ±¹ WinnerOnline_Tha, ÇÑ±¹ Masang140_Kor ºô¸µ DBServer Á¢±ÙÀ» Direct ·Î ¼öÁ¤ - 
+// 2008-09-18 by cmkwon, íƒœêµ­ WinnerOnline_Tha, í•œêµ­ Masang140_Kor ë¹Œë§ DBServer ì ‘ê·¼ì„ Direct ë¡œ ìˆ˜ì • - 
 //struct SBILLING_REQ_DATA
 struct SMasangBILL_REQ_DATA
 {
-	int  nCommand;												// ¸í·ÉÁ¾·ù(1:ÀÜ¾×Á¶È¸, 2:¾ÆÀÌÅÛ±¸¸Å)
-	int  nGameUID;												// ±¸¸Å °ÔÀÓ Á¤º¸(ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ °ÔÀÓÀÇ ±¸ºĞÀÚ)
-	char szAccountName[MasangBILL_SIZE_MAX_ACCOUNT_NAME];		// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚ¹øÈ£)
-	char szCharacterName[MasangBILL_SIZE_MAX_CHARACTER_NAME];	// ±¸¸ÅÀÚÁ¤º¸(°ÔÀÓ³»ÀÇ Ä³¸¯ÅÍ¸í)
-	char szItemNum[MasangBILL_SIZE_MAX_ITEM_NUM];				// ±¸¸Å ¾ÆÀÌÅÛ ±¸ºĞÀÚ(ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ ¾ÆÀÌÅÛ¸¸ ±¸¸Å°¡´É)
-	char szItemName[MasangBILL_SIZE_MAX_ITEM_NAME];				// ±¸¸Å ¾ÆÀÌÅÛ ÀÌ¸§
-	int  nBuyItemCount;											// ±¸¸Å ¾ÆÀÌÅÛ Ä«¿îÆ®
-	int  nItemUnitPrice;										// ±¸¸Å ¾ÆÀÌÅÛÀÇ 1°³´ç °¡°İ
-	char szUserIP[MasangBILL_SIZE_MAX_IPADDRESS];				// ±¸¸ÅÀÚÁ¤º¸(±¸¸ÅÀÚ IP)	
+	int  nCommand;												// ëª…ë ¹ì¢…ë¥˜(1:ì”ì•¡ì¡°íšŒ, 2:ì•„ì´í…œêµ¬ë§¤)
+	int  nGameUID;												// êµ¬ë§¤ ê²Œì„ ì •ë³´(ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœ ê²Œì„ì˜ êµ¬ë¶„ì)
+	char szAccountName[MasangBILL_SIZE_MAX_ACCOUNT_NAME];		// êµ¬ë§¤ìì •ë³´(ì‚¬ìš©ìë²ˆí˜¸)
+	char szCharacterName[MasangBILL_SIZE_MAX_CHARACTER_NAME];	// êµ¬ë§¤ìì •ë³´(ê²Œì„ë‚´ì˜ ìºë¦­í„°ëª…)
+	char szItemNum[MasangBILL_SIZE_MAX_ITEM_NUM];				// êµ¬ë§¤ ì•„ì´í…œ êµ¬ë¶„ì(ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœ ì•„ì´í…œë§Œ êµ¬ë§¤ê°€ëŠ¥)
+	char szItemName[MasangBILL_SIZE_MAX_ITEM_NAME];				// êµ¬ë§¤ ì•„ì´í…œ ì´ë¦„
+	int  nBuyItemCount;											// êµ¬ë§¤ ì•„ì´í…œ ì¹´ìš´íŠ¸
+	int  nItemUnitPrice;										// êµ¬ë§¤ ì•„ì´í…œì˜ 1ê°œë‹¹ ê°€ê²©
+	char szUserIP[MasangBILL_SIZE_MAX_IPADDRESS];				// êµ¬ë§¤ìì •ë³´(êµ¬ë§¤ì IP)	
 };
 
 
 //----------------------------------------------------------------
-//-- ¼ö½Åµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ìˆ˜ì‹ ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
-// 2008-09-18 by cmkwon, ÅÂ±¹ WinnerOnline_Tha, ÇÑ±¹ Masang140_Kor ºô¸µ DBServer Á¢±ÙÀ» Direct ·Î ¼öÁ¤ - 
+// 2008-09-18 by cmkwon, íƒœêµ­ WinnerOnline_Tha, í•œêµ­ Masang140_Kor ë¹Œë§ DBServer ì ‘ê·¼ì„ Direct ë¡œ ìˆ˜ì • - 
 //struct SBILLING_RET_DATA
 struct SMasangBILL_RET_DATA
 {
-	int  nRetErrCode;				// Ã³¸®°á°ú (=0: ¼º°ø, <>0: ¿¡·¯), ERR_DB_XXXX
-	int  nCashPoint;				// ½ÇÁ¦·Î °áÁ¦ÇÏ¿© ¼ÒÀ¯ÇÑ Point
-	int  nBonusPoint;				// ÀÌº¥Æ® È¤Àº ´Ù¸¥ »çÀ¯·Î ÀÎÇØ ¼ÒÀ¯ÇÑ Point
+	int  nRetErrCode;				// ì²˜ë¦¬ê²°ê³¼ (=0: ì„±ê³µ, <>0: ì—ëŸ¬), ERR_DB_XXXX
+	int  nCashPoint;				// ì‹¤ì œë¡œ ê²°ì œí•˜ì—¬ ì†Œìœ í•œ Point
+	int  nBonusPoint;				// ì´ë²¤íŠ¸ í˜¹ì€ ë‹¤ë¥¸ ì‚¬ìœ ë¡œ ì¸í•´ ì†Œìœ í•œ Point
 };
 
 
 //----------------------------------------------------------------
-// ÀÜ¾×Á¶È¸, ¾ÆÀÌÅÛ ±¸¸Å ¿ÜºÎ³ëÃâ ÇÔ¼ö
+// ì”ì•¡ì¡°íšŒ, ì•„ì´í…œ êµ¬ë§¤ ì™¸ë¶€ë…¸ì¶œ í•¨ìˆ˜
 //
-// Return Value: BOOL - ÇÔ¼ö ¼º°ø/½ÇÆĞ ¿©ºÎ(TRUE: ¸í·É ¼º°ø, FALSE: ½ÇÆĞ)
-//                      ´Ü¼øÈ÷ ¸í·É ½ÇÇà ¼º°ø ¿©ºÎ¸¸ ÀÇ¹ÌÇÔ.
-// Parameter   : const char* i_szServerIP				[in]	ºô¸µ ¼­¹ö IP
-//				 const int i_nServerPort				[in]	ºô¸µ ¼­¹ö Port
-//				 SBILLING_REQ_DATA * i_pReqData			[in]	Àü´ŞÇÒ Data
-//				 SBILLING_RET_DATA * o_pRetData			[out]	Àü´Ş¹ŞÀ» °á°ú°ª
+// Return Value: BOOL - í•¨ìˆ˜ ì„±ê³µ/ì‹¤íŒ¨ ì—¬ë¶€(TRUE: ëª…ë ¹ ì„±ê³µ, FALSE: ì‹¤íŒ¨)
+//                      ë‹¨ìˆœíˆ ëª…ë ¹ ì‹¤í–‰ ì„±ê³µ ì—¬ë¶€ë§Œ ì˜ë¯¸í•¨.
+// Parameter   : const char* i_szServerIP				[in]	ë¹Œë§ ì„œë²„ IP
+//				 const int i_nServerPort				[in]	ë¹Œë§ ì„œë²„ Port
+//				 SBILLING_REQ_DATA * i_pReqData			[in]	ì „ë‹¬í•  Data
+//				 SBILLING_RET_DATA * o_pRetData			[out]	ì „ë‹¬ë°›ì„ ê²°ê³¼ê°’
 //
 //----------------------------------------------------------------
-// 2008-09-18 by cmkwon, ÅÂ±¹ WinnerOnline_Tha, ÇÑ±¹ Masang140_Kor ºô¸µ DBServer Á¢±ÙÀ» Direct ·Î ¼öÁ¤ - dll Á¦°ÅÇÔ.
+// 2008-09-18 by cmkwon, íƒœêµ­ WinnerOnline_Tha, í•œêµ­ Masang140_Kor ë¹Œë§ DBServer ì ‘ê·¼ì„ Direct ë¡œ ìˆ˜ì • - dll ì œê±°í•¨.
 //MSBILLING_API BOOL BillingReqExecute(const char* i_szServerIP, const int i_nServerPort, SBILLING_REQ_DATA * i_pReqData, SBILLING_RET_DATA * o_pRetData);
 
 

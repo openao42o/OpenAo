@@ -1,4 +1,4 @@
-// AtumDataLoader.h: interface for the CAtumDataLoader class.
+ï»¿// AtumDataLoader.h: interface for the CAtumDataLoader class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -23,96 +23,96 @@
 #endif // _ATUM_SERVER
 
 struct INT_RANGE {
-	INT		Min;
-	INT		Max;
+    INT        Min;
+    INT        Max;
 
-	void Reset() { Min = 0; Max = MAX_INT_VALUE; }
+    void Reset() { Min = 0; Max = MAX_INT_VALUE; }
 };
 
 struct QUEST_PAY_ITEM {
-	INT		ItemNum;
-	INT		Count;
-	INT		PerItem;		// ÀÌ ¾ÆÀÌÅÛ 1°³´ç ItemNumÀ» Count°³ Áö±Ş
-	BOOL	ToBeAttached;	// ½Àµæ Áï½Ã ÀåÂøµÉ °ÍÀÎ°¡?
-	USHORT	ToUnitKind;		// ¾î¶² ±â¾î¿¡°Ô ÁÙ °ÍÀÎ°¡? UNITKIND_XXX
+    INT        ItemNum;
+    INT        Count;
+    INT        PerItem;        // ì´ ì•„ì´í…œ 1ê°œë‹¹ ItemNumì„ Countê°œ ì§€ê¸‰
+    BOOL    ToBeAttached;    // ìŠµë“ ì¦‰ì‹œ ì¥ì°©ë  ê²ƒì¸ê°€?
+    USHORT    ToUnitKind;        // ì–´ë–¤ ê¸°ì–´ì—ê²Œ ì¤„ ê²ƒì¸ê°€? UNITKIND_XXX
 
-	void Reset() { ItemNum = 0; Count = 0; PerItem = 0; ToBeAttached = FALSE; ToUnitKind = UNITKIND_ALL_MASK; }
+    void Reset() { ItemNum = 0; Count = 0; PerItem = 0; ToBeAttached = FALSE; ToUnitKind = UNITKIND_ALL_MASK; }
 };
 
-#define COUNT_RANDOM_PAY_ITEM	10
+#define COUNT_RANDOM_PAY_ITEM    10
 
 struct QUEST_RANDOM_PAY_ITEM {
-	ITEM_W_COUNT_PROB	ItemWithCountProb[COUNT_RANDOM_PAY_ITEM];
-	INT					NumOfItems;
-	INT					PerItemNum;		// ÀÌ ¾ÆÀÌÅÛ 1°³´ç ItemÀ» Áö±Ş
+    ITEM_W_COUNT_PROB    ItemWithCountProb[COUNT_RANDOM_PAY_ITEM];
+    INT                    NumOfItems;
+    INT                    PerItemNum;        // ì´ ì•„ì´í…œ 1ê°œë‹¹ Itemì„ ì§€ê¸‰
 
-	void Reset()
-	{
-		for (int i = 0; i < COUNT_RANDOM_PAY_ITEM; i++)
-		{
-			ItemWithCountProb[i].Reset(); 
-		}
-		NumOfItems = 0;
-		PerItemNum = 0;
-	}
+    void Reset()
+    {
+        for (int i = 0; i < COUNT_RANDOM_PAY_ITEM; i++)
+        {
+            ItemWithCountProb[i].Reset(); 
+        }
+        NumOfItems = 0;
+        PerItemNum = 0;
+    }
 };
 
-// 2007-03-14 by cmkwon, AtumParam.h·Î ÀÌµ¿ÇÔ
+// 2007-03-14 by cmkwon, AtumParam.hë¡œ ì´ë™í•¨
 //struct MAP_AREA {
-//	INT		MapIndex;
-//	INT		X;
-//	INT		Y;
-//	INT		Radius;
+//    INT        MapIndex;
+//    INT        X;
+//    INT        Y;
+//    INT        Radius;
 //
-//	BOOL IsPositionInArea(INT i_nMapIndex, INT i_nX, INT i_nY)
-//	{
-//		// map È®ÀÎ
-//		if (MapIndex == 0) {							return TRUE; }
-//		if (MapIndex != i_nMapIndex) {					return FALSE; }
+//    BOOL IsPositionInArea(INT i_nMapIndex, INT i_nX, INT i_nY)
+//    {
+//        // map í™•ì¸
+//        if (MapIndex == 0) {                            return TRUE; }
+//        if (MapIndex != i_nMapIndex) {                    return FALSE; }
 //
-//		// °Å¸® È®ÀÎ
-//		if (X == -1 || Y == -1 || Radius == -1){		return TRUE; }
-//		if ((INT)util::length(X-i_nX, Y-i_nY) <= Radius)
-//		{
-//			return TRUE;
-//		}
-//		else
-//		{
-//			return FALSE;
-//		}
+//        // ê±°ë¦¬ í™•ì¸
+//        if (X == -1 || Y == -1 || Radius == -1){        return TRUE; }
+//        if ((INT)util::length(X-i_nX, Y-i_nY) <= Radius)
+//        {
+//            return TRUE;
+//        }
+//        else
+//        {
+//            return FALSE;
+//        }
 //
-//		return TRUE;
-//	}
+//        return TRUE;
+//    }
 //
-//	void Reset() { MapIndex = 0; X = 0; Y = 0; Radius = 0; }
+//    void Reset() { MapIndex = 0; X = 0; Y = 0; Radius = 0; }
 //};
 
 struct ITEM_W_COUNT_MAP_AREA {
-	ITEM_W_COUNT	ItemWithCount;
-	MAP_AREA		MapArea;
-	INT				MonsterUniqueNumber;
+    ITEM_W_COUNT    ItemWithCount;
+    MAP_AREA        MapArea;
+    INT                MonsterUniqueNumber;
 
-	void Reset() { ItemWithCount.Reset(); MapArea.Reset(); MonsterUniqueNumber = 0; }
+    void Reset() { ItemWithCount.Reset(); MapArea.Reset(); MonsterUniqueNumber = 0; }
 };
 
 struct QUEST_NPC_INFO
 {
-	INT		NPCIndex;								// ÇØ´ç NPC ÀÎµ¦½º
-	char	NPCName[SIZE_MAX_NPC_NAME];				// ´ã´ç NPC ÀÌ¸§
-	char	PreTalk[SIZE_MAX_NPC_TALK_STRING];		// Äù½ºÆ® ½ÃÀÛ ½Ã NPC Talk
-	char	MidTalk[SIZE_MAX_NPC_TALK_STRING];		// Äù½ºÆ® ¼öÇà Áß Áß°£ NPC Talk
-	char	FailTalk[SIZE_MAX_NPC_TALK_STRING];		// Äù½ºÆ® ¼öÇà ½ÇÆĞ ½Ã NPC Talk
-	char	SuccessTalk[SIZE_MAX_NPC_TALK_STRING];	// Äù½ºÆ® ¼öÇà ¼º°ø ½Ã NPC Talk
+    INT        NPCIndex;                                // í•´ë‹¹ NPC ì¸ë±ìŠ¤
+    char    NPCName[SIZE_MAX_NPC_NAME];                // ë‹´ë‹¹ NPC ì´ë¦„
+    char    PreTalk[SIZE_MAX_NPC_TALK_STRING];        // í€˜ìŠ¤íŠ¸ ì‹œì‘ ì‹œ NPC Talk
+    char    MidTalk[SIZE_MAX_NPC_TALK_STRING];        // í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì¤‘ ì¤‘ê°„ NPC Talk
+    char    FailTalk[SIZE_MAX_NPC_TALK_STRING];        // í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì‹¤íŒ¨ ì‹œ NPC Talk
+    char    SuccessTalk[SIZE_MAX_NPC_TALK_STRING];    // í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì„±ê³µ ì‹œ NPC Talk
 
-	void Reset()
-	{
-		NPCIndex = 0;
-		memset(NPCName, 0x00, SIZE_MAX_NPC_NAME);
-		memset(PreTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
-		memset(MidTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
-		memset(SuccessTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
-		memset(FailTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
-	}
+    void Reset()
+    {
+        NPCIndex = 0;
+        memset(NPCName, 0x00, SIZE_MAX_NPC_NAME);
+        memset(PreTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
+        memset(MidTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
+        memset(SuccessTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
+        memset(FailTalk, 0x00, SIZE_MAX_NPC_TALK_STRING);
+    }
 };
 
 #endif // !defined(AFX_ATUMDATALOADER_H__86859305_F2F3_4DA7_A7E6_674DDCF802FA__INCLUDED_)

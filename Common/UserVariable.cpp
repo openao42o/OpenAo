@@ -1,4 +1,4 @@
-// UserVariable.cpp: implementation of the CUserVariable class.
+ï»¿// UserVariable.cpp: implementation of the CUserVariable class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -36,7 +36,7 @@ bool CUserVariable::AddUserVariableInteger(char *i_pUserVar, int i_intValue)
 	auto pTmp = new USER_VAR_ELEMENT;
 	memset(pTmp, 0x00, sizeof(USER_VAR_ELEMENT));
 
-	// 2008-01-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ® ÀüÃ³¸®±â ¹öÆÛ ¼öÁ¤ - ¼öÁ¤ÇÔ(<--SIZE_MAX_STRING_VALUE)
+	// 2008-01-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ ì „ì²˜ë¦¬ê¸° ë²„í¼ ìˆ˜ì • - ìˆ˜ì •í•¨(<--SIZE_MAX_STRING_VALUE)
 	strncpy(pTmp->UserVariableName, i_pUserVar, SIZE_MAX_STRING_VALUE_NAME-1);
 	pTmp->Type = ET_INTEGER;
 	pTmp->IntValue = i_intValue;
@@ -57,7 +57,7 @@ bool CUserVariable::AddUserVariableString(char *i_pUserVar, char *i_strValue)
 	USER_VAR_ELEMENT *pTmp = new USER_VAR_ELEMENT;
 	memset(pTmp, 0x00, sizeof(USER_VAR_ELEMENT));
 
-	// 2008-01-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ® ÀüÃ³¸®±â ¹öÆÛ ¼öÁ¤ - ¼öÁ¤ÇÔ(<--SIZE_MAX_STRING_VALUE)
+	// 2008-01-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ ì „ì²˜ë¦¬ê¸° ë²„í¼ ìˆ˜ì • - ìˆ˜ì •í•¨(<--SIZE_MAX_STRING_VALUE)
 	strncpy(pTmp->UserVariableName, i_pUserVar, SIZE_MAX_STRING_VALUE_NAME-1);
 	pTmp->Type = ET_STRING;
 	pTmp->IntValue = ~0;

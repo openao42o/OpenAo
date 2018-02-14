@@ -1,4 +1,4 @@
-// CommandHistory.cpp: implementation of the CCommandHistory class.
+ï»¿// CommandHistory.cpp: implementation of the CCommandHistory class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -72,10 +72,10 @@ BOOL CCommandHistory::LoadHistory()
 
 BOOL CCommandHistory::WriteHistory()
 {
-	// Áö¿ì°í »õ·Î ÀúÀå
+	// ì§€ìš°ê³  ìƒˆë¡œ ì €ì¥
 	DeleteFile((m_szHistoryFilePath+m_szHistoryFileName).c_str());
 
-	// ÆÄÀÏ »ı¼º
+	// íŒŒì¼ ìƒì„±
 	HANDLE hFile;
 	hFile = CreateFile((m_szHistoryFilePath+m_szHistoryFileName).c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL,
 							CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -90,7 +90,7 @@ BOOL CCommandHistory::WriteHistory()
 		return FALSE;
 	}
 
-	// ÆÄÀÏ ¾²±â
+	// íŒŒì¼ ì“°ê¸°
 	list<string>::iterator itr = m_listHistory.begin();
 	while(m_listHistory.end() != itr)
 	{
@@ -100,7 +100,7 @@ BOOL CCommandHistory::WriteHistory()
 		itr++;
 	}
 
-	// ÆÄÀÏ ´İ±â
+	// íŒŒì¼ ë‹«ê¸°
 	CloseHandle(hFile);
 
 	return TRUE;
@@ -121,13 +121,13 @@ void CCommandHistory::ResetPosition()
 	m_nHistPos = 0;
 }
 
-// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
+// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
 int CCommandHistory::GetPosition()
 {
 	return m_nHistPos;
 }
 
-// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
+// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
 BOOL CCommandHistory::SetPosition(int posFromLast)
 {
 	if (posFromLast < 1 || posFromLast > size())
@@ -171,7 +171,7 @@ char* CCommandHistory::GetLastest()
 	return GetAtPosFromLast(1);
 }
 
-// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
+// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
 char* CCommandHistory::GetAtPosFromLast(int i_nPosFromLast)
 {
 	if (i_nPosFromLast > m_listHistory.size()
@@ -278,7 +278,7 @@ void CCommandHistory::PrintHistory(int size)
 		string &str = (*itr);
 		DBGOUT("%d: %s\r\n", nCount + 1, str.c_str());
 
-		// size°¡ Á¤ÇØÁø °æ¿ì break
+		// sizeê°€ ì •í•´ì§„ ê²½ìš° break
 		if (++nCount >= size) break;
 	} while(itr != m_listHistory.begin());
 

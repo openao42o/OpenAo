@@ -1,4 +1,4 @@
-// AtumGlobal.cpp
+ï»¿// AtumGlobal.cpp
 // Atum global function group
 //////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
@@ -17,9 +17,9 @@
 #include "Camera.h"
 #include "D3DHanFont.h"
 
-// 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
 #include "ItemInfo.h"
-// end 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// end 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
 
 // 2015-11-2, PanKJ FreeWar
 #include "FreeWar.h"
@@ -32,215 +32,215 @@ void SetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float f
 {
 	switch(nDestParam)
 	{
-	case DES_NULL:						// ´ë»ó ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Â °æ¿ì »ç¿ë
-	case DES_FACTION_01	:				// ¼Ó¼º 01, check: Ãß°¡µÊ
-	case DES_FACTION_02	:				// ¼Ó¼º 02, check: Ãß°¡µÊ
-	case DES_UNITKIND	:				// ±âÃ¼ ¾÷±×·¹ÀÌµå½Ã ÇØ´ç ±âÃ¼
-	case DES_ITEMKIND	:				// ¾ÆÀÌÅÛÀÇ Á¾·ù(ITEMKIND_XXX)
-	case DES_SUMMON		:				// ¸ó½ºÅÍ ¼ÒÈ¯
-	case DES_GRADUAL_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel
-	//case DES_GRADUAL_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
-	case DES_GRADUAL_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_GRADUAL_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_IN_TIME_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IN_TIME_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_HP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_DP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IMMEDIATE_SP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_EP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_GROUNDMODE	:				// Æø°İ¸ğµå
-	case DES_SIEGEMODE	:				// ½ÃÁî¸ğµå
-	case DES_BULLET_01	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 01, check: Ãß°¡µÊ
-	case DES_BULLET_02	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 02, check: Ãß°¡µÊ
-	case DES_PRIMARY_WEAPON	:			// 1Çü ¹«±â, ¹ü¿ë
-	case DES_SECONDARY_WEAPON:			// 2Çü ¹«±â, ¹ü¿ë
-	case DES_ALL_WEAPON	:				// 1,2Çü ¹«±â ¸ğµÎ, ¹ü¿ë
+	case DES_NULL:						// ëŒ€ìƒ íŒŒë¼ë¯¸í„°ê°€ ì—†ëŠ” ê²½ìš° ì‚¬ìš©
+	case DES_FACTION_01	:				// ì†ì„± 01, check: ì¶”ê°€ë¨
+	case DES_FACTION_02	:				// ì†ì„± 02, check: ì¶”ê°€ë¨
+	case DES_UNITKIND	:				// ê¸°ì²´ ì—…ê·¸ë ˆì´ë“œì‹œ í•´ë‹¹ ê¸°ì²´
+	case DES_ITEMKIND	:				// ì•„ì´í…œì˜ ì¢…ë¥˜(ITEMKIND_XXX)
+	case DES_SUMMON		:				// ëª¬ìŠ¤í„° ì†Œí™˜
+	case DES_GRADUAL_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel
+	//case DES_GRADUAL_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
+	case DES_GRADUAL_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_GRADUAL_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_IN_TIME_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IN_TIME_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_HP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_DP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IMMEDIATE_SP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_EP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_GROUNDMODE	:				// í­ê²©ëª¨ë“œ
+	case DES_SIEGEMODE	:				// ì‹œì¦ˆëª¨ë“œ
+	case DES_BULLET_01	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 01, check: ì¶”ê°€ë¨
+	case DES_BULLET_02	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 02, check: ì¶”ê°€ë¨
+	case DES_PRIMARY_WEAPON	:			// 1í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_SECONDARY_WEAPON:			// 2í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_ALL_WEAPON	:				// 1,2í˜• ë¬´ê¸° ëª¨ë‘, ë²”ìš©
 		break;
-	case DES_OVERHITTIME_01:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 01, check: Ãß°¡µÊ
+	case DES_OVERHITTIME_01:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 01, check: ì¶”ê°€ë¨
 //		paramFactor.pfm_TIME_01 += fDestValue;
 		break;
-	case DES_OVERHITTIME_02:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 02, check: Ãß°¡µÊ
+	case DES_OVERHITTIME_02:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 02, check: ì¶”ê°€ë¨
 //		paramFactor.pfm_TIME_02 += fDestValue;
 		break;
-	case DES_ATTACK_PART:					// °ø°İ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_ATTACK_PART:					// ê³µê²© ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_ATTACK_PART += fDestValue;
 		break;
-	case DES_DEFENSE_PART:				// ³»±¸ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DEFENSE_PART:				// ë‚´êµ¬ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_DEFENSE_PART += fDestValue;
 		break;
-	case DES_FUEL_PART:					// ¿¬·á µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_FUEL_PART:					// ì—°ë£Œ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_FUEL_PART += fDestValue;
 		break;
-	case DES_SOUL_PART:					// °¨ÀÀ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SOUL_PART:					// ê°ì‘ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_SOUL_PART += fDestValue;
 		break;
-	case DES_SHIELD_PART:				// ¹æ¾î µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SHIELD_PART:				// ë°©ì–´ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_SHIELD_PART += fDestValue;
 		break;
-	case DES_DODGE_PART	:				// È¸ÇÇ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DODGE_PART	:				// íšŒí”¼ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_DODGE_PART += fDestValue;
 		break;
-	case DES_BODYCONDITION:				// ¸ö»óÅÂ
-	case DES_ENDURANCE_01:				// ³»±¸µµ 01
+	case DES_BODYCONDITION:				// ëª¸ìƒíƒœ
+	case DES_ENDURANCE_01:				// ë‚´êµ¬ë„ 01
 		paramFactor.pfp_ENDURANCE_01 += fDestValue;
 		break;
-	case DES_ENDURANCE_02:				// ³»±¸µµ 02
+	case DES_ENDURANCE_02:				// ë‚´êµ¬ë„ 02
 		paramFactor.pfp_ENDURANCE_02 += fDestValue;
 		break;
-	case DES_CHARGING_01	:			// ÀåÅº¼ö 01
+	case DES_CHARGING_01	:			// ì¥íƒ„ìˆ˜ 01
 		paramFactor.pfp_CHARGING_01 += fDestValue;
 		break;
-	case DES_CHARGING_02	:			// ÀåÅº¼ö 02
+	case DES_CHARGING_02	:			// ì¥íƒ„ìˆ˜ 02
 		paramFactor.pfp_CHARGING_02 += fDestValue;
 		break;
-	case DES_PROPENSITY	:				// ¼ºÇâ
+	case DES_PROPENSITY	:				// ì„±í–¥
 		paramFactor.pfp_PROPENSITY += (INT)fDestValue;
 		break;
-	case DES_HP			:				// È÷Æ®Æ÷ÀÎÆ®, MAX HP¸¦ +VALUE¸¸Å­ ¿Ã·ÁÁÜ
+	case DES_HP			:				// íˆíŠ¸í¬ì¸íŠ¸, MAX HPë¥¼ +VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
 		paramFactor.pfp_HP += fDestValue;
 		break;
-	case DES_DP			:				// ½¯µå
+	case DES_DP			:				// ì‰´ë“œ
 		paramFactor.pfp_DP += fDestValue;
 		break;
-	case DES_MAX_SP_UP  :				// ¼Ò¿ïÆ÷ÀÎÆ® »½ ¾ÆÀÌÅÛ
-	case DES_SP			:				// ¼Ò¿ïÆ÷ÀÎÆ®
+	case DES_MAX_SP_UP  :				// ì†Œìš¸í¬ì¸íŠ¸ ë»¥ ì•„ì´í…œ
+	case DES_SP			:				// ì†Œìš¸í¬ì¸íŠ¸
 		paramFactor.pfp_SP += fDestValue;
 		break;
-	case DES_EP			:				// ¿£ÁøÆ÷ÀÎÆ®
+	case DES_EP			:				// ì—”ì§„í¬ì¸íŠ¸
 		paramFactor.pfp_EP += fDestValue;
 		break;
-	case DES_SPRECOVERY	:				// ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_SPRECOVERY	:				// ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
 		paramFactor.pfp_SPRECOVERY += fDestValue;
 		break;
-	case DES_HPRECOVERY	:				// ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_HPRECOVERY	:				// ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
 		paramFactor.pfp_HPRECOVERY += fDestValue;
 		break;
-	case DES_MINATTACK_01:				// ÃÖ¼Ò °ø°İ·Â 01, check: * 
+	case DES_MINATTACK_01:				// ìµœì†Œ ê³µê²©ë ¥ 01, check: * 
 		paramFactor.pfm_MINATTACK_01 += fDestValue;
 		break;
-	case DES_MAXATTACK_01:				// ÃÖ´ë °ø°İ·Â 01, check: * 
+	case DES_MAXATTACK_01:				// ìµœëŒ€ ê³µê²©ë ¥ 01, check: * 
 		paramFactor.pfm_MAXATTACK_01 += fDestValue;
 		break;
-	case DES_MINATTACK_02:				// ÃÖ¼Ò °ø°İ·Â 02, check: * 
+	case DES_MINATTACK_02:				// ìµœì†Œ ê³µê²©ë ¥ 02, check: * 
 		paramFactor.pfm_MINATTACK_02 += fDestValue;
 		break;
-	case DES_MAXATTACK_02:				// ÃÖ´ë °ø°İ·Â 02, check: * 
+	case DES_MAXATTACK_02:				// ìµœëŒ€ ê³µê²©ë ¥ 02, check: * 
 		paramFactor.pfm_MAXATTACK_02 += fDestValue;
 		break;
-	case DES_ATTACKPROBABILITY_01:		// °ø°İÈ®·ü 01
-		// 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)
+	case DES_ATTACKPROBABILITY_01:		// ê³µê²©í™•ë¥  01
+		// 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)
 		//paramFactor.pfp_ATTACKPROBABILITY_01 += (Prob255_t)fDestValue;
 		paramFactor.pfp_ATTACKPROBABILITY_01 += fDestValue;
 		break;
-	case DES_ATTACKPROBABILITY_02:		// °ø°İÈ®·ü 02
-		// 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)
+	case DES_ATTACKPROBABILITY_02:		// ê³µê²©í™•ë¥  02
+		// 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)
 		//paramFactor.pfp_ATTACKPROBABILITY_02 += (Prob255_t)fDestValue;
 		paramFactor.pfp_ATTACKPROBABILITY_02 += fDestValue;
 		break;
-	case DES_DEFENSE_01	:				// ¹æ¾î·Â 01
-		paramFactor.pfp_DEFENSE_01 += fDestValue;	// 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_DEFENSE_01	:				// ë°©ì–´ë ¥ 01
+		paramFactor.pfp_DEFENSE_01 += fDestValue;	// 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
-	case DES_DEFENSE_02	:				// ¹æ¾î·Â 02
-		paramFactor.pfp_DEFENSE_02 += fDestValue;   // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_DEFENSE_02	:				// ë°©ì–´ë ¥ 02
+		paramFactor.pfp_DEFENSE_02 += fDestValue;   // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
-	case DES_DEFENSEPROBABILITY_01:		// ¹æ¾îÈ®·ü 01
-		paramFactor.pfp_DEFENSEPROBABILITY_01 += fDestValue; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_DEFENSEPROBABILITY_01:		// ë°©ì–´í™•ë¥  01
+		paramFactor.pfp_DEFENSEPROBABILITY_01 += fDestValue; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
-	case DES_DEFENSEPROBABILITY_02:		// ¹æ¾îÈ®·ü 02
-		paramFactor.pfp_DEFENSEPROBABILITY_02 += fDestValue; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_DEFENSEPROBABILITY_02:		// ë°©ì–´í™•ë¥  02
+		paramFactor.pfp_DEFENSEPROBABILITY_02 += fDestValue; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
-	// 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)
-	case DES_SKILLPROBABILITY_01	:	// ½ºÅ³°ø°İÈ®·ü 01
-	case DES_SKILLPROBABILITY_02	:	// ½ºÅ³°ø°İÈ®·ü 02
+	// 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)
+	case DES_SKILLPROBABILITY_01	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  01
+	case DES_SKILLPROBABILITY_02	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  02
 		paramFactor.pfp_SKILLPROBABILITY += (Prob255_t)fDestValue;
 		break;
-	case DES_FACTIONRESISTANCE_01:		// ¼Ó¼ºÀúÇ×·Â 01
-	case DES_FACTIONRESISTANCE_02:		// ¼Ó¼ºÀúÇ×·Â 02
+	case DES_FACTIONRESISTANCE_01:		// ì†ì„±ì €í•­ë ¥ 01
+	case DES_FACTIONRESISTANCE_02:		// ì†ì„±ì €í•­ë ¥ 02
 		paramFactor.pfp_FACTIONRESISTANCE += (Prob255_t)fDestValue;
 		break;
-	case DES_SPEED		:				// ÀÌµ¿¼Óµµ
+	case DES_SPEED		:				// ì´ë™ì†ë„
 		paramFactor.pfm_SPEED += fDestValue;
 		break;
-	case DES_TRANSPORT	:				// ¿î¹İ·Â
+	case DES_TRANSPORT	:				// ìš´ë°˜ë ¥
 		paramFactor.pfp_TRANSPORT += fDestValue;
 		break;
-	case DES_MATERIAL	:				// ÀçÁú
+	case DES_MATERIAL	:				// ì¬ì§ˆ
 		paramFactor.pfp_MATERIAL += fDestValue;
 		break;
-	case DES_REATTACKTIME_01	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 01 (- Áõ°¡)
+	case DES_REATTACKTIME_01	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 01 (- ì¦ê°€)
 		paramFactor.pfm_REATTACKTIME_01 += fDestValue;
 		break;
-	case DES_REATTACKTIME_02	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 02 (- Áõ°¡)
+	case DES_REATTACKTIME_02	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 02 (- ì¦ê°€)
 		paramFactor.pfm_REATTACKTIME_02 += fDestValue;
 		break;
-	case DES_ABRASIONRATE_01	:		// ¸¶¸ğÀ² 01
+	case DES_ABRASIONRATE_01	:		// ë§ˆëª¨ìœ¨ 01
 		paramFactor.pfp_ABRASIONRATE_01 += (Prob255_t)fDestValue;
 		break;
-	case DES_ABRASIONRATE_02	:		// ¸¶¸ğÀ² 02
+	case DES_ABRASIONRATE_02	:		// ë§ˆëª¨ìœ¨ 02
 		paramFactor.pfp_ABRASIONRATE_02 += (Prob255_t)fDestValue;
 		break;
-	case DES_RANGE_01:					// (*) À¯È¿°Å¸® 01
+	case DES_RANGE_01:					// (*) ìœ íš¨ê±°ë¦¬ 01
 		paramFactor.pfm_RANGE_01 += fDestValue;
 		break;
-	case DES_RANGE_02:					// (*) À¯È¿°Å¸® 02
+	case DES_RANGE_02:					// (*) ìœ íš¨ê±°ë¦¬ 02
 		paramFactor.pfm_RANGE_02 += fDestValue;
 		break;
-	case DES_RANGEANGLE_01:				// À¯È¿°¢µµ 01
+	case DES_RANGEANGLE_01:				// ìœ íš¨ê°ë„ 01
 		paramFactor.pfp_RANGEANGLE_01 += fDestValue;
 		break;
-	case DES_RANGEANGLE_02:				// À¯È¿°¢µµ 02
+	case DES_RANGEANGLE_02:				// ìœ íš¨ê°ë„ 02
 		paramFactor.pfp_RANGEANGLE_02 += fDestValue;
 		break;
-	case DES_MULTITAGET_01:				// ¸ÖÆ¼Å¸°Ù 01
-	case DES_MULTITAGET_02:				// ¸ÖÆ¼Å¸°Ù 02
+	case DES_MULTITAGET_01:				// ë©€í‹°íƒ€ê²Ÿ 01
+	case DES_MULTITAGET_02:				// ë©€í‹°íƒ€ê²Ÿ 02
 		paramFactor.pfp_MULTITAGET += fDestValue;
 		break;
-	case DES_EXPLOSIONRANGE_01:			// Æø¹ß¹İ°æ 01
+	case DES_EXPLOSIONRANGE_01:			// í­ë°œë°˜ê²½ 01
 		paramFactor.pfp_EXPLOSIONRANGE_01 += fDestValue;
 		break;
-	case DES_EXPLOSIONRANGE_02:			// Æø¹ß¹İ°æ 02
+	case DES_EXPLOSIONRANGE_02:			// í­ë°œë°˜ê²½ 02
 		paramFactor.pfp_EXPLOSIONRANGE_02 += fDestValue;
 		break;
-	case DES_UNIT	:					// À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_UNIT	:					// ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		paramFactor.pfp_UNIT += fDestValue;
 		break;
-	case DES_REVISION:					// À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_REVISION:					// ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		paramFactor.pfp_REVISION += fDestValue;
 		break;
-	case DES_FACTIONPROBABILITY_01:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 01
-	case DES_FACTIONPROBABILITY_02:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 02
+	case DES_FACTIONPROBABILITY_01:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  01
+	case DES_FACTIONPROBABILITY_02:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  02
 		paramFactor.pfp_FACTIONPROBABILITY += (Prob255_t)fDestValue;
 		break;
-	case DES_SHOTNUM_01	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 01
+	case DES_SHOTNUM_01	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 01
 		paramFactor.pfp_SHOTNUM_01 += (int)fDestValue;
 		break;
-	case DES_SHOTNUM_02	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 02
+	case DES_SHOTNUM_02	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 02
 		paramFactor.pfp_SHOTNUM_02 += (int)fDestValue;
 		break;
-	case DES_MULTINUM_01	:			// µ¿½Ã ¹ß»ç ¼ö 01
+	case DES_MULTINUM_01	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 01
 		paramFactor.pfp_MULTINUM_01 += (int)fDestValue;
 		break;
-	case DES_MULTINUM_02	:			// µ¿½Ã ¹ß»ç ¼ö 02
+	case DES_MULTINUM_02	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 02
 		paramFactor.pfp_MULTINUM_02 += (int)fDestValue;
 		break;
-	case DES_ATTACKTIME_01:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 01 (- Áõ°¡)
+	case DES_ATTACKTIME_01:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 01 (- ì¦ê°€)
 		paramFactor.pfp_ATTACKTIME_01 += fDestValue;
 		break;
-	case DES_ATTACKTIME_02:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 02 (- Áõ°¡)
+	case DES_ATTACKTIME_02:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 02 (- ì¦ê°€)
 		paramFactor.pfp_ATTACKTIME_02 += fDestValue;
 		break;
-	case DES_TIME_01		:			// (*) Áö¼Ó ½Ã°£ 01, check: + -> *
+	case DES_TIME_01		:			// (*) ì§€ì† ì‹œê°„ 01, check: + -> *
 		paramFactor.pfm_TIME_01 += fDestValue;
 		break;
-	case DES_TIME_02		:			// (*) Áö¼Ó ½Ã°£ 02, check: + -> *
+	case DES_TIME_02		:			// (*) ì§€ì† ì‹œê°„ 02, check: + -> *
 		paramFactor.pfm_TIME_02 += fDestValue;
 		break;
-	case DES_WEIGHT_01	:				// (*) ¹«°Ô 01, check: Ãß°¡µÊ
+	case DES_WEIGHT_01	:				// (*) ë¬´ê²Œ 01, check: ì¶”ê°€ë¨
 		paramFactor.pfm_WEIGHT_01 += fDestValue;
 		break;
-	case DES_WEIGHT_02	:				// (*) ¹«°Ô 02, check: Ãß°¡µÊ
+	case DES_WEIGHT_02	:				// (*) ë¬´ê²Œ 02, check: ì¶”ê°€ë¨
 		paramFactor.pfm_WEIGHT_02 += fDestValue;
 		break;
 	case DES_REACTION_RANGE:
@@ -273,114 +273,114 @@ void SetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float f
 	case DES_SKILL_SLOWMOVING:
 		paramFactor.pfm_SPEED += fDestValue;
 		break;
-	// 2006-10-11 by ispark, ÇÏÀÌÆÛ ºÎ½ºÅÍ´Â °ª ¼ÂÆÃÀÌ ¾Æ´Ñ ¼³Á¤ °ªÀÌ´Ù.
+	// 2006-10-11 by ispark, í•˜ì´í¼ ë¶€ìŠ¤í„°ëŠ” ê°’ ì…‹íŒ…ì´ ì•„ë‹Œ ì„¤ì • ê°’ì´ë‹¤.
 	case DES_HYPER_BOOSTER:
 		g_pShuttleChild->m_nHyperBooster = HYPER_BOOSTER_MAX;
 		break;
-	case DES_SKILL_SHIELD_PARALYZE: //½¯µå ¸¶ºñ.
+	case DES_SKILL_SHIELD_PARALYZE: //ì‰´ë“œ ë§ˆë¹„.
 		break;
-	case DES_GRADUAL_DP_UP:	// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
+	case DES_GRADUAL_DP_UP:	// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
 		paramFactor.pfm_DP_REPAIR_RATE += fDestValue;
 		break;
 	case DES_SKILL_NO_WARNING:
 		g_pShuttleChild->SetSkillMissileWarning(TRUE);
 		break;
-	// 2006-11-17 by dgwoo Ã¼ÇÁ.
+	// 2006-11-17 by dgwoo ì²´í”„.
 	case DES_SKILL_HALLUCINATION:
 		break;
-	case DES_SKILL_CHAFF_HP: //Ã¼ÇÁÀÇ HP
+	case DES_SKILL_CHAFF_HP: //ì²´í”„ì˜ HP
 		break;
 	case DES_WARHEAD_SPEED:
 		paramFactor.pfm_WARHEAD_SPEED += fDestValue;
 		break;
-		// 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-	case DES_ENGINE_BOOSTER_TIME_UP:	// ºÎ½ºÅÍ ½Ã°£ Áõ°¡
+		// 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+	case DES_ENGINE_BOOSTER_TIME_UP:	// ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_BOOSTER_TIME_UP+= fDestValue;			
 		}
 		break;
-	case DES_ENGINE_MAX_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡
+	case DES_ENGINE_MAX_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_MAX_SPEED_UP+= fDestValue;
 		}
 		break;
-	case DES_ENGINE_MIN_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
+	case DES_ENGINE_MIN_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_MIN_SPEED_UP+= fDestValue;
 		}
 		break;
-	case DES_ENGINE_BOOSTER_SPEED_UP:		// ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
+	case DES_ENGINE_BOOSTER_SPEED_UP:		// ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_BOOSTER_SPEED_UP+= fDestValue;
 		}
 		break;
-	case DES_ENGINE_GROUND_SPEED_UP:		// ¿£Áø Áö»ó¼Óµµ Áõ°¡
+	case DES_ENGINE_GROUND_SPEED_UP:		// ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_GROUND_SPEED_UP+= fDestValue;
 		}
 		break;
-	case DES_RADAR_OBJECT_DETECT_RANGE:		// ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
+	case DES_RADAR_OBJECT_DETECT_RANGE:		// ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
 		{
 			paramFactor.pfn_RADAR_OBJECT_DETECT_RANGE+= fDestValue;
 		}
 		break;
-	case DES_PIERCE_UP_01:		// ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_01:		// ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_PIERCE_UP_01+= fDestValue;
 		}
 		break;
-	case DES_PIERCE_UP_02:		// °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_02:		// ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_PIERCE_UP_02+= fDestValue;
 		}
 		break;
-	case DES_ENGINE_ANGLE_UP:	// ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_ANGLE_UP:	// ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_ENGINE_ANGLE_UP += fDestValue;
 
 		}
 		break;
-	case DES_ENGINE_BOOSTERANGLE_UP:	// ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_BOOSTERANGLE_UP:	// ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_ENGINE_BOOSTERANGLE_UP += fDestValue;
 		}
 		break;
 
-		// end 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-		// 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	case DES_RARE_ITEM_PARTNER_SPEED:	// ¸¶À» ÀÌµ¿ ½ºÇÇµå Áõ°¡
+		// end 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+		// 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	case DES_RARE_ITEM_PARTNER_SPEED:	// ë§ˆì„ ì´ë™ ìŠ¤í”¼ë“œ ì¦ê°€
 		{
 			paramFactor.pf_ITEMS_MOVE_SPEED_RATE += fDestValue;
 		}
 		break;
-	// end 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-		// 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
-	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â Áõ°¡ : Value Áõ°¡ %
+	// end 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+		// 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
+	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_POWER += fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â È®À² : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ í™•ìœ¨ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY += fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ¸ó½ºÅÍ °ø°İ½Ã - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PIERCE += fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_DEFENCE:				// ¸ó½ºÅÍ ¹æ¾î½Ã - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE:				// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_DEFENCE += fDestValue;			
 		}
 		break;
-	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ¸ó½ºÅÍ ¹æ¾î½Ã - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_DEFENCE_AVOID += fDestValue;						
 		}
 		break;
-		// END 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
+		// END 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
 	}
 }
 
@@ -389,151 +389,151 @@ float GetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam)
 {
 	switch(nDestParam)
 	{
-	case DES_NULL:						// ´ë»ó ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Â °æ¿ì »ç¿ë
-	case DES_FACTION_01	:				// ¼Ó¼º 01, check: Ãß°¡µÊ
-	case DES_FACTION_02	:				// ¼Ó¼º 02, check: Ãß°¡µÊ
-	case DES_OVERHITTIME_01:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 01, check: Ãß°¡µÊ
-	case DES_OVERHITTIME_02:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 02, check: Ãß°¡µÊ
-	case DES_UNITKIND	:				// ±âÃ¼ ¾÷±×·¹ÀÌµå½Ã ÇØ´ç ±âÃ¼
-	case DES_ITEMKIND	:				// ¾ÆÀÌÅÛÀÇ Á¾·ù(ITEMKIND_XXX)
-	case DES_SUMMON		:				// ¸ó½ºÅÍ ¼ÒÈ¯
-	case DES_GRADUAL_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel
-	//case DES_GRADUAL_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
-	case DES_GRADUAL_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_GRADUAL_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_IN_TIME_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IN_TIME_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_HP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_DP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IMMEDIATE_SP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_EP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_GROUNDMODE	:				// Æø°İ¸ğµå
-	case DES_SIEGEMODE	:				// ½ÃÁî¸ğµå
-	case DES_BULLET_01	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 01, check: Ãß°¡µÊ
-	case DES_BULLET_02	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 02, check: Ãß°¡µÊ
-	case DES_PRIMARY_WEAPON	:			// 1Çü ¹«±â, ¹ü¿ë
-	case DES_SECONDARY_WEAPON:			// 2Çü ¹«±â, ¹ü¿ë
-	case DES_ALL_WEAPON	:				// 1,2Çü ¹«±â ¸ğµÎ, ¹ü¿ë
+	case DES_NULL:						// ëŒ€ìƒ íŒŒë¼ë¯¸í„°ê°€ ì—†ëŠ” ê²½ìš° ì‚¬ìš©
+	case DES_FACTION_01	:				// ì†ì„± 01, check: ì¶”ê°€ë¨
+	case DES_FACTION_02	:				// ì†ì„± 02, check: ì¶”ê°€ë¨
+	case DES_OVERHITTIME_01:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 01, check: ì¶”ê°€ë¨
+	case DES_OVERHITTIME_02:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 02, check: ì¶”ê°€ë¨
+	case DES_UNITKIND	:				// ê¸°ì²´ ì—…ê·¸ë ˆì´ë“œì‹œ í•´ë‹¹ ê¸°ì²´
+	case DES_ITEMKIND	:				// ì•„ì´í…œì˜ ì¢…ë¥˜(ITEMKIND_XXX)
+	case DES_SUMMON		:				// ëª¬ìŠ¤í„° ì†Œí™˜
+	case DES_GRADUAL_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel
+	//case DES_GRADUAL_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
+	case DES_GRADUAL_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_GRADUAL_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_IN_TIME_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IN_TIME_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_HP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_DP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IMMEDIATE_SP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_EP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_GROUNDMODE	:				// í­ê²©ëª¨ë“œ
+	case DES_SIEGEMODE	:				// ì‹œì¦ˆëª¨ë“œ
+	case DES_BULLET_01	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 01, check: ì¶”ê°€ë¨
+	case DES_BULLET_02	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 02, check: ì¶”ê°€ë¨
+	case DES_PRIMARY_WEAPON	:			// 1í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_SECONDARY_WEAPON:			// 2í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_ALL_WEAPON	:				// 1,2í˜• ë¬´ê¸° ëª¨ë‘, ë²”ìš©
 		break;
-	case DES_ATTACK_PART:					// °ø°İ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_ATTACK_PART:					// ê³µê²© ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_ATTACK_PART;
-	case DES_DEFENSE_PART:				// ³»±¸ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DEFENSE_PART:				// ë‚´êµ¬ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_DEFENSE_PART;
-	case DES_FUEL_PART:					// ¿¬·á µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_FUEL_PART:					// ì—°ë£Œ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_FUEL_PART;
-	case DES_SOUL_PART:					// °¨ÀÀ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SOUL_PART:					// ê°ì‘ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_SOUL_PART;
-	case DES_SHIELD_PART:				// ¹æ¾î µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SHIELD_PART:				// ë°©ì–´ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_SHIELD_PART;
-	case DES_DODGE_PART	:				// È¸ÇÇ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DODGE_PART	:				// íšŒí”¼ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 		return paramFactor.pfp_DODGE_PART;
-	case DES_BODYCONDITION:				// ¸ö»óÅÂ
+	case DES_BODYCONDITION:				// ëª¸ìƒíƒœ
 		return 0;
-	case DES_ENDURANCE_01:				// ³»±¸µµ 01
+	case DES_ENDURANCE_01:				// ë‚´êµ¬ë„ 01
 		return paramFactor.pfp_ENDURANCE_01;
-	case DES_ENDURANCE_02:				// ³»±¸µµ 02
+	case DES_ENDURANCE_02:				// ë‚´êµ¬ë„ 02
 		return paramFactor.pfp_ENDURANCE_02;
-	case DES_CHARGING_01	:			// ÀåÅº¼ö 01
+	case DES_CHARGING_01	:			// ì¥íƒ„ìˆ˜ 01
 		return paramFactor.pfp_CHARGING_01;
-	case DES_CHARGING_02	:			// ÀåÅº¼ö 02
+	case DES_CHARGING_02	:			// ì¥íƒ„ìˆ˜ 02
 		return paramFactor.pfp_CHARGING_02;
-	case DES_PROPENSITY	:				// ¼ºÇâ
+	case DES_PROPENSITY	:				// ì„±í–¥
 		return (float)paramFactor.pfp_PROPENSITY;
-	case DES_HP			:				// È÷Æ®Æ÷ÀÎÆ®, MAX HP¸¦ +VALUE¸¸Å­ ¿Ã·ÁÁÜ
+	case DES_HP			:				// íˆíŠ¸í¬ì¸íŠ¸, MAX HPë¥¼ +VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
 		return paramFactor.pfp_HP;
-	case DES_DP			:				// ½¯µå
+	case DES_DP			:				// ì‰´ë“œ
 		return paramFactor.pfp_DP;
-	case DES_SP			:				// ¼Ò¿ïÆ÷ÀÎÆ®
+	case DES_SP			:				// ì†Œìš¸í¬ì¸íŠ¸
 		return paramFactor.pfp_SP;
-	case DES_EP			:				// ¿£ÁøÆ÷ÀÎÆ®
+	case DES_EP			:				// ì—”ì§„í¬ì¸íŠ¸
 		return paramFactor.pfp_EP;
-	case DES_SPRECOVERY	:				// ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_SPRECOVERY	:				// ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
 		return paramFactor.pfp_SPRECOVERY;
-	case DES_HPRECOVERY	:				// ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_HPRECOVERY	:				// ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
 		return paramFactor.pfp_HPRECOVERY;
-	case DES_MINATTACK_01:				// ÃÖ¼Ò °ø°İ·Â 01, check: * 
+	case DES_MINATTACK_01:				// ìµœì†Œ ê³µê²©ë ¥ 01, check: * 
 		return paramFactor.pfm_MINATTACK_01;
-	case DES_MAXATTACK_01:				// ÃÖ´ë °ø°İ·Â 01, check: * 
+	case DES_MAXATTACK_01:				// ìµœëŒ€ ê³µê²©ë ¥ 01, check: * 
 		return paramFactor.pfm_MAXATTACK_01;
-	case DES_MINATTACK_02:				// ÃÖ¼Ò °ø°İ·Â 02, check: * 
+	case DES_MINATTACK_02:				// ìµœì†Œ ê³µê²©ë ¥ 02, check: * 
 		return paramFactor.pfm_MINATTACK_02;
-	case DES_MAXATTACK_02:				// ÃÖ´ë °ø°İ·Â 02, check: * 
+	case DES_MAXATTACK_02:				// ìµœëŒ€ ê³µê²©ë ¥ 02, check: * 
 		return paramFactor.pfm_MAXATTACK_02;
-	case DES_ATTACKPROBABILITY_01:		// °ø°İÈ®·ü 01
-		return paramFactor.pfp_ATTACKPROBABILITY_01; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_ATTACKPROBABILITY_02:		// °ø°İÈ®·ü 02
-		return paramFactor.pfp_ATTACKPROBABILITY_02; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_DEFENSE_01	:				// ¹æ¾î·Â 01
-		return paramFactor.pfp_DEFENSE_01;           // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_DEFENSE_02	:				// ¹æ¾î·Â 02
-		return paramFactor.pfp_DEFENSE_02;           // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_DEFENSEPROBABILITY_01:		// ¹æ¾îÈ®·ü 01
-		return paramFactor.pfp_DEFENSEPROBABILITY_01; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_DEFENSEPROBABILITY_02:		// ¹æ¾îÈ®·ü 02
-		return paramFactor.pfp_DEFENSEPROBABILITY_02; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
-	case DES_SKILLPROBABILITY_01	:	// ½ºÅ³°ø°İÈ®·ü 01
-	case DES_SKILLPROBABILITY_02	:	// ½ºÅ³°ø°İÈ®·ü 02
+	case DES_ATTACKPROBABILITY_01:		// ê³µê²©í™•ë¥  01
+		return paramFactor.pfp_ATTACKPROBABILITY_01; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_ATTACKPROBABILITY_02:		// ê³µê²©í™•ë¥  02
+		return paramFactor.pfp_ATTACKPROBABILITY_02; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_DEFENSE_01	:				// ë°©ì–´ë ¥ 01
+		return paramFactor.pfp_DEFENSE_01;           // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_DEFENSE_02	:				// ë°©ì–´ë ¥ 02
+		return paramFactor.pfp_DEFENSE_02;           // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_DEFENSEPROBABILITY_01:		// ë°©ì–´í™•ë¥  01
+		return paramFactor.pfp_DEFENSEPROBABILITY_01; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_DEFENSEPROBABILITY_02:		// ë°©ì–´í™•ë¥  02
+		return paramFactor.pfp_DEFENSEPROBABILITY_02; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
+	case DES_SKILLPROBABILITY_01	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  01
+	case DES_SKILLPROBABILITY_02	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  02
 		return paramFactor.pfp_SKILLPROBABILITY;
-	case DES_FACTIONRESISTANCE_01:		// ¼Ó¼ºÀúÇ×·Â 01
-	case DES_FACTIONRESISTANCE_02:		// ¼Ó¼ºÀúÇ×·Â 02
+	case DES_FACTIONRESISTANCE_01:		// ì†ì„±ì €í•­ë ¥ 01
+	case DES_FACTIONRESISTANCE_02:		// ì†ì„±ì €í•­ë ¥ 02
 		return (float)paramFactor.pfp_FACTIONRESISTANCE;
-	case DES_SPEED		:				// ÀÌµ¿¼Óµµ
+	case DES_SPEED		:				// ì´ë™ì†ë„
 		return paramFactor.pfm_SPEED;
-	case DES_TRANSPORT	:				// ¿î¹İ·Â
+	case DES_TRANSPORT	:				// ìš´ë°˜ë ¥
 		return paramFactor.pfp_TRANSPORT;
-	case DES_MATERIAL	:				// ÀçÁú
+	case DES_MATERIAL	:				// ì¬ì§ˆ
 		paramFactor.pfp_MATERIAL;
-	case DES_REATTACKTIME_01	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 01 (- Áõ°¡)
+	case DES_REATTACKTIME_01	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 01 (- ì¦ê°€)
 		return paramFactor.pfm_REATTACKTIME_01;
-	case DES_REATTACKTIME_02	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 02 (- Áõ°¡)
+	case DES_REATTACKTIME_02	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 02 (- ì¦ê°€)
 		return paramFactor.pfm_REATTACKTIME_02;
-	case DES_ABRASIONRATE_01	:		// ¸¶¸ğÀ² 01
+	case DES_ABRASIONRATE_01	:		// ë§ˆëª¨ìœ¨ 01
 		return (float)paramFactor.pfp_ABRASIONRATE_01;
-	case DES_ABRASIONRATE_02	:		// ¸¶¸ğÀ² 02
+	case DES_ABRASIONRATE_02	:		// ë§ˆëª¨ìœ¨ 02
 		return (float)paramFactor.pfp_ABRASIONRATE_02;
-	case DES_RANGE_01:					// (*) À¯È¿°Å¸® 01
+	case DES_RANGE_01:					// (*) ìœ íš¨ê±°ë¦¬ 01
 		return paramFactor.pfm_RANGE_01;
-	case DES_RANGE_02:					// (*) À¯È¿°Å¸® 02
+	case DES_RANGE_02:					// (*) ìœ íš¨ê±°ë¦¬ 02
 		return paramFactor.pfm_RANGE_02;
-	case DES_RANGEANGLE_01:				// À¯È¿°¢µµ 01
+	case DES_RANGEANGLE_01:				// ìœ íš¨ê°ë„ 01
 		return paramFactor.pfp_RANGEANGLE_01;
-	case DES_RANGEANGLE_02:				// À¯È¿°¢µµ 02
+	case DES_RANGEANGLE_02:				// ìœ íš¨ê°ë„ 02
 		return paramFactor.pfp_RANGEANGLE_02;
-	case DES_MULTITAGET_01:				// ¸ÖÆ¼Å¸°Ù 01
-	case DES_MULTITAGET_02:				// ¸ÖÆ¼Å¸°Ù 02
+	case DES_MULTITAGET_01:				// ë©€í‹°íƒ€ê²Ÿ 01
+	case DES_MULTITAGET_02:				// ë©€í‹°íƒ€ê²Ÿ 02
 		return paramFactor.pfp_MULTITAGET;
-	case DES_EXPLOSIONRANGE_01:			// Æø¹ß¹İ°æ 01
+	case DES_EXPLOSIONRANGE_01:			// í­ë°œë°˜ê²½ 01
 		return paramFactor.pfp_EXPLOSIONRANGE_01;
-	case DES_EXPLOSIONRANGE_02:			// Æø¹ß¹İ°æ 02
+	case DES_EXPLOSIONRANGE_02:			// í­ë°œë°˜ê²½ 02
 		return paramFactor.pfp_EXPLOSIONRANGE_02;
-	case DES_UNIT	:					// À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_UNIT	:					// ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		return paramFactor.pfp_UNIT;
-	case DES_REVISION:					// À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_REVISION:					// ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		return paramFactor.pfp_REVISION;
-	case DES_FACTIONPROBABILITY_01:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 01
-	case DES_FACTIONPROBABILITY_02:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 02
+	case DES_FACTIONPROBABILITY_01:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  01
+	case DES_FACTIONPROBABILITY_02:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  02
 		return (float)paramFactor.pfp_FACTIONPROBABILITY;
-	case DES_SHOTNUM_01	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 01
+	case DES_SHOTNUM_01	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 01
 		return paramFactor.pfp_SHOTNUM_01;
-	case DES_SHOTNUM_02	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 02
+	case DES_SHOTNUM_02	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 02
 		return paramFactor.pfp_SHOTNUM_02;
-	case DES_MULTINUM_01	:			// µ¿½Ã ¹ß»ç ¼ö 01
+	case DES_MULTINUM_01	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 01
 		return paramFactor.pfp_MULTINUM_01;
-	case DES_MULTINUM_02	:			// µ¿½Ã ¹ß»ç ¼ö 02
+	case DES_MULTINUM_02	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 02
 		return paramFactor.pfp_MULTINUM_02 ;
-	case DES_ATTACKTIME_01:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 01 (- Áõ°¡)
+	case DES_ATTACKTIME_01:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 01 (- ì¦ê°€)
 		return paramFactor.pfp_ATTACKTIME_01;
-	case DES_ATTACKTIME_02:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 02 (- Áõ°¡)
+	case DES_ATTACKTIME_02:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 02 (- ì¦ê°€)
 		return paramFactor.pfp_ATTACKTIME_02;
-	case DES_TIME_01		:			// (*) Áö¼Ó ½Ã°£ 01, check: + -> *
+	case DES_TIME_01		:			// (*) ì§€ì† ì‹œê°„ 01, check: + -> *
 		return paramFactor.pfm_TIME_01;
-	case DES_TIME_02		:			// (*) Áö¼Ó ½Ã°£ 02, check: + -> *
+	case DES_TIME_02		:			// (*) ì§€ì† ì‹œê°„ 02, check: + -> *
 		return paramFactor.pfm_TIME_02;
-	case DES_WEIGHT_01	:				// (*) ¹«°Ô 01, check: Ãß°¡µÊ
+	case DES_WEIGHT_01	:				// (*) ë¬´ê²Œ 01, check: ì¶”ê°€ë¨
 		return paramFactor.pfm_WEIGHT_01;
-	case DES_WEIGHT_02	:				// (*) ¹«°Ô 02, check: Ãß°¡µÊ
+	case DES_WEIGHT_02	:				// (*) ë¬´ê²Œ 02, check: ì¶”ê°€ë¨
 		return paramFactor.pfm_WEIGHT_02;
 	case DES_REACTION_RANGE:
 		return (float)paramFactor.pfp_REACTION_RANGE;
@@ -557,44 +557,44 @@ float GetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam)
 		return paramFactor.pfm_SPEED;
 	case DES_WARHEAD_SPEED:
 		return paramFactor.pfm_WARHEAD_SPEED;
-		// 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-	case DES_ENGINE_BOOSTER_TIME_UP:	// ºÎ½ºÅÍ ½Ã°£ Áõ°¡
+		// 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+	case DES_ENGINE_BOOSTER_TIME_UP:	// ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
 		return paramFactor.pfn_ENGINE_BOOSTER_TIME_UP;			
-	case DES_ENGINE_MAX_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡
+	case DES_ENGINE_MAX_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
 		return paramFactor.pfn_ENGINE_MAX_SPEED_UP;
-	case DES_ENGINE_MIN_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
+	case DES_ENGINE_MIN_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
 		return paramFactor.pfn_ENGINE_MIN_SPEED_UP;
-	case DES_ENGINE_BOOSTER_SPEED_UP:		// ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
+	case DES_ENGINE_BOOSTER_SPEED_UP:		// ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
 		return paramFactor.pfn_ENGINE_BOOSTER_SPEED_UP;
-	case DES_ENGINE_GROUND_SPEED_UP:		// ¿£Áø Áö»ó¼Óµµ Áõ°¡
+	case DES_ENGINE_GROUND_SPEED_UP:		// ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
 		return paramFactor.pfn_ENGINE_GROUND_SPEED_UP;
-	case DES_RADAR_OBJECT_DETECT_RANGE:		// ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
+	case DES_RADAR_OBJECT_DETECT_RANGE:		// ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
 		return paramFactor.pfn_RADAR_OBJECT_DETECT_RANGE;
-	case DES_PIERCE_UP_01:		// ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_01:		// ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		return paramFactor.pfm_PIERCE_UP_01;
-	case DES_PIERCE_UP_02:		// °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_02:		// ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		return paramFactor.pfm_PIERCE_UP_02;
-	case DES_ENGINE_ANGLE_UP:	// ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_ANGLE_UP:	// ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		return paramFactor.pfm_ENGINE_ANGLE_UP;
-	case DES_ENGINE_BOOSTERANGLE_UP:	// ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_BOOSTERANGLE_UP:	// ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		return paramFactor.pfm_ENGINE_BOOSTERANGLE_UP;
-		// end 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-	// 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	case DES_RARE_ITEM_PARTNER_SPEED:	// ¸¶À» ÀÌµ¿ ½ºÇÇµå Áõ°¡
+		// end 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+	// 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	case DES_RARE_ITEM_PARTNER_SPEED:	// ë§ˆì„ ì´ë™ ìŠ¤í”¼ë“œ ì¦ê°€
 		return paramFactor.pf_ITEMS_MOVE_SPEED_RATE;
-	// end 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-		// 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
-	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â Áõ°¡ : Value Áõ°¡ %
+	// end 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+		// 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
+	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		return paramFactor.pfp_SKILL_BUFF_MON_ATTACK_POWER;
-	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â È®À² : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ í™•ìœ¨ : Value ì¦ê°€ %
 		return paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY;
-	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ¸ó½ºÅÍ °ø°İ½Ã - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %
 		return paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PIERCE;
-	case DES_SKILL_BUFF_MON_DEFENCE:				// ¸ó½ºÅÍ ¹æ¾î½Ã - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE:				// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		return paramFactor.pfp_SKILL_BUFF_MON_DEFENCE;
-	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ¸ó½ºÅÍ ¹æ¾î½Ã - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		return paramFactor.pfp_SKILL_BUFF_MON_DEFENCE_AVOID;
-		// END 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
+		// END 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
 	}
 
 	return 0;
@@ -604,224 +604,224 @@ void ReleaseParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, flo
 {
 	switch(nDestParam)
 	{
-	case DES_NULL:						// ´ë»ó ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Â °æ¿ì »ç¿ë
-	case DES_FACTION_01	:				// ¼Ó¼º 01, check: Ãß°¡µÊ
-	case DES_FACTION_02	:				// ¼Ó¼º 02, check: Ãß°¡µÊ
-	case DES_OVERHITTIME_01:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 01, check: Ãß°¡µÊ
-	case DES_OVERHITTIME_02:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 02, check: Ãß°¡µÊ
-	case DES_UNITKIND	:				// ±âÃ¼ ¾÷±×·¹ÀÌµå½Ã ÇØ´ç ±âÃ¼
-	case DES_ITEMKIND	:				// ¾ÆÀÌÅÛÀÇ Á¾·ù(ITEMKIND_XXX)
-	case DES_SUMMON		:				// ¸ó½ºÅÍ ¼ÒÈ¯
-	case DES_GRADUAL_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel
-	//case DES_GRADUAL_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
-	case DES_GRADUAL_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_GRADUAL_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	case DES_IN_TIME_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IN_TIME_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IN_TIME_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_HP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_DP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	case DES_IMMEDIATE_SP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_IMMEDIATE_EP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	case DES_GROUNDMODE	:				// Æø°İ¸ğµå
-	case DES_SIEGEMODE	:				// ½ÃÁî¸ğµå
-	case DES_BULLET_01	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 01, check: Ãß°¡µÊ
-	case DES_BULLET_02	:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 02, check: Ãß°¡µÊ
-	case DES_PRIMARY_WEAPON	:			// 1Çü ¹«±â, ¹ü¿ë
-	case DES_SECONDARY_WEAPON:			// 2Çü ¹«±â, ¹ü¿ë
-	case DES_ALL_WEAPON	:				// 1,2Çü ¹«±â ¸ğµÎ, ¹ü¿ë
+	case DES_NULL:						// ëŒ€ìƒ íŒŒë¼ë¯¸í„°ê°€ ì—†ëŠ” ê²½ìš° ì‚¬ìš©
+	case DES_FACTION_01	:				// ì†ì„± 01, check: ì¶”ê°€ë¨
+	case DES_FACTION_02	:				// ì†ì„± 02, check: ì¶”ê°€ë¨
+	case DES_OVERHITTIME_01:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 01, check: ì¶”ê°€ë¨
+	case DES_OVERHITTIME_02:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 02, check: ì¶”ê°€ë¨
+	case DES_UNITKIND	:				// ê¸°ì²´ ì—…ê·¸ë ˆì´ë“œì‹œ í•´ë‹¹ ê¸°ì²´
+	case DES_ITEMKIND	:				// ì•„ì´í…œì˜ ì¢…ë¥˜(ITEMKIND_XXX)
+	case DES_SUMMON		:				// ëª¬ìŠ¤í„° ì†Œí™˜
+	case DES_GRADUAL_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel
+	//case DES_GRADUAL_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
+	case DES_GRADUAL_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_GRADUAL_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	case DES_IN_TIME_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IN_TIME_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IN_TIME_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_HP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_DP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	case DES_IMMEDIATE_SP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_IMMEDIATE_EP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	case DES_GROUNDMODE	:				// í­ê²©ëª¨ë“œ
+	case DES_SIEGEMODE	:				// ì‹œì¦ˆëª¨ë“œ
+	case DES_BULLET_01	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 01, check: ì¶”ê°€ë¨
+	case DES_BULLET_02	:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 02, check: ì¶”ê°€ë¨
+	case DES_PRIMARY_WEAPON	:			// 1í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_SECONDARY_WEAPON:			// 2í˜• ë¬´ê¸°, ë²”ìš©
+	case DES_ALL_WEAPON	:				// 1,2í˜• ë¬´ê¸° ëª¨ë‘, ë²”ìš©
 		break;
-	case DES_ATTACK_PART:					// °ø°İ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_ATTACK_PART:					// ê³µê²© ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_ATTACK_PART -= fDestValue;
 		break;
-	case DES_DEFENSE_PART:				// ³»±¸ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DEFENSE_PART:				// ë‚´êµ¬ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_DEFENSE_PART -= fDestValue;
 		break;
-	case DES_FUEL_PART:					// ¿¬·á µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_FUEL_PART:					// ì—°ë£Œ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_FUEL_PART -= fDestValue;
 		break;
-	case DES_SOUL_PART:					// °¨ÀÀ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SOUL_PART:					// ê°ì‘ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_SOUL_PART -= fDestValue;
 		break;
-	case DES_SHIELD_PART:				// ¹æ¾î µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_SHIELD_PART:				// ë°©ì–´ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_SHIELD_PART -= fDestValue;
 		break;
-	case DES_DODGE_PART	:				// È¸ÇÇ µğ¹ÙÀÌ½º ÆÄÆ®
+	case DES_DODGE_PART	:				// íšŒí”¼ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
 //		paramFactor.pfp_DODGE_PART -= fDestValue;
 		break;
-	case DES_BODYCONDITION:				// ¸ö»óÅÂ
-	case DES_ENDURANCE_01:				// ³»±¸µµ 01
+	case DES_BODYCONDITION:				// ëª¸ìƒíƒœ
+	case DES_ENDURANCE_01:				// ë‚´êµ¬ë„ 01
 		paramFactor.pfp_ENDURANCE_01 -= fDestValue;
 		break;
-	case DES_ENDURANCE_02:				// ³»±¸µµ 02
+	case DES_ENDURANCE_02:				// ë‚´êµ¬ë„ 02
 		paramFactor.pfp_ENDURANCE_02 -= fDestValue;
 		break;
-	case DES_CHARGING_01	:			// ÀåÅº¼ö 01
+	case DES_CHARGING_01	:			// ì¥íƒ„ìˆ˜ 01
 		paramFactor.pfp_CHARGING_01 -= fDestValue;
 		break;
-	case DES_CHARGING_02	:			// ÀåÅº¼ö 02
+	case DES_CHARGING_02	:			// ì¥íƒ„ìˆ˜ 02
 		paramFactor.pfp_CHARGING_02 -= fDestValue;
 		break;
-	case DES_PROPENSITY	:				// ¼ºÇâ
+	case DES_PROPENSITY	:				// ì„±í–¥
 		paramFactor.pfp_PROPENSITY -= (INT)fDestValue;
 		break;
-	case DES_HP			:				// È÷Æ®Æ÷ÀÎÆ®, MAX HP¸¦ +VALUE¸¸Å­ ¿Ã·ÁÁÜ
+	case DES_HP			:				// íˆíŠ¸í¬ì¸íŠ¸, MAX HPë¥¼ +VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
 		paramFactor.pfp_HP -= fDestValue;
 		break;
-	case DES_DP			:				// ½¯µå
+	case DES_DP			:				// ì‰´ë“œ
 		paramFactor.pfp_DP -= fDestValue;
 		break;
-	case DES_MAX_SP_UP  :				// ¼Ò¿ïÆ÷ÀÎÆ® »½ ¾ÆÀÌÅÛ
-	case DES_SP			:				// ¼Ò¿ïÆ÷ÀÎÆ®
+	case DES_MAX_SP_UP  :				// ì†Œìš¸í¬ì¸íŠ¸ ë»¥ ì•„ì´í…œ
+	case DES_SP			:				// ì†Œìš¸í¬ì¸íŠ¸
 		paramFactor.pfp_SP -= fDestValue;
 		break;
-	case DES_EP			:				// ¿£ÁøÆ÷ÀÎÆ®
+	case DES_EP			:				// ì—”ì§„í¬ì¸íŠ¸
 		paramFactor.pfp_EP -= fDestValue;
 		break;
-	case DES_SPRECOVERY	:				// ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_SPRECOVERY	:				// ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
 		paramFactor.pfp_SPRECOVERY -= fDestValue;
 		break;
-	case DES_HPRECOVERY	:				// ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
+	case DES_HPRECOVERY	:				// ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
 		paramFactor.pfp_HPRECOVERY -= fDestValue;
 		break;
-	case DES_MINATTACK_01:				// ÃÖ¼Ò °ø°İ·Â 01, check: * 
+	case DES_MINATTACK_01:				// ìµœì†Œ ê³µê²©ë ¥ 01, check: * 
 		paramFactor.pfm_MINATTACK_01 -= fDestValue;
 		break;
-	case DES_MAXATTACK_01:				// ÃÖ´ë °ø°İ·Â 01, check: * 
+	case DES_MAXATTACK_01:				// ìµœëŒ€ ê³µê²©ë ¥ 01, check: * 
 		paramFactor.pfm_MAXATTACK_01 -= fDestValue;
 		break;
-	case DES_MINATTACK_02:				// ÃÖ¼Ò °ø°İ·Â 02, check: * 
+	case DES_MINATTACK_02:				// ìµœì†Œ ê³µê²©ë ¥ 02, check: * 
 		paramFactor.pfm_MINATTACK_02 -= fDestValue;
 		break;
-	case DES_MAXATTACK_02:				// ÃÖ´ë °ø°İ·Â 02, check: * 
+	case DES_MAXATTACK_02:				// ìµœëŒ€ ê³µê²©ë ¥ 02, check: * 
 		paramFactor.pfm_MAXATTACK_02 -= fDestValue;
 		break;
-	case DES_ATTACKPROBABILITY_01:		// °ø°İÈ®·ü 01
-		paramFactor.pfp_ATTACKPROBABILITY_01 -= fDestValue; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_ATTACKPROBABILITY_01:		// ê³µê²©í™•ë¥  01
+		paramFactor.pfp_ATTACKPROBABILITY_01 -= fDestValue; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
-	case DES_ATTACKPROBABILITY_02:		// °ø°İÈ®·ü 02
-		paramFactor.pfp_ATTACKPROBABILITY_02 -= fDestValue; // 2010-07-28 by dgwoo È®·ü ¼ö½Ä º¯°æ (255 => 100%)	
+	case DES_ATTACKPROBABILITY_02:		// ê³µê²©í™•ë¥  02
+		paramFactor.pfp_ATTACKPROBABILITY_02 -= fDestValue; // 2010-07-28 by dgwoo í™•ë¥  ìˆ˜ì‹ ë³€ê²½ (255 => 100%)	
 		break;
 
-	// 2010. 03. 15 by ckPark ¹æ¾î·Â ¼Ò¼öÁ¡ °è»ê ¹ö±× ¼öÁ¤
-// 	case DES_DEFENSE_01	:				// ¹æ¾î·Â 01
+	// 2010. 03. 15 by ckPark ë°©ì–´ë ¥ ì†Œìˆ˜ì  ê³„ì‚° ë²„ê·¸ ìˆ˜ì •
+// 	case DES_DEFENSE_01	:				// ë°©ì–´ë ¥ 01
 // 		paramFactor.pfp_DEFENSE_01 -= fDestValue;
 // 		break;
-// 	case DES_DEFENSE_02	:				// ¹æ¾î·Â 02
+// 	case DES_DEFENSE_02	:				// ë°©ì–´ë ¥ 02
 // 		paramFactor.pfp_DEFENSE_02 -= fDestValue;
 // 		break;
-	case DES_DEFENSE_01	:				// ¹æ¾î·Â 01
-		// 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+	case DES_DEFENSE_01	:				// ë°©ì–´ë ¥ 01
+		// 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		paramFactor.pfp_DEFENSE_01 -= fDestValue;
-		// end 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+		// end 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		break;
-	case DES_DEFENSE_02	:				// ¹æ¾î·Â 02
-		// 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+	case DES_DEFENSE_02	:				// ë°©ì–´ë ¥ 02
+		// 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		paramFactor.pfp_DEFENSE_02 -= fDestValue;
-		// end 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+		// end 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		break;
-	// end 2010. 03. 15 by ckPark ¹æ¾î·Â ¼Ò¼öÁ¡ °è»ê ¹ö±× ¼öÁ¤
+	// end 2010. 03. 15 by ckPark ë°©ì–´ë ¥ ì†Œìˆ˜ì  ê³„ì‚° ë²„ê·¸ ìˆ˜ì •
 
-	case DES_DEFENSEPROBABILITY_01:		// ¹æ¾îÈ®·ü 01
-		// 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+	case DES_DEFENSEPROBABILITY_01:		// ë°©ì–´í™•ë¥  01
+		// 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		paramFactor.pfp_DEFENSEPROBABILITY_01 -= fDestValue;
-		// end 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+		// end 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		break;
-	case DES_DEFENSEPROBABILITY_02:		// ¹æ¾îÈ®·ü 02
-		// 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+	case DES_DEFENSEPROBABILITY_02:		// ë°©ì–´í™•ë¥  02
+		// 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		paramFactor.pfp_DEFENSEPROBABILITY_02 -= fDestValue;
-		// end 2011-09-26 by hsSon, È¸ÇÇ³ª ¹æ¾î ¾Æ¸Ó·ù¸¦ ÀåÂø Çß´Ù°¡ ¹şÀ¸¸é ³» Á¤º¸¿¡ È¸ÇÇ, ¹æ¾î°¡ »ó½ÂµÇ´Â ¹ö±× ¼öÁ¤
+		// end 2011-09-26 by hsSon, íšŒí”¼ë‚˜ ë°©ì–´ ì•„ë¨¸ë¥˜ë¥¼ ì¥ì°© í–ˆë‹¤ê°€ ë²—ìœ¼ë©´ ë‚´ ì •ë³´ì— íšŒí”¼, ë°©ì–´ê°€ ìƒìŠ¹ë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 		break;
-	case DES_SKILLPROBABILITY_01	:	// ½ºÅ³°ø°İÈ®·ü 01
-	case DES_SKILLPROBABILITY_02	:	// ½ºÅ³°ø°İÈ®·ü 02
+	case DES_SKILLPROBABILITY_01	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  01
+	case DES_SKILLPROBABILITY_02	:	// ìŠ¤í‚¬ê³µê²©í™•ë¥  02
 		paramFactor.pfp_SKILLPROBABILITY -= (Prob255_t)fDestValue;
 		break;
-	case DES_FACTIONRESISTANCE_01:		// ¼Ó¼ºÀúÇ×·Â 01
-	case DES_FACTIONRESISTANCE_02:		// ¼Ó¼ºÀúÇ×·Â 02
+	case DES_FACTIONRESISTANCE_01:		// ì†ì„±ì €í•­ë ¥ 01
+	case DES_FACTIONRESISTANCE_02:		// ì†ì„±ì €í•­ë ¥ 02
 		paramFactor.pfp_FACTIONRESISTANCE -= (Prob255_t)fDestValue;
 		break;
-	case DES_SPEED		:				// ÀÌµ¿¼Óµµ
+	case DES_SPEED		:				// ì´ë™ì†ë„
 		paramFactor.pfm_SPEED -= fDestValue;
 		break;
-	case DES_TRANSPORT	:				// ¿î¹İ·Â
+	case DES_TRANSPORT	:				// ìš´ë°˜ë ¥
 		paramFactor.pfp_TRANSPORT -= fDestValue;
 		break;
-	case DES_MATERIAL	:				// ÀçÁú
+	case DES_MATERIAL	:				// ì¬ì§ˆ
 		paramFactor.pfp_MATERIAL -= fDestValue;
 		break;
-	case DES_REATTACKTIME_01	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 01 (- Áõ°¡)
+	case DES_REATTACKTIME_01	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 01 (- ì¦ê°€)
 		paramFactor.pfm_REATTACKTIME_01 -= fDestValue;
 		break;
-	case DES_REATTACKTIME_02	:		// (*) ¸®¾îÅÃÅ¸ÀÓ 02 (- Áõ°¡)
+	case DES_REATTACKTIME_02	:		// (*) ë¦¬ì–´íƒíƒ€ì„ 02 (- ì¦ê°€)
 		paramFactor.pfm_REATTACKTIME_02 -= fDestValue;
 		break;
-	case DES_ABRASIONRATE_01	:		// ¸¶¸ğÀ² 01
+	case DES_ABRASIONRATE_01	:		// ë§ˆëª¨ìœ¨ 01
 		paramFactor.pfp_ABRASIONRATE_01 -= (Prob255_t)fDestValue;
 		break;
-	case DES_ABRASIONRATE_02	:		// ¸¶¸ğÀ² 02
+	case DES_ABRASIONRATE_02	:		// ë§ˆëª¨ìœ¨ 02
 		paramFactor.pfp_ABRASIONRATE_02 -= (Prob255_t)fDestValue;
 		break;
-	case DES_RANGE_01:					// (*) À¯È¿°Å¸® 01
+	case DES_RANGE_01:					// (*) ìœ íš¨ê±°ë¦¬ 01
 		paramFactor.pfm_RANGE_01 -= fDestValue;
 		break;
-	case DES_RANGE_02:					// (*) À¯È¿°Å¸® 02
+	case DES_RANGE_02:					// (*) ìœ íš¨ê±°ë¦¬ 02
 		paramFactor.pfm_RANGE_02 -= fDestValue;
 		break;
-	case DES_RANGEANGLE_01:				// À¯È¿°¢µµ 01
+	case DES_RANGEANGLE_01:				// ìœ íš¨ê°ë„ 01
 		paramFactor.pfp_RANGEANGLE_01 -= fDestValue;
 		break;
-	case DES_RANGEANGLE_02:				// À¯È¿°¢µµ 02
+	case DES_RANGEANGLE_02:				// ìœ íš¨ê°ë„ 02
 		paramFactor.pfp_RANGEANGLE_02 -= fDestValue;
 		break;
-	case DES_MULTITAGET_01:				// ¸ÖÆ¼Å¸°Ù 01
-	case DES_MULTITAGET_02:				// ¸ÖÆ¼Å¸°Ù 02
+	case DES_MULTITAGET_01:				// ë©€í‹°íƒ€ê²Ÿ 01
+	case DES_MULTITAGET_02:				// ë©€í‹°íƒ€ê²Ÿ 02
 		paramFactor.pfp_MULTITAGET -= fDestValue;
 		break;
-	case DES_EXPLOSIONRANGE_01:			// Æø¹ß¹İ°æ 01
+	case DES_EXPLOSIONRANGE_01:			// í­ë°œë°˜ê²½ 01
 		paramFactor.pfp_EXPLOSIONRANGE_01 -= fDestValue;
 		break;
-	case DES_EXPLOSIONRANGE_02:			// Æø¹ß¹İ°æ 02
+	case DES_EXPLOSIONRANGE_02:			// í­ë°œë°˜ê²½ 02
 		paramFactor.pfp_EXPLOSIONRANGE_02 -= fDestValue;
 		break;
-	case DES_UNIT	:					// À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_UNIT	:					// ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		paramFactor.pfp_UNIT -= fDestValue;
 		break;
-	case DES_REVISION:					// À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
+	case DES_REVISION:					// ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
 		paramFactor.pfp_REVISION -= fDestValue;
 		break;
-	case DES_FACTIONPROBABILITY_01:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 01
-	case DES_FACTIONPROBABILITY_02:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 02
+	case DES_FACTIONPROBABILITY_01:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  01
+	case DES_FACTIONPROBABILITY_02:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  02
 		paramFactor.pfp_FACTIONPROBABILITY -= (Prob255_t)fDestValue;
 		break;
-	case DES_SHOTNUM_01	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 01
+	case DES_SHOTNUM_01	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 01
 		paramFactor.pfp_SHOTNUM_01 -= (int)fDestValue;
 		break;
-	case DES_SHOTNUM_02	:				// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 02
+	case DES_SHOTNUM_02	:				// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 02
 		paramFactor.pfp_SHOTNUM_02 -= (int)fDestValue;
 		break;
-	case DES_MULTINUM_01	:			// µ¿½Ã ¹ß»ç ¼ö 01
+	case DES_MULTINUM_01	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 01
 		paramFactor.pfp_MULTINUM_01 -= (int)fDestValue;
 		break;
-	case DES_MULTINUM_02	:			// µ¿½Ã ¹ß»ç ¼ö 02
+	case DES_MULTINUM_02	:			// ë™ì‹œ ë°œì‚¬ ìˆ˜ 02
 		paramFactor.pfp_MULTINUM_02 -= (int)fDestValue;
 		break;
-	case DES_ATTACKTIME_01:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 01 (- Áõ°¡)
+	case DES_ATTACKTIME_01:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 01 (- ì¦ê°€)
 		paramFactor.pfp_ATTACKTIME_01 -= fDestValue;
 		break;
-	case DES_ATTACKTIME_02:				// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 02 (- Áõ°¡)
+	case DES_ATTACKTIME_02:				// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 02 (- ì¦ê°€)
 		paramFactor.pfp_ATTACKTIME_02 -= fDestValue;
 		break;
-	case DES_TIME_01		:			// (*) Áö¼Ó ½Ã°£ 01, check: + -> *
+	case DES_TIME_01		:			// (*) ì§€ì† ì‹œê°„ 01, check: + -> *
 		paramFactor.pfm_TIME_01 -= fDestValue;
 		break;
-	case DES_TIME_02		:			// (*) Áö¼Ó ½Ã°£ 02, check: + -> *
+	case DES_TIME_02		:			// (*) ì§€ì† ì‹œê°„ 02, check: + -> *
 		paramFactor.pfm_TIME_02 -= fDestValue;
 		break;
-	case DES_WEIGHT_01	:				// (*) ¹«°Ô 01, check: Ãß°¡µÊ
+	case DES_WEIGHT_01	:				// (*) ë¬´ê²Œ 01, check: ì¶”ê°€ë¨
 		paramFactor.pfm_WEIGHT_01 -= fDestValue;
 		break;
-	case DES_WEIGHT_02	:				// (*) ¹«°Ô 02, check: Ãß°¡µÊ
+	case DES_WEIGHT_02	:				// (*) ë¬´ê²Œ 02, check: ì¶”ê°€ë¨
 		paramFactor.pfm_WEIGHT_02 -= fDestValue;
 		break;
 	case DES_REACTION_RANGE:
@@ -854,11 +854,11 @@ void ReleaseParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, flo
 	case DES_SKILL_SLOWMOVING:
 		paramFactor.pfm_SPEED -= fDestValue;
 		break;	
-	// 2006-10-11 by ispark, ÇÏÀÌÆÛ ºÎ½ºÅÍ´Â °ª ¼ÂÆÃÀÌ ¾Æ´Ñ ¼³Á¤ °ªÀÌ´Ù.
+	// 2006-10-11 by ispark, í•˜ì´í¼ ë¶€ìŠ¤í„°ëŠ” ê°’ ì…‹íŒ…ì´ ì•„ë‹Œ ì„¤ì • ê°’ì´ë‹¤.
 	case DES_HYPER_BOOSTER:
 		g_pShuttleChild->m_nHyperBooster = HYPER_BOOSTER_NORMAL;
 		break;
-	case DES_GRADUAL_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
+	case DES_GRADUAL_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
 		paramFactor.pfm_DP_REPAIR_RATE -= fDestValue;
 		break;
 	case DES_SKILL_NO_WARNING:
@@ -867,93 +867,93 @@ void ReleaseParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, flo
 	case DES_WARHEAD_SPEED:
 		paramFactor.pfm_WARHEAD_SPEED -= fDestValue;
 		break;
-	// 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-	case DES_ENGINE_BOOSTER_TIME_UP:	// ºÎ½ºÅÍ ½Ã°£ Áõ°¡
+	// 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+	case DES_ENGINE_BOOSTER_TIME_UP:	// ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_BOOSTER_TIME_UP -= fDestValue;			
 		}
 		break;
-	case DES_ENGINE_MAX_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡
+	case DES_ENGINE_MAX_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_MAX_SPEED_UP -= fDestValue;
 		}
 		break;
-	case DES_ENGINE_MIN_SPEED_UP:		// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
+	case DES_ENGINE_MIN_SPEED_UP:		// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_MIN_SPEED_UP-= fDestValue;
 		}
 		break;
-	case DES_ENGINE_BOOSTER_SPEED_UP:		// ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
+	case DES_ENGINE_BOOSTER_SPEED_UP:		// ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_BOOSTER_SPEED_UP-= fDestValue;
 		}
 		break;
-	case DES_ENGINE_GROUND_SPEED_UP:		// ¿£Áø Áö»ó¼Óµµ Áõ°¡
+	case DES_ENGINE_GROUND_SPEED_UP:		// ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
 		{
 			paramFactor.pfn_ENGINE_GROUND_SPEED_UP-= fDestValue;
 		}
 		break;
-	case DES_RADAR_OBJECT_DETECT_RANGE:		// ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
+	case DES_RADAR_OBJECT_DETECT_RANGE:		// ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
 		{
 			paramFactor.pfn_RADAR_OBJECT_DETECT_RANGE-= fDestValue;
 		}
 		break;
-	case DES_PIERCE_UP_01:		// ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_01:		// ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_PIERCE_UP_01-= fDestValue;
 		}
 		break;
-	case DES_PIERCE_UP_02:		// °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
+	case DES_PIERCE_UP_02:		// ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_PIERCE_UP_02-= fDestValue;
 		}
 		break;
-	case DES_ENGINE_ANGLE_UP:	// ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_ANGLE_UP:	// ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_ENGINE_ANGLE_UP -= fDestValue;
 
 		}
 		break;
-	case DES_ENGINE_BOOSTERANGLE_UP:	// ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå
+	case DES_ENGINE_BOOSTERANGLE_UP:	// ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 		{
 			paramFactor.pfm_ENGINE_BOOSTERANGLE_UP -= fDestValue;
 		}
 		break;
-		// end 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-		// 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	case DES_RARE_ITEM_PARTNER_SPEED:	// ¸¶À» ÀÌµ¿ ½ºÇÇµå Áõ°¡
+		// end 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+		// 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	case DES_RARE_ITEM_PARTNER_SPEED:	// ë§ˆì„ ì´ë™ ìŠ¤í”¼ë“œ ì¦ê°€
 		{
 			paramFactor.pf_ITEMS_MOVE_SPEED_RATE -= fDestValue;
 		}
 		break;
-	// end 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-		// 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
-	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â Áõ°¡ : Value Áõ°¡ %
+	// end 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+		// 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
+	case DES_SKILL_BUFF_MON_ATTACK_POWER:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_POWER -= fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ¸ó½ºÅÍ °ø°İ½Ã - °ø°İ·Â È®À² : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PROBABILITY:		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ í™•ìœ¨ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY -= fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ¸ó½ºÅÍ °ø°İ½Ã - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_ATTACK_PIERCE:			// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_ATTACK_PIERCE -= fDestValue;
 		}
 		break;
-	case DES_SKILL_BUFF_MON_DEFENCE:				// ¸ó½ºÅÍ ¹æ¾î½Ã - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE:				// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_DEFENCE -= fDestValue;			
 		}
 		break;
-	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ¸ó½ºÅÍ ¹æ¾î½Ã - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %
+	case DES_SKILL_BUFF_MON_DEFENCE_AVOID:			// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %
 		{
 			paramFactor.pfp_SKILL_BUFF_MON_DEFENCE_AVOID -= fDestValue;						
 		}
 		break;
-		// END 2013-05-15 by bhsohn ¼¼·ÂÆ÷ÀÎÆ® °³¼±¾È ¹öÇÁ ½Ã½ºÅÛ
+		// END 2013-05-15 by bhsohn ì„¸ë ¥í¬ì¸íŠ¸ ê°œì„ ì•ˆ ë²„í”„ ì‹œìŠ¤í…œ
 	}
 }
 
@@ -1028,40 +1028,40 @@ void ParamFactor_plus_ParamFactor( CParamFactor &destParamFactor, CParamFactor &
 	destParamFactor.pfm_DP_REPAIR_RATE += srcParamFactor.pfm_DP_REPAIR_RATE;
 	destParamFactor.pfm_WARHEAD_SPEED += srcParamFactor.pfm_WARHEAD_SPEED;
 
-	// 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
-	destParamFactor.pfn_ENGINE_BOOSTER_TIME_UP += srcParamFactor.pfn_ENGINE_BOOSTER_TIME_UP;	// ºÎ½ºÅÍ ½Ã°£ Áõ°¡
-	destParamFactor.pfn_ENGINE_MAX_SPEED_UP += srcParamFactor.pfn_ENGINE_MAX_SPEED_UP;	// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡	
-	destParamFactor.pfn_ENGINE_MIN_SPEED_UP += srcParamFactor.pfn_ENGINE_MIN_SPEED_UP;	// ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
-	destParamFactor.pfn_ENGINE_BOOSTER_SPEED_UP += srcParamFactor.pfn_ENGINE_BOOSTER_SPEED_UP;	// ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
-	destParamFactor.pfn_ENGINE_GROUND_SPEED_UP += srcParamFactor.pfn_ENGINE_GROUND_SPEED_UP;	// ¿£Áø Áö»ó¼Óµµ Áõ°¡
-	destParamFactor.pfn_RADAR_OBJECT_DETECT_RANGE += srcParamFactor.pfn_RADAR_OBJECT_DETECT_RANGE;	// ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
-	destParamFactor.pfm_PIERCE_UP_01 += srcParamFactor.pfm_PIERCE_UP_01;	// ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	destParamFactor.pfm_PIERCE_UP_02 += srcParamFactor.pfm_PIERCE_UP_02;	// °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	destParamFactor.pfm_ENGINE_ANGLE_UP += srcParamFactor.pfm_ENGINE_ANGLE_UP;	// ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
-	destParamFactor.pfm_ENGINE_BOOSTERANGLE_UP += srcParamFactor.pfm_ENGINE_BOOSTERANGLE_UP;	// ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå	
-	// end 2008-09-26 by bhsohn ½Å±Ô ÀÎÃ¾Æ® Ã³¸®
+	// 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
+	destParamFactor.pfn_ENGINE_BOOSTER_TIME_UP += srcParamFactor.pfn_ENGINE_BOOSTER_TIME_UP;	// ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
+	destParamFactor.pfn_ENGINE_MAX_SPEED_UP += srcParamFactor.pfn_ENGINE_MAX_SPEED_UP;	// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€	
+	destParamFactor.pfn_ENGINE_MIN_SPEED_UP += srcParamFactor.pfn_ENGINE_MIN_SPEED_UP;	// ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
+	destParamFactor.pfn_ENGINE_BOOSTER_SPEED_UP += srcParamFactor.pfn_ENGINE_BOOSTER_SPEED_UP;	// ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
+	destParamFactor.pfn_ENGINE_GROUND_SPEED_UP += srcParamFactor.pfn_ENGINE_GROUND_SPEED_UP;	// ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
+	destParamFactor.pfn_RADAR_OBJECT_DETECT_RANGE += srcParamFactor.pfn_RADAR_OBJECT_DETECT_RANGE;	// ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
+	destParamFactor.pfm_PIERCE_UP_01 += srcParamFactor.pfm_PIERCE_UP_01;	// ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	destParamFactor.pfm_PIERCE_UP_02 += srcParamFactor.pfm_PIERCE_UP_02;	// ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	destParamFactor.pfm_ENGINE_ANGLE_UP += srcParamFactor.pfm_ENGINE_ANGLE_UP;	// ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
+	destParamFactor.pfm_ENGINE_BOOSTERANGLE_UP += srcParamFactor.pfm_ENGINE_BOOSTERANGLE_UP;	// ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ	
+	// end 2008-09-26 by bhsohn ì‹ ê·œ ì¸ì²¸íŠ¸ ì²˜ë¦¬
 }
 
 void SetItem_ParamFactor( ITEM & item, CParamFactor &paramFactor )
 {
-	item.ReqGearStat.AttackPart += paramFactor.pfp_ATTACK_PART;// °ø°İ µğ¹ÙÀÌ½º ÆÄÆ®
-	item.ReqGearStat.DefensePart += paramFactor.pfp_DEFENSE_PART;// ³»±¸ µğ¹ÙÀÌ½º ÆÄÆ®
-	item.ReqGearStat.FuelPart += paramFactor.pfp_FUEL_PART;// ¿¬·á µğ¹ÙÀÌ½º ÆÄÆ®
-	item.ReqGearStat.SoulPart += paramFactor.pfp_SOUL_PART;// °¨ÀÀ µğ¹ÙÀÌ½º ÆÄÆ®
-	item.ReqGearStat.ShieldPart += paramFactor.pfp_SHIELD_PART;// ¹æ¾î µğ¹ÙÀÌ½º ÆÄÆ®
-	item.ReqGearStat.DodgePart += paramFactor.pfp_DODGE_PART;	// È¸ÇÇ µğ¹ÙÀÌ½º ÆÄÆ®
-	item.SkillHitRate += paramFactor.pfp_SKILLPROBABILITY;// ½ºÅ³°ø°İÈ®·ü
-	item.FractionResistance += paramFactor.pfp_FACTIONRESISTANCE;// ¼Ó¼ºÀúÇ×·Â
-//	item.AbilityMax += paramFactor.pfp_SPEED;// ÀÌµ¿¼Óµµ
-	item.MultiTarget += paramFactor.pfp_MULTITAGET;	// ¸ÖÆ¼Å¸°Ù
+	item.ReqGearStat.AttackPart += paramFactor.pfp_ATTACK_PART;// ê³µê²© ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.ReqGearStat.DefensePart += paramFactor.pfp_DEFENSE_PART;// ë‚´êµ¬ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.ReqGearStat.FuelPart += paramFactor.pfp_FUEL_PART;// ì—°ë£Œ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.ReqGearStat.SoulPart += paramFactor.pfp_SOUL_PART;// ê°ì‘ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.ReqGearStat.ShieldPart += paramFactor.pfp_SHIELD_PART;// ë°©ì–´ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.ReqGearStat.DodgePart += paramFactor.pfp_DODGE_PART;	// íšŒí”¼ ë””ë°”ì´ìŠ¤ íŒŒíŠ¸
+	item.SkillHitRate += paramFactor.pfp_SKILLPROBABILITY;// ìŠ¤í‚¬ê³µê²©í™•ë¥ 
+	item.FractionResistance += paramFactor.pfp_FACTIONRESISTANCE;// ì†ì„±ì €í•­ë ¥
+//	item.AbilityMax += paramFactor.pfp_SPEED;// ì´ë™ì†ë„
+	item.MultiTarget += paramFactor.pfp_MULTITAGET;	// ë©€í‹°íƒ€ê²Ÿ
 	item.ReactionRange += paramFactor.pfp_REACTION_RANGE;
 
-	// 2005-03-28 by jschoi - ¼­¹ö ¿äÃ»À¸·Î Á¶°Ç¹® Ãß°¡
+	// 2005-03-28 by jschoi - ì„œë²„ ìš”ì²­ìœ¼ë¡œ ì¡°ê±´ë¬¸ ì¶”ê°€
 	if(item.ReqMinLevel != 0)
 	{
 		item.ReqMinLevel = max(0, (int)item.ReqMinLevel + paramFactor.pfp_REQ_MIN_LEVEL);
 	}
-	// 2005-03-28 by jschoi - ¼­¹ö ¿äÃ»À¸·Î Á¶°Ç¹® Ãß°¡
+	// 2005-03-28 by jschoi - ì„œë²„ ìš”ì²­ìœ¼ë¡œ ì¡°ê±´ë¬¸ ì¶”ê°€
 	if(item.ReqMaxLevel != 0)
 	{
 		item.ReqMaxLevel += paramFactor.pfp_REQ_MAX_LEVEL;
@@ -1069,90 +1069,90 @@ void SetItem_ParamFactor( ITEM & item, CParamFactor &paramFactor )
 
 	if(IS_PRIMARY_WEAPON(item.Kind))
 	{
-		item.Endurance += paramFactor.pfp_ENDURANCE_01;	// ³»±¸µµ 01
-		item.Charging += paramFactor.pfp_CHARGING_01;	// ÀåÅº¼ö 01
-		item.AbilityMin *= (1.0f+paramFactor.pfm_MINATTACK_01);	// ÃÖ¼Ò °ø°İ·Â 01, check: * 
-		item.AbilityMax *= (1.0f+paramFactor.pfm_MAXATTACK_01);	// ÃÖ´ë °ø°İ·Â 01, check: * 
-		item.Defense += paramFactor.pfp_DEFENSE_01;	// ¹æ¾î·Â 01
-		item.HitRate += paramFactor.pfp_ATTACKPROBABILITY_01;	// °ø°İÈ®·ü 01
-		item.ReAttacktime *= (1.0f+paramFactor.pfm_REATTACKTIME_01);	// (*) ¸®¾îÅÃÅ¸ÀÓ 01 (- Áõ°¡)
-		item.AbrasionRate += paramFactor.pfp_ABRASIONRATE_01;	// ¸¶¸ğÀ² 01
-		item.Range *= (1.0f+paramFactor.pfm_RANGE_01);	// (*) À¯È¿°Å¸® 01
-		item.RangeAngle += paramFactor.pfp_RANGEANGLE_01;	// À¯È¿°¢µµ 01
-		item.ShotNum += paramFactor.pfp_SHOTNUM_01;	// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö
-		item.MultiNum += paramFactor.pfp_MULTINUM_01;	// µ¿½Ã ¹ß»ç ¼ö
-		item.AttackTime += paramFactor.pfp_ATTACKTIME_01;// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 01 (- Áõ°¡)
-		item.Time *= (1.0f+paramFactor.pfm_TIME_01);	// (*) Áö¼Ó ½Ã°£ 01, check: + -> *
-		item.ExplosionRange += paramFactor.pfp_EXPLOSIONRANGE_01;	// Æø¹ß¹İ°æ
-		item.Weight *= (1.0f+paramFactor.pfm_WEIGHT_01);	// (*) ¹«°Ô 01, check: Ãß°¡µÊ
+		item.Endurance += paramFactor.pfp_ENDURANCE_01;	// ë‚´êµ¬ë„ 01
+		item.Charging += paramFactor.pfp_CHARGING_01;	// ì¥íƒ„ìˆ˜ 01
+		item.AbilityMin *= (1.0f+paramFactor.pfm_MINATTACK_01);	// ìµœì†Œ ê³µê²©ë ¥ 01, check: * 
+		item.AbilityMax *= (1.0f+paramFactor.pfm_MAXATTACK_01);	// ìµœëŒ€ ê³µê²©ë ¥ 01, check: * 
+		item.Defense += paramFactor.pfp_DEFENSE_01;	// ë°©ì–´ë ¥ 01
+		item.HitRate += paramFactor.pfp_ATTACKPROBABILITY_01;	// ê³µê²©í™•ë¥  01
+		item.ReAttacktime *= (1.0f+paramFactor.pfm_REATTACKTIME_01);	// (*) ë¦¬ì–´íƒíƒ€ì„ 01 (- ì¦ê°€)
+		item.AbrasionRate += paramFactor.pfp_ABRASIONRATE_01;	// ë§ˆëª¨ìœ¨ 01
+		item.Range *= (1.0f+paramFactor.pfm_RANGE_01);	// (*) ìœ íš¨ê±°ë¦¬ 01
+		item.RangeAngle += paramFactor.pfp_RANGEANGLE_01;	// ìœ íš¨ê°ë„ 01
+		item.ShotNum += paramFactor.pfp_SHOTNUM_01;	// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜
+		item.MultiNum += paramFactor.pfp_MULTINUM_01;	// ë™ì‹œ ë°œì‚¬ ìˆ˜
+		item.AttackTime += paramFactor.pfp_ATTACKTIME_01;// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 01 (- ì¦ê°€)
+		item.Time *= (1.0f+paramFactor.pfm_TIME_01);	// (*) ì§€ì† ì‹œê°„ 01, check: + -> *
+		item.ExplosionRange += paramFactor.pfp_EXPLOSIONRANGE_01;	// í­ë°œë°˜ê²½
+		item.Weight *= (1.0f+paramFactor.pfm_WEIGHT_01);	// (*) ë¬´ê²Œ 01, check: ì¶”ê°€ë¨
 	}
 	else if(IS_SECONDARY_WEAPON(item.Kind))
 	{
-		item.Endurance += paramFactor.pfp_ENDURANCE_02;	// ³»±¸µµ 02
-		item.Charging += paramFactor.pfp_CHARGING_02;	// ÀåÅº¼ö 02
-		item.AbilityMin *= (1.0f+paramFactor.pfm_MINATTACK_02);	// ÃÖ¼Ò °ø°İ·Â 02, check: * 
-		item.AbilityMax *= (1.0f+paramFactor.pfm_MAXATTACK_02);	// ÃÖ´ë °ø°İ·Â 02, check: * 
-		item.Defense += paramFactor.pfp_DEFENSE_02;	// ¹æ¾î·Â 02
-		item.HitRate += paramFactor.pfp_ATTACKPROBABILITY_02;	// °ø°İÈ®·ü 02
-		item.ReAttacktime *= (1.0f+paramFactor.pfm_REATTACKTIME_02);	// (*) ¸®¾îÅÃÅ¸ÀÓ 02 (- Áõ°¡)
-		item.AbrasionRate += paramFactor.pfp_ABRASIONRATE_02;	// ¸¶¸ğÀ² 02
-		item.Range *= (1.0f+paramFactor.pfm_RANGE_02);	// (*) À¯È¿°Å¸® 02
-		item.RangeAngle += paramFactor.pfp_RANGEANGLE_02;	// À¯È¿°¢µµ 02
-		item.ShotNum += paramFactor.pfp_SHOTNUM_02;	// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö
-		item.MultiNum += paramFactor.pfp_MULTINUM_02;	// µ¿½Ã ¹ß»ç ¼ö
-		item.AttackTime += paramFactor.pfp_ATTACKTIME_02;	// Ã³À½ °ø°İ ½ÃÀÇ Å¸ÀÓ 02 (- Áõ°¡)
-		item.Time *= (1.0f+paramFactor.pfm_TIME_02);	// (*) Áö¼Ó ½Ã°£ 02, check: + -> *
-		item.ExplosionRange += paramFactor.pfp_EXPLOSIONRANGE_02;	// Æø¹ß¹İ°æ
-		item.Weight *= (1.0f+paramFactor.pfm_WEIGHT_02);	// (*) ¹«°Ô 02, check: Ãß°¡µÊ
-		item.RepeatTime *= (1.0f+paramFactor.pfm_WARHEAD_SPEED);	// ÀÌµ¿ ¼Óµµ
+		item.Endurance += paramFactor.pfp_ENDURANCE_02;	// ë‚´êµ¬ë„ 02
+		item.Charging += paramFactor.pfp_CHARGING_02;	// ì¥íƒ„ìˆ˜ 02
+		item.AbilityMin *= (1.0f+paramFactor.pfm_MINATTACK_02);	// ìµœì†Œ ê³µê²©ë ¥ 02, check: * 
+		item.AbilityMax *= (1.0f+paramFactor.pfm_MAXATTACK_02);	// ìµœëŒ€ ê³µê²©ë ¥ 02, check: * 
+		item.Defense += paramFactor.pfp_DEFENSE_02;	// ë°©ì–´ë ¥ 02
+		item.HitRate += paramFactor.pfp_ATTACKPROBABILITY_02;	// ê³µê²©í™•ë¥  02
+		item.ReAttacktime *= (1.0f+paramFactor.pfm_REATTACKTIME_02);	// (*) ë¦¬ì–´íƒíƒ€ì„ 02 (- ì¦ê°€)
+		item.AbrasionRate += paramFactor.pfp_ABRASIONRATE_02;	// ë§ˆëª¨ìœ¨ 02
+		item.Range *= (1.0f+paramFactor.pfm_RANGE_02);	// (*) ìœ íš¨ê±°ë¦¬ 02
+		item.RangeAngle += paramFactor.pfp_RANGEANGLE_02;	// ìœ íš¨ê°ë„ 02
+		item.ShotNum += paramFactor.pfp_SHOTNUM_02;	// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜
+		item.MultiNum += paramFactor.pfp_MULTINUM_02;	// ë™ì‹œ ë°œì‚¬ ìˆ˜
+		item.AttackTime += paramFactor.pfp_ATTACKTIME_02;	// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ì„ 02 (- ì¦ê°€)
+		item.Time *= (1.0f+paramFactor.pfm_TIME_02);	// (*) ì§€ì† ì‹œê°„ 02, check: + -> *
+		item.ExplosionRange += paramFactor.pfp_EXPLOSIONRANGE_02;	// í­ë°œë°˜ê²½
+		item.Weight *= (1.0f+paramFactor.pfm_WEIGHT_02);	// (*) ë¬´ê²Œ 02, check: ì¶”ê°€ë¨
+		item.RepeatTime *= (1.0f+paramFactor.pfm_WARHEAD_SPEED);	// ì´ë™ ì†ë„
 	}
-//	case DES_NULL:						// ´ë»ó ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Â °æ¿ì »ç¿ë
-//	case DES_BODYCONDITION:				// ¸ö»óÅÂ
-//	case DES_PROPENSITY	:				// ¼ºÇâ
-//	case DES_HP			:				// È÷Æ®Æ÷ÀÎÆ®, MAX HP¸¦ +VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_SP			:				// ¼Ò¿ïÆ÷ÀÎÆ®
-//	case DES_EP			:				// ¿£ÁøÆ÷ÀÎÆ®
-//	case DES_SPRECOVERY	:				// ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
-//	case DES_HPRECOVERY	:				// ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
-//	case DES_DEFENSEPROBABILITY_01:		// ¹æ¾îÈ®·ü 01
-//	case DES_DEFENSEPROBABILITY_02:		// ¹æ¾îÈ®·ü 02
-//	case DES_FACTION_01	:				// ¼Ó¼º 01, check: Ãß°¡µÊ
-//	case DES_FACTION_02	:				// ¼Ó¼º 02, check: Ãß°¡µÊ
-//	case DES_TRANSPORT	:				// ¿î¹İ·Â
-//	case DES_MATERIAL	:				// ÀçÁú
-//	case DES_UNIT	:					// À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-//	case DES_REVISION:					// À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-//	case DES_FACTIONPROBABILITY_01:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 01
-//	case DES_FACTIONPROBABILITY_02:		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 02
-//	case DES_OVERHITTIME_01:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 01, check: Ãß°¡µÊ
-//	case DES_OVERHITTIME_02:			// (*) ¿À¹öÈıÈ¸º¹½Ã°£ 02, check: Ãß°¡µÊ
-//	case DES_UNITKIND	:				// ±âÃ¼ ¾÷±×·¹ÀÌµå½Ã ÇØ´ç ±âÃ¼
-//	case DES_ITEMKIND	:				// ¾ÆÀÌÅÛÀÇ Á¾·ù(ITEMKIND_XXX)
-//	case DES_SUMMON		:				// ¸ó½ºÅÍ ¼ÒÈ¯
-//	case DES_GRADUAL_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel
-//	case DES_GRADUAL_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°İ ¹ŞÀ¸¸é cancel, check: Ãß°¡µÊ
-//	case DES_GRADUAL_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-//	case DES_GRADUAL_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-//	case DES_IN_TIME_HP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_IN_TIME_DP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-//	case DES_IN_TIME_SP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_IN_TIME_EP_UP:				// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_IMMEDIATE_HP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_IMMEDIATE_DP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-//	case DES_IMMEDIATE_SP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_IMMEDIATE_EP_UP:			// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-//	case DES_GROUNDMODE	:				// Æø°İ¸ğµå
-//	case DES_SIEGEMODE	:				// ½ÃÁî¸ğµå
-//	case DES_BEAMBULLET_01:				// (*) ºö¼Ò¸ğÃÑ¾Ë·® 01, check: Ãß°¡µÊ
-//	case DES_BEAMBULLET_02	:			// (*) ºö¼Ò¸ğÃÑ¾Ë·® 02, check: Ãß°¡µÊ
-//	case DES_PRIMARY_WEAPON	:			// 1Çü ¹«±â, ¹ü¿ë
-//	case DES_SECONDARY_WEAPON:			// 2Çü ¹«±â, ¹ü¿ë
-//	case DES_ALL_WEAPON	:				// 1,2Çü ¹«±â ¸ğµÎ, ¹ü¿ë
+//	case DES_NULL:						// ëŒ€ìƒ íŒŒë¼ë¯¸í„°ê°€ ì—†ëŠ” ê²½ìš° ì‚¬ìš©
+//	case DES_BODYCONDITION:				// ëª¸ìƒíƒœ
+//	case DES_PROPENSITY	:				// ì„±í–¥
+//	case DES_HP			:				// íˆíŠ¸í¬ì¸íŠ¸, MAX HPë¥¼ +VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_SP			:				// ì†Œìš¸í¬ì¸íŠ¸
+//	case DES_EP			:				// ì—”ì§„í¬ì¸íŠ¸
+//	case DES_SPRECOVERY	:				// ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
+//	case DES_HPRECOVERY	:				// ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
+//	case DES_DEFENSEPROBABILITY_01:		// ë°©ì–´í™•ë¥  01
+//	case DES_DEFENSEPROBABILITY_02:		// ë°©ì–´í™•ë¥  02
+//	case DES_FACTION_01	:				// ì†ì„± 01, check: ì¶”ê°€ë¨
+//	case DES_FACTION_02	:				// ì†ì„± 02, check: ì¶”ê°€ë¨
+//	case DES_TRANSPORT	:				// ìš´ë°˜ë ¥
+//	case DES_MATERIAL	:				// ì¬ì§ˆ
+//	case DES_UNIT	:					// ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+//	case DES_REVISION:					// ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+//	case DES_FACTIONPROBABILITY_01:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  01
+//	case DES_FACTIONPROBABILITY_02:		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  02
+//	case DES_OVERHITTIME_01:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 01, check: ì¶”ê°€ë¨
+//	case DES_OVERHITTIME_02:			// (*) ì˜¤ë²„í›íšŒë³µì‹œê°„ 02, check: ì¶”ê°€ë¨
+//	case DES_UNITKIND	:				// ê¸°ì²´ ì—…ê·¸ë ˆì´ë“œì‹œ í•´ë‹¹ ê¸°ì²´
+//	case DES_ITEMKIND	:				// ì•„ì´í…œì˜ ì¢…ë¥˜(ITEMKIND_XXX)
+//	case DES_SUMMON		:				// ëª¬ìŠ¤í„° ì†Œí™˜
+//	case DES_GRADUAL_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel
+//	case DES_GRADUAL_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
+//	case DES_GRADUAL_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+//	case DES_GRADUAL_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+//	case DES_IN_TIME_HP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_IN_TIME_DP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+//	case DES_IN_TIME_SP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_IN_TIME_EP_UP:				// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ì¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_IMMEDIATE_HP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ HPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_IMMEDIATE_DP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ DPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+//	case DES_IMMEDIATE_SP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ SPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_IMMEDIATE_EP_UP:			// ì—ë„ˆì§€ë¥˜, í˜„ì¬ EPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+//	case DES_GROUNDMODE	:				// í­ê²©ëª¨ë“œ
+//	case DES_SIEGEMODE	:				// ì‹œì¦ˆëª¨ë“œ
+//	case DES_BEAMBULLET_01:				// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 01, check: ì¶”ê°€ë¨
+//	case DES_BEAMBULLET_02	:			// (*) ë¹”ì†Œëª¨ì´ì•ŒëŸ‰ 02, check: ì¶”ê°€ë¨
+//	case DES_PRIMARY_WEAPON	:			// 1í˜• ë¬´ê¸°, ë²”ìš©
+//	case DES_SECONDARY_WEAPON:			// 2í˜• ë¬´ê¸°, ë²”ìš©
+//	case DES_ALL_WEAPON	:				// 1,2í˜• ë¬´ê¸° ëª¨ë‘, ë²”ìš©
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CompareIntRange(INT_RANGE &range, INT nValue)
-/// \brief		ÃÖ´ë/ÃÖ¼Ò°¡ Á¸ÀçÇÏ´Â °ªÀÇ ºñ±³
+/// \brief		ìµœëŒ€/ìµœì†Œê°€ ì¡´ì¬í•˜ëŠ” ê°’ì˜ ë¹„êµ
 /// \author		dhkwon
 /// \date		2004-04-28 ~ 2004-04-28
 /// \warning	
@@ -1172,7 +1172,7 @@ BOOL CompareIntRange(INT_RANGE &range, INT nValue)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CompareBitFlag( USHORT nSource, USHORT nValue )
-/// \brief		ºñÆ® ÇÃ·¡±× ºñ±³
+/// \brief		ë¹„íŠ¸ í”Œë˜ê·¸ ë¹„êµ
 /// \author		dhkwon
 /// \date		2004-04-28 ~ 2004-04-28
 /// \warning	
@@ -1191,7 +1191,7 @@ BOOL CompareBitFlag( USHORT nSource, USHORT nValue )
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CompareItemCount( ITEM_W_COUNT &itemCount )
-/// \brief		Item count°¡ ¸¸Á·ÇÏ´ÂÁö °Ë»çÇÑ´Ù.
+/// \brief		Item countê°€ ë§Œì¡±í•˜ëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 /// \author		dhkwon
 /// \date		2004-04-29 ~ 2004-04-29
 /// \warning	
@@ -1209,7 +1209,7 @@ BOOL CompareItemCount( ITEM_W_COUNT &itemCount )
 	return FALSE;
 }
 
-// °¢ ±â¾îº° ÀÜ»ó ÀÌÆåÆ®
+// ê° ê¸°ì–´ë³„ ì”ìƒ ì´í™íŠ¸
 int GetGearTrace(UINT nUnitKind)
 {
 	if(IS_BT(nUnitKind))
@@ -1254,12 +1254,12 @@ char* GetGuildRankName( BYTE nGuildRank )
 	case GUILD_RANK_PRIVATE_5:
 		return STRCMD_CS_GUILD_RANK_PRIVATE_5;
 	}
-	// end 2008-06-03 by bhsohn EP3 ¿©´Ü °ü·Ã Ã³¸®
+	// end 2008-06-03 by bhsohn EP3 ì—¬ë‹¨ ê´€ë ¨ ì²˜ë¦¬
 	return NULL;
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int GGetUnitUpgradeLevel(int x) 
-/// \brief		UnitÀÇ ¾÷±×·¹ÀÌµå ´Ü°è¸¦ ¸®ÅÏÇÑ´Ù.
+/// \brief		Unitì˜ ì—…ê·¸ë ˆì´ë“œ ë‹¨ê³„ë¥¼ ë¦¬í„´í•œë‹¤.
 /// \author		dhkwon
 /// \date		2004-03-24 ~ 2004-03-24
 /// \warning	
@@ -1284,11 +1284,11 @@ unsigned short GGetUnitUpgradeLevel(unsigned short i_nUnitKind)
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			unsigned short GGetUnitKindHexToDeimal(unsigned short i_nUnitKind)
-/// \brief		À¯´ÖÄ«ÀÎµå¸¦ ½ÊÁø¼ö·Î º¯È¯ÇÑ´Ù.(0010 --> 21, 0400 --> 32...)
+/// \brief		ìœ ë‹›ì¹´ì¸ë“œë¥¼ ì‹­ì§„ìˆ˜ë¡œ ë³€í™˜í•œë‹¤.(0010 --> 21, 0400 --> 32...)
 /// \author		dhkwon
 /// \date		2004-03-24 ~ 2004-03-24
-/// \warning	ÀÌÆåÆ® ¹øÈ£, ¾ÆÀÌÅÛ ¹øÈ£ µîÀº À¯´ÖÄ«ÀÎµå°¡ 10Áø¼ö·Î ¾²ÀÎ´Ù.
-///				µÎÀÚ¸®·Î ÀÌ·ç¾îÁö´Âµ¥ ¾Õ¹øÈ£´Â À¯´ÖÄ«ÀÎµå, µŞ¹øÈ£´Â ¾÷±×·¹ÀÌµå·¹º§
+/// \warning	ì´í™íŠ¸ ë²ˆí˜¸, ì•„ì´í…œ ë²ˆí˜¸ ë“±ì€ ìœ ë‹›ì¹´ì¸ë“œê°€ 10ì§„ìˆ˜ë¡œ ì“°ì¸ë‹¤.
+///				ë‘ìë¦¬ë¡œ ì´ë£¨ì–´ì§€ëŠ”ë° ì•ë²ˆí˜¸ëŠ” ìœ ë‹›ì¹´ì¸ë“œ, ë’·ë²ˆí˜¸ëŠ” ì—…ê·¸ë ˆì´ë“œë ˆë²¨
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
@@ -1336,19 +1336,19 @@ float Random(float max, float min)
 
 int GetCreateUnitWeapon11(int nUnitKind)
 {
-// 2005-11-25 by ispark, EP2¿¡¼­´Â ¹«±â Áö±ŞÀÌ °øÅëÀÌ¹Ç·Î Ç¥ÁØ¹«±â·Î ÀÔ·Â(1Çü : Å×ÀÏ)
+// 2005-11-25 by ispark, EP2ì—ì„œëŠ” ë¬´ê¸° ì§€ê¸‰ì´ ê³µí†µì´ë¯€ë¡œ í‘œì¤€ë¬´ê¸°ë¡œ ì…ë ¥(1í˜• : í…Œì¼)
 //	if(IS_BT(nUnitKind)) return 7002710;
 //	if(IS_OT(nUnitKind)) return 7002750;
 //	if(IS_DT(nUnitKind)) return 7002770;
 //	if(IS_ST(nUnitKind)) return 7002740;
 //	return 0;
-	// 2006-01-02 by ispark, ¿À¸¥ÂÊ (0À¸·Î ³¡³²)
+	// 2006-01-02 by ispark, ì˜¤ë¥¸ìª½ (0ìœ¼ë¡œ ëë‚¨)
 	if(IS_DT(nUnitKind)) return 7000050;
 	return 7001950;
 }
 int GetCreateUnitWeapon12(int nUnitKind)
 {
-	// 2006-01-02 by ispark, ¿ŞÂÊ (1·Î ³¡³²)
+	// 2006-01-02 by ispark, ì™¼ìª½ (1ë¡œ ëë‚¨)
 	if(IS_DT(nUnitKind)) return 7000050;
 	return 7001950;
 }
@@ -1416,8 +1416,8 @@ UINT GetUnitNum(int nDegree, int nDefenseItemNum, int nUnitKind, BOOL bCharacter
 {
 	if(bCharacter)
 	{
-		// Ä³¸¯ÅÍ ÀÏ¶§
-		// 1ºÎÅÍ´Â ¿©ÀÚ, 100ÀÌ»óÀº ³²ÀÚ
+		// ìºë¦­í„° ì¼ë•Œ
+		// 1ë¶€í„°ëŠ” ì—¬ì, 100ì´ìƒì€ ë‚¨ì
 		switch(nUnitKind) 
 		{
 		case 0:
@@ -1452,7 +1452,7 @@ UINT GetUnitNum(int nDegree, int nDefenseItemNum, int nUnitKind, BOOL bCharacter
 	}
 	
 
-	// À¯´Ö(±âÃ¼) ÀÏ¶§
+	// ìœ ë‹›(ê¸°ì²´) ì¼ë•Œ
 	if (nDegree < 2) nDegree = 2;
 
 	if (nDefenseItemNum == 0)
@@ -1487,7 +1487,7 @@ char* GetWaterTypeAtMap(USHORT nMapIndex )
 	case 2:
 		return "black.tex";
 	case 3:
-		return "black.tex";			// 2008-06-26 by dgwoo ±ò·ç¾Æ ´Ù½Ã º¯°æ. black_g => black
+		return "black.tex";			// 2008-06-26 by dgwoo ê¹”ë£¨ì•„ ë‹¤ì‹œ ë³€ê²½. black_g => black
 	}
 /*	switch( nMapIndex )
 	{
@@ -1512,7 +1512,7 @@ char* GetWaterTypeAtMap(USHORT nMapIndex )
 	case 3060:
 	case 3063:
 	case 3067:
-	case 3999:// Å×½ºÆ® ¸Ê(°ø¸Ê)
+	case 3999:// í…ŒìŠ¤íŠ¸ ë§µ(ê³µë§µ)
 	case 5001:
 	case 8001:
 	case 9001:
@@ -1550,7 +1550,7 @@ float GetWaterTick(USHORT nMapIndex )
 	case 3060:
 	case 3063:
 	case 3067:
-	case 3999:	// Å×½ºÆ®¸Ê(°ø¸Ê)
+	case 3999:	// í…ŒìŠ¤íŠ¸ë§µ(ê³µë§µ)
 	case 5001:
 	case 8001:
 	case 9001:
@@ -1566,8 +1566,8 @@ BOOL IsTileMapRenderEnable(USHORT nMapIndex )
 	// 2005-06-29 by ispark
 	MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
-	// 2010. 03. 05 by jskim ¸Ê ·Îµù Áß À©µµ¿ì È­¸é ÀüÈ¯½Ã ÁöÇü »ç¶óÁö´Â ¹ö±× ¼öÁ¤
-	// 2007-04-12 by bhsohn Æ÷Ä¿½º ÀÒ¾î ¹ö·ÈÀ»¶§ÀÇ Ãß°¡¹ö±× Ã³¸®
+	// 2010. 03. 05 by jskim ë§µ ë¡œë”© ì¤‘ ìœˆë„ìš° í™”ë©´ ì „í™˜ì‹œ ì§€í˜• ì‚¬ë¼ì§€ëŠ” ë²„ê·¸ ìˆ˜ì •
+	// 2007-04-12 by bhsohn í¬ì»¤ìŠ¤ ìƒì–´ ë²„ë ¸ì„ë•Œì˜ ì¶”ê°€ë²„ê·¸ ì²˜ë¦¬
 	//return pMapInfo->TileRenderingFlag;
 	//BOOL bMapRender = pMapInfo->TileRenderingFlag;
 	//if(bMapRender && g_pD3dApp->IsDeviceLost())
@@ -1576,17 +1576,17 @@ BOOL IsTileMapRenderEnable(USHORT nMapIndex )
 	//}
 	//return bMapRender;	
 	return pMapInfo->TileRenderingFlag;
-	//end 2010. 03. 05 by jskim ¸Ê ·Îµù Áß À©µµ¿ì È­¸é ÀüÈ¯½Ã ÁöÇü »ç¶óÁö´Â ¹ö±× ¼öÁ¤
+	//end 2010. 03. 05 by jskim ë§µ ë¡œë”© ì¤‘ ìœˆë„ìš° í™”ë©´ ì „í™˜ì‹œ ì§€í˜• ì‚¬ë¼ì§€ëŠ” ë²„ê·¸ ìˆ˜ì •
 }
 
-// 2007-04-19 by bhsohn Ãæµ¹ Ã³¸® ¹®Á¦
+// 2007-04-19 by bhsohn ì¶©ëŒ ì²˜ë¦¬ ë¬¸ì œ
 BOOL IsTileMapTickEnable(USHORT nMapIndex )
 {	
 	MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);	
 	return pMapInfo->TileRenderingFlag;
 	
 }
-// 2007-08-02 by dgwoo ¸ÊÀÇ BGMÀ» ¾ò¾î¿Â´Ù.
+// 2007-08-02 by dgwoo ë§µì˜ BGMì„ ì–»ì–´ì˜¨ë‹¤.
 MapIndex_t GetMapIndexBGM(USHORT nMapIndex)
 {
 	MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);	
@@ -1636,10 +1636,10 @@ int GetQuestIndexForWarp(USHORT nMapIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		º¤ÅÍ°£ °¢À» ±¸ÇÑ´Ù. 
-//#define RadToDeg	57.29577951f		 // ¶óµğ¾ÈÀ» µµ·Î ¹Ù²Û´Ù.
-//#define DegToRad	0.017453293f		 // µµ¸¦ ¶óµğ¾ÈÀ¸·Î ¹Ù²Û´Ù.
-/// \author		// 2007-04-13 by bhsohn A±â¾î Æ÷´ë¹®Á¦
+/// \brief		ë²¡í„°ê°„ ê°ì„ êµ¬í•œë‹¤. 
+//#define RadToDeg	57.29577951f		 // ë¼ë””ì•ˆì„ ë„ë¡œ ë°”ê¾¼ë‹¤.
+//#define DegToRad	0.017453293f		 // ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë°”ê¾¼ë‹¤.
+/// \author		// 2007-04-13 by bhsohn Aê¸°ì–´ í¬ëŒ€ë¬¸ì œ
 /// \date		2007-04-13 ~ 2007-04-13
 /// \warning	
 ///
@@ -1658,8 +1658,8 @@ float GetRadianVectorBetweenVector(D3DXVECTOR3 i_vecDir, D3DXVECTOR3 i_vecUp)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¾÷º¤ÅÍ¿¡¼­ÀÇ Æ÷´ë°¡ ¿òÁ÷ÀÎ º¤ÅÍ
-/// \author		// 2007-04-13 by bhsohn A±â¾î Æ÷´ë¹®Á¦
+/// \brief		ì—…ë²¡í„°ì—ì„œì˜ í¬ëŒ€ê°€ ì›€ì§ì¸ ë²¡í„°
+/// \author		// 2007-04-13 by bhsohn Aê¸°ì–´ í¬ëŒ€ë¬¸ì œ
 /// \date		2007-04-13 ~ 2007-04-13
 /// \warning	
 ///
@@ -1682,7 +1682,7 @@ D3DXVECTOR3 GetRadianVector(D3DXVECTOR3 i_vecOld, D3DXVECTOR3 i_vecUp, FLOAT i_f
 
 	D3DXMatrixRotationAxis(&matRot , &vVelS , i_fRadianMove);
 	D3DXVec3Normalize(&vtempWeaponVel, &vtempWeaponVel);
-	D3DXVec3TransformCoord(&vtempWeaponVel , &vtempWeaponVel , &matRot); // view * rot·Î »õ·Î¿î dst vector¸¦ ±¸ÇÑ´Ù.
+	D3DXVec3TransformCoord(&vtempWeaponVel , &vtempWeaponVel , &matRot); // view * rotë¡œ ìƒˆë¡œìš´ dst vectorë¥¼ êµ¬í•œë‹¤.
 	o_vecDir = vtempWeaponVel;
 	D3DXVec3Normalize(&o_vecDir, &o_vecDir);
 	
@@ -1713,7 +1713,7 @@ D3DXVECTOR3 GetMapDirection(USHORT nMapIndex,BOOL bDay)
 }
 void SetOptionFogDistance(USHORT nMapIndex,BOOL bDay, float fFogStart, float fFogEnd)
 {
-	// ¿É¼Ç ¼³Á¤¿¡ µû¸¥ ½Ã¾ß º¯È­(ÇöÀç ¿ÀºêÁ§Æ®¿Í ÁöÇüÀÌ °°°Ô º¯È­ µÈ´Ù)
+	// ì˜µì…˜ ì„¤ì •ì— ë”°ë¥¸ ì‹œì•¼ ë³€í™”(í˜„ì¬ ì˜¤ë¸Œì íŠ¸ì™€ ì§€í˜•ì´ ê°™ê²Œ ë³€í™” ëœë‹¤)
 
 	float fFogE = fFogEnd;
 	float fFogS = fFogStart;
@@ -1729,7 +1729,7 @@ void SetFogLevel(USHORT nMapIndex,BOOL bDay)
 
 	if(pMapInfo == NULL)
 	{
-		DBGOUT("¸Ê(%d)ÀÌ ¾ø½À´Ï´Ù.\n", nMapIndex);
+		DBGOUT("ë§µ(%d)ì´ ì—†ìŠµë‹ˆë‹¤.\n", nMapIndex);
 		return;
 	}
 	DBGOUT("DayFogST = %d, DayFogED = %d\n", pMapInfo->DayFogStartDistance, pMapInfo->DayFogEndDistance);
@@ -1761,7 +1761,7 @@ D3DXVECTOR3 GetMapDirection(USHORT nMapIndex,BOOL bDay)
 
 void SetOptionFogDistance(USHORT nMapIndex,BOOL bDay, float fFogStart, float fFogEnd)
 {
-	// ¿É¼Ç ¼³Á¤¿¡ µû¸¥ ½Ã¾ß º¯È­(ÇöÀç ¿ÀºêÁ§Æ®¿Í ÁöÇüÀÌ °°°Ô º¯È­ µÈ´Ù)
+	// ì˜µì…˜ ì„¤ì •ì— ë”°ë¥¸ ì‹œì•¼ ë³€í™”(í˜„ì¬ ì˜¤ë¸Œì íŠ¸ì™€ ì§€í˜•ì´ ê°™ê²Œ ë³€í™” ëœë‹¤)
 
 	// 2005-04-29 by jschoi
 	float fFogE, fFogS;
@@ -1817,15 +1817,15 @@ void CheckMouseReverse(POINT* pt)
 		g_pInterface->m_pTarget && 
 		g_pInterface->m_pTarget->m_nMouseType == MOUSE_TYPE_0)	
 	{
-		return;	// ÀÎÅÍÆäÀÌ½º ¸¶¿ì½º Å¸ÀÔ(Çì´õÆÄÀÏ)
+		return;	// ì¸í„°í˜ì´ìŠ¤ ë§ˆìš°ìŠ¤ íƒ€ì…(í—¤ë”íŒŒì¼)
 	}
 
-	// ÁÂ¿ì¹İÀü ¿É¼Ç
+	// ì¢Œìš°ë°˜ì „ ì˜µì…˜
 	if(g_pSOption && g_pSOption->sMouseReversLeft == TRUE)
 	{
 		pt->x = g_pD3dApp->GetBackBufferDesc().Width - pt->x;
 	}
-	// »óÇÏ¹İÀü ¿É¼Ç
+	// ìƒí•˜ë°˜ì „ ì˜µì…˜
 	if(g_pSOption && g_pSOption->sMouseReversUp == TRUE)
 	{
 		pt->y = g_pD3dApp->GetBackBufferDesc().Height - pt->y;
@@ -1835,7 +1835,7 @@ void CheckMouseReverse(POINT* pt)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetCharacterHeight(int nPilotNum)
-/// \brief		Ä³¸¯ÅÍ ³ôÀÌ °¡Á®¿È (Ä«¸Ş¶ó LookAt, ID, ¸»Ç³¼± À§Ä¡)
+/// \brief		ìºë¦­í„° ë†’ì´ ê°€ì ¸ì˜´ (ì¹´ë©”ë¼ LookAt, ID, ë§í’ì„  ìœ„ì¹˜)
 /// \author		ispark
 /// \date		2005-07-29 ~ 2005-07-29
 /// \warning	
@@ -1847,8 +1847,8 @@ float GetCharacterHeight(int nPilotNum)
 {
 	switch(nPilotNum) 
 	{
-	case 20000000:						// ¿©ÀÚ
-		//return 10.4f * 1.5f;			// 2007-07-18 by dgwoo Ä³¸¯ÅÍ º¯°æ 
+	case 20000000:						// ì—¬ì
+		//return 10.4f * 1.5f;			// 2007-07-18 by dgwoo ìºë¦­í„° ë³€ê²½ 
 		return 11.26f * 1.5f;
 	case 20000100:
 		return 11.3f * 1.5f;
@@ -1869,7 +1869,7 @@ float GetCharacterHeight(int nPilotNum)
 	case 20000700:
 		return 11.28f * 1.5f;
 #endif		
-	case 20010000:						// ³²ÀÚ
+	case 20010000:						// ë‚¨ì
 		return 11.18f * 1.5f;
 	case 20010100:
 		//return 10.6f * 1.5f;
@@ -1899,7 +1899,7 @@ float GetCharacterHeight(int nPilotNum)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float GetCharacterSteps(int nPilotNum)
-/// \brief		Ä³¸¯ÅÍ º¸Æø
+/// \brief		ìºë¦­í„° ë³´í­
 /// \author		ispark
 /// \date		2006-11-02 ~ 2006-11-02
 /// \warning	
@@ -1909,10 +1909,10 @@ float GetCharacterHeight(int nPilotNum)
 ///////////////////////////////////////////////////////////////////////////////
 float GetCharacterSteps(int nPilotNum)
 {
-// 2007-07-20 by dgwoo ¸ğµç Ä³¸¯ÅÍÀÇ º¸ÆøÀ» °°°ÔÇÔ.
+// 2007-07-20 by dgwoo ëª¨ë“  ìºë¦­í„°ì˜ ë³´í­ì„ ê°™ê²Œí•¨.
 //	switch(nPilotNum) 
 //	{
-//	case 0:						// ¿©ÀÚ
+//	case 0:						// ì—¬ì
 //		return 50.0f;
 //	case 1:
 //		return 36.0f;
@@ -1922,7 +1922,7 @@ float GetCharacterSteps(int nPilotNum)
 //		return 48.0f;				
 //	case 4:
 //		return 38.0f;				
-//	case 100:						// ³²ÀÚ
+//	case 100:						// ë‚¨ì
 //		return 40.0f;
 //	case 101:
 //		return 40.0f;
@@ -1937,20 +1937,20 @@ float GetCharacterSteps(int nPilotNum)
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GetCharactorName(char* o_szCharatorName,INT FaceNum)
-/// \brief		Ä³¸¯ÅÍ ¾ó±¼ÀÇ ¹øÈ£¸¦ ³ÖÀ¸¸é Ä³¸¯ÅÍ ÀÌ¸§À» °¡Á®¿Â´Ù.
+/// \brief		ìºë¦­í„° ì–¼êµ´ì˜ ë²ˆí˜¸ë¥¼ ë„£ìœ¼ë©´ ìºë¦­í„° ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
 /// \author		dgwoo
 /// \date		2007-11-22 ~ 2007-11-22
 /// \warning	
 ///
 /// \param		
-/// \return		¾øÀ»°æ¿ì¿£ FALSE¸¦ ¸®ÅÏÇÑ´Ù.
+/// \return		ì—†ì„ê²½ìš°ì—” FALSEë¥¼ ë¦¬í„´í•œë‹¤.
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GetCharactorName(char* o_szCharatorName,INT i_nPilotNum)
 {
 	char buf[SIZE_MAX_CHARACTER_NAME];
 	switch(i_nPilotNum)
 	{
-	case 0:						// ¿©ÀÚ
+	case 0:						// ì—¬ì
 		wsprintf(buf,STRMSG_C_071122_0103);
 		break;
 	case 1:
@@ -1976,7 +1976,7 @@ BOOL GetCharactorName(char* o_szCharatorName,INT i_nPilotNum)
 		wsprintf(buf,STRMSG_C_111228_0003);
 		break;
 #endif
-	case 100:						// ³²ÀÚ
+	case 100:						// ë‚¨ì
 		wsprintf(buf,STRMSG_C_071122_0110);
 		break;
 	case 101:
@@ -2012,7 +2012,7 @@ BOOL GetCharactorName(char* o_szCharatorName,INT i_nPilotNum)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetBaseChange3D(POINT pt)	
-/// \brief		2DÁÂÇ¥¸¦ 3D ¹æÇâ º¤ÅÍ¿Í À§Ä¡·Î º¯È¯
+/// \brief		2Dì¢Œí‘œë¥¼ 3D ë°©í–¥ ë²¡í„°ì™€ ìœ„ì¹˜ë¡œ ë³€í™˜
 /// \author		ispark
 /// \date		2005-09-07 ~ 2005-09-07
 /// \warning	
@@ -2059,7 +2059,7 @@ void GetBaseChange3D(POINT pt, D3DXVECTOR3 *vOutPos, D3DXVECTOR3 *vOutDir)
 ///////////////////////////////////////////////////////////////////////////////
 int GetPositionInvenScreenMode()
 {
-	// 2007-12-21 by dgwoo Ã¢¸ğµå Áö¿ø
+	// 2007-12-21 by dgwoo ì°½ëª¨ë“œ ì§€ì›
 	switch(g_pD3dApp->GetHeight())
 	{
 
@@ -2098,7 +2098,7 @@ int GetPositionInvenScreenMode()
 				return 388;
 			}
 			break;
-		// 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+		// 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 		case RESOLUTION_FULL_H_1050:
 			{
 				return 388;
@@ -2110,7 +2110,7 @@ int GetPositionInvenScreenMode()
 				return 388;
 			}
 			break;
-		// end 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+		// end 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 
 	}
 //	DbgOut("Window Height(%d)",g_pD3dApp->GetBackBufferDesc().Height);
@@ -2124,23 +2124,23 @@ int GetPositionInvenScreenMode()
 //		{
 //			if(g_pD3dApp->GetBackBufferDesc().Height == 960)
 //				return 423;
-//			// 2007-04-24 by bhsohn ¿ÍÀÌµå ¸ğ´ÏÅÍ °ü·Ã Ã³¸®
+//			// 2007-04-24 by bhsohn ì™€ì´ë“œ ëª¨ë‹ˆí„° ê´€ë ¨ ì²˜ë¦¬
 //			else if(g_pD3dApp->GetBackBufferDesc().Height == 800)
 //			{
 //				return 311;
 //			}
-//			// 2007-08-23 by bhsohn 1280X720¿ÍÀÌµå ¸ğ´ÏÅÍ °ü·Ã Ã³¸®
+//			// 2007-08-23 by bhsohn 1280X720ì™€ì´ë“œ ëª¨ë‹ˆí„° ê´€ë ¨ ì²˜ë¦¬
 //			else if(720 == g_pD3dApp->GetBackBufferDesc().Height)
 //			{
 //				return 255;
 //			}
-//			// end 2007-08-23 by bhsohn 1280X720¿ÍÀÌµå ¸ğ´ÏÅÍ °ü·Ã Ã³¸®
+//			// end 2007-08-23 by bhsohn 1280X720ì™€ì´ë“œ ëª¨ë‹ˆí„° ê´€ë ¨ ì²˜ë¦¬
 //			else
 //				return 468;
 //		}
 //	case INVEN_RESOLUTION_4:
 //		{
-//			// 2007-04-24 by bhsohn ¿ÍÀÌµå ¸ğ´ÏÅÍ °ü·Ã Ã³¸®
+//			// 2007-04-24 by bhsohn ì™€ì´ë“œ ëª¨ë‹ˆí„° ê´€ë ¨ ì²˜ë¦¬
 //			if(g_pD3dApp->GetBackBufferDesc().Height == 900)
 //			{
 //				return 388;
@@ -2166,7 +2166,7 @@ int GetPositionInvenScreenMode()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			EnableRevivalMap(USHORT nInfluenceType)
-/// \brief		´Ù¸¥¼¼·ÂÀÇ ¸ÊÀÌ¶ó Á×¾úÀ» °æ¿ì ¹Ù·Î µµ½Ã·Î °¡¾ßÇÏ´Â ¸ÊÀÎ°¡?
+/// \brief		ë‹¤ë¥¸ì„¸ë ¥ì˜ ë§µì´ë¼ ì£½ì—ˆì„ ê²½ìš° ë°”ë¡œ ë„ì‹œë¡œ ê°€ì•¼í•˜ëŠ” ë§µì¸ê°€?
 /// \author		ispark
 /// \date		2006-01-02 ~ 2006-01-02
 /// \warning	
@@ -2178,7 +2178,7 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
 {
 	MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
 
-	// ¹Ì¼¼·Â, ¹ÙÀÌÁ¦´ÏÀ¯
+	// ë¯¸ì„¸ë ¥, ë°”ì´ì œë‹ˆìœ 
 	if(nInfluenceType == INFLUENCE_TYPE_NORMAL ||
 		nInfluenceType == INFLUENCE_TYPE_VCN)
 	{		
@@ -2186,26 +2186,26 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
 		{
 			return FALSE;
 		}		
-		// 2013-03-04 by bhsohn ¸ğ¼±/°ÅÁ¡Àü ¿öÇÁ°ü·Ã ¹ö±× ¼öÁ¤
+		// 2013-03-04 by bhsohn ëª¨ì„ /ê±°ì ì „ ì›Œí”„ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 		else if(MAP_INFLUENCE_ANI_BASE == pMapInfo->MapInfluenceType)
 		{
 			return FALSE;
 		}		
-		// END 2013-03-04 by bhsohn ¸ğ¼±/°ÅÁ¡Àü ¿öÇÁ°ü·Ã ¹ö±× ¼öÁ¤
+		// END 2013-03-04 by bhsohn ëª¨ì„ /ê±°ì ì „ ì›Œí”„ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 	}
-	// ¾Ë¸µÅÏ
+	// ì•Œë§í„´
 	else if(nInfluenceType == INFLUENCE_TYPE_ANI)
 	{
 		if(pMapInfo->MapInfluenceType == MAP_INFLUENCE_VCN_START)
 		{
 			return FALSE;
 		}
-		// 2013-03-04 by bhsohn ¸ğ¼±/°ÅÁ¡Àü ¿öÇÁ°ü·Ã ¹ö±× ¼öÁ¤
+		// 2013-03-04 by bhsohn ëª¨ì„ /ê±°ì ì „ ì›Œí”„ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 		else if(MAP_INFLUENCE_VCN_BASE == pMapInfo->MapInfluenceType)
 		{
 			return FALSE;
 		}		
-		// END 2013-03-04 by bhsohn ¸ğ¼±/°ÅÁ¡Àü ¿öÇÁ°ü·Ã ¹ö±× ¼öÁ¤
+		// END 2013-03-04 by bhsohn ëª¨ì„ /ê±°ì ì „ ì›Œí”„ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 		
 	}
 	else
@@ -2216,10 +2216,10 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL IsInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
-/// \brief	    ÀÚ½ÅÀÇ ¼¼·Â°ú ¸ÊÀÇ ¼¼·ÂÀÌ ´Ù¸¦°æ¿ì false °°°Å³ª ¼¼·ÂÀÌ ¾øÀ»°æ¿ì true
+/// \brief	    ìì‹ ì˜ ì„¸ë ¥ê³¼ ë§µì˜ ì„¸ë ¥ì´ ë‹¤ë¥¼ê²½ìš° false ê°™ê±°ë‚˜ ì„¸ë ¥ì´ ì—†ì„ê²½ìš° true
 /// \author		dgwoo
 /// \date		2006-01-02 ~ 2006-01-02
-/// \warning	EnableRevivalMap() ÇÔ¼ö ¼öÁ¤ ¿ä¸Á.
+/// \warning	EnableRevivalMap() í•¨ìˆ˜ ìˆ˜ì • ìš”ë§.
 ///
 /// \param		
 /// \return		
@@ -2227,7 +2227,7 @@ BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex)
 BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
 {
 	MAP_INFO* pMapInfo = g_pDatabase->GetMapInfo(nMapIndex);
-	// ¹ÙÀÌÁ¦´ÏÀ¯.
+	// ë°”ì´ì œë‹ˆìœ .
 	if(nInfluenceType == INFLUENCE_TYPE_VCN)
 	{
 		if(IS_MAP_INFLUENCE_ANI(pMapInfo->MapInfluenceType))
@@ -2235,7 +2235,7 @@ BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
 			return FALSE;
 		}
 	}
-	// ¾Ë¸µÅÏ.
+	// ì•Œë§í„´.
 	else if(nInfluenceType == INFLUENCE_TYPE_ANI)
 	{
 		if(IS_MAP_INFLUENCE_VCN(pMapInfo->MapInfluenceType))
@@ -2249,13 +2249,13 @@ BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BYTE byType)
-/// \brief		Ä³¸¯ÅÍ °£ÀÇ ¼¼·Â ºñ±³
+/// \brief		ìºë¦­í„° ê°„ì˜ ì„¸ë ¥ ë¹„êµ
 /// \author		ispark
 /// \date		2006-01-07 ~ 2006-01-07
 /// \warning	
 ///
 /// \param		
-/// \return		BOOL ( TRUE:°°Àº ¼¼·Â, FALSE:´Ù¸¥¼¼·Â )
+/// \return		BOOL ( TRUE:ê°™ì€ ì„¸ë ¥, FALSE:ë‹¤ë¥¸ì„¸ë ¥ )
 ///////////////////////////////////////////////////////////////////////////////
 #ifdef FREEWAR_
 BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BYTE byType, UINT WarZone)
@@ -2282,7 +2282,7 @@ BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BY
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetInfluenceString(char* pOutStr, USHORT nMyInfluenceType)
-/// \brief		Ä³¸¯ÅÍ ¼¼·Â ½ºÆ®¸µ °¡Á®¿À±â
+/// \brief		ìºë¦­í„° ì„¸ë ¥ ìŠ¤íŠ¸ë§ ê°€ì ¸ì˜¤ê¸°
 /// \author		ispark
 /// \date		2006-01-07 ~ 2006-01-07
 /// \warning	
@@ -2307,7 +2307,7 @@ void GetInfluenceString(char* pOutStr, USHORT nMyInfluenceType)
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetMapItemVisibleDistance(USHORT nMapIndex)
-/// \brief		µå¶ø ¾ÆÀÌÅÛ º¸ÀÌ´Â Çã¿ë °Å¸® °¡Á®¿À±â
+/// \brief		ë“œë ì•„ì´í…œ ë³´ì´ëŠ” í—ˆìš© ê±°ë¦¬ ê°€ì ¸ì˜¤ê¸°
 /// \author		ispark
 /// \date		2006-01-13 ~ 2006-01-13
 /// \warning	
@@ -2324,7 +2324,7 @@ int GetMapItemVisibleDistance(USHORT nMapIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetInvenUseEngineEffectNum(int nUnitKind)
-/// \brief		1´Ü°è¿¡¼­ 4´Ü°è±îÁö ¾²ÀÌ´Â ¿£Áø ÀÌÆåÆ® ¹øÈ£
+/// \brief		1ë‹¨ê³„ì—ì„œ 4ë‹¨ê³„ê¹Œì§€ ì“°ì´ëŠ” ì—”ì§„ ì´í™íŠ¸ ë²ˆí˜¸
 /// \author		ispark
 /// \date		2006-01-23 ~ 2006-01-23
 /// \warning	
@@ -2334,16 +2334,16 @@ int GetMapItemVisibleDistance(USHORT nMapIndex)
 ///////////////////////////////////////////////////////////////////////////////
 int GetInvenUseEngineEffectNum(int nUnitKind)
 {
-	if(IS_BT(nUnitKind)) return 6351600;		// B±â¾î
-	if(IS_OT(nUnitKind)) return 6357000;		// M±â¾î
-	if(IS_DT(nUnitKind)) return 6353100;		// A±â¾î
-	if(IS_ST(nUnitKind)) return 6350500;		// I±â¾î
+	if(IS_BT(nUnitKind)) return 6351600;		// Bê¸°ì–´
+	if(IS_OT(nUnitKind)) return 6357000;		// Mê¸°ì–´
+	if(IS_DT(nUnitKind)) return 6353100;		// Aê¸°ì–´
+	if(IS_ST(nUnitKind)) return 6350500;		// Iê¸°ì–´
 	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetInvenUseEngineObjectNum(int nUnitKind)
-/// \brief		¿£Áø ¿ÀºêÁ§Æ® ³Ñ¹ö
+/// \brief		ì—”ì§„ ì˜¤ë¸Œì íŠ¸ ë„˜ë²„
 /// \author		ispark
 /// \date		2006-01-24 ~ 2006-01-24
 /// \warning	
@@ -2353,16 +2353,16 @@ int GetInvenUseEngineEffectNum(int nUnitKind)
 ///////////////////////////////////////////////////////////////////////////////
 int GetInvenUseEngineObjectNum(int nUnitKind)
 {
-	if(IS_BT(nUnitKind)) return 6332800;		// B±â¾î
-	if(IS_OT(nUnitKind)) return 6336000;		// M±â¾î
-	if(IS_DT(nUnitKind)) return 6333400;		// A±â¾î
-	if(IS_ST(nUnitKind)) return 6332400;		// I±â¾î
+	if(IS_BT(nUnitKind)) return 6332800;		// Bê¸°ì–´
+	if(IS_OT(nUnitKind)) return 6336000;		// Mê¸°ì–´
+	if(IS_DT(nUnitKind)) return 6333400;		// Aê¸°ì–´
+	if(IS_ST(nUnitKind)) return 6332400;		// Iê¸°ì–´
 	return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int GetMusicVolume(int nRate)
-/// \brief		º¼·ı °è»ê
+/// \brief		ë³¼ë¥¨ ê³„ì‚°
 /// \author		ispark
 /// \date		2006-03-22 ~ 2006-03-22
 /// \warning	
@@ -2382,7 +2382,7 @@ int GetMusicVolume(int nRate)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetFontColor( char chr )
-/// \brief		ÆùÆ® »ö±ò °¡Á®¿À±â
+/// \brief		í°íŠ¸ ìƒ‰ê¹” ê°€ì ¸ì˜¤ê¸°
 /// \author		ispark
 /// \date		2006-04-17 ~ 2006-04-17
 /// \warning	
@@ -2458,7 +2458,7 @@ DWORD GetFontColor(char* str)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			ReSetRemoveString(int nType, char *pChar)
-/// \brief		Æ¯Á¤ ¹®ÀÚ »©±â
+/// \brief		íŠ¹ì • ë¬¸ì ë¹¼ê¸°
 /// \author		ispark
 /// \date		2006-04-17 ~ 2006-04-17
 /// \warning	
@@ -2471,7 +2471,7 @@ BOOL ReSetRemoveString(int nType, char *pChar)
 	int nStrLen = strlen(pChar);
 	char pSubStringTemp[260] = {0,};
 	int nRemoveCount = 0, nInCount = 0;
-	// Æ¯¼ö ¹®ÀÚ »©±â
+	// íŠ¹ìˆ˜ ë¬¸ì ë¹¼ê¸°
 	if(nType == SPECIAL_STRING)
 	{
 		for(int i = 0; i < nStrLen; i++)
@@ -2502,7 +2502,7 @@ BOOL ReSetRemoveString(int nType, char *pChar)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			GetCollReflect(D3DXVECTOR3 *pvOut, D3DXVECTOR3 *pvVel, D3DXVECTOR3 *pvNor, BOOL	bRight = TRUE)
-/// \brief		Ãæµ¹ º¤ÅÍ °è»ê
+/// \brief		ì¶©ëŒ ë²¡í„° ê³„ì‚°
 /// \author		ispark
 /// \date		2006-05-09 ~ 2006-05-09
 /// \warning	
@@ -2545,7 +2545,7 @@ void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string>
 		return;
 	}
 
-	// ±ÛÀÚ ³ª´©±â
+	// ê¸€ì ë‚˜ëˆ„ê¸°
 	int		nStrPointGap = 0;
 	char	*pStr = CharNext(pLineString);
 	char	*pPreStr = NULL;
@@ -2577,7 +2577,7 @@ void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string>
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont)
-/// \brief		ÇÑ±Û ¼öÁ¤(´Ü¾î ±×³É ÀÚ¸£±â) ~ processes string colors too
+/// \brief		í•œê¸€ ìˆ˜ì •(ë‹¨ì–´ ê·¸ëƒ¥ ìë¥´ê¸°) ~ processes string colors too
 /// \author		ispark
 /// \date		2006-08-07 ~ 2006-08-07
 ///////////////////////////////////////////////////////////////////////////////
@@ -2591,15 +2591,15 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 	int nOldPoint = 0;
 	int nPoint = 0;
 	int nCheckPoint = 0;
-	int nLineBreakPoint;				// ÇÑ ¶óÀÎ¿¡ ºê·¹ÀÌÅ© Æ÷ÀÌÆ®°¡ ÀÖ³ª?
+	int nLineBreakPoint;				// í•œ ë¼ì¸ì— ë¸Œë ˆì´í¬ í¬ì´íŠ¸ê°€ ìˆë‚˜?
 	int nLine = 0;
 	int nLineMax = 100;
 	char strNPCTalk[64][1024] { };
-	BOOL bShopNextLine;				// ˜ŞÀ?¶§ ¾ÆÀÌÅÛ ÀÌ¸§ÀÌ ´ÙÀ½¶óÀÎ¿¡ °ÉÃÄÁ® ÀÖ½À´Ï±î ?
+	BOOL bShopNextLine;				// Â˜äº‹?ë•Œ ì•„ì´í…œ ì´ë¦„ì´ ë‹¤ìŒë¼ì¸ì— ê±¸ì³ì ¸ ìˆìŠµë‹ˆê¹Œ ?
 	
 	while (true)
 	{
-		bShopNextLine = FALSE; // 2013-04-05 by ssjung ˜?ÀÏ¶§ ¾ÆÀÌÅÛ ÀÌ¸§ ±ÛÀÚ ¼ö ³Ñ¾î °¥¶§ Ã³¸® º¸Á¤
+		bShopNextLine = FALSE; // 2013-04-05 by ssjung Â˜?ì¼ë•Œ ì•„ì´í…œ ì´ë¦„ ê¸€ì ìˆ˜ ë„˜ì–´ ê°ˆë•Œ ì²˜ë¦¬ ë³´ì •
 		char strBuf[1024] = {0,};
 		pStr = CharNext(&pLineString[nOldPoint]);
 		nLineBreakPoint = nPoint;
@@ -2607,7 +2607,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 		memcpy(strBuf, pLineString + nCheckPoint, nPoint);
 		int nBufSize = pHanFont->GetStringSize(strBuf).cx;
 
-// 2013-04-05 by ssjung ˜?ÀÏ¶§ ¾ÆÀÌÅÛ ÀÌ¸§ ±ÛÀÚ ¼ö ³Ñ¾î °¥¶§ Ã³¸® º¸Á¤ ~ FALSE by default
+// 2013-04-05 by ssjung Â˜?ì¼ë•Œ ì•„ì´í…œ ì´ë¦„ ê¸€ì ìˆ˜ ë„˜ì–´ ê°ˆë•Œ ì²˜ë¦¬ ë³´ì • ~ FALSE by default
 		if (bShop)
 		{
 			int nListChar = strlen(strBuf) - 1;
@@ -2636,7 +2636,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 				}
 			}
 		}
-// 2013-04-05 by ssjung ˜?ÀÏ¶§ ¾ÆÀÌÅÛ ÀÌ¸§ ±ÛÀÚ ¼ö ³Ñ¾î °¥¶§ Ã³¸® º¸Á¤
+// 2013-04-05 by ssjung Â˜?ì¼ë•Œ ì•„ì´í…œ ì´ë¦„ ê¸€ì ìˆ˜ ë„˜ì–´ ê°ˆë•Œ ì²˜ë¦¬ ë³´ì •
 
 		if (nBufSize >= nCullStringNum || bShopNextLine)
 		{
@@ -2651,19 +2651,19 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 				memcpy(strNPCTalkTemp, pLineString + nCheckPoint, nLineBreakPoint);
 				sprintf(strNPCTalk[nLine], "\\%c%s", chColorSave, strNPCTalkTemp);				
 
-				// 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+				// 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 				char chFindColor = GetLineFindColor(strNPCTalkTemp);				
-				// ´ÙÀ½ ¶óÀÎ¿¡ Á¾·á ±Û¾¾°¡ ÀÖ´Ù.¸é ÃÊ±âÈ­ 
+				// ë‹¤ìŒ ë¼ì¸ì— ì¢…ë£Œ ê¸€ì”¨ê°€ ìˆë‹¤.ë©´ ì´ˆê¸°í™” 
 				if(chFindColor == chColorSave)			
 				{				
 					chColorSave = 0;
 					chColor = 0;				
 				}
-				// end 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+				// end 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 			}
 			else
 			{
-				if(bShopNextLine) ++nLineBreakPoint;									 // 2013-04-05 by ssjung ˜?ÀÏ¶§ ¾ÆÀÌÅÛ ÀÌ¸§ ±ÛÀÚ ¼ö ³Ñ¾î °¥¶§ Ã³¸® º¸Á¤
+				if(bShopNextLine) ++nLineBreakPoint;									 // 2013-04-05 by ssjung Â˜?ì¼ë•Œ ì•„ì´í…œ ì´ë¦„ ê¸€ì ìˆ˜ ë„˜ì–´ ê°ˆë•Œ ì²˜ë¦¬ ë³´ì •
 				memcpy(strNPCTalk[nLine], pLineString + nCheckPoint, nLineBreakPoint);
 			}
 
@@ -2671,7 +2671,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 			nPoint = 0;
 			nLine ++;
 
-			// »ö±ò ÀúÀå(´ÙÀ½ ¶óÀÎ¿¡ ÀÔ·Â
+			// ìƒ‰ê¹” ì €ì¥(ë‹¤ìŒ ë¼ì¸ì— ì…ë ¥
 			if (chColor)
 			{
 				chColorSave = chColor;
@@ -2703,7 +2703,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 		}
 
 		//*--------------------------------------------------------------------------*//
-		// »ö±ò Ã¼Å©
+		// ìƒ‰ê¹” ì²´í¬
 		int nLastCount = strlen(strBuf) - 1;
 		if(strBuf[nLastCount - 1] == '\\')
 		{
@@ -2716,8 +2716,8 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 				else chColor = strBuf[nLastCount];
 				
 			}			
-			// 2007-07-27 by bhsohn Ã¤ÆÃ enter°ü·Ã Ã³¸®
-			// 2007-11-15 by bhsohn Äù½ºÆ®¼³Á¤ÇÒ‹š¸¸ \nµÇ°Ô º¯°æ
+			// 2007-07-27 by bhsohn ì±„íŒ… enterê´€ë ¨ ì²˜ë¦¬
+			// 2007-11-15 by bhsohn í€˜ìŠ¤íŠ¸ì„¤ì •í• Â‹Âšë§Œ \në˜ê²Œ ë³€ê²½
 			else if('n' == strBuf[nLastCount] && bChRt)
 			{
 				if(nLine >= nLineMax)
@@ -2725,7 +2725,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 					return FALSE;
 				}			
 				
-				// ¿ª½½·¡½¬ Á¦°Å
+				// ì—­ìŠ¬ë˜ì‰¬ ì œê±°
 				nLineBreakPoint--;
 				if(chColorSave)
 				{				
@@ -2733,15 +2733,15 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 					memcpy(strNPCTalkTemp, pLineString + nCheckPoint, nLineBreakPoint);
 					sprintf(strNPCTalk[nLine], "\\%c%s", chColorSave, strNPCTalkTemp);				
 					
-					// 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+					// 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 					char chFindColor = GetLineFindColor(strNPCTalkTemp);				
-					// ´ÙÀ½ ¶óÀÎ¿¡ Á¾·á ±Û¾¾°¡ ÀÖ´Ù.¸é ÃÊ±âÈ­ 
+					// ë‹¤ìŒ ë¼ì¸ì— ì¢…ë£Œ ê¸€ì”¨ê°€ ìˆë‹¤.ë©´ ì´ˆê¸°í™” 
 					if(chFindColor == chColorSave)			
 					{				
 						chColorSave = 0;
 						chColor = 0;				
 					}
-					// end 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+					// end 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 				}
 				else
 				{
@@ -2750,12 +2750,12 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 				nLineBreakPoint++;
 				
 				nCheckPoint += nLineBreakPoint;
-				nCheckPoint++; // nÁ¦°Å 
+				nCheckPoint++; // nì œê±° 
 
 				nPoint = 0;
 				nLine ++;
 				
-				// »ö±ò ÀúÀå(´ÙÀ½ ¶óÀÎ¿¡ ÀÔ·Â
+				// ìƒ‰ê¹” ì €ì¥(ë‹¤ìŒ ë¼ì¸ì— ì…ë ¥
 				if(chColor)
 				{
 					chColorSave = chColor;
@@ -2781,7 +2781,7 @@ BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<strin
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL GetLineFindColor(char chColorSave , char* pTxtTmp)
 /// \brief		
-/// \author		// 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+/// \author		// 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 /// \date		2007-07-27 ~ 2007-07-27
 /// \warning	
 ///
@@ -2810,8 +2810,8 @@ char GetLineFindColor(char* pTxtTmp)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			char GetFindColorOnTxt(char* pTxtTmp)
-/// \brief		»öÀÇ À§Ä¡¸¦ ¸®ÅÏÇÑ´Ù.
-/// \author		// 2008-07-24 by bhsohn ÄÃ¸µ °ü·Ã ¹ö±× ¼öÁ¤
+/// \brief		ìƒ‰ì˜ ìœ„ì¹˜ë¥¼ ë¦¬í„´í•œë‹¤.
+/// \author		// 2008-07-24 by bhsohn ì»¬ë§ ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 /// \date		2008-07-24 ~ 2008-07-24
 /// \warning	
 ///
@@ -2855,7 +2855,7 @@ char GetFindColorOnTxt(char* pTxtTmp)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont)
-/// \brief		´Ü¾î °ø¹é¿¡¼­ ÀÚ¸£±â
+/// \brief		ë‹¨ì–´ ê³µë°±ì—ì„œ ìë¥´ê¸°
 /// \author		ispark
 /// \date		2006-08-08 ~ 2006-08-08
 /// \warning	
@@ -2869,7 +2869,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 //	int nPoint = 0;
 //	int nCheckPoint = 0;
 //	int nBreakPoint = 0;
-//	int nLineBreakPoint = 0;				// ÇÑ ¶óÀÎ¿¡ ºê·¹ÀÌÅ© Æ÷ÀÌÆ®°¡ ÀÖ³ª?
+//	int nLineBreakPoint = 0;				// í•œ ë¼ì¸ì— ë¸Œë ˆì´í¬ í¬ì´íŠ¸ê°€ ìˆë‚˜?
 //	int nLine = 0;
 //	int nLineMax = 100;
 //	char strNPCTalk[64][512];
@@ -2948,7 +2948,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 	int nPoint = 0;
 	int nBreakPoint = 0;
 	int nCheckPoint = 0;
-	int nLineBreakPoint = 0;				// ÇÑ ¶óÀÎ¿¡ ºê·¹ÀÌÅ© Æ÷ÀÌÆ®°¡ ÀÖ³ª?
+	int nLineBreakPoint = 0;				// í•œ ë¼ì¸ì— ë¸Œë ˆì´í¬ í¬ì´íŠ¸ê°€ ìˆë‚˜?
 	int nLine = 0;
 	int nLineMax = 100;
 	char strNPCTalk[64][1024];
@@ -2976,15 +2976,15 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 					char strNPCTalkTemp[1024] = {0, };
 					memcpy(strNPCTalkTemp, strTalk + nCheckPoint, nBreakPoint);
 					sprintf(strNPCTalk[nLine], "\\%c%s", chColorSave, strNPCTalkTemp);
-					// 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+					// 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 					char chFindColor = GetLineFindColor(strNPCTalkTemp);				
-					// ´ÙÀ½ ¶óÀÎ¿¡ Á¾·á ±Û¾¾°¡ ÀÖ´Ù.¸é ÃÊ±âÈ­ 
+					// ë‹¤ìŒ ë¼ì¸ì— ì¢…ë£Œ ê¸€ì”¨ê°€ ìˆë‹¤.ë©´ ì´ˆê¸°í™” 
 					if(chColorSave == chFindColor)			
 					{				
 						chColorSave = 0;
 						chColor = 0;				
 					}
-					// end 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
+					// end 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
 				}
 				else
 				{
@@ -2995,7 +2995,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 				nBreakPoint = 0;
 				nLine ++;
 
-				// »ö±ò ÀúÀå(´ÙÀ½ ¶óÀÎ¿¡ ÀÔ·Â
+				// ìƒ‰ê¹” ì €ì¥(ë‹¤ìŒ ë¼ì¸ì— ì…ë ¥
 				if(chColor)
 				{
 					chColorSave = chColor;
@@ -3033,7 +3033,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 		}
 
 		//*--------------------------------------------------------------------------*//
-		// »ö±ò Ã¼Å©
+		// ìƒ‰ê¹” ì²´í¬
 		if(strTalk[nOldPoint] == '\\')
 		{
 			if(CheckFontColor(strTalk[nOldPoint+1]))
@@ -3063,7 +3063,7 @@ BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, vector<string> *vecStorage)
-/// \brief		Æ¯¼öÇÑ »óÅÂ¿¡ µû¶ó ¹®ÀÚ ¾Õ¿¡¼­ ÀÚ¸£°í ½ÍÀ» ¶§
+/// \brief		íŠ¹ìˆ˜í•œ ìƒíƒœì— ë”°ë¼ ë¬¸ì ì•ì—ì„œ ìë¥´ê³  ì‹¶ì„ ë•Œ
 /// \author		ispark
 /// \date		2006-02-03 ~ 2006-02-03
 /// \warning	
@@ -3075,7 +3075,7 @@ void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, v
 {
 	FLOG( "CINFGameMain::StringCullingUserData(char *strFullString, int nHeight, vector<string> *vecStorage)" );
 	
-	// ±ÛÀÚ ³ª´©±â
+	// ê¸€ì ë‚˜ëˆ„ê¸°
 	int		nStrPointGap = 0;
 	char	*pStr = CharNext(pLineString);
 	char	*pPreStr = NULL;
@@ -3112,8 +3112,8 @@ void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, v
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string> *vecStorage, CD3DHanFont* pHanFont)
-/// \brief		´Ü¾î °ø¹éÀ¸·Î ±Û¾¾ ÀÚ¸£±â 
-/// \author		// 2008-01-23 by bhsohn °ø¹éÀ¸·Î ±Û¾¾ Â¥¸£´Â ÇÔ¼ö »ı¼º
+/// \brief		ë‹¨ì–´ ê³µë°±ìœ¼ë¡œ ê¸€ì”¨ ìë¥´ê¸° 
+/// \author		// 2008-01-23 by bhsohn ê³µë°±ìœ¼ë¡œ ê¸€ì”¨ ì§œë¥´ëŠ” í•¨ìˆ˜ ìƒì„±
 /// \date		2008-01-23 ~ 2008-01-23
 /// \warning	
 ///
@@ -3169,22 +3169,22 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
 		int nBufSize = pFont->GetStringSize(chCullingBuff).cx;
 		if (nBufSize >= nCullPixel)			
 		{			
-			// ±æÀÌ Ãß°¡
+			// ê¸¸ì´ ì¶”ê°€
 			int nStringSize = strlen(chCullingBuff);
 			memset(chCullingBuff, 0x00, nStringSize + 1);
 			if(nLastCullingLen)
 			{
-				// ´Ù½Ã ¸Ş¸ğ¸®¸¦ ´Ù½Ã º¹»çÇØ¿Â´Ù.
+				// ë‹¤ì‹œ ë©”ëª¨ë¦¬ë¥¼ ë‹¤ì‹œ ë³µì‚¬í•´ì˜¨ë‹¤.
 				strncpy(chCullingBuff, &strTalk[nLastStartPos], nLastCullingLen);				
 				nCheckPoint = nCullingPos;
-				// ÄÃ¸µ ¼º°ø
+				// ì»¬ë§ ì„±ê³µ
 				nLastStartPos = nCullingPos;						
 			}
 			else
 			{	
 				nLastCullingLen = pNextStr - (strTalk + nLastStartPos);
 
-				// °ø¹éÀÌ ¾ø´Ù.
+				// ê³µë°±ì´ ì—†ë‹¤.
 				strncpy(chCullingBuff, &strTalk[nLastStartPos], nLastCullingLen);				
 				
 				nLastStartPos = nCheckPoint;				
@@ -3196,7 +3196,7 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
 			
 			if (bBreak)
 			{
-				// °ø¹éÀ» ¸øÃ£°í ÃÖ´ë ÇÈ¼¿¼ö¸¦ ³Ñ¾ú´Ù.
+				// ê³µë°±ì„ ëª»ì°¾ê³  ìµœëŒ€ í”½ì…€ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤.
 				nCullingLen = pNextStr - (strTalk + nLastStartPos);
 				if(nCullingLen)
 				{
@@ -3212,7 +3212,7 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
 		}		
 		else if (bBreak)
 		{
-			// °ø¹éÀ» ¸øÃ£°í ÃÖ´ë ÇÈ¼¿¼ö¸¦ ³Ñ¾ú´Ù.
+			// ê³µë°±ì„ ëª»ì°¾ê³  ìµœëŒ€ í”½ì…€ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤.
 			nCullingLen = pNextStr - (strTalk + nLastStartPos);
 			if(nCullingLen)
 			{
@@ -3234,15 +3234,15 @@ BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string
 char StringCullingAddVector(char chColorSave, char* pString, vector<string> *vecDstString)
 {
 	char chCullingTmpBuff[2048];
-	// 2008-07-24 by bhsohn ÄÃ¸µ °ü·Ã ¹ö±× ¼öÁ¤
+	// 2008-07-24 by bhsohn ì»¬ë§ ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 	char chFindColor = GetFindColorOnTxt(pString);				
 
 	ZERO_MEMORY(chCullingTmpBuff);
-	// 2008-07-24 by bhsohn ÄÃ¸µ °ü·Ã ¹ö±× ¼öÁ¤
+	// 2008-07-24 by bhsohn ì»¬ë§ ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 	//if(0 == chFindColor && chColorSave )
 	if(chColorSave )
 	{
-		// Ä®·¯°¡ ¾øÀ¸¸é °­Á¦·Î Ä®¶ó ³Ö¾îÁÜ
+		// ì¹¼ëŸ¬ê°€ ì—†ìœ¼ë©´ ê°•ì œë¡œ ì¹¼ë¼ ë„£ì–´ì¤Œ
 		strncpy(chCullingTmpBuff, pString, 2048);
 		sprintf(pString, "\\%c%s", chColorSave, chCullingTmpBuff);
 		chFindColor = GetFindColorOnTxt(pString);				
@@ -3250,11 +3250,11 @@ char StringCullingAddVector(char chColorSave, char* pString, vector<string> *vec
 	}
 	else if(0 != chFindColor)
 	{
-		// ¶óÀÎÄÃ·¯ ÀúÀå
+		// ë¼ì¸ì»¬ëŸ¬ ì €ì¥
 		chColorSave = chFindColor;
 	}
 
-	// ÄÃ¸µÀ» ¿øÇÏ´Â ÇÈ¼¿º¸´Ù Å«Áö Ã¼Å©ÇÑ´Ù.
+	// ì»¬ë§ì„ ì›í•˜ëŠ” í”½ì…€ë³´ë‹¤ í°ì§€ ì²´í¬í•œë‹¤.
 	vecDstString->push_back(pString);
 
 	return chColorSave;	
@@ -3262,7 +3262,7 @@ char StringCullingAddVector(char chColorSave, char* pString, vector<string> *vec
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			ATUM_DATE_TIME GetServerDateTime()
-/// \brief		¼­¹ö½Ã°£¿¡¼­ °æ°úµÈ ½Ã°£
+/// \brief		ì„œë²„ì‹œê°„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 /// \author		ispark
 /// \date		2006-10-11 ~ 2006-10-11
 /// \warning	
@@ -3279,7 +3279,7 @@ ATUM_DATE_TIME GetServerDateTime()
 
 	return tempTime;
 }
-// 2009. 09. 10 by jsKim ¾Æ·¹³ª ÁøÀÔ½Ã ½ÃÀÛ Ä«¿îÅÍ ¹ö±× ¼öÁ¤
+// 2009. 09. 10 by jsKim ì•„ë ˆë‚˜ ì§„ì…ì‹œ ì‹œì‘ ì¹´ìš´í„° ë²„ê·¸ ìˆ˜ì •
 ATUM_DATE_TIME GetArenaServerDateTime()
 {
 	ATUM_DATE_TIME tempTime = g_ArenaServerDateTime;
@@ -3289,11 +3289,11 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 	
 	return tempTime;
 }
-// end 2009. 09. 10 by jsKim ¾Æ·¹³ª ÁøÀÔ½Ã ½ÃÀÛ Ä«¿îÅÍ ¹ö±× ¼öÁ¤
+// end 2009. 09. 10 by jsKim ì•„ë ˆë‚˜ ì§„ì…ì‹œ ì‹œì‘ ì¹´ìš´í„° ë²„ê·¸ ìˆ˜ì •
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			ATUM_DATE_TIME GetAtumDateTimeFormSecond(int nSecond)
-/// \brief		ÃÊ¸¦ ½Ã°£À¸·Î º¯°æ
+/// \brief		ì´ˆë¥¼ ì‹œê°„ìœ¼ë¡œ ë³€ê²½
 /// \author		ispark
 /// \date		2006-10-11 ~ 2006-10-11
 /// \warning	
@@ -3302,7 +3302,7 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
 
-// 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
+// 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 // ATUM_DATE_TIME GetAtumDateTimeFormSecond(int nSecond)
 // {
 // 	ATUM_DATE_TIME tempTime;
@@ -3311,7 +3311,7 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 // 	BYTE byMinute; 
 // 	BYTE bySecond;
 // 
-// 	// 2007-09-07 by bhsohn ½Ã°£Á¦ ¸¶Å© ¾ÆÀÌÅÛ Ãß°¡
+// 	// 2007-09-07 by bhsohn ì‹œê°„ì œ ë§ˆí¬ ì•„ì´í…œ ì¶”ê°€
 // //	bySecond = (nSecond % 60);
 // //	nSecond /= 60;
 // //	byMinute = (nSecond % 60);
@@ -3325,24 +3325,24 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 // 		return tempTime;
 // 
 // 	}
-// 	// ÀÏ¼ö¸¦ ±¸ÇÑ´Ù.
+// 	// ì¼ìˆ˜ë¥¼ êµ¬í•œë‹¤.
 // 	{
 // 		byDay = nSecond/86400;
 // 		nSecond -= (byDay*86400);
 // 	}
-// 	// ½Ã
+// 	// ì‹œ
 // 	{
 // 		byHour = (nSecond / 3600);
 // 		nSecond -= (byHour*3600);
 // 	}
 // 
-// 	// ºĞ
+// 	// ë¶„
 // 	{
 // 		byMinute = (nSecond / 60);
 // 		nSecond -= (byMinute*60);
 // 	}
 // 
-// 	// ÃÊ
+// 	// ì´ˆ
 // 	{		
 // 		if(nSecond < 0)
 // 		{
@@ -3350,7 +3350,7 @@ ATUM_DATE_TIME GetArenaServerDateTime()
 // 		}
 // 		bySecond = nSecond;
 // 	}
-// 	// end 2007-09-07 by bhsohn ½Ã°£Á¦ ¸¶Å© ¾ÆÀÌÅÛ Ãß°¡
+// 	// end 2007-09-07 by bhsohn ì‹œê°„ì œ ë§ˆí¬ ì•„ì´í…œ ì¶”ê°€
 // 
 // 	tempTime.SetDateTime(0, 0, byDay, byHour, byMinute, bySecond);
 // 
@@ -3366,31 +3366,31 @@ void	GetAtumDateTimeFormSecond( const int nSecond, int* pDay, int* pHour, int* p
 	if(nSec < 0)
 		*pDay = *pHour = *pMin = *Sec = 0;
 	{
-		// ÀÏ¼ö¸¦ ±¸ÇÑ´Ù.
+		// ì¼ìˆ˜ë¥¼ êµ¬í•œë‹¤.
 		*pDay	=	nSec / 86400;
 		nSec	-=	*pDay * 86400;
 
-		// ½Ã
+		// ì‹œ
 		*pHour	=	nSec / 3600;
 		nSec	-=	*pHour * 3600;
 
-		// ºĞ
+		// ë¶„
 		*pMin	=	nSec / 60;
 		nSec	-=	*pMin * 60;
 
-		// ÃÊ
+		// ì´ˆ
 		if(nSec < 0)
 			nSec = 0;
 		*Sec = nSec;
 	}
 }
-// end 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
+// end 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 
 
-// 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
-#define ONEDAY_SEC		86400	// 1ÀÏ
-#define ONEHOUR_SEC		3600	// 1½Ã°£
-#define ONEMIN_SEC		60		// 1ºĞ
+// 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
+#define ONEDAY_SEC		86400	// 1ì¼
+#define ONEHOUR_SEC		3600	// 1ì‹œê°„
+#define ONEMIN_SEC		60		// 1ë¶„
 
 void	GetString_TimeLeft( DWORD nSec, char* pBuff )
 {
@@ -3398,26 +3398,26 @@ void	GetString_TimeLeft( DWORD nSec, char* pBuff )
 
 	if( nSec > ONEDAY_SEC )
 	{
-		// ÀÏ´ÜÀ§ Ç¥½Ã
+		// ì¼ë‹¨ìœ„ í‘œì‹œ
 		nNum = nSec / ONEDAY_SEC;
-		sprintf( pBuff, STRMSG_C_061011_0004, nNum );	// "%dÀÏ"
+		sprintf( pBuff, STRMSG_C_061011_0004, nNum );	// "%dì¼"
 	}
 	else if( nSec > ONEHOUR_SEC )
 	{
-		// ½Ã°£´ÜÀ§ Ç¥½Ã
+		// ì‹œê°„ë‹¨ìœ„ í‘œì‹œ
 		nNum = nSec / ONEHOUR_SEC;
-		sprintf( pBuff, STRMSG_C_060425_0000, nNum );	// "%d½Ã"
+		sprintf( pBuff, STRMSG_C_060425_0000, nNum );	// "%dì‹œ"
 	}
 	else if( nSec >= ONEMIN_SEC )
 	{
-		// ºĞ´ÜÀ§ Ç¥½Ã
+		// ë¶„ë‹¨ìœ„ í‘œì‹œ
 		nNum = nSec / ONEMIN_SEC;
-		sprintf( pBuff, STRMSG_C_SKILL_0009, nNum );	// "%dºĞ"
+		sprintf( pBuff, STRMSG_C_SKILL_0009, nNum );	// "%dë¶„"
 	}
 	else
 	{
 		nNum = nSec;
-		sprintf( pBuff, STRMSG_C_SKILL_0010, nNum );	// "%2dÃÊ"
+		sprintf( pBuff, STRMSG_C_SKILL_0010, nNum );	// "%2dì´ˆ"
 	}
 }
 
@@ -3432,12 +3432,12 @@ BOOL	GetString_CoolTime( CItemInfo* pItem, char* pBuff )
 	else
 		return FALSE;
 }
-// end 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// end 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			char * GetStringDateTimeFormSecond(int nSecond);
-/// \brief		ÃÊ¸¦ ½ºÆ®¸µÀ¸·Î º¯°æ
+/// \brief		ì´ˆë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€ê²½
 /// \author		ispark
 /// \date		2006-10-11 ~ 2006-10-11
 /// \warning	
@@ -3448,7 +3448,7 @@ BOOL	GetString_CoolTime( CItemInfo* pItem, char* pBuff )
 char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond)
 {
 	
-	// 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
+	// 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 // 	ATUM_DATE_TIME tempTime = GetAtumDateTimeFormSecond(nSecond);
 // 
 // 	if(tempTime.Day)
@@ -3511,14 +3511,14 @@ char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond)
 		wsprintf(strTemp, "%s ", strTemp);
 		strcat(o_strDateTime, strTemp);
 	}
-	// end 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
+	// end 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 
 	return o_strDateTime;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			DWORD CheckFontColor( char chr )
-/// \brief		»ö±ò Ã¼Å©
+/// \brief		ìƒ‰ê¹” ì²´í¬
 /// \author		ispark
 /// \date		2006-10-23 ~ 2006-10-23
 /// \warning	
@@ -3579,10 +3579,10 @@ BOOL CheckFontColor(char* str)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void GetScale(float& fXScale, float& fYScale)
-/// \brief		ÀÌ¹ÌÁöÀÇ Å©±â¸¦ ÀÔ·ÂÇÏ¸é ½ºÄÉÀÏÀÇ °ªÀ¸·Î º¯°æ.
+/// \brief		ì´ë¯¸ì§€ì˜ í¬ê¸°ë¥¼ ì…ë ¥í•˜ë©´ ìŠ¤ì¼€ì¼ì˜ ê°’ìœ¼ë¡œ ë³€ê²½.
 /// \author		dgwoo
 /// \date		2007-07-03 ~ 2007-07-03
-/// \warning	ÀÔ·Â°ªÁß¿¡ 0º¸´Ù ÀÛ°Å³ª 0ÀÌ¸é ¸®ÅÏ.	
+/// \warning	ì…ë ¥ê°’ì¤‘ì— 0ë³´ë‹¤ ì‘ê±°ë‚˜ 0ì´ë©´ ë¦¬í„´.	
 ///
 /// \param		
 /// \return		
@@ -3595,12 +3595,12 @@ void GetScale(float& fXScale, float& fYScale)
 	fYScale = (float)(g_pD3dApp->GetBackBufferDesc().Height)/fYScale;
 }
 DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
-{	// fTime ÀüÃ¼ ½Ã°£, dwType ¾ËÆÄÅ¸ÀÔ, fTotal ÆäÀÌµå ÀÎ¾Æ¿ô Å¸ÀÓ, fDelay Áö¿¬ ½Ã°£
+{	// fTime ì „ì²´ ì‹œê°„, dwType ì•ŒíŒŒíƒ€ì…, fTotal í˜ì´ë“œ ì¸ì•„ì›ƒ íƒ€ì„, fDelay ì§€ì—° ì‹œê°„
 	DWORD dwColor = 0x00FFFFFF;
 	DWORD dwAlpha;
 
 	if(dwType == ALPHA_WAVE)
-	{// ±ôºı±ôºı
+	{// ê¹œë¹¡ê¹œë¹¡
 		float fAlpha;
 		fAlpha =  (fTime - (((int)(fTime/fTotal))*fTotal))/fTotal;
 		if(fAlpha >= 0.5f)
@@ -3620,18 +3620,18 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
 		
 		if(fTime < fGap)
 		{
-			// 2006-07-18 by dgwoo Á¡Á¡ ÁøÇØÁø´Ù.
+			// 2006-07-18 by dgwoo ì ì  ì§„í•´ì§„ë‹¤.
 			fAlpha =  fTime / fGap;
 			dwAlpha = 255 * fAlpha;
 		}
 		else if(fTime >= fGap && fTime <= fGap + fDelay)
 		{
-			// 2006-07-18 by dgwoo ¼±¸íÇÑ ±Û¾¾ À¯Áö
+			// 2006-07-18 by dgwoo ì„ ëª…í•œ ê¸€ì”¨ ìœ ì§€
 			dwAlpha = 255;
 		}
 		else
 		{
-			// 2006-07-18 by dgwoo Á¡Á¡ Èå·ÁÁø´Ù.
+			// 2006-07-18 by dgwoo ì ì  íë ¤ì§„ë‹¤.
 			fAlpha =  (fTime - fDelay -fGap) / fGap;
 			dwAlpha = 255 * (1.0f - fAlpha);			
 		}
@@ -3684,7 +3684,7 @@ DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL IsMousePosClientArea()
-/// \brief		ÇöÀç ¸¶¿ì½º ¿µ¿ªÀÌ
+/// \brief		í˜„ì¬ ë§ˆìš°ìŠ¤ ì˜ì—­ì´
 /// \author		dgwoo
 /// \date		2008-01-14 ~ 2008-01-14
 /// \warning	
@@ -3713,8 +3713,8 @@ BOOL IsMousePosClientArea()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¼Ò¼öÁ¡ µÑÂ° ÀÚ¸® ±îÁö Á¤·ÄÇÑ´Ù.
-/// \author		// 2008-03-19 by bhsohn FLOATÇü ÀçÁ¤·Ä ÇÏ¿© »ç¿ë
+/// \brief		ì†Œìˆ˜ì  ë‘˜ì§¸ ìë¦¬ ê¹Œì§€ ì •ë ¬í•œë‹¤.
+/// \author		// 2008-03-19 by bhsohn FLOATí˜• ì¬ì •ë ¬ í•˜ì—¬ ì‚¬ìš©
 /// \date		2008-03-17 ~ 2008-03-17
 /// \warning	
 ///
@@ -3743,8 +3743,8 @@ float FloatRangeDecimal(float fValue, int nDecimalPoint)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¼Ò¼öÁ¡ µÑÂ° ÀÚ¸® ±îÁö Á¤·ÄÇÑ´Ù.
-/// \author		// 2008-10-20 by bhsohn ÇÇ¾î½ºÀ² ¿Ã¸²À¸·Î º¯°æ
+/// \brief		ì†Œìˆ˜ì  ë‘˜ì§¸ ìë¦¬ ê¹Œì§€ ì •ë ¬í•œë‹¤.
+/// \author		// 2008-10-20 by bhsohn í”¼ì–´ìŠ¤ìœ¨ ì˜¬ë¦¼ìœ¼ë¡œ ë³€ê²½
 /// \date		2008-10-20 ~ 2008-10-20
 /// \warning	
 ///
@@ -3764,7 +3764,7 @@ float FloatSecRangeSharp(float fValue)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			INT ChangeChatButtonNumber(INT i_nMenuIndex)
-/// \brief		¸Ş´º ¹öÆ°°ú ¸ŞÀÎÃ¢¿¡ Ã¤ÆÃ ¹öÆ° ÀÎµ¦½º·Î º¯°æ.
+/// \brief		ë©”ë‰´ ë²„íŠ¼ê³¼ ë©”ì¸ì°½ì— ì±„íŒ… ë²„íŠ¼ ì¸ë±ìŠ¤ë¡œ ë³€ê²½.
 /// \author		dgwoo
 /// \date		2008-05-19 ~ 2008-05-19
 /// \warning	
@@ -3811,7 +3811,7 @@ INT ChangeChatButtonNumber(INT i_nMenuIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			FLOAT GetAmorGearHeight(INT i_nAmmor)
-/// \brief		¾Æ¸Ó³ôÀÌ¸¦ ¸®ÅÏ.(¾Æ¸ÓÅ°)
+/// \brief		ì•„ë¨¸ë†’ì´ë¥¼ ë¦¬í„´.(ì•„ë¨¸í‚¤)
 /// \author		dgwoo
 /// \date		2008-07-07 ~ 2008-07-07
 /// \warning	
@@ -3821,7 +3821,7 @@ INT ChangeChatButtonNumber(INT i_nMenuIndex)
 ///////////////////////////////////////////////////////////////////////////////
 FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 {
-	// 2009. 09. 03 by ckPark ·Îº¿±â¾î ¹öÁ¯¿¡ µû¶ó ³ôÀÌÀû¿ë ¾ÈµÇ´Â ¹®Á¦
+	// 2009. 09. 03 by ckPark ë¡œë´‡ê¸°ì–´ ë²„ì ¼ì— ë”°ë¼ ë†’ì´ì ìš© ì•ˆë˜ëŠ” ë¬¸ì œ
 
 	ITEM* pItem = g_pDatabase->GetServerItemInfo( i_nAmmor );
 	if( pItem )
@@ -3830,7 +3830,7 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 			i_nAmmor = pItem->SourceIndex;
 	}
 
-	// end 2009. 09. 03 bt ckPark ·Îº¿±â¾î ¹öÁ¯¿¡ µû¶ó ³ôÀÌÀû¿ë ¾ÈµÇ´Â ¹®Á¦
+	// end 2009. 09. 03 bt ckPark ë¡œë´‡ê¸°ì–´ ë²„ì ¼ì— ë”°ë¼ ë†’ì´ì ìš© ì•ˆë˜ëŠ” ë¬¸ì œ
 	
 	
 	
@@ -3844,8 +3844,8 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 	case 8050400:
 		return 15.00f;
 
-	// 2010. 06. 01 by jskim ¿ùµåÄÅ ¾Æ¸Ó ³ôÀÌ Àû¿ë
-	// 2009. 07. 16 by ckPark ¼ö¹Ú¾Æ¸Ó ³ôÀÌ Á¶Àı
+	// 2010. 06. 01 by jskim ì›”ë“œì»µ ì•„ë¨¸ ë†’ì´ ì ìš©
+	// 2009. 07. 16 by ckPark ìˆ˜ë°•ì•„ë¨¸ ë†’ì´ ì¡°ì ˆ
 	case 8290600:
 	case 8291600:
 	case 8293600:
@@ -3858,11 +3858,11 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 	case 8567600:
 		return 13.0f;
 
-	// end 2009. 07. 16 by ckPark ¼ö¹Ú¾Æ¸Ó ³ôÀÌ Á¶Àı
-	//end 2010. 06. 01 by jskim ¿ùµåÄÅ ¾Æ¸Ó ³ôÀÌ Àû¿ë	
+	// end 2009. 07. 16 by ckPark ìˆ˜ë°•ì•„ë¨¸ ë†’ì´ ì¡°ì ˆ
+	//end 2010. 06. 01 by jskim ì›”ë“œì»µ ì•„ë¨¸ ë†’ì´ ì ìš©	
 
-	// 2010. 05. 03 by ckPark ·Îº¿±â¾î ³ôÀÌ ¼öÁ¤
-	// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+	// 2010. 05. 03 by ckPark ë¡œë´‡ê¸°ì–´ ë†’ì´ ìˆ˜ì •
+	// 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 // 	case 8293800:
 // 		if( i_bSelect )
 // 			return 13.0f;
@@ -3886,7 +3886,7 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 // 			return 8.5f;
 // 		else
 // 			return 17.0f;
-	// end 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+	// end 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 	case 8293800:
 	case 8990700:
 		if (i_bSelect) return 13.0f;
@@ -3906,7 +3906,7 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 	case 8993700:
 		if (i_bSelect) return 8.5f;
 		return 17.0f;
-	//end 2010. 05. 03 by ckPark ·Îº¿±â¾î ³ôÀÌ ¼öÁ¤
+	//end 2010. 05. 03 by ckPark ë¡œë´‡ê¸°ì–´ ë†’ì´ ìˆ˜ì •
 
 	default:
 		return 7.087f;
@@ -3915,8 +3915,8 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		2¹ÙÀÌÆ®µµ ÇÑ±ÛÀÚ·Î ÀÎ½ÄÇÑ´Ù.
-/// \author		// 2009-03-18 by bhsohn Ã¤ÆÃÃ¢ Ä¿¼­ ÀÌµ¿ ½Ã½ºÅÛ Ãß°¡
+/// \brief		2ë°”ì´íŠ¸ë„ í•œê¸€ìë¡œ ì¸ì‹í•œë‹¤.
+/// \author		// 2009-03-18 by bhsohn ì±„íŒ…ì°½ ì»¤ì„œ ì´ë™ ì‹œìŠ¤í…œ ì¶”ê°€
 /// \date		2009-03-18 ~ 2009-03-18
 /// \warning	
 ///
@@ -3925,7 +3925,7 @@ FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect /* = FALSE*/)
 ///////////////////////////////////////////////////////////////////////////////
 int GetStringBuffPos(const char* pTxt, int i_nCurSelPos)
 {
-	// À§Ä¡ 0
+	// ìœ„ì¹˜ 0
 	if (i_nCurSelPos == 0) return 0;
 
 	int nCheckPoint = 0;
@@ -3985,15 +3985,15 @@ int GetStringBuffPos(const char* pTxt, int i_nCurSelPos)
 		}
 		else if (bChColor && (0 != GetFontColor( pTxt[nCheckPoint] )))
 		{
-			// »öÀÌ ±ÛÀÚ´Â Ã¼Å©¾ÈÇÑ´Ù.
+			// ìƒ‰ì´ ê¸€ìëŠ” ì²´í¬ì•ˆí•œë‹¤.
 			bChColor = FALSE;			
 		}
 		else
 		{
-			// »öÀÌ ±ÛÀÚ´Â Ã¼Å©¾ÈÇÑ´Ù.
+			// ìƒ‰ì´ ê¸€ìëŠ” ì²´í¬ì•ˆí•œë‹¤.
 			bChColor = FALSE;
 			
-			// \n ÀÎ½Ä ¸øÇÏ°Ô ÇÔ.
+			// \n ì¸ì‹ ëª»í•˜ê²Œ í•¨.
 			nStringPos++;
 		}
 
@@ -4005,14 +4005,14 @@ int GetStringBuffPos(const char* pTxt, int i_nCurSelPos)
 		}
 	}
 	
-	return -1;// ¸øÃ£¾Ò´Ù.
+	return -1;// ëª»ì°¾ì•˜ë‹¤.
 	
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		2¹ÙÀÌÆ®µµ ÇÑ±ÛÀÚ·Î ÀÎ½ÄÇÑ´Ù.
-/// \author		// 2009-03-18 by bhsohn Ã¤ÆÃÃ¢ Ä¿¼­ ÀÌµ¿ ½Ã½ºÅÛ Ãß°¡
+/// \brief		2ë°”ì´íŠ¸ë„ í•œê¸€ìë¡œ ì¸ì‹í•œë‹¤.
+/// \author		// 2009-03-18 by bhsohn ì±„íŒ…ì°½ ì»¤ì„œ ì´ë™ ì‹œìŠ¤í…œ ì¶”ê°€
 /// \date		2009-03-18 ~ 2009-03-18
 /// \warning	
 ///
@@ -4083,15 +4083,15 @@ int GetStringBuffLen(const char* pTxt)
 		}
 		else if(bChColor && (0 != GetFontColor( pTxt[nCheckPoint] )))
 		{
-			// »öÀÌ ±ÛÀÚ´Â Ã¼Å©¾ÈÇÑ´Ù.
+			// ìƒ‰ì´ ê¸€ìëŠ” ì²´í¬ì•ˆí•œë‹¤.
 			bChColor = FALSE;			
 		}
 		else
 		{
-			// »öÀÌ ±ÛÀÚ´Â Ã¼Å©¾ÈÇÑ´Ù.
+			// ìƒ‰ì´ ê¸€ìëŠ” ì²´í¬ì•ˆí•œë‹¤.
 			bChColor = FALSE;
 			
-			// \n ÀÎ½Ä ¸øÇÏ°Ô ÇÔ.
+			// \n ì¸ì‹ ëª»í•˜ê²Œ í•¨.
 			nStringPos++;
 		}
 		
@@ -4101,8 +4101,8 @@ int GetStringBuffLen(const char* pTxt)
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		2¹ÙÀÌÆ®µµ ÇÑ±ÛÀÚ·Î ÀÎ½ÄÇÑ´Ù.
-/// \author		// 2009-03-18 by bhsohn Ã¤ÆÃÃ¢ Ä¿¼­ ÀÌµ¿ ½Ã½ºÅÛ Ãß°¡
+/// \brief		2ë°”ì´íŠ¸ë„ í•œê¸€ìë¡œ ì¸ì‹í•œë‹¤.
+/// \author		// 2009-03-18 by bhsohn ì±„íŒ…ì°½ ì»¤ì„œ ì´ë™ ì‹œìŠ¤í…œ ì¶”ê°€
 /// \date		2009-03-18 ~ 2009-03-18
 /// \warning	
 ///

@@ -1,4 +1,4 @@
-// Debuff.h: interface for the CDebuff class.
+ï»¿// Debuff.h: interface for the CDebuff class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -17,8 +17,8 @@ public:
 
 	void InitDebuff();
 	void SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePowerRatio = 1.0f );
-	BOOL CheckApplyingDebuff(DestParam_t i_byDestParam);		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
-	BOOL ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck = TRUE);		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
+	BOOL CheckApplyingDebuff(DestParam_t i_byDestParam);		// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìžë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
+	BOOL ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck = TRUE);		// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìžë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
 	INT	 MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DEBUFF_INFO *o_pDebuffInfo);
 
 protected:

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "AtumLogSender.h"
 #include "FieldGlobal.h"
 
@@ -100,8 +100,8 @@ BOOL CAtumLogSender::SendLogMessageSTAT(CFieldIOCPSocket *pCharacterSocket, BYTE
 BOOL CAtumLogSender::SendLogMessageGAMESTART(CFieldIOCPSocket *pCharacterSocket)
 {
 	if (pCharacterSocket == NULL) return FALSE;
-// 2006-11-15 by cmkwon, CFieldIOCPSocket::CharacterGameStartRoutine()ÇÔ¼ö ¾ÈÀ¸·Î À§Ä¡ º¯°æ
-//	// °ÔÀÓ ½ÃÀÛ ½Ã°£ ÁöÁ¤
+// 2006-11-15 by cmkwon, CFieldIOCPSocket::CharacterGameStartRoutine()í•¨ìˆ˜ ì•ˆìœ¼ë¡œ ìœ„ì¹˜ ë³€ê²½
+//	// ê²Œì„ ì‹œì‘ ì‹œê°„ ì§€ì •
 //	pCharacterSocket->m_nGameStartTimeInSeconds = pCharacterSocket->ms_pFieldIOCP->GetCurrentServerTime();
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_GAME_START, T_FL_LOG_GAME_START, msgGameStart, msgGameStartBuf);
@@ -113,11 +113,11 @@ BOOL CAtumLogSender::SendLogMessageGAMESTART(CFieldIOCPSocket *pCharacterSocket)
 	util::strncpy(msgGameStart->AccountName, pCharacterSocket->m_character.AccountName, SIZE_MAX_ACCOUNT_NAME);
 	msgGameStart->TotalPlayTime = pCharacterSocket->GetTotalPlayTimeInSeconds();
 	//if(pCharacterSocket->m_bIsPCBangClient)
-	//{// 2007-01-23 by dhjin °¡¸Í PCBang¿¡¼­ °ÔÀÓÀ» ÁøÇàÇÔ
+	//{// 2007-01-23 by dhjin ê°€ë§¹ PCBangì—ì„œ ê²Œì„ì„ ì§„í–‰í•¨
 	//	msgGameStart->PCBangUID				= pCharacterSocket->m_nPCBangUID;	// 2007-01-22 by dhjin
 	//}
 	//
-	// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - Ãß°¡ÇÑ ÇÊµå ¼³Á¤
+	// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - ì¶”ê°€í•œ í•„ë“œ ì„¤ì •
 	msgGameStart->GameContinueTimeOfToday		= pCharacterSocket->GetCurGameContinueTimeInSecondOfToday();
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgGameStartBuf, MSG_SIZE(MSG_FL_LOG_GAME_START));
@@ -134,7 +134,7 @@ BOOL CAtumLogSender::SendLogMessageGAMEEND(CFieldIOCPSocket *pCharacterSocket)
 		|| pCharacterSocket->m_nGameStartTimeInSeconds == 0)
 	{
 		// error
-		// check: ¿Ö m_character°¡ resetµÈ ÀÌÈÄ¿¡ ÀÌ ÇÔ¼ö°¡ ºÒ¸®´Â Áö È®ÀÎ ÇÊ¿äÇÔ, 20041108, kelovon
+		// check: ì™œ m_characterê°€ resetëœ ì´í›„ì— ì´ í•¨ìˆ˜ê°€ ë¶ˆë¦¬ëŠ” ì§€ í™•ì¸ í•„ìš”í•¨, 20041108, kelovon
 		g_pFieldGlobal->WriteSystemLogEX(TRUE, "ERROR @ CAtumLogSender::SendLogMessageGAMEEND(), %d\r\n", pCharacterSocket->m_nClientArrayIndex);
 		return FALSE;
 	}
@@ -149,29 +149,29 @@ BOOL CAtumLogSender::SendLogMessageGAMEEND(CFieldIOCPSocket *pCharacterSocket)
 	msgGameEnd->PlayTime					= pCharacterSocket->GetCurrentPlayTimeInSeconds();
 	msgGameEnd->TotalPlayTime				= pCharacterSocket->GetTotalPlayTimeInSeconds();
 	//if(pCharacterSocket->m_bIsPCBangClient)
-	//{// 2006-12-18 by cmkwon, °¡¸Í PCBang¿¡¼­ °ÔÀÓÀ» ÁøÇàÇÔ
+	//{// 2006-12-18 by cmkwon, ê°€ë§¹ PCBangì—ì„œ ê²Œì„ì„ ì§„í–‰í•¨
 	//	msgGameEnd->PCBangPlayTime			= msgGameEnd->PlayTime;				// 2006-12-18 by cmkwon, 
 	//	msgGameEnd->PCBangUID				= pCharacterSocket->m_nPCBangUID;	// 2007-01-22 by dhjin
 	//}
 
-	// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - Ãß°¡ÇÑ ÇÊµå ¼³Á¤
+	// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - ì¶”ê°€í•œ í•„ë“œ ì„¤ì •
 	msgGameEnd->GameContinueTimeOfToday		= pCharacterSocket->GetCurGameContinueTimeInSecondOfToday();
 
-	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	msgGameEnd->LoginDate = pCharacterSocket->m_character.LastStartedTime;
 	util::strncpy(msgGameEnd->CharacterRace,CAtumSJ::GetInfluenceTypeGLogString(pCharacterSocket->m_character.InfluenceType),SIZE_MAX_GLOG_CHARACTER_RACE_NAME);
 	util::strncpy(msgGameEnd->CharacterClass,CAtumSJ::GetGLOGUnitKindString(pCharacterSocket->m_character.UnitKind),SIZE_MAX_GLOG_CHARACTER_CLASS_NAME);
 	msgGameEnd->PlayExp  = pCharacterSocket->m_character.Experience - pCharacterSocket->m_GameStartEXP;
 	msgGameEnd->TotalExp = pCharacterSocket->m_character.Experience;
 	msgGameEnd->CharacterLevel = pCharacterSocket->m_character.Level;
-	util::strncpy(msgGameEnd->MostStayedInZoneName, pCharacterSocket->GetStayedMapName(), SIZE_MAX_MAP_NAME); // °¡Àå ¿À·¡ ¸Ó¹® ¸Ê ÀÌ¸§
+	util::strncpy(msgGameEnd->MostStayedInZoneName, pCharacterSocket->GetStayedMapName(), SIZE_MAX_MAP_NAME); // ê°€ì¥ ì˜¤ë˜ ë¨¸ë¬¸ ë§µ ì´ë¦„
 	
-	// start 2011-12-12 by hskim, GLog 2Â÷
+	// start 2011-12-12 by hskim, GLog 2ì°¨
 	msgGameEnd->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 	msgGameEnd->Race = pCharacterSocket->m_character.Race;
 	msgGameEnd->UnitKind = pCharacterSocket->m_character.UnitKind;
 	msgGameEnd->InfluenceType = pCharacterSocket->m_character.InfluenceType;
-	// end 2011-12-12 by hskim, GLog 2Â÷
+	// end 2011-12-12 by hskim, GLog 2ì°¨
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgGameEndBuf, MSG_SIZE(MSG_FL_LOG_GAME_END));
 
@@ -193,7 +193,7 @@ BOOL CAtumLogSender::SendLogMessageQUESTCOMPLETION(CFieldIOCPSocket *pCharacterS
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageQUESTCOMPENSATION(CFieldIOCPSocket *pCharacterSocket, MSG_FL_LOG_QUEST_COMPENSATION *i_pMsgQuestCompensation, string &i_szCompensationItemList)
-/// \brief		Äù½ºÆ® ¿Ï·á º¸»ó
+/// \brief		í€˜ìŠ¤íŠ¸ ì™„ë£Œ ë³´ìƒ
 /// \author		dhjin
 /// \date		2007-01-16 ~ 2007-01-16
 /// \warning	
@@ -245,7 +245,7 @@ BOOL CAtumLogSender::SendLogMessagePKLOSS(CFieldIOCPSocket *pCharacterSocket, UI
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessagePvEWIN(CFieldIOCPSocket *pCharacterSocket, UID32_t PeerCharacterUniqueNumber)
-/// \brief		¼¼·ÂÀü½Ã¿¡ »ó´ë ¼¼·ÂÀ» Á×ÀÎ ·Î±×
+/// \brief		ì„¸ë ¥ì „ì‹œì— ìƒëŒ€ ì„¸ë ¥ì„ ì£½ì¸ ë¡œê·¸
 /// \author		cmkwon
 /// \date		2006-03-06 ~ 2006-03-06
 /// \warning	
@@ -269,7 +269,7 @@ BOOL CAtumLogSender::SendLogMessagePvEWIN(CFieldIOCPSocket *pCharacterSocket, UI
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessagePvELOSS(CFieldIOCPSocket *pCharacterSocket, UID32_t PeerCharacterUniqueNumber)
-/// \brief		¼¼·ÂÀü½Ã¿¡ »ó´ë ¼¼·Â¿¡ ÀÇÇØ¼­ Á×Àº ·Î±×
+/// \brief		ì„¸ë ¥ì „ì‹œì— ìƒëŒ€ ì„¸ë ¥ì— ì˜í•´ì„œ ì£½ì€ ë¡œê·¸
 /// \author		cmkwon
 /// \date		2006-03-06 ~ 2006-03-06
 /// \warning	
@@ -300,14 +300,14 @@ BOOL CAtumLogSender::SendLogMessageDEAD(CFieldIOCPSocket *pCharacterSocket, BYTE
 	msgDead->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	msgDead->CurrentPosition = pCharacterSocket->m_character.PositionVector;
 	msgDead->DamageKind = i_nDamageType;
-	msgDead->ItemNum	= i_ItemNum;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡
+	msgDead->ItemNum	= i_ItemNum;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgDeadBuf, MSG_SIZE(MSG_FL_LOG_DEAD));
 
 	return TRUE;
 }
 
-// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - SendLogMessageWARP() ÀÎÀÚ Ãß°¡
+// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - SendLogMessageWARP() ì¸ì ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageWARP(CFieldIOCPSocket *pCharacterSocket, MapIndex_t CurrentMapIndex, ChannelIndex_t CurChannIdx, AVECTOR3 &CurrentMapPosition, MapIndex_t TargetMapIndex, ChannelIndex_t TargetChannIdx, AVECTOR3 &TargetMapPosition)
 {
 	if (pCharacterSocket == NULL) return FALSE;
@@ -315,10 +315,10 @@ BOOL CAtumLogSender::SendLogMessageWARP(CFieldIOCPSocket *pCharacterSocket, MapI
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_WARP, T_FL_LOG_WARP, msgWARP, msgWARPBuf);
 	msgWARP->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 	msgWARP->CurrentMapIndex = CurrentMapIndex;
-	msgWARP->CurrentChannIdx		= CurChannIdx;		// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® -
+	msgWARP->CurrentChannIdx		= CurChannIdx;		// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ -
 	msgWARP->CurrentPosition = CurrentMapPosition;
 	msgWARP->TargetMapIndex = TargetMapIndex;
-	msgWARP->TargetChannIdx			= TargetChannIdx;	// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® -
+	msgWARP->TargetChannIdx			= TargetChannIdx;	// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ -
 	msgWARP->TargetPosition = TargetMapPosition;
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgWARPBuf, MSG_SIZE(MSG_FL_LOG_WARP));
@@ -432,7 +432,7 @@ BOOL CAtumLogSender::SendLogMessageMonsterBoss(MSG_FL_LOG_MONSTER_BOSS *i_pMsgBo
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageMSWar(MSG_FL_LOG_MS_WAR *i_pMsgMSWarLog)
-/// \brief		¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
+/// \brief		ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
 /// \author		dhjin
 /// \date		2008-04-01 ~ 2008-04-01
 /// \warning	
@@ -450,7 +450,7 @@ BOOL CAtumLogSender::SendLogMessageMSWar(MSG_FL_LOG_MS_WAR *i_pMsgMSWarLog)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageSPWar(MSG_FL_LOG_SP_WAR *i_pMsgSPWarLog)
-/// \brief		¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
+/// \brief		ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
 /// \author		dhjin
 /// \date		2008-04-01 ~ 2008-04-01
 /// \warning	
@@ -467,13 +467,13 @@ BOOL CAtumLogSender::SendLogMessageSPWar(MSG_FL_LOG_SP_WAR *i_pMsgSPWarLog)
 }
 
 
-// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMCharacterITEM() ÀÎÀÚ Ãß°¡
+// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMCharacterITEM() ì¸ì ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageITEMCharacterITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_CHARACTER_ITEM, T_FL_LOG_ITEM_CHARACTER_ITEM, msgCharItem, msgCharItemBuf);
-// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - ·Î±× Àü¼ÛÇÏ±â Ãß°¡
+// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - ë¡œê·¸ ì „ì†¡í•˜ê¸° ì¶”ê°€
 //	msgCharItem->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 //	msgCharItem->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
@@ -486,13 +486,13 @@ BOOL CAtumLogSender::SendLogMessageITEMCharacterITEM(CFieldIOCPSocket *pCharacte
 		msgCharItem->CurrentMapIndex		= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	}
 	msgCharItem->Item4Log = *pItem;
-	msgCharItem->ChangeCount				= i_nChangeCnts;		// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - 
+	msgCharItem->ChangeCount				= i_nChangeCnts;		// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - 
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgCharItemBuf, MSG_SIZE(MSG_FL_LOG_ITEM_CHARACTER_ITEM));
 	return TRUE;
 }
 
-// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±× 
+// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸ 
 BOOL CAtumLogSender::SendLogMessageITEMCharacterToFromGuildstoreResult(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;	
@@ -514,9 +514,9 @@ BOOL CAtumLogSender::SendLogMessageITEMCharacterToFromGuildstoreResult(CFieldIOC
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgCharItemBuf, MSG_SIZE(MSG_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT));
 	return TRUE;
 }
-// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±×. End
+// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸. End
 
-// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 //BOOL CAtumLogSender::SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount)
 BOOL CAtumLogSender::SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType)
 {
@@ -524,7 +524,7 @@ BOOL CAtumLogSender::SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocke
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_GET_ITEM, T_FL_LOG_ITEM_GET_ITEM, msgItemGet, msgItemGetBuf);
 	msgItemGet->CharacterUniqueNumber = pItem->Possess;
-	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ¿¡¼­ È£ÃâÇÏ´Â ÇÔ¼ö´Â pCharacterSocket Ã¼Å©¸¦ ÇØ¾ßÇÑ´Ù. - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ì—ì„œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ëŠ” pCharacterSocket ì²´í¬ë¥¼ í•´ì•¼í•œë‹¤. - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	//msgItemGet->CurrentMapIndex = (pCharacterSocket!=NULL?pCharacterSocket->m_character.MapChannelIndex.MapIndex:0);
 	msgItemGet->CurrentMapIndex = 0;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
@@ -534,14 +534,14 @@ BOOL CAtumLogSender::SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocke
 
 	msgItemGet->Item4Log = *pItem;
 	msgItemGet->ChangeCount = nChangeCount;
-	msgItemGet->ItemUpdateType	= i_byItemUpdateType;	// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+	msgItemGet->ItemUpdateType	= i_byItemUpdateType;	// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemGetBuf, MSG_SIZE(MSG_FL_LOG_ITEM_GET_ITEM));
 
 	return TRUE;
 }
 
-// 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+// 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 #ifdef _ATUM_SERVER
 BOOL CAtumLogSender::SendLogMessageITEMDissolutionITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType)
 {
@@ -557,14 +557,14 @@ BOOL CAtumLogSender::SendLogMessageITEMDissolutionITEM(CFieldIOCPSocket *pCharac
 	
 	msgItemGet->Item4Log = *pItem;
 	msgItemGet->ChangeCount = nChangeCount;
-	msgItemGet->ItemUpdateType	= i_byItemUpdateType;	// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+	msgItemGet->ItemUpdateType	= i_byItemUpdateType;	// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 	
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemGetBuf, MSG_SIZE(MSG_FL_LOG_ITEM_DISSOLUTION_ITEM));
 	
 	return TRUE;
 }
 #endif // _ATUM_SERVER
-// End. 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+// End. 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 
 
 BOOL CAtumLogSender::SendLogMessageITEMAddItemByAdmin(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount)
@@ -612,15 +612,15 @@ BOOL CAtumLogSender::SendLogMessageITEMAddItemByCommand(CFieldIOCPSocket *pChara
 	return TRUE;
 }
 
-// 2006-11-01 by cmkwon, ÀÎÀÚ Ãß°¡(UID32_t i_StoreCharacterUID)
+// 2006-11-01 by cmkwon, ì¸ì ì¶”ê°€(UID32_t i_StoreCharacterUID)
 BOOL CAtumLogSender::SendLogMessageITEMInsertToStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_INSERT_TO_STORE, T_FL_LOG_ITEM_INSERT_TO_STORE, msgItemInsertStore, msgItemInsertStoreBuf);
-	msgItemInsertStore->CharacterUniqueNumber	= pCharacterSocket->m_character.CharacterUniqueNumber;		// 2006-11-02 by cmkwon, ÇöÀç Á¢¼ÓÁßÀÎ Ä³¸¯ÅÍ °íÀ¯ ¹øÈ£, // 2006-09-20 by dhjin, ÄÉ¸¯ÅÍ°£ Ã¢°í °øÀ¯ -> ¼±ÅÃµÈ ÄÉ¸¯ÅÍ UID
+	msgItemInsertStore->CharacterUniqueNumber	= pCharacterSocket->m_character.CharacterUniqueNumber;		// 2006-11-02 by cmkwon, í˜„ì¬ ì ‘ì†ì¤‘ì¸ ìºë¦­í„° ê³ ìœ  ë²ˆí˜¸, // 2006-09-20 by dhjin, ì¼€ë¦­í„°ê°„ ì°½ê³  ê³µìœ  -> ì„ íƒëœ ì¼€ë¦­í„° UID
 	msgItemInsertStore->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-	msgItemInsertStore->StoreCharacterUID		= i_StoreCharacterUID;										// 2006-11-02 by cmkwon, ÇöÀç Ã¢°íÀÇ Ä³¸¯ÅÍ °øÀ¯ ¹øÈ£
+	msgItemInsertStore->StoreCharacterUID		= i_StoreCharacterUID;										// 2006-11-02 by cmkwon, í˜„ì¬ ì°½ê³ ì˜ ìºë¦­í„° ê³µìœ  ë²ˆí˜¸
 	msgItemInsertStore->Item4Log				= *pItem;
 	msgItemInsertStore->ChangeCount				= nChangeCount;
 
@@ -629,7 +629,7 @@ BOOL CAtumLogSender::SendLogMessageITEMInsertToStore(CFieldIOCPSocket *pCharacte
 	return TRUE;
 }
 
-// 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡
+// 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageITEMGetWithSameAccount(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
@@ -645,17 +645,17 @@ BOOL CAtumLogSender::SendLogMessageITEMGetWithSameAccount(CFieldIOCPSocket *pCha
 	
 	return TRUE;
 }
-// 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡.End
+// 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€.End
 
-// 2006-11-01 by cmkwon, ÀÎÀÚ Ãß°¡(UID32_t i_StoreCharacterUID)
+// 2006-11-01 by cmkwon, ì¸ì ì¶”ê°€(UID32_t i_StoreCharacterUID)
 BOOL CAtumLogSender::SendLogMessageITEMDrawFromStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_DRAW_FROM_STORE, T_FL_LOG_ITEM_DRAW_FROM_STORE, msgDrawStore, msgDrawStoreBuf);
-	msgDrawStore->CharacterUniqueNumber			= pCharacterSocket->m_character.CharacterUniqueNumber;		// 2006-11-02 by cmkwon, ÇöÀç Á¢¼ÓÁßÀÎ Ä³¸¯ÅÍ °íÀ¯ ¹øÈ£
+	msgDrawStore->CharacterUniqueNumber			= pCharacterSocket->m_character.CharacterUniqueNumber;		// 2006-11-02 by cmkwon, í˜„ì¬ ì ‘ì†ì¤‘ì¸ ìºë¦­í„° ê³ ìœ  ë²ˆí˜¸
 	msgDrawStore->CurrentMapIndex				= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-	msgDrawStore->StoreCharacterUID				= i_StoreCharacterUID;										// 2006-11-02 by cmkwon, ÇöÀç Ã¢°íÀÇ Ä³¸¯ÅÍ °øÀ¯ ¹øÈ£
+	msgDrawStore->StoreCharacterUID				= i_StoreCharacterUID;										// 2006-11-02 by cmkwon, í˜„ì¬ ì°½ê³ ì˜ ìºë¦­í„° ê³µìœ  ë²ˆí˜¸
 	msgDrawStore->Item4Log						= *pItem;
 	msgDrawStore->ChangeCount					= nChangeCount;
 
@@ -687,7 +687,7 @@ BOOL CAtumLogSender::SendLogMessageITEMTradeRecv(CFieldIOCPSocket *pCharacterSoc
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_TRADE_RECV, T_FL_LOG_ITEM_TRADE_RECV, msgItemTradeRecv, msgItemTradeRecvBuf);
 
-	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ¿¡¼­ È£ÃâÇÏ´Â ÇÔ¼ö´Â pCharacterSocket Ã¼Å©¸¦ ÇØ¾ßÇÑ´Ù. - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ì—ì„œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ëŠ” pCharacterSocket ì²´í¬ë¥¼ í•´ì•¼í•œë‹¤. - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	//msgItemTradeRecv->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 	//msgItemTradeRecv->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
@@ -711,8 +711,8 @@ BOOL CAtumLogSender::SendLogMessageITEMTradeRecv(CFieldIOCPSocket *pCharacterSoc
 	return TRUE;
 }
 
-// 2007-06-05 by cmkwon, ÀÎÀÚÃß°¡(vectENCHANT *i_pVectEnchantList)
-// 2007-06-05 by cmkwon, ·¹¾îÁ¤º¸¿Í ÀÎÃ¦Æ® Á¤º¸¸¦ ·Î±×·Î ³²±ä´Ù.
+// 2007-06-05 by cmkwon, ì¸ìì¶”ê°€(vectENCHANT *i_pVectEnchantList)
+// 2007-06-05 by cmkwon, ë ˆì–´ì •ë³´ì™€ ì¸ì±ˆíŠ¸ ì •ë³´ë¥¼ ë¡œê·¸ë¡œ ë‚¨ê¸´ë‹¤.
 BOOL CAtumLogSender::SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, vectENCHANT *i_pVectEnchantList)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
@@ -724,10 +724,10 @@ BOOL CAtumLogSender::SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacte
 	msgItemThowaway->ChangeCount = nChangeCount;
 	msgItemThowaway->PrefixCodeNum		= pItem->PrefixCodeNum;		// 2007-06-05 by cmkwon
 	msgItemThowaway->SuffixCodeNum		= pItem->SuffixCodeNum;		// 2007-06-05 by cmkwon
-	msgItemThowaway->EnchatItemNumCount	= 0;	// 2007-07-20 by cmkwon, »èÁ¦ ¾ÆÀÌÅÛ ·Î±× ¼Ò½º ¼öÁ¤, // 2007-06-05 by cmkwon
+	msgItemThowaway->EnchatItemNumCount	= 0;	// 2007-07-20 by cmkwon, ì‚­ì œ ì•„ì´í…œ ë¡œê·¸ ì†ŒìŠ¤ ìˆ˜ì •, // 2007-06-05 by cmkwon
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-07-20 by cmkwon, »èÁ¦ ¾ÆÀÌÅÛ ·Î±× ¼Ò½º ¼öÁ¤
+	// 2007-07-20 by cmkwon, ì‚­ì œ ì•„ì´í…œ ë¡œê·¸ ì†ŒìŠ¤ ìˆ˜ì •
 	if(i_pVectEnchantList)
 	{
 		msgItemThowaway->EnchatItemNumCount	= i_pVectEnchantList->size();	// 2007-06-05 by cmkwon
@@ -748,7 +748,7 @@ BOOL CAtumLogSender::SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacte
 	return TRUE;
 }
 
-// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 BOOL CAtumLogSender::SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nSuccess, vectENCHANT *i_pVectEnchantList)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
@@ -781,17 +781,17 @@ BOOL CAtumLogSender::SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharact
 	
 	return TRUE;
 }
-// End. 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+// End. 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 
 
-// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
-BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, BOOL bWarPoint /*= FALSE*/, INT i_nRemainCount/*=UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION*/, BOOL bGLog/*= TRUE*/)		// 2011-12-12 by hskim, GLog 2Â÷
+// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, BOOL bWarPoint /*= FALSE*/, INT i_nRemainCount/*=UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION*/, BOOL bGLog/*= TRUE*/)		// 2011-12-12 by hskim, GLog 2ì°¨
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_BUY_ITEM, T_FL_LOG_ITEM_BUY_ITEM, msgItemBuy, msgItemBuyBuf);
 	
-	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ¿¡¼­ È£ÃâÇÏ´Â ÇÔ¼ö´Â pCharacterSocket Ã¼Å©¸¦ ÇØ¾ßÇÑ´Ù. - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ì—ì„œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ëŠ” pCharacterSocket ì²´í¬ë¥¼ í•´ì•¼í•œë‹¤. - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	//msgItemBuy->CharacterUniqueNumber	= pCharacterSocket->m_character.CharacterUniqueNumber;
 	//msgItemBuy->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
@@ -810,15 +810,15 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocke
 	msgItemBuy->RemainedMoney			= RemainedMoney;
 	if(bWarPoint)
 	{
-		msgItemBuy->IsCashItem			= 2;		// 2007-06-13 by dhjin, 2¹øÀÌ¸é WarPoint itemÀÌ´Ù 
+		msgItemBuy->IsCashItem			= 2;		// 2007-06-13 by dhjin, 2ë²ˆì´ë©´ WarPoint itemì´ë‹¤ 
 	}
 	else
 	{
-		msgItemBuy->IsCashItem			= COMPARE_BIT_FLAG(pItem->ItemInfo->ItemAttribute, ITEM_ATTR_CASH_ITEM);	// 2006-06-21 by cmkwon, À¯·á¾ÆÀÌÅÛ ¿©ºÎ
+		msgItemBuy->IsCashItem			= COMPARE_BIT_FLAG(pItem->ItemInfo->ItemAttribute, ITEM_ATTR_CASH_ITEM);	// 2006-06-21 by cmkwon, ìœ ë£Œì•„ì´í…œ ì—¬ë¶€
 	}
-	msgItemBuy->nRemainCountForLimitedEdition	= i_nRemainCount;		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+	msgItemBuy->nRemainCountForLimitedEdition	= i_nRemainCount;		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	
-	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 //	msgItemBuy->CashItemPrice = pItem->ItemInfo->CashPrice;
 	msgItemBuy->CashItemPrice = 0;	// 2015-05-26 Future, buy logging deactivated anyway
 	util::strncpy(msgItemBuy->AccountName, pCharacterSocket->m_character.AccountName, SIZE_MAX_ACCOUNT_NAME);
@@ -826,18 +826,18 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocke
 	msgItemBuy->CharacterLevel = pCharacterSocket->m_character.Level;
 	util::strncpy(msgItemBuy->ItemName, pItem->ItemInfo->ItemName, SIZE_MAX_ITEM_NAME);
 
-	// start 2011-12-12 by hskim, GLog 2Â÷
+	// start 2011-12-12 by hskim, GLog 2ì°¨
 	msgItemBuy->AccountUniqueNumber = pCharacterSocket->m_character.AccountUniqueNumber;
 	msgItemBuy->ItemNum = pItem->ItemInfo->ItemNum;
 	msgItemBuy->GLog = bGLog;
-	// end 2011-12-12 by hskim, GLog 2Â÷
+	// end 2011-12-12 by hskim, GLog 2ì°¨
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemBuyBuf, MSG_SIZE(MSG_FL_LOG_ITEM_BUY_ITEM));
 	return TRUE;
 }
 
 
-// 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+// 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nAmount, INT64 nSpend, BOOL bDummy, INT ntype, INFINITY_SHOP_INFO *pBuyInfinityItemInfo)
 {											
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;	
@@ -902,9 +902,9 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacter
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemBuyBuf, MSG_SIZE(MSG_FL_LOG_ITEM_BUY_CASH_PRICE));
  	return TRUE;
 }
-// end 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+// end 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 
-// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - ÀÎÀÚÃß°¡(, vectENCHANT *i_pVectEnchantList/*=NULL*/)
+// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì¸ìì¶”ê°€(, vectENCHANT *i_pVectEnchantList/*=NULL*/)
 BOOL CAtumLogSender::SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, vectENCHANT *i_pVectEnchantList/*=NULL*/)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
@@ -915,12 +915,12 @@ BOOL CAtumLogSender::SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSock
 	msgItemSell->Item4Log = *pItem;
 	msgItemSell->ChangeCount = nChangeCount;
 	msgItemSell->RemainedMoney = RemainedMoney;
-	msgItemSell->PrefixCodeNum		= pItem->PrefixCodeNum;			// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Á¢µÎ
-	msgItemSell->SuffixCodeNum		= pItem->SuffixCodeNum;			// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Á¢¹Ì
-	msgItemSell->EnchatItemNumCount	= 0;							// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - ÀÎÃ¦Æ® °³¼ö
+	msgItemSell->PrefixCodeNum		= pItem->PrefixCodeNum;			// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì ‘ë‘
+	msgItemSell->SuffixCodeNum		= pItem->SuffixCodeNum;			// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì ‘ë¯¸
+	msgItemSell->EnchatItemNumCount	= 0;							// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì¸ì±ˆíŠ¸ ê°œìˆ˜
 	
 	if(i_pVectEnchantList)
-	{// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - ÀÎÃ¦Æ® ¸®½ºÆ® Á¤º¸ ¸¸µé±â
+	{// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì¸ì±ˆíŠ¸ ë¦¬ìŠ¤íŠ¸ ì •ë³´ ë§Œë“¤ê¸°
 		msgItemSell->EnchatItemNumCount	= i_pVectEnchantList->size();
 		INT *pEnchantItemNum			= (INT*)(msgItemSellBuf+MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM));
 		for(int i=0; i < msgItemSell->EnchatItemNumCount; i++)
@@ -935,7 +935,7 @@ BOOL CAtumLogSender::SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSock
 		}
 	}
 
-	// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Àü¼Û Å©±â ¼öÁ¤
+	// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì „ì†¡ í¬ê¸° ìˆ˜ì •
 	//g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemSellBuf, MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM));
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemSellBuf, MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM) + msgItemSell->EnchatItemNumCount*sizeof(INT));
 	return TRUE;
@@ -968,9 +968,9 @@ BOOL CAtumLogSender::SendLogMessageITEMUseENERGY(CFieldIOCPSocket *pCharacterSoc
 	return TRUE;
 }
 
-// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - ÀÎÀÚÃß°¡(, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0)
-// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
+// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - ì¸ìì¶”ê°€(, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0)
+// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
 //BOOL CAtumLogSender::SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_enchantLogType, int i_nPrefixCodeNum/*=0*/, int i_nSuffixCodeNum/*=0*/)
 BOOL CAtumLogSender::SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pTargetItemG, ITEM_GENERAL *i_pEnchantItemG, int i_nEnchantCnt, BOOL i_bSuccessFlag, ITEM_GENERAL *i_pAddedItemG_1/*=NULL*/, ITEM_GENERAL *i_pAddedItemG_2/*=NULL*/)
 {
@@ -979,25 +979,25 @@ BOOL CAtumLogSender::SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSo
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_USE_ENCHANT, T_FL_LOG_ITEM_USE_ENCHANT, msgItemEnchant, msgItemEnchantBuf);
 	msgItemEnchant->CharacterUniqueNumber	= pCharacterSocket->m_character.CharacterUniqueNumber;
 	msgItemEnchant->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 //	msgItemEnchant->Item4Log				= *pItem;
 	msgItemEnchant->EnchantLogType				= GetEnchantLogType(i_pEnchantItemG->ItemInfo, i_bSuccessFlag);
 	msgItemEnchant->Item4Log					= *i_pTargetItemG;
-	msgItemEnchant->nTargetItemPrefixCodeNum	= i_pTargetItemG->PrefixCodeNum;	// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - 
-	msgItemEnchant->nTargetItemSuffixCodeNum	= i_pTargetItemG->SuffixCodeNum;	// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå -
-	msgItemEnchant->nTargetItemEnchantCnt		= i_nEnchantCnt;					// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	msgItemEnchant->nEnchantItemKind			= i_pEnchantItemG->Kind;			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	msgItemEnchant->nEnchantItemNum				= i_pEnchantItemG->ItemNum;			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	msgItemEnchant->bSuccessFlag				= i_bSuccessFlag;					// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+	msgItemEnchant->nTargetItemPrefixCodeNum	= i_pTargetItemG->PrefixCodeNum;	// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - 
+	msgItemEnchant->nTargetItemSuffixCodeNum	= i_pTargetItemG->SuffixCodeNum;	// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ -
+	msgItemEnchant->nTargetItemEnchantCnt		= i_nEnchantCnt;					// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	msgItemEnchant->nEnchantItemKind			= i_pEnchantItemG->Kind;			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	msgItemEnchant->nEnchantItemNum				= i_pEnchantItemG->ItemNum;			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	msgItemEnchant->bSuccessFlag				= i_bSuccessFlag;					// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 	if(i_pAddedItemG_1)
 	{
-		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
+		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
 		msgItemEnchant->arrAddedItemUID[0]			= i_pAddedItemG_1->UniqueNumber;
 		msgItemEnchant->arrAddedItemNum[0]			= i_pAddedItemG_1->ItemNum;
 	}
 	if(i_pAddedItemG_2)
 	{
-		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
+		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
 		msgItemEnchant->arrAddedItemUID[1]			= i_pAddedItemG_2->UniqueNumber;
 		msgItemEnchant->arrAddedItemNum[1]			= i_pAddedItemG_2->ItemNum;
 	}
@@ -1007,13 +1007,13 @@ BOOL CAtumLogSender::SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSo
 	return TRUE;
 }
 
-// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMStoreITEM() ÀÎÀÚ Ãß°¡
+// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMStoreITEM() ì¸ì ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageITEMStoreITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts)
 {
 	if (pCharacterSocket == NULL || pItem == NULL) return FALSE;
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_STORE_ITEM, T_FL_LOG_ITEM_STORE_ITEM, msgItemStoreItem, msgItemStoreItemBuf);
-// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - ·Î±× Àü¼ÛÇÏ±â Ãß°¡
+// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - ë¡œê·¸ ì „ì†¡í•˜ê¸° ì¶”ê°€
 //	msgItemStoreItem->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 //	msgItemStoreItem->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
@@ -1026,14 +1026,14 @@ BOOL CAtumLogSender::SendLogMessageITEMStoreITEM(CFieldIOCPSocket *pCharacterSoc
 		msgItemStoreItem->CurrentMapIndex		= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	}
 	msgItemStoreItem->Item4Log = *pItem;
-	msgItemStoreItem->ChangeCount				= i_nChangeCnts;	// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - 
+	msgItemStoreItem->ChangeCount				= i_nChangeCnts;	// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - 
 	
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgItemStoreItemBuf, MSG_SIZE(MSG_FL_LOG_ITEM_STORE_ITEM));
 
 	return TRUE;
 }
 
-// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - updated like down.
+// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - updated like down.
 //BOOL CAtumLogSender::SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket, INT i_ItemNum, INT i_nCurrentCount, UID64_t i_64ItemUID/*=0*/)
 BOOL CAtumLogSender::SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket, BOOL i_bIsSuccess, ITEM_GENERAL *i_pTargetItemG, ITEM_UID_W_ITEMNUM_COUNT i_arrSourceItemList[COUNT_ITEM_MIXING_SOURCE])
 {
@@ -1041,19 +1041,19 @@ BOOL CAtumLogSender::SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_USE_MIX, T_FL_LOG_ITEM_USE_MIX, pSLogMix, SendBuf);
 	pSLogMix->CharacterUniqueNumber		= pCharacterSocket->m_character.CharacterUniqueNumber;
 	pSLogMix->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 //	pSLogMix->Item4Log.ItemUniqueNumber	= i_64ItemUID;
 //	pSLogMix->Item4Log.ItemNum			= i_ItemNum;
 //	pSLogMix->Item4Log.CurrentCount		= i_nCurrentCount;
-	pSLogMix->Item4Log					= *i_pTargetItemG;			// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-	pSLogMix->IsSuccess					= i_bIsSuccess;				// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-	memcpy(pSLogMix->arrSourceItemList, i_arrSourceItemList, sizeof(i_arrSourceItemList[0]) * COUNT_ITEM_MIXING_SOURCE);		// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+	pSLogMix->Item4Log					= *i_pTargetItemG;			// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+	pSLogMix->IsSuccess					= i_bIsSuccess;				// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+	memcpy(pSLogMix->arrSourceItemList, i_arrSourceItemList, sizeof(i_arrSourceItemList[0]) * COUNT_ITEM_MIXING_SOURCE);		// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 	
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_ITEM_USE_MIX));
 	return TRUE;
 }
 
-// Ä³¸¯¸í º¯°æ, atum_backup_log_item_trade Å×ÀÌºí¿¡ ÀúÀå
+// ìºë¦­ëª… ë³€ê²½, atum_backup_log_item_trade í…Œì´ë¸”ì— ì €ì¥
 BOOL CAtumLogSender::SendLogMessageITEMUseChangeCharacterName(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, char *i_szOriginCharName)
 {
 	if (pCharacterSocket == NULL) return FALSE;
@@ -1071,7 +1071,7 @@ BOOL CAtumLogSender::SendLogMessageITEMUseChangeCharacterName(CFieldIOCPSocket *
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMBazaarSend(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pToChar)
-/// \brief		°³ÀÎ»óÁ¡ °Å·¡: ÁÖ±â
+/// \brief		ê°œì¸ìƒì  ê±°ë˜: ì£¼ê¸°
 /// \author		cmkwon
 /// \date		2006-07-27 ~ 2006-07-27
 /// \warning	
@@ -1085,11 +1085,11 @@ BOOL CAtumLogSender::SendLogMessageITEMBazaarSend(CFieldIOCPSocket *pCharacterSo
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_BAZAAR_SEND, T_FL_LOG_ITEM_BAZAAR_SEND, msgItemTradeSend, msgItemTradeSendBuf);
 
-	// 2008-09-08 by cmkwon, °³ÀÎ»óÁ¡ ·Î±× ¹ö±× ¼öÁ¤ ¹× ·Î±× Ãß°¡ - ±âÁ¸ ¾ÆÀÌÅÛÀÌ ¾øÀ» °æ¿ìµµ ·Î±× ³²±ä´Ù.
+	// 2008-09-08 by cmkwon, ê°œì¸ìƒì  ë¡œê·¸ ë²„ê·¸ ìˆ˜ì • ë° ë¡œê·¸ ì¶”ê°€ - ê¸°ì¡´ ì•„ì´í…œì´ ì—†ì„ ê²½ìš°ë„ ë¡œê·¸ ë‚¨ê¸´ë‹¤.
 	//msgItemTradeSend->CharacterUniqueNumber		= pCharacterSocket->m_character.CharacterUniqueNumber;
 	//msgItemTradeSend->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 
-	// 2008-09-08 by cmkwon, °³ÀÎ»óÁ¡ ·Î±× ¹ö±× ¼öÁ¤ ¹× ·Î±× Ãß°¡ - ±âÁ¸ ¾ÆÀÌÅÛÀÌ ¾øÀ» °æ¿ìµµ ·Î±× ³²±ä´Ù.
+	// 2008-09-08 by cmkwon, ê°œì¸ìƒì  ë¡œê·¸ ë²„ê·¸ ìˆ˜ì • ë° ë¡œê·¸ ì¶”ê°€ - ê¸°ì¡´ ì•„ì´í…œì´ ì—†ì„ ê²½ìš°ë„ ë¡œê·¸ ë‚¨ê¸´ë‹¤.
 	msgItemTradeSend->CharacterUniqueNumber		= pItem->Possess;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
 	{
@@ -1213,7 +1213,7 @@ BOOL CAtumLogSender::SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCha
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT, T_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT, pSMsg, SendBuf);
 	pSMsg->CharacterUniqueNumber	= pItem->Possess;
 
-	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ¿¡¼­ È£ÃâÇÏ´Â ÇÔ¼ö´Â pCharacterSocket Ã¼Å©¸¦ ÇØ¾ßÇÑ´Ù. - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() ì—ì„œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ëŠ” pCharacterSocket ì²´í¬ë¥¼ í•´ì•¼í•œë‹¤. - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	//pSMsg->CurrentMapIndex			= (pCharacterSocket!=NULL?pCharacterSocket->m_character.MapChannelIndex.MapIndex:0);
 	pSMsg->CurrentMapIndex			= 0;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
@@ -1230,8 +1230,8 @@ BOOL CAtumLogSender::SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCha
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			static BOOL SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocket, INT i_nChangeWarPoint, INT i_nTotalWarPoint, INT i_nCumulativeWarPoint, BYTE i_byWPUpdateTy)
-/// \brief		¿öÆ÷ÀÎÆ® ½Àµæ ·Î±×
-///				// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageGetWarPoint()¿¡ ÀÎÀÚ(, BYTE i_byWPUpdateTy) Ãß°¡
+/// \brief		ì›Œí¬ì¸íŠ¸ ìŠµë“ ë¡œê·¸
+///				// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageGetWarPoint()ì— ì¸ì(, BYTE i_byWPUpdateTy) ì¶”ê°€
 /// \author		dhjin
 /// \date		2007-05-15 ~ 2007-05-15
 /// \warning	
@@ -1254,8 +1254,8 @@ BOOL CAtumLogSender::SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocke
 	pSMsg->CumulativeWarPoint	= i_nCumulativeWarPoint;
 	util::strncpy(pSMsg->AccountName, pCharacterSocket->m_character.AccountName, SIZE_MAX_ACCOUNT_NAME);
 	util::strncpy(pSMsg->CharacterName, pCharacterSocket->m_character.CharacterName, SIZE_MAX_CHARACTER_NAME);
-	pSMsg->WPUpdateType			= i_byWPUpdateTy;		// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - ¼³Á¤
-	pSMsg->ArenaPlayCount	= pCharacterSocket->m_character.ArenaPlayInfo.nPlayCount;	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : ÇÃ·¹ÀÌÇÑ ¾Æ·¹³ª È½¼ö ·Î±× Ãß°¡
+	pSMsg->WPUpdateType			= i_byWPUpdateTy;		// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - ì„¤ì •
+	pSMsg->ArenaPlayCount	= pCharacterSocket->m_character.ArenaPlayInfo.nPlayCount;	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : í”Œë ˆì´í•œ ì•„ë ˆë‚˜ íšŸìˆ˜ ë¡œê·¸ ì¶”ê°€
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_WARPOINT));
 	return TRUE;	
@@ -1263,7 +1263,7 @@ BOOL CAtumLogSender::SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocke
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageArenaTeamMatch(BYTE i_nTeamMode, BYTE i_nTeamSize, BYTE i_nStartLevel, BYTE i_nEndLevel, MapIndex_t i_nArenaMap/**jhseol*/)
-/// \brief		ÆÀ ¸ÅÄªµÈ ·Î±×
+/// \brief		íŒ€ ë§¤ì¹­ëœ ë¡œê·¸
 /// \author		dhjin
 /// \date		2007-06-11 ~ 2007-06-11
 /// \warning	
@@ -1271,14 +1271,14 @@ BOOL CAtumLogSender::SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocke
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
-BOOL CAtumLogSender::SendLogMessageArenaTeamMatch(BYTE i_nTeamMode, BYTE i_nTeamSize, BYTE i_nStartLevel, BYTE i_nEndLevel, MapIndex_t i_nArenaMap)	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+BOOL CAtumLogSender::SendLogMessageArenaTeamMatch(BYTE i_nTeamMode, BYTE i_nTeamSize, BYTE i_nStartLevel, BYTE i_nEndLevel, MapIndex_t i_nArenaMap)	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ARENA_TEAM_MATCH, T_FL_LOG_ARENA_TEAM_MATCH, pSMsg, SendBuf);
 	pSMsg->TeamMode			= i_nTeamMode;
 	pSMsg->TeamSize			= i_nTeamSize;
 	pSMsg->StartLevel		= i_nStartLevel;
 	pSMsg->EndLevel			= i_nEndLevel;
-	pSMsg->ArenaMap			= i_nArenaMap;	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+	pSMsg->ArenaMap			= i_nArenaMap;	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_ARENA_TEAM_MATCH));
 	return TRUE;
@@ -1309,7 +1309,7 @@ BOOL CAtumLogSender::SendLogMessageTutorialCOMPLETION(CFieldIOCPSocket *pCharact
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG)
-/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - CAtumLogSender::SendLogMessageITEMAttachItem() Ãß°¡
+/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - CAtumLogSender::SendLogMessageITEMAttachItem() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2008-01-23 ~ 2008-01-23
 /// \warning	
@@ -1326,17 +1326,17 @@ BOOL CAtumLogSender::SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSo
 	pSMsg->Item4Log.ItemNum				= i_pItemG->ItemNum;
 	pSMsg->Item4Log.CurrentCount		= i_pItemG->CurrentCount;
 
-// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - 
+// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - 
 // 	switch(i_pItemG->Kind)
 // 	{
-// 	case ITEMKIND_ACCESSORY_TIMELIMIT:	// 2008-01-23 by cmkwon, ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸® ¾ÆÀÌÅÛÀÇ ³²Àº ½Ã°£
+// 	case ITEMKIND_ACCESSORY_TIMELIMIT:	// 2008-01-23 by cmkwon, ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬ ì•„ì´í…œì˜ ë‚¨ì€ ì‹œê°„
 // 		{
 // 			pSMsg->ReaminTimeSec		= i_pItemG->ItemInfo->Time/1000 - i_pItemG->UsingTimeStamp;
 // 		}
 // 		break;
 // 	}
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ ÇÔ.
+	// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì • í•¨.
 	pSMsg->ReaminTimeSec		= CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(i_pItemG->ItemInfo) - i_pItemG->UsingTimeStamp;
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_ITEM_ATTACH_ITEM));
@@ -1345,8 +1345,8 @@ BOOL CAtumLogSender::SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSo
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG, BYTE i_byItemDeleteTy)
-/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - CAtumLogSender::SendLogMessageITEMDelete() Ãß°¡
-///				// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - ÀÎÀÚÃß°¡(, INT i_nUsedTime/*=0*/)
+/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - CAtumLogSender::SendLogMessageITEMDelete() ì¶”ê°€
+///				// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - ì¸ìì¶”ê°€(, INT i_nUsedTime/*=0*/)
 /// \author		cmkwon
 /// \date		2008-01-23 ~ 2008-01-23
 /// \warning	
@@ -1370,8 +1370,8 @@ BOOL CAtumLogSender::SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket
 	pSMsg->Item4Log.ItemNum				= i_pItemG->ItemNum;
 	pSMsg->Item4Log.CurrentCount		= i_pItemG->CurrentCount;
 	pSMsg->ItemDeleteType				= i_byItemDeleteTy;
-	pSMsg->atCreatedTime				= i_pItemG->CreatedTime;		// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - 
-	pSMsg->nUsedTime					= i_nUsedTime;					// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - 
+	pSMsg->atCreatedTime				= i_pItemG->CreatedTime;		// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - 
+	pSMsg->nUsedTime					= i_nUsedTime;					// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - 
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_ITEM_DELETE));
 	return TRUE;
@@ -1379,7 +1379,7 @@ BOOL CAtumLogSender::SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageUseCoupon(CFieldIOCPSocket *pCharacterSocket, char *i_szAccName, char *i_szCouponNumber)
-/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ÄíÆù »ç¿ë °ÔÀÓ ·Î±×¿¡ Ãß°¡ - CAtumLogSender::SendLogMessageUseCoupon() Ãß°¡
+/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ì¿ í° ì‚¬ìš© ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - CAtumLogSender::SendLogMessageUseCoupon() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2008-01-23 ~ 2008-01-23
 /// \warning	
@@ -1406,7 +1406,7 @@ BOOL CAtumLogSender::SendLogMessageUseCoupon(CFieldIOCPSocket *pCharacterSocket,
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG)
-/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - CAtumLogSender::SendLogMessageITEMDetachItem() Ãß°¡
+/// \brief		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - CAtumLogSender::SendLogMessageITEMDetachItem() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2008-01-23 ~ 2008-01-23
 /// \warning	
@@ -1423,17 +1423,17 @@ BOOL CAtumLogSender::SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSo
 	pSMsg->Item4Log.ItemNum				= i_pItemG->ItemNum;
 	pSMsg->Item4Log.CurrentCount		= i_pItemG->CurrentCount;
 
-// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - 
+// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - 
 // 	switch(i_pItemG->Kind)
 // 	{
-// 	case ITEMKIND_ACCESSORY_TIMELIMIT:	// 2008-01-23 by cmkwon, ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸® ¾ÆÀÌÅÛÀÇ ³²Àº ½Ã°£
+// 	case ITEMKIND_ACCESSORY_TIMELIMIT:	// 2008-01-23 by cmkwon, ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬ ì•„ì´í…œì˜ ë‚¨ì€ ì‹œê°„
 // 		{
 // 			pSMsg->ReaminTimeSec		= i_pItemG->ItemInfo->Time/1000 - i_pItemG->UsingTimeStamp;
 // 		}
 // 		break;
 // 	}
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ ÇÔ.
+	// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì • í•¨.
 	if(COMPARE_BIT_FLAG(i_pItemG->ItemInfo->ItemAttribute, ITEM_ATTR_TIME_LIMITE))
 	{
 		pSMsg->ReaminTimeSec		= CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(i_pItemG->ItemInfo) - i_pItemG->UsingTimeStamp;
@@ -1445,7 +1445,7 @@ BOOL CAtumLogSender::SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSo
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostStart(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ ¼öÁ¤
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ìˆ˜ì •
 /// \author		dhjin
 /// \date		2007-10-02 ~ 2007-10-02
 /// \warning	
@@ -1465,7 +1465,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostStart(MapIndex_t i_nOutPostMapIdx, BYT
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostEnd(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, char *i_szPossessGuildName)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ ¼öÁ¤
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ìˆ˜ì •
 /// \author		dhjin
 /// \date		2007-10-02 ~ 2007-10-02
 /// \warning	
@@ -1487,7 +1487,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostEnd(MapIndex_t i_nOutPostMapIdx, BYTE 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInflWarStart(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1509,7 +1509,7 @@ BOOL CAtumLogSender::SendLogMessageInflWarStart(MapIndex_t i_nMothershipCreatedM
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInflWarEnd(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell, BOOL i_bDeadFlag)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1532,7 +1532,7 @@ BOOL CAtumLogSender::SendLogMessageInflWarEnd(MapIndex_t i_nMothershipCreatedMap
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostResetStart(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, UID32_t i_resetUserGuildUID, UID32_t i_resetUserCharacterUID)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1557,7 +1557,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostResetStart(MapIndex_t i_nOutPostMapIdx
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostResetDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1580,7 +1580,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostResetDestroy(MapIndex_t i_nOutPostMapI
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostResetComplete(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1601,7 +1601,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostResetComplete(MapIndex_t i_nOutPostMap
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostProtectorDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, mtvectSOutPostProtectorDamage *i_pvectDamageList)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1631,7 +1631,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostProtectorDestroy(MapIndex_t i_nOutPost
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageOutPostSetNextTime(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, UID32_t i_userGuildUID, UID32_t i_userCharacterUID, ATUM_DATE_TIME *i_patNextTime)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-10-16 ~ 2007-10-16
 /// \warning	
@@ -1656,7 +1656,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostSetNextTime(MapIndex_t i_nOutPostMapId
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageExpediencyFund(CFieldIOCPSocket *i_pCharFISoc, MapIndex_t i_nMapIndex, BOOL i_bIncrease, INT i_nCount, INT i_nExpediencyFundRate, INT i_nTotalCount)
-/// \brief		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ Ãß°¡(CFieldIOCPSocket *i_pCharFISoc, INT i_nExpediencyFundRate)
+/// \brief		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ì¶”ê°€(CFieldIOCPSocket *i_pCharFISoc, INT i_nExpediencyFundRate)
 /// \author		dhjin
 /// \date		2007-10-02 ~ 2007-10-02
 /// \warning	
@@ -1670,9 +1670,9 @@ BOOL CAtumLogSender::SendLogMessageExpediencyFund(CFieldIOCPSocket *i_pCharFISoc
 	pSMsg->MapIndex				= i_nMapIndex;
 	pSMsg->Increase				= i_bIncrease;
 	pSMsg->Count				= i_nCount;
-	pSMsg->ExpediencyFundVRate	= i_nExpediencyFundRate;	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+	pSMsg->ExpediencyFundVRate	= i_nExpediencyFundRate;	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	pSMsg->TotalCount			= i_nTotalCount;
-	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	if(i_pCharFISoc && i_pCharFISoc->IsValidCharacter(FALSE))
 	{
 		pSMsg->CharacterUID	= i_pCharFISoc->GetCharacter()->CharacterUniqueNumber;
@@ -1684,7 +1684,7 @@ BOOL CAtumLogSender::SendLogMessageExpediencyFund(CFieldIOCPSocket *i_pCharFISoc
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pFromChar)
-/// \brief		// °³ÀÎ»óÁ¡ °Å·¡: ¹Ş±â
+/// \brief		// ê°œì¸ìƒì  ê±°ë˜: ë°›ê¸°
 /// \author		cmkwon
 /// \date		2006-07-27 ~ 2006-07-27
 /// \warning	
@@ -1698,11 +1698,11 @@ BOOL CAtumLogSender::SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSo
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_BAZAAR_RECV, T_FL_LOG_ITEM_BAZAAR_RECV, msgItemTradeRecv, msgItemTradeRecvBuf);
 
-	// 2008-09-08 by cmkwon, °³ÀÎ»óÁ¡ ·Î±× ¹ö±× ¼öÁ¤ ¹× ·Î±× Ãß°¡ - ±âÁ¸ ¾ÆÀÌÅÛÀÌ ¾øÀ» °æ¿ìµµ ·Î±× ³²±ä´Ù.
+	// 2008-09-08 by cmkwon, ê°œì¸ìƒì  ë¡œê·¸ ë²„ê·¸ ìˆ˜ì • ë° ë¡œê·¸ ì¶”ê°€ - ê¸°ì¡´ ì•„ì´í…œì´ ì—†ì„ ê²½ìš°ë„ ë¡œê·¸ ë‚¨ê¸´ë‹¤.
 	//msgItemTradeRecv->CharacterUniqueNumber		= pCharacterSocket->m_character.CharacterUniqueNumber;
 	//msgItemTradeRecv->CurrentMapIndex			= pCharacterSocket->m_character.MapChannelIndex.MapIndex;
 	
-	// 2008-09-08 by cmkwon, °³ÀÎ»óÁ¡ ·Î±× ¹ö±× ¼öÁ¤ ¹× ·Î±× Ãß°¡ - ±âÁ¸ ¾ÆÀÌÅÛÀÌ ¾øÀ» °æ¿ìµµ ·Î±× ³²±ä´Ù.
+	// 2008-09-08 by cmkwon, ê°œì¸ìƒì  ë¡œê·¸ ë²„ê·¸ ìˆ˜ì • ë° ë¡œê·¸ ì¶”ê°€ - ê¸°ì¡´ ì•„ì´í…œì´ ì—†ì„ ê²½ìš°ë„ ë¡œê·¸ ë‚¨ê¸´ë‹¤.
 	msgItemTradeRecv->CharacterUniqueNumber		= pItem->Possess;
 	if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
 	{
@@ -1719,12 +1719,12 @@ BOOL CAtumLogSender::SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSo
 	return TRUE;
 }
 
-BOOL CAtumLogSender::SendLogMessageServerInfoTotal(INT i_nClientCount, INT i_nMonsterCount, BOOL i_bGlogUpdate)	  // 2010-06-01 by shcho, GLogDB °ü·Ã -
+BOOL CAtumLogSender::SendLogMessageServerInfoTotal(INT i_nClientCount, INT i_nMonsterCount, BOOL i_bGlogUpdate)	  // 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_SERVER_INFO_TOTAL, T_FL_LOG_SERVER_INFO_TOTAL, msgServerTotal, msgServerTotalBuf);
 	msgServerTotal->ClientCount = i_nClientCount;
 	msgServerTotal->MonsterCount = i_nMonsterCount;
-	msgServerTotal->bGlogUpdate = i_bGlogUpdate;		// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	msgServerTotal->bGlogUpdate = i_bGlogUpdate;		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgServerTotalBuf, MSG_SIZE(MSG_FL_LOG_SERVER_INFO_TOTAL));
 
@@ -1738,7 +1738,7 @@ BOOL CAtumLogSender::SendLogMessageServerInfoMap(const MAP_CHANNEL_INDEX &i_MapC
 	msgServerMap->ChannelIndex = i_MapChannelIndex.ChannelIndex;
 	msgServerMap->ClientCount = i_nClientCount;
 	msgServerMap->MonsterCount = i_nMonsterCount;
-	util::strncpy(msgServerMap->MapName, CAtumSJ::GetMapName(i_MapChannelIndex.MapIndex), SIZE_MAX_MAP_NAME);	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	util::strncpy(msgServerMap->MapName, CAtumSJ::GetMapName(i_MapChannelIndex.MapIndex), SIZE_MAX_MAP_NAME);	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgServerMapBuf, MSG_SIZE(MSG_FL_LOG_SERVER_INFO_MAP));
 
@@ -1764,7 +1764,7 @@ BOOL CAtumLogSender::SendLogMessageHackingLog(CFieldIOCPSocket *pCharFISock, lon
 	pSHacking->CurrentPosition			= pCharFISock->m_character.PositionVector;
 	pSHacking->hackingCode				= i_hackingCode;
 	if(i_szErrString)
-	{// 2006-10-20 by cmkwon, ÇÊµå Ãß°¡µÊ
+	{// 2006-10-20 by cmkwon, í•„ë“œ ì¶”ê°€ë¨
 		util::strncpy(pSHacking->szErrString, i_szErrString, SIZE_STRING_128);
 	}
 	util::strncpy(pSHacking->IPAddress, pCharFISock->GetPeerIP(), SIZE_MAX_IPADDRESS);
@@ -1779,7 +1779,7 @@ BOOL CAtumLogSender::SendLogMessageHackingLog(CFieldIOCPSocket *pCharFISock, lon
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMGiftSend(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, SGIVE_TARGET_CHARACTER *i_pToChar)
-/// \brief		// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 
+/// \brief		// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 
 /// \author		cmkwon
 /// \date		2007-11-15 ~ 2007-11-15
 /// \warning	
@@ -1804,8 +1804,8 @@ BOOL CAtumLogSender::SendLogMessageITEMGiftSend(CFieldIOCPSocket *i_pFISoc, ITEM
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageITEMGiftRecv(UID32_t i_targetCharUID, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, UID32_t i_senderCharUID, char *i_senderCharacterName)
-/// \brief		// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 
-///				// 2007-11-27 by cmkwon, ¼±¹°ÇÏ±â ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMGiftRecv() ÇÔ¼ö ÀÎÀÚ ¼öÁ¤
+/// \brief		// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 
+///				// 2007-11-27 by cmkwon, ì„ ë¬¼í•˜ê¸° ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMGiftRecv() í•¨ìˆ˜ ì¸ì ìˆ˜ì •
 /// \author		cmkwon
 /// \date		2007-11-15 ~ 2007-11-15
 /// \warning	
@@ -1816,9 +1816,9 @@ BOOL CAtumLogSender::SendLogMessageITEMGiftSend(CFieldIOCPSocket *i_pFISoc, ITEM
 BOOL CAtumLogSender::SendLogMessageITEMGiftRecv(UID32_t i_targetCharUID, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, UID32_t i_senderCharUID, char *i_senderCharacterName)
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_TRADE_RECV, T_FL_LOG_ITEM_TRADE_RECV, msgItemTradeRecv, msgItemTradeRecvBuf);
-	msgItemTradeRecv->CharacterUniqueNumber			= i_targetCharUID;		// 2007-11-27 by cmkwon, ¼±¹°ÇÏ±â ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMGiftRecv() ÇÔ¼ö ÀÎÀÚ ¼öÁ¤
-	msgItemTradeRecv->PeerCharacterUniqueNumber		= i_senderCharUID;		// 2007-11-27 by cmkwon, ¼±¹°ÇÏ±â ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMGiftRecv() ÇÔ¼ö ÀÎÀÚ ¼öÁ¤
-	util::strncpy(msgItemTradeRecv->PeerCharacterName, i_senderCharacterName, SIZE_MAX_CHARACTER_NAME);	// 2007-11-27 by cmkwon, ¼±¹°ÇÏ±â ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMGiftRecv() ÇÔ¼ö ÀÎÀÚ ¼öÁ¤
+	msgItemTradeRecv->CharacterUniqueNumber			= i_targetCharUID;		// 2007-11-27 by cmkwon, ì„ ë¬¼í•˜ê¸° ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMGiftRecv() í•¨ìˆ˜ ì¸ì ìˆ˜ì •
+	msgItemTradeRecv->PeerCharacterUniqueNumber		= i_senderCharUID;		// 2007-11-27 by cmkwon, ì„ ë¬¼í•˜ê¸° ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMGiftRecv() í•¨ìˆ˜ ì¸ì ìˆ˜ì •
+	util::strncpy(msgItemTradeRecv->PeerCharacterName, i_senderCharacterName, SIZE_MAX_CHARACTER_NAME);	// 2007-11-27 by cmkwon, ì„ ë¬¼í•˜ê¸° ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMGiftRecv() í•¨ìˆ˜ ì¸ì ìˆ˜ì •
 	msgItemTradeRecv->Item4Log						= *i_pItemGen;
 	msgItemTradeRecv->ChangeCount					= i_nChangeCnts;
 	msgItemTradeRecv->bGiftItem						= TRUE;
@@ -1829,7 +1829,7 @@ BOOL CAtumLogSender::SendLogMessageITEMGiftRecv(UID32_t i_targetCharUID, ITEM_GE
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageNotifyMsgDelete(SNOTIFY_MSG *i_pNotifyMsg)
-/// \brief		// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö - CAtumLogSender::SendLogMessageNotifyMsgDelete() Ãß°¡
+/// \brief		// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ - CAtumLogSender::SendLogMessageNotifyMsgDelete() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-11-28 ~ 2007-11-28
 /// \warning	
@@ -1854,7 +1854,7 @@ BOOL CAtumLogSender::SendLogMessageNotifyMsgDelete(SNOTIFY_MSG *i_pNotifyMsg)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageRearrangeDeleteItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pDelItemGen, INT i_nChangeCnts, BOOL i_bStoreItem/*=FALSE*/)
-/// \brief		// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+/// \brief		// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 /// \author		cmkwon
 /// \date		2007-11-29 ~ 2007-11-29
 /// \warning	
@@ -1865,7 +1865,7 @@ BOOL CAtumLogSender::SendLogMessageNotifyMsgDelete(SNOTIFY_MSG *i_pNotifyMsg)
 BOOL CAtumLogSender::SendLogMessageRearrangeDeleteItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pDelItemGen, INT i_nChangeCnts, BOOL i_bStoreItem/*=FALSE*/)
 {
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+	// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 	
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_TRADE_SEND, T_FL_LOG_ITEM_TRADE_SEND, msgItemTradeSend, msgItemTradeSendBuf);
 	msgItemTradeSend->CharacterUniqueNumber		= i_pFISoc->m_character.CharacterUniqueNumber;
@@ -1883,7 +1883,7 @@ BOOL CAtumLogSender::SendLogMessageRearrangeDeleteItem(CFieldIOCPSocket *i_pFISo
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageRearrangeItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, BOOL i_bStoreItem/*=FALSE*/)
-/// \brief		// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - CAtumLogSender::SendLogMessageRearrangeItem() Ãß°¡ ÇÏ±â
+/// \brief		// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - CAtumLogSender::SendLogMessageRearrangeItem() ì¶”ê°€ í•˜ê¸°
 /// \author		cmkwon
 /// \date		2007-11-29 ~ 2007-11-29
 /// \warning	
@@ -1894,7 +1894,7 @@ BOOL CAtumLogSender::SendLogMessageRearrangeDeleteItem(CFieldIOCPSocket *i_pFISo
 BOOL CAtumLogSender::SendLogMessageRearrangeItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, BOOL i_bStoreItem/*=FALSE*/)
 {
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+	// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_TRADE_RECV, T_FL_LOG_ITEM_TRADE_RECV, msgItemTradeRecv, msgItemTradeRecvBuf);
 	msgItemTradeRecv->CharacterUniqueNumber		= i_pFISoc->m_character.CharacterUniqueNumber;	
@@ -1975,7 +1975,7 @@ BOOL CAtumLogSender::SendLogMessageDisMemberGuild(CFieldIOCPSocket *i_pCharFISoc
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageWarContribution(UID32_t i_nUID, MapIndex_t i_nMapIndex, UID64_t i_nContribution, INT i_nPay, BYTE i_byPayType)
-/// \brief		ÀüÀï º¸»ó Ãß°¡¾È
+/// \brief		ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
 /// \author		dhjin
 /// \date		2008-12-23 ~ 2008-12-23
 /// \warning	
@@ -2016,7 +2016,7 @@ BOOL CAtumLogSender::SendLogMessageWarContributionGear(MSG_FL_LOG_WAR_CONTRIBUTI
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageLuckyDrop(MSG_FL_LOG_LUCKY_DROP * i_pLuckyDrop)
-/// \brief		// 2009-03-31 by dhjin, ·°Å°¸Ó½Å ·Î±×
+/// \brief		// 2009-03-31 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ë¡œê·¸
 /// \author		dhjin
 /// \date		2009-03-31 ~ 2009-03-31
 /// \warning	
@@ -2041,7 +2041,7 @@ BOOL CAtumLogSender::SendLogMessageLuckyDrop(MSG_FL_LOG_LUCKY_DROP * i_pLuckyDro
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityStart(CFieldIOCPSocket * i_pPlayerSoc)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ °ü·Ã Á¤º¸ 
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ ê´€ë ¨ ì •ë³´ 
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2069,7 +2069,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityStart(CFieldIOCPSocket * i_pPlayerSoc
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityStartItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2094,7 +2094,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityStartItem(CFieldIOCPSocket * i_pPlaye
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityCinema(CINEMAINFO * i_pCinemaInfo, InfinityCreateUID_t i_InfinityCreateUID)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¿¬Ãâ ·Î±×
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì—°ì¶œ ë¡œê·¸
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2111,8 +2111,8 @@ BOOL CAtumLogSender::SendLogMessageInfinityCinema(CINEMAINFO * i_pCinemaInfo, In
 	InfinityCinemaLog->InfinityCreateUID		= i_InfinityCreateUID;
 	InfinityCinemaLog->MonsterIdx				= i_pCinemaInfo->MonsterIdx;
 	InfinityCinemaLog->ObjectIdx				= i_pCinemaInfo->ObjectIdx;
-	InfinityCinemaLog->StartTime				= i_pCinemaInfo->StartTime;	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - ±¸Á¶ º¯°æ
-	InfinityCinemaLog->QuestIndex				= i_pCinemaInfo->QuestIndex; // 2011-03-09 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡
+	InfinityCinemaLog->StartTime				= i_pCinemaInfo->StartTime;	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - êµ¬ì¡° ë³€ê²½
+	InfinityCinemaLog->QuestIndex				= i_pCinemaInfo->QuestIndex; // 2011-03-09 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€
 	g_pFieldGlobal->SendLogFieldServer2LogServer(SendBuf, MSG_SIZE(MSG_FL_LOG_INFINITY_CINEMA));
 
 	return TRUE;	
@@ -2120,7 +2120,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityCinema(CINEMAINFO * i_pCinemaInfo, In
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageMonsterSkill(MonIdx_t i_MonIdx, ItemNum_t i_ItemNum)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ½ºÅ³ »ç¿ë½Ã
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš©ì‹œ
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2140,7 +2140,7 @@ BOOL CAtumLogSender::SendLogMessageMonsterSkill(MonIdx_t i_MonIdx, ItemNum_t i_I
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageHPActionTalk(MonIdx_t i_MonIdx, char * i_pHPTalk)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ´ëÈ­ »ç¿ë½Ã
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ëŒ€í™” ì‚¬ìš©ì‹œ
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2160,7 +2160,7 @@ BOOL CAtumLogSender::SendLogMessageHPActionTalk(MonIdx_t i_MonIdx, char * i_pHPT
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityFin(CFieldIOCPSocket * i_pPlayerSoc, BOOL i_bClear)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á °ü·Ã Á¤º¸ 
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œ ê´€ë ¨ ì •ë³´ 
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2192,7 +2192,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityFin(CFieldIOCPSocket * i_pPlayerSoc, 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityFinItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2217,7 +2217,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityFinItem(CFieldIOCPSocket * i_pPlayerS
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityFinAliveKeyMonster(MonIdx_t i_MonIdx)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã »ì¾ÆÀÖ´Â ¸ó½ºÅÍ Á¤º¸
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„° ì •ë³´
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2236,7 +2236,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityFinAliveKeyMonster(MonIdx_t i_MonIdx)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::SendLogMessageInfinityLeaveItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ÀÎÇÇ Å»Åğ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+/// \brief		ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¸í”¼ íƒˆí‡´ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -2259,7 +2259,7 @@ BOOL CAtumLogSender::SendLogMessageInfinityLeaveItem(CFieldIOCPSocket * i_pPlaye
 	return TRUE;
 }
 
-// 2010-06-01 by shcho, GLogDB °ü·Ã -
+// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 BOOL CAtumLogSender::SendGLogEventParticipationRate(MSG_FL_LOG_EVENT_PARTICIPATION_RATE * i_pEventMSG) 
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_EVENT_PARTICIPATION_RATE, T_FL_LOG_EVENT_PARTICIPATION_RATE, pSMsg, SendBuf);
@@ -2275,7 +2275,7 @@ BOOL CAtumLogSender::SendGLogEventParticipationRate(MSG_FL_LOG_EVENT_PARTICIPATI
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumLogSender::(CFieldIOCPSocket *pCharacterSocket, UID64_t	nUniqueNumber, Experience_t	PetTotalExp, Experience_t PetAcquisitionExp, int fromPetLevel, int toPetLevel)
-/// \brief		// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ·¹º§ º¯°æ
+/// \brief		// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€ê²½
 /// \author		hskim
 /// \date		2011-09-15
 /// \warning
@@ -2283,7 +2283,7 @@ BOOL CAtumLogSender::SendGLogEventParticipationRate(MSG_FL_LOG_EVENT_PARTICIPATI
 /// \param
 /// \return	
 ///////////////////////////////////////////////////////////////////////////////
-BOOL CAtumLogSender::SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, UID64_t	nUniqueNumber, Experience_t	PetTotalExp, Experience_t PetAcquisitionExp, int fromPetLevel, int toPetLevel)		// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+BOOL CAtumLogSender::SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, UID64_t	nUniqueNumber, Experience_t	PetTotalExp, Experience_t PetAcquisitionExp, int fromPetLevel, int toPetLevel)		// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 {
 	if (pCharacterSocket == NULL) return FALSE;
 
@@ -2293,11 +2293,11 @@ BOOL CAtumLogSender::SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, 
 	msgLevel->CurrentPosition = pCharacterSocket->m_character.PositionVector;
 	msgLevel->FromPetLevel = fromPetLevel;
 	msgLevel->ToPetLevel = toPetLevel;
-	// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+	// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 	msgLevel->UniqueNumber = nUniqueNumber;
 	msgLevel->PetTotalExp = PetTotalExp;
 	msgLevel->PetAcquisitionExp = PetAcquisitionExp;
-	// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+	// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 	msgLevel->TotalPlayTime = pCharacterSocket->GetTotalPlayTimeInSeconds();
 
 	g_pFieldGlobal->SendLogFieldServer2LogServer(msgLevelBuf, MSG_SIZE(MSG_FL_LOG_PET_LEVEL));
@@ -2305,7 +2305,7 @@ BOOL CAtumLogSender::SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, 
 	return TRUE;	
 }
 
-// start 2012-01-08 by hskim, GLog 2Â÷
+// start 2012-01-08 by hskim, GLog 2ì°¨
 BOOL CAtumLogSender::SendLogMessageConnectUserNew(char *pAccountName)
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_CONNECT_USER_NEW, T_FL_LOG_CONNECT_USER_NEW, pSMsg, SendBuf);
@@ -2323,9 +2323,9 @@ BOOL CAtumLogSender::SendLogMessageConnectUserLogin(char *pAccountName)
 
 	return TRUE;	
 }
-// end 2012-01-08 by hskim, GLog 2Â÷
+// end 2012-01-08 by hskim, GLog 2ì°¨
 
-// start 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// start 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 BOOL CAtumLogSender::SendLogMessageStatisticsMeney(MSG_FL_LOG_STATISTICS_MONEY *i_pSMoney)
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_STATISTICS_MONEY, T_FL_LOG_STATISTICS_MONEY, pSMsg, SendBuf);
@@ -2341,9 +2341,9 @@ BOOL CAtumLogSender::SendLogMessageStatisticsMeney(MSG_FL_LOG_STATISTICS_MONEY *
 
 	return TRUE;
 }
-// end 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// end 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
-// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 BOOL CAtumLogSender::SendLogMessageFixedTermShapeStart(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, ItemNum_t ShapeItemNum)
 {
 	if( pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE) || pItem == NULL ) return FALSE;
@@ -2379,9 +2379,9 @@ BOOL CAtumLogSender::SendLogMessageFixedTermShapeEnd(CFieldIOCPSocket *pCharacte
 
 	return TRUE;
 }
-// end 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+// end 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
-// start 2012-11-21 by khkim, GLog (¼öÁ¤)
+// start 2012-11-21 by khkim, GLog (ìˆ˜ì •)
 BOOL CAtumLogSender::SendLogAccountConnect(MSG_FL_LOG_ACCOUNTCONNECT *i_AccountParameter)
 {
 	// todo : remove this method
@@ -2413,7 +2413,7 @@ BOOL CAtumLogSender::SendLogServer(MSG_FL_LOG_SERVER *i_Server)
 }
 // end 2012-10-08 by khkim, GLog
 
-// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
+// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageCollectionState(CFieldIOCPSocket *pCharacterSocket, COLLECTION_INFO *i_pCollection, BYTE i_nState)
 {
 	if ( NULL == i_pCollection )
@@ -2449,9 +2449,9 @@ BOOL CAtumLogSender::SendLogMessageCollectionShapeChange(MSG_FL_LOG_COLLECTION_S
 	
 	return TRUE;
 }
-// end 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
+// end 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
 
-// 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+// 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 BOOL CAtumLogSender::SendLogMessageAccountInflChange_byAdmin(UID32_t i_nAccountUID, UID32_t i_nCharacterUID, BYTE i_nBeforeInfl, BYTE i_nAfterInfl, UID32_t i_nAdminCharacterUID)
 {
 	INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN, T_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN, pSMsg, SendBuf);
@@ -2464,4 +2464,4 @@ BOOL CAtumLogSender::SendLogMessageAccountInflChange_byAdmin(UID32_t i_nAccountU
 	
 	return TRUE;
 }
-// end 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+// end 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€

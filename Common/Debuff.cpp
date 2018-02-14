@@ -1,4 +1,4 @@
-// Debuff.cpp: implementation of the CDebuff class.
+ï»¿// Debuff.cpp: implementation of the CDebuff class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -27,18 +27,18 @@ void CDebuff::InitDebuff() {
 
 /**************************************************************************************
 **
-**	µğ¹öÇÁ Á¤º¸ µî·Ï.
+**	ë””ë²„í”„ ì •ë³´ ë“±ë¡.
 **
 **	Create Info : ??. ??. ??
 **
-**	Update Info : 2010. 06. 08 by hsLee. - ¹ë·±½º ÀÎÀÚ Ãß°¡. ( fIncreasePowerRatio )
+**	Update Info : 2010. 06. 08 by hsLee. - ë°¸ëŸ°ìŠ¤ ì¸ì ì¶”ê°€. ( fIncreasePowerRatio )
 **
 ***************************************************************************************/
 void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePowerRatio /*= 1.0f*/ ) 
 {
 	if(NULL == i_pSkill) 
 	{
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return;
 	}
 
@@ -49,7 +49,7 @@ void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePow
 	DebuffInfo.Kind				= i_pSkill->Kind;
 	DebuffInfo.DesParam			= i_pSkill->ArrDestParameter[i_nDesParamIdx];
 
-	// 2010. 06. 08 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¾Æ±º µ¿ÀÏ ¹ë·±½º Àû¿ë.)
+	// 2010. 06. 08 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì•„êµ° ë™ì¼ ë°¸ëŸ°ìŠ¤ ì ìš©.)
 	//DebuffInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx];
 	DebuffInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx] * fIncreasePowerRatio;
 
@@ -64,11 +64,11 @@ void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePow
 
 	while(itr != m_mtvectDebuffInfo.end()) 
 	{
-		if ( itr->ItemNum == i_pSkill->ItemNum			// 2009-09-09 ~ 2010-01-20 by dhjin, ÀÎÇÇ´ÏÆ¼ - °¡²û ¸ó½ºÅÍ ½ºÅ³ »ç¿ë ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
+		if ( itr->ItemNum == i_pSkill->ItemNum			// 2009-09-09 ~ 2010-01-20 by dhjin, ì¸í”¼ë‹ˆí‹° - ê°€ë” ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš© ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 			&& itr->DesParam == i_pSkill->ArrDestParameter[i_nDesParamIdx]
 			&& itr->SkillLevel <= i_pSkill->SkillLevel) 
 		{
-			// °°Àº µğ¹öÇÁÀÌÁö¸¸ ´õ ³ô°Å³ª °°Àº È¿°ú¿¡ µğ¹öÇÁÀÌ¸é °»½ÅÇÑ´Ù.
+			// ê°™ì€ ë””ë²„í”„ì´ì§€ë§Œ ë” ë†’ê±°ë‚˜ ê°™ì€ íš¨ê³¼ì— ë””ë²„í”„ì´ë©´ ê°±ì‹ í•œë‹¤.
 			itr = m_mtvectDebuffInfo.erase(itr);
 			m_mtvectDebuffInfo.push_back(DebuffInfo);
 			return;
@@ -78,7 +78,7 @@ void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePow
 	m_mtvectDebuffInfo.push_back(DebuffInfo);
 }
 
-BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
+BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {		// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
 	mt_auto_lock mta(&m_mtvectDebuffInfo);
 	mtvectorDebuffInfo::iterator	itr = m_mtvectDebuffInfo.begin();
 	while(itr != m_mtvectDebuffInfo.end()) {
@@ -91,7 +91,7 @@ BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {		// 2011-08-01 by
 	return FALSE;
 }
 
-BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck/* = TRUE*/) {		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
+BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck/* = TRUE*/) {		// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
 	mt_auto_lock mta(&m_mtvectDebuffInfo);
 	
 	if(i_bTimeCheck) {
@@ -124,7 +124,7 @@ BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BO
 
 INT CDebuff::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DEBUFF_INFO *o_pDebuffInfo) {
 	if(NULL == o_pDebuffInfo) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 

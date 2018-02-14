@@ -1,11 +1,11 @@
-#ifndef _ATUM_LOG_SENDER_H_
+ï»¿#ifndef _ATUM_LOG_SENDER_H_
 #define _ATUM_LOG_SENDER_H_
 
 #include "FieldIOCP.h"
 
-// 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+// 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 enum ITEM_BUY_CASH_PRICE_TYPE{BUY_TYPE_SPI=1,BUY_TYPE_WARPOINT,BUY_TYPE_CASH,BUY_TYPE_INFINITY};
-// end 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+// end 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 
 class CAtumLogSender  
 {
@@ -15,11 +15,11 @@ public:
 
 	//static BOOL SendLogMessage(MessageType_t msgType, const char *szAction);
 
-	// Á¢¼Ó ·Î±×
+	// ì ‘ì† ë¡œê·¸
 	static BOOL SendLogMessageLOGIN(CFieldIOCPSocket *pCharacterSocket, UID32_t AccountUniqueNumber);
 	static BOOL SendLogMessageLOGOUT(CFieldIOCPSocket *pCharacterSocket);
 
-	// Ä³¸¯ÅÍ ·Î±×
+	// ìºë¦­í„° ë¡œê·¸
 	static BOOL SendLogMessageLEVEL(CFieldIOCPSocket *pCharacterSocket, int fromLevel, int toLevel);
 	static BOOL SendLogMessageEXP(CFieldIOCPSocket *pCharacterSocket, Experience_t changeExp, Experience_t CharacterExp);
 	static BOOL SendLogMessageSTAT(CFieldIOCPSocket *pCharacterSocket, BYTE kind, BYTE amount = 1.0);
@@ -31,9 +31,9 @@ public:
 	static BOOL SendLogMessagePKLOSS(CFieldIOCPSocket *pCharacterSocket, UID32_t PeerCharacterUniqueNumber);
 	static BOOL SendLogMessagePvEWIN(CFieldIOCPSocket *pCharacterSocket, UID32_t PeerCharacterUniqueNumber);
 	static BOOL SendLogMessagePvELOSS(CFieldIOCPSocket *pCharacterSocket, UID32_t PeerCharacterUniqueNumber);
-	static BOOL SendLogMessageDEAD(CFieldIOCPSocket *pCharacterSocket, BYTE i_nDamageType, ItemNum_t i_ItemNum);		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡
+	static BOOL SendLogMessageDEAD(CFieldIOCPSocket *pCharacterSocket, BYTE i_nDamageType, ItemNum_t i_ItemNum);		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€
 
-	// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - SendLogMessageWARP() ÀÎÀÚ Ãß°¡
+	// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - SendLogMessageWARP() ì¸ì ì¶”ê°€
 	static BOOL SendLogMessageWARP(CFieldIOCPSocket *pCharacterSocket, MapIndex_t CurrentMapIndex, ChannelIndex_t CurChannIdx, AVECTOR3 &CurrentMapPosition, MapIndex_t TargetMapIndex, ChannelIndex_t TargetChannIdx, AVECTOR3 &TargetMapPosition);
 	static BOOL SendLogMessageSpeedHack(CFieldIOCPSocket *pCharacterSocket, BYTE i_byCheckType, INT i_nRecvMoveCounts, INT EngineItemNum,
 										INT ServerPastTime, INT ClientPastTime, INT PastDistance, INT CurrentSpeed);
@@ -41,159 +41,159 @@ public:
 	static BOOL SendLogMessageCREATECHARACTER(CHARACTER *pCharacter);
 	static BOOL SendLogMessageDELETECHARACTER(CHARACTER *pCharacter);
 
-	// º¸½º±Ş ¸ó½ºÅÍ ·Î±×
+	// ë³´ìŠ¤ê¸‰ ëª¬ìŠ¤í„° ë¡œê·¸
 	static BOOL SendLogMessageMonsterBoss(MSG_FL_LOG_MONSTER_BOSS *i_pMsgBossMonLog, string &i_szDropItemList);
-	static BOOL SendLogMessageMSWar(MSG_FL_LOG_MS_WAR *i_pMsgMSWarLog);		// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-	static BOOL SendLogMessageSPWar(MSG_FL_LOG_SP_WAR *i_pMsgSPWarLog);		// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
+	static BOOL SendLogMessageMSWar(MSG_FL_LOG_MS_WAR *i_pMsgMSWarLog);		// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+	static BOOL SendLogMessageSPWar(MSG_FL_LOG_SP_WAR *i_pMsgSPWarLog);		// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
 
-	// ¾ÆÀÌÅÛ ·Î±×(°ÔÀÓ ¸Ó´Ï ·Î±× Æ÷ÇÔ)
+	// ì•„ì´í…œ ë¡œê·¸(ê²Œì„ ë¨¸ë‹ˆ ë¡œê·¸ í¬í•¨)
 
-	// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMCharacterITEM() ÀÎÀÚ Ãß°¡
-	static BOOL SendLogMessageITEMCharacterITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);				// °ÔÀÓ ½ÃÀÛ ½Ã ¸ğµç ¾ÆÀÌÅÛÀÇ ¸®½ºÆ®¸¦ ³²±è
+	// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMCharacterITEM() ì¸ì ì¶”ê°€
+	static BOOL SendLogMessageITEMCharacterITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);				// ê²Œì„ ì‹œì‘ ì‹œ ëª¨ë“  ì•„ì´í…œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë‚¨ê¹€
 
-	static BOOL SendLogMessageITEMCharacterToFromGuildstoreResult(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);	// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±× 
-		static BOOL SendLogMessageITEMGetWithSameAccount(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);	// 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡
+	static BOOL SendLogMessageITEMCharacterToFromGuildstoreResult(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);	// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸ 
+		static BOOL SendLogMessageITEMGetWithSameAccount(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);	// 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€
 	
-	// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-	//static BOOL SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);						// Drop Item ½Àµæ
-	static BOOL SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType);			// Drop Item ½Àµæ, Äù½ºÆ® º¸»ó ¾ÆÀÌÅÛ ½Àµæ, 2Á¶ÇÕ ¿Ï·á ¾ÆÀÌÅÛ ½Àµæ
+	// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+	//static BOOL SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);						// Drop Item ìŠµë“
+	static BOOL SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType);			// Drop Item ìŠµë“, í€˜ìŠ¤íŠ¸ ë³´ìƒ ì•„ì´í…œ ìŠµë“, 2ì¡°í•© ì™„ë£Œ ì•„ì´í…œ ìŠµë“
 	#ifdef _ATUM_SERVER
-	static BOOL SendLogMessageITEMDissolutionITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType);	// 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+	static BOOL SendLogMessageITEMDissolutionITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, BYTE i_byItemUpdateType);	// 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 	#endif
-	static BOOL SendLogMessageITEMTradeSend(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pToChar);		// ¾ÆÀÌÅÛ °Å·¡: ÁÖ±â
-	static BOOL SendLogMessageITEMTradeRecv(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pFromChar);	// ¾ÆÀÌÅÛ °Å·¡: ¹Ş±â
-	static BOOL SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, vectENCHANT *i_pVectEnchantList);					// ¾ÆÀÌÅÛ ¹ö¸®±â
-	static BOOL SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, vectENCHANT *i_pVectEnchantList);		// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
-	// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
-	static BOOL SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, BOOL bWarPoint = FALSE, INT i_nRemainCount=UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION, BOOL bGLog = TRUE);	// 2011-12-12 by hskim, GLog 2Â÷ // ¾ÆÀÌÅÛ ±¸¸Å
+	static BOOL SendLogMessageITEMTradeSend(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pToChar);		// ì•„ì´í…œ ê±°ë˜: ì£¼ê¸°
+	static BOOL SendLogMessageITEMTradeRecv(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pFromChar);	// ì•„ì´í…œ ê±°ë˜: ë°›ê¸°
+	static BOOL SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, vectENCHANT *i_pVectEnchantList);					// ì•„ì´í…œ ë²„ë¦¬ê¸°
+	static BOOL SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, vectENCHANT *i_pVectEnchantList);		// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
+	// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	static BOOL SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, BOOL bWarPoint = FALSE, INT i_nRemainCount=UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION, BOOL bGLog = TRUE);	// 2011-12-12 by hskim, GLog 2ì°¨ // ì•„ì´í…œ êµ¬ë§¤
 
-	// 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+	// 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 	static BOOL SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nAmount, INT64 nSpend, BOOL bDummy , INT ntype, INFINITY_SHOP_INFO *pBuyInfinityItemInfo);
-	// end 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+	// end 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 
-	static BOOL SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, vectENCHANT *i_pVectEnchantList=NULL);	// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - ÀÎÀÚÃß°¡(, vectENCHANT *i_pVectEnchantList=NULL), // ¾ÆÀÌÅÛ ÆÇ¸Å
-	static BOOL SendLogMessageITEMUseITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);											// ¾ÆÀÌÅÛ »ç¿ë
-	static BOOL SendLogMessageITEMUseENERGY(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);										// ¿¡³ÊÁö »ç¿ë
+	static BOOL SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, INT RemainedMoney, vectENCHANT *i_pVectEnchantList=NULL);	// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì¸ìì¶”ê°€(, vectENCHANT *i_pVectEnchantList=NULL), // ì•„ì´í…œ íŒë§¤
+	static BOOL SendLogMessageITEMUseITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);											// ì•„ì´í…œ ì‚¬ìš©
+	static BOOL SendLogMessageITEMUseENERGY(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);										// ì—ë„ˆì§€ ì‚¬ìš©
 
-	// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
-	//static BOOL SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_enchantLogType, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0);	// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - ÀÎÀÚÃß°¡(, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0), // ÀÎÃ¦Æ® »ç¿ë
+	// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
+	//static BOOL SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_enchantLogType, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0);	// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - ì¸ìì¶”ê°€(, int i_nPrefixCodeNum=0, int i_nSuffixCodeNum=0), // ì¸ì±ˆíŠ¸ ì‚¬ìš©
 	static BOOL SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pTargetItemG, ITEM_GENERAL *i_pEnchantItemG, int i_nEnchantCnt, BOOL i_bSuccessFlag, ITEM_GENERAL *i_pAddedItemG_1=NULL, ITEM_GENERAL *i_pAddedItemG_2=NULL);
 
-	static BOOL SendLogMessageITEMAddItemByAdmin(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);				// ¿î¿µÅø¿¡ ÀÇÇÑ ½Àµæ
-	static BOOL SendLogMessageITEMDelItemByAdmin(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);									// ¿î¿µÅø¿¡ ÀÇÇÑ Á¦°Å
-	static BOOL SendLogMessageITEMAddItemByCommand(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);				// ¸í·É¾î¿¡ ÀÇÇÑ ½Àµæ
-	static BOOL SendLogMessageITEMInsertToStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);					// Ã¢°í¿¡ »ğÀÔ
-	static BOOL SendLogMessageITEMDrawFromStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);					// Ã¢°í¿¡¼­ ²¨³»±â
+	static BOOL SendLogMessageITEMAddItemByAdmin(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);				// ìš´ì˜íˆ´ì— ì˜í•œ ìŠµë“
+	static BOOL SendLogMessageITEMDelItemByAdmin(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem);									// ìš´ì˜íˆ´ì— ì˜í•œ ì œê±°
+	static BOOL SendLogMessageITEMAddItemByCommand(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);				// ëª…ë ¹ì–´ì— ì˜í•œ ìŠµë“
+	static BOOL SendLogMessageITEMInsertToStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);					// ì°½ê³ ì— ì‚½ì…
+	static BOOL SendLogMessageITEMDrawFromStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, UID32_t i_StoreCharacterUID);					// ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°
 	//static BOOL SendLogMessageSKILL(const char *szAction);
 
-	// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMStoreITEM() ÀÎÀÚ Ãß°¡
-	static BOOL SendLogMessageITEMStoreITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);					// Ã¢°í ½ÃÀÛ ¾ÆÀÌÅÛ
+	// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMStoreITEM() ì¸ì ì¶”ê°€
+	static BOOL SendLogMessageITEMStoreITEM(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, int i_nChangeCnts);					// ì°½ê³  ì‹œì‘ ì•„ì´í…œ
 
-	// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-	//static BOOL SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket, INT i_ItemNum, INT i_nCurrentCount, UID64_t i_64ItemUID=0);	// Á¶ÇÕ, CurrentCount( 0ÀÌ¸é ½ÇÆĞ 1ÀÌ¸é ¼º°ø)
+	// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+	//static BOOL SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket, INT i_ItemNum, INT i_nCurrentCount, UID64_t i_64ItemUID=0);	// ì¡°í•©, CurrentCount( 0ì´ë©´ ì‹¤íŒ¨ 1ì´ë©´ ì„±ê³µ)
 	static BOOL SendLogMessageITEMUseMix(CFieldIOCPSocket *pCharacterSocket, BOOL i_bIsSuccess, ITEM_GENERAL *i_pTargetItemG, ITEM_UID_W_ITEMNUM_COUNT i_arrSourceItemList[COUNT_ITEM_MIXING_SOURCE]);
 
-	static BOOL SendLogMessageITEMUseChangeCharacterName(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, char *i_szOriginCharName);	// Ä³¸¯¸í º¯°æ, atum_backup_log_item_trade Å×ÀÌºí¿¡ ÀúÀå
-	static BOOL SendLogMessageITEMBazaarSend(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pToChar);	// °³ÀÎ»óÁ¡ °Å·¡: ÁÖ±â
-	static BOOL SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pFromChar);	// °³ÀÎ»óÁ¡ °Å·¡: ¹Ş±â
-	static BOOL SendLogMessageITEMInsertToGuildStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í¿¡ »ğÀÔ.
-	static BOOL SendLogMessageITEMDrawFromGuildStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í¿¡¼­ ²¨³»±â.
-	static BOOL SendLogMessageITEMSPI(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, BYTE i_byItemUpdateTy, INT nChangeCount, INT RemainedMoney);	// 2006-10-27 by cmkwon, SPI ·Î±×
-	static BOOL SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2007-01-11 by cmkwon, ¾ÆÀÌÅÛÀÌº¥Æ®¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ Ãß°¡
+	static BOOL SendLogMessageITEMUseChangeCharacterName(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, char *i_szOriginCharName);	// ìºë¦­ëª… ë³€ê²½, atum_backup_log_item_trade í…Œì´ë¸”ì— ì €ì¥
+	static BOOL SendLogMessageITEMBazaarSend(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pToChar);	// ê°œì¸ìƒì  ê±°ë˜: ì£¼ê¸°
+	static BOOL SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount, CHARACTER *pFromChar);	// ê°œì¸ìƒì  ê±°ë˜: ë°›ê¸°
+	static BOOL SendLogMessageITEMInsertToGuildStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³ ì— ì‚½ì….
+	static BOOL SendLogMessageITEMDrawFromGuildStore(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°.
+	static BOOL SendLogMessageITEMSPI(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, BYTE i_byItemUpdateTy, INT nChangeCount, INT RemainedMoney);	// 2006-10-27 by cmkwon, SPI ë¡œê·¸
+	static BOOL SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount);	// 2007-01-11 by cmkwon, ì•„ì´í…œì´ë²¤íŠ¸ì— ì˜í•œ ì•„ì´í…œ ì¶”ê°€
 
-	// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageGetWarPoint()¿¡ ÀÎÀÚ(, BYTE i_byWPUpdateTy) Ãß°¡
-	static BOOL SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocket, INT i_nChangeWarPoint, INT i_nTotalWarPoint, INT i_nCumulativeWarPoint, BYTE i_byWPUpdateTy);			// 2007-05-15 by dhjin, ¿öÆ÷ÀÎÆ® ½Àµæ ·Î±×
-	static BOOL SendLogMessageArenaTeamMatch(BYTE i_nTeamMode, BYTE i_nTeamSize, BYTE i_nStartLevel, BYTE i_nEndLevel, MapIndex_t i_nArenaMap/**jhseol*/);		// 2007-06-11 by dhjin, ÆÀ ¸ÅÄªµÈ ·Î±×		// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+	// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageGetWarPoint()ì— ì¸ì(, BYTE i_byWPUpdateTy) ì¶”ê°€
+	static BOOL SendLogMessageGetWarPoint(CFieldIOCPSocket *pCharacterSocket, INT i_nChangeWarPoint, INT i_nTotalWarPoint, INT i_nCumulativeWarPoint, BYTE i_byWPUpdateTy);			// 2007-05-15 by dhjin, ì›Œí¬ì¸íŠ¸ ìŠµë“ ë¡œê·¸
+	static BOOL SendLogMessageArenaTeamMatch(BYTE i_nTeamMode, BYTE i_nTeamSize, BYTE i_nStartLevel, BYTE i_nEndLevel, MapIndex_t i_nArenaMap/**jhseol*/);		// 2007-06-11 by dhjin, íŒ€ ë§¤ì¹­ëœ ë¡œê·¸		// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 	// 2007-07-06 by dhjin, Tutorial
 	static BOOL SendLogMessageTutorialCOMPLETION(CFieldIOCPSocket *pCharacterSocket, INT TutorialNumber);
 
-	// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - 
-	static BOOL SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG);	// ¾ÆÀÌÅÛ ÀåÂø
-	static BOOL SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG);	// ¾ÆÀÌÅÛ ÀåÂøÇØÁ¦
-	static BOOL SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG, BYTE i_byItemDeleteTy, INT i_nUsedTime=0);	// ¾ÆÀÌÅÛ »èÁ¦ // 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - ÀÎÀÚÃß°¡(, INT i_nUsedTime/*=0*/)
+	// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - 
+	static BOOL SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG);	// ì•„ì´í…œ ì¥ì°©
+	static BOOL SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG);	// ì•„ì´í…œ ì¥ì°©í•´ì œ
+	static BOOL SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG, BYTE i_byItemDeleteTy, INT i_nUsedTime=0);	// ì•„ì´í…œ ì‚­ì œ // 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - ì¸ìì¶”ê°€(, INT i_nUsedTime/*=0*/)
 
-	// 2008-01-23 by cmkwon, S_F, S_L: ÄíÆù »ç¿ë °ÔÀÓ ·Î±×¿¡ Ãß°¡ - CAtumLogSender::SendLogMessageUseCouponNumber() Ãß°¡
-	static BOOL SendLogMessageUseCoupon(CFieldIOCPSocket *pCharacterSocket, char *i_szAccName, char *i_szCouponNumber);	// ÄíÆù »ç¿ë ·Î±×
+	// 2008-01-23 by cmkwon, S_F, S_L: ì¿ í° ì‚¬ìš© ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - CAtumLogSender::SendLogMessageUseCouponNumber() ì¶”ê°€
+	static BOOL SendLogMessageUseCoupon(CFieldIOCPSocket *pCharacterSocket, char *i_szAccName, char *i_szCouponNumber);	// ì¿ í° ì‚¬ìš© ë¡œê·¸
 
-	// 2007-10-02 by dhjin, ÀüÁø±âÁö, ÆÇ°øºñ °ü·Ã
-	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ ¼öÁ¤
+	// 2007-10-02 by dhjin, ì „ì§„ê¸°ì§€, íŒê³µë¹„ ê´€ë ¨
+	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ìˆ˜ì •
 	static BOOL SendLogMessageOutPostStart(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID);
-	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ ¼öÁ¤
+	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ìˆ˜ì •
 	static BOOL SendLogMessageOutPostEnd(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, char *i_szPossessGuildName);
 
-	static BOOL SendLogMessageInflWarStart(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell);					// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageInflWarEnd(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell, BOOL i_bDeadFlag);	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageOutPostResetStart(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, UID32_t i_resetUserGuildUID, UID32_t i_resetUserCharacterUID);	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageOutPostResetDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset);	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageOutPostResetComplete(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID);													// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageOutPostProtectorDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, mtvectSOutPostProtectorDamage *i_pvectDamageList);	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
-	static BOOL SendLogMessageOutPostSetNextTime(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, UID32_t i_userGuildUID, UID32_t i_userCharacterUID, ATUM_DATE_TIME *i_patNextTime);	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+	static BOOL SendLogMessageInflWarStart(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell);					// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageInflWarEnd(MapIndex_t i_nMothershipCreatedMapIdx, BYTE i_byInflTy, INT i_nMonsterUnitKind, BYTE i_byMonBell, BOOL i_bDeadFlag);	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageOutPostResetStart(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, UID32_t i_resetUserGuildUID, UID32_t i_resetUserCharacterUID);	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageOutPostResetDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset);	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageOutPostResetComplete(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID);													// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageOutPostProtectorDestroy(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, BYTE i_byInflTy4Reset, UID32_t i_guildUID4Reset, mtvectSOutPostProtectorDamage *i_pvectDamageList);	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
+	static BOOL SendLogMessageOutPostSetNextTime(MapIndex_t i_nOutPostMapIdx, BYTE i_byPossessInflTy, UID32_t i_possessGuildUID, UID32_t i_userGuildUID, UID32_t i_userCharacterUID, ATUM_DATE_TIME *i_patNextTime);	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 
-	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀÎÀÚ Ãß°¡(CFieldIOCPSocket *i_pCharFISoc, INT i_nExpediencyFundRate)
+	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¸ì ì¶”ê°€(CFieldIOCPSocket *i_pCharFISoc, INT i_nExpediencyFundRate)
 	static BOOL SendLogMessageExpediencyFund(CFieldIOCPSocket *i_pCharFISoc, MapIndex_t i_nMapIndex, BOOL i_bIncrease, INT i_nCount, INT i_nExpediencyFundRate, INT i_nTotalCount);
 
-	// 2007-11-08 by dhjin, poll·Î±×
+	// 2007-11-08 by dhjin, pollë¡œê·¸
 	static BOOL SendLogMessagePollVote(UID32_t i_nVoteCharacterUID, UID32_t i_nCharacterUID);				// 2007-11-08 by dhjin
 	static BOOL SendLogMessageDeleteLeaderCandidate(UID32_t i_nCharacterUID);								// 2007-11-08 by dhjin
 
-	// 2007-11-09 by dhjin, ¿©´Ü ÇØÃ¼ ·Î±×
+	// 2007-11-09 by dhjin, ì—¬ë‹¨ í•´ì²´ ë¡œê·¸
 	static BOOL SendLogMessageDisMemberGuild(CFieldIOCPSocket *i_pCharFISoc);
 
-	// ¼­¹ö ·Î±×
-	static BOOL SendLogMessageServerInfoTotal(INT i_nClientCount, INT i_nMonsterCount, BOOL i_bGlogUpdate);		// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// ì„œë²„ ë¡œê·¸
+	static BOOL SendLogMessageServerInfoTotal(INT i_nClientCount, INT i_nMonsterCount, BOOL i_bGlogUpdate);		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	static BOOL SendLogMessageServerInfoMap(const MAP_CHANNEL_INDEX &i_MapChannelIndex, INT i_nClientCount, INT i_nMonsterCount);
 
 	static BOOL SendLogMessageHackingLog(CFieldIOCPSocket *pCharFISock, long i_hackingCode, char *i_szErrString=NULL);
 
-	// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 
+	// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 
 	static BOOL SendLogMessageITEMGiftSend(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, SGIVE_TARGET_CHARACTER *i_pToChar);
-	// 2007-11-27 by cmkwon, ¼±¹°ÇÏ±â ·Î±× ¼öÁ¤ - CAtumLogSender::SendLogMessageITEMGiftRecv() ÇÔ¼ö ÀÎÀÚ ¼öÁ¤
+	// 2007-11-27 by cmkwon, ì„ ë¬¼í•˜ê¸° ë¡œê·¸ ìˆ˜ì • - CAtumLogSender::SendLogMessageITEMGiftRecv() í•¨ìˆ˜ ì¸ì ìˆ˜ì •
 	static BOOL SendLogMessageITEMGiftRecv(UID32_t i_targetCharUID, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, UID32_t i_senderCharUID, char *i_senderCharacterName);
 
-	// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
+	// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
 	static BOOL SendLogMessageNotifyMsgDelete(SNOTIFY_MSG *i_pNotifyMsg);
 
-	// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+	// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 	static BOOL SendLogMessageRearrangeDeleteItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pDelItemGen, INT i_nChangeCnts, BOOL i_bStoreItem=FALSE);
 	static BOOL SendLogMessageRearrangeItem(CFieldIOCPSocket *i_pFISoc, ITEM_GENERAL *i_pItemGen, INT i_nChangeCnts, BOOL i_bStoreItem=FALSE);
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
+	// 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
 	static BOOL SendLogMessageWarContribution(UID32_t i_nUID, MapIndex_t i_nMapIndex, UID64_t i_nContribution, INT i_nPay, BYTE i_byPayType);
 	static BOOL SendLogMessageWarContributionGear(MSG_FL_LOG_WAR_CONTRIBUTION_GEAR * i_pContributionGear);
 
-	// 2009-03-31 by dhjin, ·°Å°¸Ó½Å ·Î±×
+	// 2009-03-31 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ë¡œê·¸
 	static BOOL SendLogMessageLuckyDrop(MSG_FL_LOG_LUCKY_DROP * i_pLuckyDrop);
 
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡
-	static BOOL SendLogMessageInfinityStart(CFieldIOCPSocket * i_pPlayerSoc);											// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ °ü·Ã Á¤º¸ 
-	static BOOL SendLogMessageInfinityStartItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-	static BOOL SendLogMessageInfinityCinema(CINEMAINFO * i_pCinemaInfo, InfinityCreateUID_t i_InfinityCreateUID);		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¿¬Ãâ ·Î±×
-	static BOOL SendLogMessageMonsterSkill(MonIdx_t i_MonIdx, ItemNum_t i_ItemNum);										// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ½ºÅ³ »ç¿ë½Ã
-	static BOOL SendLogMessageHPActionTalk(MonIdx_t i_MonIdx, char * i_pHPTalk);										// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ´ëÈ­ »ç¿ë½Ã
-	static BOOL SendLogMessageInfinityFin(CFieldIOCPSocket * i_pPlayerSoc, BOOL i_bClear);								// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á °ü·Ã Á¤º¸ 
-	static BOOL SendLogMessageInfinityFinItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-	static BOOL SendLogMessageInfinityFinAliveKeyMonster(MonIdx_t i_MonIdx);											// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã »ì¾ÆÀÖ´Â ¸ó½ºÅÍ Á¤º¸
-	static BOOL SendLogMessageInfinityLeaveItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ÀÎÇÇ Å»Åğ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€
+	static BOOL SendLogMessageInfinityStart(CFieldIOCPSocket * i_pPlayerSoc);											// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ ê´€ë ¨ ì •ë³´ 
+	static BOOL SendLogMessageInfinityStartItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+	static BOOL SendLogMessageInfinityCinema(CINEMAINFO * i_pCinemaInfo, InfinityCreateUID_t i_InfinityCreateUID);		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì—°ì¶œ ë¡œê·¸
+	static BOOL SendLogMessageMonsterSkill(MonIdx_t i_MonIdx, ItemNum_t i_ItemNum);										// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš©ì‹œ
+	static BOOL SendLogMessageHPActionTalk(MonIdx_t i_MonIdx, char * i_pHPTalk);										// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ëŒ€í™” ì‚¬ìš©ì‹œ
+	static BOOL SendLogMessageInfinityFin(CFieldIOCPSocket * i_pPlayerSoc, BOOL i_bClear);								// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œ ê´€ë ¨ ì •ë³´ 
+	static BOOL SendLogMessageInfinityFinItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+	static BOOL SendLogMessageInfinityFinAliveKeyMonster(MonIdx_t i_MonIdx);											// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„° ì •ë³´
+	static BOOL SendLogMessageInfinityLeaveItem(CFieldIOCPSocket * i_pPlayerSoc, ITEM_GENERAL *i_pItemGen);				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¸í”¼ íƒˆí‡´ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 
-	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	static BOOL SendGLogEventParticipationRate(MSG_FL_LOG_EVENT_PARTICIPATION_RATE * i_pEventMSG);
 
-	// 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ·¹º§ º¯°æ
-	static BOOL SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, UID64_t nUniqueNumber, Experience_t PetTotalExp, Experience_t PetAcquisitionExp, int fromPetLevel, int toPetLevel);		// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+	// 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€ê²½
+	static BOOL SendLogMessagePetLEVEL(CFieldIOCPSocket *pCharacterSocket, UID64_t nUniqueNumber, Experience_t PetTotalExp, Experience_t PetAcquisitionExp, int fromPetLevel, int toPetLevel);		// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 
-	// start 2012-01-08 by hskim, GLog 2Â÷
+	// start 2012-01-08 by hskim, GLog 2ì°¨
 	static BOOL SendLogMessageConnectUserNew(char *pAccountName);
 	static BOOL SendLogMessageConnectUserLogin(char *pAccountName);
 
-	// start 2012-01-16 by hskim, Åë°è - È­ÆĞ
+	// start 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 	static BOOL SendLogMessageStatisticsMeney(MSG_FL_LOG_STATISTICS_MONEY *i_pSMoney);
 	
-	// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 	static BOOL SendLogMessageFixedTermShapeStart(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, ItemNum_t ShapeItemNum);
 	static BOOL SendLogMessageFixedTermShapeEnd(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nShapeItemNum, FIXED_TERM_INFO FixedTermShape);
-	// end 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	// end 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
 	// start 2012-10-08 by khkim, GLog
 	static BOOL SendLogAccountConnect(MSG_FL_LOG_ACCOUNTCONNECT *i_AccountParameter);
@@ -203,10 +203,10 @@ public:
 	static BOOL SendLogServer(MSG_FL_LOG_SERVER *i_Server);
 	// end 2012-10-08 by khkim, GLog	
 
-	static BOOL SendLogMessageCollectionState(CFieldIOCPSocket *pCharacterSocket, COLLECTION_INFO *i_pCollection, BYTE i_nState);		// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
-	static BOOL SendLogMessageCollectionShapeChange(MSG_FL_LOG_COLLECTION_SHAPE_CHANGE *i_pShapeInfo);									// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
+	static BOOL SendLogMessageCollectionState(CFieldIOCPSocket *pCharacterSocket, COLLECTION_INFO *i_pCollection, BYTE i_nState);		// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
+	static BOOL SendLogMessageCollectionShapeChange(MSG_FL_LOG_COLLECTION_SHAPE_CHANGE *i_pShapeInfo);									// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
 
-	static BOOL SendLogMessageAccountInflChange_byAdmin(UID32_t i_nAccountUID, UID32_t i_nCharacterUID, BYTE i_nBeforeInfl, BYTE i_nAfterInfl, UID32_t i_nAdminCharacterUID);	// 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+	static BOOL SendLogMessageAccountInflChange_byAdmin(UID32_t i_nAccountUID, UID32_t i_nCharacterUID, BYTE i_nBeforeInfl, BYTE i_nAfterInfl, UID32_t i_nAdminCharacterUID);	// 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 
 public:
 	CFieldIOCP		*m_pFieldIOCP;

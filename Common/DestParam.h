@@ -1,386 +1,386 @@
-///////////////////////////////////
-// ¾ÆÀÌÅÛÀÇ Ä³¸¯ÅÍ ÆÄ¶óÀÌÅÍ - DES_XXX
+ï»¿///////////////////////////////////
+// ì•„ì´í…œì˜ ìºë¦­í„° íŒŒë¼ì´í„° - DES_XXX
 enum : DestParam_t
 {
-	DES_NULL = 0,		// ´ë»ó ÆÄ¶ó¹ÌÅÍ°¡ ¾ø´Â °æ¿ì »ç¿ë
-	DES_ATTACK_PART = 1,		// °ø°Ý ÆÄÆ®
-	DES_DEFENSE_PART = 2,		// ¹æ¾î ÆÄÆ®
-	DES_FUEL_PART = 3,		// ¿¬·á ÆÄÆ®
-	DES_SOUL_PART = 4,		// °¨ÀÀ ÆÄÆ®
-	DES_SHIELD_PART = 5,		// ½¯µå ÆÄÆ®
-	DES_DODGE_PART = 6,		// È¸ÇÇ ÆÄÆ®
-	DES_ALL_PART = 106,		// ¸ðµç ½ºÅÝ	// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ¸ðµç ½ºÅÝ DES_ALL_PART Ãß°¡
-	DES_BODYCONDITION = 7,		// ¸ö»óÅÂ
-	DES_ENDURANCE_01 = 8,		// ³»±¸µµ 01
-	DES_ENDURANCE_02 = 9,		// ³»±¸µµ 02
-	DES_CHARGING_01 = 10,		// ÀåÅº¼ö 01
-	DES_CHARGING_02 = 11,		// ÀåÅº¼ö 02
-	DES_PROPENSITY = 12,		// ¼ºÇâ
-	DES_HP = 13,		// È÷Æ®Æ÷ÀÎÆ®, MAX HP¸¦ +VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_DP = 89,		// ½¯µå(DEFENSE)Æ÷ÀÎÆ®
-	DES_SP = 14,		// ¼Ò¿ïÆ÷ÀÎÆ®
-	DES_EP = 15,		// ¿£ÁøÆ÷ÀÎÆ®
-	DES_SPRECOVERY = 16,		// ¼Ò¿ïÆ÷ÀÎÆ®È¸º¹·Â
-	DES_HPRECOVERY = 17,		// ¿¡³ÊÁöÆ÷ÀÎÆ®È¸º¹·Â
-	DES_MINATTACK_01 = 18,		// (*) ÃÖ¼Ò °ø°Ý·Â 01
-	DES_MAXATTACK_01 = 71,		// (*) ÃÖ´ë °ø°Ý·Â 01
-	DES_MINATTACK_02 = 19,		// (*) ÃÖ¼Ò °ø°Ý·Â 02
-	DES_MAXATTACK_02 = 72,		// (*) ÃÖ´ë °ø°Ý·Â 02
-	DES_ATTACKPROBABILITY_01 = 20,		// °ø°ÝÈ®·ü 01
-	DES_ATTACKPROBABILITY_02 = 21,		// °ø°ÝÈ®·ü 02
-	DES_DEFENSE_01 = 22,		// (*) ¹æ¾î·Â 01 (µ¥¹ÌÁö °¨¼Ò È®·ü) 20040622 Ãß°¡
-	DES_DEFENSE_02 = 23,		// (*) ¹æ¾î·Â 02 (µ¥¹ÌÁö °¨¼Ò È®·ü) 20040622 Ãß°¡
-	DES_DEFENSEPROBABILITY_01 = 24,		// ¹æ¾îÈ®·ü 01 (È¸ÇÇ È®·ü)
-	DES_DEFENSEPROBABILITY_02 = 25,		// ¹æ¾îÈ®·ü 02 (È¸ÇÇ È®·ü)
-	DES_SKILLPROBABILITY_01 = 26,		// ½ºÅ³°ø°ÝÈ®·ü 01
-	DES_SKILLPROBABILITY_02 = 64,		// ½ºÅ³°ø°ÝÈ®·ü 02
-	DES_FACTION_01 = 79,		// ¼Ó¼º 01, check: Ãß°¡µÊ
-	DES_FACTION_02 = 80,		// ¼Ó¼º 02, check: Ãß°¡µÊ
-	DES_FACTIONRESISTANCE_01 = 27,		// ¼Ó¼ºÀúÇ×·Â 01
-	DES_FACTIONRESISTANCE_02 = 65,		// ¼Ó¼ºÀúÇ×·Â 02
-	DES_SPEED = 28,		// (*) ÀÌµ¿¼Óµµ, FIXER µîÀÇ ¼Óµµ °¨¼Ò·®
-	DES_TRANSPORT = 29,		// ¿î¹Ý·Â
-	DES_MATERIAL = 30,		// ÀçÁú
-	DES_REATTACKTIME_01 = 31,		// (*) ¸®¾îÅÃÅ¸ÀÓ 01 (- Áõ°¡)
-	DES_REATTACKTIME_02 = 32,		// (*) ¸®¾îÅÃÅ¸ÀÓ 02 (- Áõ°¡)
-	DES_ABRASIONRATE_01 = 33,		// ¸¶¸ðÀ² 01
-	DES_ABRASIONRATE_02 = 34,		// ¸¶¸ðÀ² 02
-	DES_RANGE_01 = 35,		// (*) À¯È¿°Å¸® 01
-	DES_RANGE_02 = 36,		// (*) À¯È¿°Å¸® 02
-	DES_RANGEANGLE_01 = 37,		// À¯È¿°¢µµ 01
-	DES_RANGEANGLE_02 = 38,		// À¯È¿°¢µµ 02
-	DES_MULTITAGET_01 = 39,		// ¸ÖÆ¼Å¸°Ù 01
-	DES_MULTITAGET_02 = 66,		// ¸ÖÆ¼Å¸°Ù 02
-	DES_EXPLOSIONRANGE_01 = 40,		// Æø¹ß¹Ý°æ 01
-	DES_EXPLOSIONRANGE_02 = 67,		// Æø¹ß¹Ý°æ 02
-	DES_UNIT = 41,		// À¯´ÖÀÇ Á¾·ù (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-	DES_REVISION = 42,		// À¯´ÖÀÇ º¸Á¤°ª (28 ~ 29ÀÌ °°ÀÌ ¾²¿© À¯´Ö¸¶´ÙÀÇ º¸Á¤°ªÀ¸·Î »ç¿ëµÊ)
-	DES_FACTIONPROBABILITY_01 = 43,		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 01
-	DES_FACTIONPROBABILITY_02 = 68,		// ¼Ó¼º¿¡ ´ëÇÑ ¹æ¾îÈ®·ü 02
-	DES_SHOTNUM_01 = 44,		// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 01
-	DES_SHOTNUM_02 = 69,		// ÀÏÁ¡»ç ´ç ¹ß»ç ¼ö 02
-	DES_MULTINUM_01 = 45,		// µ¿½Ã ¹ß»ç ¼ö 01
-	DES_MULTINUM_02 = 70,		// µ¿½Ã ¹ß»ç ¼ö 02
-	DES_ATTACKTIME_01 = 46,		// Ã³À½ °ø°Ý ½ÃÀÇ Å¸ÀÓ 01 (- Áõ°¡)
-	DES_ATTACKTIME_02 = 47,		// Ã³À½ °ø°Ý ½ÃÀÇ Å¸ÀÓ 02 (- Áõ°¡)
-	DES_TIME_01 = 48,		// (*) Áö¼Ó ½Ã°£ 01, check: + -> *
-	DES_TIME_02 = 49,		// (*) Áö¼Ó ½Ã°£ 02, check: + -> *
-	DES_OVERHITTIME_01 = 73,		// (*) ¿À¹öÈýÈ¸º¹½Ã°£ 01, check: Ãß°¡µÊ
-	DES_OVERHITTIME_02 = 74,		// (*) ¿À¹öÈýÈ¸º¹½Ã°£ 02, check: Ãß°¡µÊ
-	DES_UNITKIND = 50,		// ±âÃ¼ ¾÷±×·¹ÀÌµå½Ã ÇØ´ç ±âÃ¼
-	DES_ITEMKIND = 51,		// ¾ÆÀÌÅÛÀÇ Á¾·ù(ITEMKIND_XXX)
-	DES_SUMMON = 52,		// ¸ó½ºÅÍ ¼ÒÈ¯
-	DES_GRADUAL_HP_UP = 53,		// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°Ý ¹ÞÀ¸¸é cancel
-	DES_GRADUAL_DP_UP = 81,		// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ºÎ½ºÅÍ ÄÑ°Å³ª °ø°Ý ¹ÞÀ¸¸é cancel, check: Ãß°¡µÊ
-	DES_GRADUAL_SP_UP = 54,		// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	DES_GRADUAL_EP_UP = 55,		// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)µ¿¾È Á¡ÁøÀûÀ¸·Î VALUE¸¸Å­ ¿Ã·ÁÁÜ, Áß°£¿¡ ¹¹(?)µé¾î¿À¸é cancel
-	DES_IN_TIME_HP_UP = 56,		// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_IN_TIME_DP_UP = 82,		// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	DES_IN_TIME_SP_UP = 57,		// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_IN_TIME_EP_UP = 58,		// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ ÀÏÁ¤ ½Ã°£(ITEM.Time¿¡ ÀúÀå)ÀÌ Áö³­ ÈÄ VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_IMMEDIATE_HP_UP = 59,		// ¿¡³ÊÁö·ù, ÇöÀç HP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_IMMEDIATE_DP_UP = 83,		// ¿¡³ÊÁö·ù, ÇöÀç DP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ, check: Ãß°¡µÊ
-	DES_IMMEDIATE_SP_UP = 60,		// ¿¡³ÊÁö·ù, ÇöÀç SP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_IMMEDIATE_EP_UP = 61,		// ¿¡³ÊÁö·ù, ÇöÀç EP¸¦ Áï½Ã VALUE¸¸Å­ ¿Ã·ÁÁÜ
-	DES_GROUNDMODE = 62,		// Æø°Ý¸ðµå
-	DES_SIEGEMODE = 63,		// ½ÃÁî¸ðµå
-	DES_WEIGHT_01 = 75,		// (*) ¹«°Ô 01, check: Ãß°¡µÊ
-	DES_WEIGHT_02 = 76,		// (*) ¹«°Ô 02, check: Ãß°¡µÊ
-	DES_BULLET_01 = 77,		// (*) 1Çü ÃÑ¾Ë 01, 2005-11-02 by cmkwon ºö¼Ò¸ðÃÊ¾Ë·®À» º¯°æÇÔ
-	DES_BULLET_02 = 78,		// (*) 2Çü ÃÑ¾Ë 02, 2005-11-02 by cmkwon ºö¼Ò¸ðÃÊ¾Ë·®À» º¯°æÇÔ
-	DES_PRIMARY_WEAPON = 84,		// 1Çü ¹«±â, ¹ü¿ëºö
-	DES_SECONDARY_WEAPON = 85,		// 2Çü ¹«±â, ¹ü¿ë
-	DES_ALL_WEAPON = 86,		// 1,2Çü ¹«±â ¸ðµÎ, ¹ü¿ë
-	DES_CRITICALHITRATE_01 = 87,		// (*)Å©¸®Æ¼ÄÃ È®·ü 20040622 Ãß°¡
-	DES_CRITICALHITRATE_02 = 88,		// (*)Å©¸®Æ¼ÄÃ È®·ü 20040622 Ãß°¡
-	DES_WARP = 90,		// µµ½Ã¿öÇÁ ¾ÆÀÌÅÛ¿ë
-	DES_REACTION_RANGE = 91,		// ITEMÀÇ ReactionRange º¯°æ
-	DES_RARE_FIX_NONE = 92,		// Á¢µÎ»ç, Á¢¹Ì»ç ¸ðµÎ ¾øÀ½, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_RARE_FIX_PREFIX = 93,		// Á¢µÎ»ç, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_RARE_FIX_SUFFIX = 94,		// Á¢¹Ì»ç, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_RARE_FIX_BOTH = 95,		// Á¢µÎ»ç, Á¢¹Ì»ç ¸ðµÎ Æ÷ÇÔ, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_REQ_MIN_LEVEL = 96,		// ¾ÆÀÌÅÛÀåÂø ¿ä±¸ MinLevelÀ» ³·Ãá´Ù
-	DES_REQ_MAX_LEVEL = 97,		// ¾ÆÀÌÅÛÀåÂø ¿ä±¸ MaxLevelÀ» ³·Ãá´Ù
-	DES_WARP_OUTPOST = 98,		// 2007-09-05 by dhjin, ÀüÁø±âÁö µµ½Ã¿öÇÁ ¾ÆÀÌÅÛ¿ë
-	DES_CHAT_BLOCK = 99,		// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - 
+	DES_NULL = 0,		// ëŒ€ìƒ íŒŒë¼ë¯¸í„°ê°€ ì—†ëŠ” ê²½ìš° ì‚¬ìš©
+	DES_ATTACK_PART = 1,		// ê³µê²© íŒŒíŠ¸
+	DES_DEFENSE_PART = 2,		// ë°©ì–´ íŒŒíŠ¸
+	DES_FUEL_PART = 3,		// ì—°ë£Œ íŒŒíŠ¸
+	DES_SOUL_PART = 4,		// ê°ì‘ íŒŒíŠ¸
+	DES_SHIELD_PART = 5,		// ì‰´ë“œ íŒŒíŠ¸
+	DES_DODGE_PART = 6,		// íšŒí”¼ íŒŒíŠ¸
+	DES_ALL_PART = 106,		// ëª¨ë“  ìŠ¤í…Ÿ	// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - ëª¨ë“  ìŠ¤í…Ÿ DES_ALL_PART ì¶”ê°€
+	DES_BODYCONDITION = 7,		// ëª¸ìƒíƒœ
+	DES_ENDURANCE_01 = 8,		// ë‚´êµ¬ë„ 01
+	DES_ENDURANCE_02 = 9,		// ë‚´êµ¬ë„ 02
+	DES_CHARGING_01 = 10,		// ìž¥íƒ„ìˆ˜ 01
+	DES_CHARGING_02 = 11,		// ìž¥íƒ„ìˆ˜ 02
+	DES_PROPENSITY = 12,		// ì„±í–¥
+	DES_HP = 13,		// ížˆíŠ¸í¬ì¸íŠ¸, MAX HPë¥¼ +VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_DP = 89,		// ì‰´ë“œ(DEFENSE)í¬ì¸íŠ¸
+	DES_SP = 14,		// ì†Œìš¸í¬ì¸íŠ¸
+	DES_EP = 15,		// ì—”ì§„í¬ì¸íŠ¸
+	DES_SPRECOVERY = 16,		// ì†Œìš¸í¬ì¸íŠ¸íšŒë³µë ¥
+	DES_HPRECOVERY = 17,		// ì—ë„ˆì§€í¬ì¸íŠ¸íšŒë³µë ¥
+	DES_MINATTACK_01 = 18,		// (*) ìµœì†Œ ê³µê²©ë ¥ 01
+	DES_MAXATTACK_01 = 71,		// (*) ìµœëŒ€ ê³µê²©ë ¥ 01
+	DES_MINATTACK_02 = 19,		// (*) ìµœì†Œ ê³µê²©ë ¥ 02
+	DES_MAXATTACK_02 = 72,		// (*) ìµœëŒ€ ê³µê²©ë ¥ 02
+	DES_ATTACKPROBABILITY_01 = 20,		// ê³µê²©í™•ë¥  01
+	DES_ATTACKPROBABILITY_02 = 21,		// ê³µê²©í™•ë¥  02
+	DES_DEFENSE_01 = 22,		// (*) ë°©ì–´ë ¥ 01 (ë°ë¯¸ì§€ ê°ì†Œ í™•ë¥ ) 20040622 ì¶”ê°€
+	DES_DEFENSE_02 = 23,		// (*) ë°©ì–´ë ¥ 02 (ë°ë¯¸ì§€ ê°ì†Œ í™•ë¥ ) 20040622 ì¶”ê°€
+	DES_DEFENSEPROBABILITY_01 = 24,		// ë°©ì–´í™•ë¥  01 (íšŒí”¼ í™•ë¥ )
+	DES_DEFENSEPROBABILITY_02 = 25,		// ë°©ì–´í™•ë¥  02 (íšŒí”¼ í™•ë¥ )
+	DES_SKILLPROBABILITY_01 = 26,		// ìŠ¤í‚¬ê³µê²©í™•ë¥  01
+	DES_SKILLPROBABILITY_02 = 64,		// ìŠ¤í‚¬ê³µê²©í™•ë¥  02
+	DES_FACTION_01 = 79,		// ì†ì„± 01, check: ì¶”ê°€ë¨
+	DES_FACTION_02 = 80,		// ì†ì„± 02, check: ì¶”ê°€ë¨
+	DES_FACTIONRESISTANCE_01 = 27,		// ì†ì„±ì €í•­ë ¥ 01
+	DES_FACTIONRESISTANCE_02 = 65,		// ì†ì„±ì €í•­ë ¥ 02
+	DES_SPEED = 28,		// (*) ì´ë™ì†ë„, FIXER ë“±ì˜ ì†ë„ ê°ì†ŒëŸ‰
+	DES_TRANSPORT = 29,		// ìš´ë°˜ë ¥
+	DES_MATERIAL = 30,		// ìž¬ì§ˆ
+	DES_REATTACKTIME_01 = 31,		// (*) ë¦¬ì–´íƒíƒ€ìž„ 01 (- ì¦ê°€)
+	DES_REATTACKTIME_02 = 32,		// (*) ë¦¬ì–´íƒíƒ€ìž„ 02 (- ì¦ê°€)
+	DES_ABRASIONRATE_01 = 33,		// ë§ˆëª¨ìœ¨ 01
+	DES_ABRASIONRATE_02 = 34,		// ë§ˆëª¨ìœ¨ 02
+	DES_RANGE_01 = 35,		// (*) ìœ íš¨ê±°ë¦¬ 01
+	DES_RANGE_02 = 36,		// (*) ìœ íš¨ê±°ë¦¬ 02
+	DES_RANGEANGLE_01 = 37,		// ìœ íš¨ê°ë„ 01
+	DES_RANGEANGLE_02 = 38,		// ìœ íš¨ê°ë„ 02
+	DES_MULTITAGET_01 = 39,		// ë©€í‹°íƒ€ê²Ÿ 01
+	DES_MULTITAGET_02 = 66,		// ë©€í‹°íƒ€ê²Ÿ 02
+	DES_EXPLOSIONRANGE_01 = 40,		// í­ë°œë°˜ê²½ 01
+	DES_EXPLOSIONRANGE_02 = 67,		// í­ë°œë°˜ê²½ 02
+	DES_UNIT = 41,		// ìœ ë‹›ì˜ ì¢…ë¥˜ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+	DES_REVISION = 42,		// ìœ ë‹›ì˜ ë³´ì •ê°’ (28 ~ 29ì´ ê°™ì´ ì“°ì—¬ ìœ ë‹›ë§ˆë‹¤ì˜ ë³´ì •ê°’ìœ¼ë¡œ ì‚¬ìš©ë¨)
+	DES_FACTIONPROBABILITY_01 = 43,		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  01
+	DES_FACTIONPROBABILITY_02 = 68,		// ì†ì„±ì— ëŒ€í•œ ë°©ì–´í™•ë¥  02
+	DES_SHOTNUM_01 = 44,		// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 01
+	DES_SHOTNUM_02 = 69,		// ì¼ì ì‚¬ ë‹¹ ë°œì‚¬ ìˆ˜ 02
+	DES_MULTINUM_01 = 45,		// ë™ì‹œ ë°œì‚¬ ìˆ˜ 01
+	DES_MULTINUM_02 = 70,		// ë™ì‹œ ë°œì‚¬ ìˆ˜ 02
+	DES_ATTACKTIME_01 = 46,		// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ìž„ 01 (- ì¦ê°€)
+	DES_ATTACKTIME_02 = 47,		// ì²˜ìŒ ê³µê²© ì‹œì˜ íƒ€ìž„ 02 (- ì¦ê°€)
+	DES_TIME_01 = 48,		// (*) ì§€ì† ì‹œê°„ 01, check: + -> *
+	DES_TIME_02 = 49,		// (*) ì§€ì† ì‹œê°„ 02, check: + -> *
+	DES_OVERHITTIME_01 = 73,		// (*) ì˜¤ë²„íž›íšŒë³µì‹œê°„ 01, check: ì¶”ê°€ë¨
+	DES_OVERHITTIME_02 = 74,		// (*) ì˜¤ë²„íž›íšŒë³µì‹œê°„ 02, check: ì¶”ê°€ë¨
+	DES_UNITKIND = 50,		// ê¸°ì²´ ì—…ê·¸ë ˆì´ë“œì‹œ í•´ë‹¹ ê¸°ì²´
+	DES_ITEMKIND = 51,		// ì•„ì´í…œì˜ ì¢…ë¥˜(ITEMKIND_XXX)
+	DES_SUMMON = 52,		// ëª¬ìŠ¤í„° ì†Œí™˜
+	DES_GRADUAL_HP_UP = 53,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel
+	DES_GRADUAL_DP_UP = 81,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë¶€ìŠ¤í„° ì¼œê±°ë‚˜ ê³µê²© ë°›ìœ¼ë©´ cancel, check: ì¶”ê°€ë¨
+	DES_GRADUAL_SP_UP = 54,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	DES_GRADUAL_EP_UP = 55,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ë™ì•ˆ ì ì§„ì ìœ¼ë¡œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, ì¤‘ê°„ì— ë­(?)ë“¤ì–´ì˜¤ë©´ cancel
+	DES_IN_TIME_HP_UP = 56,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ HPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_IN_TIME_DP_UP = 82,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ DPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	DES_IN_TIME_SP_UP = 57,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ SPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_IN_TIME_EP_UP = 58,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ EPë¥¼ ì¼ì • ì‹œê°„(ITEM.Timeì— ì €ìž¥)ì´ ì§€ë‚œ í›„ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_IMMEDIATE_HP_UP = 59,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ HPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_IMMEDIATE_DP_UP = 83,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ DPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ, check: ì¶”ê°€ë¨
+	DES_IMMEDIATE_SP_UP = 60,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ SPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_IMMEDIATE_EP_UP = 61,		// ì—ë„ˆì§€ë¥˜, í˜„ìž¬ EPë¥¼ ì¦‰ì‹œ VALUEë§Œí¼ ì˜¬ë ¤ì¤Œ
+	DES_GROUNDMODE = 62,		// í­ê²©ëª¨ë“œ
+	DES_SIEGEMODE = 63,		// ì‹œì¦ˆëª¨ë“œ
+	DES_WEIGHT_01 = 75,		// (*) ë¬´ê²Œ 01, check: ì¶”ê°€ë¨
+	DES_WEIGHT_02 = 76,		// (*) ë¬´ê²Œ 02, check: ì¶”ê°€ë¨
+	DES_BULLET_01 = 77,		// (*) 1í˜• ì´ì•Œ 01, 2005-11-02 by cmkwon ë¹”ì†Œëª¨ì´ˆì•ŒëŸ‰ì„ ë³€ê²½í•¨
+	DES_BULLET_02 = 78,		// (*) 2í˜• ì´ì•Œ 02, 2005-11-02 by cmkwon ë¹”ì†Œëª¨ì´ˆì•ŒëŸ‰ì„ ë³€ê²½í•¨
+	DES_PRIMARY_WEAPON = 84,		// 1í˜• ë¬´ê¸°, ë²”ìš©ë¹”
+	DES_SECONDARY_WEAPON = 85,		// 2í˜• ë¬´ê¸°, ë²”ìš©
+	DES_ALL_WEAPON = 86,		// 1,2í˜• ë¬´ê¸° ëª¨ë‘, ë²”ìš©
+	DES_CRITICALHITRATE_01 = 87,		// (*)í¬ë¦¬í‹°ì»¬ í™•ë¥  20040622 ì¶”ê°€
+	DES_CRITICALHITRATE_02 = 88,		// (*)í¬ë¦¬í‹°ì»¬ í™•ë¥  20040622 ì¶”ê°€
+	DES_WARP = 90,		// ë„ì‹œì›Œí”„ ì•„ì´í…œìš©
+	DES_REACTION_RANGE = 91,		// ITEMì˜ ReactionRange ë³€ê²½
+	DES_RARE_FIX_NONE = 92,		// ì ‘ë‘ì‚¬, ì ‘ë¯¸ì‚¬ ëª¨ë‘ ì—†ìŒ, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_RARE_FIX_PREFIX = 93,		// ì ‘ë‘ì‚¬, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_RARE_FIX_SUFFIX = 94,		// ì ‘ë¯¸ì‚¬, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_RARE_FIX_BOTH = 95,		// ì ‘ë‘ì‚¬, ì ‘ë¯¸ì‚¬ ëª¨ë‘ í¬í•¨, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_REQ_MIN_LEVEL = 96,		// ì•„ì´í…œìž¥ì°© ìš”êµ¬ MinLevelì„ ë‚®ì¶˜ë‹¤
+	DES_REQ_MAX_LEVEL = 97,		// ì•„ì´í…œìž¥ì°© ìš”êµ¬ MaxLevelì„ ë‚®ì¶˜ë‹¤
+	DES_WARP_OUTPOST = 98,		// 2007-09-05 by dhjin, ì „ì§„ê¸°ì§€ ë„ì‹œì›Œí”„ ì•„ì´í…œìš©
+	DES_CHAT_BLOCK = 99,		// 2008-12-30 by cmkwon, ì§€ë„ìž ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - 
 
-	DES_CASH_STAT_ALL_INITIALIZE = 100,		// À¯·á ¸ðµç ½ºÅÈ ÃÊ±âÈ­ ¾ÆÀÌÅÛ
-	//DES_CASH_STAT_HALF_INITIALIZE = 101,		// (±¸Çö ¹ÌÈ®Á¤)À¯·á 50% ½ºÅÈ ÃÊ±âÈ­ ¾ÆÀÌÅÛ
-	DES_CASH_STAT_PART_INITIALIZE = 102,		// À¯·á ºÎºÐ ½ºÅÈ ÃÊ±âÈ­ ¾ÆÀÌÅÛ
-	DES_RARE_FIX_PREFIX_INITIALIZE = 103,		// Á¢µÎ»ç ÃÊ±âÈ­, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_RARE_FIX_SUFFIX_INITIALIZE = 104,		// Á¢¹Ì»ç ÃÊ±âÈ­, ITEMKIND_GAMEBLEÀÇ DestParam1¿¡ ¼³Á¤
-	DES_ENCHANT_INITIALIZE = 105,		// 2007-04-03 by cmkwon, ÀÎÃ¦Æ® ÃÊ±âÈ­, ITEMKIND_ENCHANTÀÇ DestParam1¿¡ ¼³Á¤
-	//											106		// ¸ðµç ½ºÅÝ(DES_ALL_PART)¿¡¼­ »ç¿ë	// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ¸ðµç ½ºÅÝ DES_ALL_PART Ãß°¡
-	DES_CASH_STEALTH = 108,		// ½ºÅÚ½º ¾ÆÀÌÅÛ
-	DES_CASH_HP_AND_DP_UP = 109,		// HP and DP UP ¾ÆÀÌÅÛ
-	DES_CASH_GUILD_ALL_MEMBERS_SUMMON = 110,		// ¸ðµç ¿©´Ü¿ø ¼ÒÈ¯ - ¿©´ÜÀå¸¸ »ç¿ë°¡´É
-	DES_CASH_GUILD_MEMBER_SUMMON = 111,		// ¿©´Ü¿ø 1¸í ¼ÒÈ¯ - ¿©´ÜÀå¸¸ »ç¿ë°¡´É
-	DES_CASH_NORMAL_RESTORE = 112,		// ÀÏ¹Ý ºÎÈ° Ä«µå - »ç
-	DES_CASH_SUPER_RESTORE = 113,		// ½´ÆÛ ºÎÈ° Ä«µå
-	DES_CASH_GUILD = 114,		// ÀÏ¹Ý/°í±Þ ¿©´Ü Ä«µå
-	DES_CASH_MONSTER_SUMMON = 115,		// ¸ó½ºÅÍ ¼ÒÈ¯ Ä«µå
-	DES_CASH_CHANGE_CHARACTERNAME = 116,		// Ä³¸¯ÅÍ¸í º¯°æ Ä«µå
-	DES_CASH_SKILL_INITIALIZE = 117,		// ½ºÅ³ ÃÊ±âÈ­ Ä«µå
-	DES_CASH_CHANGE_PILOTFACE = 118,		// ¾ó±¼ º¯°æ Ä«µå
-	DES_CASH_CRACKER_CARD = 119,		// Á¾ÇÕ ÆøÁ× Ä«µå
+	DES_CASH_STAT_ALL_INITIALIZE = 100,		// ìœ ë£Œ ëª¨ë“  ìŠ¤íƒ¯ ì´ˆê¸°í™” ì•„ì´í…œ
+	//DES_CASH_STAT_HALF_INITIALIZE = 101,		// (êµ¬í˜„ ë¯¸í™•ì •)ìœ ë£Œ 50% ìŠ¤íƒ¯ ì´ˆê¸°í™” ì•„ì´í…œ
+	DES_CASH_STAT_PART_INITIALIZE = 102,		// ìœ ë£Œ ë¶€ë¶„ ìŠ¤íƒ¯ ì´ˆê¸°í™” ì•„ì´í…œ
+	DES_RARE_FIX_PREFIX_INITIALIZE = 103,		// ì ‘ë‘ì‚¬ ì´ˆê¸°í™”, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_RARE_FIX_SUFFIX_INITIALIZE = 104,		// ì ‘ë¯¸ì‚¬ ì´ˆê¸°í™”, ITEMKIND_GAMEBLEì˜ DestParam1ì— ì„¤ì •
+	DES_ENCHANT_INITIALIZE = 105,		// 2007-04-03 by cmkwon, ì¸ì±ˆíŠ¸ ì´ˆê¸°í™”, ITEMKIND_ENCHANTì˜ DestParam1ì— ì„¤ì •
+	//											106		// ëª¨ë“  ìŠ¤í…Ÿ(DES_ALL_PART)ì—ì„œ ì‚¬ìš©	// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - ëª¨ë“  ìŠ¤í…Ÿ DES_ALL_PART ì¶”ê°€
+	DES_CASH_STEALTH = 108,		// ìŠ¤í…”ìŠ¤ ì•„ì´í…œ
+	DES_CASH_HP_AND_DP_UP = 109,		// HP and DP UP ì•„ì´í…œ
+	DES_CASH_GUILD_ALL_MEMBERS_SUMMON = 110,		// ëª¨ë“  ì—¬ë‹¨ì› ì†Œí™˜ - ì—¬ë‹¨ìž¥ë§Œ ì‚¬ìš©ê°€ëŠ¥
+	DES_CASH_GUILD_MEMBER_SUMMON = 111,		// ì—¬ë‹¨ì› 1ëª… ì†Œí™˜ - ì—¬ë‹¨ìž¥ë§Œ ì‚¬ìš©ê°€ëŠ¥
+	DES_CASH_NORMAL_RESTORE = 112,		// ì¼ë°˜ ë¶€í™œ ì¹´ë“œ - ì‚¬
+	DES_CASH_SUPER_RESTORE = 113,		// ìŠˆí¼ ë¶€í™œ ì¹´ë“œ
+	DES_CASH_GUILD = 114,		// ì¼ë°˜/ê³ ê¸‰ ì—¬ë‹¨ ì¹´ë“œ
+	DES_CASH_MONSTER_SUMMON = 115,		// ëª¬ìŠ¤í„° ì†Œí™˜ ì¹´ë“œ
+	DES_CASH_CHANGE_CHARACTERNAME = 116,		// ìºë¦­í„°ëª… ë³€ê²½ ì¹´ë“œ
+	DES_CASH_SKILL_INITIALIZE = 117,		// ìŠ¤í‚¬ ì´ˆê¸°í™” ì¹´ë“œ
+	DES_CASH_CHANGE_PILOTFACE = 118,		// ì–¼êµ´ ë³€ê²½ ì¹´ë“œ
+	DES_CASH_CRACKER_CARD = 119,		// ì¢…í•© í­ì£½ ì¹´ë“œ
 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2005-11-21 by cmkwon, »õ·Î Ãß°¡µÈ DesParam
-	DES_SKILL_REDUCE_SHIELD_DAMAGE = 121,		// ½¯µå¿¡ °¡´Â µ¥¹ÌÁö¸¦ ÁÙ¿©ÁØ´Ù.
-	DES_SKILL_INVINCIBLE = 122,		// ¹«Àû »óÅÂ
-	DES_SKILL_BIG_BOOM = 123,		// 		¹Ì±¸Çö - ÀÚ½ÅÀÇ HP¸¦ ¸ðµÎ ¼Ò¸ðÇÏ¿© ÁÖº¯¿¡°Ô µ¥¹ÌÁö¸¦ ÀÔÈ÷°í, ÀÚ½ÅÀº Æø¹ßÇÑ´Ù.
-	DES_SKILL_HALLUCINATION = 124,		// Ã¼ÇÁ »çÃâ.
-	DES_SKILL_RANGEDOWN_01 = 125,		// 		¹Ì±¸Çö - ÀûÀÇ ±âº»¹«±â »ç°Å¸®¸¦ ÁÙÀÎ´Ù.
-	DES_SKILL_RANGEDOWN_02 = 126,		// 		¹Ì±¸Çö - ÀûÀÇ °í±Þ ¹«±â »ç°Å¸®¸¦ ÁÙÀÎ´Ù.
-	DES_SKILL_PROHIBITION_01 = 127,		// 		¹Ì±¸Çö - ÀûÀÇ ±âº» ¹«±â »ç¿ëÀ» ±ÝÁö½ÃÅ²´Ù.
-	DES_SKILL_PROHIBITION_02 = 128,		// 		¹Ì±¸Çö - ÀûÀÇ °í±Þ ¹«±â »ç¿ëÀ» ±ÝÁö½ÃÅ²´Ù.
-	DES_ATTACK_RANGE_01 = 129,		// ·¹ÀÌ´ÙÀÇ ±âº» ¹«±â Á¶ÁØ °Å¸®¸¦ Áõ°¡½ÃÅ²´Ù.(*)
-	DES_ATTACK_RANGE_02 = 130,		// ·¹ÀÌ´ÙÀÇ °í±Þ ¹«±â Á¶ÁØ °Å¸®¸¦ Áõ°¡½ÃÅ²´Ù.(*)
-	DES_INVISIBLE = 131,		//	½ºÅÚ½º ¸ðµå·Î¼­ Àû¿¡°Ô º¸ÀÌÁö ¾ÊÀ¸¸ç, ·¹ÀÌ´Ù¿¡µµ ÀâÈ÷Áö ¾Ê´Â´Ù. ÀÚ½Åµµ °ø°ÝÀÌ µÇÁö ¾Ê´Â´Ù.
-	// 2005-12-02 by cmkwon, 154, 155, 156À¸·Î ³ª´®DES_SKILL_HYPERMOVING = 132,		// À¯´ÖÀÇ ÀüÃ¼ ÀÌµ¿¼Óµµ°¡ ÁÁ¾ÆÁö°í, ºÎ½ºÅÍ »ç¿ëÀÌ µÇÁö ¾Ê´Â´Ù.(*)
-	DES_SKILL_DEFENSE_01 = 133,		// 		¹Ì±¸Çö - ÀûÀÇ ±âº»¹æ¾î·ÂÀ» ¶³¾î¶ß¸°´Ù.(*)
-	DES_SKILL_DEFENSE_02 = 134,		// 		¹Ì±¸Çö - ÀûÀÇ °í±Þ¹æ¾î·ÂÀ» ¶³¾î¶ß¸°´Ù.(*)
-	DES_SKILL_FREEZINGBODY = 135,		// 		¹Ì±¸Çö - ÀûÀÇ HP,½¯µå È¸º¹À» ºÒ°¡´ÉÇÏ°Ô ¸¸µç´Ù. ¼ö¸®Å¶,½¯µåÅ¶,½ºÅ³È¸º¹(ÀüÃ¼)ÀÌ ¾ÈµÈ´Ù.
-	DES_SKILL_REVERSECONTROL = 136,		// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) -	// 		¹Ì±¸Çö - ÀûÀÇ ¿òÁ÷ÀÓÀ» ¹Ý´ë·Î ¿òÁ÷ÀÌ°Ô ÇÑ´Ù.
-	DES_SKILL_GRADUAL_HPSHIELD_DOWN = 137,		// 		¹Ì±¸Çö - ÀûÀÇ HP,½¯µå¸¦ Á¡Â÷ °¨¼Ò½ÃÅ²´Ù.
-	DES_SKILL_SLOWMOVING = 138,		// ÀûÀÇ ¿òÁ÷ÀÓÀ» µÐÇÏ°Ô ÇÑ´Ù.(ÃÖ´ëÀÌµ¿ ¼Óµµ, ºÎ½ºÅÍ ¼Óµµ, ÀÌµ¿ °¢µµ, ºÎ½ºÅÍ ÀÌµ¿ °¢µµ)(*)
-	DES_SKILL_BOOSTEROFF = 139,		// 		¹Ì±¸Çö - ÀûÀÇ ºÎ½ºÅÍ »ç¿ëÀ» ±ÝÁö½ÃÅ²´Ù.
-	DES_SKILL_COLLISIONDAMAGE_DOWN = 140,		// ¹è°æ ¿ÀºêÁ§Æ®,¹Ù´Ú Ãæµ¹½Ã µ¥¹ÌÁö¸¦ °¨¼Ò½ÃÅ²´Ù.
-	//DES_SKILL_CAMOUFLAGE = 141,		// 		¹Ì±¸Çö - À§ÀåÇÏ¿© ÀûÀÇ ½Ã¾ß¿¡ º¸ÀÌÁö ¾Ê´Â´Ù. Å¸°Ù¿¡´Â ÀâÈù´Ù.
-	DES_SKILL_RANDOMTELEPORT = 142,		// 		¹Ì±¸Çö - °°Àº ¸Ê¿¡¼­ ·£´ýÇÏ°Ô ÀÌµ¿ÇÑ´Ù.
-	DES_SKILL_ATTACK_ALL = 143,		// 		¹Ì±¸Çö - ÀüÃ¼ °ø°Ý ½ºÅ³
-	DES_SKILL_SCANNING = 144,		// Invisible »óÅÂÀÇ À¯Àú¸¦ º¼ ¼ö ÀÖµµ·Ï ÇÑ´Ù
-	DES_SKILL_REVERSEENGINE = 145,		// ¿£ÁøÀÌ ÈÄÁøÀÌ °¡´ÉÇÏ°Ô ÇÑ´Ù.
-	DES_SKILL_LOCKDOWN = 146,		// 		¹Ì±¸Çö - »ó´ë¹æÀ» ÀÏ½Ã Á¤Áö½ÃÅ²´Ù.(ÀüÁø,ÁÂ¿ì¼±È¸,ºÎ½ºÅÍ Á¤Áö, ´Ü, °ø°Ý±â´ÉÀº °¡´É)
-	DES_SKILL_STEALSP = 147,		// 		¹Ì±¸Çö - »ó´ë¹æÀÇ SP¸¦ ÀÏÁ¤·® –P¾Æ¿Â´Ù.
-	DES_SKILL_SMARTSP = 148,		// ÀÚ½ÅÀÌ »ç¿ëÇÏ´Â ¸ðµç ½ºÅ³ÀÇ »ç¿ë·®À» ÁÙ¿©ÁØ´Ù.(*)
-	DES_SKILL_SUMMON_FORMATION_MEMBER = 149,		// Æí´ë¿ø Áß 1¸íÀ» ¼ÒÈ¯ÇÑ´Ù.
-	DES_SKILL_CANCEL_MAGIC = 150,		// 		¹Ì±¸Çö - ÀûÀÇ ¹öÇÁ ½ºÅ³À» ¸ðµÎ ÇØÁ¦½ÃÅ²´Ù.
-	DES_SKILL_RANDOM_CANCEL = 151,		// 		¹Ì±¸Çö - Å¸°ÙÀÇ µð¹öÇÁ ½ºÅ³À» ÇÏ³ª ·£´ýÇÏ°Ô ÇØÁ¦ÇÑ´Ù.
-	DES_SKILL_STOPMAGIC = 152,		// ÀûÀÇ ½ºÅ³À» ÀÏÁ¤½Ã°£ »ç¿ë±ÝÁö½ÃÅ²´Ù. - 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-	DES_SKILL_CANCELALL = 153,		// 		¹Ì±¸Çö - ´ë»óÀÇ ¹öÇÁ ½ºÅ³À» ¸ðµÎ ÇØÁ¦ÇÑ´Ù.
-	DES_SKILL_REACTIONSPEED = 154,		// (*)ÇÏÀÌÆÛ ¹«ºù(¹ÝÀÀ¼Óµµ)
-	DES_SKILL_ENGINEANGLE = 155,		// (*)ÇÏÀÌÆÛ ¹«ºù(¼±È¸°¢)
-	DES_SKILL_ENGINEBOOSTERANGLE = 156,		// (*)ÇÏÀÌÆÛ ¹«ºù(ºÎ½ºÅÍ ¼±È¸°¢)
+	// 2005-11-21 by cmkwon, ìƒˆë¡œ ì¶”ê°€ëœ DesParam
+	DES_SKILL_REDUCE_SHIELD_DAMAGE = 121,		// ì‰´ë“œì— ê°€ëŠ” ë°ë¯¸ì§€ë¥¼ ì¤„ì—¬ì¤€ë‹¤.
+	DES_SKILL_INVINCIBLE = 122,		// ë¬´ì  ìƒíƒœ
+	DES_SKILL_BIG_BOOM = 123,		// 		ë¯¸êµ¬í˜„ - ìžì‹ ì˜ HPë¥¼ ëª¨ë‘ ì†Œëª¨í•˜ì—¬ ì£¼ë³€ì—ê²Œ ë°ë¯¸ì§€ë¥¼ ìž…ížˆê³ , ìžì‹ ì€ í­ë°œí•œë‹¤.
+	DES_SKILL_HALLUCINATION = 124,		// ì²´í”„ ì‚¬ì¶œ.
+	DES_SKILL_RANGEDOWN_01 = 125,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê¸°ë³¸ë¬´ê¸° ì‚¬ê±°ë¦¬ë¥¼ ì¤„ì¸ë‹¤.
+	DES_SKILL_RANGEDOWN_02 = 126,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê³ ê¸‰ ë¬´ê¸° ì‚¬ê±°ë¦¬ë¥¼ ì¤„ì¸ë‹¤.
+	DES_SKILL_PROHIBITION_01 = 127,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê¸°ë³¸ ë¬´ê¸° ì‚¬ìš©ì„ ê¸ˆì§€ì‹œí‚¨ë‹¤.
+	DES_SKILL_PROHIBITION_02 = 128,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê³ ê¸‰ ë¬´ê¸° ì‚¬ìš©ì„ ê¸ˆì§€ì‹œí‚¨ë‹¤.
+	DES_ATTACK_RANGE_01 = 129,		// ë ˆì´ë‹¤ì˜ ê¸°ë³¸ ë¬´ê¸° ì¡°ì¤€ ê±°ë¦¬ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.(*)
+	DES_ATTACK_RANGE_02 = 130,		// ë ˆì´ë‹¤ì˜ ê³ ê¸‰ ë¬´ê¸° ì¡°ì¤€ ê±°ë¦¬ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.(*)
+	DES_INVISIBLE = 131,		//	ìŠ¤í…”ìŠ¤ ëª¨ë“œë¡œì„œ ì ì—ê²Œ ë³´ì´ì§€ ì•Šìœ¼ë©°, ë ˆì´ë‹¤ì—ë„ ìž¡ížˆì§€ ì•ŠëŠ”ë‹¤. ìžì‹ ë„ ê³µê²©ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤.
+	// 2005-12-02 by cmkwon, 154, 155, 156ìœ¼ë¡œ ë‚˜ëˆ”DES_SKILL_HYPERMOVING = 132,		// ìœ ë‹›ì˜ ì „ì²´ ì´ë™ì†ë„ê°€ ì¢‹ì•„ì§€ê³ , ë¶€ìŠ¤í„° ì‚¬ìš©ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤.(*)
+	DES_SKILL_DEFENSE_01 = 133,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê¸°ë³¸ë°©ì–´ë ¥ì„ ë–¨ì–´ëœ¨ë¦°ë‹¤.(*)
+	DES_SKILL_DEFENSE_02 = 134,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ê³ ê¸‰ë°©ì–´ë ¥ì„ ë–¨ì–´ëœ¨ë¦°ë‹¤.(*)
+	DES_SKILL_FREEZINGBODY = 135,		// 		ë¯¸êµ¬í˜„ - ì ì˜ HP,ì‰´ë“œ íšŒë³µì„ ë¶ˆê°€ëŠ¥í•˜ê²Œ ë§Œë“ ë‹¤. ìˆ˜ë¦¬í‚·,ì‰´ë“œí‚·,ìŠ¤í‚¬íšŒë³µ(ì „ì²´)ì´ ì•ˆëœë‹¤.
+	DES_SKILL_REVERSECONTROL = 136,		// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) -	// 		ë¯¸êµ¬í˜„ - ì ì˜ ì›€ì§ìž„ì„ ë°˜ëŒ€ë¡œ ì›€ì§ì´ê²Œ í•œë‹¤.
+	DES_SKILL_GRADUAL_HPSHIELD_DOWN = 137,		// 		ë¯¸êµ¬í˜„ - ì ì˜ HP,ì‰´ë“œë¥¼ ì ì°¨ ê°ì†Œì‹œí‚¨ë‹¤.
+	DES_SKILL_SLOWMOVING = 138,		// ì ì˜ ì›€ì§ìž„ì„ ë‘”í•˜ê²Œ í•œë‹¤.(ìµœëŒ€ì´ë™ ì†ë„, ë¶€ìŠ¤í„° ì†ë„, ì´ë™ ê°ë„, ë¶€ìŠ¤í„° ì´ë™ ê°ë„)(*)
+	DES_SKILL_BOOSTEROFF = 139,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ë¶€ìŠ¤í„° ì‚¬ìš©ì„ ê¸ˆì§€ì‹œí‚¨ë‹¤.
+	DES_SKILL_COLLISIONDAMAGE_DOWN = 140,		// ë°°ê²½ ì˜¤ë¸Œì íŠ¸,ë°”ë‹¥ ì¶©ëŒì‹œ ë°ë¯¸ì§€ë¥¼ ê°ì†Œì‹œí‚¨ë‹¤.
+	//DES_SKILL_CAMOUFLAGE = 141,		// 		ë¯¸êµ¬í˜„ - ìœ„ìž¥í•˜ì—¬ ì ì˜ ì‹œì•¼ì— ë³´ì´ì§€ ì•ŠëŠ”ë‹¤. íƒ€ê²Ÿì—ëŠ” ìž¡ížŒë‹¤.
+	DES_SKILL_RANDOMTELEPORT = 142,		// 		ë¯¸êµ¬í˜„ - ê°™ì€ ë§µì—ì„œ ëžœë¤í•˜ê²Œ ì´ë™í•œë‹¤.
+	DES_SKILL_ATTACK_ALL = 143,		// 		ë¯¸êµ¬í˜„ - ì „ì²´ ê³µê²© ìŠ¤í‚¬
+	DES_SKILL_SCANNING = 144,		// Invisible ìƒíƒœì˜ ìœ ì €ë¥¼ ë³¼ ìˆ˜ ìžˆë„ë¡ í•œë‹¤
+	DES_SKILL_REVERSEENGINE = 145,		// ì—”ì§„ì´ í›„ì§„ì´ ê°€ëŠ¥í•˜ê²Œ í•œë‹¤.
+	DES_SKILL_LOCKDOWN = 146,		// 		ë¯¸êµ¬í˜„ - ìƒëŒ€ë°©ì„ ì¼ì‹œ ì •ì§€ì‹œí‚¨ë‹¤.(ì „ì§„,ì¢Œìš°ì„ íšŒ,ë¶€ìŠ¤í„° ì •ì§€, ë‹¨, ê³µê²©ê¸°ëŠ¥ì€ ê°€ëŠ¥)
+	DES_SKILL_STEALSP = 147,		// 		ë¯¸êµ¬í˜„ - ìƒëŒ€ë°©ì˜ SPë¥¼ ì¼ì •ëŸ‰ Â–Pì•„ì˜¨ë‹¤.
+	DES_SKILL_SMARTSP = 148,		// ìžì‹ ì´ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  ìŠ¤í‚¬ì˜ ì‚¬ìš©ëŸ‰ì„ ì¤„ì—¬ì¤€ë‹¤.(*)
+	DES_SKILL_SUMMON_FORMATION_MEMBER = 149,		// íŽ¸ëŒ€ì› ì¤‘ 1ëª…ì„ ì†Œí™˜í•œë‹¤.
+	DES_SKILL_CANCEL_MAGIC = 150,		// 		ë¯¸êµ¬í˜„ - ì ì˜ ë²„í”„ ìŠ¤í‚¬ì„ ëª¨ë‘ í•´ì œì‹œí‚¨ë‹¤.
+	DES_SKILL_RANDOM_CANCEL = 151,		// 		ë¯¸êµ¬í˜„ - íƒ€ê²Ÿì˜ ë””ë²„í”„ ìŠ¤í‚¬ì„ í•˜ë‚˜ ëžœë¤í•˜ê²Œ í•´ì œí•œë‹¤.
+	DES_SKILL_STOPMAGIC = 152,		// ì ì˜ ìŠ¤í‚¬ì„ ì¼ì •ì‹œê°„ ì‚¬ìš©ê¸ˆì§€ì‹œí‚¨ë‹¤. - 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+	DES_SKILL_CANCELALL = 153,		// 		ë¯¸êµ¬í˜„ - ëŒ€ìƒì˜ ë²„í”„ ìŠ¤í‚¬ì„ ëª¨ë‘ í•´ì œí•œë‹¤.
+	DES_SKILL_REACTIONSPEED = 154,		// (*)í•˜ì´í¼ ë¬´ë¹™(ë°˜ì‘ì†ë„)
+	DES_SKILL_ENGINEANGLE = 155,		// (*)í•˜ì´í¼ ë¬´ë¹™(ì„ íšŒê°)
+	DES_SKILL_ENGINEBOOSTERANGLE = 156,		// (*)í•˜ì´í¼ ë¬´ë¹™(ë¶€ìŠ¤í„° ì„ íšŒê°)
 
 	// 2006-03-30 by cmkwon
-	DES_DROP_EXP = 157,		// °æÇèÄ¡, ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	DES_DROP_SPI = 158,		// SPI, ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	DES_DROP_ITEM = 159,		// ¾ÆÀÌÅÛ µå¶øÀ², ÇÁ¸®¹Ì¾ö°ú ÁßÃ¸ ºÒ°¡
-	DES_HP_REPAIR_RATE_FLIGHTING = 160,		// ºñÇà½Ã HP È¸º¹À²
-	DES_DP_REPAIR_RATE = 161,		// DP È¸º¹À²
-	DES_SP_REPAIR_RATE = 162,		// SP È¸º¹À²
+	DES_DROP_EXP = 157,		// ê²½í—˜ì¹˜, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	DES_DROP_SPI = 158,		// SPI, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	DES_DROP_ITEM = 159,		// ì•„ì´í…œ ë“œëžìœ¨, í”„ë¦¬ë¯¸ì—„ê³¼ ì¤‘ì²© ë¶ˆê°€
+	DES_HP_REPAIR_RATE_FLIGHTING = 160,		// ë¹„í–‰ì‹œ HP íšŒë³µìœ¨
+	DES_DP_REPAIR_RATE = 161,		// DP íšŒë³µìœ¨
+	DES_SP_REPAIR_RATE = 162,		// SP íšŒë³µìœ¨
 
 	// 2006-07-26 by cmkwon
-	DES_BAZAAR_SELL = 163,		// 2006-07-26 by cmkwon, °³ÀÎ ÆÇ¸Å »óÁ¡
-	DES_BAZAAR_BUY = 164,		// 2006-07-26 by cmkwon, °³ÀÎ ±¸¸Å »óÁ¡
+	DES_BAZAAR_SELL = 163,		// 2006-07-26 by cmkwon, ê°œì¸ íŒë§¤ ìƒì 
+	DES_BAZAAR_BUY = 164,		// 2006-07-26 by cmkwon, ê°œì¸ êµ¬ë§¤ ìƒì 
 
 	// 2006-08-14 by dhjin
-	DES_KILLMARK_EXP = 165,		// 2006-08-14 by dhjin, Å³¸¶Å© °æÇèÄ¡
+	DES_KILLMARK_EXP = 165,		// 2006-08-14 by dhjin, í‚¬ë§ˆí¬ ê²½í—˜ì¹˜
 
 	// 2006-10-11 by cmkwon
-	DES_HYPER_BOOSTER = 166,		// 2006-10-11 by cmkwon, ºÎ½ºÅÍ °ÔÀÌÁö ¶³¾îÁöÁö ¾ÊÀ½
+	DES_HYPER_BOOSTER = 166,		// 2006-10-11 by cmkwon, ë¶€ìŠ¤í„° ê²Œì´ì§€ ë–¨ì–´ì§€ì§€ ì•ŠìŒ
 
-	// 2006-11-17 by dhjin, 2Â÷ ½ºÅ³·Î ÀÎÇØ Ãß°¡µÈ »çÇ×
-	DES_SKILL_CHAFF_HP = 167,		// 2006-11-17 by dhjin, Ã¼ÇÁÀÇ HP
-	DES_SKILL_AIR_BOMBING = 168,		// 2006-11-17 by dhjin, °øÁß Æø°Ý
-	DES_SKILL_NO_WARNING = 169,		// 2006-11-17 by dhjin, Å¸±â¾î¿¡ ½ºÅ³ »ç¿ë½Ã, ÇØ´ç±â¾î´Â ¿ö´×À½°ú ·¹ÀÌ´õ Á¡¸êÀÌ ¿ï¸®Áö ¾Ê°Ô µÈ´Ù
-	DES_SKILL_ROLLING_TIME = 170,		// 2006-11-17 by dhjin, 30ÃÊµ¿¾È ·Ñ¸µ Àç»ç¿ë ½Ã°£ÀÌ ¾ø´Ù.
-	DES_SKILL_FULL_RECOVERY = 171,		// 2006-11-17 by dhjin, ±âÃ¼ÀÇ HP, ½¯µå, ¿¬·á, SP¸¦ ¿ÏÀüÈ¸º¹ÇÑ´Ù.
-	DES_SKILL_CAMOUFLAGE = 172,		// 2006-11-17 by dhjin, A±â¾îÀÇ À§Àå ½ºÅ³
-	DES_SKILL_BARRIER = 173,		// 2006-11-17 by dhjin, A±â¾îÀÇ °í±Þ¹«±â¿¡ ´ëÇÑ ¹«Àû ½ºÅ³
-	DES_SKILL_HYPERSHOT = 174,		// 2006-11-17 by dhjin, A±â¾îÀÇ ±âº»¹«±â Â÷Â¡¼¦, ½ºÇÃ·¡½¬ µ¥¹ÌÁö´Â Range
-	DES_SKILL_SHIELD_PARALYZE = 175,		// 2006-11-17 by dhjin, A±â¾îÀÇ ½¯µå¸¶ºñ ½ºÅ³, »ó´ë±â¾îÀÇ ½¯µå È¸º¹À²À» 0À¸·Î ¸¸µç´Ù.
+	// 2006-11-17 by dhjin, 2ì°¨ ìŠ¤í‚¬ë¡œ ì¸í•´ ì¶”ê°€ëœ ì‚¬í•­
+	DES_SKILL_CHAFF_HP = 167,		// 2006-11-17 by dhjin, ì²´í”„ì˜ HP
+	DES_SKILL_AIR_BOMBING = 168,		// 2006-11-17 by dhjin, ê³µì¤‘ í­ê²©
+	DES_SKILL_NO_WARNING = 169,		// 2006-11-17 by dhjin, íƒ€ê¸°ì–´ì— ìŠ¤í‚¬ ì‚¬ìš©ì‹œ, í•´ë‹¹ê¸°ì–´ëŠ” ì›Œë‹ìŒê³¼ ë ˆì´ë” ì ë©¸ì´ ìš¸ë¦¬ì§€ ì•Šê²Œ ëœë‹¤
+	DES_SKILL_ROLLING_TIME = 170,		// 2006-11-17 by dhjin, 30ì´ˆë™ì•ˆ ë¡¤ë§ ìž¬ì‚¬ìš© ì‹œê°„ì´ ì—†ë‹¤.
+	DES_SKILL_FULL_RECOVERY = 171,		// 2006-11-17 by dhjin, ê¸°ì²´ì˜ HP, ì‰´ë“œ, ì—°ë£Œ, SPë¥¼ ì™„ì „íšŒë³µí•œë‹¤.
+	DES_SKILL_CAMOUFLAGE = 172,		// 2006-11-17 by dhjin, Aê¸°ì–´ì˜ ìœ„ìž¥ ìŠ¤í‚¬
+	DES_SKILL_BARRIER = 173,		// 2006-11-17 by dhjin, Aê¸°ì–´ì˜ ê³ ê¸‰ë¬´ê¸°ì— ëŒ€í•œ ë¬´ì  ìŠ¤í‚¬
+	DES_SKILL_HYPERSHOT = 174,		// 2006-11-17 by dhjin, Aê¸°ì–´ì˜ ê¸°ë³¸ë¬´ê¸° ì°¨ì§•ìƒ·, ìŠ¤í”Œëž˜ì‰¬ ë°ë¯¸ì§€ëŠ” Range
+	DES_SKILL_SHIELD_PARALYZE = 175,		// 2006-11-17 by dhjin, Aê¸°ì–´ì˜ ì‰´ë“œë§ˆë¹„ ìŠ¤í‚¬, ìƒëŒ€ê¸°ì–´ì˜ ì‰´ë“œ íšŒë³µìœ¨ì„ 0ìœ¼ë¡œ ë§Œë“ ë‹¤.
 
-	DES_WARHEAD_SPEED = 176,		// 2007-06-11 by cmkwon, ÅºµÎÀÇ ¼Óµµ
-	DES_CHAT_ALL_INFLUENCE = 177,		// 2007-08-09 by cmkwon, ¸ðµç ¼¼·Â¿¡ Ã¤ÆÃ Àü¼ÛÇÏ±â - desparam Ãß°¡, À¯·á¾ÆÀÌÅÛ
+	DES_WARHEAD_SPEED = 176,		// 2007-06-11 by cmkwon, íƒ„ë‘ì˜ ì†ë„
+	DES_CHAT_ALL_INFLUENCE = 177,		// 2007-08-09 by cmkwon, ëª¨ë“  ì„¸ë ¥ì— ì±„íŒ… ì „ì†¡í•˜ê¸° - desparam ì¶”ê°€, ìœ ë£Œì•„ì´í…œ
 
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®
-	DES_ENGINE_BOOSTER_TIME_UP = 178,		// 2008-09-22 by dhjin, ºÎ½ºÅÍ ½Ã°£ Áõ°¡
-	DES_ENGINE_MAX_SPEED_UP = 179,		// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹Ý¼Óµµ(ÃÖ´ë) Áõ°¡
-	DES_ENGINE_MIN_SPEED_UP = 180,		// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹Ý¼Óµµ(ÃÖ¼Ò) Áõ°¡
-	DES_ENGINE_BOOSTER_SPEED_UP = 181,		// 2008-09-22 by dhjin, ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
-	DES_ENGINE_GROUND_SPEED_UP = 182,		// 2008-09-22 by dhjin, ¿£Áø Áö»ó¼Óµµ Áõ°¡
-	DES_RADAR_OBJECT_DETECT_RANGE = 183,		// 2008-09-22 by dhjin, ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹Ý°æ
-	DES_PIERCE_UP_01 = 184,		// 2008-09-22 by dhjin, ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	DES_PIERCE_UP_02 = 185,		// 2008-09-22 by dhjin, °í±Þ¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	DES_ENGINE_ANGLE_UP = 186,		// 2008-09-30 by dhjin, ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
-	DES_ENGINE_BOOSTERANGLE_UP = 187,		// 2008-09-30 by dhjin, ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸
+	DES_ENGINE_BOOSTER_TIME_UP = 178,		// 2008-09-22 by dhjin, ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
+	DES_ENGINE_MAX_SPEED_UP = 179,		// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
+	DES_ENGINE_MIN_SPEED_UP = 180,		// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
+	DES_ENGINE_BOOSTER_SPEED_UP = 181,		// 2008-09-22 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
+	DES_ENGINE_GROUND_SPEED_UP = 182,		// 2008-09-22 by dhjin, ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
+	DES_RADAR_OBJECT_DETECT_RANGE = 183,		// 2008-09-22 by dhjin, ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
+	DES_PIERCE_UP_01 = 184,		// 2008-09-22 by dhjin, ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	DES_PIERCE_UP_02 = 185,		// 2008-09-22 by dhjin, ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	DES_ENGINE_ANGLE_UP = 186,		// 2008-09-30 by dhjin, ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
+	DES_ENGINE_BOOSTERANGLE_UP = 187,		// 2008-09-30 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ
 
-	// 2009-01-05 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ - Æí´ë ¹öÇÁ ¾ÆÀÌÅÛ Ãß°¡ 
+	// 2009-01-05 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° - íŽ¸ëŒ€ ë²„í”„ ì•„ì´í…œ ì¶”ê°€ 
 	DES_ITEM_BUFF_INFLUENCE = 188,
 	DES_ITEM_BUFF_PARTY = 189,
 
-	// 2009-01-19 by dhjin, ÀÎÃ¾Æ® È®·ü Áõ°¡, 10ÀÎÃ¾ ÆÄ¹æ Ä«µå - ÀÎÃ¾Æ® È®·ü Áõ°¡ Ä«µå
-	DES_ENCHANT_PREVENTION_DELETE_USE_ENCHANT = 190,		// »ç¿ë ÇÏ±â À§ÇÑ ¾ÆÀÌÅÛÀÇ º¸À¯ÀÎÃ¦Æ® Ä«¿îÆ® ¼³Á¤
-	DES_ENCHANT_PREVENTION_DELETE_SAVE_ENCHANT = 191,		// ÀÎÃ¦Æ® ½ÇÆÐ½Ã ³²±â´Â ÀÎÃ¦Æ® Ä«¿îÆ® ¼³Á¤
-	DES_ENCHANT_INCREASE_PROBABILITY = 192,		// ÀÎÃ¦Æ® Ä«µå È®·ü Áõ°¡ºÐ ¼³Á¤
+	// 2009-01-19 by dhjin, ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€, 10ì¸ì²¸ íŒŒë°© ì¹´ë“œ - ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€ ì¹´ë“œ
+	DES_ENCHANT_PREVENTION_DELETE_USE_ENCHANT = 190,		// ì‚¬ìš© í•˜ê¸° ìœ„í•œ ì•„ì´í…œì˜ ë³´ìœ ì¸ì±ˆíŠ¸ ì¹´ìš´íŠ¸ ì„¤ì •
+	DES_ENCHANT_PREVENTION_DELETE_SAVE_ENCHANT = 191,		// ì¸ì±ˆíŠ¸ ì‹¤íŒ¨ì‹œ ë‚¨ê¸°ëŠ” ì¸ì±ˆíŠ¸ ì¹´ìš´íŠ¸ ì„¤ì •
+	DES_ENCHANT_INCREASE_PROBABILITY = 192,		// ì¸ì±ˆíŠ¸ ì¹´ë“œ í™•ë¥  ì¦ê°€ë¶„ ì„¤ì •
 
-	// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - DES_ Ãß°¡
-	DES_SKILL_DAMAGE_DISTRIBUTION = 193,		// µ¥¹ÌÁö¸¦ Æí´ë¿ø¿¡°Ô ºÐ»ê(ºÐ¹è) Ã³¸® ÇÑ´Ù.
+	// 2009-08-03 by cmkwon, EP3-4 íŽ¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - DES_ ì¶”ê°€
+	DES_SKILL_DAMAGE_DISTRIBUTION = 193,		// ë°ë¯¸ì§€ë¥¼ íŽ¸ëŒ€ì›ì—ê²Œ ë¶„ì‚°(ë¶„ë°°) ì²˜ë¦¬ í•œë‹¤.
 
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	DES_SHAPE_ITEM = 194,		// Á¶ÇÕ½Ã ¼Ò½º ¾ÆÀÌÅÛÀÇ ShapeItemNumÀ» º¯°æ ÇÒ Item, LinkItemÀ» »ç¿ë		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
-	DES_EFFECT_ITEM = 195,		// Á¶ÇÕ½Ã ¼Ò½º ¾ÆÀÌÅÛÀÇ EffectItemNumÀ» º¯°æ ÇÒ Item, ÇØ´ç ItemNumÀ» »ç¿ë	(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+	// 2009-08-26 by cmkwon, ê·¸ëž˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	DES_SHAPE_ITEM = 194,		// ì¡°í•©ì‹œ ì†ŒìŠ¤ ì•„ì´í…œì˜ ShapeItemNumì„ ë³€ê²½ í•  Item, LinkItemì„ ì‚¬ìš©		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
+	DES_EFFECT_ITEM = 195,		// ì¡°í•©ì‹œ ì†ŒìŠ¤ ì•„ì´í…œì˜ EffectItemNumì„ ë³€ê²½ í•  Item, í•´ë‹¹ ItemNumì„ ì‚¬ìš©	(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 
-	// 2009-09-23 by cmkwon, ÇÊµåÃ¢°í Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-	DES_FIELD_STORE = 196,		// ÇÊµåÃ¢°í
+	// 2009-09-23 by cmkwon, í•„ë“œì°½ê³  ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+	DES_FIELD_STORE = 196,		// í•„ë“œì°½ê³ 
 
-	// 2009-10-01 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ °ü·Ã ÃÊ±âÈ­ ±â´É ±¸Çö - 
-	DES_INIT_SHAPE_ITEM = 197,		// Á¶ÇÕ½Ã ¼Ò½º ¾ÆÀÌÅÛÀÇ ShapeItemNumÀ» ÃÊ±âÈ­ ÇÒ Item		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
-	DES_INIT_EFFECT_ITEM = 198,		// Á¶ÇÕ½Ã ¼Ò½º ¾ÆÀÌÅÛÀÇ EffectItemNumÀ» ÃÊ±âÈ­ ÇÒ Item		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+	// 2009-10-01 by cmkwon, ê·¸ëž˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ê´€ë ¨ ì´ˆê¸°í™” ê¸°ëŠ¥ êµ¬í˜„ - 
+	DES_INIT_SHAPE_ITEM = 197,		// ì¡°í•©ì‹œ ì†ŒìŠ¤ ì•„ì´í…œì˜ ShapeItemNumì„ ì´ˆê¸°í™” í•  Item		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
+	DES_INIT_EFFECT_ITEM = 198,		// ì¡°í•©ì‹œ ì†ŒìŠ¤ ì•„ì´í…œì˜ EffectItemNumì„ ì´ˆê¸°í™” í•  Item		(Value => KIND_ITEM_FIX_MIXING_WEAPON / KIND_ITEM_FIX_MIXING_DEFENSE)		// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 
-	// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - DES_XXX Ãß°¡
-	DES_INCREASE_INVENTORY_SPACE = 199,		// Ä³¸¯ÅÍ ÀÎº¥Åä¸® Áõ°¡
-	DES_INCREASE_STORE_SPACE = 200,		// Ä³¸¯ÅÍ Ã¢°í Áõ°¡
+	// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ìž¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - DES_XXX ì¶”ê°€
+	DES_INCREASE_INVENTORY_SPACE = 199,		// ìºë¦­í„° ì¸ë²¤í† ë¦¬ ì¦ê°€
+	DES_INCREASE_STORE_SPACE = 200,		// ìºë¦­í„° ì°½ê³  ì¦ê°€
 
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
-	DES_ITEM_RESISTANCE = 201,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀúÇ× ¾ÆÀÌÅÛ »ç¿ë Ã¼Å© 
-	DES_ITEM_ADDATTACK = 202,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àý´ë°ª Å¸°ÝÄ¡ ¾ÆÀÌÅÛ »ç¿ë Ã¼Å© 
-	DES_ITEM_IGNOREDEFENCE = 203,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹æ¾î·Â ¹«½Ã ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
-	DES_ITEM_IGNOREAVOID = 204,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - È¸ÇÇ·Â ¹«½Ã ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
-	DES_ITEM_REDUCEDAMAGE = 205,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - µ¥¹ÌÁö Àý´ë°ª °¨¼Ò ¾ÆÀÌÅÛ »ç¿ë Ã¼Å©
-	DES_ITEM_ADDATTACK_SEC = 206,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àý´ë°ª Å¸°ÝÄ¡ ¾ÆÀÌÅÛ °í±Þ¹«±â¿ë(±â¹«¿Í ºÐ·ù)
-	DES_ITEM_ONCE_RESISTANCE = 207,		// 2009-09-09 ~ 2010-01-19 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¹ø¸¸ ÀúÇ×ÇÏ°í ¾ø¾îÁö´Â ÀúÇ× ¾ÆÀÌÅÛ Ãß°¡
-	DES_SKILL_MON_SILENCE_PRIMARY = 210,		// ¸ó½ºÅÍ »çÀÏ·±½º ½ºÅ³ (1Çü¹«±â Àû¿ë)
-	DES_SKILL_MON_SILENCE_SECOND = 211,		// ¸ó½ºÅÍ »çÀÏ·±½º ½ºÅ³ (2Çü¹«±â Àû¿ë)
-	DES_SKILL_MON_FREEZE_HP = 212,		// ¸ó½ºÅÍ ÇÁ¸®Áî ½ºÅ³ HP È¸º¹ ºÒ°¡  
-	DES_SKILL_MON_FREEZE_DP = 213,		// ¸ó½ºÅÍ ÇÁ¸®Áî ½ºÅ³ DP È¸º¹ ºÒ°¡
-	DES_SKILL_MON_FREEZE_SP = 214,		// ¸ó½ºÅÍ ÇÁ¸®Áî ½ºÅ³ SP È¸º¹ ºÒ°¡
-	DES_SKILL_MON_HOLD = 215,		// ¸ó½ºÅÍ È¦µå ½ºÅ³
-	DES_SKILL_MON_STEALING = 216,		// ¸ó½ºÅÍ ½ºÆ¿¸µ ½ºÅ³ 
-	DES_SKILL_MON_DRAIN = 217,		// ¸ó½ºÅÍ µå·¹ÀÎ ½ºÅ³
-	DES_SKILL_RELEASE = 218,		// M±â¾î ¸±¸®Áî ½ºÅ³
-	DES_SKILL_MON_SILENCE_SKILL = 219,		// ¸ó½ºÅÍ »çÀÏ·±½º ½ºÅ³ (½ºÅ³ Àû¿ë)
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
+	DES_ITEM_RESISTANCE = 201,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì €í•­ ì•„ì´í…œ ì‚¬ìš© ì²´í¬ 
+	DES_ITEM_ADDATTACK = 202,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì ˆëŒ€ê°’ íƒ€ê²©ì¹˜ ì•„ì´í…œ ì‚¬ìš© ì²´í¬ 
+	DES_ITEM_IGNOREDEFENCE = 203,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°©ì–´ë ¥ ë¬´ì‹œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
+	DES_ITEM_IGNOREAVOID = 204,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íšŒí”¼ë ¥ ë¬´ì‹œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
+	DES_ITEM_REDUCEDAMAGE = 205,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°ë¯¸ì§€ ì ˆëŒ€ê°’ ê°ì†Œ ì•„ì´í…œ ì‚¬ìš© ì²´í¬
+	DES_ITEM_ADDATTACK_SEC = 206,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì ˆëŒ€ê°’ íƒ€ê²©ì¹˜ ì•„ì´í…œ ê³ ê¸‰ë¬´ê¸°ìš©(ê¸°ë¬´ì™€ ë¶„ë¥˜)
+	DES_ITEM_ONCE_RESISTANCE = 207,		// 2009-09-09 ~ 2010-01-19 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ë²ˆë§Œ ì €í•­í•˜ê³  ì—†ì–´ì§€ëŠ” ì €í•­ ì•„ì´í…œ ì¶”ê°€
+	DES_SKILL_MON_SILENCE_PRIMARY = 210,		// ëª¬ìŠ¤í„° ì‚¬ì¼ëŸ°ìŠ¤ ìŠ¤í‚¬ (1í˜•ë¬´ê¸° ì ìš©)
+	DES_SKILL_MON_SILENCE_SECOND = 211,		// ëª¬ìŠ¤í„° ì‚¬ì¼ëŸ°ìŠ¤ ìŠ¤í‚¬ (2í˜•ë¬´ê¸° ì ìš©)
+	DES_SKILL_MON_FREEZE_HP = 212,		// ëª¬ìŠ¤í„° í”„ë¦¬ì¦ˆ ìŠ¤í‚¬ HP íšŒë³µ ë¶ˆê°€  
+	DES_SKILL_MON_FREEZE_DP = 213,		// ëª¬ìŠ¤í„° í”„ë¦¬ì¦ˆ ìŠ¤í‚¬ DP íšŒë³µ ë¶ˆê°€
+	DES_SKILL_MON_FREEZE_SP = 214,		// ëª¬ìŠ¤í„° í”„ë¦¬ì¦ˆ ìŠ¤í‚¬ SP íšŒë³µ ë¶ˆê°€
+	DES_SKILL_MON_HOLD = 215,		// ëª¬ìŠ¤í„° í™€ë“œ ìŠ¤í‚¬
+	DES_SKILL_MON_STEALING = 216,		// ëª¬ìŠ¤í„° ìŠ¤í‹¸ë§ ìŠ¤í‚¬ 
+	DES_SKILL_MON_DRAIN = 217,		// ëª¬ìŠ¤í„° ë“œë ˆì¸ ìŠ¤í‚¬
+	DES_SKILL_RELEASE = 218,		// Mê¸°ì–´ ë¦´ë¦¬ì¦ˆ ìŠ¤í‚¬
+	DES_SKILL_MON_SILENCE_SKILL = 219,		// ëª¬ìŠ¤í„° ì‚¬ì¼ëŸ°ìŠ¤ ìŠ¤í‚¬ (ìŠ¤í‚¬ ì ìš©)
 
-	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	DES_PAIR_DRAIN_1_RATE = 220,		// µå·¹ÀÎ ¹ßµ¿ È®·ü
-	DES_PAIR_DRAIN_2_HP_DP_UP_RATE = 221,		// µå·¹ÀÎ È¸º¹·® HP->DP È¸º¹ (µ¥¹ÌÁöÀÇ %)
-	DES_ANTI_DRAIN_RATE = 222,		// µå·¹ÀÎ ¹ßµ¿ ÀúÇ× È®·ü
-	DES_PAIR_REFLECTION_1_RATE = 223,		// µ¥¹ÌÁö ¹Ý»ç È®·ü
-	DES_PAIR_REFLECTION_2_DAMAGE_RATE = 224,		// ¹Ý»ç µ¥¹ÌÁö·® %
-	DES_ANTI_REFLECTION_RATE = 225,		// µ¥¹ÌÁö ¹Ý»ç ÀúÇ× È®·ü
+	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ìž¥ì°©ì•„ì´í…œ
+	DES_PAIR_DRAIN_1_RATE = 220,		// ë“œë ˆì¸ ë°œë™ í™•ë¥ 
+	DES_PAIR_DRAIN_2_HP_DP_UP_RATE = 221,		// ë“œë ˆì¸ íšŒë³µëŸ‰ HP->DP íšŒë³µ (ë°ë¯¸ì§€ì˜ %)
+	DES_ANTI_DRAIN_RATE = 222,		// ë“œë ˆì¸ ë°œë™ ì €í•­ í™•ë¥ 
+	DES_PAIR_REFLECTION_1_RATE = 223,		// ë°ë¯¸ì§€ ë°˜ì‚¬ í™•ë¥ 
+	DES_PAIR_REFLECTION_2_DAMAGE_RATE = 224,		// ë°˜ì‚¬ ë°ë¯¸ì§€ëŸ‰ %
+	DES_ANTI_REFLECTION_RATE = 225,		// ë°ë¯¸ì§€ ë°˜ì‚¬ ì €í•­ í™•ë¥ 
 
-	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - 
+	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - 
 	DES_BLIND = 226,
 	DES_SUPERINTEND = 227,
-	DES_IMMEDIATE_HP_OR_DP_UP = 228,		// HP¸¦ ¸ÕÀú Ã¤¿ì°í ±× ÀÌÈÄ¿¡ DP¸¦ Ã¤¿î´Ù.
-	DES_HIT_INVOKE_SKILL = 229,		// ¸íÁß½Ã ÇØ´ç µ¥½ºÆÄ¶÷°ª¿¡ ½ºÅ³À» ½ÃÀüÇÑ´Ù.
+	DES_IMMEDIATE_HP_OR_DP_UP = 228,		// HPë¥¼ ë¨¼ì € ì±„ìš°ê³  ê·¸ ì´í›„ì— DPë¥¼ ì±„ìš´ë‹¤.
+	DES_HIT_INVOKE_SKILL = 229,		// ëª…ì¤‘ì‹œ í•´ë‹¹ ë°ìŠ¤íŒŒëžŒê°’ì— ìŠ¤í‚¬ì„ ì‹œì „í•œë‹¤.
 	DES_TIME_BOMB = 230,
 
-	// 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
-	DES_TRANSFORM_TO_MONSTER = 231,		// ParamValue¿¡ MonsterUnitKind ÀÔ·Â
+	// 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
+	DES_TRANSFORM_TO_MONSTER = 231,		// ParamValueì— MonsterUnitKind ìž…ë ¥
 
-	// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 1È¸¸¸ Ãß°¡ ÀÔÀå °¡´É
-	DES_INFINITY_REENTRY_TICKET = 232,		// ÇöÀç´Â ParamValue´Â »ç¿ëÇÏÁö ¾ÊÀ½
+	// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ìž…ìž¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 1íšŒë§Œ ì¶”ê°€ ìž…ìž¥ ê°€ëŠ¥
+	DES_INFINITY_REENTRY_TICKET = 232,		// í˜„ìž¬ëŠ” ParamValueëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
 
-	// 2010-04-05 by cmkwon, ¸ó½ºÅÍº¯½Å°ü·Ã ÇØÁ¦ Ä«µå ±¸Çö - 
-	DES_TRANSFORM_TO_GEAR = 233,		// ÇöÀç´Â ParamValue´Â »ç¿ëÇÏÁö ¾ÊÀ½.
+	// 2010-04-05 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹ ê´€ë ¨ í•´ì œ ì¹´ë“œ êµ¬í˜„ - 
+	DES_TRANSFORM_TO_GEAR = 233,		// í˜„ìž¬ëŠ” ParamValueëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ.
 
-	// 2010-05-18 by cmkwon, WarPoint Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö(ÀÏº»¿äÃ») - 
-	DES_PLUS_WARPOINT_RATE = 234,		// ParamValue: WarPoint Áõ°¡ Rate
+	// 2010-05-18 by cmkwon, WarPoint ì¦ê°€ ì•„ì´í…œ êµ¬í˜„(ì¼ë³¸ìš”ì²­) - 
+	DES_PLUS_WARPOINT_RATE = 234,		// ParamValue: WarPoint ì¦ê°€ Rate
 
-	// 2010-06-01 by shcho, PC¹æ ±ÇÇÑ È¹µæ(Ä³½¬) ¾ÆÀÌÅÛ - 
-	DES_PCROOM_USE_CARD = 235,		//PC¹æ ÇÃ·¡±×¸¦ TRUE·Î º¯È¯ ½ÃÅ²´Ù.
+	// 2010-06-01 by shcho, PCë°© ê¶Œí•œ íšë“(ìºì‰¬) ì•„ì´í…œ - 
+	DES_PCROOM_USE_CARD = 235,		//PCë°© í”Œëž˜ê·¸ë¥¼ TRUEë¡œ ë³€í™˜ ì‹œí‚¨ë‹¤.
 
-	// 2010-08-26 by shcho&jsKim, ¹ã ¾ÆÀÌÅÛ ±¸Çö -
-	DES_MAX_SP_UP = 236,		// SPÀÇ ÃÖ´ëÄ¡¸¦ Áõ°¡½ÃÅ²´Ù.
+	// 2010-08-26 by shcho&jsKim, ë°¤ ì•„ì´í…œ êµ¬í˜„ -
+	DES_MAX_SP_UP = 236,		// SPì˜ ìµœëŒ€ì¹˜ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 
-	// 2010-08-27 by shcho&&jskim, WARPOINT Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_WAR_POINT_UP = 237,		// WARPOINT Áõ°¡
+	// 2010-08-27 by shcho&&jskim, WARPOINT ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_WAR_POINT_UP = 237,		// WARPOINT ì¦ê°€
 
-	// 2010-08-27 by shcho&&jskim, WARPOINT Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_DONATE_POINT_UP = 389,		// WARPOINT Áõ°¡ //are u here?yes
+	// 2010-08-27 by shcho&&jskim, WARPOINT ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_DONATE_POINT_UP = 389,		// WARPOINT ì¦ê°€ //are u here?yes
 
-	// 2010-11-30 by shcho, ·¹¾î¾ÆÀÌÅÛ µå¶øÈ®·ü Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_RARE_ITEM_DROP_RATE = 238,		// ·¹¾î ¾ÆÀÌÅÛ µå¶øÈ®·ü Áõ°¡
+	// 2010-11-30 by shcho, ë ˆì–´ì•„ì´í…œ ë“œëží™•ë¥  ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_RARE_ITEM_DROP_RATE = 238,		// ë ˆì–´ ì•„ì´í…œ ë“œëží™•ë¥  ì¦ê°€
 
-	// 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_RARE_ITEM_PARTNER_SPEED = 239,		// ¸¶À» ÀÌµ¿ ½ºÇÇµå Áõ°¡
+	// 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_RARE_ITEM_PARTNER_SPEED = 239,		// ë§ˆì„ ì´ë™ ìŠ¤í”¼ë“œ ì¦ê°€
 
-	// 2010-12-21 by jskim, ÆÄÆ®³Ê µ¥¹ÌÁö Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_RARE_ITEM_PARTNER_DAMAGE = 240,		// ÆÄÆ®³Ê µ¥¹ÌÁö Áõ°¡
+	// 2010-12-21 by jskim, íŒŒíŠ¸ë„ˆ ë°ë¯¸ì§€ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_RARE_ITEM_PARTNER_DAMAGE = 240,		// íŒŒíŠ¸ë„ˆ ë°ë¯¸ì§€ ì¦ê°€
 
-	// 2010-12-21 by jskim, HP, DP Å°Æ® Àû¿ë·® Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	DES_RARE_ITEM_HPDP = 241,		// HP DP Å°Æ® Àû¿ë·®
+	// 2010-12-21 by jskim, HP, DP í‚¤íŠ¸ ì ìš©ëŸ‰ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	DES_RARE_ITEM_HPDP = 241,		// HP DP í‚¤íŠ¸ ì ìš©ëŸ‰
 
-	// 2011-05-02 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - Æ¯Á¤ ÁÂÇ¥¿¡ ¼ÒÈ¯
-	DES_SUMMON_POSITION_X = 242,		// ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
-	DES_SUMMON_POSITION_Y = 243,		// ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
-	DES_SUMMON_POSITION_Z = 244,		// ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
+	// 2011-05-02 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - íŠ¹ì • ì¢Œí‘œì— ì†Œí™˜
+	DES_SUMMON_POSITION_X = 242,		// ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
+	DES_SUMMON_POSITION_Y = 243,		// ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
+	DES_SUMMON_POSITION_Z = 244,		// ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
 
-	// 2011-10-18 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ð·¡ ÆøÇ³
-	DES_MAPBUFF_RANDOM_ADD_REATTACKTIME = 245,		// ¸Ê¹öÇÁ Ãß°¡ ½Ã°£ Àû¿ë
-	DES_MAPBUFF_RANDOM_ADD_TIME = 246,		// ¸Ê¹öÇÁ Ãß°¡ ½Ã°£ Àû¿ë
-	DES_ENCHANT_ONCE_APPLY = 247,		// 2011-10-19 by hskim, EP4 [Free to play] - 10È¸ ÀÎÃ¾Æ® ¾ÆÀÌÅÛ ±â´É ±¸Çö
-	DES_GAMBLE_RARE_ITEM_FIX = 248,		// 2011-10-20 by hskim, EP4 [Free to play] - Á¢µÎ/Á¢¹Ì °íÁ¤ ¿É¼Ç
+	// 2011-10-18 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ìž¬ / ëª¨ëž˜ í­í’
+	DES_MAPBUFF_RANDOM_ADD_REATTACKTIME = 245,		// ë§µë²„í”„ ì¶”ê°€ ì‹œê°„ ì ìš©
+	DES_MAPBUFF_RANDOM_ADD_TIME = 246,		// ë§µë²„í”„ ì¶”ê°€ ì‹œê°„ ì ìš©
+	DES_ENCHANT_ONCE_APPLY = 247,		// 2011-10-19 by hskim, EP4 [Free to play] - 10íšŒ ì¸ì²¸íŠ¸ ì•„ì´í…œ ê¸°ëŠ¥ êµ¬í˜„
+	DES_GAMBLE_RARE_ITEM_FIX = 248,		// 2011-10-20 by hskim, EP4 [Free to play] - ì ‘ë‘/ì ‘ë¯¸ ê³ ì • ì˜µì…˜
 
 	DES_GAMBLE_RARE_ITEM_FIX_STD = 249,
 	DES_GAMBLE_RARE_ITEM_FIX_ADV = 250,
 
-	// 2013-05-07 by jhseol,bckim ¹öÇÁ ÆÐ³ÎÆ¼
-	DES_BUFF_PENALTY_RATIO = 251,		// ÆÐ³ÎÆ¼ ºñÀ² (1.0f = 100%)
-	DES_BUFF_PENALTY_APPLIED_UNIT_KIND = 252,		// ÆÐ³ÎÆ¼ Àû¿ë ±â¾î (ReqUnitKind)
+	// 2013-05-07 by jhseol,bckim ë²„í”„ íŒ¨ë„í‹°
+	DES_BUFF_PENALTY_RATIO = 251,		// íŒ¨ë„í‹° ë¹„ìœ¨ (1.0f = 100%)
+	DES_BUFF_PENALTY_APPLIED_UNIT_KIND = 252,		// íŒ¨ë„í‹° ì ìš© ê¸°ì–´ (ReqUnitKind)
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
-	DES_SKILLTYPE_CONSECUTIVE_VICTORIES = 253,		// ¼¼·Â Æ÷ÀÎÆ® °³¼± - ¿¬½ÂÀÇ ¹öÇÁ·ù Á¾·ù
-	DES_SKILLTYPE_TRUN_AROUND = 254,		// ¼¼·Â Æ÷ÀÎÆ® °³¼± - ¿ªÀüÀÇ ¹öÇÁ·ù Á¾·ù
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
+	DES_SKILLTYPE_CONSECUTIVE_VICTORIES = 253,		// ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - ì—°ìŠ¹ì˜ ë²„í”„ë¥˜ ì¢…ë¥˜
+	DES_SKILLTYPE_TRUN_AROUND = 254,		// ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„  - ì—­ì „ì˜ ë²„í”„ë¥˜ ì¢…ë¥˜
 
 	// 2015-08-02 by killburne
 	DES_SKILLTYPE_OUTPOST_BUFF = 255,
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
-	DES_SKILL_BUFF_MON_ATTACK_POWER = 300,		// ¸ó½ºÅÍ °ø°Ý½Ã - °ø°Ý·Â Áõ°¡ : Value Áõ°¡ %
-	DES_SKILL_BUFF_MON_ATTACK_PROBABILITY = 301,		// ¸ó½ºÅÍ °ø°Ý½Ã - °ø°Ý·Â È®À² : Value Áõ°¡ %
-	DES_SKILL_BUFF_MON_ATTACK_PIERCE = 302,		// ¸ó½ºÅÍ °ø°Ý½Ã - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %
-	DES_SKILL_BUFF_MON_DEFENCE = 303,		// ¸ó½ºÅÍ ¹æ¾î½Ã - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %
-	DES_SKILL_BUFF_MON_DEFENCE_AVOID = 304,		// ¸ó½ºÅÍ ¹æ¾î½Ã - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %
-	DES_SKILL_BUFF_PVP_ATTACK_POWER = 305,		// PVP - °ø°Ý·Â Áõ°¡ : Value Áõ°¡ %
-	DES_SKILL_BUFF_PVP_ATTACK_PROBABILITY = 306,		// PVP - ¸íÁß·ü Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	DES_SKILL_BUFF_PVP_ATTACK_PIERCE = 307,		// PVP - ÇÇ¾î½º Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	DES_SKILL_BUFF_PVP_DEFENCE = 308,		// PVP - ¹æ¾î·Â Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
-	DES_SKILL_BUFF_PVP_DEFENCE_PROBABILITY = 309,		// PVP - È¸ÇÇ·Â Áõ°¡ : Value Áõ°¡ %		// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
+	DES_SKILL_BUFF_MON_ATTACK_POWER = 300,		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_MON_ATTACK_PROBABILITY = 301,		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - ê³µê²©ë ¥ í™•ìœ¨ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_MON_ATTACK_PIERCE = 302,		// ëª¬ìŠ¤í„° ê³µê²©ì‹œ - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_MON_DEFENCE = 303,		// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_MON_DEFENCE_AVOID = 304,		// ëª¬ìŠ¤í„° ë°©ì–´ì‹œ - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_PVP_ATTACK_POWER = 305,		// PVP - ê³µê²©ë ¥ ì¦ê°€ : Value ì¦ê°€ %
+	DES_SKILL_BUFF_PVP_ATTACK_PROBABILITY = 306,		// PVP - ëª…ì¤‘ë¥  ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	DES_SKILL_BUFF_PVP_ATTACK_PIERCE = 307,		// PVP - í”¼ì–´ìŠ¤ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	DES_SKILL_BUFF_PVP_DEFENCE = 308,		// PVP - ë°©ì–´ë ¥ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
+	DES_SKILL_BUFF_PVP_DEFENCE_PROBABILITY = 309,		// PVP - íšŒí”¼ë ¥ ì¦ê°€ : Value ì¦ê°€ %		// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼
 
 
 	DES_SKILL_SKILL_CANCEL_IMMUNE = 311,		// 2015-10-20 Future, Purify Immune Skills
 
-	// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - COLLECTION INDEX DesParam µî·Ï (390~399 : 10°³ ¿¹¾à)
-	DES_COLLECTION_ARMOR_INDEX = 390,		// ¾Æ¸Ó ÄÃ·º¼Ç¿¡¼­ »ç¿ëµÉ ÀÎµ¦½º
+	// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - COLLECTION INDEX DesParam ë“±ë¡ (390~399 : 10ê°œ ì˜ˆì•½)
+	DES_COLLECTION_ARMOR_INDEX = 390,		// ì•„ë¨¸ ì»¬ë ‰ì…˜ì—ì„œ ì‚¬ìš©ë  ì¸ë±ìŠ¤
 
-	// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
-	DES_PLUS_WARPOINT_RATE_FOR_RETURN_USER = 499,		// ParamValue: WarPoint Áõ°¡ Rate ( ´ÙÈ¸¼º ) // 1È¸¼º DES_PLUS_WARPOINT_RATE
-	DES_BUFF_TO_RETURN_USER = 500,		// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
+	// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
+	DES_PLUS_WARPOINT_RATE_FOR_RETURN_USER = 499,		// ParamValue: WarPoint ì¦ê°€ Rate ( ë‹¤íšŒì„± ) // 1íšŒì„± DES_PLUS_WARPOINT_RATE
+	DES_BUFF_TO_RETURN_USER = 500,		// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
 
-	// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
-	DES_FIXED_TERM_SHAPE_TIME = 501,		// ±â°£Á¦ ¿ÜÇü Àû¿ë ½Ã°£ (ÃÊ)
-	DES_FIXED_TERM_ITEM_TIME = 502,		// ±â°£Á¦ ¾ÆÀÌÅÛ Àû¿ë ½Ã°£ (ÃÊ)
+	// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
+	DES_FIXED_TERM_SHAPE_TIME = 501,		// ê¸°ê°„ì œ ì™¸í˜• ì ìš© ì‹œê°„ (ì´ˆ)
+	DES_FIXED_TERM_ITEM_TIME = 502,		// ê¸°ê°„ì œ ì•„ì´í…œ ì ìš© ì‹œê°„ (ì´ˆ)
 
-	DES_WEB_DELETE_ITEM = 503,		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - À¥ ÀÎÅÍÆäÀÌ½º·Î ¿¡¼­ »èÁ¦ °¡´ÉÇÑ ¾ÆÀÌÅÛ
+	DES_WEB_DELETE_ITEM = 503,		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - ì›¹ ì¸í„°íŽ˜ì´ìŠ¤ë¡œ ì—ì„œ ì‚­ì œ ê°€ëŠ¥í•œ ì•„ì´í…œ
 
-	DES_INGAME_SHOW = 504,		// ÀÎ°ÔÀÓ Á¶ÇÕ½Ä¿¡ Ç¥½ÃÇÒÁö ¿©ºÎ // 2013-07-02 by bhsohn ÀÎ°ÔÀÓ Á¶ÇÕ½Ä ShowÃß°¡ Ã³¸®
+	DES_INGAME_SHOW = 504,		// ì¸ê²Œìž„ ì¡°í•©ì‹ì— í‘œì‹œí• ì§€ ì—¬ë¶€ // 2013-07-02 by bhsohn ì¸ê²Œìž„ ì¡°í•©ì‹ Showì¶”ê°€ ì²˜ë¦¬
 
 	// 2015-12-17 Future, Nation Change Card
 	DES_CASH_CHANGE_NATION = 505,		
 	DES_CASH_CHANGE_NATION_REQ_FAME = 506,
 
-	// ½Å ¹öÇÁ·ù ¾ÆÀÌÅÛ ¿¹¾à ( 600 ~ 699 : 100°³)  
-	// 2013-04-18 by jhseol,bckim ÀÌ´ÞÀÇ ¾Æ¸Ó - Ãß°¡ DesParam ¼±¾ð
-	DES_OPTION_ITEM_DEFAULT_DESPARAM = 600,		// ÀÌ´ÞÀÇ ¾Æ¸Ó¿¡ Àû¿ëµÉ ¿É¼Ç ¾ÆÀÌÅÛÀÎÁö ±¸ºÐÇÒ DesParam
+	// ì‹  ë²„í”„ë¥˜ ì•„ì´í…œ ì˜ˆì•½ ( 600 ~ 699 : 100ê°œ)  
+	// 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸ - ì¶”ê°€ DesParam ì„ ì–¸
+	DES_OPTION_ITEM_DEFAULT_DESPARAM = 600,		// ì´ë‹¬ì˜ ì•„ë¨¸ì— ì ìš©ë  ì˜µì…˜ ì•„ì´í…œì¸ì§€ êµ¬ë¶„í•  DesParam
 
-	// ÆÄÆ®³Ê ¼ÒÄÏ ¾ÆÀÌÅÛ·ù ¿¹¾à (23000 ~ 23899 : 900 °³ )
-	DES_PET_SOCKET_ITEM_AUTOKIT = 23000,		// ÆÄÆ®³Ê ½Ã½ºÅÛ ¼ÒÄÏ·ù - ÀÚµ¿ Å°Æ®, ÇÊ¼öÀûÀ¸·Î DestParameter 0¹ø¿¡ ¼³Á¤ ÇØ¾ßÇÔ
-	DES_PET_SOCKET_ITEM_AUTOSKILL = 23001,		// ÆÄÆ®³Ê ½Ã½ºÅÛ ¼ÒÄÏ·ù - ÀÚµ¿ ½ºÅ³, ÇÊ¼öÀûÀ¸·Î DestParameter 0¹ø¿¡ ¼³Á¤ ÇØ¾ßÇÔ
-	DES_PET_SOCKET_ITEM_SPEED = 23002,		// ÆÄÆ®³Ê ½Ã½ºÅÛ ¼ÒÄÏ·ù - ÀÚµ¿ ½ºÅ³, ÇÊ¼öÀûÀ¸·Î DestParameter 0¹ø¿¡ ¼³Á¤ ÇØ¾ßÇÔ
+	// íŒŒíŠ¸ë„ˆ ì†Œì¼“ ì•„ì´í…œë¥˜ ì˜ˆì•½ (23000 ~ 23899 : 900 ê°œ )
+	DES_PET_SOCKET_ITEM_AUTOKIT = 23000,		// íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ ì†Œì¼“ë¥˜ - ìžë™ í‚¤íŠ¸, í•„ìˆ˜ì ìœ¼ë¡œ DestParameter 0ë²ˆì— ì„¤ì • í•´ì•¼í•¨
+	DES_PET_SOCKET_ITEM_AUTOSKILL = 23001,		// íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ ì†Œì¼“ë¥˜ - ìžë™ ìŠ¤í‚¬, í•„ìˆ˜ì ìœ¼ë¡œ DestParameter 0ë²ˆì— ì„¤ì • í•´ì•¼í•¨
+	DES_PET_SOCKET_ITEM_SPEED = 23002,		// íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ ì†Œì¼“ë¥˜ - ìžë™ ìŠ¤í‚¬, í•„ìˆ˜ì ìœ¼ë¡œ DestParameter 0ë²ˆì— ì„¤ì • í•´ì•¼í•¨
 
-	// ÆÄÆ®³Ê ÀÚµ¿ Å°Æ® ¾ÆÀÌÅÛ·ù ¿¹¾à (23900 ~ 23909 : 10 °³)
-	DES_PET_SLOT_ITEM_AUTOKIT_HP = 23900,		// ÀÚµ¿ Å°Æ® HP		=> VALUE : µî±Þ 1 ~ 100 ±îÁö
-	DES_PET_SLOT_ITEM_AUTOKIT_SHIELD = 23901,		// ÀÚµ¿ Å°Æ® Shield	=> VALUE : µî±Þ 1 ~ 100 ±îÁö
-	DES_PET_SLOT_ITEM_AUTOKIT_SP = 23902,		// ÀÚµ¿ Å°Æ® SP		=> VALUE : µî±Þ 1 ~ 100 ±îÁö
+	// íŒŒíŠ¸ë„ˆ ìžë™ í‚¤íŠ¸ ì•„ì´í…œë¥˜ ì˜ˆì•½ (23900 ~ 23909 : 10 ê°œ)
+	DES_PET_SLOT_ITEM_AUTOKIT_HP = 23900,		// ìžë™ í‚¤íŠ¸ HP		=> VALUE : ë“±ê¸‰ 1 ~ 100 ê¹Œì§€
+	DES_PET_SLOT_ITEM_AUTOKIT_SHIELD = 23901,		// ìžë™ í‚¤íŠ¸ Shield	=> VALUE : ë“±ê¸‰ 1 ~ 100 ê¹Œì§€
+	DES_PET_SLOT_ITEM_AUTOKIT_SP = 23902,		// ìžë™ í‚¤íŠ¸ SP		=> VALUE : ë“±ê¸‰ 1 ~ 100 ê¹Œì§€
 
-	// ÆÄÆ®³Ê ÀÚµ¿ ½ºÅ³ ¾ÆÀÌÅÛ·ù ¿¹¾à (23910 ~ 23919 : 10 °³)
-	DES_PET_SLOT_ITEM_AUTOSKILL_AGEAR = 23910,		// ÀÚµ¿ ½ºÅ³ A ±â¾î
-	DES_PET_SLOT_ITEM_AUTOSKILL_BGEAR = 23911,		// ÀÚµ¿ ½ºÅ³ B ±â¾î
-	DES_PET_SLOT_ITEM_AUTOSKILL_IGEAR = 23912,		// ÀÚµ¿ ½ºÅ³ I ±â¾î
-	DES_PET_SLOT_ITEM_AUTOSKILL_MGEAR = 23913,		// ÀÚµ¿ ½ºÅ³ M ±â¾î
+	// íŒŒíŠ¸ë„ˆ ìžë™ ìŠ¤í‚¬ ì•„ì´í…œë¥˜ ì˜ˆì•½ (23910 ~ 23919 : 10 ê°œ)
+	DES_PET_SLOT_ITEM_AUTOSKILL_AGEAR = 23910,		// ìžë™ ìŠ¤í‚¬ A ê¸°ì–´
+	DES_PET_SLOT_ITEM_AUTOSKILL_BGEAR = 23911,		// ìžë™ ìŠ¤í‚¬ B ê¸°ì–´
+	DES_PET_SLOT_ITEM_AUTOSKILL_IGEAR = 23912,		// ìžë™ ìŠ¤í‚¬ I ê¸°ì–´
+	DES_PET_SLOT_ITEM_AUTOSKILL_MGEAR = 23913,		// ìžë™ ìŠ¤í‚¬ M ê¸°ì–´
 };

@@ -1,11 +1,11 @@
-#ifndef __ATUM_TIME_H__
+ï»¿#ifndef __ATUM_TIME_H__
 #define __ATUM_TIME_H__
 
 #include "StdAfx.h"
 
 struct AtumTime {
-	int Hour;		// ½Ã
-	int Minute;		// ºĞ
+	int Hour;		// Â½Ãƒ
+	int Minute;		// ÂºÃ
 
 	AtumTime() : Hour(0), Minute(0) {}
 	AtumTime(int h, int m) : Hour(h), Minute(m) { Rearrange(); }

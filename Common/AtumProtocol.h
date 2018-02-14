@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 /******************************************************************************
-ATUM C/S Protocol Á¤ÀÇ
+ATUM C/S Protocol ì •ì˜
 
-* protocol header ( size of data + ¾ÏÈ£È­ Á¤º¸ + seq. #), ¹«Á¶°Ç 4 bytes
+* protocol header ( size of data + ì•”í˜¸í™” ì •ë³´ + seq. #), ë¬´ì¡°ê±´ 4 bytes
 ----------------------------------------------------
 | size(2B) | encode_flag(1bit)+N(7bit)| seq. # (1B)|
 ----------------------------------------------------
 
-* ¾ÏÈ£È­µÈ µ¥ÀÌÅÍÀÎ °æ¿ì (ÀÚ¼¼ÇÑ »çÇ×Àº ÀÌ ÆÄÀÏ ¾Æ·¡ ºÎºĞ ÂüÁ¶)
+* ì•”í˜¸í™”ëœ ë°ì´í„°ì¸ ê²½ìš° (ìì„¸í•œ ì‚¬í•­ì€ ì´ íŒŒì¼ ì•„ë˜ ë¶€ë¶„ ì°¸ì¡°)
 <------------------- 4B --------------->
 -----------------------------------------------------------------------
 | size | encode_flag +   N    | seq. # | MSGs ... | dummy  | checksum |
@@ -16,7 +16,7 @@ ATUM C/S Protocol Á¤ÀÇ
 -----------------------------------------------------------------------
 <- XOR -><----------- XOR -------------->
 
-* ¾ÏÈ£È­µÇÁö ¾ÊÀº µ¥ÀÌÅÍÀÎ °æ¿ì
+* ì•”í˜¸í™”ë˜ì§€ ì•Šì€ ë°ì´í„°ì¸ ê²½ìš°
 ---------------------------------------------------
 | size | encode_flag +   N    | seq. # | MSGs ... |
 | (2B) |   (1bit)    + (7bit) |  (1B)  |          |
@@ -28,8 +28,8 @@ ATUM C/S Protocol Á¤ÀÇ
 | Type1(1B) | Type2(1B) |
 -------------------------
 
-ÀÛ¼ºÀÚ: ÀÌÀ±¿ø(ywlee@webcallworld.com)
-ÀÛ¼ºÀÏ: 2002. 9. 23.
+ì‘ì„±ì: ì´ìœ¤ì›(ywlee@webcallworld.com)
+ì‘ì„±ì¼: 2002. 9. 23.
 
 ******************************************************************************/
 
@@ -55,7 +55,7 @@ constexpr auto NPC_SERVER_PORT = 15104;
 const char* GetProtocolTypeString(MessageType_t msgType);
 const char* GetGameLogTypeString(T1<T0::FL_LOG> msgType);
 const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy);				// 2006-10-27 by cmkwon
-const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy);				// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - GetItemDeleteTypeString() Ãß°¡
+const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy);				// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - GetItemDeleteTypeString() ì¶”ê°€
 
 void PrintExchangeMsg(BYTE SendOrRecv, MessageType_t nType, char *peerIP, ENServerType st = ST_INVALID_TYPE, BYTE printLevel = PRINTLEVEL_NO_MSG);
 
@@ -65,29 +65,29 @@ struct MSG_FP_CASH_CHANGE_CHARACTERNAME
 	char		szChangedCharName[SIZE_MAX_CHARACTER_NAME];
 };
 
-struct MSG_FP_ADMIN_BLOCKACCOUNT		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FP_ADMIN_BLOCKACCOUNT		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	SBLOCKED_ACCOUNT_INFO blockAccInfo;
 };
 
-struct MSG_FP_ADMIN_BLOCKACCOUNT_OK		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FP_ADMIN_BLOCKACCOUNT_OK		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
-	Err_t	ErrCode;		// ERR_NO_ERROR ÀÌ¸é ¼º°ø
-	INT		AdminFieldServerClientIndex;		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - PreServer<->FieldServer ¿¡¼­¸¸ »ç¿ëÇÔ
+	Err_t	ErrCode;		// ERR_NO_ERROR ì´ë©´ ì„±ê³µ
+	INT		AdminFieldServerClientIndex;		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - PreServer<->FieldServer ì—ì„œë§Œ ì‚¬ìš©í•¨
 	char	AdminAccName[SIZE_MAX_ACCOUNT_NAME];
 	char	BlockedAccName[SIZE_MAX_ACCOUNT_NAME];
-	ATUM_DATE_TIME	atimeEndTime;				// ºí·° Á¾·á ½Ã°£
+	ATUM_DATE_TIME	atimeEndTime;				// ë¸”ëŸ­ ì¢…ë£Œ ì‹œê°„
 };
 
-struct MSG_FP_ADMIN_UNBLOCKACCOUNT		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FP_ADMIN_UNBLOCKACCOUNT		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	SBLOCKED_ACCOUNT_INFO blockAccInfo;
 };
 
-struct MSG_FP_ADMIN_UNBLOCKACCOUNT_OK	// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FP_ADMIN_UNBLOCKACCOUNT_OK	// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
-	Err_t	ErrCode;		// ERR_NO_ERROR ÀÌ¸é ¼º°ø
-	INT		AdminFieldServerClientIndex;		// 2008-01-31 by cmkwon, °èÁ¤ ºí·°/ÇØÁ¦ ¸í·É¾î·Î °¡´ÉÇÑ ½Ã½ºÅÛ ±¸Çö - PreServer<->FieldServer ¿¡¼­¸¸ »ç¿ëÇÔ
+	Err_t	ErrCode;		// ERR_NO_ERROR ì´ë©´ ì„±ê³µ
+	INT		AdminFieldServerClientIndex;		// 2008-01-31 by cmkwon, ê³„ì • ë¸”ëŸ­/í•´ì œ ëª…ë ¹ì–´ë¡œ ê°€ëŠ¥í•œ ì‹œìŠ¤í…œ êµ¬í˜„ - PreServer<->FieldServer ì—ì„œë§Œ ì‚¬ìš©í•¨
 	char	AdminAccName[SIZE_MAX_ACCOUNT_NAME];
 	char	UnblockedAccName[SIZE_MAX_ACCOUNT_NAME];
 };
@@ -117,10 +117,10 @@ struct MSG_FC_CITYWAR_END_WAR
 
 struct MSG_FC_CITYWAR_GET_OCCUPYINFO_OK
 {
-	MapIndex_t			CurrentMapIndex3;			// Á¤º¸ MapIndex 
-	MapIndex_t			CityWarMapIndex3;			// µµ½ÃÁ¡·ÉÀü MapIndex
-	MapIndex_t			CityWarCityMapIndex3;		// µµ½ÃÁ¡·ÉÀü µµ½Ã MapIndex
-	SCITY_OCCUPY_INFO	CityWarOccupyInfo3;			// µµ½ÃÁ¡·ÉÀü Á¡·É Á¤º¸
+	MapIndex_t			CurrentMapIndex3;			// ì •ë³´ MapIndex 
+	MapIndex_t			CityWarMapIndex3;			// ë„ì‹œì ë ¹ì „ MapIndex
+	MapIndex_t			CityWarCityMapIndex3;		// ë„ì‹œì ë ¹ì „ ë„ì‹œ MapIndex
+	SCITY_OCCUPY_INFO	CityWarOccupyInfo3;			// ë„ì‹œì ë ¹ì „ ì ë ¹ ì •ë³´
 };
 
 struct MSG_FC_CITYWAR_SET_SETTINGTIME
@@ -145,29 +145,29 @@ struct MSG_FC_CITYWAR_BRING_SUMOFTEX_OK
 
 struct MSG_FC_WAR_NOTIFY_INVASION					// 2005-12-27 by cmkwon
 {
-	MAP_CHANNEL_INDEX	MapChannelIndex0;		// Å¸ ¼¼·ÂÀÌ Ä§ÀÔÇÑ MapChannelIndex
+	MAP_CHANNEL_INDEX	MapChannelIndex0;		// íƒ€ ì„¸ë ¥ì´ ì¹¨ì…í•œ MapChannelIndex
 };
 
 struct MSG_FC_WAR_NOTIFY_INFLUENCE_MONSTER_DEAD		// 2005-12-27 by cmkwon
 {
-	INT					MonsterUnitkind;		// Á×Àº ¸ó½ºÅÍ
-	UID32_t				uidBestGuildUID;						// 2007-08-23 by cmkwon, ¸ğ¼± ÆøÆÄ½Ã ÃÖ°í µ¥¹ÌÁö ÁØ ¿©´Ü¸í Ç¥½Ã - GuildUID
-	char				szBestGuildName[SIZE_MAX_GUILD_NAME];	// 2007-08-23 by cmkwon, ¸ğ¼± ÆøÆÄ½Ã ÃÖ°í µ¥¹ÌÁö ÁØ ¿©´Ü¸í Ç¥½Ã - GuildName 
+	INT					MonsterUnitkind;		// ì£½ì€ ëª¬ìŠ¤í„°
+	UID32_t				uidBestGuildUID;						// 2007-08-23 by cmkwon, ëª¨ì„  í­íŒŒì‹œ ìµœê³  ë°ë¯¸ì§€ ì¤€ ì—¬ë‹¨ëª… í‘œì‹œ - GuildUID
+	char				szBestGuildName[SIZE_MAX_GUILD_NAME];	// 2007-08-23 by cmkwon, ëª¨ì„  í­íŒŒì‹œ ìµœê³  ë°ë¯¸ì§€ ì¤€ ì—¬ë‹¨ëª… í‘œì‹œ - GuildName 
 };
 
 struct MSG_FC_WAR_NOTIFY_INFLUENCE_MONSTER_INVASION		// 2006-01-20 by cmkwon
 {
-	INT					MonsterUnitkind;		// °ø°İ ¹Ş´Â ¸ó½ºÅÍ
+	INT					MonsterUnitkind;		// ê³µê²© ë°›ëŠ” ëª¬ìŠ¤í„°
 };
 
 struct MSG_FC_WAR_BOSS_MONSTER_SUMMON_DATA				// 2006-04-14 by cmkwon
 {
-	INT					SummonMonsterUnitkind;		// ¼ÒÈ¯ µÉ MonsterUnitKind
-	INT					RemainMinute;				// ¸ó½ºÅÍ°¡ ¼ÒÈ¯µÇ±â À§ÇØ ³²Àº ½Ã°£(´ÜÀ§:ºĞ)
-	INT					ContributionPoint;			// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-	ATUM_DATE_TIME		SummonMonsterTime;			// 2007-02-06 by dhjin, º¸½º(ÀüÇÔ) ¸ó½ºÅÍ ¼ÒÈ¯µÈ ½Ã°£ 
-	BYTE				BossStep;					// 2009-03-10 by dhjin, ´Ü°èº° ¸ğ¼± ½Ã½ºÅÛ - ¸ğ¼± ´Ü°è
-	BYTE				BeforeWinCheck;				// 2009-03-10 by dhjin, ´Ü°èº° ¸ğ¼± ½Ã½ºÅÛ - Àü ´Ü°è ½ÂÆĞ ¿©ºÎ
+	INT					SummonMonsterUnitkind;		// ì†Œí™˜ ë  MonsterUnitKind
+	INT					RemainMinute;				// ëª¬ìŠ¤í„°ê°€ ì†Œí™˜ë˜ê¸° ìœ„í•´ ë‚¨ì€ ì‹œê°„(ë‹¨ìœ„:ë¶„)
+	INT					ContributionPoint;			// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+	ATUM_DATE_TIME		SummonMonsterTime;			// 2007-02-06 by dhjin, ë³´ìŠ¤(ì „í•¨) ëª¬ìŠ¤í„° ì†Œí™˜ëœ ì‹œê°„ 
+	BYTE				BossStep;					// 2009-03-10 by dhjin, ë‹¨ê³„ë³„ ëª¨ì„  ì‹œìŠ¤í…œ - ëª¨ì„  ë‹¨ê³„
+	BYTE				BeforeWinCheck;				// 2009-03-10 by dhjin, ë‹¨ê³„ë³„ ëª¨ì„  ì‹œìŠ¤í…œ - ì „ ë‹¨ê³„ ìŠ¹íŒ¨ ì—¬ë¶€
 };
 
 struct MSG_FC_WAR_JACO_MONSTER_SUMMON				// 2006-04-19 by cmkwon
@@ -194,35 +194,35 @@ struct MSG_FC_INFO_STRATEGICPOINTINFO_DISPLAY : public SSTRATEGYPOINT_DISPLAY_IN
 
 struct MSG_SIGN_BOARD_STRING
 {
-	BYTE			InfluenceMask0;									// 2006-04-17 by cmkwon, ¼¼·Â ¸¶½ºÅ©
-	bool			IsInfluenceLeader;								// 2006-04-17 by cmkwon, TRUE:¼¼·ÂÁöµµÀÚ, FALSE:¿î¿µÀÚ È¤Àº °ü¸®ÀÚ
-	INT				StringIndex;									// Àü±¤ÆÇ ½ºÆ®¸µ ÀÎµ¦½º
-	ATUM_DATE_TIME	SignBoardExprieATime;							// Àü±¤ÆÇ ½ºÆ®¸µ Á¾·á ½Ã°£
-	char			SingBoardString[SIZE_MAX_SIGN_BOARD_STRING];	// Àü±¤ÆÇ ½ºÆ®¸µ
+	BYTE			InfluenceMask0;									// 2006-04-17 by cmkwon, ì„¸ë ¥ ë§ˆìŠ¤í¬
+	bool			IsInfluenceLeader;								// 2006-04-17 by cmkwon, TRUE:ì„¸ë ¥ì§€ë„ì, FALSE:ìš´ì˜ì í˜¹ì€ ê´€ë¦¬ì
+	INT				StringIndex;									// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ì¸ë±ìŠ¤
+	ATUM_DATE_TIME	SignBoardExprieATime;							// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ì¢…ë£Œ ì‹œê°„
+	char			SingBoardString[SIZE_MAX_SIGN_BOARD_STRING];	// ì „ê´‘íŒ ìŠ¤íŠ¸ë§
 };
 
 struct MSG_FC_WAR_SIGN_BOARD_INSERT_STRING				// 2006-04-17 by cmkwon
 {
-	bool			IsInfluenceLeader;								// 2006-04-17 by cmkwon, TRUE:¼¼·ÂÁöµµÀÚ, FALSE:¿î¿µÀÚ È¤Àº °ü¸®ÀÚ
-	INT				StringIndex;									// Àü±¤ÆÇ ½ºÆ®¸µ ÀÎµ¦½º
-	ATUM_DATE_TIME	SignBoardExpiryTime;							// Àü±¤ÆÇ ½ºÆ®¸µ Á¾·á ½Ã°£
-	char			SingBoardString[SIZE_MAX_SIGN_BOARD_STRING];	// Àü±¤ÆÇ ½ºÆ®¸µ
+	bool			IsInfluenceLeader;								// 2006-04-17 by cmkwon, TRUE:ì„¸ë ¥ì§€ë„ì, FALSE:ìš´ì˜ì í˜¹ì€ ê´€ë¦¬ì
+	INT				StringIndex;									// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ì¸ë±ìŠ¤
+	ATUM_DATE_TIME	SignBoardExpiryTime;							// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ì¢…ë£Œ ì‹œê°„
+	char			SingBoardString[SIZE_MAX_SIGN_BOARD_STRING];	// ì „ê´‘íŒ ìŠ¤íŠ¸ë§
 };
 
 struct MSG_FC_WAR_SIGN_BOARD_DELETE_STRING				// 2006-04-18 by cmkwon
 {
-	INT				DeleteStringIndex;						// Àü±¤ÆÇ ½ºÆ®¸µ ÀÎµ¦½º
+	INT				DeleteStringIndex;						// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ì¸ë±ìŠ¤
 };
 
 struct MSG_FC_WAR_REQ_SIGN_BOARD_STRING_LIST				// 2006-04-17 by cmkwon
 {
-	INT		nReqStringCount;									// Àü±¤ÆÇ ½ºÆ®¸µ °³¼ö
+	INT		nReqStringCount;									// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ê°œìˆ˜
 };
 
 struct MSG_FC_WAR_REQ_SIGN_BOARD_STRING_LIST_OK				// 2006-04-17 by cmkwon
 {
-	INT		nStringCount;									// Àü±¤ÆÇ ½ºÆ®¸µ °³¼ö
-	ARRAY_(MSG_FC_WAR_SIGN_BOARD_INSERT_STRING);			// Àü±¤ÆÇ ³»¿ë
+	INT		nStringCount;									// ì „ê´‘íŒ ìŠ¤íŠ¸ë§ ê°œìˆ˜
+	ARRAY_(MSG_FC_WAR_SIGN_BOARD_INSERT_STRING);			// ì „ê´‘íŒ ë‚´ìš©
 };
 
 struct MSG_FC_WAR_UPDATE_CONTRIBUTION_POINT_OK				// 2006-04-19 by cmkwon
@@ -243,7 +243,7 @@ struct MSG_FC_WAR_MONSTER_CREATED			// 2006-11-20 by cmkwon
 {
 	INT					MonsterUnitKind;
 	MAP_CHANNEL_INDEX	MapChannIdx;
-	ATUM_DATE_TIME		CreateTime;			// 2007-07-16 by dhjin, »ı¼º ½Ã°£ Ãß°¡
+	ATUM_DATE_TIME		CreateTime;			// 2007-07-16 by dhjin, ìƒì„± ì‹œê°„ ì¶”ê°€
 };
 
 struct MSG_FC_WAR_MONSTER_AUTO_DESTROYED	// 2006-11-20 by cmkwon
@@ -267,7 +267,7 @@ struct SCONTRIBUTION_GUILD_INFO
 };
 
 struct MSG_FC_WAR_BOSS_CONTRIBUTION_GUILD
-{// 2008-12-29 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
+{// 2008-12-29 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
 	SCONTRIBUTION_GUILD_INFO   ContributionGuldInfo[3];
 };
 
@@ -333,14 +333,14 @@ struct SBAZAAR_SELL_ITEM
 	int				nSellAmount0;
 	int				nSellEachPrice0;
 	UID64_t			itemUID;					// 2006-07-26 by cmkwon
-	INT				PrefixCodeNum0;				// Á¢µÎ»ç, ¾øÀ¸¸é 0
-	INT				SuffixCodeNum0;				// Á¢¹Ì»ç, ¾øÀ¸¸é 0
-												// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-												//	INT				ColorCode0;					// Æ©´×½Ã ¾Æ¸ÓÀÇ ColorCode
-	INT				ShapeItemNum0;			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				EffectItemNum0;			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				CoolingTime;			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	FIXED_TERM_INFO	FixedTermShape;				// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	INT				PrefixCodeNum0;				// ì ‘ë‘ì‚¬, ì—†ìœ¼ë©´ 0
+	INT				SuffixCodeNum0;				// ì ‘ë¯¸ì‚¬, ì—†ìœ¼ë©´ 0
+												// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+												//	INT				ColorCode0;					// íŠœë‹ì‹œ ì•„ë¨¸ì˜ ColorCode
+	INT				ShapeItemNum0;			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				EffectItemNum0;			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				CoolingTime;			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	FIXED_TERM_INFO	FixedTermShape;				// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 };
 
 struct MSG_FC_BAZAAR_SELL_REQUEST_ITEMLIST_OK
@@ -438,7 +438,7 @@ struct MSG_FI_CASH_USING_GUILD
 {
 	UID32_t		guildUID;
 	int			nIncreaseMemberCapacity;
-	UID32_t		CashPrice;						// 2008-05-28 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø Áõ°¡ Ä³½¬ ¾ÆÀÌÅÛ
+	UID32_t		CashPrice;						// 2008-05-28 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ì¦ê°€ ìºì‰¬ ì•„ì´í…œ
 };
 
 struct MSG_FI_CASH_USING_CHANGE_CHARACTERNAME
@@ -448,11 +448,11 @@ struct MSG_FI_CASH_USING_CHANGE_CHARACTERNAME
 };
 
 struct MSG_FI_CASH_PREMIUM_CARD_INFO
-{// 2006-09-14 by dhjin, ¿©´Ü ÃÊ´ë½Ã ¸É¹ö½± Á¤º¸ ÇÊ¿ä
+{// 2006-09-14 by dhjin, ì—¬ë‹¨ ì´ˆëŒ€ì‹œ ë§´ë²„ì‰½ ì •ë³´ í•„ìš”
 	UID32_t			AccountUID;
 	INT				nCardItemNum1;
-	//	ATUM_DATE_TIME	atumTimeUpdatedTime1;	// ¼öÁ¤µÈ ½Ã°£
-	ATUM_DATE_TIME	atumTimeExpireTime1;	// ¸¸·á ½Ã°£		// 2008-06-20 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¸¸·á ½Ã°£ ÇÊ¿ä
+	//	ATUM_DATE_TIME	atumTimeUpdatedTime1;	// ìˆ˜ì •ëœ ì‹œê°„
+	ATUM_DATE_TIME	atumTimeExpireTime1;	// ë§Œë£Œ ì‹œê°„		// 2008-06-20 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ë§Œë£Œ ì‹œê°„ í•„ìš”
 											//	float			fExpRate1;
 											//	float			fDropRate1;
 											//	float			fDropRareRate1;
@@ -484,15 +484,15 @@ struct MSG_FN_CITYWAR_CHANGE_OCCUPY_INFO
 
 
 // STRING_128 type
-#define STRING_128_DEBUG_L1		0	// µğ¹ö±×¿ë, level 1
-#define STRING_128_DEBUG_L2		1	// µğ¹ö±×¿ë, level 2
-#define STRING_128_DEBUG_L3		2	// µğ¹ö±×¿ë, level 3
-#define STRING_128_ADMIN_CMD	3	// °ü¸®ÀÚ ¸í·É¾î¿ë
-#define STRING_128_USER_ERR		4	// »ç¿ëÀÚ¿¡°Ô ÁÖ´Â ¿¡·¯
-#define STRING_128_USER_NOTICE	5	// »ç¿ëÀÚ¿¡°Ô ÁÖ´Â ¾Ë¸²
-#define STRING_128_DEBUG_PRINT	6	// µğ¹ö±×¿ë, DBGOUT¿¡ Ãâ·Â
-#define STRING_128_SYSTEM_NOTICE	7	// »ç¿ëÀÚ¿¡°Ô ÁÖ´Â ¾Ë¸²		// 2012-03-30 by hskim, EP4 Æ®¸®°Å ½Ã½ºÅÛ ÀÌº¥Æ® ¾Ë¸²
-#define STRING_128_USER_POPUP	8	// »ç¿ëÀÚ¿¡°Ô ÁÖ´Â ÆË¾÷¾Ë¸²		// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç
+#define STRING_128_DEBUG_L1		0	// ë””ë²„ê·¸ìš©, level 1
+#define STRING_128_DEBUG_L2		1	// ë””ë²„ê·¸ìš©, level 2
+#define STRING_128_DEBUG_L3		2	// ë””ë²„ê·¸ìš©, level 3
+#define STRING_128_ADMIN_CMD	3	// ê´€ë¦¬ì ëª…ë ¹ì–´ìš©
+#define STRING_128_USER_ERR		4	// ì‚¬ìš©ìì—ê²Œ ì£¼ëŠ” ì—ëŸ¬
+#define STRING_128_USER_NOTICE	5	// ì‚¬ìš©ìì—ê²Œ ì£¼ëŠ” ì•Œë¦¼
+#define STRING_128_DEBUG_PRINT	6	// ë””ë²„ê·¸ìš©, DBGOUTì— ì¶œë ¥
+#define STRING_128_SYSTEM_NOTICE	7	// ì‚¬ìš©ìì—ê²Œ ì£¼ëŠ” ì•Œë¦¼		// 2012-03-30 by hskim, EP4 íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ ì´ë²¤íŠ¸ ì•Œë¦¼
+#define STRING_128_USER_POPUP	8	// ì‚¬ìš©ìì—ê²Œ ì£¼ëŠ” íŒì—…ì•Œë¦¼		// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜
 
 // SendErrorMessage types
 //#define T_PRE_IOCP							(MessageType_t)((T0_PRE<<8)|T1_PRE_IOCP)
@@ -539,7 +539,7 @@ struct MSG_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO
 	USHORT	FtpPort;
 	char	FtpAccountName[SIZE_MAX_ACCOUNT_NAME];
 	char	FtpPassword[SIZE_MAX_PASSWORD];
-	char	LauncherFileDownloadPath[SIZE_MAX_FTP_FILE_PATH];		// 2005-12-23 by cmkwon, ¼öÁ¤
+	char	LauncherFileDownloadPath[SIZE_MAX_FTP_FILE_PATH];		// 2005-12-23 by cmkwon, ìˆ˜ì •
 };
 
 struct MSG_PC_DEFAULT_NEW_UPDATE_LAUNCHER_VERSION					// 2007-01-08 by cmkwon, C->P
@@ -547,7 +547,7 @@ struct MSG_PC_DEFAULT_NEW_UPDATE_LAUNCHER_VERSION					// 2007-01-08 by cmkwon, C
 	USHORT	Version[SIZE_MAX_VERSION];
 };
 
-struct MSG_PC_DEFAULT_NEW_UPDATE_LAUNCHER_UPDATE_INFO			// 2007-01-06 by cmkwon, Ãß°¡ÇÔ
+struct MSG_PC_DEFAULT_NEW_UPDATE_LAUNCHER_UPDATE_INFO			// 2007-01-06 by cmkwon, ì¶”ê°€í•¨
 {
 	USHORT	UpdateVersion[SIZE_MAX_VERSION];
 	char	UpdateServerIP[SIZE_MAX_FTP_URL];
@@ -568,20 +568,20 @@ struct MSG_PC_CONNECT_VERSION
 
 struct MSG_PC_CONNECT_UPDATE_INFO
 {
-	USHORT	OldVersion[SIZE_MAX_VERSION];		// ¾÷µ¥ÀÌÆ® ½ÃÀÛ ¹öÀü
-	USHORT	UpdateVersion[SIZE_MAX_VERSION];	// ¾÷µ¥ÀÌÆ® ³¡ ¹öÀü
+	USHORT	OldVersion[SIZE_MAX_VERSION];		// ì—…ë°ì´íŠ¸ ì‹œì‘ ë²„ì „
+	USHORT	UpdateVersion[SIZE_MAX_VERSION];	// ì—…ë°ì´íŠ¸ ë ë²„ì „
 	char	FtpIP[SIZE_MAX_FTP_URL];
 	USHORT	FtpPort;
 	char	FtpAccountName[SIZE_MAX_ACCOUNT_NAME];
 	char	FtpPassword[SIZE_MAX_PASSWORD];
 	// 2005-12-23 by cmkwon
-	//	char	FtpUpdateDir[SIZE_MAX_FTP_FILE_PATH];	// ¾÷µ¥ÀÌÆ®ÇÒ ÆÄÀÏÀÌ ÀÖ´Â °æ·Î
-	char	FtpUpdateDownloadDir[SIZE_MAX_FTP_FILE_PATH];	// 2005-12-23 by cmkwon, ¾÷µ¥ÀÌÆ®ÇÒ ÆÄÀÏ ´Ù¿î·Îµå °æ·Î
+	//	char	FtpUpdateDir[SIZE_MAX_FTP_FILE_PATH];	// ì—…ë°ì´íŠ¸í•  íŒŒì¼ì´ ìˆëŠ” ê²½ë¡œ
+	char	FtpUpdateDownloadDir[SIZE_MAX_FTP_FILE_PATH];	// 2005-12-23 by cmkwon, ì—…ë°ì´íŠ¸í•  íŒŒì¼ ë‹¤ìš´ë¡œë“œ ê²½ë¡œ
 };
 
 struct MSG_PC_CONNECT_REINSTALL_CLIENT
 {
-	USHORT	LatestVersion[SIZE_MAX_VERSION];		// ÃÖ½Å ¹öÀü
+	USHORT	LatestVersion[SIZE_MAX_VERSION];		// ìµœì‹  ë²„ì „
 };
 
 
@@ -592,30 +592,30 @@ struct MSG_PC_CONNECT_LOGIN
 {
 	BYTE	LoginType;		// LOGIN_TYPE_XXX
 
-							// 2008-10-08 by cmkwon, ´ë¸¸ 2´Ü°è °èÁ¤ ½Ã½ºÅÛ Áö¿ø ±¸Çö(email->uid) - 
+							// 2008-10-08 by cmkwon, ëŒ€ë§Œ 2ë‹¨ê³„ ê³„ì • ì‹œìŠ¤í…œ ì§€ì› êµ¬í˜„(email->uid) - 
 							//	char	AccountName[SIZE_MAX_ACCOUNT_NAME];
-	char	AccountName[SIZE_MAX_ORIGINAL_ACCOUNT_NAME];	// 2008-10-08 by cmkwon, ´ë¸¸ 2´Ü°è °èÁ¤ ½Ã½ºÅÛ Áö¿ø ±¸Çö(email->uid) - 
+	char	AccountName[SIZE_MAX_ORIGINAL_ACCOUNT_NAME];	// 2008-10-08 by cmkwon, ëŒ€ë§Œ 2ë‹¨ê³„ ê³„ì • ì‹œìŠ¤í…œ ì§€ì› êµ¬í˜„(email->uid) - 
 
 	BYTE	Password[SIZE_MAX_PASSWORD_MD5];
 	char	FieldServerGroupName[SIZE_MAX_SERVER_NAME];
 	char	PrivateIP[SIZE_MAX_IPADDRESS];
-	//INT		MGameSEX;		// ¼ºº° - ¸ğ¸§=0, ³²ÀÚ=1, ¿©ÀÚ=2
-	//INT		MGameYear;		// Ãâ»ı³âµµ(ex> 1976, 1981, 2000)
-	char	WebLoginAuthKey[SIZE_MAX_WEBLOGIN_AUTHENTICATION_KEY];		// 2007-03-29 by cmkwon, Ãß°¡ÇÔ
-	char	ClientIP[SIZE_MAX_IPADDRESS];	// 2008-10-08 by cmkwon, ´ë¸¸ Netpower_Tpe ¿ÜºÎÀÎÁõ ±¸Çö - PreServer¿¡ Á¢¼ÓÇÑ client IP
-	char	SelectiveShutdownInfo[SIZE_MAX_SELECTIVE_SHUTDOWN_INFO];		// 2012-07-11 by hskim, ¼±ÅÃÀû ¼Ë´Ù¿î
+	//INT		MGameSEX;		// ì„±ë³„ - ëª¨ë¦„=0, ë‚¨ì=1, ì—¬ì=2
+	//INT		MGameYear;		// ì¶œìƒë…„ë„(ex> 1976, 1981, 2000)
+	char	WebLoginAuthKey[SIZE_MAX_WEBLOGIN_AUTHENTICATION_KEY];		// 2007-03-29 by cmkwon, ì¶”ê°€í•¨
+	char	ClientIP[SIZE_MAX_IPADDRESS];	// 2008-10-08 by cmkwon, ëŒ€ë§Œ Netpower_Tpe ì™¸ë¶€ì¸ì¦ êµ¬í˜„ - PreServerì— ì ‘ì†í•œ client IP
+	char	SelectiveShutdownInfo[SIZE_MAX_SELECTIVE_SHUTDOWN_INFO];		// 2012-07-11 by hskim, ì„ íƒì  ì…§ë‹¤ìš´
 	char	MACAddress[SIZE_MAX_MAC_ADDRESS];	// 2016-01-09 Future, MAC Blocking
 };
 
 struct MSG_PC_CONNECT_LOGIN_OK
 {
-	char	AccountName[SIZE_MAX_ACCOUNT_NAME];		// 2008-10-08 by cmkwon, ´ë¸¸ 2´Ü°è °èÁ¤ ½Ã½ºÅÛ Áö¿ø ±¸Çö(email->uid) - 2Â÷ °èÁ¤À» º¸³»ÁÜ
+	char	AccountName[SIZE_MAX_ACCOUNT_NAME];		// 2008-10-08 by cmkwon, ëŒ€ë§Œ 2ë‹¨ê³„ ê³„ì • ì‹œìŠ¤í…œ ì§€ì› êµ¬í˜„(email->uid) - 2ì°¨ ê³„ì •ì„ ë³´ë‚´ì¤Œ
 
 	char	FieldServerIP[SIZE_MAX_IPADDRESS];
 	char	IMServerIP[SIZE_MAX_IPADDRESS];
 	USHORT	FieldServerPort;
 	USHORT	IMServerPort;
-	bool	OpeningMoviePlay;		// 2011-12-21 by hskim, EP4 [µ¿¿µ»ó 1È¸ Àç»ı]
+	bool	OpeningMoviePlay;		// 2011-12-21 by hskim, EP4 [ë™ì˜ìƒ 1íšŒ ì¬ìƒ]
 };
 
 struct MSG_PC_CONNECT_CLOSE
@@ -627,7 +627,7 @@ struct MSG_PC_CONNECT_SINGLE_FILE_VERSION_CHECK
 {
 	USHORT	DeleteFileListVersion[SIZE_MAX_VERSION];
 	USHORT	NoticeVersion[SIZE_MAX_VERSION];
-};		// single fileµé¿¡ ´ëÇÑ ¹öÀü È®ÀÎ(deletefilelist.txt, notice.txt µî)
+};		// single fileë“¤ì— ëŒ€í•œ ë²„ì „ í™•ì¸(deletefilelist.txt, notice.txt ë“±)
 
 struct MSG_PC_CONNECT_SINGLE_FILE_UPDATE_INFO
 {					// 2007-01-08 by cmkwon, AU_SERVER_TYPE_XXX
@@ -639,7 +639,7 @@ struct MSG_PC_CONNECT_SINGLE_FILE_UPDATE_INFO
 	char	FtpPassword[SIZE_MAX_PASSWORD];
 	char	DeleteFileListDownloadPath[SIZE_MAX_FTP_FILE_PATH];
 	char	NoticeFileDownloadPath[SIZE_MAX_FTP_FILE_PATH];
-};		// single fileµé¿¡ ´ëÇÑ ¾÷µ¥ÀÌÆ® Á¤º¸(deletefilelist.txt, notice.txt µî)
+};		// single fileë“¤ì— ëŒ€í•œ ì—…ë°ì´íŠ¸ ì •ë³´(deletefilelist.txt, notice.txt ë“±)
 
 #ifndef MGAME_MAX_PARAM_STRING_SIZE
 #define MGAME_MAX_PARAM_STRING_SIZE			50
@@ -648,7 +648,7 @@ struct MSG_PC_CONNECT_SINGLE_FILE_UPDATE_INFO
 struct MEX_SERVER_GROUP_INFO_FOR_LAUNCHER
 {
 	char	ServerGroupName[SIZE_MAX_SERVER_NAME];
-	int		Crowdedness;		// È¥Àâµµ, 0% ~ 100%
+	int		Crowdedness;		// í˜¼ì¡ë„, 0% ~ 100%
 };
 
 struct MSG_PC_CONNECT_GET_SERVER_GROUP_LIST_OK
@@ -657,46 +657,46 @@ struct MSG_PC_CONNECT_GET_SERVER_GROUP_LIST_OK
 	ARRAY_(MEX_SERVER_GROUP_INFO_FOR_LAUNCHER);
 };	// P->Launcher
 
-struct SGAME_SERVER_GROUP_OLD		// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - ÀÌÀü ¹öÀü È£È¯À» À§ÇÑ ±¸Á¶Ã¼
+struct SGAME_SERVER_GROUP_OLD		// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - ì´ì „ ë²„ì „ í˜¸í™˜ì„ ìœ„í•œ êµ¬ì¡°ì²´
 {
 	char	szGameServerGroupName[SIZE_MAX_GAME_SERVER_GROUP_NAME];
 	char	szPreServerIP0[SIZE_MAX_IPADDRESS];
 	USHORT	usPreServerPort0;
 };
 
-struct MSG_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST_OK		// 2007-05-02 by cmkwon, PreServer Á¤º¸
-{// 2007-05-15 by cmkwon, ±¸Á¶Ã¼ÀÇ »çÀÌÁî°¡ SIZE_MAX_PACKET º¸´Ù ÀÛ¾Æ¾ß ÇÑ´Ù.
-	SGAME_SERVER_GROUP_OLD arrGameServerGroupList[COUNT_MAX_GAME_SERVER_GROUP_LIST];		// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - ÀÌÀü ¹öÀü È£È¯À» À§ÇÑ ±¸Á¶Ã¼ »ç¿ë
+struct MSG_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST_OK		// 2007-05-02 by cmkwon, PreServer ì •ë³´
+{// 2007-05-15 by cmkwon, êµ¬ì¡°ì²´ì˜ ì‚¬ì´ì¦ˆê°€ SIZE_MAX_PACKET ë³´ë‹¤ ì‘ì•„ì•¼ í•œë‹¤.
+	SGAME_SERVER_GROUP_OLD arrGameServerGroupList[COUNT_MAX_GAME_SERVER_GROUP_LIST];		// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - ì´ì „ ë²„ì „ í˜¸í™˜ì„ ìœ„í•œ êµ¬ì¡°ì²´ ì‚¬ìš©
 };
 
-struct SGAME_SERVER_GROUP		// 2007-05-02 by cmkwon, PreServer Á¤º¸
+struct SGAME_SERVER_GROUP		// 2007-05-02 by cmkwon, PreServer ì •ë³´
 {
 	char	szGameServerGroupName[SIZE_MAX_GAME_SERVER_GROUP_NAME];
 	char	szPreServerIP0[SIZE_MAX_IPADDRESS];
-	// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - Port´Â ±âº»Æ÷Æ®¸¦ »ç¿ëÇÔ
+	// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - PortëŠ” ê¸°ë³¸í¬íŠ¸ë¥¼ ì‚¬ìš©í•¨
 	//	USHORT	usPreServerPort0;
-	USHORT	usPreServerTab8OrderIndex;			// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - ÇÊµåÃß°¡
+	USHORT	usPreServerTab8OrderIndex;			// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - í•„ë“œì¶”ê°€
 };
 using vectSGAME_SERVER_GROUP = vector<SGAME_SERVER_GROUP>;			// 2007-05-15 by cmkwon
 
-struct MSG_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST_OK		// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - »õ·Î Ãß°¡ÇÑ ±¸Á¶Ã¼
-{// 2007-05-15 by cmkwon, ±¸Á¶Ã¼ÀÇ »çÀÌÁî°¡ SIZE_MAX_PACKET º¸´Ù ÀÛ¾Æ¾ß ÇÑ´Ù.
+struct MSG_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST_OK		// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - ìƒˆë¡œ ì¶”ê°€í•œ êµ¬ì¡°ì²´
+{// 2007-05-15 by cmkwon, êµ¬ì¡°ì²´ì˜ ì‚¬ì´ì¦ˆê°€ SIZE_MAX_PACKET ë³´ë‹¤ ì‘ì•„ì•¼ í•œë‹¤.
 	SGAME_SERVER_GROUP arrGameServerGroupList[COUNT_MAX_GAME_SERVER_GROUP_LIST];
 };
 
-struct MSG_PC_CONNECT_NETWORK_CHECK			// 2007-06-18 by cmkwon, ³×Æ®¿öÅ© »óÅÂ Ã¼Å© 
+struct MSG_PC_CONNECT_NETWORK_CHECK			// 2007-06-18 by cmkwon, ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ 
 {
 	int		nCheckCount;
 };
 
-using MSG_PC_CONNECT_NETWORK_CHECK_OK = MSG_PC_CONNECT_NETWORK_CHECK;		// 2007-06-18 by cmkwon, ³×Æ®¿öÅ© »óÅÂ Ã¼Å© 
+using MSG_PC_CONNECT_NETWORK_CHECK_OK = MSG_PC_CONNECT_NETWORK_CHECK;		// 2007-06-18 by cmkwon, ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ 
 
 
 struct MSG_PC_CONNECT_LOGIN_BLOCKED
 {
-	// 2008-10-08 by cmkwon, ´ë¸¸ 2´Ü°è °èÁ¤ ½Ã½ºÅÛ Áö¿ø ±¸Çö(email->uid) -
+	// 2008-10-08 by cmkwon, ëŒ€ë§Œ 2ë‹¨ê³„ ê³„ì • ì‹œìŠ¤í…œ ì§€ì› êµ¬í˜„(email->uid) -
 	//	char			szAccountName[SIZE_MAX_ACCOUNT_NAME];				// 2007-01-10 by cmkwon
-	char			szAccountName[SIZE_MAX_ORIGINAL_ACCOUNT_NAME];		// 2008-10-08 by cmkwon, ´ë¸¸ 2´Ü°è °èÁ¤ ½Ã½ºÅÛ Áö¿ø ±¸Çö(email->uid) -
+	char			szAccountName[SIZE_MAX_ORIGINAL_ACCOUNT_NAME];		// 2008-10-08 by cmkwon, ëŒ€ë§Œ 2ë‹¨ê³„ ê³„ì • ì‹œìŠ¤í…œ ì§€ì› êµ¬í˜„(email->uid) -
 
 	int				nBlockedType;
 	ATUM_DATE_TIME	atimeStart;
@@ -716,14 +716,14 @@ struct MSG_FN_CONNECT_INCREASE_CHANNEL
 {
 	MapIndex_t	MapIndex;
 	INT			TotalChannelCount;
-	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };		// F->N
 
 struct MSG_FN_CONNECT_SET_CHANNEL_STATE
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
 	bool				EnableChannel;	// TRUE: Enable, FALSE: Disable
-	DWORD				Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD				Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };		// F->N
 
 		///////////////////////////////
@@ -735,57 +735,57 @@ struct MSG_FC_CONNECT_LOGIN
 	char	Password[SIZE_MAX_PASSWORD_MD5_STRING];
 	char	PrivateIP[SIZE_MAX_IPADDRESS];
 	char	MACAddress[SIZE_MAX_MAC_ADDRESS];		// 2015-09-23 Future, added transmition of MAC Address
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 // 2005-12-08 by cmkwon
 /////////////////////////////////////
-//// ¾ÆÀÌÅÛ ÀåÂø À§Ä¡(POS_XXX)
-//#define POS_PROW							((BYTE)0)	// ·¹ÀÌ´õ(¼±µÎ °¡¿îµ¥)
-//#define POS_PROWIN						((BYTE)1)	// ÄÄÇ»ÅÍ(Áß¾Ó ÁÂÃø)
-//#define POS_PROWOUT						((BYTE)2)	// 1Çü ¹«±â(¼±µÎ ÁÂÃø)
-//#define POS_WINGIN						((BYTE)3)	//		»ç¿ë¾ÈÇÔ(Áß¾Ó ¿ìÃø)
-//#define POS_WINGOUT						((BYTE)4)	// 2Çü ¹«±â(¼±µÎ ¿ìÃø)
-//#define POS_CENTER						((BYTE)5)	// ¾Æ¸Ó(Áß¾Ó °¡¿îµ¥)
-//#define POS_REAR							((BYTE)6)	// ¿£Áø(ÈÄ¹Ì °¡¿îµ¥)
-//#define POS_ATTACHMENT					((BYTE)7)	// 2006-03-30 by cmkwon, ¹«Á¦ÇÑ ¾Ç¼¼»ç¸® - ºÎÂø¹°(ÈÄ¹Ì ¿ìÃø-¿¬·áÅÊÅ©|ÄÁÅ×ÀÌ³Ê°è¿­)
-//#define POS_PET							((BYTE)8)	// 2006-03-30 by cmkwon, ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸®(ÈÄ¹Ì ÁÂÃø)
+//// ì•„ì´í…œ ì¥ì°© ìœ„ì¹˜(POS_XXX)
+//#define POS_PROW							((BYTE)0)	// ë ˆì´ë”(ì„ ë‘ ê°€ìš´ë°)
+//#define POS_PROWIN						((BYTE)1)	// ì»´í“¨í„°(ì¤‘ì•™ ì¢Œì¸¡)
+//#define POS_PROWOUT						((BYTE)2)	// 1í˜• ë¬´ê¸°(ì„ ë‘ ì¢Œì¸¡)
+//#define POS_WINGIN						((BYTE)3)	//		ì‚¬ìš©ì•ˆí•¨(ì¤‘ì•™ ìš°ì¸¡)
+//#define POS_WINGOUT						((BYTE)4)	// 2í˜• ë¬´ê¸°(ì„ ë‘ ìš°ì¸¡)
+//#define POS_CENTER						((BYTE)5)	// ì•„ë¨¸(ì¤‘ì•™ ê°€ìš´ë°)
+//#define POS_REAR							((BYTE)6)	// ì—”ì§„(í›„ë¯¸ ê°€ìš´ë°)
+//#define POS_ATTACHMENT					((BYTE)7)	// 2006-03-30 by cmkwon, ë¬´ì œí•œ ì•…ì„¸ì‚¬ë¦¬ - ë¶€ì°©ë¬¼(í›„ë¯¸ ìš°ì¸¡-ì—°ë£Œíƒ±í¬|ì»¨í…Œì´ë„ˆê³„ì—´)
+//#define POS_PET							((BYTE)8)	// 2006-03-30 by cmkwon, ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬(í›„ë¯¸ ì¢Œì¸¡)
 struct CHARACTER_RENDER_INFO
 {
-	INT		RI_Prow;			// POS_PROWÀÇ ItemNum, ¼±µÎ (¶óÀÌÆ®°è¿­ + ¹æ¾î°è¿­ or ·¹ÀÌ´Ù)
-	INT		RI_ProwIn;			// 2005-03-17 by cmkwon (CPU ÄÄÇ»ÅÍ)
-	INT		RI_ProwOut;			// POS_PROWOUTÀÇ ItemNum, ¼±µÎÀÇ ¹Ù±ùÂÊ, ÀåÀü (1Çü¹«±â - ºö°è¿­ or Ä³³í°è¿­)
-	INT		RI_WingIn;			// 2005-03-17 by cmkwon (¸¶Å©)
-	INT		RI_WingOut;			// POS_WINGOUTÀÇ ItemNum, ³¯°³ÀÇ ¹Ù±ùÂÊ, ÀåÀü(2Çü¹«±â - ·ÎÄÏ°è¿­ or ¹Ì»çÀÏ°è¿­)
-	INT		RI_Center;			// POS_CENTERÀÇ ItemNum, Áß¾Ó (¹æ¾î°è¿­ - ¾Æ¸Ó) °í·Á
-								// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ÇÊ¿ä ¾øÀ½
-								//	INT		RI_ArmorColorCode;	// 2005-12-08 by cmkwon, ¾Æ¸ÓÀÇ »ö»óÄ®¶ó
-	INT		RI_Rear;			// POS_REARÀÇ ItemNum, ÈÄ¹Ì (¿£Áø°è¿­)
+	INT		RI_Prow;			// POS_PROWì˜ ItemNum, ì„ ë‘ (ë¼ì´íŠ¸ê³„ì—´ + ë°©ì–´ê³„ì—´ or ë ˆì´ë‹¤)
+	INT		RI_ProwIn;			// 2005-03-17 by cmkwon (CPU ì»´í“¨í„°)
+	INT		RI_ProwOut;			// POS_PROWOUTì˜ ItemNum, ì„ ë‘ì˜ ë°”ê¹¥ìª½, ì¥ì „ (1í˜•ë¬´ê¸° - ë¹”ê³„ì—´ or ìºë…¼ê³„ì—´)
+	INT		RI_WingIn;			// 2005-03-17 by cmkwon (ë§ˆí¬)
+	INT		RI_WingOut;			// POS_WINGOUTì˜ ItemNum, ë‚ ê°œì˜ ë°”ê¹¥ìª½, ì¥ì „(2í˜•ë¬´ê¸° - ë¡œì¼“ê³„ì—´ or ë¯¸ì‚¬ì¼ê³„ì—´)
+	INT		RI_Center;			// POS_CENTERì˜ ItemNum, ì¤‘ì•™ (ë°©ì–´ê³„ì—´ - ì•„ë¨¸) ê³ ë ¤
+								// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - í•„ìš” ì—†ìŒ
+								//	INT		RI_ArmorColorCode;	// 2005-12-08 by cmkwon, ì•„ë¨¸ì˜ ìƒ‰ìƒì¹¼ë¼
+	INT		RI_Rear;			// POS_REARì˜ ItemNum, í›„ë¯¸ (ì—”ì§„ê³„ì—´)
 
-								// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ
-								//INT		RI_Attachment;		// POS_ATTACHMENTÀÇ ItemNum, ºÎÂø¹° (ÄÁÅ×ÀÌ³Ê°è¿­<¿¬·áÅÊÅ©/±âÅ¸°è¿­> or ÁöµµÀÚÀÇ ±¤ÈÖ)
+								// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ
+								//INT		RI_Attachment;		// POS_ATTACHMENTì˜ ItemNum, ë¶€ì°©ë¬¼ (ì»¨í…Œì´ë„ˆê³„ì—´<ì—°ë£Œíƒ±í¬/ê¸°íƒ€ê³„ì—´> or ì§€ë„ìì˜ ê´‘íœ˜)
 	INT		RI_AccessoryUnLimited;
 
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ
-	//INT		RI_Pet;				// 2005-03-17 by cmkwon (½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸®)
+	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ
+	//INT		RI_Pet;				// 2005-03-17 by cmkwon (ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬)
 	INT		RI_AccessoryTimeLimit;
 
-	bool	RI_Invisible;		// 2006-11-27 by dhjin, Ä³¸¯ÅÍ º¸ÀÌÁö ¾Ê´Â ÇÃ·¡±×
-	INT		RI_Prow_ShapeItemNum;			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ·¹ÀÌ´õ ShapeItemNum
-	INT		RI_WingIn_ShapeItemNum;			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ¸¶Å© ShapeItemNum
-	INT		RI_Center_ShapeItemNum;			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ¾Æ¸Ó ShapeItemNum
-	INT		RI_ProwOut_ShapeItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 1Çü¹«±â ShapeItemNum
-	INT		RI_WingOut_ShapeItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 2Çü¹«±â ShapeItemNum
-	INT		RI_ProwOut_EffectItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 1Çü¹«±â ÅºµÎ EffectItemNum
-	INT		RI_WingOut_EffectItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 2Çü¹«±â ÅºµÎ EffectItemNum
-	INT		RI_MonsterUnitKind_ForTransformer;	// 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - º¯½Å»óÅÂÀÇ ¸ó½ºÅÍ º¯½ÅÄ«µå
+	bool	RI_Invisible;		// 2006-11-27 by dhjin, ìºë¦­í„° ë³´ì´ì§€ ì•ŠëŠ” í”Œë˜ê·¸
+	INT		RI_Prow_ShapeItemNum;			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ë ˆì´ë” ShapeItemNum
+	INT		RI_WingIn_ShapeItemNum;			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ë§ˆí¬ ShapeItemNum
+	INT		RI_Center_ShapeItemNum;			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ì•„ë¨¸ ShapeItemNum
+	INT		RI_ProwOut_ShapeItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 1í˜•ë¬´ê¸° ShapeItemNum
+	INT		RI_WingOut_ShapeItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 2í˜•ë¬´ê¸° ShapeItemNum
+	INT		RI_ProwOut_EffectItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 1í˜•ë¬´ê¸° íƒ„ë‘ EffectItemNum
+	INT		RI_WingOut_EffectItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 2í˜•ë¬´ê¸° íƒ„ë‘ EffectItemNum
+	INT		RI_MonsterUnitKind_ForTransformer;	// 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - ë³€ì‹ ìƒíƒœì˜ ëª¬ìŠ¤í„° ë³€ì‹ ì¹´ë“œ
 
-	INT		RI_Pet;							// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¾ÆÀÌÅÛ.
-	INT		RI_Pet_ShapeItemNum;			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ShapeItemNum.
+	INT		RI_Pet;							// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ì•„ì´í…œ.
+	INT		RI_Pet_ShapeItemNum;			// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ShapeItemNum.
 
 											///////////////////////////////////////////////////////////////////////////////
 											/// \fn			
-											/// \brief		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
+											/// \brief		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 											/// \author		cmkwon
 											/// \date		2009-08-27 ~ 2009-08-27
 											/// \warning	
@@ -798,20 +798,20 @@ struct CHARACTER_RENDER_INFO
 		switch (i_nPos)
 		{
 
-		case POS_PROW:			// ·¹ÀÌ´õ - ¿ÜÇüº¯°æ°¡´É
+		case POS_PROW:			// ë ˆì´ë” - ì™¸í˜•ë³€ê²½ê°€ëŠ¥
 		{
 			RI_Prow = i_nItemNum;
 			RI_Prow_ShapeItemNum = i_nShapeItemNum;
 		}
 		break;
 
-		case POS_PROWIN:		// CPU ÄÄÇ»ÅÍ - 
+		case POS_PROWIN:		// CPU ì»´í“¨í„° - 
 		{
-			RI_ProwIn = i_nItemNum;		// 2012-06-20 by isshin CPU Á¤º¸ ¹ö±× ¼öÁ¤
+			RI_ProwIn = i_nItemNum;		// 2012-06-20 by isshin CPU ì •ë³´ ë²„ê·¸ ìˆ˜ì •
 		}
 		break;
 
-		case POS_PROWOUT:		// 1Çü ¹«±â - ¿ÜÇüº¯°æ°¡´É + ÅºµÎÀÌÆåÆ®º¯°æ°¡´É
+		case POS_PROWOUT:		// 1í˜• ë¬´ê¸° - ì™¸í˜•ë³€ê²½ê°€ëŠ¥ + íƒ„ë‘ì´í™íŠ¸ë³€ê²½ê°€ëŠ¥
 		{
 			RI_ProwOut = i_nItemNum;
 			RI_ProwOut_ShapeItemNum = i_nShapeItemNum;
@@ -819,14 +819,14 @@ struct CHARACTER_RENDER_INFO
 		}
 		break;
 
-		case POS_WINGIN:		// ¸¶Å© - ¿ÜÇüº¯°æ°¡´É
+		case POS_WINGIN:		// ë§ˆí¬ - ì™¸í˜•ë³€ê²½ê°€ëŠ¥
 		{
 			RI_WingIn = i_nItemNum;
 			RI_WingIn_ShapeItemNum = i_nShapeItemNum;
 		}
 		break;
 
-		case POS_WINGOUT:		// 2Çü ¹«±â - ¿ÜÇüº¯°æ°¡´É + ÅºµÎÀÌÆåÆ®º¯°æ°¡´É
+		case POS_WINGOUT:		// 2í˜• ë¬´ê¸° - ì™¸í˜•ë³€ê²½ê°€ëŠ¥ + íƒ„ë‘ì´í™íŠ¸ë³€ê²½ê°€ëŠ¥
 		{
 			RI_WingOut = i_nItemNum;
 			RI_WingOut_ShapeItemNum = i_nShapeItemNum;
@@ -834,7 +834,7 @@ struct CHARACTER_RENDER_INFO
 		}
 		break;
 
-		case POS_CENTER:		// ¾Æ¸Ó - ¿ÜÇüº¯°æ°¡´É
+		case POS_CENTER:		// ì•„ë¨¸ - ì™¸í˜•ë³€ê²½ê°€ëŠ¥
 		{
 			RI_Center = i_nItemNum;
 #ifdef _REWORKED_COLORSHOP
@@ -848,14 +848,14 @@ struct CHARACTER_RENDER_INFO
 		}
 		break;
 
-		case POS_REAR:			// ¿£Áø - 
+		case POS_REAR:			// ì—”ì§„ - 
 		{
 			RI_Rear = i_nItemNum;
 		}
 		break;
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¼±¾ğ º¯°æ.
-		//case POS_ATTACHMENT:	// ¿¬·áÅÊÅ© or ÁöµµÀÚÀÇ±¤ÈÖ - 
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì„ ì–¸ ë³€ê²½.
+		//case POS_ATTACHMENT:	// ì—°ë£Œíƒ±í¬ or ì§€ë„ìì˜ê´‘íœ˜ - 
 		case POS_ACCESSORY_UNLIMITED:
 		{
 			//RI_Attachment	= i_nItemNum;
@@ -863,16 +863,16 @@ struct CHARACTER_RENDER_INFO
 		}
 		break;
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¼±¾ğ º¯°æ.
-		//case POS_PET:						// ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸® - 
-		case POS_ACCESSORY_TIME_LIMIT:		// ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸® - 
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì„ ì–¸ ë³€ê²½.
+		//case POS_PET:						// ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬ - 
+		case POS_ACCESSORY_TIME_LIMIT:		// ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬ - 
 		{
 			//RI_Pet			= i_nItemNum;
 			RI_AccessoryTimeLimit = i_nItemNum;
 		}
 		break;
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ
 		case POS_PET:
 		{
 			RI_Pet = i_nItemNum;
@@ -887,7 +887,7 @@ struct CHARACTER_RENDER_INFO
 		}
 		return TRUE;
 	};
-};		// ±âÃ¼¸¦ ±×¸®±â À§ÇØ ÇÊ¿äÇÑ ÀåÂøµÈ ¾ÆÀÌÅÛ Á¤º¸
+};		// ê¸°ì²´ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ í•„ìš”í•œ ì¥ì°©ëœ ì•„ì´í…œ ì •ë³´
 
 struct FC_CONNECT_LOGIN_INFO
 {
@@ -897,12 +897,12 @@ struct FC_CONNECT_LOGIN_INFO
 	USHORT					UnitKind;
 	BYTE					PilotFace;
 	BYTE					Color;
-	int						RacingPoint;		// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+	int						RacingPoint;		// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 	CHARACTER_RENDER_INFO	CharacterRenderInfo;
-	// START 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - »ıÀÏÁ¤º¸µµ Ãß°¡·Î ¹Ş¾Æ¿Â´Ù.
+	// START 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - ìƒì¼ì •ë³´ë„ ì¶”ê°€ë¡œ ë°›ì•„ì˜¨ë‹¤.
 	bool					ShutDownMINS;
-	// END 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - »ıÀÏÁ¤º¸µµ Ãß°¡·Î ¹Ş¾Æ¿Â´Ù.
-	DWORD					Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	// END 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - ìƒì¼ì •ë³´ë„ ì¶”ê°€ë¡œ ë°›ì•„ì˜¨ë‹¤.
+	DWORD					Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FC_CONNECT_LOGIN_OK
@@ -914,13 +914,13 @@ struct MSG_FC_CONNECT_LOGIN_OK
 	//USHORT				VoIP1to1ServerPort;
 	//char				VoIPNtoNServerIP[SIZE_MAX_IPADDRESS];
 	//USHORT				VoIPNtoNServerPort;
-	BYTE				bIsUseSecondaryPasswordSystem;			// 2007-09-13 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - MSG_FC_CONNECT_LOGIN_OK ¿¡ ÇÊµå Ãß°¡
-	BYTE				bIsSetSecondaryPassword;				// 2007-09-13 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - MSG_FC_CONNECT_LOGIN_OK ¿¡ ÇÊµå Ãß°¡
-	DWORD				Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	BYTE				bIsUseSecondaryPasswordSystem;			// 2007-09-13 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - MSG_FC_CONNECT_LOGIN_OK ì— í•„ë“œ ì¶”ê°€
+	BYTE				bIsSetSecondaryPassword;				// 2007-09-13 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - MSG_FC_CONNECT_LOGIN_OK ì— í•„ë“œ ì¶”ê°€
+	DWORD				Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 	// todo : remove
 	[[deprecated("unused functionality")]]
-	bool				BIsTestServer;							// 2012-11-27 by khkim, Å×½ºÆ® ¼­¹öÀÎÁö ÀÏ¹İ ¼­¹öÀÎÁö ±¸º°
-	BYTE				DBNum;									// 2012-11-28 by jhseol, °ÔÀÓÆ÷Áö Ä³½¬ WEB »óÁ¡ - ¼­¹ö°¡ »ç¿ëÇÏ´Â ¹øÈ£
+	bool				BIsTestServer;							// 2012-11-27 by khkim, í…ŒìŠ¤íŠ¸ ì„œë²„ì¸ì§€ ì¼ë°˜ ì„œë²„ì¸ì§€ êµ¬ë³„
+	BYTE				DBNum;									// 2012-11-28 by jhseol, ê²Œì„í¬ì§€ ìºì‰¬ WEB ìƒì  - ì„œë²„ê°€ ì‚¬ìš©í•˜ëŠ” ë²ˆí˜¸
 };
 
 struct MSG_FC_CONNECT_CLOSE
@@ -929,26 +929,26 @@ struct MSG_FC_CONNECT_CLOSE
 };
 
 struct MSG_FC_CONNECT_SYNC_TIME {
-	UINT	CurrentTime;	// 4½Ã°£ ±âÁØÀ¸·Î Áö³­ ÃÊ
+	UINT	CurrentTime;	// 4ì‹œê°„ ê¸°ì¤€ìœ¼ë¡œ ì§€ë‚œ ì´ˆ
 };
 
 
-struct MSG_FC_CONNECT_NETWORK_CHECK		// 2008-02-15 by cmkwon, Client<->FieldServer °£ ³×Æ®¿öÅ© »óÅÂ Ã¼Å© - 
+struct MSG_FC_CONNECT_NETWORK_CHECK		// 2008-02-15 by cmkwon, Client<->FieldServer ê°„ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ - 
 {
 	int		nCheckCount;
 	DWORD	dwClientTick;
 };
-// 2008-10-31 by cmkwon, ³×Æ®¿öÅ© »óÅÂ Ã¼Å© °ü·Ã ¼öÁ¤(¹öÆÛ°³¼öµµ Àü¼Û) - ¾Æ·¡¿Í °°ÀÌ µû·Î ¼±¾ğÇÔ
-//typedef MSG_FC_CONNECT_NETWORK_CHECK	MSG_FC_CONNECT_NETWORK_CHECK_OK;	// 2008-02-15 by cmkwon, Client<->FieldServer °£ ³×Æ®¿öÅ© »óÅÂ Ã¼Å© - 
-struct MSG_FC_CONNECT_NETWORK_CHECK_OK		// 2008-10-31 by cmkwon, ³×Æ®¿öÅ© »óÅÂ Ã¼Å© °ü·Ã ¼öÁ¤(¹öÆÛ°³¼öµµ Àü¼Û) - 
+// 2008-10-31 by cmkwon, ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ ê´€ë ¨ ìˆ˜ì •(ë²„í¼ê°œìˆ˜ë„ ì „ì†¡) - ì•„ë˜ì™€ ê°™ì´ ë”°ë¡œ ì„ ì–¸í•¨
+//typedef MSG_FC_CONNECT_NETWORK_CHECK	MSG_FC_CONNECT_NETWORK_CHECK_OK;	// 2008-02-15 by cmkwon, Client<->FieldServer ê°„ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ - 
+struct MSG_FC_CONNECT_NETWORK_CHECK_OK		// 2008-10-31 by cmkwon, ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ ê´€ë ¨ ìˆ˜ì •(ë²„í¼ê°œìˆ˜ë„ ì „ì†¡) - 
 {
 	int		nCheckCount;
 	DWORD	dwClientTick;
-	int		nWriteBufferSize;		// 2008-10-31 by cmkwon, ³×Æ®¿öÅ© »óÅÂ Ã¼Å© °ü·Ã ¼öÁ¤(¹öÆÛ°³¼öµµ Àü¼Û) - 
+	int		nWriteBufferSize;		// 2008-10-31 by cmkwon, ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ì²´í¬ ê´€ë ¨ ìˆ˜ì •(ë²„í¼ê°œìˆ˜ë„ ì „ì†¡) - 
 };
 
 struct MSG_FC_CONNECT_ARENASERVER_INFO
-{// 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - F -> C 
+{// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - F -> C 
 	CHAR		MainServerName[SIZE_MAX_SERVER_NAME];
 	CHAR		ArenaServerName[SIZE_MAX_SERVER_NAME];
 	USHORT		AFS_Port;
@@ -958,7 +958,7 @@ struct MSG_FC_CONNECT_ARENASERVER_INFO
 };
 
 struct MSG_FC_CONNECT_ARENASERVER_LOGIN
-{// 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - AF -> C 
+{// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - AF -> C 
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
 	ClientIndex_t	MFSClientIdx;
@@ -966,12 +966,12 @@ struct MSG_FC_CONNECT_ARENASERVER_LOGIN
 };
 
 struct MSG_FC_CONNECT_ARENASERVER_LOGIN_OK
-{// 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - C -> AF
+{// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - C -> AF
 	CHARACTER		AFSCharacter;
-	ATUM_DATE_TIME	atimeCurServerTime;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®, ÇöÀç ¾Æ·¹³ª ¼­¹ö ³¯Â¥ ½Ã°£
+	ATUM_DATE_TIME	atimeCurServerTime;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬, í˜„ì¬ ì•„ë ˆë‚˜ ì„œë²„ ë‚ ì§œ ì‹œê°„
 };
 
-// 2008-02-25 by dhjin, ¾Æ·¹³ª ÅëÇÕ - AF -> C
+// 2008-02-25 by dhjin, ì•„ë ˆë‚˜ í†µí•© - AF -> C
 struct SSERVER_GROUP_FOR_CLIENT
 {
 	CHAR			MFS_ServerIDName[SIZE_MAX_SERVER_NAME];
@@ -979,7 +979,7 @@ struct SSERVER_GROUP_FOR_CLIENT
 };
 
 struct MSG_FC_CONNECT_ARENASERVER_SSERVER_GROUP_FOR_CLIENT
-{// ¾Æ·¹³ª ÅëÇÕ -
+{// ì•„ë ˆë‚˜ í†µí•© -
 	SSERVER_GROUP_FOR_CLIENT		ServerGroupInfo[SIZE_MAX_SERVER_GROUP_COUNT];
 };
 
@@ -989,9 +989,9 @@ struct MSG_FC_CONNECT_ARENASERVER_SSERVER_GROUP_FOR_CLIENT
 // FP_CONNECT
 
 #define PRESERVER_AUTH_TYPE_LOGIN				0x00
-// 2004-12-16 by cmkwon, ´Ù¸¥ ÇÊµå¼­¹ö·ÎÀÇ ¿öÇÁ´Â ¾øÀ¸¹Ç·Î »èÁ¦ÇÔ
+// 2004-12-16 by cmkwon, ë‹¤ë¥¸ í•„ë“œì„œë²„ë¡œì˜ ì›Œí”„ëŠ” ì—†ìœ¼ë¯€ë¡œ ì‚­ì œí•¨
 //#define PRESERVER_AUTH_TYPE_WARP_CONNECT		0x01
-// 2005-07-21 by cmkwon, ´Ù¸¥ ÇÊµå¼­¹ö·ÎÀÇ GameStart´Â ¾øÀ¸¹Ç·Î »èÁ¦ÇÔ
+// 2005-07-21 by cmkwon, ë‹¤ë¥¸ í•„ë“œì„œë²„ë¡œì˜ GameStartëŠ” ì—†ìœ¼ë¯€ë¡œ ì‚­ì œí•¨
 //#define PRESERVER_AUTH_TYPE_CONNECT_GAMESTART	0x02
 
 struct MSG_FP_CONNECT_AUTH_USER
@@ -1001,7 +1001,7 @@ struct MSG_FP_CONNECT_AUTH_USER
 	char			PrivateIP[SIZE_MAX_IPADDRESS];
 	ClientIndex_t	ClientIndex;
 	BYTE			AuthType;
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FP_CONNECT_AUTH_USER_OK
@@ -1013,12 +1013,12 @@ struct MSG_FP_CONNECT_AUTH_USER_OK
 	//int			GalaNetAccountIDNum;							// 2006-06-01 by cmkwon, exteranl authentication DB accountID Number
 	ATUM_DATE_TIME	AccountRegisteredDate;							// 2006-06-02 by cmkwon
 	char			PasswordFromDB[SIZE_MAX_PASSWORD_MD5_STRING];	// 2006-06-02 by cmkwon
-	int				GameContinueTimeInSecondOfToday;				// 2006-11-15 by cmkwon, ¿À´Ã ÇÏ·ç °ÔÀÓ Á¢¼Ó ½Ã°£
-	ATUM_DATE_TIME	LastGameEndDate;								// 2006-11-15 by cmkwon, ¸¶Áö¸· °ÔÀÓ Á¾·á ½Ã°£
-	ATUM_DATE_TIME	Birthday;										// 2007-06-28 by cmkwon, Áß±¹ ¹æ½ÉÃë°ü·Ã(Ãâ»ı³â¿ùÀÏ FielServer·Î °¡Á®¿À±â) - ÇÁ·ÎÅäÄİ ¼öÁ¤
-	char			SecondaryPassword[SIZE_MAX_PASSWORD_MD5_STRING];	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - MSG_FP_CONNECT_AUTH_USER_OK ¿¡ ÇÊµå Ãß°¡
-	USHORT			UserType;											// 2013-01-18 by khkim, GLog À¯Àú ±ÇÇÑ 
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	int				GameContinueTimeInSecondOfToday;				// 2006-11-15 by cmkwon, ì˜¤ëŠ˜ í•˜ë£¨ ê²Œì„ ì ‘ì† ì‹œê°„
+	ATUM_DATE_TIME	LastGameEndDate;								// 2006-11-15 by cmkwon, ë§ˆì§€ë§‰ ê²Œì„ ì¢…ë£Œ ì‹œê°„
+	ATUM_DATE_TIME	Birthday;										// 2007-06-28 by cmkwon, ì¤‘êµ­ ë°©ì‹¬ì·¨ê´€ë ¨(ì¶œìƒë…„ì›”ì¼ FielServerë¡œ ê°€ì ¸ì˜¤ê¸°) - í”„ë¡œí† ì½œ ìˆ˜ì •
+	char			SecondaryPassword[SIZE_MAX_PASSWORD_MD5_STRING];	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - MSG_FP_CONNECT_AUTH_USER_OK ì— í•„ë“œ ì¶”ê°€
+	USHORT			UserType;											// 2013-01-18 by khkim, GLog ìœ ì € ê¶Œí•œ 
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FP_CONNECT_FIELD_CONNECT
@@ -1026,21 +1026,21 @@ struct MSG_FP_CONNECT_FIELD_CONNECT
 	char		FieldServerGroupName[SIZE_MAX_SERVER_NAME];
 	SERVER_ID	FieldServerID;
 	int			NumOfMapIndex;
-	bool		ArenaFieldServerCheck;	// 2007-12-26 by dhjin, ¾Æ·¹³ª ÅëÇÕ - TRUE => ¾Æ·¹³ª ÇÊµå ¼­¹ö
-	SDBSERVER_GROUP		DBServerGroup;	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	bool		ArenaFieldServerCheck;	// 2007-12-26 by dhjin, ì•„ë ˆë‚˜ í†µí•© - TRUE => ì•„ë ˆë‚˜ í•„ë“œ ì„œë²„
+	SDBSERVER_GROUP		DBServerGroup;	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 	ARRAY_(MapIndex_t);					// array of MapIndexes
 };
 
 struct MSG_FP_CONNECT_FIELD_CONNECT_OK
 {
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FP_CONNECT_NOTIFY_CLOSE
 {
 	char			AccountName[SIZE_MAX_ACCOUNT_NAME];
 	ClientIndex_t	ClientIndex;
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE
@@ -1056,38 +1056,38 @@ struct MSG_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE_OK
 };
 
 
-struct MSG_FP_CONNECT_UPDATE_DBSERVER_GROUP		// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+struct MSG_FP_CONNECT_UPDATE_DBSERVER_GROUP		// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 {
 	SDBSERVER_GROUP DBServerGroup;
 };
 
-struct MSG_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT			// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+struct MSG_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT			// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 {
 	char					AccountName[SIZE_MAX_ACCOUNT_NAME];
 	MSG_PC_CONNECT_LOGIN_OK PCConnectLoginOK;
 };
 
-struct MSG_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT_OK		// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+struct MSG_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT_OK		// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 {
-	int						ErrorCode;	// 0ÀÌ¸é No Error, 0ÀÌ ¾Æ´Ï¸é ¿¡·¯ÄÚµåÀÓ 
+	int						ErrorCode;	// 0ì´ë©´ No Error, 0ì´ ì•„ë‹ˆë©´ ì—ëŸ¬ì½”ë“œì„ 
 	char					AccountName[SIZE_MAX_ACCOUNT_NAME];
 	MSG_PC_CONNECT_LOGIN_OK PCConnectLoginOK;
 };
 
-// start 2011-12-12 by hskim, GLog 2Â÷
+// start 2011-12-12 by hskim, GLog 2ì°¨
 //#define T_FP_GLOG_CONNECT_USER_NEW				(MessageType_t)((T0_FP_GLOG<<8)|T1_FP_GLOG_CONNECT_USER_NEW)
 //#define T_FP_GLOG_CONNECT_USER_LOGIN			(MessageType_t)((T0_FP_GLOG<<8)|T1_FP_GLOG_CONNECT_USER_LOGIN)
 
 struct MSG_FP_GLOG_CONNECT_USER_NEW
 {
-	char AccountName[SIZE_MAX_ACCOUNT_NAME];		// ½Å±Ô °èÁ¤ À¯Àú
+	char AccountName[SIZE_MAX_ACCOUNT_NAME];		// ì‹ ê·œ ê³„ì • ìœ ì €
 };
 
 struct MSG_FP_GLOG_CONNECT_USER_LOGIN
 {
-	char AccountName[SIZE_MAX_ACCOUNT_NAME];		// ±âÁ¸ À¯Á® Á¢¼Ó Ãß°¡
+	char AccountName[SIZE_MAX_ACCOUNT_NAME];		// ê¸°ì¡´ ìœ ì ¸ ì ‘ì† ì¶”ê°€
 };
-// end 2011-12-12 by hskim, GLog 2Â÷
+// end 2011-12-12 by hskim, GLog 2ì°¨
 
 ///////////////////////////////
 // IP_CONNECT
@@ -1096,8 +1096,8 @@ struct MSG_IP_CONNECT_IM_CONNECT
 {
 	char		ServerGroupName[SIZE_MAX_SERVER_NAME];
 	SERVER_ID	IMServerID;								// 2006-05-10 by cmkwon
-	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
-														// 2006-05-10 by cmkwon, IMServerID º¯¼ö·Î º¯°æ - IP Á¤º¸µµ Áà¾ßÇÑ´Ù.
+	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
+														// 2006-05-10 by cmkwon, IMServerID ë³€ìˆ˜ë¡œ ë³€ê²½ - IP ì •ë³´ë„ ì¤˜ì•¼í•œë‹¤.
 														//	int		IMServerListenPort;
 };
 
@@ -1106,15 +1106,15 @@ struct MSG_IP_GET_SERVER_GROUP_INFO_ACK
 	char	ServerGroupName[SIZE_MAX_SERVER_NAME];
 	UINT	IMCurrentUserCounts;
 	UINT	IMMaxUserCounts;
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_IP_ADMIN_PETITION_SET_PERIOD
-{// 2007-11-19 by cmkwon, ÁøÁ¤½Ã½ºÅÛ ¾÷µ¥ÀÌÆ® - MSG_IP_ADMIN_PETITION_SET_PERIOD ±¸Á¶Ã¼ Ãß°¡
-	BYTE			byIsImmediatOn;		// 2007-11-20 by cmkwon, Áï½Ã ½ÃÀÛ ÇÃ·¡±×
-	BYTE			byIsImmediatOff;	// 2007-11-20 by cmkwon, Áï½Ã Á¾·á ÇÃ·¡±×
-	ATUM_DATE_TIME	atStart;			// 2007-11-20 by cmkwon, ½ÃÀÛ ³¯Â¥½Ã°£
-	ATUM_DATE_TIME	atEnd;				// 2007-11-20 by cmkwon, Á¾·á ³¯Â¥½Ã°£
+{// 2007-11-19 by cmkwon, ì§„ì •ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸ - MSG_IP_ADMIN_PETITION_SET_PERIOD êµ¬ì¡°ì²´ ì¶”ê°€
+	BYTE			byIsImmediatOn;		// 2007-11-20 by cmkwon, ì¦‰ì‹œ ì‹œì‘ í”Œë˜ê·¸
+	BYTE			byIsImmediatOff;	// 2007-11-20 by cmkwon, ì¦‰ì‹œ ì¢…ë£Œ í”Œë˜ê·¸
+	ATUM_DATE_TIME	atStart;			// 2007-11-20 by cmkwon, ì‹œì‘ ë‚ ì§œì‹œê°„
+	ATUM_DATE_TIME	atEnd;				// 2007-11-20 by cmkwon, ì¢…ë£Œ ë‚ ì§œì‹œê°„
 };
 
 ///////////////////////////////
@@ -1124,7 +1124,7 @@ struct MSG_FI_CONNECT
 {
 	SERVER_ID	FieldServerID;
 	int			NumOfMapIndex;
-	bool		ArenaServerCheck;		// 2008-02-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 0:ÀÏ¹İ °ÔÀÓ¼­¹ö, 1:¾Æ·¹³ªÅëÇÕ¼­¹ö
+	bool		ArenaServerCheck;		// 2008-02-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 0:ì¼ë°˜ ê²Œì„ì„œë²„, 1:ì•„ë ˆë‚˜í†µí•©ì„œë²„
 	ARRAY_(MapIndex_t);					// array of MapIndexes
 };
 
@@ -1133,7 +1133,7 @@ struct MSG_FI_CONNECT_NOTIFY_FIELDSERVER_IP
 	UID32_t		CharacterUniqueNumber;
 	SERVER_ID	FieldServerID;
 	//char		IPAddress[SIZE_MAX_IPADDRESS];
-	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD		Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FI_CONNECT_NOTIFY_GAMEEND
@@ -1143,9 +1143,9 @@ struct MSG_FI_CONNECT_NOTIFY_GAMEEND
 
 
 ///////////////////////////////////////////////////////////////////////////////
-struct MSG_PP_CONNECT		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer ·Î ¼­ºñ½º Á¤º¸ Àü¼Û ½Ã½ºÅÛ Ãß°¡ - 
+struct MSG_PP_CONNECT		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer ë¡œ ì„œë¹„ìŠ¤ ì •ë³´ ì „ì†¡ ì‹œìŠ¤í…œ ì¶”ê°€ - 
 {
-	int			nServiceUID;						// ÇöÀç´Â »ç¿ëÇÏÁö ¾ÊÀ½, ÇâÈÄ Ã³¸®¸¦ À§ÇØ Ãß°¡
+	int			nServiceUID;						// í˜„ì¬ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠìŒ, í–¥í›„ ì²˜ë¦¬ë¥¼ ìœ„í•´ ì¶”ê°€
 	int			nLanguageType;						// 
 	char		szPreServerIP[SIZE_MAX_IPADDRESS];
 	USHORT		nPreServerPort;
@@ -1164,7 +1164,7 @@ struct MSG_PP_CONNECT		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
+// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
 struct MSG_PATUM_CONNECT
 {
 	char		szGameName[SIZE_MAX_AUTH_GAMENAME];
@@ -1196,15 +1196,15 @@ struct MSG_PATUM_CONNECT_FAIL
 	char		szReserve[100];
 };
 
-// start 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
+// start 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
 struct MSG_PATUM_CONNECT_SHUTDOWN
 {
 	char		szReserve[100];
 };
-// end 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
+// end 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
 
-#//if defined(_ATUM_SERVER)	// 2008-02-26 by cmkwon, Å¬¶óÀÌ¾ğÆ®¿¡¼­ ÄÄÆÄÀÏ ¿À·ù ¹®Á¦ ÇØ°á
-struct MSG_PP_CONNECT_OK		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer ·Î ¼­ºñ½º Á¤º¸ Àü¼Û ½Ã½ºÅÛ Ãß°¡ - 
+#//if defined(_ATUM_SERVER)	// 2008-02-26 by cmkwon, í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì»´íŒŒì¼ ì˜¤ë¥˜ ë¬¸ì œ í•´ê²°
+struct MSG_PP_CONNECT_OK		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer ë¡œ ì„œë¹„ìŠ¤ ì •ë³´ ì „ì†¡ ì‹œìŠ¤í…œ ì¶”ê°€ - 
 {
 	char		szPreServerODBCDSN[SIZE_MAX_ODBC_CONN_STRING];		// ODBC_DSN
 	char		szPreServerODBCUID[SIZE_MAX_ODBC_CONN_STRING];		// ODBC_UID
@@ -1216,12 +1216,12 @@ struct MSG_PP_CONNECT_OK		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreSer
 struct MSG_FI_EVENT_NOTIFY_WARP
 {
 	UID32_t	CharacterUniqueNumber;
-	MAP_CHANNEL_INDEX	MapChannelIndex;	// º¯È­µÈ ¿öÇÁÇÒ »õ ¸Ê ÀÌ¸§
-	INT		nNumOfTimer;					// °°Àº ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁÀÏ ¶§´Â 0
+	MAP_CHANNEL_INDEX	MapChannelIndex;	// ë³€í™”ëœ ì›Œí”„í•  ìƒˆ ë§µ ì´ë¦„
+	INT		nNumOfTimer;					// ê°™ì€ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì¼ ë•ŒëŠ” 0
 	ARRAY_(TIMER_EVENT_4_EXCHANGE);
-};					// º¯È­µÈ ¸Ê ÀÌ¸§, ³²Àº Timer Á¤º¸(°°Àº ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁ´Â º¸³»Áö ¾Ê´Â´Ù), µîµî
+};					// ë³€í™”ëœ ë§µ ì´ë¦„, ë‚¨ì€ Timer ì •ë³´(ê°™ì€ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ëŠ” ë³´ë‚´ì§€ ì•ŠëŠ”ë‹¤), ë“±ë“±
 
-struct MSG_FI_EVENT_CHAT_BLOCK				// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - 
+struct MSG_FI_EVENT_CHAT_BLOCK				// 2008-12-30 by cmkwon, ì§€ë„ì ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - 
 {
 	char	szBlockedCharacterName[SIZE_MAX_CHARACTER_NAME];
 	int		nBlockedMinutes;
@@ -1239,10 +1239,10 @@ struct TIMER_EVENT_4_EXCHANGE
 	//	TimeUnit_t			ExpireTime;				// milli-seconds
 	TimeUnit_t			TimeInterval;			// milli-seconds, (ExpireTime - StartTimeStamp)
 												//	CFieldIOCPSocket	*pFieldIOCPSocket;
-	UID32_t				CharacterUniqueNumber;	// event¸¦ ½ÃÀÛÇÑ characÀÌ ³ª°¡°í ´Ù¸¥ characÀÌ socketÀ» »ç¿ëÇÏ´Â °æ¿ì¸¦ ¸·±â À§ÇØ, IsUsing()°ú CharacterUniqueNumber°¡ °°¾Æ¾ß ÇÔ!
-												//	ClientIndex_t		ClientIndex;			// event¸¦ ½ÃÀÛÇÑ characÀÌ ³ª°¡°í ´Ù¸¥ characÀÌ socketÀ» »ç¿ëÇÏ´Â °æ¿ì¸¦ ¸·±â À§ÇØ, IsUsing()°ú ClientIndex°¡ °°¾Æ¾ß ÇÔ!
-	float				FloatParam1;			// delete_item·ù: ³²Àº Endurance
-	INT					IntParam1;				// delete_item·ù: ItemNum
+	UID32_t				CharacterUniqueNumber;	// eventë¥¼ ì‹œì‘í•œ characì´ ë‚˜ê°€ê³  ë‹¤ë¥¸ characì´ socketì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ë¥¼ ë§‰ê¸° ìœ„í•´, IsUsing()ê³¼ CharacterUniqueNumberê°€ ê°™ì•„ì•¼ í•¨!
+												//	ClientIndex_t		ClientIndex;			// eventë¥¼ ì‹œì‘í•œ characì´ ë‚˜ê°€ê³  ë‹¤ë¥¸ characì´ socketì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ë¥¼ ë§‰ê¸° ìœ„í•´, IsUsing()ê³¼ ClientIndexê°€ ê°™ì•„ì•¼ í•¨!
+	float				FloatParam1;			// delete_itemë¥˜: ë‚¨ì€ Endurance
+	INT					IntParam1;				// delete_itemë¥˜: ItemNum
 												//	TIMER_EVENT_BUCKET	*pCurrentBucket;
 
 												// operator overloading
@@ -1252,16 +1252,16 @@ struct TIMER_EVENT_4_EXCHANGE
 struct MSG_FI_EVENT_NOTIFY_WARP_OK
 {
 	UID32_t	CharacterUniqueNumber;
-};			// ´Ù¸¥ ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁÀÎ °æ¿ì¸¸ ¹Ş´Â´Ù
+};			// ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì¸ ê²½ìš°ë§Œ ë°›ëŠ”ë‹¤
 
 struct MSG_FI_EVENT_GET_WARP_INFO
 {
 	UID32_t			CharacterUniqueNumber;
-};			// Party & TimerEventÁ¤º¸, ´Ù¸¥ ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁÀÎ °æ¿ì Á¤º¸ ¿äÃ»
+};			// Party & TimerEventì •ë³´, ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì¸ ê²½ìš° ì •ë³´ ìš”ì²­
 
 struct MSG_FI_EVENT_GET_WARP_INFO_OK
 {
-	UID32_t			AccountUniqueNumber;		// ´Ù¸¥ ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁ½Ã, ÀÎÁõ¿¡ ÇÊ¿äÇÔ
+	UID32_t			AccountUniqueNumber;		// ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì‹œ, ì¸ì¦ì— í•„ìš”í•¨
 	UID32_t			CharacterUniqueNumber;
 	PartyID_t		PartyID;
 	UID32_t			MasterCharacterUniqueNumber;
@@ -1269,13 +1269,13 @@ struct MSG_FI_EVENT_GET_WARP_INFO_OK
 	USHORT			nTimerEvents;
 	ARRAY_(FI_PARTY_MEMBER_INFO);
 	ARRAY_(TIMER_EVENT_4_EXCHANGE);
-};		// Party & TimerEventÁ¤º¸, ´Ù¸¥ ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁÀÎ °æ¿ì Á¤º¸ ÁÖ±â
+};		// Party & TimerEventì •ë³´, ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì¸ ê²½ìš° ì •ë³´ ì£¼ê¸°
 
 struct MSG_FI_CONNECT_NOTIFY_DEAD
 {
 	UID32_t	CharacterUniqueNumber;
 	UID32_t AttackerGuildUID;
-};	// F->I, check: ÇöÀç´Â DEAD½Ã ÆÄÆ¼ Å»Åğ¸¦ À§ÇØ¼­ ¸¸µé¾ú´Ù, 20030821, kelovon
+};	// F->I, check: í˜„ì¬ëŠ” DEADì‹œ íŒŒí‹° íƒˆí‡´ë¥¼ ìœ„í•´ì„œ ë§Œë“¤ì—ˆë‹¤, 20030821, kelovon
 
 struct MSG_FI_GET_FIELD_USER_COUNTS_ACK
 {
@@ -1300,16 +1300,16 @@ struct MSG_FI_CONNECT_NOTIFY_GAMESTART {
 	UID32_t			CharacterUniqueNumber;
 	GameStartType	FieldGameStartType;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};				// F->I, °ÔÀÓ ½ÃÀÛÇßÀ» ¶§ IM Server¿¡ ¾Ë¸², ÆÄÆ¼ Á¤º¸ È®ÀÎ ¿äÃ» µî
+};				// F->I, ê²Œì„ ì‹œì‘í–ˆì„ ë•Œ IM Serverì— ì•Œë¦¼, íŒŒí‹° ì •ë³´ í™•ì¸ ìš”ì²­ ë“±
 
 struct MSG_FI_CONNECT_NOTIFY_DEAD_GAMESTART
 {
 	UID32_t			CharacterUniqueNumber;
 };
 
-struct MSG_FI_CONNECT_PREPARE_SHUTDOWN	// 2007-08-27 by cmkwon, ¼­¹ö´Ù¿îÁØºñ ¸í·É¾î Ãß°¡(SCAdminTool¿¡¼­ SCMonitorÀÇ PrepareShutdownÀ» ÁøÇà ÇÒ ¼ö ÀÖ°Ô)
+struct MSG_FI_CONNECT_PREPARE_SHUTDOWN	// 2007-08-27 by cmkwon, ì„œë²„ë‹¤ìš´ì¤€ë¹„ ëª…ë ¹ì–´ ì¶”ê°€(SCAdminToolì—ì„œ SCMonitorì˜ PrepareShutdownì„ ì§„í–‰ í•  ìˆ˜ ìˆê²Œ)
 {
-	bool			bPrepareShutdown;			// TURE¸é ¼­¹ö´Ù¿î ÁØºñ ½ÃÀÛ, FALSEÀÌ¸é ¼­¹ö´Ù¿î ÁØºñ ÇØÁ¦
+	bool			bPrepareShutdown;			// TUREë©´ ì„œë²„ë‹¤ìš´ ì¤€ë¹„ ì‹œì‘, FALSEì´ë©´ ì„œë²„ë‹¤ìš´ ì¤€ë¹„ í•´ì œ
 };
 
 ///////////////////////////////
@@ -1322,7 +1322,7 @@ struct MSG_IC_CONNECT_LOGIN
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char	Password[SIZE_MAX_PASSWORD_MD5_STRING];			// MD5
 	BYTE	LoginType;						// see below
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 #define CHAT_LOGIN_TYPE_GAME		0x00
@@ -1334,7 +1334,7 @@ struct MSG_IC_CONNECT_CLOSE
 };
 
 /*
-// check: È®ÀÎ ÇÊ¿ä
+// check: í™•ì¸ í•„ìš”
 //typedef	struct
 //{
 //	BYTE					NumCharacters;
@@ -1416,7 +1416,7 @@ struct MSG_IC_CHAT_GET_GUILD_OK
 {
 	UID32_t	CharacterUniqueNumber;
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
-	BYTE	ConnectionCondition;			// ¹ÌÁ¢¼Ó,¸Ş½ÅÀú,°ÔÀÓ
+	BYTE	ConnectionCondition;			// ë¯¸ì ‘ì†,ë©”ì‹ ì €,ê²Œì„
 };
 
 struct MSG_IC_CHAT_CHANGE_GUILD
@@ -1424,7 +1424,7 @@ struct MSG_IC_CHAT_CHANGE_GUILD
 	UID32_t	CharacterUniqueNumber;
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char	Guild[SIZE_MAX_GUILD_NAME];
-	BYTE	Joined;							// °¡ÀÔ ¿©ºÎ
+	BYTE	Joined;							// ê°€ì… ì—¬ë¶€
 };
 
 struct MSG_IC_CHAT_CHANGE_GUILD_OK
@@ -1432,26 +1432,26 @@ struct MSG_IC_CHAT_CHANGE_GUILD_OK
 	UID32_t	CharacterUniqueNumber;
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char	Guild[SIZE_MAX_GUILD_NAME];
-	BYTE	Joined;							// °¡ÀÔ ¿©ºÎ
+	BYTE	Joined;							// ê°€ì… ì—¬ë¶€
 };
 
 struct MSG_IC_CHAT_CHANGE_PARTY
 {
 	UID32_t	CharacterUniqueNumber;
 	char	PartyName[20];
-	BYTE	Joined;			// °¡ÀÔ, Å»Åğ
+	BYTE	Joined;			// ê°€ì…, íƒˆí‡´
 };
 
 struct MSG_IC_CHAT_CHANGE_PARTY_OK
 {
 	UID32_t	CharacterUniqueNumber;
 	char	PartyName[20];
-	BYTE	Joined;			// °¡ÀÔ, Å»Åğ
+	BYTE	Joined;			// ê°€ì…, íƒˆí‡´
 };
 
 struct MSG_IC_CHAT_CHANGE_CHAT_FLAG
 {
-	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ
+	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½
 	//	BitFlag8_t	bitChatType;	// see below
 	BitFlag16_t	bitChatType;	// see below
 };
@@ -1461,32 +1461,32 @@ using MSG_IC_CHAT_CASH_ALL = MSG_IC_CHAT_BASE;
 using MSG_IC_CHAT_INFLUENCE_ALL = MSG_IC_CHAT_BASE;			// 2006-04-21 by cmkwon
 using MSG_IC_CHAT_ARENA = MSG_IC_CHAT_BASE;					// 2007-05-02 by dhjin
 #ifndef _SHOW_INFLUENCE_ON_GMNATION
-using MSG_IC_CHAT_WAR = MSG_IC_CHAT_BASE;					// 2008-05-19 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, ÀüÀï Ã¤ÆÃ
+using MSG_IC_CHAT_WAR = MSG_IC_CHAT_BASE;					// 2008-05-19 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì „ìŸ ì±„íŒ…
 #endif
-using MSG_IC_CHAT_INFINITY = MSG_IC_CHAT_BASE;				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Ã¤ÆÃ
+using MSG_IC_CHAT_INFINITY = MSG_IC_CHAT_BASE;				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì±„íŒ…
 using MSG_FC_CHAT_CNC = MSG_IC_CHAT_CNC;
 
-// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ
-//	#define CHAT_TYPE_UNCONDITIONAL	(BitFlag8_t)0x01	// disable ºÒ°¡, (°øÁö »çÇ×, À¯·á ÀüÃ¼ Ã¤ÆÃ, Áö¿ªÃ¤ÆÃ)
-//	#define CHAT_TYPE_SELL_ALL		(BitFlag8_t)0x02	// disable °¡´É, ¸Å¸Å ÀüÃ¼ Ã¤ÆÃ
-//	#define CHAT_TYPE_MAP			(BitFlag8_t)0x04	// disable °¡´É, ¸Ê Ã¤ÆÃ
-//	#define CHAT_TYPE_PTOP			(BitFlag8_t)0x08	// disable °¡´É, 1:1 Ã¤ÆÃ 
-//	#define CHAT_TYPE_GUILD			(BitFlag8_t)0x10	// disable °¡´É, ±æµå Ã¤ÆÃ
-//	#define CHAT_TYPE_PARTY			(BitFlag8_t)0x20	// disable °¡´É, ÆÄÆ¼ Ã¤ÆÃ
-//	#define CHAT_TYPE_INFLUENCE		(BitFlag8_t)0x40	// disable ºÒ°¡
-//	#define CHAT_TYPE_ARENA			(BitFlag8_t)0x80	// disable ºÒ°¡, ARENA Ã¤ÆÃ
-#define CHAT_TYPE_UNCONDITIONAL	(BitFlag16_t)0x0001	// disable ºÒ°¡, (°øÁö »çÇ×, À¯·á ÀüÃ¼ Ã¤ÆÃ, Áö¿ªÃ¤ÆÃ)
-#define CHAT_TYPE_SELL_ALL		(BitFlag16_t)0x0002	// disable °¡´É, ¸Å¸Å ÀüÃ¼ Ã¤ÆÃ
-#define CHAT_TYPE_MAP			(BitFlag16_t)0x0004	// disable °¡´É, ¸Ê Ã¤ÆÃ
-#define CHAT_TYPE_PTOP			(BitFlag16_t)0x0008	// disable °¡´É, 1:1 Ã¤ÆÃ 
-#define CHAT_TYPE_GUILD			(BitFlag16_t)0x0010	// disable °¡´É, ±æµå Ã¤ÆÃ
-#define CHAT_TYPE_PARTY			(BitFlag16_t)0x0020	// disable °¡´É, ÆÄÆ¼ Ã¤ÆÃ
-#define CHAT_TYPE_INFLUENCE		(BitFlag16_t)0x0040	// disable ºÒ°¡
-#define CHAT_TYPE_ARENA			(BitFlag16_t)0x0080	// disable ºÒ°¡, ARENA Ã¤ÆÃ
-#define CHAT_TYPE_WAR			(BitFlag16_t)0x0100	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ,	ÀüÀï Ã¤ÆÃ 
-#define CHAT_TYPE_CHATROOM		(BitFlag16_t)0x0200	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, Ã¤ÆÃ¹æ 
-#define CHAT_TYPE_SYSTEM		(BitFlag16_t)0x0400	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, ½Ã½ºÅÛ 
-#define CHAT_TYPE_HELPDESK		(BitFlag16_t)0x0800	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, µµ¿ò¸»
+// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½
+//	#define CHAT_TYPE_UNCONDITIONAL	(BitFlag8_t)0x01	// disable ë¶ˆê°€, (ê³µì§€ ì‚¬í•­, ìœ ë£Œ ì „ì²´ ì±„íŒ…, ì§€ì—­ì±„íŒ…)
+//	#define CHAT_TYPE_SELL_ALL		(BitFlag8_t)0x02	// disable ê°€ëŠ¥, ë§¤ë§¤ ì „ì²´ ì±„íŒ…
+//	#define CHAT_TYPE_MAP			(BitFlag8_t)0x04	// disable ê°€ëŠ¥, ë§µ ì±„íŒ…
+//	#define CHAT_TYPE_PTOP			(BitFlag8_t)0x08	// disable ê°€ëŠ¥, 1:1 ì±„íŒ… 
+//	#define CHAT_TYPE_GUILD			(BitFlag8_t)0x10	// disable ê°€ëŠ¥, ê¸¸ë“œ ì±„íŒ…
+//	#define CHAT_TYPE_PARTY			(BitFlag8_t)0x20	// disable ê°€ëŠ¥, íŒŒí‹° ì±„íŒ…
+//	#define CHAT_TYPE_INFLUENCE		(BitFlag8_t)0x40	// disable ë¶ˆê°€
+//	#define CHAT_TYPE_ARENA			(BitFlag8_t)0x80	// disable ë¶ˆê°€, ARENA ì±„íŒ…
+#define CHAT_TYPE_UNCONDITIONAL	(BitFlag16_t)0x0001	// disable ë¶ˆê°€, (ê³µì§€ ì‚¬í•­, ìœ ë£Œ ì „ì²´ ì±„íŒ…, ì§€ì—­ì±„íŒ…)
+#define CHAT_TYPE_SELL_ALL		(BitFlag16_t)0x0002	// disable ê°€ëŠ¥, ë§¤ë§¤ ì „ì²´ ì±„íŒ…
+#define CHAT_TYPE_MAP			(BitFlag16_t)0x0004	// disable ê°€ëŠ¥, ë§µ ì±„íŒ…
+#define CHAT_TYPE_PTOP			(BitFlag16_t)0x0008	// disable ê°€ëŠ¥, 1:1 ì±„íŒ… 
+#define CHAT_TYPE_GUILD			(BitFlag16_t)0x0010	// disable ê°€ëŠ¥, ê¸¸ë“œ ì±„íŒ…
+#define CHAT_TYPE_PARTY			(BitFlag16_t)0x0020	// disable ê°€ëŠ¥, íŒŒí‹° ì±„íŒ…
+#define CHAT_TYPE_INFLUENCE		(BitFlag16_t)0x0040	// disable ë¶ˆê°€
+#define CHAT_TYPE_ARENA			(BitFlag16_t)0x0080	// disable ë¶ˆê°€, ARENA ì±„íŒ…
+#define CHAT_TYPE_WAR			(BitFlag16_t)0x0100	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½,	ì „ìŸ ì±„íŒ… 
+#define CHAT_TYPE_CHATROOM		(BitFlag16_t)0x0200	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì±„íŒ…ë°© 
+#define CHAT_TYPE_SYSTEM		(BitFlag16_t)0x0400	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì‹œìŠ¤í…œ 
+#define CHAT_TYPE_HELPDESK		(BitFlag16_t)0x0800	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ë„ì›€ë§
 #define CHAT_TYPE_CNC			(BitFlag16_t)0x1000 // 2014-08-03 by Future, adding Cross Nation Chat
 
 #define COMPARE_CHATTYPE_BIT(VAR, MASK)	(((VAR) & (MASK)) != 0)
@@ -1510,14 +1510,14 @@ struct DB_FRIEND_INFO
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char	FriendName[SIZE_MAX_CHARACTER_NAME];
 	BYTE	FriendType;
-	ATUM_DATE_TIME	RegDate;	// 2008-04-11 by dhjin, EP3 °ÅºÎ¸ñ·Ï -
+	ATUM_DATE_TIME	RegDate;	// 2008-04-11 by dhjin, EP3 ê±°ë¶€ëª©ë¡ -
 };
 
 struct FRIENDINFO
 {
 	char		szCharacterName[SIZE_MAX_CHARACTER_NAME];
 	BYTE		byIsOnline;
-	ATUM_DATE_TIME	RegDate;	// 2008-04-11 by dhjin, EP3 °ÅºÎ¸ñ·Ï -
+	ATUM_DATE_TIME	RegDate;	// 2008-04-11 by dhjin, EP3 ê±°ë¶€ëª©ë¡ -
 };
 
 struct MSG_IC_CHAT_FRIENDLIST_LOADING_OK
@@ -1537,9 +1537,9 @@ using MSG_IC_CHAT_FRIENDLIST_DELETE = MSG_IC_CHAT_FRIENDLIST_INSERT;
 
 using MSG_IC_CHAT_REJECTLIST_DELETE_OK = MSG_IC_CHAT_FRIENDLIST_INSERT;
 
-struct MSG_IC_CHAT_FRIENDLIST_INSERT_NOTIFY		// 2009-01-13 by cmkwon, Ä£±¸ µî·Ï½Ã »ó´ë¹æ¿¡°Ô ¾Ë¸² ½Ã½ºÅÛ Àû¿ë - 
+struct MSG_IC_CHAT_FRIENDLIST_INSERT_NOTIFY		// 2009-01-13 by cmkwon, ì¹œêµ¬ ë“±ë¡ì‹œ ìƒëŒ€ë°©ì—ê²Œ ì•Œë¦¼ ì‹œìŠ¤í…œ ì ìš© - 
 {
-	char szDoerCharacName[SIZE_MAX_CHARACTER_NAME];	// Ä£±¸ µî·Ï½Ã »ó´ë¹æÀÌ ¿Â¶óÀÎ »óÅÂÀÎ °æ¿ì ¾Ë¸²
+	char szDoerCharacName[SIZE_MAX_CHARACTER_NAME];	// ì¹œêµ¬ ë“±ë¡ì‹œ ìƒëŒ€ë°©ì´ ì˜¨ë¼ì¸ ìƒíƒœì¸ ê²½ìš° ì•Œë¦¼
 };
 
 using MSG_IC_CHAT_FRIENDLIST_REFRESH_OK = MSG_IC_CHAT_FRIENDLIST_LOADING_OK;
@@ -1553,7 +1553,7 @@ struct MSG_IC_CHAT_REJECTLIST_LOADING_OK
 using MSG_IC_CHAT_REJECTLIST_INSERT = MSG_IC_CHAT_FRIENDLIST_INSERT;
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-11 by dhjin, EP3 °ÅºÎ¸ñ·Ï - ¹Ø°ú °°ÀÌ ¼öÁ¤
+// 2008-04-11 by dhjin, EP3 ê±°ë¶€ëª©ë¡ - ë°‘ê³¼ ê°™ì´ ìˆ˜ì •
 // typedef MSG_IC_CHAT_FRIENDLIST_INSERT		MSG_IC_CHAT_REJECTLIST_INSERT_OK;
 struct MSG_IC_CHAT_REJECTLIST_INSERT_OK
 {
@@ -1573,14 +1573,14 @@ using MSG_FC_CHAT_MAP = MSG_IC_CHAT_BASE;
 using MSG_FC_CHAT_REGION = MSG_IC_CHAT_REGION;
 using MSG_FC_CHAT_CASH_ALL = MSG_IC_CHAT_CASH_ALL;
 using MSG_FC_CHAT_ARENA = MSG_IC_CHAT_ARENA;
-using MSG_FC_CHAT_OUTPOST_GUILD = MSG_IC_CHAT_BASE;	// 2007-10-06 by cmkwon, ÀüÁø ±âÁö ¼ÒÀ¯ÇÑ ¿©´ÜÀå ¼¼·Â Ã¤ÆÃ °¡´É
-using MSG_FC_CHAT_INFINITY = MSG_IC_CHAT_INFINITY;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Ã¤ÆÃ
+using MSG_FC_CHAT_OUTPOST_GUILD = MSG_IC_CHAT_BASE;	// 2007-10-06 by cmkwon, ì „ì§„ ê¸°ì§€ ì†Œìœ í•œ ì—¬ë‹¨ì¥ ì„¸ë ¥ ì±„íŒ… ê°€ëŠ¥
+using MSG_FC_CHAT_INFINITY = MSG_IC_CHAT_INFINITY;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì±„íŒ…
 using MSG_FI_CHAT_CNC = MSG_IC_CHAT_CNC;	// 2015-07-20 Future, CnC Costs Money
 
-struct MSG_FC_CHAT_ALL_INFLUENCE		// 2007-08-09 by cmkwon, ¸ğµç ¼¼·Â¿¡ Ã¤ÆÃ Àü¼ÛÇÏ±â - ±¸Á¶Ã¼ Ãß°¡
+struct MSG_FC_CHAT_ALL_INFLUENCE		// 2007-08-09 by cmkwon, ëª¨ë“  ì„¸ë ¥ì— ì±„íŒ… ì „ì†¡í•˜ê¸° - êµ¬ì¡°ì²´ ì¶”ê°€
 {
 	char	FromCharacterName[SIZE_MAX_CHARACTER_NAME];
-	char	str256ChatMsg[SIZE_MAX_STRING_256];			// 2007-08-09 by cmkwon, ¸ğµç ¼¼·Â¿¡ Ã¤ÆÃ Àü¼ÛÇÏ±â - 
+	char	str256ChatMsg[SIZE_MAX_STRING_256];			// 2007-08-09 by cmkwon, ëª¨ë“  ì„¸ë ¥ì— ì±„íŒ… ì „ì†¡í•˜ê¸° - 
 #ifdef _SHOW_SPEAKER_IN_CHAT
 	BYTE		nInfluence;
 #endif
@@ -1592,7 +1592,7 @@ struct MSG_FI_CHAT_MAP
 {
 	UID32_t	CharacterUniqueNumber;
 	BYTE	MessageLength;
-	//µÚ¿¡ ¸Ş½ÃÁö¸¦ ºÙ¿©¼­ º¸³»±â
+	//ë’¤ì— ë©”ì‹œì§€ë¥¼ ë¶™ì—¬ì„œ ë³´ë‚´ê¸°
 	//char*	ChatMessage;
 };
 
@@ -1601,24 +1601,24 @@ using MSG_FI_CHAT_REGION = MSG_FI_CHAT_MAP;
 struct MSG_FI_CHAT_CHANGE_CHAT_FLAG
 {
 	UID32_t		CharacterUniqueNumber;
-	// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ
-	//	BitFlag8_t	ChatFlag;				// Ã¤ÆÃ ¼³Á¤ flag
-	BitFlag16_t	ChatFlag;				// Ã¤ÆÃ ¼³Á¤ flag
+	// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½
+	//	BitFlag8_t	ChatFlag;				// ì±„íŒ… ì„¤ì • flag
+	BitFlag16_t	ChatFlag;				// ì±„íŒ… ì„¤ì • flag
 };
 
 using MSG_FI_CHAT_CASH_ALL = MSG_FI_CHAT_MAP;
 using MSG_FI_CHAT_ARENA = MSG_FI_CHAT_MAP;		// 2007-05-02 by dhjin
-using MSG_FI_CHAT_OUTPOST_GUILD = MSG_FI_CHAT_MAP;		// 2007-10-06 by cmkwon, ÀüÁø ±âÁö ¼ÒÀ¯ÇÑ ¿©´ÜÀå ¼¼·Â Ã¤ÆÃ °¡´É
-using MSG_FI_CHAT_INFINITY = MSG_FI_CHAT_MAP;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Ã¤ÆÃ
+using MSG_FI_CHAT_OUTPOST_GUILD = MSG_FI_CHAT_MAP;		// 2007-10-06 by cmkwon, ì „ì§„ ê¸°ì§€ ì†Œìœ í•œ ì—¬ë‹¨ì¥ ì„¸ë ¥ ì±„íŒ… ê°€ëŠ¥
+using MSG_FI_CHAT_INFINITY = MSG_FI_CHAT_MAP;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì±„íŒ…
 
 struct MSG_FI_CHAT_ONLINE_EACHOTHER_FRIEND_COUNT_OK		// 2006-07-18 by cmkwon
 {
 	UID32_t		CharacterUniqueNumber;
-	int			OnlineFriendCnts;			// 2006-07-18 by cmkwon, ¼­·Î µî·ÏÇÑ ¿Â¶óÀÎ Ä£±¸ Ä«¿îÆ®	
+	int			OnlineFriendCnts;			// 2006-07-18 by cmkwon, ì„œë¡œ ë“±ë¡í•œ ì˜¨ë¼ì¸ ì¹œêµ¬ ì¹´ìš´íŠ¸	
 };
 
 struct MSG_IC_CHAT_ONLINE_EACHOTHER_FRIEND_COUNT
-{// 2008-07-11 by dhjin, EP3 Ä£±¸¸ñ·Ï -
+{// 2008-07-11 by dhjin, EP3 ì¹œêµ¬ëª©ë¡ -
 	int			OnlineFriendCnts;
 };
 
@@ -1628,15 +1628,15 @@ struct MSG_FC_CHARACTER_GET_CHARACTER
 {
 	UID32_t		AccountUniqueNumber;
 	UID32_t		CharacterUniqueNumber;
-	// START 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - »ıÀÏÁ¤º¸µµ Ãß°¡·Î ¹Ş¾Æ¿Â´Ù.
+	// START 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - ìƒì¼ì •ë³´ë„ ì¶”ê°€ë¡œ ë°›ì•„ì˜¨ë‹¤.
 	bool     ShutDownMINS;
-	// END 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - »ıÀÏÁ¤º¸µµ Ãß°¡·Î ¹Ş¾Æ¿Â´Ù.
+	// END 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - ìƒì¼ì •ë³´ë„ ì¶”ê°€ë¡œ ë°›ì•„ì˜¨ë‹¤.
 };
 
 struct MSG_FC_CHARACTER_GET_CHARACTER_OK
 {
 	CHARACTER	Character;
-	//char		FieldServerIP[SIZE_MAX_IPADDRESS];		// MSG_FC_CHARACTER_GAMESTART_OK·Î ÀÌµ¿
+	//char		FieldServerIP[SIZE_MAX_IPADDRESS];		// MSG_FC_CHARACTER_GAMESTART_OKë¡œ ì´ë™
 };
 
 struct MSG_FC_CHARACTER_CREATE
@@ -1646,23 +1646,23 @@ struct MSG_FC_CHARACTER_CREATE
 	USHORT		UnitKind;
 	USHORT		Race;
 	BYTE		AutoStatType1;
-	GEAR_STAT	GearStat1;			// ±â¾î ½ºÅÈ
+	GEAR_STAT	GearStat1;			// ê¸°ì–´ ìŠ¤íƒ¯
 	BYTE		Color;
 	BYTE		PilotFace;
-	BYTE		InfluenceType0;		// 2005-06-23 by cmkwon, ¼¼·Â Å¸ÀÔÀ¸·Î ³ªÁß¿¡ »ç¿ë ¿¹Á¤ ÇÊµå
+	BYTE		InfluenceType0;		// 2005-06-23 by cmkwon, ì„¸ë ¥ íƒ€ì…ìœ¼ë¡œ ë‚˜ì¤‘ì— ì‚¬ìš© ì˜ˆì • í•„ë“œ
 };
 
 struct MSG_FC_CHARACTER_CREATE_OK
 {
 	CHARACTER				Character;
-	CHARACTER_RENDER_INFO	CharacterRenderInfo;		// 2006-01-23 by cmkwon, Ãß°¡ÇÔ
+	CHARACTER_RENDER_INFO	CharacterRenderInfo;		// 2006-01-23 by cmkwon, ì¶”ê°€í•¨
 };
 
 struct MSG_FC_CHARACTER_DELETE
 {
 	UID32_t	AccountUniqueNumber;
 	UID32_t	CharacterUniqueNumber;
-	char	CurrentSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];	// 2007-09-13 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - MSG_FC_CHARACTER_DELETE ¿¡ ÇÊµå Ãß°¡
+	char	CurrentSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];	// 2007-09-13 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - MSG_FC_CHARACTER_DELETE ì— í•„ë“œ ì¶”ê°€
 };
 
 /* This message has NO body
@@ -1726,17 +1726,17 @@ struct MSG_FC_CHARACTER_GAMESTART_OK
 	BYTE			CharacterMode0;
 	AVECTOR3		PositionVector;
 	BitFlag16_t		MapWeather;
-	bool			bMemberPCBang;			// 2007-01-25 by cmkwon, °¡¸Í PC¹æ ÇÃ·¡±×
+	bool			bMemberPCBang;			// 2007-01-25 by cmkwon, ê°€ë§¹ PCë°© í”Œë˜ê·¸
 	char			ServerGroupName0[SIZE_MAX_SERVER_NAME];			// 2007-04-09 by cmkwon
 	char			MainORTestServerName[SIZE_MAX_SERVER_NAME];		// 2007-04-09 by cmkwon
 	char			GamePublisher[SIZE_MAX_GAME_PUBLISHER_NAME];	// 2007-04-09 by cmkwon
-	MAP_CHANNEL_INDEX MapInfo;				// 2007-12-12 by dhjin, ¸ÊÁ¤º¸ ¹Ì¸® º¸³»±â
-	BodyCond_t		BodyCondition;			// 2008-04-01 by cmkwon, µµ½Ã¸Ê¿¡¼­ Á×Àº »óÅÂÀÇ ±â¾î ºÎÈ°½ÃÄÑ¼­ Ä³¸¯ÅÍ »óÅÂ·Î Ã³¸® - MSG_FC_CHARACTER_GAMESTART_OK ¿¡ Ãß°¡
-	float			CurrentHP;				// 2008-04-01 by cmkwon, µµ½Ã¸Ê¿¡¼­ Á×Àº »óÅÂÀÇ ±â¾î ºÎÈ°½ÃÄÑ¼­ Ä³¸¯ÅÍ »óÅÂ·Î Ã³¸® - MSG_FC_CHARACTER_GAMESTART_OK ¿¡ Ãß°¡
-	float			CurrentDP;				// 2008-04-01 by cmkwon, µµ½Ã¸Ê¿¡¼­ Á×Àº »óÅÂÀÇ ±â¾î ºÎÈ°½ÃÄÑ¼­ Ä³¸¯ÅÍ »óÅÂ·Î Ã³¸® - MSG_FC_CHARACTER_GAMESTART_OK ¿¡ Ãß°¡
-	float			CurrentEP;				// 2008-04-01 by cmkwon, µµ½Ã¸Ê¿¡¼­ Á×Àº »óÅÂÀÇ ±â¾î ºÎÈ°½ÃÄÑ¼­ Ä³¸¯ÅÍ »óÅÂ·Î Ã³¸® - MSG_FC_CHARACTER_GAMESTART_OK ¿¡ Ãß°¡
-	float			CurrentSP;				// 2008-04-01 by cmkwon, µµ½Ã¸Ê¿¡¼­ Á×Àº »óÅÂÀÇ ±â¾î ºÎÈ°½ÃÄÑ¼­ Ä³¸¯ÅÍ »óÅÂ·Î Ã³¸® - MSG_FC_CHARACTER_GAMESTART_OK ¿¡ Ãß°¡
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	MAP_CHANNEL_INDEX MapInfo;				// 2007-12-12 by dhjin, ë§µì •ë³´ ë¯¸ë¦¬ ë³´ë‚´ê¸°
+	BodyCond_t		BodyCondition;			// 2008-04-01 by cmkwon, ë„ì‹œë§µì—ì„œ ì£½ì€ ìƒíƒœì˜ ê¸°ì–´ ë¶€í™œì‹œì¼œì„œ ìºë¦­í„° ìƒíƒœë¡œ ì²˜ë¦¬ - MSG_FC_CHARACTER_GAMESTART_OK ì— ì¶”ê°€
+	float			CurrentHP;				// 2008-04-01 by cmkwon, ë„ì‹œë§µì—ì„œ ì£½ì€ ìƒíƒœì˜ ê¸°ì–´ ë¶€í™œì‹œì¼œì„œ ìºë¦­í„° ìƒíƒœë¡œ ì²˜ë¦¬ - MSG_FC_CHARACTER_GAMESTART_OK ì— ì¶”ê°€
+	float			CurrentDP;				// 2008-04-01 by cmkwon, ë„ì‹œë§µì—ì„œ ì£½ì€ ìƒíƒœì˜ ê¸°ì–´ ë¶€í™œì‹œì¼œì„œ ìºë¦­í„° ìƒíƒœë¡œ ì²˜ë¦¬ - MSG_FC_CHARACTER_GAMESTART_OK ì— ì¶”ê°€
+	float			CurrentEP;				// 2008-04-01 by cmkwon, ë„ì‹œë§µì—ì„œ ì£½ì€ ìƒíƒœì˜ ê¸°ì–´ ë¶€í™œì‹œì¼œì„œ ìºë¦­í„° ìƒíƒœë¡œ ì²˜ë¦¬ - MSG_FC_CHARACTER_GAMESTART_OK ì— ì¶”ê°€
+	float			CurrentSP;				// 2008-04-01 by cmkwon, ë„ì‹œë§µì—ì„œ ì£½ì€ ìƒíƒœì˜ ê¸°ì–´ ë¶€í™œì‹œì¼œì„œ ìºë¦­í„° ìƒíƒœë¡œ ì²˜ë¦¬ - MSG_FC_CHARACTER_GAMESTART_OK ì— ì¶”ê°€
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FC_CHARACTER_CONNECT_GAMESTART
@@ -1746,7 +1746,7 @@ struct MSG_FC_CHARACTER_CONNECT_GAMESTART
 	char	PrivateIP[SIZE_MAX_IPADDRESS];
 	UID32_t	AccountUniqueNumber;
 	UID32_t	CharacterUniqueNumber;
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FC_CHARACTER_CONNECT_GAMESTART_OK
@@ -1760,17 +1760,17 @@ struct MSG_FC_CHARACTER_DEAD_GAMESTART
 {
 	ClientIndex_t	ClientIndex;
 	UID32_t			CharacterUniqueNumber;
-	bool			bRebirthInCityMap;			// TRUE:¼¼·Âº°µµ½Ã¸Ê ºÎÈ°, FALSE:ÇöÀç¸Ê¿¡¼­ ºÎÈ°
+	bool			bRebirthInCityMap;			// TRUE:ì„¸ë ¥ë³„ë„ì‹œë§µ ë¶€í™œ, FALSE:í˜„ì¬ë§µì—ì„œ ë¶€í™œ
 };
 
 struct MSG_FC_CHARACTER_OTHER_REVIVED {
 	UID32_t			CharacterUniqueNumber;
-};	// F -> C, Á×¾ú´Ù µÇ»ì¾Æ³µÀ» ¶§ ´Ù¸¥ Ä³¸¯ÅÍ(ÇöÀç´Â ÆÄÆ¼¿ø)¿¡°Ô º¸³¿
+};	// F -> C, ì£½ì—ˆë‹¤ ë˜ì‚´ì•„ë‚¬ì„ ë•Œ ë‹¤ë¥¸ ìºë¦­í„°(í˜„ì¬ëŠ” íŒŒí‹°ì›)ì—ê²Œ ë³´ëƒ„
 
 struct MSG_FC_CHARACTER_GAMEEND
 {
 	ClientIndex_t	ClientIndex;
-	bool			SelectCharacterView;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÄÉ¸¯ÅÍ ¼±ÅÃ Ã¢À¸·Î ÀÌµ¿ÀÌ¸é TRUE	
+	bool			SelectCharacterView;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¼€ë¦­í„° ì„ íƒ ì°½ìœ¼ë¡œ ì´ë™ì´ë©´ TRUE	
 };
 
 struct MSG_FC_CHARACTER_GAMEEND_OK
@@ -1787,14 +1787,14 @@ struct MSG_FC_CHARACTER_CHANGE_UNITKIND
 struct MSG_FC_CHARACTER_CHANGE_STAT
 {
 	ClientIndex_t	ClientIndex;
-	GEAR_STAT		GearStat1;		// ±â¾î ½ºÅÈ
-	BYTE			BonusStat;		// ³²Àº º¸³Ê½º ½ºÅÈ
+	GEAR_STAT		GearStat1;		// ê¸°ì–´ ìŠ¤íƒ¯
+	BYTE			BonusStat;		// ë‚¨ì€ ë³´ë„ˆìŠ¤ ìŠ¤íƒ¯
 };
 struct MSG_FC_CHARACTER_CHANGE_TOTALGEAR_STAT
 {
 	ClientIndex_t	ClientIndex;
 	BYTE			byAutoStatType;
-	GEAR_STAT		GearStat1;		// ±â¾î ½ºÅÈ
+	GEAR_STAT		GearStat1;		// ê¸°ì–´ ìŠ¤íƒ¯
 };
 
 struct MSG_FC_CHARACTER_CHANGE_GUILD
@@ -1808,26 +1808,26 @@ struct MSG_FC_CHARACTER_CHANGE_LEVEL
 	ClientIndex_t	ClientIndex;
 	BYTE			Level;
 	BYTE			BonusStat;
-	// 2005-11-15 by cmkwon, Á¦°ÅÇÔ
+	// 2005-11-15 by cmkwon, ì œê±°í•¨
 	//	BYTE			BonusSkillPoint;
 };
 
 struct MSG_FC_CHARACTER_CHANGE_EXP
 {
 	ClientIndex_t	ClientIndex;
-	Experience_t	Experience;						// ÃÑ °æÇèÄ¡
+	Experience_t	Experience;						// ì´ ê²½í—˜ì¹˜
 };
 
 struct MSG_FC_CHARACTER_CHANGE_BODYCONDITION
 {
 	ClientIndex_t	ClientIndex;
-	BodyCond_t		BodyCondition;					// ¾ÕÀÇ 32bit¸¸ »ç¿ë <-- check: ½ºÅ³ bodyconÀÌ Á¤ÇØÁö¸é °áÁ¤ÇÏ±â!
+	BodyCond_t		BodyCondition;					// ì•ì˜ 32bitë§Œ ì‚¬ìš© <-- check: ìŠ¤í‚¬ bodyconì´ ì •í•´ì§€ë©´ ê²°ì •í•˜ê¸°!
 };
 
 struct MSG_FC_CHARACTER_CHANGE_BODYCONDITION_SKILL
 {
 	ClientIndex_t	ClientIndex;
-	BodyCond_t		SkillBodyCondition;				// µÚÀÇ 32bit¸¸ »ç¿ë <-- check: ½ºÅ³ bodyconÀÌ Á¤ÇØÁö¸é °áÁ¤ÇÏ±â!
+	BodyCond_t		SkillBodyCondition;				// ë’¤ì˜ 32bitë§Œ ì‚¬ìš© <-- check: ìŠ¤í‚¬ bodyconì´ ì •í•´ì§€ë©´ ê²°ì •í•˜ê¸°!
 };
 
 struct MSG_FC_CHARACTER_CHANGE_INFLUENCE_TYPE
@@ -1839,13 +1839,13 @@ struct MSG_FC_CHARACTER_CHANGE_INFLUENCE_TYPE
 struct MSG_FC_CHARACTER_CHANGE_BODYCONDITION_ALL
 {
 	ClientIndex_t	ClientIndex;
-	BodyCond_t		BodyCondition;					// ¾ÕÀÇ 32bit¸¸ »ç¿ë <-- check: ½ºÅ³ bodyconÀÌ Á¤ÇØÁö¸é °áÁ¤ÇÏ±â!
-};		// C->F, °­Á¦·Î BodyCondition ¼¼ÆÃ ¿äÃ»
+	BodyCond_t		BodyCondition;					// ì•ì˜ 32bitë§Œ ì‚¬ìš© <-- check: ìŠ¤í‚¬ bodyconì´ ì •í•´ì§€ë©´ ê²°ì •í•˜ê¸°!
+};		// C->F, ê°•ì œë¡œ BodyCondition ì„¸íŒ… ìš”ì²­
 
 struct MSG_FC_CHARACTER_CHANGE_PROPENSITY
 {
 	ClientIndex_t	ClientIndex;
-	BYTE			byUpdateType;					// 2005-08-22 by cmkwon, ÇöÀç´Â µÎ°³(IUT_PENALTY_ON_DEAD, IUT_PENALTY_AGEAR_FUEL_ALLIN) - IUT_XXX, ITEM_UPDATE_TYPE_XXX
+	BYTE			byUpdateType;					// 2005-08-22 by cmkwon, í˜„ì¬ëŠ” ë‘ê°œ(IUT_PENALTY_ON_DEAD, IUT_PENALTY_AGEAR_FUEL_ALLIN) - IUT_XXX, ITEM_UPDATE_TYPE_XXX
 	INT				Propensity;
 };				// 2005-08-22 by cmkwon, 
 
@@ -1930,7 +1930,7 @@ struct MSG_FC_CHARACTER_CHANGE_PETINFO
 struct MSG_FC_CHARACTER_CHANGE_POSITION
 {
 	ClientIndex_t	ClientIndex;
-	AVECTOR3		PositionVector;		// Ä³¸¯ÅÍ ÁÂÇ¥
+	AVECTOR3		PositionVector;		// ìºë¦­í„° ì¢Œí‘œ
 };
 
 struct MSG_FC_CHARACTER_USE_BONUSSTAT
@@ -1948,73 +1948,73 @@ struct MSG_FC_CHARACTER_DEAD_NOTIFY
 {
 	ClientIndex_t	ClientIndex;
 	BYTE			byDamageKind;
-	bool			bDeadByP2PPK;	// P2PPK ÁøÇàÁß Á×À½
+	bool			bDeadByP2PPK;	// P2PPK ì§„í–‰ì¤‘ ì£½ìŒ
 };
 
 
-#define COUNT_MAX_STAT_POINT			(CHARACTER_LEVEL_110_MAX_STAT_POINT)	// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - 100LvÀÌ»óÀº 340ÀÌ ÃÖ´ë
+#define COUNT_MAX_STAT_POINT			(CHARACTER_LEVEL_110_MAX_STAT_POINT)	// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - 100Lvì´ìƒì€ 340ì´ ìµœëŒ€
 
 // Kind of Stat, STAT_XXX
-#define STAT_ATTACK_PART				((BYTE)0)	// °ø°İ ÆÄÆ®
-#define STAT_DEFENSE_PART				((BYTE)1)	// ¹æ¾î ÆÄÆ®
-#define STAT_FUEL_PART					((BYTE)2)	// ¿¬·á ÆÄÆ®
-#define STAT_SOUL_PART					((BYTE)3)	// Á¤½Å ÆÄÆ®
-#define STAT_SHIELD_PART				((BYTE)4)	// ½¯µå ÆÄÆ®
-#define STAT_DODGE_PART					((BYTE)5)	// È¸ÇÇ ÆÄÆ®
-#define STAT_BONUS						((BYTE)6)	// º¸³Ê½º·Î ¹Ş´Â stat
-#define STAT_ALL_PART					((BYTE)7)	// ¸ğµç ÆÄÆ®
-#define STAT_BONUS_STAT_POINT			((BYTE)8)	// 2007-06-20 by cmkwon, º¸³Ê½º ½ºÅÈ Áõ°¡ ·Î±× ³²±â±â - º¸³Ê½º·Î ¹Ş´Â statPoint
+#define STAT_ATTACK_PART				((BYTE)0)	// ê³µê²© íŒŒíŠ¸
+#define STAT_DEFENSE_PART				((BYTE)1)	// ë°©ì–´ íŒŒíŠ¸
+#define STAT_FUEL_PART					((BYTE)2)	// ì—°ë£Œ íŒŒíŠ¸
+#define STAT_SOUL_PART					((BYTE)3)	// ì •ì‹  íŒŒíŠ¸
+#define STAT_SHIELD_PART				((BYTE)4)	// ì‰´ë“œ íŒŒíŠ¸
+#define STAT_DODGE_PART					((BYTE)5)	// íšŒí”¼ íŒŒíŠ¸
+#define STAT_BONUS						((BYTE)6)	// ë³´ë„ˆìŠ¤ë¡œ ë°›ëŠ” stat
+#define STAT_ALL_PART					((BYTE)7)	// ëª¨ë“  íŒŒíŠ¸
+#define STAT_BONUS_STAT_POINT			((BYTE)8)	// 2007-06-20 by cmkwon, ë³´ë„ˆìŠ¤ ìŠ¤íƒ¯ ì¦ê°€ ë¡œê·¸ ë‚¨ê¸°ê¸° - ë³´ë„ˆìŠ¤ë¡œ ë°›ëŠ” statPoint
 
 ///////////////////////////////////////////////////////////////////////////////
-// Ä³¸¯ »ı¼º½Ã Level 20±îÁöÀÇ 
-#define AUTOSTAT_TYPE_FREESTYLE					0	// ¸ğµç±â¾î ÀÚÀ¯Çü
-#define AUTOSTAT_TYPE_BGEAR_ATTACK				1	// B-Gear °ø°İÇü
-#define AUTOSTAT_TYPE_BGEAR_MULTI				2	// B-Gear ¸ÖÆ¼Çü
-#define AUTOSTAT_TYPE_IGEAR_ATTACK				3	// I-Gear °ø°İÇü
-#define AUTOSTAT_TYPE_IGEAR_DODGE				4	// I-Gear È¸ÇÇÇü
-#define AUTOSTAT_TYPE_AGEAR_ATTACK				5	// A-Gear °ø°İÇü
-#define AUTOSTAT_TYPE_AGEAR_SHIELD				6	// A-Gear ½¯µåÇü
-#define AUTOSTAT_TYPE_MGEAR_DEFENSE				7	// M-Gear ¹æ¾îÇü
-#define AUTOSTAT_TYPE_MGEAR_SUPPORT				8	// M-Gear Áö¿øÇü
+// ìºë¦­ ìƒì„±ì‹œ Level 20ê¹Œì§€ì˜ 
+#define AUTOSTAT_TYPE_FREESTYLE					0	// ëª¨ë“ ê¸°ì–´ ììœ í˜•
+#define AUTOSTAT_TYPE_BGEAR_ATTACK				1	// B-Gear ê³µê²©í˜•
+#define AUTOSTAT_TYPE_BGEAR_MULTI				2	// B-Gear ë©€í‹°í˜•
+#define AUTOSTAT_TYPE_IGEAR_ATTACK				3	// I-Gear ê³µê²©í˜•
+#define AUTOSTAT_TYPE_IGEAR_DODGE				4	// I-Gear íšŒí”¼í˜•
+#define AUTOSTAT_TYPE_AGEAR_ATTACK				5	// A-Gear ê³µê²©í˜•
+#define AUTOSTAT_TYPE_AGEAR_SHIELD				6	// A-Gear ì‰´ë“œí˜•
+#define AUTOSTAT_TYPE_MGEAR_DEFENSE				7	// M-Gear ë°©ì–´í˜•
+#define AUTOSTAT_TYPE_MGEAR_SUPPORT				8	// M-Gear ì§€ì›í˜•
 
 struct MSG_FC_CHARACTER_GET_OTHER_INFO
 {
 	ClientIndex_t		ClientIndex;
 };
 
-#define CITYWAR_TEAM_TYPE_NORMAL				0	// µµ½ÃÁ¡·ÉÀü¸ÊÀÌ ¾Æ´Ï°Å³ª µµ½ÃÁ¡·ÉÀüÀÌ ½ÃÀÛ¾ÈµÊ
-#define CITYWAR_TEAM_TYPE_ATTACKER				1	// °ø°İÃø, µµÀüÃø
-#define CITYWAR_TEAM_TYPE_DEFENSER				2	// ¹æ¾îÃø, 
+#define CITYWAR_TEAM_TYPE_NORMAL				0	// ë„ì‹œì ë ¹ì „ë§µì´ ì•„ë‹ˆê±°ë‚˜ ë„ì‹œì ë ¹ì „ì´ ì‹œì‘ì•ˆë¨
+#define CITYWAR_TEAM_TYPE_ATTACKER				1	// ê³µê²©ì¸¡, ë„ì „ì¸¡
+#define CITYWAR_TEAM_TYPE_DEFENSER				2	// ë°©ì–´ì¸¡, 
 
 struct MEX_OTHER_CHARACTER_INFO
 {
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ÇÊµå ¼ø¼­¸¦ Á¤·ÄÇÑ´Ù.
+	// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ í•„ë“œ ìˆœì„œë¥¼ ì •ë ¬í•œë‹¤.
 	BodyCond_t		BodyCondition;
-	INT				Propensity;			// 2005-12-27 by cmkwon, ¼ºÇâ(¼±,¾Ç)ÀÌ ¾Æ´Ï°í ¸í¼ºÀ¸·Î »ç¿ëÁß
+	INT				Propensity;			// 2005-12-27 by cmkwon, ì„±í–¥(ì„ ,ì•…)ì´ ì•„ë‹ˆê³  ëª…ì„±ìœ¼ë¡œ ì‚¬ìš©ì¤‘
 	UID32_t			CharacterUniqueNumber;
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - »ç¿ëÇÏÁö ¾ÊÀ¸¹Ç·Î »èÁ¦
-	//	INT				RacingPoint;		// Racing °á°ú Point
+	// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì‚­ì œ
+	//	INT				RacingPoint;		// Racing ê²°ê³¼ Point
 	UID32_t			GuildUniqueNumber;
-	MAP_CHANNEL_INDEX	MapChannelIndex;		// Ä³¸¯ÅÍ°¡ ¼ÓÇÑ ¸Ê ¹× Ã¤³Î, 2006-01-18 by cmkwon, Ãß°¡ÇÔ
+	MAP_CHANNEL_INDEX	MapChannelIndex;		// ìºë¦­í„°ê°€ ì†í•œ ë§µ ë° ì±„ë„, 2006-01-18 by cmkwon, ì¶”ê°€í•¨
 	AVECTOR3		PositionVector;
 	AVECTOR3		TargetVector;
 	AVECTOR3		UpVector;
 	ClientIndex_t	ClientIndex;
 	USHORT			Race;
 	USHORT			UnitKind;
-	USHORT			PKWinPoint;			// PK ½Â¸® ¼öÄ¡
-	USHORT			PKLossPoint;		// PK ÆĞ¹è ¼öÄ¡
+	USHORT			PKWinPoint;			// PK ìŠ¹ë¦¬ ìˆ˜ì¹˜
+	USHORT			PKLossPoint;		// PK íŒ¨ë°° ìˆ˜ì¹˜
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char			szCharacterMent[SIZE_STRING_32];
-	BYTE			Color;				// false(0) : ¿©, true(1) : ³²
-	BYTE			PilotFace;			// È­¸é¿¡ ³ªÅ¸³ª´Â ÀÎ¹° Ä³¸¯ÅÍ
-	BYTE			CharacterMode0;		// 2005-07-13 by cmkwon, ÇöÀç Ä³¸¯ÅÍ »óÅÂ ÇÃ·¡±×
-	BYTE			InfluenceType;		// ¼¼·Â Å¸ÀÔ, 2005-06-23 by cmkwon
+	BYTE			Color;				// false(0) : ì—¬, true(1) : ë‚¨
+	BYTE			PilotFace;			// í™”ë©´ì— ë‚˜íƒ€ë‚˜ëŠ” ì¸ë¬¼ ìºë¦­í„°
+	BYTE			CharacterMode0;		// 2005-07-13 by cmkwon, í˜„ì¬ ìºë¦­í„° ìƒíƒœ í”Œë˜ê·¸
+	BYTE			InfluenceType;		// ì„¸ë ¥ íƒ€ì…, 2005-06-23 by cmkwon
 	BYTE			Level1;				//
 	BYTE			CityWarTeamType;	// 
-	BYTE			Status;				// ½ÅºĞ
+	BYTE			Status;				// ì‹ ë¶„
 
-	BYTE			UsingReturnItem;				// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
+	BYTE			UsingReturnItem;				// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
 
 													// operator overloading
 	MEX_OTHER_CHARACTER_INFO& operator=(const CHARACTER& rhs)
@@ -2033,7 +2033,7 @@ struct MEX_OTHER_CHARACTER_INFO
 		Status = rhs.Status;
 		PKWinPoint = rhs.PKWinPoint;
 		PKLossPoint = rhs.PKLossPoint;
-		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - »ç¿ëÇÏÁö ¾ÊÀ¸¹Ç·Î »èÁ¦
+		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì‚­ì œ
 		//		RacingPoint				= rhs.RacingPoint;
 		GuildUniqueNumber = rhs.GuildUniqueNumber;
 		BodyCondition = rhs.BodyCondition;
@@ -2042,7 +2042,7 @@ struct MEX_OTHER_CHARACTER_INFO
 		TargetVector = rhs.TargetVector*1000.0f;
 		UpVector = rhs.UpVector;
 
-		UsingReturnItem = rhs.bUsingReturnItem;		// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
+		UsingReturnItem = rhs.bUsingReturnItem;		// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
 
 		return *this;
 	}
@@ -2068,37 +2068,37 @@ struct MSG_FC_CHARACTER_GET_MONSTER_INFO_OK
 
 struct MSG_FC_CHARACTER_GET_ACCOUNTUNIQUENUMBER
 {
-	char		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ´ëÈ­ »ó´ë
-};				// ÅëÈ­ ¿äÃ» ½Ã ÇÊ¿äÇÔ
+	char		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ëŒ€í™” ìƒëŒ€
+};				// í†µí™” ìš”ì²­ ì‹œ í•„ìš”í•¨
 
 struct MSG_FC_CHARACTER_GET_ACCOUNTUNIQUENUMBER_OK
 {
-	char		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ´ëÈ­ »ó´ë
-	UID32_t		AccountUniqueNumber;					// ´ëÈ­ »ó´ë
-};			// ÅëÈ­ ¿äÃ» ½Ã ÇÊ¿äÇÔ
+	char		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ëŒ€í™” ìƒëŒ€
+	UID32_t		AccountUniqueNumber;					// ëŒ€í™” ìƒëŒ€
+};			// í†µí™” ìš”ì²­ ì‹œ í•„ìš”í•¨
 
-			// Ãæµ¹ Å¸ÀÔ
-#define COLLISION_TYPE_LAND			(BYTE)0x00	// ¶¥, »ê µîÀÇ ÁöÇü°úÀÇ Ãæµ¹
-#define COLLISION_TYPE_BUILDING		(BYTE)0x01	// °Ç¹°°úÀÇ Ãæµ¹
-#define COLLISION_TYPE_CHARACTER	(BYTE)0x02	// ´Ù¸¥ Ä³¸¯ÅÍ¿ÍÀÇ Ãæµ¹
-#define COLLISION_TYPE_MONSTER		(BYTE)0x03	// ¸ó½ºÅÍ¿ÍÀÇ Ãæµ¹
+			// ì¶©ëŒ íƒ€ì…
+#define COLLISION_TYPE_LAND			(BYTE)0x00	// ë•…, ì‚° ë“±ì˜ ì§€í˜•ê³¼ì˜ ì¶©ëŒ
+#define COLLISION_TYPE_BUILDING		(BYTE)0x01	// ê±´ë¬¼ê³¼ì˜ ì¶©ëŒ
+#define COLLISION_TYPE_CHARACTER	(BYTE)0x02	// ë‹¤ë¥¸ ìºë¦­í„°ì™€ì˜ ì¶©ëŒ
+#define COLLISION_TYPE_MONSTER		(BYTE)0x03	// ëª¬ìŠ¤í„°ì™€ì˜ ì¶©ëŒ
 struct MSG_FC_CHARACTER_APPLY_COLLISION_DAMAGE
 {
-	ClientIndex_t	UnitIndex;								// ¸ó½ºÅÍ¿Í Ãæµ¹½Ã´Â Ãæµ¹ ¸ó½ºÅÍ Index, Ä³¸¯°ú Ãæµ¹½Ã´Â Ãæµ¹ Ä³¸¯ÅÍ Index
-	SHORT			SpeedOfCollision;						// Ãæµ¹½Ã ³ªÀÇ ½ºÇÇµå
-	BYTE			CollisionType;							// Ãæµ¹ Å¸ÀÔ, see below
+	ClientIndex_t	UnitIndex;								// ëª¬ìŠ¤í„°ì™€ ì¶©ëŒì‹œëŠ” ì¶©ëŒ ëª¬ìŠ¤í„° Index, ìºë¦­ê³¼ ì¶©ëŒì‹œëŠ” ì¶©ëŒ ìºë¦­í„° Index
+	SHORT			SpeedOfCollision;						// ì¶©ëŒì‹œ ë‚˜ì˜ ìŠ¤í”¼ë“œ
+	BYTE			CollisionType;							// ì¶©ëŒ íƒ€ì…, see below
 };
 
 
 struct MSG_FC_CHARACTER_GET_OTHER_MOVE
 {
 	ClientIndex_t	OtherClientIndex;
-};			// C -> F, ´Ù¸¥ À¯´ÖÀÇ MOVE Á¤º¸¸¦ ¿äÃ»ÇÔ, ÀÀ´äÀº MSG_FC_MOVE
+};			// C -> F, ë‹¤ë¥¸ ìœ ë‹›ì˜ MOVE ì •ë³´ë¥¼ ìš”ì²­í•¨, ì‘ë‹µì€ MSG_FC_MOVE
 
 struct MSG_FC_CHARACTER_DELETE_OTHER_INFO
 {
 	ClientIndex_t	OtherClientIndex;
-};		// F -> C,	Å¬¶óÀÌ¾ğÆ®¿¡°Ô ´Ù¸¥ À¯´Ö(OTHER_INFO)À» Áö¿ì¶ó°í ¿äÃ»ÇÔ
+};		// F -> C,	í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë‹¤ë¥¸ ìœ ë‹›(OTHER_INFO)ì„ ì§€ìš°ë¼ê³  ìš”ì²­í•¨
 
 struct MSG_FC_CHARACTER_GET_OTHER_RENDER_INFO {
 	ClientIndex_t	ClientIndex;
@@ -2113,7 +2113,7 @@ struct MSG_FC_CHARACTER_GET_OTHER_RENDER_INFO_OK
 //typedef struct {
 //	ClientIndex_t			ClientIndex;
 //	USHORT					UnitState;
-//} MSG_FC_CHARACTER_PUT_OTHER_EFFECT;		// F->C, ´Ù¸¥ À¯´ÖÀÇ »óÅÂ Á¤º¸¸¦ º¸³¿, ¼ø°£ ÀÌÆåÆ® µî¿¡ »ç¿ë, check: Á¦°ÅµÊ, 20040626, kelovon
+//} MSG_FC_CHARACTER_PUT_OTHER_EFFECT;		// F->C, ë‹¤ë¥¸ ìœ ë‹›ì˜ ìƒíƒœ ì •ë³´ë¥¼ ë³´ëƒ„, ìˆœê°„ ì´í™íŠ¸ ë“±ì— ì‚¬ìš©, check: ì œê±°ë¨, 20040626, kelovon
 //
 //#define UNIT_EFFECT_NO_EFFECT		((USHORT)0)
 //#define UNIT_EFFECT_HP_UP			((USHORT)1)
@@ -2123,25 +2123,25 @@ struct MSG_FC_CHARACTER_GET_OTHER_RENDER_INFO_OK
 
 struct MSG_FC_CHARACTER_SHOW_EFFECT
 {
-	UINT			EffectIndex;	// Å¬¶óÀÌ¾ğÆ®¿¡ Á¤ÀÇµÈ effectÀÇ index
-};		// C->F, ÁÖÀ§¿¡ ÀÚ½ÅÀÇ ÀÌÆåÆ® Àü¼Û ¿äÃ»
+	UINT			EffectIndex;	// í´ë¼ì´ì–¸íŠ¸ì— ì •ì˜ëœ effectì˜ index
+};		// C->F, ì£¼ìœ„ì— ìì‹ ì˜ ì´í™íŠ¸ ì „ì†¡ ìš”ì²­
 
 struct MSG_FC_CHARACTER_SHOW_EFFECT_OK
 {
 	ClientIndex_t	ClientIndex;
-	UINT			EffectIndex;	// Å¬¶óÀÌ¾ğÆ®¿¡ Á¤ÀÇµÈ effectÀÇ index
-};	// F->C, ÁÖÀ§¿¡ Ä³¸¯µé¿¡°Ô Àü¼Û
+	UINT			EffectIndex;	// í´ë¼ì´ì–¸íŠ¸ì— ì •ì˜ëœ effectì˜ index
+};	// F->C, ì£¼ìœ„ì— ìºë¦­ë“¤ì—ê²Œ ì „ì†¡
 
 struct MSG_FC_CHARACTER_GET_OTHER_PARAMFACTOR
 {
 	ClientIndex_t	ClientIndex;
 	BYTE			ItemPosition;				// POS_XXX
-};		// C->F, ÇØ´ç Ä³¸¯ÅÍÀÇ ParamFactor Á¤º¸ ¿äÃ»
+};		// C->F, í•´ë‹¹ ìºë¦­í„°ì˜ ParamFactor ì •ë³´ ìš”ì²­
 
 struct DES_PARAM_VALUE
 {
-	BYTE			DestParameter;				// ´ë»óÆÄ¶ó¹ÌÅÍ, DES_XXX
-	float			ParameterValue;				// ¼öÁ¤ÆÄ¶ó¹ÌÅÍ
+	BYTE			DestParameter;				// ëŒ€ìƒíŒŒë¼ë¯¸í„°, DES_XXX
+	float			ParameterValue;				// ìˆ˜ì •íŒŒë¼ë¯¸í„°
 };
 
 struct MSG_FC_CHARACTER_GET_OTHER_PARAMFACTOR_OK
@@ -2151,29 +2151,29 @@ struct MSG_FC_CHARACTER_GET_OTHER_PARAMFACTOR_OK
 	INT				ItemNum;
 	INT				NumOfParamValues;
 	ARRAY_(DES_PARAM_VALUE);
-};	// F->C, ÇØ´ç Ä³¸¯ÅÍÀÇ ParamFactor Á¤º¸ ¿äÃ» °á°ú
+};	// F->C, í•´ë‹¹ ìºë¦­í„°ì˜ ParamFactor ì •ë³´ ìš”ì²­ ê²°ê³¼
 
 struct MSG_FC_CHARACTER_SEND_PARAMFACTOR_IN_RANGE
 {
 	BYTE			ItemPosition;				// POS_XXX
-};	// C->F, ÀÚ½ÅÀÇ ParamFactor¸¦ ÁÖÀ§¿¡ º¸³»µµ·Ï ¿äÃ»
+};	// C->F, ìì‹ ì˜ ParamFactorë¥¼ ì£¼ìœ„ì— ë³´ë‚´ë„ë¡ ìš”ì²­
 
 struct MSG_FC_CHARACTER_GET_OTHER_SKILL_INFO
 {
-	ClientIndex_t	ClientIndex;				// »ó´ë¹æÀÇ ClientIndex
+	ClientIndex_t	ClientIndex;				// ìƒëŒ€ë°©ì˜ ClientIndex
 };		// C->F
 
 struct MSG_FC_CHARACTER_GET_OTHER_SKILL_INFO_OK
 {
-	ClientIndex_t	ClientIndex;				// »ó´ë¹æÀÇ ClientIndex
+	ClientIndex_t	ClientIndex;				// ìƒëŒ€ë°©ì˜ ClientIndex
 	INT				NumOfSkillInfos;
 	ARRAY_(MEX_OTHER_SKILL_INFO);
 };		// F->C
 
 struct MSG_FC_CHARACTER_SPEED_HACK_USER
 {
-	int				nSendMoveCounts;			// ¼­¹ö·Î Àü¼ÛÇÑ Move ÆĞÅ¶ Ä«¿îÆ®
-	DWORD			dwTimeGap;					// ½Ã°£(´ÜÀ§ ms)
+	int				nSendMoveCounts;			// ì„œë²„ë¡œ ì „ì†¡í•œ Move íŒ¨í‚· ì¹´ìš´íŠ¸
+	DWORD			dwTimeGap;					// ì‹œê°„(ë‹¨ìœ„ ms)
 };
 
 struct MSG_FC_CHARACTER_CHANGE_CHARACTER_MENT
@@ -2185,14 +2185,14 @@ struct MSG_FC_CHARACTER_CHANGE_CHARACTER_MENT
 struct MSG_FC_CHARACTER_GET_CASH_MONEY_COUNT_OK
 {
 	int				nMCash;						// MCash
-	int				nGiftCard;					// »óÇ°±Ç
+	int				nGiftCard;					// ìƒí’ˆê¶Œ
 };
 
 struct MSG_FC_CHARACTER_CASH_PREMIUM_CARD_INFO
 {
 	INT				nCardItemNum1;
-	ATUM_DATE_TIME	atumTimeUpdatedTime1;	// ¼öÁ¤µÈ ½Ã°£
-	ATUM_DATE_TIME	atumTimeExpireTime1;	// ¸¸·á ½Ã°£
+	ATUM_DATE_TIME	atumTimeUpdatedTime1;	// ìˆ˜ì •ëœ ì‹œê°„
+	ATUM_DATE_TIME	atumTimeExpireTime1;	// ë§Œë£Œ ì‹œê°„
 	float			fExpRate1;
 	float			fDropRate1;
 	float			fDropRareRate1;
@@ -2213,10 +2213,10 @@ struct MSG_FC_CHARACTER_TUTORIAL_SKIP_OK
 
 struct MEX_OTHER_SKILL_INFO
 {
-	INT		SkillItemNum;						// SkillÀÇ ItemNum
+	INT		SkillItemNum;						// Skillì˜ ItemNum
 };
 
-// 2005-07-26 by hblee : Âø·úÀå¿¡¼­ Ä³¸¯ÅÍ ¸ğµå º¯È¯.
+// 2005-07-26 by hblee : ì°©ë¥™ì¥ì—ì„œ ìºë¦­í„° ëª¨ë“œ ë³€í™˜.
 struct MSG_FC_CHARACTER_CHANGE_CHARACTER_MODE
 {
 	BYTE				CharacterMode0;
@@ -2259,34 +2259,34 @@ struct MSG_FC_CHARACTER_GET_REAL_ENGINE_INFO_OK		// 2005-12-21 by cmkwon
 
 struct MSG_FC_CHARACTER_GET_REAL_TOTAL_WEIGHT_OK		// 2005-12-21 by cmkwon
 {
-	UID64_t		ItemUID0;				// ¾Æ¸ÓÀÇ ItemUID
-	float		Transport0;				// ¹«°Ô ´É·Â
-	float		TotalWeight0;			// ÇöÀç ¹«°Ô ÃÑ·®
+	UID64_t		ItemUID0;				// ì•„ë¨¸ì˜ ItemUID
+	float		Transport0;				// ë¬´ê²Œ ëŠ¥ë ¥
+	float		TotalWeight0;			// í˜„ì¬ ë¬´ê²Œ ì´ëŸ‰
 };
 
 struct MSG_FC_CHARACTER_MEMORY_HACK_USER				// 2005-12-22 by cmkwon
 {
-	UID64_t		ItemUID0;				// ¿£ÁøÀÇ ItemUID
-	float		ValidMoveDistance;		// ¿ø·¡ À¯È¿ ÃÖ´ë ÀÌµ¿ °Å¸® - TickGap½Ã°£ µ¿¾È °¡´ÉÇÑ ÃÖ´ë °Å¸®
-	float		CurrentMoveDistance;	// ÀÌµ¿µÈ °Å¸® - TickGap½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®
-	int			TickGap;				// °æ°úµÈ ½Ã°£(´ÜÀ§:ms, ex> 1ÃÊ= 1000, 0.5ÃÊ= 500)
+	UID64_t		ItemUID0;				// ì—”ì§„ì˜ ItemUID
+	float		ValidMoveDistance;		// ì›ë˜ ìœ íš¨ ìµœëŒ€ ì´ë™ ê±°ë¦¬ - TickGapì‹œê°„ ë™ì•ˆ ê°€ëŠ¥í•œ ìµœëŒ€ ê±°ë¦¬
+	float		CurrentMoveDistance;	// ì´ë™ëœ ê±°ë¦¬ - TickGapì‹œê°„ ë™ì•ˆ ì´ë™í•œ ê±°ë¦¬
+	int			TickGap;				// ê²½ê³¼ëœ ì‹œê°„(ë‹¨ìœ„:ms, ex> 1ì´ˆ= 1000, 0.5ì´ˆ= 500)
 };
 
 struct MSG_FC_CHARACTER_UPDATE_SUBLEADER
-{// 2007-02-13 by dhjin, ºÎÁöµµÀÚ ¼³Á¤ ÇÁ·Î½ÃÀú, ¸î ¹øÂ° ºÎÁöµµÀÚÀÎÁö Ã¼Å©°¡ ÇÊ¿ä
+{// 2007-02-13 by dhjin, ë¶€ì§€ë„ì ì„¤ì • í”„ë¡œì‹œì €, ëª‡ ë²ˆì§¸ ë¶€ì§€ë„ìì¸ì§€ ì²´í¬ê°€ í•„ìš”
 	BYTE			InflType;
-	BYTE			SubLeaderRank;		// 2007-10-06 by dhjin, ¸î ¹øÂ° ºÎÁöµµÀÚÀÎÁö
+	BYTE			SubLeaderRank;		// 2007-10-06 by dhjin, ëª‡ ë²ˆì§¸ ë¶€ì§€ë„ìì¸ì§€
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_FC_CHARACTER_UPDATE_SUBLEADER_OK
-{// 2007-10-06 by dhjin, ºÎÁöµµÀÚ ¼³Á¤ÀÌ ¼º°ø½Ã Å¬¶óÀÌ¾ğÆ®·Î Àü¼Û
-	BYTE			SubLeaderRank;		// 2007-10-06 by dhjin, ¸î ¹øÂ° ºÎÁöµµÀÚÀÎÁö
+{// 2007-10-06 by dhjin, ë¶€ì§€ë„ì ì„¤ì •ì´ ì„±ê³µì‹œ í´ë¼ì´ì–¸íŠ¸ë¡œ ì „ì†¡
+	BYTE			SubLeaderRank;		// 2007-10-06 by dhjin, ëª‡ ë²ˆì§¸ ë¶€ì§€ë„ìì¸ì§€
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_FC_CHARACTER_OBSERVER_TARGET_CHARACTERINDEX
-{// 2007-03-27 by dhjin, ¿ÉÀú¹ö ¸ğµå »ó´ë¹æ ÀÎµ¦½º 
+{// 2007-03-27 by dhjin, ì˜µì €ë²„ ëª¨ë“œ ìƒëŒ€ë°© ì¸ë±ìŠ¤ 
 	ClientIndex_t		TargetClientIndex;
 };
 using MSG_FC_CHARACTER_OBSERVER_START = MSG_FC_CHARACTER_OBSERVER_TARGET_CHARACTERINDEX;
@@ -2294,7 +2294,7 @@ using MSG_FC_CHARACTER_OBSERVER_END = MSG_FC_CHARACTER_OBSERVER_TARGET_CHARACTER
 
 
 struct MSG_FC_CHARACTER_OBSERVER_INFO
-{// 2007-03-27 by dhjin, ¿ÉÀú¹ö¿¡°Ô Á¦°øµÇ´Â Á¤º¸
+{// 2007-03-27 by dhjin, ì˜µì €ë²„ì—ê²Œ ì œê³µë˜ëŠ” ì •ë³´
 	ClientIndex_t		ClientIndex;
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 	INT		HP;
@@ -2312,41 +2312,41 @@ struct MSG_FC_CHARACTER_OBSERVER_INFO
 };
 
 struct MSG_FC_CHARACTER_OBSERVER_REG
-{// 2007-03-27 by dhjin, ¿ÉÀú¹ö À¯Àú°¡ ´ë»ó À¯Àú µî·ÏÇÏ´Â ±¸Á¶Ã¼
+{// 2007-03-27 by dhjin, ì˜µì €ë²„ ìœ ì €ê°€ ëŒ€ìƒ ìœ ì € ë“±ë¡í•˜ëŠ” êµ¬ì¡°ì²´
 	ClientIndex_t		ClientIndex;
 	SHORT				nRegNum;
 };
 
 struct MSG_FC_CHARACTER_SHOW_MAP_EFFECT		// 2007-04-20 by cmkwon
 {
-	UINT			EffectIndex;			// Å¬¶óÀÌ¾ğÆ®¿¡ Á¤ÀÇµÈ effectÀÇ index
-	AVECTOR3		avec3Up;				// effectÀÇ Up Vector, Normalize ÇØ¾ßÇÔ
-	AVECTOR3		avec3Target;			// effectÀÇ Target Vector, Normalize ÇØ¾ßÇÔ
-	AVECTOR3		avec3Position;			// effectÀÇ Positon Vector
-	INT				nLifetime;				// effectÀÇ À¯È¿½Ã°£(´ÜÀ§:ms) - 0 ÀÌÇÏÀÌ¸é »ç¶óÁöÁö ¾ÊÀº effect ÀÓ
+	UINT			EffectIndex;			// í´ë¼ì´ì–¸íŠ¸ì— ì •ì˜ëœ effectì˜ index
+	AVECTOR3		avec3Up;				// effectì˜ Up Vector, Normalize í•´ì•¼í•¨
+	AVECTOR3		avec3Target;			// effectì˜ Target Vector, Normalize í•´ì•¼í•¨
+	AVECTOR3		avec3Position;			// effectì˜ Positon Vector
+	INT				nLifetime;				// effectì˜ ìœ íš¨ì‹œê°„(ë‹¨ìœ„:ms) - 0 ì´í•˜ì´ë©´ ì‚¬ë¼ì§€ì§€ ì•Šì€ effect ì„
 };
 
 struct MSG_FC_CHARACTER_SHOW_MAP_EFFECT_OK		// 2007-04-20 by cmkwon
 {
 	ClientIndex_t	ClientIdx;
-	UINT			EffectIndex;			// Å¬¶óÀÌ¾ğÆ®¿¡ Á¤ÀÇµÈ effectÀÇ index
-	AVECTOR3		avec3Up;				// effectÀÇ Up Vector, Normalize ÇØ¾ßÇÔ(=½ÇÁ¦UpVector*1000f)
-	AVECTOR3		avec3Target;			// effectÀÇ Target Vector, Normalize ÇØ¾ßÇÔ(=½ÇÁ¦TargetVector*1000f)
-	AVECTOR3		avec3Position;			// effectÀÇ Positon Vector
-	INT				nLifetime;				// effectÀÇ À¯È¿½Ã°£(´ÜÀ§:ms) - 0 ÀÌÇÏÀÌ¸é »ç¶óÁöÁö ¾ÊÀº effect ÀÓ
+	UINT			EffectIndex;			// í´ë¼ì´ì–¸íŠ¸ì— ì •ì˜ëœ effectì˜ index
+	AVECTOR3		avec3Up;				// effectì˜ Up Vector, Normalize í•´ì•¼í•¨(=ì‹¤ì œUpVector*1000f)
+	AVECTOR3		avec3Target;			// effectì˜ Target Vector, Normalize í•´ì•¼í•¨(=ì‹¤ì œTargetVector*1000f)
+	AVECTOR3		avec3Position;			// effectì˜ Positon Vector
+	INT				nLifetime;				// effectì˜ ìœ íš¨ì‹œê°„(ë‹¨ìœ„:ms) - 0 ì´í•˜ì´ë©´ ì‚¬ë¼ì§€ì§€ ì•Šì€ effect ì„
 };
 
 struct MSG_FC_CHARACTER_PAY_WARPOINT
-{// 2007-05-16 by dhjin, WarPoint°¡ Áö±ŞµÇ¾î Àü¼Û ÇÑ´Ù.
-	INT				WarPoint;				// 2007-05-16 by dhjin, Áö±ŞµÈ WarPoint
-	INT				TotalWarPoint;			// 2007-05-16 by dhjin, ÃÑ WarPoint
-	INT				CumulativeWarPoint;		// 2007-05-28 by dhjin, ´©Àû WarPoint
-	bool			UseItemFlag;			// 2010-08-27 by shcho&&jskim, WARPOINT Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö - ¾ÆÀÌÅÛ »ç¿ëÈ¹µæ(TRUE)ÀÎÁö °ÔÀÓ¿¡¼­ È¹µæ(FALSE)ÀÎÁö ±¸ºĞ
+{// 2007-05-16 by dhjin, WarPointê°€ ì§€ê¸‰ë˜ì–´ ì „ì†¡ í•œë‹¤.
+	INT				WarPoint;				// 2007-05-16 by dhjin, ì§€ê¸‰ëœ WarPoint
+	INT				TotalWarPoint;			// 2007-05-16 by dhjin, ì´ WarPoint
+	INT				CumulativeWarPoint;		// 2007-05-28 by dhjin, ëˆ„ì  WarPoint
+	bool			UseItemFlag;			// 2010-08-27 by shcho&&jskim, WARPOINT ì¦ê°€ ì•„ì´í…œ êµ¬í˜„ - ì•„ì´í…œ ì‚¬ìš©íšë“(TRUE)ì¸ì§€ ê²Œì„ì—ì„œ íšë“(FALSE)ì¸ì§€ êµ¬ë¶„
 	bool			ShowSystemMessage;		// 2015-07-22 Future, make System message hideable
 };
 
 struct MSG_FC_CHARACTER_WATCH_INFO
-{// 2007-06-19 by dhjin, °üÀüÀÚ¿¡°Ô Á¦°øµÇ´Â Á¤º¸
+{// 2007-06-19 by dhjin, ê´€ì „ìì—ê²Œ ì œê³µë˜ëŠ” ì •ë³´
 	ClientIndex_t		ClientIndex;
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 	INT		HP;
@@ -2360,35 +2360,35 @@ struct MSG_FC_CHARACTER_WATCH_INFO
 };
 
 struct MSG_FC_CHARACTER_GAMESTART_FROM_ARENA_TO_MAINSERVER
-{// 2008-01-11 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
+{// 2008-01-11 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
 	ClientIndex_t		ClientIndex;
 };
 
 struct MSG_FC_CHARACTER_READY_GAMESTART_FROM_ARENA_TO_MAINSERVER
-{// 2008-01-31 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
+{// 2008-01-31 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
 	ClientIndex_t		ClientIndex;
 };
 
 struct MSG_FC_CHARACTER_GET_USER_INFO
-{// 2008-06-20 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
+{// 2008-06-20 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
 	UID32_t				TargetCharcterUID;
 };
 
 struct MSG_FC_CHARACTER_GET_USER_INFO_OK
-{// 2008-06-20 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
-	BYTE				PilotFace;						// È­¸é¿¡ ³ªÅ¸³ª´Â ÀÎ¹° ÄÉ¸¯ÅÍ
-	char				CharacterName[SIZE_MAX_CHARACTER_NAME];		// À¯´Ö(Ä³¸¯ÅÍ) ÀÌ¸§
-	USHORT				UnitKind;						// À¯´ÖÀÇ Á¾·ù	
+{// 2008-06-20 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
+	BYTE				PilotFace;						// í™”ë©´ì— ë‚˜íƒ€ë‚˜ëŠ” ì¸ë¬¼ ì¼€ë¦­í„°
+	char				CharacterName[SIZE_MAX_CHARACTER_NAME];		// ìœ ë‹›(ìºë¦­í„°) ì´ë¦„
+	USHORT				UnitKind;						// ìœ ë‹›ì˜ ì¢…ë¥˜	
 	UID32_t				GuildUID;
-	char				GuildName[SIZE_MAX_GUILD_NAME];	// ±æµå ÀÌ¸§
+	char				GuildName[SIZE_MAX_GUILD_NAME];	// ê¸¸ë“œ ì´ë¦„
 	BYTE				Level;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-	INT					Propensity;						// ¸í¼ºÄ¡, ¼ºÇâ(¼±, ¾Ç)
-	ATUM_DATE_TIME		LastStartedTime;				// ÃÖÁ¾ °ÔÀÓ ½ÃÀÛ ½Ã°£
-	char				NickName[SIZE_MAX_CHARACTER_NAME];			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+	INT					Propensity;						// ëª…ì„±ì¹˜, ì„±í–¥(ì„ , ì•…)
+	ATUM_DATE_TIME		LastStartedTime;				// ìµœì¢… ê²Œì„ ì‹œì‘ ì‹œê°„
+	char				NickName[SIZE_MAX_CHARACTER_NAME];			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 };
 
-// 2012-07-12 by isshin ¾ÆÅÛ¹Ì¸®º¸±â On / Off ±â´É - °ø°³ ¿©ºÎ
+// 2012-07-12 by isshin ì•„í…œë¯¸ë¦¬ë³´ê¸° On / Off ê¸°ëŠ¥ - ê³µê°œ ì—¬ë¶€
 struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO_SECRET
 {
 	UID32_t				TargetCharcterUID;
@@ -2397,42 +2397,42 @@ struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO_SECRET_OK
 {
 	bool				bItemInfoSecret;
 };
-// end 2012-07-12 by isshin ¾ÆÅÛ¹Ì¸®º¸±â On / Off ±â´É - °ø°³ ¿©ºÎ
+// end 2012-07-12 by isshin ì•„í…œë¯¸ë¦¬ë³´ê¸° On / Off ê¸°ëŠ¥ - ê³µê°œ ì—¬ë¶€
 
-// 2012-06-05 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â - Å¬¶ó¿äÃ» ÆĞÅ¶ Ãß°¡
+// 2012-06-05 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° - í´ë¼ìš”ì²­ íŒ¨í‚· ì¶”ê°€
 struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO
 {
 	UID32_t				TargetCharcterUID;
 };
-// end 2012-06-05 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â - Å¬¶ó¿äÃ» ÆĞÅ¶ Ãß°¡
+// end 2012-06-05 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° - í´ë¼ìš”ì²­ íŒ¨í‚· ì¶”ê°€
 
 struct MSG_FC_CHARACTER_CHANGE_INFO_OPTION_SECRET
-{// 2008-06-20 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
+{// 2008-06-20 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
 	INT					SecretInfoOption;
 };
 
-struct MSG_FC_CHARACTER_CHANGE_NICKNAME		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FC_CHARACTER_CHANGE_NICKNAME		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	UID32_t				CharacUID;
 	char				NickName[SIZE_MAX_CHARACTER_NAME];
 };
-using MSG_FC_CHARACTER_CHANGE_NICKNAME_OK = MSG_FC_CHARACTER_CHANGE_NICKNAME;	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+using MSG_FC_CHARACTER_CHANGE_NICKNAME_OK = MSG_FC_CHARACTER_CHANGE_NICKNAME;	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
-struct MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - 
+struct MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - 
 {
 	UID32_t				CharacUID;
 	MapIndex_t			nStartCityMapIdx;
 };
-using MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX_OK = MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX;	// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - 
+using MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX_OK = MSG_FC_CHARACTER_CHANGE_START_CITY_MAPINDEX;	// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - 
 
 
-struct MSG_FC_CHARACTER_CHANGE_ADDED_INVENTORY_COUNT	// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+struct MSG_FC_CHARACTER_CHANGE_ADDED_INVENTORY_COUNT	// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 {
 	UID32_t				CharacUID;
 	int					nRacingPoint;
 };
 
-// 2012-10-10 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// 2012-10-10 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 struct MSG_FC_CHARACTER_KILLCOUNT
 {
 	INT nCount;
@@ -2452,7 +2452,7 @@ struct MSG_FC_CHARACTER_BONUS_EXP_RATE
 	INT nFriendRate;
 	INT nGuildRate;
 };		// C->F
-		// end 2012-10-10 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+		// end 2012-10-10 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 		///////////////////////////////////////////////////////////////////////////////
 		// FN CHARACTER
 struct MSG_FN_CHARACTER_CHANGE_CHARACTER_MODE_OK
@@ -2502,12 +2502,12 @@ struct MSG_FN_CHARACTER_CHANGE_CURRENTHP : public MSG_FC_CHARACTER_CHANGE_CURREN
 struct MSG_FN_CHARACTER_CHANGE_CURRENTSP : public MSG_FC_CHARACTER_CHANGE_CURRENTSP
 {
 	ChannelIndex_t		ChannelIndex;
-};		// check: ÇÊ¿äÇÑ°¡? Ã¶¹Î¾¾¿¡°Ô È®ÀÎ ¿ä!
+};		// check: í•„ìš”í•œê°€? ì² ë¯¼ì”¨ì—ê²Œ í™•ì¸ ìš”!
 
 struct MSG_FN_CHARACTER_CHANGE_CURRENTEP : public MSG_FC_CHARACTER_CHANGE_CURRENTEP
 {
 	ChannelIndex_t		ChannelIndex;
-};		// check: ÇÊ¿äÇÑ°¡? Ã¶¹Î¾¾¿¡°Ô È®ÀÎ ¿ä!
+};		// check: í•„ìš”í•œê°€? ì² ë¯¼ì”¨ì—ê²Œ í™•ì¸ ìš”!
 struct MSG_FN_CHARACTER_CHANGE_MAPNAME : public MSG_FC_CHARACTER_CHANGE_MAPNAME
 {
 	ChannelIndex_t		ChannelIndex;
@@ -2541,7 +2541,7 @@ struct MSG_FC_MOVE
 {
 	ClientIndex_t	ClientIndex;
 	USHORT			TimeGap;
-	BYTE			DistanceGap;		// Client¿Í °°ÀÌ »èÁ¦ÇÒ ¿¹Á¤ÀÓ
+	BYTE			DistanceGap;		// Clientì™€ ê°™ì´ ì‚­ì œí•  ì˜ˆì •ì„
 	AVECTOR3		PositionVector;
 	AVECTOR3		TargetVector;
 	AVECTOR3		UpVector;
@@ -2550,14 +2550,14 @@ struct MSG_FC_MOVE
 struct MSG_FC_MOVE_BIT_FLAG					// 2007-03-29 by cmkwon
 {
 	bool			CharacterMode0 : 1;		// 
-	bool			Invisible0 : 1;			// ÀÎºñÁöºí ½ºÅ³ »ç¿ë »óÅÂ
-	bool			ChargingSkill : 1;		// 2007-04-02 by cmkwon, A-Gear Â÷Â¡ ½ºÅ³ »ç¿ë »óÅÂ
-	bool			HyperShot : 1;			// A-Gear ÇÏÀÌÆÛ¼¦ ½ºÅ³ »ç¿ë »óÅÂ
-											// 2012-12-06 by jhseol, ¼­Ä¡¾ÆÀÌ ¹üÀ§ Ä³¸¯ÅÍ Áß½ÉÀ¸·Î º¯°æ
-	bool			bSearchEye_1 : 1;			// ÀÏ¹İ ¼­Ä¡¾ÆÀÌ
-	bool			bSearchEye_2 : 1;			// °­È­ ¼­Ä¡¾ÆÀÌ
-	bool			bUsingBarialSkill : 1;		// 2013-01-29 by jhseol, º£¸®¾î ½ºÅ³ ÀÌÆåÆ® ¹ö±×
-	bool			bUsingInvicibleSkill : 1;	// 2013-02-06 by jhseol, M±â¾î ¹«Àû½ºÅ³ ÀÌº¤Æ® ¹ö±×
+	bool			Invisible0 : 1;			// ì¸ë¹„ì§€ë¸” ìŠ¤í‚¬ ì‚¬ìš© ìƒíƒœ
+	bool			ChargingSkill : 1;		// 2007-04-02 by cmkwon, A-Gear ì°¨ì§• ìŠ¤í‚¬ ì‚¬ìš© ìƒíƒœ
+	bool			HyperShot : 1;			// A-Gear í•˜ì´í¼ìƒ· ìŠ¤í‚¬ ì‚¬ìš© ìƒíƒœ
+											// 2012-12-06 by jhseol, ì„œì¹˜ì•„ì´ ë²”ìœ„ ìºë¦­í„° ì¤‘ì‹¬ìœ¼ë¡œ ë³€ê²½
+	bool			bSearchEye_1 : 1;			// ì¼ë°˜ ì„œì¹˜ì•„ì´
+	bool			bSearchEye_2 : 1;			// ê°•í™” ì„œì¹˜ì•„ì´
+	bool			bUsingBarialSkill : 1;		// 2013-01-29 by jhseol, ë² ë¦¬ì–´ ìŠ¤í‚¬ ì´í™íŠ¸ ë²„ê·¸
+	bool			bUsingInvicibleSkill : 1;	// 2013-02-06 by jhseol, Mê¸°ì–´ ë¬´ì ìŠ¤í‚¬ ì´ë²¡íŠ¸ ë²„ê·¸
 
 	MSG_FC_MOVE_BIT_FLAG() :
 		CharacterMode0 { false },
@@ -2571,27 +2571,27 @@ struct MSG_FC_MOVE_BIT_FLAG					// 2007-03-29 by cmkwon
 	{ }
 };
 
-// 2012-12-06 by jhseol, ¼­Ä¡¾ÆÀÌ ¹üÀ§ Ä³¸¯ÅÍ Áß½ÉÀ¸·Î º¯°æ
+// 2012-12-06 by jhseol, ì„œì¹˜ì•„ì´ ë²”ìœ„ ìºë¦­í„° ì¤‘ì‹¬ìœ¼ë¡œ ë³€ê²½
 struct UsingItemBitFlag
 {
-	bool			bSearchEye_1;			// ÀÏ¹İ ¼­Ä¡¾ÆÀÌ
-	bool			bSearchEye_2;			// °­È­ ¼­Ä¡¾ÆÀÌ
-	bool			bUsingBarialSkill;		// 2013-01-29 by jhseol, º£¸®¾î ½ºÅ³ ÀÌÆåÆ® ¹ö±×
-	bool			bUsingInvicibleSkill;	// 2013-02-06 by jhseol, M±â¾î ¹«Àû½ºÅ³ ÀÌº¤Æ® ¹ö±×
+	bool			bSearchEye_1;			// ì¼ë°˜ ì„œì¹˜ì•„ì´
+	bool			bSearchEye_2;			// ê°•í™” ì„œì¹˜ì•„ì´
+	bool			bUsingBarialSkill;		// 2013-01-29 by jhseol, ë² ë¦¬ì–´ ìŠ¤í‚¬ ì´í™íŠ¸ ë²„ê·¸
+	bool			bUsingInvicibleSkill;	// 2013-02-06 by jhseol, Mê¸°ì–´ ë¬´ì ìŠ¤í‚¬ ì´ë²¡íŠ¸ ë²„ê·¸
 	UsingItemBitFlag()
 	{
-		bSearchEye_1 = FALSE;				// ÃÊ±â°ª ¹Ì»ç¿ëÀ¸·Î ¼ÂÆÃ (FALSE : ¹Ì»ç¿ë, TRUE : »ç¿ë)
-		bSearchEye_2 = FALSE;				// ÃÊ±â°ª ¹Ì»ç¿ëÀ¸·Î ¼ÂÆÃ (FALSE : ¹Ì»ç¿ë, TRUE : »ç¿ë)
-		bUsingBarialSkill = FALSE;			// 2013-01-29 by jhseol, º£¸®¾î ½ºÅ³ ÀÌÆåÆ® ¹ö±×
-		bUsingInvicibleSkill = FALSE;		// 2013-02-06 by jhseol, M±â¾î ¹«Àû½ºÅ³ ÀÌº¤Æ® ¹ö±×
+		bSearchEye_1 = FALSE;				// ì´ˆê¸°ê°’ ë¯¸ì‚¬ìš©ìœ¼ë¡œ ì…‹íŒ… (FALSE : ë¯¸ì‚¬ìš©, TRUE : ì‚¬ìš©)
+		bSearchEye_2 = FALSE;				// ì´ˆê¸°ê°’ ë¯¸ì‚¬ìš©ìœ¼ë¡œ ì…‹íŒ… (FALSE : ë¯¸ì‚¬ìš©, TRUE : ì‚¬ìš©)
+		bUsingBarialSkill = FALSE;			// 2013-01-29 by jhseol, ë² ë¦¬ì–´ ìŠ¤í‚¬ ì´í™íŠ¸ ë²„ê·¸
+		bUsingInvicibleSkill = FALSE;		// 2013-02-06 by jhseol, Mê¸°ì–´ ë¬´ì ìŠ¤í‚¬ ì´ë²¡íŠ¸ ë²„ê·¸
 	}
 };
-// end 2012-12-06 by jhseol, ¼­Ä¡¾ÆÀÌ ¹üÀ§ Ä³¸¯ÅÍ Áß½ÉÀ¸·Î º¯°æ
+// end 2012-12-06 by jhseol, ì„œì¹˜ì•„ì´ ë²”ìœ„ ìºë¦­í„° ì¤‘ì‹¬ìœ¼ë¡œ ë³€ê²½
 
 struct MSG_FC_MOVE_OK
 {
 	ClientIndex_t	ClientIndex;
-	// 2007-03-29 by cmkwon, ¾Æ·¡¿Í °°ÀÌ ºñÆ®ÇÃ·¡±× º¯¼ö¸¦ ÇÏ³ª Ãß°¡ÇÔ
+	// 2007-03-29 by cmkwon, ì•„ë˜ì™€ ê°™ì´ ë¹„íŠ¸í”Œë˜ê·¸ ë³€ìˆ˜ë¥¼ í•˜ë‚˜ ì¶”ê°€í•¨
 	//	BYTE			CharacterMode0;		// 2005-07-29 by cmkwon
 	MSG_FC_MOVE_BIT_FLAG moveBitFlag;	// 2007-03-29 by cmkwon
 	AVECTOR3		PositionVector;
@@ -2601,9 +2601,9 @@ struct MSG_FC_MOVE_OK
 
 struct MSG_FC_MISSILE_MOVE_OK
 {
-	UINT			ItemNum;						// °ø°İ ¹«±âÀÇ Á¾·ù
-	ClientIndex_t	MonsterIndex;					// °ø°İ ¸ó½ºÅÍÀÇ ÀÎµ¦½º
-	INT				WeaponIndex;					// °ø°İ ¹«±â ÀÎµ¦½º(¸ó½ºÅÍ¿¡ ÇÑÇØ À¯ÀÏÇÔ)
+	UINT			ItemNum;						// ê³µê²© ë¬´ê¸°ì˜ ì¢…ë¥˜
+	ClientIndex_t	MonsterIndex;					// ê³µê²© ëª¬ìŠ¤í„°ì˜ ì¸ë±ìŠ¤
+	INT				WeaponIndex;					// ê³µê²© ë¬´ê¸° ì¸ë±ìŠ¤(ëª¬ìŠ¤í„°ì— í•œí•´ ìœ ì¼í•¨)
 	AVECTOR3		PositionVector;
 	AVECTOR3		TargetVector;
 };
@@ -2648,7 +2648,7 @@ struct MSG_FC_MOVE_LANDING_OK
 struct MSG_FC_MOVE_LANDING_DONE
 {
 	AVECTOR3	Position;
-};		// C->F, Âø·ú ¿Ï·á¸¦ ¾Ë¸²
+};		// C->F, ì°©ë¥™ ì™„ë£Œë¥¼ ì•Œë¦¼
 
 struct MSG_FC_MOVE_TAKEOFF
 {
@@ -2668,7 +2668,7 @@ struct MSG_FC_MOVE_WEAPON_VEL
 	D3DXVECTOR3		WeaponVel;
 	D3DXVECTOR3		PetLeftVel;
 	D3DXVECTOR3		PetRightVel;
-};		// C->F, ¹«±âÀÇ ¹æÇâÀÇ ¿òÁ÷ÀÓ Àü¼Û
+};		// C->F, ë¬´ê¸°ì˜ ë°©í–¥ì˜ ì›€ì§ì„ ì „ì†¡
 
 struct MSG_FC_MOVE_WEAPON_VEL_OK
 {
@@ -2676,14 +2676,14 @@ struct MSG_FC_MOVE_WEAPON_VEL_OK
 	D3DXVECTOR3		WeaponVel;
 	D3DXVECTOR3		PetLeftVel;
 	D3DXVECTOR3		PetRightVel;
-};	// F->C_in_range, ¹«±âÀÇ ¹æÇâÀÇ ¿òÁ÷ÀÓ Àü¼Û
+};	// F->C_in_range, ë¬´ê¸°ì˜ ë°©í–¥ì˜ ì›€ì§ì„ ì „ì†¡
 
 struct MSG_FC_MOVE_ROLLING
 {
 	AVECTOR3		PositionAVec3;
 	AVECTOR3		TargetAVec3;
 	AVECTOR3		UpAVec3;
-	BYTE			byLeftDirectionFlag;		// ÁÂÃø ·Ñ¸µ ÇÃ·¡±×
+	BYTE			byLeftDirectionFlag;		// ì¢Œì¸¡ ë¡¤ë§ í”Œë˜ê·¸
 };
 struct MSG_FC_MOVE_ROLLING_OK
 {
@@ -2691,14 +2691,14 @@ struct MSG_FC_MOVE_ROLLING_OK
 	AVECTOR3		PositionAVec3;
 	AVECTOR3		TargetAVec3;
 	AVECTOR3		UpAVec3;
-	BYTE			byLeftDirectionFlag;		// ÁÂÃø ·Ñ¸µ ÇÃ·¡±×
+	BYTE			byLeftDirectionFlag;		// ì¢Œì¸¡ ë¡¤ë§ í”Œë˜ê·¸
 };
 
-struct MSG_FC_MOVE_HACKSHIELD_CRCReqMsg			// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿¬µ¿ ½Ã½ºÅÛ ¼öÁ¤ - 
+struct MSG_FC_MOVE_HACKSHIELD_CRCReqMsg			// 2008-04-03 by cmkwon, í•µì‰´ë“œ ì„œë²„ ì—°ë™ ì‹œìŠ¤í…œ ìˆ˜ì • - 
 {
 	_AHNHS_TRANS_BUFFER		stRequestBuf;
 };
-struct MSG_FC_MOVE_HACKSHIELD_CRCAckMsg			// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿¬µ¿ ½Ã½ºÅÛ ¼öÁ¤ - 
+struct MSG_FC_MOVE_HACKSHIELD_CRCAckMsg			// 2008-04-03 by cmkwon, í•µì‰´ë“œ ì„œë²„ ì—°ë™ ì‹œìŠ¤í…œ ìˆ˜ì • - 
 {
 	_AHNHS_TRANS_BUFFER		stResponseBuf;
 };
@@ -2706,56 +2706,56 @@ struct MSG_FC_MOVE_HACKSHIELD_CRCAckMsg			// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿
 struct MSG_FC_MOVE_HACKSHIELD_HACKING_CLIENT	// 2006-06-05 by cmkwon
 {
 	long			lHackingClinetCode;			// ERR_AHNHS_XXXXXX	
-	char			szErrString[SIZE_STRING_128];			// 2006-10-20 by cmkwon, Ãß°¡ÇÔ(ÇØÅ· ÇÁ·Î±×·¥¸í)
+	char			szErrString[SIZE_STRING_128];			// 2006-10-20 by cmkwon, ì¶”ê°€í•¨(í•´í‚¹ í”„ë¡œê·¸ë¨ëª…)
 };
 
 struct MEX_TARGET_INFO
 {
-	AVECTOR3		TargetPosition;			// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
-	ClientIndex_t	TargetIndex;			// °ø°İ ´ë»ó ClientIndex or MonterIndex, 0ÀÌ¸é ItemFieldIndex¸¸ À¯È¿
-	UINT			TargetItemFieldIndex;	// °ø°İ ´ë»ó¿¡ ºÎÂøµÈ ¾ÆÀÌÅÛÀÌ¸é TargetIndex À¯È¿, ¾Æ´Ï¸é TargetIndex´Â 0
-	USHORT			MultiTargetIndex;		// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	AVECTOR3		TargetPosition;			// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
+	ClientIndex_t	TargetIndex;			// ê³µê²© ëŒ€ìƒ ClientIndex or MonterIndex, 0ì´ë©´ ItemFieldIndexë§Œ ìœ íš¨
+	UINT			TargetItemFieldIndex;	// ê³µê²© ëŒ€ìƒì— ë¶€ì°©ëœ ì•„ì´í…œì´ë©´ TargetIndex ìœ íš¨, ì•„ë‹ˆë©´ TargetIndexëŠ” 0
+	USHORT			MultiTargetIndex;		// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 
 public:
 	void SetNullTarget()
 	{
 		TargetIndex = 0;
 		TargetItemFieldIndex = 0;
-		MultiTargetIndex = 0;				// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+		MultiTargetIndex = 0;				// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	}
 };
 
 struct MSG_FC_BATTLE_ATTACK
 {
 	MEX_TARGET_INFO	TargetInfo;
-	AVECTOR3		FirePosition;		// ¹«±âÀÇ ¹ß»ç À§Ä¡
-	BYTE			AttackType;			// °ø°İ Å¸ÀÔ, ATT_TYPE_XXX, see below
-	UINT			SkillNum;			// ½ºÅ³ »ç¿ë ½Ã »ç¿ë
+	AVECTOR3		FirePosition;		// ë¬´ê¸°ì˜ ë°œì‚¬ ìœ„ì¹˜
+	BYTE			AttackType;			// ê³µê²© íƒ€ì…, ATT_TYPE_XXX, see below
+	UINT			SkillNum;			// ìŠ¤í‚¬ ì‚¬ìš© ì‹œ ì‚¬ìš©
 };					// C->F
 
-					// ATT_TYPE_XXX, 1~100: 1Çü °ø°İ, 101~200: 2Çü °ø°İ
-#define	ATT_TYPE_NONE			((BYTE)0)	// Attack Type ¾øÀ½
-					// 1Çü °ø°İ
-#define	ATT_TYPE_GENERAL_PRI		((BYTE)1)	// 1Çü ¹«±â ÀÏ¹İ °ø°İ
-#define	ATT_TYPE_GROUND_BOMBING_PRI	((BYTE)2)	// 1Çü Áö»ó Æø°İ ¸ğµå
-#define	ATT_TYPE_AIR_BOMBING_PRI	((BYTE)3)	// 1Çü °øÁß Æø°İ ¸ğµå
-#define	ATT_TYPE_SEIGE_PRI			((BYTE)4)	// 1Çü ½ÃÁî ¸ğµå
-#define	ATT_TYPE_SPLASH_PRI			((BYTE)5)	// 1Çü Splash °ø°İ ¸ğµå
-#define	ATT_TYPE_END_PRI			((BYTE)100)	// 1Çü ¹«±â °ø°İ ³¡, ½ÇÁ¦·Î ¾È ¾²ÀÓ
-					// 2Çü °ø°İ
-#define ATT_TYPE_GENERAL_SEC		((BYTE)101)	// 2Çü ¹«±â ÀÏ¹İ °ø°İ
-#define ATT_TYPE_GROUND_BOMBING_SEC	((BYTE)102)	// 2Çü Áö»ó Æø°İ ¸ğµå
-#define ATT_TYPE_AIR_BOMBING_SEC	((BYTE)103)	// 2Çü °øÁß Æø°İ ¸ğµå
-#define ATT_TYPE_SIEGE_SEC			((BYTE)104)	// 2Çü ½ÃÁî ¸ğµå
-#define	ATT_TYPE_END_SEC			((BYTE)200)	// 2Çü ¹«±â °ø°İ ³¡, ½ÇÁ¦·Î ¾È ¾²ÀÓ
+					// ATT_TYPE_XXX, 1~100: 1í˜• ê³µê²©, 101~200: 2í˜• ê³µê²©
+#define	ATT_TYPE_NONE			((BYTE)0)	// Attack Type ì—†ìŒ
+					// 1í˜• ê³µê²©
+#define	ATT_TYPE_GENERAL_PRI		((BYTE)1)	// 1í˜• ë¬´ê¸° ì¼ë°˜ ê³µê²©
+#define	ATT_TYPE_GROUND_BOMBING_PRI	((BYTE)2)	// 1í˜• ì§€ìƒ í­ê²© ëª¨ë“œ
+#define	ATT_TYPE_AIR_BOMBING_PRI	((BYTE)3)	// 1í˜• ê³µì¤‘ í­ê²© ëª¨ë“œ
+#define	ATT_TYPE_SEIGE_PRI			((BYTE)4)	// 1í˜• ì‹œì¦ˆ ëª¨ë“œ
+#define	ATT_TYPE_SPLASH_PRI			((BYTE)5)	// 1í˜• Splash ê³µê²© ëª¨ë“œ
+#define	ATT_TYPE_END_PRI			((BYTE)100)	// 1í˜• ë¬´ê¸° ê³µê²© ë, ì‹¤ì œë¡œ ì•ˆ ì“°ì„
+					// 2í˜• ê³µê²©
+#define ATT_TYPE_GENERAL_SEC		((BYTE)101)	// 2í˜• ë¬´ê¸° ì¼ë°˜ ê³µê²©
+#define ATT_TYPE_GROUND_BOMBING_SEC	((BYTE)102)	// 2í˜• ì§€ìƒ í­ê²© ëª¨ë“œ
+#define ATT_TYPE_AIR_BOMBING_SEC	((BYTE)103)	// 2í˜• ê³µì¤‘ í­ê²© ëª¨ë“œ
+#define ATT_TYPE_SIEGE_SEC			((BYTE)104)	// 2í˜• ì‹œì¦ˆ ëª¨ë“œ
+#define	ATT_TYPE_END_SEC			((BYTE)200)	// 2í˜• ë¬´ê¸° ê³µê²© ë, ì‹¤ì œë¡œ ì•ˆ ì“°ì„
 
-					// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê °ø°İ Ã³¸®
+					// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ê³µê²© ì²˜ë¦¬
 #define ATT_TYPE_PET_ATK			ATT_TYPE_PET_GENERAL
-#define ATT_TYPE_PET_GENERAL		((BYTE)201) // Æê °ø°İ(ÀÏ¹İ °ø°İ)
-#define ATT_TYPE_PET_END			((BYTE)300)	// Æê °ø°İ ³¡
+#define ATT_TYPE_PET_GENERAL		((BYTE)201) // í« ê³µê²©(ì¼ë°˜ ê³µê²©)
+#define ATT_TYPE_PET_END			((BYTE)300)	// í« ê³µê²© ë
 
 #define IS_PET_ATT_TPYE(_ATT_TYPE)			(util::in_range(ATT_TYPE_PET_START, _ATT_TYPE, ATT_TYPE_PET_END))
-					// END 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê °ø°İ Ã³¸®
+					// END 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ê³µê²© ì²˜ë¦¬
 #define IS_PRIMARY_ATT_TYPE(_ATT_TYPE)		(util::in_range(ATT_TYPE_GENERAL_PRI, _ATT_TYPE, ATT_TYPE_END_PRI))
 #define IS_SECONDARY_ATT_TYPE(_ATT_TYPE)	(util::in_range(ATT_TYPE_GENERAL_SEC, _ATT_TYPE, ATT_TYPE_END_SEC))
 
@@ -2763,151 +2763,151 @@ struct MSG_FC_BATTLE_ATTACK
 					// 2007-06-04 by cmkwon
 struct SATTACK_PARAMETER
 {
-	UID16_t			WeaponIndex;					// ÅºµÎ °íÀ¯¹øÈ£ - 2Çü ¹«±â¸¸ Ã³¸®µÊ
-	DWORD			dwShotTick;						// 2007-06-08 by cmkwon, ¹ß»ç Tick
-	ITEM			*pWeaponItemInfo;				// °ø°İ ¹«±â ¾ÆÀÌÅÛ Á¤º¸
-	float			fAttackProbability;				// °ø°İ È®·ü
-	float			fPierceAttackProbability;		// °ø°İ ÇÇ¾î½ºÀ²
-	float			fAttack;						// °ø°İ·Â
-	float			fMaxAttack;						// ÃÖ´ë°ø°İ·Â	
-	ClientIndex_t	TargetIndex;					// 2010-04-05 by cmkwon, ÀÎÇÇ2Â÷ M2M 2Çü ¹«±â º¸¿Ï Ã³¸® - 
-	BYTE			AttackType;						// 2010-04-05 by cmkwon, ÀÎÇÇ2Â÷ M2M 2Çü ¹«±â º¸¿Ï Ã³¸® - 
-	USHORT			MultiTargetIndex;				// 2011-04-04 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	UID16_t			WeaponIndex;					// íƒ„ë‘ ê³ ìœ ë²ˆí˜¸ - 2í˜• ë¬´ê¸°ë§Œ ì²˜ë¦¬ë¨
+	DWORD			dwShotTick;						// 2007-06-08 by cmkwon, ë°œì‚¬ Tick
+	ITEM			*pWeaponItemInfo;				// ê³µê²© ë¬´ê¸° ì•„ì´í…œ ì •ë³´
+	float			fAttackProbability;				// ê³µê²© í™•ë¥ 
+	float			fPierceAttackProbability;		// ê³µê²© í”¼ì–´ìŠ¤ìœ¨
+	float			fAttack;						// ê³µê²©ë ¥
+	float			fMaxAttack;						// ìµœëŒ€ê³µê²©ë ¥	
+	ClientIndex_t	TargetIndex;					// 2010-04-05 by cmkwon, ì¸í”¼2ì°¨ M2M 2í˜• ë¬´ê¸° ë³´ì™„ ì²˜ë¦¬ - 
+	BYTE			AttackType;						// 2010-04-05 by cmkwon, ì¸í”¼2ì°¨ M2M 2í˜• ë¬´ê¸° ë³´ì™„ ì²˜ë¦¬ - 
+	USHORT			MultiTargetIndex;				// 2011-04-04 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 };
 using mtvectSATTACK_PARAMETER = mt_vector<SATTACK_PARAMETER>;		// 2007-06-07 by cmkwon
-using vectSATTACK_PARAMETER = vector<SATTACK_PARAMETER>;			// 2010-04-05 by cmkwon, ÀÎÇÇ2Â÷ M2M 2Çü ¹«±â º¸¿Ï Ã³¸® - 
+using vectSATTACK_PARAMETER = vector<SATTACK_PARAMETER>;			// 2010-04-05 by cmkwon, ì¸í”¼2ì°¨ M2M 2í˜• ë¬´ê¸° ë³´ì™„ ì²˜ë¦¬ - 
 
 struct MSG_FC_BATTLE_ATTACK_OK
 {
 	ClientIndex_t	AttackIndex;
 	MEX_TARGET_INFO	TargetInfo;
-	AVECTOR3		FirePosition;		// ¹«±âÀÇ ¹ß»ç À§Ä¡
-	BYTE			AttackType;			// °ø°İ Å¸ÀÔ, ATT_TYPE_XXX
-	UID16_t			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º, ¼­¹ö¿¡¼­ »ı¼º, CUID16Generator »ç¿ë
-	UINT			ItemNum;			// ¹«±âÀÇ ItemNum
-	USHORT			RemainedBulletFuel;	// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö
-	UINT			SkillNum;			// ½ºÅ³ »ç¿ë ½Ã »ç¿ë
-	ClientIndex_t	DelegateClientIdx;	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸ó½ºÅÍ °£ 2Çü ¹«±â ÆøÆÈ Ã³¸® ÇÒ À§ÀÓ Å¬¶óÀÌ¾ğÆ®
+	AVECTOR3		FirePosition;		// ë¬´ê¸°ì˜ ë°œì‚¬ ìœ„ì¹˜
+	BYTE			AttackType;			// ê³µê²© íƒ€ì…, ATT_TYPE_XXX
+	UID16_t			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤, ì„œë²„ì—ì„œ ìƒì„±, CUID16Generator ì‚¬ìš©
+	UINT			ItemNum;			// ë¬´ê¸°ì˜ ItemNum
+	USHORT			RemainedBulletFuel;	// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜
+	UINT			SkillNum;			// ìŠ¤í‚¬ ì‚¬ìš© ì‹œ ì‚¬ìš©
+	ClientIndex_t	DelegateClientIdx;	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ëª¬ìŠ¤í„° ê°„ 2í˜• ë¬´ê¸° í­íŒ” ì²˜ë¦¬ í•  ìœ„ì„ í´ë¼ì´ì–¸íŠ¸
 };				// F->C_in_range
 
 struct MSG_FC_BATTLE_ATTACK_FIND
 {
 	ClientIndex_t	AttackIndex;
 	MEX_TARGET_INFO	TargetInfo;
-	UINT			ItemNum;			// ¹«±âÀÇ ItemNum, ¸ó½ºÅÍÀÇ 2Çü °ø°İ¿¡¸¸ »ç¿ëµÊ
-	UID16_t			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º, ¼­¹ö¿¡¼­ »ı¼º, CUID16Generator »ç¿ë
-	BYTE			AttackType;			// °ø°İ Å¸ÀÔ, ATT_TYPE_XXX
+	UINT			ItemNum;			// ë¬´ê¸°ì˜ ItemNum, ëª¬ìŠ¤í„°ì˜ 2í˜• ê³µê²©ì—ë§Œ ì‚¬ìš©ë¨
+	UID16_t			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤, ì„œë²„ì—ì„œ ìƒì„±, CUID16Generator ì‚¬ìš©
+	BYTE			AttackType;			// ê³µê²© íƒ€ì…, ATT_TYPE_XXX
 };			// C->F
 
 struct MSG_FC_BATTLE_ATTACK_FIND_OK
 {
 	ClientIndex_t	AttackIndex;
-	ClientIndex_t	TargetIndex;			// °ø°İ ´ë»ó ClientIndex or MonterIndex, 0ÀÌ¸é ItemFieldIndex¸¸ À¯È¿
-	UINT			TargetItemFieldIndex;	// °ø°İ ´ë»ó¿¡ ºÎÂøµÈ ¾ÆÀÌÅÛÀÌ¸é TargetIndex À¯È¿, ¾Æ´Ï¸é TargetIndex´Â 0
-	UID16_t			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º, ¼­¹ö¿¡¼­ »ı¼º, CUID16Generator »ç¿ë
-	BYTE			AttackType;			// °ø°İ Å¸ÀÔ, ATT_TYPE_XXX
+	ClientIndex_t	TargetIndex;			// ê³µê²© ëŒ€ìƒ ClientIndex or MonterIndex, 0ì´ë©´ ItemFieldIndexë§Œ ìœ íš¨
+	UINT			TargetItemFieldIndex;	// ê³µê²© ëŒ€ìƒì— ë¶€ì°©ëœ ì•„ì´í…œì´ë©´ TargetIndex ìœ íš¨, ì•„ë‹ˆë©´ TargetIndexëŠ” 0
+	UID16_t			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤, ì„œë²„ì—ì„œ ìƒì„±, CUID16Generator ì‚¬ìš©
+	BYTE			AttackType;			// ê³µê²© íƒ€ì…, ATT_TYPE_XXX
 };			// F->C_in_range
 
-			// ¸¶ÀÎ·ù Ã³¸®
+			// ë§ˆì¸ë¥˜ ì²˜ë¦¬
 struct MSG_FC_BATTLE_DROP_MINE
 {
 	BYTE			NumOfMines;
-	ClientIndex_t	TargetIndex;		// MineÀ» ½ò¶§ TargetÀÌ ÀÖÀ¸¸é ¼³Á¤µÈ´Ù(¼­¹ö´Â Å¬¶óÀÌ¾ğÆ®·Î Àü´Ş¸¸ ÇÏ¸éµÊ)
-	ARRAY_(AVECTOR3);					// MINEÀÌ ¶³¾îÁú À§Ä¡
+	ClientIndex_t	TargetIndex;		// Mineì„ ì ë•Œ Targetì´ ìˆìœ¼ë©´ ì„¤ì •ëœë‹¤(ì„œë²„ëŠ” í´ë¼ì´ì–¸íŠ¸ë¡œ ì „ë‹¬ë§Œ í•˜ë©´ë¨)
+	ARRAY_(AVECTOR3);					// MINEì´ ë–¨ì–´ì§ˆ ìœ„ì¹˜
 };				// C->F
 
 struct MSG_FC_BATTLE_DROP_MINE_OK
 {
-	ClientIndex_t	AttackIndex;		// MINE °ø°İÀÚ
-	ClientIndex_t	TargetIndex;		// MineÀ» ½ò¶§ TargetÀÌ ÀÖÀ¸¸é ¼³Á¤µÈ´Ù(¼­¹ö´Â Å¬¶óÀÌ¾ğÆ®·Î Àü´Ş¸¸ ÇÏ¸éµÊ)
-	UINT			ItemFieldIndex;		// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¸¶ÀÎ ¹øÈ£
-	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
-	AVECTOR3		DropPosition;		// MINEÀÌ ¶³¾îÁú À§Ä¡
-	USHORT			RemainedBulletFuel;	// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö
-};			// F->C_in_range, ¾ÆÀÌÅÛ º¸¿©ÁÖ±â
+	ClientIndex_t	AttackIndex;		// MINE ê³µê²©ì
+	ClientIndex_t	TargetIndex;		// Mineì„ ì ë•Œ Targetì´ ìˆìœ¼ë©´ ì„¤ì •ëœë‹¤(ì„œë²„ëŠ” í´ë¼ì´ì–¸íŠ¸ë¡œ ì „ë‹¬ë§Œ í•˜ë©´ë¨)
+	UINT			ItemFieldIndex;		// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë§ˆì¸ ë²ˆí˜¸
+	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
+	AVECTOR3		DropPosition;		// MINEì´ ë–¨ì–´ì§ˆ ìœ„ì¹˜
+	USHORT			RemainedBulletFuel;	// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜
+};			// F->C_in_range, ì•„ì´í…œ ë³´ì—¬ì£¼ê¸°
 
 struct MSG_FC_BATTLE_MINE_ATTACK
 {
-	UINT			ItemFieldIndex;		// ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¸¶ÀÎ ¹øÈ£
-	MEX_TARGET_INFO	TargetInfo;			// ÇÇ°ø°İÀÚ
+	UINT			ItemFieldIndex;		// ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë§ˆì¸ ë²ˆí˜¸
+	MEX_TARGET_INFO	TargetInfo;			// í”¼ê³µê²©ì
 };			// C->F
 
 struct MSG_FC_BATTLE_MINE_ATTACK_OK
 {
-	UINT			ItemFieldIndex;		// ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¸¶ÀÎ ¹øÈ£
-	MEX_TARGET_INFO	TargetInfo;			// ÇÇ°ø°İÀÚ
+	UINT			ItemFieldIndex;		// ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë§ˆì¸ ë²ˆí˜¸
+	MEX_TARGET_INFO	TargetInfo;			// í”¼ê³µê²©ì
 };			// F->C_in_range
 
 struct MSG_FC_BATTLE_MINE_ATTACK_FIND
 {
-	UINT			ItemFieldIndex;		// ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¸¶ÀÎ ¹øÈ£
-	MEX_TARGET_INFO	TargetInfo;			// ÇÇ°ø°İÀÚ
+	UINT			ItemFieldIndex;		// ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë§ˆì¸ ë²ˆí˜¸
+	MEX_TARGET_INFO	TargetInfo;			// í”¼ê³µê²©ì
 };		// C->F
 
 struct MSG_FC_BATTLE_MINE_ATTACK_FIND_OK
 {
-	UINT			ItemFieldIndex;		// ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¸¶ÀÎ ¹øÈ£
-	MEX_TARGET_INFO	TargetInfo;			// ÇÇ°ø°İÀÚ
+	UINT			ItemFieldIndex;		// ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë§ˆì¸ ë²ˆí˜¸
+	MEX_TARGET_INFO	TargetInfo;			// í”¼ê³µê²©ì
 };	// F->C_in_range
 
-	// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ÇÔ
+	// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •í•¨
 	//typedef struct  {
-	//	USHORT			BulletCount;		// ¹«±âÀÇ reloadµÈ ÃÑ¾ËÀÇ ÃÖÁ¾ °³¼ö
+	//	USHORT			BulletCount;		// ë¬´ê¸°ì˜ reloadëœ ì´ì•Œì˜ ìµœì¢… ê°œìˆ˜
 	//} MSG_FC_BATTLE_PRI_BULLET_RELOADED;
 	//
 	//typedef struct  {
-	//	USHORT			BulletCount;		// ¹«±âÀÇ reloadµÈ ÃÑ¾ËÀÇ ÃÖÁ¾ °³¼ö
+	//	USHORT			BulletCount;		// ë¬´ê¸°ì˜ reloadëœ ì´ì•Œì˜ ìµœì¢… ê°œìˆ˜
 	//} MSG_FC_BATTLE_SEC_BULLET_RELOADED;
 
-	// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - BULLET_RECHARGE_TYPE_XXX Á¤ÀÇ Ãß°¡
+	// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - BULLET_RECHARGE_TYPE_XXX ì •ì˜ ì¶”ê°€
 #define BULLET_RECHARGE_TYPE_NORMAL			((BYTE)0)
 #define BULLET_RECHARGE_TYPE_REPAIR_SHOP	((BYTE)1)
 #define BULLET_RECHARGE_TYPE_BULLET_ITEM	((BYTE)2)
 #define BULLET_RECHARGE_TYPE_ADMIN_COMMAND	((BYTE)3)
 struct  MSG_FC_BATTLE_PRI_BULLET_RELOADED
 {
-	USHORT			BulletCount;		// ¹«±âÀÇ reloadµÈ ÃÑ¾ËÀÇ ÃÖÁ¾ °³¼ö
-	USHORT			RechargeCount;		// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - Ãß°¡µÈ ÇÊµå
-	BYTE			RechargeType;		// 2007-08-07 by cmkwon, 1Çü/2Çü ¹«±â ÃÑ¾Ë ÃæÀü ¾ÆÀÌÅÛ ±¸Çö - Ãß°¡µÈ ÇÊµå(BULLET_RECHARGE_TYPE_XXX)
+	USHORT			BulletCount;		// ë¬´ê¸°ì˜ reloadëœ ì´ì•Œì˜ ìµœì¢… ê°œìˆ˜
+	USHORT			RechargeCount;		// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - ì¶”ê°€ëœ í•„ë“œ
+	BYTE			RechargeType;		// 2007-08-07 by cmkwon, 1í˜•/2í˜• ë¬´ê¸° ì´ì•Œ ì¶©ì „ ì•„ì´í…œ êµ¬í˜„ - ì¶”ê°€ëœ í•„ë“œ(BULLET_RECHARGE_TYPE_XXX)
 };
 using MSG_FC_BATTLE_SEC_BULLET_RELOADED = MSG_FC_BATTLE_PRI_BULLET_RELOADED;
 
-// Kind of Damages: ÀÌÆåÆ®¸¦ Ç¥½ÃÇÏ±â À§ÇØ »ç¿ëÇÑ´Ù. check: ¾Æ·¡ºĞ·ù´Â ÀçÁ¤ÀÇµÇ¾î¾ß ÇÑ´Ù.
+// Kind of Damages: ì´í™íŠ¸ë¥¼ í‘œì‹œí•˜ê¸° ìœ„í•´ ì‚¬ìš©í•œë‹¤. check: ì•„ë˜ë¶„ë¥˜ëŠ” ì¬ì •ì˜ë˜ì–´ì•¼ í•œë‹¤.
 // DAMAGEKIND_XXX
 #define DAMAGEKIND_NO_DAMAGE	(BYTE)0x00
 #define DAMAGEKIND_NORMAL		(BYTE)0x01	// 0 < DAMAGE < 100
-#define DAMAGEKIND_CRITICAL		(BYTE)0x02	// ÇÇ°ø°İÀÚÀÇ ¹æ¾î·Â ¹«½Ã
-#define DAMAGEKIND_ADD_DAMAGE	(BYTE)0x03	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Àı´ë°ª Ãß°¡ Å¸°İÄ¡ ¾ÆÀÌÅÛ
-#define DAMAGEKIND_REFLECTION	(BYTE)0x04	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - µ¥¹ÌÁö ¹İ»ç
-#define DAMAGEKIND_PET			(BYTE)0x05	// 2010-11-01 by jskim, Æê µ¥¹ÌÁö View º¯°æ
+#define DAMAGEKIND_CRITICAL		(BYTE)0x02	// í”¼ê³µê²©ìì˜ ë°©ì–´ë ¥ ë¬´ì‹œ
+#define DAMAGEKIND_ADD_DAMAGE	(BYTE)0x03	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì ˆëŒ€ê°’ ì¶”ê°€ íƒ€ê²©ì¹˜ ì•„ì´í…œ
+#define DAMAGEKIND_REFLECTION	(BYTE)0x04	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°ë¯¸ì§€ ë°˜ì‚¬
+#define DAMAGEKIND_PET			(BYTE)0x05	// 2010-11-01 by jskim, í« ë°ë¯¸ì§€ View ë³€ê²½
 
 struct MSG_FC_BATTLE_ATTACK_EXPLODE_ITEM
 {
-	ClientIndex_t	TargetIndex;			// ÇØ´ç ¾ÆÀÌÅÛÀ» ¼ÒÀ¯ÇÑ ClientIndex
+	ClientIndex_t	TargetIndex;			// í•´ë‹¹ ì•„ì´í…œì„ ì†Œìœ í•œ ClientIndex
 	UINT			TargetItemFieldIndex;
-};		// ±âÃ¼°¡ ´Ş°í ÀÖ´Â ¾ÆÀÌÅÛ(DUMMY ·ù µî)ÀÌ ÅÍÁö´Â °æ¿ì
+};		// ê¸°ì²´ê°€ ë‹¬ê³  ìˆëŠ” ì•„ì´í…œ(DUMMY ë¥˜ ë“±)ì´ í„°ì§€ëŠ” ê²½ìš°
 
 struct MSG_FC_BATTLE_ATTACK_HIDE_ITEM
 {
-	ClientIndex_t	TargetIndex;			// ÇØ´ç ¾ÆÀÌÅÛÀ» ¼ÒÀ¯ÇÑ ClientIndex
+	ClientIndex_t	TargetIndex;			// í•´ë‹¹ ì•„ì´í…œì„ ì†Œìœ í•œ ClientIndex
 	UINT			TargetItemFieldIndex;
-};			// ±âÃ¼°¡ ´Ş°í ÀÖ´Â ¾ÆÀÌÅÛ(DUMMY ·ù µî)ÀÌ ±×³É »ç¶óÁö´Â °æ¿ì(Time Out µî·Î ÀÎÇØ...)
+};			// ê¸°ì²´ê°€ ë‹¬ê³  ìˆëŠ” ì•„ì´í…œ(DUMMY ë¥˜ ë“±)ì´ ê·¸ëƒ¥ ì‚¬ë¼ì§€ëŠ” ê²½ìš°(Time Out ë“±ë¡œ ì¸í•´...)
 
 struct MSG_FC_BATTLE_ATTACK_EXPLODE_ITEM_W_KIND
 {
-	ClientIndex_t	TargetIndex;			// ÇØ´ç ¾ÆÀÌÅÛÀ» ¼ÒÀ¯ÇÑ ClientIndex
+	ClientIndex_t	TargetIndex;			// í•´ë‹¹ ì•„ì´í…œì„ ì†Œìœ í•œ ClientIndex
 	BYTE			ItemKind;
 	UINT			TargetItemFieldIndex;
-};	// With KIND, ±âÃ¼°¡ ´Ş°í ÀÖ´Â ¾ÆÀÌÅÛ(FIXER ·ù µî)ÀÌ ÅÍÁö´Â °æ¿ì
+};	// With KIND, ê¸°ì²´ê°€ ë‹¬ê³  ìˆëŠ” ì•„ì´í…œ(FIXER ë¥˜ ë“±)ì´ í„°ì§€ëŠ” ê²½ìš°
 
 struct MSG_FC_BATTLE_ATTACK_HIDE_ITEM_W_KIND
 {
-	ClientIndex_t	TargetIndex;			// ÇØ´ç ¾ÆÀÌÅÛÀ» ¼ÒÀ¯ÇÑ ClientIndex
+	ClientIndex_t	TargetIndex;			// í•´ë‹¹ ì•„ì´í…œì„ ì†Œìœ í•œ ClientIndex
 	BYTE			ItemKind;
 	UINT			TargetItemFieldIndex;
-};	// With KIND, ±âÃ¼°¡ ´Ş°í ÀÖ´Â ¾ÆÀÌÅÛ(FIXER ·ù µî)ÀÌ ±×³É »ç¶óÁö´Â °æ¿ì(Time Out µî·Î ÀÎÇØ...)
+};	// With KIND, ê¸°ì²´ê°€ ë‹¬ê³  ìˆëŠ” ì•„ì´í…œ(FIXER ë¥˜ ë“±)ì´ ê·¸ëƒ¥ ì‚¬ë¼ì§€ëŠ” ê²½ìš°(Time Out ë“±ë¡œ ì¸í•´...)
 
-	// ¹øµé·ù Ã³¸®
+	// ë²ˆë“¤ë¥˜ ì²˜ë¦¬
 struct MSG_FC_BATTLE_DROP_BUNDLE
 {
 	UID64_t			ItemUniqueNumber;
@@ -2921,14 +2921,14 @@ struct MSG_FC_BATTLE_DROP_BUNDLE_OK
 	UID64_t			ItemUniqueNumber;
 	ClientIndex_t	AttackClientIndex;
 	ClientIndex_t	TargetClientIndex;
-	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
+	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
 	AVECTOR3		DropPosition;
-	USHORT			NumOfBullet;		// ¹ß»çÇÒ ÅºÃ¼ÀÇ °³¼ö
+	USHORT			NumOfBullet;		// ë°œì‚¬í•  íƒ„ì²´ì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_BATTLE_BUNDLE_ATTACK
 {
-	UID64_t			BundleItemUniqueNumber;	// ¹øµéÀÇ ItemUniqueNumber
+	UID64_t			BundleItemUniqueNumber;	// ë²ˆë“¤ì˜ ItemUniqueNumber
 	AVECTOR3		AttackPosition;
 	ClientIndex_t	TargetIndex;
 	AVECTOR3		TargetPosition;
@@ -2936,7 +2936,7 @@ struct MSG_FC_BATTLE_BUNDLE_ATTACK
 
 struct MSG_FC_BATTLE_BUNDLE_ATTACK_RESULT
 {
-	INT				ItemNum;				// bundleÀÇ ¸µÅ© ¾ÆÀÌÅÛ(¹Ì»çÀÏ µî)ÀÇ ItemNum
+	INT				ItemNum;				// bundleì˜ ë§í¬ ì•„ì´í…œ(ë¯¸ì‚¬ì¼ ë“±)ì˜ ItemNum
 	ClientIndex_t	AttackIndex;
 	AVECTOR3		AttackPosition;
 	ClientIndex_t	TargetIndex;
@@ -2945,193 +2945,193 @@ struct MSG_FC_BATTLE_BUNDLE_ATTACK_RESULT
 
 struct MSG_FC_BATTLE_BUNDLE_ATTACK_ITEM
 {
-	UID64_t			BundleItemUniqueNumber;	// ¹øµéÀÇ ItemUniqueNumber
+	UID64_t			BundleItemUniqueNumber;	// ë²ˆë“¤ì˜ ItemUniqueNumber
 	AVECTOR3		AttackPosition;
 	ClientIndex_t	TargetIndex;
-	UINT			TargetItemFieldIndex;	// ´ë»ó ¾ÆÀÌÅÛ
+	UINT			TargetItemFieldIndex;	// ëŒ€ìƒ ì•„ì´í…œ
 	AVECTOR3		TargetPosition;
 };
 
 struct MSG_FC_BATTLE_BUNDLE_ATTACK_ITEM_RESULT
 {
-	INT				ItemNum;				// bundleÀÇ ¸µÅ© ¾ÆÀÌÅÛ(¹Ì»çÀÏ µî)ÀÇ ItemNum
+	INT				ItemNum;				// bundleì˜ ë§í¬ ì•„ì´í…œ(ë¯¸ì‚¬ì¼ ë“±)ì˜ ItemNum
 	ClientIndex_t	AttackIndex;
 	AVECTOR3		AttackPosition;
 	ClientIndex_t	TargetIndex;
-	UINT			TargetItemFieldIndex;	// ´ë»ó ¾ÆÀÌÅÛ
+	UINT			TargetItemFieldIndex;	// ëŒ€ìƒ ì•„ì´í…œ
 	AVECTOR3		TargetPosition;
 };
 
-// check: ÇÊ¿äÇÏ¸é »ì¸²(ÇöÀç NO BODYÀÓ), kelovon, 20030917
+// check: í•„ìš”í•˜ë©´ ì‚´ë¦¼(í˜„ì¬ NO BODYì„), kelovon, 20030917
 //typedef struct
 //{
 //} MSG_FC_BATTLE_TOGGLE_SHIELD;
 
 struct MSG_FC_BATTLE_TOGGLE_SHIELD_RESULT
 {
-	ClientIndex_t	AttackIndex;		// shield¸¦ °¡µ¿ÇÑ Ä³¸¯ÅÍ
+	ClientIndex_t	AttackIndex;		// shieldë¥¼ ê°€ë™í•œ ìºë¦­í„°
 	BYTE			IsOn;				// 0(FALSE): off, 1(TRUE): on
 	INT				ItemNum;
-};	// F->C, SHIELD·ù ºÎÂøÁßÀÌ¸é MSG_FC_CHARACTER_GET_OTHER_INFO_OKº¸³½ ÈÄ ÀÌ MSG¸¦ ºÙ¿©º¸³½´Ù.
+};	// F->C, SHIELDë¥˜ ë¶€ì°©ì¤‘ì´ë©´ MSG_FC_CHARACTER_GET_OTHER_INFO_OKë³´ë‚¸ í›„ ì´ MSGë¥¼ ë¶™ì—¬ë³´ë‚¸ë‹¤.
 
-	// check: ÇÊ¿äÇÏ¸é »ì¸²(ÇöÀç NO BODYÀÓ), kelovon, 20040517
+	// check: í•„ìš”í•˜ë©´ ì‚´ë¦¼(í˜„ì¬ NO BODYì„), kelovon, 20040517
 	//typedef struct
 	//{
 	//} MSG_FC_BATTLE_TOGGLE_DECOY;
 
 struct MSG_FC_BATTLE_TOGGLE_DECOY_OK
 {
-	ClientIndex_t	AttackIndex;	// decoy¸¦ °¡µ¿ÇÑ Ä³¸¯ÅÍ
+	ClientIndex_t	AttackIndex;	// decoyë¥¼ ê°€ë™í•œ ìºë¦­í„°
 	BYTE			IsOn;			// 0(FALSE): off, 1(TRUE): on
 	INT				ItemNum;
-};	// F->C, DECOY·ù ºÎÂøÁßÀÌ¸é MSG_FC_CHARACTER_GET_OTHER_INFO_OKº¸³½ ÈÄ ÀÌ MSG¸¦ ºÙ¿©º¸³½´Ù.
+};	// F->C, DECOYë¥˜ ë¶€ì°©ì¤‘ì´ë©´ MSG_FC_CHARACTER_GET_OTHER_INFO_OKë³´ë‚¸ í›„ ì´ MSGë¥¼ ë¶™ì—¬ë³´ë‚¸ë‹¤.
 
 struct MSG_FC_BATTLE_SHIELD_DAMAGE
 {
-	ClientIndex_t	TargetIndex;		// shield¸¦ °¡µ¿½ÃÅ°°í ÀÖ´Â Ä³¸¯ÅÍ
-	AVECTOR3		CollisionPosition;	// Ãæµ¹ À§Ä¡
+	ClientIndex_t	TargetIndex;		// shieldë¥¼ ê°€ë™ì‹œí‚¤ê³  ìˆëŠ” ìºë¦­í„°
+	AVECTOR3		CollisionPosition;	// ì¶©ëŒ ìœ„ì¹˜
 };
 
-// ´õ¹Ì(DUMMY)·ù
+// ë”ë¯¸(DUMMY)ë¥˜
 struct MSG_FC_BATTLE_DROP_DUMMY
 {
 	UID64_t		ItemUniqueNumber;
-	//	BYTE		NumOfDummies;			// check: »ç¶óÁü. 20030930, kelovon with jinking
-	//	ARRAY_(AVECTOR3);					// DUMMYÀÇ À§Ä¡(±âÃ¼¿¡ ´ëÇÑ »ó´ë ÁÂÇ¥), check: »ç¶óÁü. 20030930, kelovon with jinking
-};				// ´õ¹Ì´Â ÇÑ¹ø¿¡ ´Ù ½ğ´Ù.
+	//	BYTE		NumOfDummies;			// check: ì‚¬ë¼ì§. 20030930, kelovon with jinking
+	//	ARRAY_(AVECTOR3);					// DUMMYì˜ ìœ„ì¹˜(ê¸°ì²´ì— ëŒ€í•œ ìƒëŒ€ ì¢Œí‘œ), check: ì‚¬ë¼ì§. 20030930, kelovon with jinking
+};				// ë”ë¯¸ëŠ” í•œë²ˆì— ë‹¤ ìœë‹¤.
 
-				// 2007-06-21 by cmkwon, Ã¼ÇÁ ÇÏ³ªÀÇ ¸Ş½ÃÁö·Î ¸ğµÎ Àü¼Û - ¾Æ·¡¿Í °°ÀÌ ±¸Á¶Ã¼ ¼öÁ¤
+				// 2007-06-21 by cmkwon, ì²´í”„ í•˜ë‚˜ì˜ ë©”ì‹œì§€ë¡œ ëª¨ë‘ ì „ì†¡ - ì•„ë˜ì™€ ê°™ì´ êµ¬ì¡°ì²´ ìˆ˜ì •
 				//typedef struct
 				//{
-				//	ClientIndex_t	AttackIndex;		// DUMMY¸¦ ¹ßµ¿ÇÑ ±âÃ¼
-				//	UINT			ItemFieldIndex;		// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â DUMMY ¹øÈ£
-				//	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
-				////	AVECTOR3		DropPosition;		// ±âÃ¼¿¡ ´ëÇÑ »ó´ë ÁÂÇ¥, check: »ç¶óÁü. 20030930, kelovon with jinking
-				//} MSG_FC_BATTLE_DROP_DUMMY_OK;			// ¾ÆÀÌÅÛ º¸¿©ÁÖ±â,  DUMMY·ù ºÎÂøÁßÀÌ¸é MSG_FC_CHARACTER_GET_OTHER_INFO_OKº¸³½ ÈÄ ÀÌ MSG¸¦ ºÙ¿©º¸³½´Ù.
-struct MSG_FC_BATTLE_DROP_DUMMY_OK		// 2007-06-21 by cmkwon, Ã¼ÇÁ ÇÏ³ªÀÇ ¸Ş½ÃÁö·Î ¸ğµÎ Àü¼Û -
+				//	ClientIndex_t	AttackIndex;		// DUMMYë¥¼ ë°œë™í•œ ê¸°ì²´
+				//	UINT			ItemFieldIndex;		// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” DUMMY ë²ˆí˜¸
+				//	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
+				////	AVECTOR3		DropPosition;		// ê¸°ì²´ì— ëŒ€í•œ ìƒëŒ€ ì¢Œí‘œ, check: ì‚¬ë¼ì§. 20030930, kelovon with jinking
+				//} MSG_FC_BATTLE_DROP_DUMMY_OK;			// ì•„ì´í…œ ë³´ì—¬ì£¼ê¸°,  DUMMYë¥˜ ë¶€ì°©ì¤‘ì´ë©´ MSG_FC_CHARACTER_GET_OTHER_INFO_OKë³´ë‚¸ í›„ ì´ MSGë¥¼ ë¶™ì—¬ë³´ë‚¸ë‹¤.
+struct MSG_FC_BATTLE_DROP_DUMMY_OK		// 2007-06-21 by cmkwon, ì²´í”„ í•˜ë‚˜ì˜ ë©”ì‹œì§€ë¡œ ëª¨ë‘ ì „ì†¡ -
 {
-	ClientIndex_t	AttackIndex;		// DUMMY¸¦ ¹ßµ¿ÇÑ ±âÃ¼
-	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
-	INT				DummyCounts;		// 2007-06-21 by cmkwon, Ã¼ÇÁ ÇÏ³ªÀÇ ¸Ş½ÃÁö·Î ¸ğµÎ Àü¼Û -
-	_ARRAY(UINT ItemFieldIndex);		// 2007-06-21 by cmkwon, Ã¼ÇÁ ÇÏ³ªÀÇ ¸Ş½ÃÁö·Î ¸ğµÎ Àü¼Û - DummyCounts ¸¸Å­ ºÙ¿©¼­ Àü¼Û
+	ClientIndex_t	AttackIndex;		// DUMMYë¥¼ ë°œë™í•œ ê¸°ì²´
+	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
+	INT				DummyCounts;		// 2007-06-21 by cmkwon, ì²´í”„ í•˜ë‚˜ì˜ ë©”ì‹œì§€ë¡œ ëª¨ë‘ ì „ì†¡ -
+	_ARRAY(UINT ItemFieldIndex);		// 2007-06-21 by cmkwon, ì²´í”„ í•˜ë‚˜ì˜ ë©”ì‹œì§€ë¡œ ëª¨ë‘ ì „ì†¡ - DummyCounts ë§Œí¼ ë¶™ì—¬ì„œ ì „ì†¡
 };
 
-// ÇÈ¼­(FIXER)·ù
+// í”½ì„œ(FIXER)ë¥˜
 struct MSG_FC_BATTLE_DROP_FIXER
 {
 	UID64_t			ItemUniqueNumber;
 	ClientIndex_t	TargetIndex;
-};				// ÇÑ ¹ø¿¡ °³¼ö¸¸Å­ ´Ù ½ô
+};				// í•œ ë²ˆì— ê°œìˆ˜ë§Œí¼ ë‹¤ ì¨
 
 struct MSG_FC_BATTLE_DROP_FIXER_OK
 {
-	ClientIndex_t	AttackIndex;		// FIXER¸¦ ½ğ ±âÃ¼
+	ClientIndex_t	AttackIndex;		// FIXERë¥¼ ìœ ê¸°ì²´
 	ClientIndex_t	TargetIndex;
-	UINT			ItemFieldIndex;		// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â FIXER·ù ¹øÈ£
-	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
-};			// °¢°¢¿¡ ´ëÇØ Àü¼Û, ¾ÆÀÌÅÛ º¸¿©ÁÖ±â, FIXER·ù ºÎÂøÁßÀÌ¸é MSG_FC_CHARACTER_GET_OTHER_INFO_OKº¸³½ ÈÄ ÀÌ MSG¸¦ ºÙ¿©º¸³½´Ù.
+	UINT			ItemFieldIndex;		// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” FIXERë¥˜ ë²ˆí˜¸
+	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
+};			// ê°ê°ì— ëŒ€í•´ ì „ì†¡, ì•„ì´í…œ ë³´ì—¬ì£¼ê¸°, FIXERë¥˜ ë¶€ì°©ì¤‘ì´ë©´ MSG_FC_CHARACTER_GET_OTHER_INFO_OKë³´ë‚¸ í›„ ì´ MSGë¥¼ ë¶™ì—¬ë³´ë‚¸ë‹¤.
 
-			// check: ÇÊ¿äÇÏ¸é »ì¸²(ÇöÀç NO BODYÀÓ), kelovon, 20030612
+			// check: í•„ìš”í•˜ë©´ ì‚´ë¦¼(í˜„ì¬ NO BODYì„), kelovon, 20030612
 			//typedef struct
 			//{
-			//} MSG_FC_BATTLE_REQUEST_PK;			// C->F, clientÀÇ PK ¿äÃ»
+			//} MSG_FC_BATTLE_REQUEST_PK;			// C->F, clientì˜ PK ìš”ì²­
 
 struct MSG_FC_BATTLE_REQUEST_PK_OK
 {
-	ClientIndex_t	ClientIndex;		// PK¸¦ ¿äÃ»ÇÑ client
-};			// F->C, pk ¿äÃ» ½Â³«
+	ClientIndex_t	ClientIndex;		// PKë¥¼ ìš”ì²­í•œ client
+};			// F->C, pk ìš”ì²­ ìŠ¹ë‚™
 
-			// check: ÇÊ¿äÇÏ¸é »ì¸²(ÇöÀç NO BODYÀÓ), kelovon, 20030612
+			// check: í•„ìš”í•˜ë©´ ì‚´ë¦¼(í˜„ì¬ NO BODYì„), kelovon, 20030612
 			//typedef struct
 			//{
-			//} MSG_FC_BATTLE_CANCEL_PK;			// F->C, PK ÇØÁ¦
+			//} MSG_FC_BATTLE_CANCEL_PK;			// F->C, PK í•´ì œ
 
 struct MSG_FC_BATTLE_REQUEST_P2P_PK
 {
-	ClientIndex_t	TargetClientIndex;		// ÇÇ¿äÃ»ÀÚ
+	ClientIndex_t	TargetClientIndex;		// í”¼ìš”ì²­ì
 	int				AdditionalParameter;	// 0 => 'normal' duel, 1 => with restrictions
-};				// C->F, ÀÏ´ëÀÏ PK ¿äÃ»
+};				// C->F, ì¼ëŒ€ì¼ PK ìš”ì²­
 
 struct MSG_FC_BATTLE_REQUEST_P2P_PK_OK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
 	int				AdditionalParameter;	// 0 => 'normal' duel, 1 => with restrictions
-};			// F->C, ÀÏ´ëÀÏ PK ¿äÃ»
+};			// F->C, ì¼ëŒ€ì¼ PK ìš”ì²­
 
 struct MSG_FC_BATTLE_ACCEPT_REQUEST_P2P_PK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
-};		// C->F, ÀÏ´ëÀÏ PK ½Â³«
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
+};		// C->F, ì¼ëŒ€ì¼ PK ìŠ¹ë‚™
 
 struct MSG_FC_BATTLE_ACCEPT_REQUEST_P2P_PK_OK
 {
-	ClientIndex_t	PeerClientIndex;		// »ó´ë¹æ
-};	// F->C, ÀÏ´ëÀÏ PK ½Â³«, ¾ç ÂÊÀ¸·Î º¸³¿, Å¬¶óÀÌ¾ğÆ®´Â ¹ŞÀ¸¸é PK ½ÃÀÛ
+	ClientIndex_t	PeerClientIndex;		// ìƒëŒ€ë°©
+};	// F->C, ì¼ëŒ€ì¼ PK ìŠ¹ë‚™, ì–‘ ìª½ìœ¼ë¡œ ë³´ëƒ„, í´ë¼ì´ì–¸íŠ¸ëŠ” ë°›ìœ¼ë©´ PK ì‹œì‘
 
 struct MSG_FC_BATTLE_REJECT_REQUEST_P2P_PK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
-};		// C->F, ÀÏ´ëÀÏ PK °ÅÀı
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
+};		// C->F, ì¼ëŒ€ì¼ PK ê±°ì ˆ
 
 struct MSG_FC_BATTLE_REJECT_REQUEST_P2P_PK_OK
 {
-	ClientIndex_t	TargetClientIndex;		// ÇÇ¿äÃ»ÀÚ
-};	// F->C, ÀÏ´ëÀÏ PK °ÅÀı
+	ClientIndex_t	TargetClientIndex;		// í”¼ìš”ì²­ì
+};	// F->C, ì¼ëŒ€ì¼ PK ê±°ì ˆ
 
 struct MSG_FC_BATTLE_SURRENDER_P2P_PK
 {
-	ClientIndex_t	TargetClientIndex;		// ÇÇ¿äÃ»ÀÚ
-};			// C->F, ÀÏ´ëÀÏ PK Ç×º¹
+	ClientIndex_t	TargetClientIndex;		// í”¼ìš”ì²­ì
+};			// C->F, ì¼ëŒ€ì¼ PK í•­ë³µ
 
 struct MSG_FC_BATTLE_SURRENDER_P2P_PK_OK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
-};		// F->C, ÀÏ´ëÀÏ PK Ç×º¹
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
+};		// F->C, ì¼ëŒ€ì¼ PK í•­ë³µ
 
 struct MSG_FC_BATTLE_ACCEPT_SURRENDER_P2P_PK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
-};	// C->F, ÀÏ´ëÀÏ PK Ç×º¹ ½Â³«, ÀÌ¿¡ ´ëÇÑ ÀÀ´äÀº MSG_FC_BATTLE_END_P2P_PK·Î Ã³¸®
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
+};	// C->F, ì¼ëŒ€ì¼ PK í•­ë³µ ìŠ¹ë‚™, ì´ì— ëŒ€í•œ ì‘ë‹µì€ MSG_FC_BATTLE_END_P2P_PKë¡œ ì²˜ë¦¬
 
 	/*
 	struct MSG_FC_BATTLE_ACCEPT_SURRENDER_P2P_PK_OK
 	{
-	ClientIndex_t	TargetClientIndex;		// ÇÇ¿äÃ»ÀÚ
-	};	// F->C, ÀÏ´ëÀÏ PK Ç×º¹ ½Â³«
+	ClientIndex_t	TargetClientIndex;		// í”¼ìš”ì²­ì
+	};	// F->C, ì¼ëŒ€ì¼ PK í•­ë³µ ìŠ¹ë‚™
 	*/
 
 struct MSG_FC_BATTLE_REJECT_SURRENDER_P2P_PK
 {
-	ClientIndex_t	SourceClientIndex;		// ¿äÃ»ÀÚ
-};	// C->F, ÀÏ´ëÀÏ PK Ç×º¹ °ÅÀı
+	ClientIndex_t	SourceClientIndex;		// ìš”ì²­ì
+};	// C->F, ì¼ëŒ€ì¼ PK í•­ë³µ ê±°ì ˆ
 
 struct MSG_FC_BATTLE_REJECT_SURRENDER_P2P_PK_OK
 {
-	ClientIndex_t	TargetClientIndex;		// ÇÇ¿äÃ»ÀÚ
-};	// F->C, ÀÏ´ëÀÏ PK Ç×º¹ °ÅÀı
+	ClientIndex_t	TargetClientIndex;		// í”¼ìš”ì²­ì
+};	// F->C, ì¼ëŒ€ì¼ PK í•­ë³µ ê±°ì ˆ
 
 struct MSG_FC_BATTLE_END_P2P_PK
 {
-	ClientIndex_t	PeerClientIndex;		// »ó´ë¹æÀÇ ClientIndex
-	USHORT			EndType;				// °áÅõ Á¾·á Å¸ÀÔ, BATTLE_END_XXX
-};					// PK Á¾·á
+	ClientIndex_t	PeerClientIndex;		// ìƒëŒ€ë°©ì˜ ClientIndex
+	USHORT			EndType;				// ê²°íˆ¬ ì¢…ë£Œ íƒ€ì…, BATTLE_END_XXX
+};					// PK ì¢…ë£Œ
 
-					// ÀüÅõ Á¾·á Å¸ÀÔ, BATTLE_END_XXX
-#define BATTLE_END_WIN			(USHORT)0x0000	// ½Â¸®
-#define BATTLE_END_DEFEAT		(USHORT)0x0001	// ÆĞ¹è
-#define BATTLE_END_TIE			(USHORT)0x0002	// ¹«½ÂºÎ
-#define BATTLE_END_END			(USHORT)0x0003	// ±×³É Á¾·áµÇ¾ú½À´Ï´Ù(ÀÌÀ¯ºÒ¹®)
-#define BATTLE_END_TIME_LIMITE	(USHORT)0x0004	// ½Ã°£Á¦ÇÑ
-#define BATTLE_END_SURRENDER	(USHORT)0x0005	// Ç×º¹
+					// ì „íˆ¬ ì¢…ë£Œ íƒ€ì…, BATTLE_END_XXX
+#define BATTLE_END_WIN			(USHORT)0x0000	// ìŠ¹ë¦¬
+#define BATTLE_END_DEFEAT		(USHORT)0x0001	// íŒ¨ë°°
+#define BATTLE_END_TIE			(USHORT)0x0002	// ë¬´ìŠ¹ë¶€
+#define BATTLE_END_END			(USHORT)0x0003	// ê·¸ëƒ¥ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤(ì´ìœ ë¶ˆë¬¸)
+#define BATTLE_END_TIME_LIMITE	(USHORT)0x0004	// ì‹œê°„ì œí•œ
+#define BATTLE_END_SURRENDER	(USHORT)0x0005	// í•­ë³µ
 
 struct MSG_FC_BATTLE_SHOW_DAMAGE
 {
 	ClientIndex_t	TargetIndex;	// TargetIndex
-	USHORT			AmountDamage;	// µ¥¹ÌÁö ·®
+	USHORT			AmountDamage;	// ë°ë¯¸ì§€ ëŸ‰
 	BYTE			DamageKind;		// DAMAGEKIND_XXX
-	BYTE			byIsPrimaryWeapon;		// 2008-12-03 by cmkwon, µ¥¹ÌÁö Á¤º¸¿¡ 1Çü,2Çü Á¤º¸ Ãß°¡ - 
-	USHORT			MultiTargetIndex;		// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
-};		// F->C, °ø°İ µ¥¹ÌÁö·®À» Ç¥½ÃÇÔ
+	BYTE			byIsPrimaryWeapon;		// 2008-12-03 by cmkwon, ë°ë¯¸ì§€ ì •ë³´ì— 1í˜•,2í˜• ì •ë³´ ì¶”ê°€ - 
+	USHORT			MultiTargetIndex;		// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
+};		// F->C, ê³µê²© ë°ë¯¸ì§€ëŸ‰ì„ í‘œì‹œí•¨
 
 
 
@@ -3139,9 +3139,9 @@ struct MSG_FC_BATTLE_ATTACK_EVASION		// 2005-12-12 by cmkwon
 {
 	ClientIndex_t	AttackIndex;
 	MEX_TARGET_INFO	TargetInfo;
-	UINT			ItemNum;			// ¹«±âÀÇ ItemNum, ¸ó½ºÅÍÀÇ 2Çü °ø°İ¿¡¸¸ »ç¿ëµÊ
-	UID16_t			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º, ¼­¹ö¿¡¼­ »ı¼º, CUID16Generator »ç¿ë
-	BYTE			AttackType;			// °ø°İ Å¸ÀÔ, ATT_TYPE_XXX
+	UINT			ItemNum;			// ë¬´ê¸°ì˜ ItemNum, ëª¬ìŠ¤í„°ì˜ 2í˜• ê³µê²©ì—ë§Œ ì‚¬ìš©ë¨
+	UID16_t			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤, ì„œë²„ì—ì„œ ìƒì„±, CUID16Generator ì‚¬ìš©
+	BYTE			AttackType;			// ê³µê²© íƒ€ì…, ATT_TYPE_XXX
 };
 
 using MSG_FC_BATTLE_ATTACK_EVASION_OK = MSG_FC_BATTLE_ATTACK_EVASION;	// 2005-12-12 by cmkwon
@@ -3167,19 +3167,19 @@ struct MSG_FN_BATTLE_ATTACK_PRIMARY
 	ChannelIndex_t	ChannelIndex;
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	UINT			WeaponItemNumber;	// ¹«±â Å¸ÀÔ(°¢ ¹«±âÁ¾·ù,½ºÅ³Á¾·ù)
-	USHORT			WeaponIndex;		// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö, FuelÀÎ °æ¿ì¿¡´Â x10ÇÏ¿© °è»êÇÔ
-	AVECTOR3		TargetPosition;		// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
-	USHORT			MultiTargetIndex;	// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	UINT			WeaponItemNumber;	// ë¬´ê¸° íƒ€ì…(ê° ë¬´ê¸°ì¢…ë¥˜,ìŠ¤í‚¬ì¢…ë¥˜)
+	USHORT			WeaponIndex;		// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜, Fuelì¸ ê²½ìš°ì—ëŠ” x10í•˜ì—¬ ê³„ì‚°í•¨
+	AVECTOR3		TargetPosition;		// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
+	USHORT			MultiTargetIndex;	// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 };
 
 struct MSG_FN_BATTLE_ATTACK_RESULT_PRIMARY
 {
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	UINT			WeaponItemNumber;	// ¹«±â Å¸ÀÔ(°¢ ¹«±âÁ¾·ù,½ºÅ³Á¾·ù)
-	USHORT			WeaponIndex;		// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö, FuelÀÎ °æ¿ì¿¡´Â x10ÇÏ¿© °è»êÇÔ
-	AVECTOR3		TargetPosition;		// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
+	UINT			WeaponItemNumber;	// ë¬´ê¸° íƒ€ì…(ê° ë¬´ê¸°ì¢…ë¥˜,ìŠ¤í‚¬ì¢…ë¥˜)
+	USHORT			WeaponIndex;		// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜, Fuelì¸ ê²½ìš°ì—ëŠ” x10í•˜ì—¬ ê³„ì‚°í•¨
+	AVECTOR3		TargetPosition;		// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
 	BYTE			DamageKind;
 };
 
@@ -3188,33 +3188,33 @@ struct MSG_FN_BATTLE_ATTACK_SECONDARY
 	ChannelIndex_t	ChannelIndex;
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	UINT			WeaponItemNumber;	// ¹«±â Å¸ÀÔ(°¢ ¹«±âÁ¾·ù,½ºÅ³Á¾·ù)
-	USHORT			WeaponIndex;		// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö, FuelÀÎ °æ¿ì¿¡´Â x10ÇÏ¿© °è»êÇÔ
-	AVECTOR3		TargetPosition;		// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
-	USHORT			MultiTargetIndex;	// 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	UINT			WeaponItemNumber;	// ë¬´ê¸° íƒ€ì…(ê° ë¬´ê¸°ì¢…ë¥˜,ìŠ¤í‚¬ì¢…ë¥˜)
+	USHORT			WeaponIndex;		// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜, Fuelì¸ ê²½ìš°ì—ëŠ” x10í•˜ì—¬ ê³„ì‚°í•¨
+	AVECTOR3		TargetPosition;		// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
+	USHORT			MultiTargetIndex;	// 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	BYTE			Distance;
-	BYTE			SecAttackType;		// 2Çü ¹«±â °ø°İ Å¸ÀÔ: SEC_ATT_TYPE_XXX, see below
-	AVECTOR3		AttackPosition;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸ó½ºÅÍ À§Ä¡
+	BYTE			SecAttackType;		// 2í˜• ë¬´ê¸° ê³µê²© íƒ€ì…: SEC_ATT_TYPE_XXX, see below
+	AVECTOR3		AttackPosition;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ëª¬ìŠ¤í„° ìœ„ì¹˜
 };
 
 struct MSG_FN_BATTLE_ATTACK_RESULT_SECONDARY
 {
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	UINT			WeaponItemNumber;	// ¹«±â Å¸ÀÔ(°¢ ¹«±âÁ¾·ù,½ºÅ³Á¾·ù)
-	USHORT			WeaponIndex;		// ³²Àº ÃÑ¾Ë(È¤Àº Fuel)ÀÇ ¼ö, FuelÀÎ °æ¿ì¿¡´Â x10ÇÏ¿© °è»êÇÔ
-	AVECTOR3		TargetPosition;		// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
+	UINT			WeaponItemNumber;	// ë¬´ê¸° íƒ€ì…(ê° ë¬´ê¸°ì¢…ë¥˜,ìŠ¤í‚¬ì¢…ë¥˜)
+	USHORT			WeaponIndex;		// ë‚¨ì€ ì´ì•Œ(í˜¹ì€ Fuel)ì˜ ìˆ˜, Fuelì¸ ê²½ìš°ì—ëŠ” x10í•˜ì—¬ ê³„ì‚°í•¨
+	AVECTOR3		TargetPosition;		// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
 	BYTE			DamageKind;
 	BYTE			Distance;
-	BYTE			SecAttackType;		// 2Çü ¹«±â °ø°İ Å¸ÀÔ: SEC_ATT_TYPE_XXX
+	BYTE			SecAttackType;		// 2í˜• ë¬´ê¸° ê³µê²© íƒ€ì…: SEC_ATT_TYPE_XXX
 };
 
 struct MSG_FN_BATTLE_ATTACK_FIND
 {
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	AVECTOR3		TargetPosition;		// °ø°İ Å¬¶óÀÌ¾ğÆ®ÀÇ È­¸é¿¡¼­ÀÇ Å¸ÄÏ Æ÷Áö¼Ç
-	USHORT			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º
+	AVECTOR3		TargetPosition;		// ê³µê²© í´ë¼ì´ì–¸íŠ¸ì˜ í™”ë©´ì—ì„œì˜ íƒ€ì¼“ í¬ì§€ì…˜
+	USHORT			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤
 	ChannelIndex_t	ChannelIndex;
 };
 
@@ -3222,25 +3222,25 @@ struct MSG_FN_BATTLE_ATTACK_FIND_RESULT
 {
 	ClientIndex_t	AttackIndex;
 	ClientIndex_t	TargetIndex;
-	USHORT			WeaponIndex;		// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹ß»çµÈ ÃÑ¾ËÀÇ ÀÎµ¦½º
+	USHORT			WeaponIndex;		// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°œì‚¬ëœ ì´ì•Œì˜ ì¸ë±ìŠ¤
 	BYTE			DamageKind;
 };
 
 struct MSG_FN_BATTLE_DROP_FIXER
 {
-	ChannelIndex_t	ChannelIndex;		// check_cmkwon, Ãß°¡ÇÏ±â~, 20040330, kelovon
+	ChannelIndex_t	ChannelIndex;		// check_cmkwon, ì¶”ê°€í•˜ê¸°~, 20040330, kelovon
 	ClientIndex_t	AttackIndex;		// Attack Character
 	ClientIndex_t	TargetIndex;		// Target Monster
-	INT				ItemNum;			// FixerÀÇ ItemNum
+	INT				ItemNum;			// Fixerì˜ ItemNum
 };				// F -> N
 
 struct MSG_FN_BATTLE_DROP_FIXER_OK
 {
-	ChannelIndex_t	ChannelIndex;		// check_cmkwon, Ãß°¡ÇÏ±â~, 20040330, kelovon
+	ChannelIndex_t	ChannelIndex;		// check_cmkwon, ì¶”ê°€í•˜ê¸°~, 20040330, kelovon
 	ClientIndex_t	AttackIndex;		// Attack Character
 	ClientIndex_t	TargetIndex;		// Target Monster
 	UINT			ItemFieldIndex;
-	INT				ItemNum;			// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
+	INT				ItemNum;			// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
 };			// N -> F
 
 struct MSG_FN_BATTLE_ATTACK_HIDE_ITEM_W_KIND : public MSG_FC_BATTLE_ATTACK_HIDE_ITEM_W_KIND
@@ -3258,31 +3258,31 @@ struct MSG_FN_BATTLE_SET_ATTACK_CHARACTER
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// Party(Æí´ë, ÆÄÆ¼) °ü·Ã ÇÁ·ÎÅäÄğ
+// Party(í¸ëŒ€, íŒŒí‹°) ê´€ë ¨ í”„ë¡œí† ì¿¨
 ///////////////////////////////////////////////////////////////////////////////
 
-// IMServer¿¡¼­ FieldServer·Î ³Ñ°ÜÁÖ¾î¾ß ÇÏ´Â Á¤º¸
+// IMServerì—ì„œ FieldServerë¡œ ë„˜ê²¨ì£¼ì–´ì•¼ í•˜ëŠ” ì •ë³´
 struct MEX_FIELD_PARTY_INFO
 {
-	INT		nTotalPartyMember;			// ÃÑ ÆÄÆ¼¿ø ¼ö
-	BYTE	lowestMemberLevel;			// ÃÖÇÏ ÆÄÆ¼¿ø level, check: FieldServer°¡ IMServer·Î »ç¿ëÀÚÀÇ level Á¤º¸ µî updateÇÏ´Â ºÎºĞ ±¸ÇöÇØ¾ß ÇÔ! 20031101, kelovon
+	INT		nTotalPartyMember;			// ì´ íŒŒí‹°ì› ìˆ˜
+	BYTE	lowestMemberLevel;			// ìµœí•˜ íŒŒí‹°ì› level, check: FieldServerê°€ IMServerë¡œ ì‚¬ìš©ìì˜ level ì •ë³´ ë“± updateí•˜ëŠ” ë¶€ë¶„ êµ¬í˜„í•´ì•¼ í•¨! 20031101, kelovon
 };
 
-// ÆÄÆ¼ »ı¼º
+// íŒŒí‹° ìƒì„±
 struct MSG_IC_PARTY_CREATE
 {
-	UID32_t		CharacterUniqueNumber;		// »ı¼ºÀÚ(ÆÄÆ¼Àå) ¹øÈ£
-	SPARTY_INFO	PartyInfo;					// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë Á¤º¸
-	DWORD		Padding[SIZE_MAX_PACKET_PADDING];					// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	UID32_t		CharacterUniqueNumber;		// ìƒì„±ì(íŒŒí‹°ì¥) ë²ˆí˜¸
+	SPARTY_INFO	PartyInfo;					// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ì •ë³´
+	DWORD		Padding[SIZE_MAX_PACKET_PADDING];					// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_FI_PARTY_CREATE_OK
 {
 	PartyID_t				PartyID;
-	UID32_t					CharacterUniqueNumber;	// »ı¼ºÀÚ(ÆÄÆ¼Àå) ¹øÈ£
+	UID32_t					CharacterUniqueNumber;	// ìƒì„±ì(íŒŒí‹°ì¥) ë²ˆí˜¸
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
-	BYTE					ExpDistributeType;		// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë °æÇèÄ¡ ºĞ¹è Å¸ÀÙ
-	BYTE					ItemDistributeType;		// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë ¾ÆÀÌÅÛ ºĞ¹è Å¸ÀÙ
+	BYTE					ExpDistributeType;		// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ê²½í—˜ì¹˜ ë¶„ë°° íƒ€ì
+	BYTE					ItemDistributeType;		// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ì•„ì´í…œ ë¶„ë°° íƒ€ì
 };
 
 struct MSG_FC_PARTY_CREATE_OK
@@ -3297,19 +3297,19 @@ typedef struct
 } MSG_FC_TEAMSPEAK_MOVE_CLIENT;
 #endif
 
-// ÆÄÆ¼¿ø ÃÊ´ë
+// íŒŒí‹°ì› ì´ˆëŒ€
 struct MSG_FC_PARTY_REQUEST_INVITE
 {
-	char		CharacterName[SIZE_MAX_CHARACTER_NAME];		// ÃÊ´ëÇÒ »ó´ë¹æ
+	char		CharacterName[SIZE_MAX_CHARACTER_NAME];		// ì´ˆëŒ€í•  ìƒëŒ€ë°©
 };
 
 struct MSG_FC_PARTY_REQUEST_INVITE_QUESTION
 {
 	PartyID_t	PartyID;
-	char		MasterCharacterName[SIZE_MAX_CHARACTER_NAME];	// ÆÄÆ¼Àå
+	char		MasterCharacterName[SIZE_MAX_CHARACTER_NAME];	// íŒŒí‹°ì¥
 };
 
-using MSG_FC_PARTY_REQUEST_INVITE_QUESTION_THE_ARENA = MSG_FC_PARTY_REQUEST_INVITE_QUESTION;	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : ÆÄÆ¼¿¡ °¡ÀÔ½ÃÅ³ Å¬¶ó¿¡°Ô ÆÄÆ¼ °¡ÀÔ ÁØºñ ÆĞÅ¶ º¸³»±â.
+using MSG_FC_PARTY_REQUEST_INVITE_QUESTION_THE_ARENA = MSG_FC_PARTY_REQUEST_INVITE_QUESTION;	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : íŒŒí‹°ì— ê°€ì…ì‹œí‚¬ í´ë¼ì—ê²Œ íŒŒí‹° ê°€ì… ì¤€ë¹„ íŒ¨í‚· ë³´ë‚´ê¸°.
 
 struct MSG_FC_PARTY_ACCEPT_INVITE
 {
@@ -3319,18 +3319,18 @@ struct MSG_FC_PARTY_ACCEPT_INVITE
 struct MSG_FI_PARTY_ACCEPT_INVITE_OK
 {
 	PartyID_t				PartyID;
-	UID32_t					CharacterUniqueNumber;		// »õ·Î °¡ÀÔÇÒ ÆÄÆ¼¿ø
-	MEX_FIELD_PARTY_INFO	FieldPartyInfo;				// ÀÌ MSG°¡ F->IÀÏ ¶§´Â ¹«½ÃÇÔ
-};						// F->I, I->F µÑ ´Ù ¾²ÀÓ
+	UID32_t					CharacterUniqueNumber;		// ìƒˆë¡œ ê°€ì…í•  íŒŒí‹°ì›
+	MEX_FIELD_PARTY_INFO	FieldPartyInfo;				// ì´ MSGê°€ F->Iì¼ ë•ŒëŠ” ë¬´ì‹œí•¨
+};						// F->I, I->F ë‘˜ ë‹¤ ì“°ì„
 
 						//////////////////////////////////////////////////////////////////////
-						// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : ÆÀ¹øÈ£ º¸³»±â
+						// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : íŒ€ë²ˆí˜¸ ë³´ë‚´ê¸°
 struct MSG_FI_PARTY_ARENA_TEAM_NUM
 {
-	UID32_t					CharacterUniqueNumber;		/// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : IM¿¡¼­ »ç¿ëÀÚ ¼ÒÄÏ Ã£À»¶§ ¾²´Â CUID
-	int						TeamNum;					/// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : IM¿¡¼­ °°Àº ÆÀÀÎÁö Ã¼Å©ÇÒ ÆÀ ¹øÈ£
+	UID32_t					CharacterUniqueNumber;		/// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : IMì—ì„œ ì‚¬ìš©ì ì†Œì¼“ ì°¾ì„ë•Œ ì“°ëŠ” CUID
+	int						TeamNum;					/// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : IMì—ì„œ ê°™ì€ íŒ€ì¸ì§€ ì²´í¬í•  íŒ€ ë²ˆí˜¸
 };
-// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : ÆÀ¹øÈ£ º¸³»±â
+// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : íŒ€ë²ˆí˜¸ ë³´ë‚´ê¸°
 
 
 struct IMPartyMember;
@@ -3344,9 +3344,9 @@ struct IM_PARTY_MEMBER_INFO
 	USHORT		UnitKind;
 	USHORT		Race;
 	BYTE		Level;
-	//char		MapName[SIZE_MAX_MAP_NAME];	// IS_VALID_MAP_NAME()ÀÌ FALSEÀÌ¸é, ÆÄÆ¼ ¼Ò¼ÓÀÌ³ª °ÔÀÓÁßÀÌ ¾Æ´Ñ Ä³¸¯ÀÓ(Á×¾î¼­ ³ª°£ Ä³¸¯ÅÍ µî)
-	MAP_CHANNEL_INDEX	MapChannelIndex;	// IsValid()ÀÌ FALSEÀÌ¸é, ÆÄÆ¼ ¼Ò¼ÓÀÌ³ª °ÔÀÓÁßÀÌ ¾Æ´Ñ Ä³¸¯ÀÓ(Á×¾î¼­ ³ª°£ Ä³¸¯ÅÍ µî)
-	EN_CHECK_TYPE	VoipType;		// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸
+	//char		MapName[SIZE_MAX_MAP_NAME];	// IS_VALID_MAP_NAME()ì´ FALSEì´ë©´, íŒŒí‹° ì†Œì†ì´ë‚˜ ê²Œì„ì¤‘ì´ ì•„ë‹Œ ìºë¦­ì„(ì£½ì–´ì„œ ë‚˜ê°„ ìºë¦­í„° ë“±)
+	MAP_CHANNEL_INDEX	MapChannelIndex;	// IsValid()ì´ FALSEì´ë©´, íŒŒí‹° ì†Œì†ì´ë‚˜ ê²Œì„ì¤‘ì´ ì•„ë‹Œ ìºë¦­ì„(ì£½ì–´ì„œ ë‚˜ê°„ ìºë¦­í„° ë“±)
+	EN_CHECK_TYPE	VoipType;		// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´
 
 									// operator overloading
 	IM_PARTY_MEMBER_INFO& operator=(const IMPartyMember& rhs);
@@ -3362,7 +3362,7 @@ struct IM_PARTY_MEMBER_INFO
 		this->MapChannelIndex = rhs.MapChannelIndex;
 		return *this;
 	}
-};										// IM Server°¡ Ç×»ó À¯ÁöÇØ¾ß ÇÏ´Â Á¤º¸
+};										// IM Serverê°€ í•­ìƒ ìœ ì§€í•´ì•¼ í•˜ëŠ” ì •ë³´
 
 struct MSG_IC_PARTY_ACCEPT_INVITE_OK
 {
@@ -3378,14 +3378,14 @@ struct MSG_FC_PARTY_REJECT_INVITE
 struct MSG_FC_PARTY_REJECT_INVITE_OK
 {
 	PartyID_t	PartyID;
-	char		CharacterName[SIZE_MAX_CHARACTER_NAME];		// ÃÊ´ëÇß´ø »ó´ë¹æ
+	char		CharacterName[SIZE_MAX_CHARACTER_NAME];		// ì´ˆëŒ€í–ˆë˜ ìƒëŒ€ë°©
 };
 
-// ÆÄÆ¼¿ø Á¤º¸(from IM Server)
+// íŒŒí‹°ì› ì •ë³´(from IM Server)
 struct MSG_IC_PARTY_GET_MEMBER
 {
 	UID32_t		CharacterUniqueNumber;
-};					// °°Àº ÆÄÆ¼ÀÎÁö´Â ¼­¹ö¿¡¼­ È®ÀÎÇÑ´Ù
+};					// ê°™ì€ íŒŒí‹°ì¸ì§€ëŠ” ì„œë²„ì—ì„œ í™•ì¸í•œë‹¤
 
 struct MSG_IC_PARTY_PUT_MEMBER
 {
@@ -3400,19 +3400,19 @@ struct MSG_IC_PARTY_GET_ALL_MEMBER
 struct MSG_IC_PARTY_PUT_ALL_MEMBER
 {
 	PartyID_t	PartyID;
-	UID32_t		MasterUniqueNumber;			// ÆÄÆ¼ÀåÀÇ CharacterUniqueNumber
+	UID32_t		MasterUniqueNumber;			// íŒŒí‹°ì¥ì˜ CharacterUniqueNumber
 	UINT		nNumOfPartyMembers;
 	ARRAY_(IM_PARTY_MEMBER_INFO);
 };
 
-// ÆÄÆ¼¿ø Á¤º¸(from Field Server)
+// íŒŒí‹°ì› ì •ë³´(from Field Server)
 struct FIELD_PARTY_MEMBER_INFO
 {
 	UID32_t			CharacterUniqueNumber;
 	ClientIndex_t	ClientIndex;
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
-	//char			MapName[SIZE_MAX_MAP_NAME];	// IS_VALID_MAP_NAME()ÀÌ FALSEÀÌ¸é, ÆÄÆ¼ ¼Ò¼ÓÀÌ³ª °ÔÀÓÁßÀÌ ¾Æ´Ñ Ä³¸¯ÀÓ(Á×¾î¼­ ³ª°£ Ä³¸¯ÅÍ µî)
-	MAP_CHANNEL_INDEX	MapChannelIndex;	// IsValid()ÀÌ FALSEÀÌ¸é, ÆÄÆ¼ ¼Ò¼ÓÀÌ³ª °ÔÀÓÁßÀÌ ¾Æ´Ñ Ä³¸¯ÀÓ(Á×¾î¼­ ³ª°£ Ä³¸¯ÅÍ µî)
+	//char			MapName[SIZE_MAX_MAP_NAME];	// IS_VALID_MAP_NAME()ì´ FALSEì´ë©´, íŒŒí‹° ì†Œì†ì´ë‚˜ ê²Œì„ì¤‘ì´ ì•„ë‹Œ ìºë¦­ì„(ì£½ì–´ì„œ ë‚˜ê°„ ìºë¦­í„° ë“±)
+	MAP_CHANNEL_INDEX	MapChannelIndex;	// IsValid()ì´ FALSEì´ë©´, íŒŒí‹° ì†Œì†ì´ë‚˜ ê²Œì„ì¤‘ì´ ì•„ë‹Œ ìºë¦­ì„(ì£½ì–´ì„œ ë‚˜ê°„ ìºë¦­í„° ë“±)
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 	INT		HP;
 	INT		DP;
@@ -3449,7 +3449,7 @@ struct FIELD_PARTY_MEMBER_INFO
 struct MSG_FC_PARTY_GET_MEMBER
 {
 	UID32_t		CharacterUniqueNumber;
-};					// °°Àº ÆÄÆ¼ÀÎÁö´Â ¼­¹ö¿¡¼­ È®ÀÎÇÑ´Ù
+};					// ê°™ì€ íŒŒí‹°ì¸ì§€ëŠ” ì„œë²„ì—ì„œ í™•ì¸í•œë‹¤
 
 struct MSG_FC_PARTY_PUT_MEMBER
 {
@@ -3463,12 +3463,12 @@ struct MSG_FC_PARTY_GET_ALL_MEMBER
 
 struct MSG_FC_PARTY_PUT_ALL_MEMBER
 {
-	UID32_t		MasterUniqueNumber;			// ÆÄÆ¼ÀåÀÇ CharacterUniqueNumber
+	UID32_t		MasterUniqueNumber;			// íŒŒí‹°ì¥ì˜ CharacterUniqueNumber
 	UINT		nNumOfPartyMembers;
 	ARRAY_(MSG_FC_PARTY_PUT_MEMBER);
 };
 
-// ÆÄÆ¼¿ø Á¤º¸ ¾÷µ¥ÀÌÆ®
+// íŒŒí‹°ì› ì •ë³´ ì—…ë°ì´íŠ¸
 struct MSG_FC_PARTY_UPDATE_MEMBER_INFO_ALL
 {
 	UID32_t		CharacterUniqueNumber;
@@ -3565,9 +3565,9 @@ struct MSG_IC_PARTY_UPDATE_MEMBER_INFO_MAPNAME
 {
 	UID32_t		CharacterUniqueNumber;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};		// ¿öÇÁ½Ã ¸Ê ÀÌ¸§ ¾÷µ¥ÀÌÆ®
+};		// ì›Œí”„ì‹œ ë§µ ì´ë¦„ ì—…ë°ì´íŠ¸
 
-		// Ãß¹æ
+		// ì¶”ë°©
 struct MSG_IC_PARTY_BAN_MEMBER
 {
 	PartyID_t	PartyID;
@@ -3587,7 +3587,7 @@ struct MSG_FI_PARTY_BAN_MEMBER_OK
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
 };
 
-// Å»Åğ
+// íƒˆí‡´
 struct MSG_IC_PARTY_LEAVE
 {
 	PartyID_t	PartyID;
@@ -3607,7 +3607,7 @@ struct MSG_FI_PARTY_LEAVE_OK
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
 };
 
-// ÆÄÆ¼Àå ±ÇÇÑ ¾çµµ
+// íŒŒí‹°ì¥ ê¶Œí•œ ì–‘ë„
 struct MSG_IC_PARTY_TRANSFER_MASTER
 {
 	PartyID_t	PartyID;
@@ -3629,7 +3629,7 @@ struct MSG_FI_PARTY_TRANSFER_MASTER_OK
 	UID32_t		NewMasterCharacterUniqueNumber;
 };
 
-// ÇØ»ê
+// í•´ì‚°
 struct MSG_IC_PARTY_DISMEMBER
 {
 	PartyID_t	PartyID;
@@ -3645,35 +3645,35 @@ struct MSG_FI_PARTY_DISMEMBER_OK
 	PartyID_t	PartyID;
 };
 
-// Æí´ë ºñÇà ¿äÃ»
+// í¸ëŒ€ ë¹„í–‰ ìš”ì²­
 struct MSG_IC_PARTY_CHANGE_FLIGHT_FORMATION
 {
 	PartyID_t	PartyID;
-	BYTE		Formation;				// Æí´ë ºñÇà ÇüÅÂ, see below
+	BYTE		Formation;				// í¸ëŒ€ ë¹„í–‰ í˜•íƒœ, see below
 };	// Cm -> I
 
-	// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - AtumParam.h·Î ¿Å±è
-	// #define FLIGHT_FORM_NONE				(BYTE)0	// Æí´ë ºñÇà ¾È ÇÔ
-	// #define FLIGHT_FORM_2_COLUMN			(BYTE)1	// ÀÌ·Ä Á¾´ë, ÀÌ·Ä Á¾´ë ¸ğ¾çÀ¸·Î µÎ ÁÙ·Î ³ª¶õÈ÷ ¼± ¸ğ¾çÀÌ´Ù
-	// #define FLIGHT_FORM_2_LINE				(BYTE)2	// ÀÌ·Ä È¾´ë, ÀÌ·Ä È¾´ë ¸ğ¾çÀ¸·Î µÎ ÁÙ·Î ³ª¶õÈ÷ ¼± ¸ğ¾çÀÌ´Ù
-	// #define FLIGHT_FORM_TRIANGLE			(BYTE)3	// »ï°¢ Æí´ë, »ï°¢Çü ¸ğ¾çÀ¸·Î »ó´ÜºÎÅÍ 1, 2, 3°³ÀÇ À¯´ÖÀÌ À§Ä¡ÇÑ´Ù
-	// #define FLIGHT_FORM_INVERTED_TRIANGLE	(BYTE)4	// ¿ª»ï°¢ Æí´ë, ¿ª »ï°¢Çü ¸ğ¾çÀ¸·Î »ó´ÜºÎÅÍ 3, 2, 1°³ÀÇ À¯´ÖÀÌ À§Ä¡ÇÑ´Ù
-	// #define FLIGHT_FORM_BELL				(BYTE)5	// Á¾ ÇüÅÂ, Á¾ ¸ğ¾çÀ¸·Î »ó´ÜºÎÅÍ 1, 3, 2°³ÀÇ À¯´ÖÀÌ À§Ä¡ÇÑ´Ù
-	// #define FLIGHT_FORM_INVERTED_BELL		(BYTE)6	// ¿ªÁ¾ ÇüÅÂ, ¿ªÁ¾ ¸ğ¾çÀ¸·Î »ó´ÜºÎÅÍ 2, 3, 1°³ÀÇ À¯´ÖÀÌ À§Ä¡ÇÑ´Ù
-	// #define FLIGHT_FORM_X					(BYTE)7 // XÀÚ ÇüÅÂ
-	// #define FLIGHT_FORM_STAR				(BYTE)8	// º° ÇüÅÂ
+	// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - AtumParam.hë¡œ ì˜®ê¹€
+	// #define FLIGHT_FORM_NONE				(BYTE)0	// í¸ëŒ€ ë¹„í–‰ ì•ˆ í•¨
+	// #define FLIGHT_FORM_2_COLUMN			(BYTE)1	// ì´ë ¬ ì¢…ëŒ€, ì´ë ¬ ì¢…ëŒ€ ëª¨ì–‘ìœ¼ë¡œ ë‘ ì¤„ë¡œ ë‚˜ë€íˆ ì„  ëª¨ì–‘ì´ë‹¤
+	// #define FLIGHT_FORM_2_LINE				(BYTE)2	// ì´ë ¬ íš¡ëŒ€, ì´ë ¬ íš¡ëŒ€ ëª¨ì–‘ìœ¼ë¡œ ë‘ ì¤„ë¡œ ë‚˜ë€íˆ ì„  ëª¨ì–‘ì´ë‹¤
+	// #define FLIGHT_FORM_TRIANGLE			(BYTE)3	// ì‚¼ê° í¸ëŒ€, ì‚¼ê°í˜• ëª¨ì–‘ìœ¼ë¡œ ìƒë‹¨ë¶€í„° 1, 2, 3ê°œì˜ ìœ ë‹›ì´ ìœ„ì¹˜í•œë‹¤
+	// #define FLIGHT_FORM_INVERTED_TRIANGLE	(BYTE)4	// ì—­ì‚¼ê° í¸ëŒ€, ì—­ ì‚¼ê°í˜• ëª¨ì–‘ìœ¼ë¡œ ìƒë‹¨ë¶€í„° 3, 2, 1ê°œì˜ ìœ ë‹›ì´ ìœ„ì¹˜í•œë‹¤
+	// #define FLIGHT_FORM_BELL				(BYTE)5	// ì¢… í˜•íƒœ, ì¢… ëª¨ì–‘ìœ¼ë¡œ ìƒë‹¨ë¶€í„° 1, 3, 2ê°œì˜ ìœ ë‹›ì´ ìœ„ì¹˜í•œë‹¤
+	// #define FLIGHT_FORM_INVERTED_BELL		(BYTE)6	// ì—­ì¢… í˜•íƒœ, ì—­ì¢… ëª¨ì–‘ìœ¼ë¡œ ìƒë‹¨ë¶€í„° 2, 3, 1ê°œì˜ ìœ ë‹›ì´ ìœ„ì¹˜í•œë‹¤
+	// #define FLIGHT_FORM_X					(BYTE)7 // Xì í˜•íƒœ
+	// #define FLIGHT_FORM_STAR				(BYTE)8	// ë³„ í˜•íƒœ
 
 struct MSG_IC_PARTY_CHANGE_FLIGHT_FORMATION_OK
 {
 	PartyID_t	PartyID;
-	BYTE		Formation;					// Æí´ë ºñÇà ÇüÅÂ
-};	// I -> C, ÆÄÆ¼Àå¿¡°Ôµµ º¸³¿
+	BYTE		Formation;					// í¸ëŒ€ ë¹„í–‰ í˜•íƒœ
+};	// I -> C, íŒŒí‹°ì¥ì—ê²Œë„ ë³´ëƒ„
 
 struct MSG_FI_PARTY_CHANGE_FLIGHT_FORMATION_OK
 {
 	PartyID_t	PartyID;
-	BYTE		Formation;					// Æí´ë ºñÇà ÇüÅÂ
-};	// I -> C, ÆÄÆ¼Àå¿¡°Ôµµ º¸³¿
+	BYTE		Formation;					// í¸ëŒ€ ë¹„í–‰ í˜•íƒœ
+};	// I -> C, íŒŒí‹°ì¥ì—ê²Œë„ ë³´ëƒ„
 
 struct MSG_IC_PARTY_GET_FLIGHT_POSITION
 {
@@ -3683,27 +3683,27 @@ struct MSG_IC_PARTY_GET_FLIGHT_POSITION
 struct MSG_IC_PARTY_CHANGE_FLIGHT_POSITION
 {
 	UID32_t		CharacterUniqueNumber;
-	BYTE		FlightPosition;				// ÀÚ±â ÀÚ½ÅÀÇ Æí´ë ºñÇà À§Ä¡
+	BYTE		FlightPosition;				// ìê¸° ìì‹ ì˜ í¸ëŒ€ ë¹„í–‰ ìœ„ì¹˜
 };		// Cm -> I -> C
 
 struct MSG_FI_PARTY_CHANGE_FLIGHT_POSITION
 {
 	PartyID_t	PartyID;
 	UID32_t		CharacterUniqueNumber;
-	BYTE		FlightPosition;				// ÀÚ±â ÀÚ½ÅÀÇ Æí´ë ºñÇà À§Ä¡
+	BYTE		FlightPosition;				// ìê¸° ìì‹ ì˜ í¸ëŒ€ ë¹„í–‰ ìœ„ì¹˜
 };		// Cm -> I -> C
 
-		// 2011-02-22 by shcho&hsSon, Æí´ë¹öÇÁ ÇØÁ¦ ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
-#define FORMATION_SKILL_NULL	0	// Æ÷¸ŞÀÌ¼Ç °ªÀ» »ç¿ëÇÏÁö ¾ÊÀ½
-#define FORMATION_SKILL_ON		1	// Æ÷¸ŞÀÌ¼Ç »ç¿ë
-#define FORMATION_SKILL_OFF		2	// Æ÷¸ŞÀÌ¼Ç »ç¿ë ÁßÀÌ ¾Æ´Ô
-		// END 2011-02-22 by shcho&hsSon, Æí´ë¹öÇÁ ÇØÁ¦ ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
+		// 2011-02-22 by shcho&hsSon, í¸ëŒ€ë²„í”„ í•´ì œ ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
+#define FORMATION_SKILL_NULL	0	// í¬ë©”ì´ì…˜ ê°’ì„ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+#define FORMATION_SKILL_ON		1	// í¬ë©”ì´ì…˜ ì‚¬ìš©
+#define FORMATION_SKILL_OFF		2	// í¬ë©”ì´ì…˜ ì‚¬ìš© ì¤‘ì´ ì•„ë‹˜
+		// END 2011-02-22 by shcho&hsSon, í¸ëŒ€ë²„í”„ í•´ì œ ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 
 struct MSG_IC_PARTY_CANCEL_FLIGHT_POSITION
 {
-	// 2011-02-22 by shcho&hsSon, Æí´ë¹öÇÁ ÇØÁ¦ ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
+	// 2011-02-22 by shcho&hsSon, í¸ëŒ€ë²„í”„ í•´ì œ ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 	bool		Formation_On_Off;
-	// end 2011-02-22 by shcho&hsSon, Æí´ë¹öÇÁ ÇØÁ¦ ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
+	// end 2011-02-22 by shcho&hsSon, í¸ëŒ€ë²„í”„ í•´ì œ ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
 	UID32_t		CharacterUniqueNumber;
 };		// C -> I -> Cm
 
@@ -3716,23 +3716,23 @@ struct MSG_FI_PARTY_CANCEL_FLIGHT_POSITION
 struct MSG_IC_PARTY_MEMBER_INVALIDATED
 {
 	UID32_t		CharacterUniqueNumber;
-};			// I -> C, ÆÄÆ¼¿øÀÌ ºñÁ¤»óÀûÀ¸·Î °ÔÀÓ¿¡¼­ Æ¨°åÀ» ¶§ Àü¼Û
+};			// I -> C, íŒŒí‹°ì›ì´ ë¹„ì •ìƒì ìœ¼ë¡œ ê²Œì„ì—ì„œ íŠ•ê²¼ì„ ë•Œ ì „ì†¡
 
 struct MSG_IC_PARTY_MEMBER_REJOINED
 {
 	UID32_t				CharacterUniqueNumber;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};				// I -> C, ÆÄÆ¼¿øÀÌ ´Ù½Ã °ÔÀÓÀ» ½ÃÀÛÇÏ¿´À» ¶§ Àü¼Û, ÀÚ½ÅÀº Á¦¿ÜÇÔ
+};				// I -> C, íŒŒí‹°ì›ì´ ë‹¤ì‹œ ê²Œì„ì„ ì‹œì‘í•˜ì˜€ì„ ë•Œ ì „ì†¡, ìì‹ ì€ ì œì™¸í•¨
 
 struct MSG_IC_PARTY_UPDATE_ITEM_POS {
-	UID32_t			CharacterUniqueNumber;	// ¾ÆÀÌÅÛ Ã¢ÀÛÀÌ °»½ÅµÈ ÆÄÆ¼¿ø
+	UID32_t			CharacterUniqueNumber;	// ì•„ì´í…œ ì°½ì‘ì´ ê°±ì‹ ëœ íŒŒí‹°ì›
 	BYTE			ItemPosition;			// POS_XXX
 	INT				ItemNum;
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - º¯°æ
-	//	INT				ColorCode;				// 2005-12-08 by cmkwon, ¾Æ¸Ó »ö»ó Æ©´× Á¤º¸
-	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-};				// I->C, ÆÄÆ¼¿øÀÌ ¾ÆÀÌÅÛ ÀåÂøÀ» ¼öÁ¤ÇßÀ» ¶§ Àü¼Û
+	// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ë³€ê²½
+	//	INT				ColorCode;				// 2005-12-08 by cmkwon, ì•„ë¨¸ ìƒ‰ìƒ íŠœë‹ ì •ë³´
+	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+};				// I->C, íŒŒí‹°ì›ì´ ì•„ì´í…œ ì¥ì°©ì„ ìˆ˜ì •í–ˆì„ ë•Œ ì „ì†¡
 
 struct MSG_IC_PARTY_ALL_FLIGHT_POSITION
 {
@@ -3740,18 +3740,18 @@ struct MSG_IC_PARTY_ALL_FLIGHT_POSITION
 };
 
 struct MSG_IC_PARTY_LIST_INFO
-{// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë Á¤º¸ ¸®½ºÆ® 
+{// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ì •ë³´ ë¦¬ìŠ¤íŠ¸ 
 	PartyID_t		StartNum;
 };
 
 struct MSG_IC_PARTY_JOIN_FREE
-{// 2008-06-03 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë ÀÚÀ¯ Âü¿©
+{// 2008-06-03 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ììœ  ì°¸ì—¬
 	PartyID_t		PartyNum;
 	CHAR			PartyPW[SIZE_MAX_TEAM_PW];
 };
 
 struct SPARTY_LIST_INFO
-{// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë Á¤º¸ ¸®½ºÆ® OK
+{// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ì •ë³´ ë¦¬ìŠ¤íŠ¸ OK
 	PartyID_t	PartyNum;
 	CHAR		PartyName[SIZE_MAX_PARTY_NAME];
 	BYTE		ExpDistributeType;
@@ -3769,14 +3769,14 @@ struct SPARTY_LIST_INFO
 };
 
 struct MSG_IC_PARTY_LIST_INFO_OK
-{// 2008-06-02 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë Á¤º¸ ¸®½ºÆ® OK
-	INT				PartyInfoTotalCount;	// 2008-06-02 by dhjin, ÆÄÆ¼ ÃÖ´ë ¸ñ·Ï
+{// 2008-06-02 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ì •ë³´ ë¦¬ìŠ¤íŠ¸ OK
+	INT				PartyInfoTotalCount;	// 2008-06-02 by dhjin, íŒŒí‹° ìµœëŒ€ ëª©ë¡
 	INT				PartyInfoListCount;		// 2008-06-02 by dhjin,
 	_ARRAY(SPARTY_LIST_INFO);
 };
 
 struct MSG_IC_PARTY_CHANGE_INFO
-{// 2008-06-04 by dhjin, EP3 Æí´ë ¼öÁ¤ - Æí´ë ÀÚÀ¯ Âü¿©
+{// 2008-06-04 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - í¸ëŒ€ ììœ  ì°¸ì—¬
 	SPARTY_INFO	PartyInfo;
 };
 using MSG_IC_PARTY_INFO = MSG_IC_PARTY_CHANGE_INFO;
@@ -3788,14 +3788,14 @@ struct SRECOMMENDATION_MEMBER_INFO
 };
 
 struct MSG_IC_PARTY_RECOMMENDATION_MEMBER_OK
-{// 2008-06-04 by dhjin, EP3 Æí´ë ¼öÁ¤ - ÃßÃµ ÄÉ¸¯ÅÍ ¿äÃ»
+{// 2008-06-04 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - ì¶”ì²œ ì¼€ë¦­í„° ìš”ì²­
 	UINT		Count;
 	ARRAY_(SRECOMMENDATION_MEMBER_INFO);
 };
 
 
-// check: FI_EVENT_GET_WARP_INFO(ÆÄÆ¼ Á¤º¸+ÀÌº¥Æ® Á¤º¸)·Î ´ëÃ¼ÇÑ´Ù. ¼ø¼ö ÆÄÆ¼ Á¤º¸¸¸ ¹Ş¾Æ¿Í¾ßÇÒ ÇÊ¿ä¼ºÀÌ »ı±â¸é »ì¸°´Ù. 20031006.
-// ´Ù¸¥ ÇÊµå ¼­¹ö(ÆÄÆ¼ Á¤º¸¸¦ °¡ÁöÁö ¾ÊÀº)·ÎÀÇ ¿öÇÁ½Ã, IM ¼­¹ö·ÎºÎÅÍ Á¤º¸¸¦ ¹Ş¾Æ ÆÄÆ¼ Á¤º¸ »ı¼º
+// check: FI_EVENT_GET_WARP_INFO(íŒŒí‹° ì •ë³´+ì´ë²¤íŠ¸ ì •ë³´)ë¡œ ëŒ€ì²´í•œë‹¤. ìˆœìˆ˜ íŒŒí‹° ì •ë³´ë§Œ ë°›ì•„ì™€ì•¼í•  í•„ìš”ì„±ì´ ìƒê¸°ë©´ ì‚´ë¦°ë‹¤. 20031006.
+// ë‹¤ë¥¸ í•„ë“œ ì„œë²„(íŒŒí‹° ì •ë³´ë¥¼ ê°€ì§€ì§€ ì•Šì€)ë¡œì˜ ì›Œí”„ì‹œ, IM ì„œë²„ë¡œë¶€í„° ì •ë³´ë¥¼ ë°›ì•„ íŒŒí‹° ì •ë³´ ìƒì„±
 //typedef struct
 //{
 //	UID32_t			CharacterUniqueNumber;
@@ -3803,7 +3803,7 @@ struct MSG_IC_PARTY_RECOMMENDATION_MEMBER_OK
 //
 //typedef struct
 //{
-//	UID32_t			AccountUniqueNumber;		// ´Ù¸¥ ÇÊµå ¼­¹ö·ÎÀÇ ¿öÇÁ½Ã, ÀÎÁõ¿¡ ÇÊ¿äÇÔ
+//	UID32_t			AccountUniqueNumber;		// ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œì˜ ì›Œí”„ì‹œ, ì¸ì¦ì— í•„ìš”í•¨
 //	UID32_t			CharacterUniqueNumber;
 //	PartyID_t		PartyID;
 //	UID32_t			MasterCharacterUniqueNumber;
@@ -3814,57 +3814,57 @@ struct MSG_IC_PARTY_RECOMMENDATION_MEMBER_OK
 struct FI_PARTY_MEMBER_INFO
 {
 	UID32_t			CharacterUniqueNumber;
-	//	char			CurrentMapName[SIZE_MAX_MAP_NAME];	// check: ´Ù¸¥ ÇÊµå¼­¹ö¿¡ ÀÖ´Â ÆÄÆ¼¿øÀº °ü¸®ÇÏÁö ¾Ê±â·Î ÇÏ¸é¼­ Á¦°Å, 20031010, È®Á¤&±¸ÇöµÇ¸é »èÁ¦ °¡´É
-};	// Field Server¿Í IM Server »çÀÌ¿¡ »ç¿ëÇÏ´Â ÆÄÆ¼¿ø Á¤º¸
+	//	char			CurrentMapName[SIZE_MAX_MAP_NAME];	// check: ë‹¤ë¥¸ í•„ë“œì„œë²„ì— ìˆëŠ” íŒŒí‹°ì›ì€ ê´€ë¦¬í•˜ì§€ ì•Šê¸°ë¡œ í•˜ë©´ì„œ ì œê±°, 20031010, í™•ì •&êµ¬í˜„ë˜ë©´ ì‚­ì œ ê°€ëŠ¥
+};	// Field Serverì™€ IM Server ì‚¬ì´ì— ì‚¬ìš©í•˜ëŠ” íŒŒí‹°ì› ì •ë³´
 
-	// Æí´ë ºñÇàÁßÀÎ ÆÄÆ¼¿ø ¿öÇÁ
+	// í¸ëŒ€ ë¹„í–‰ì¤‘ì¸ íŒŒí‹°ì› ì›Œí”„
 struct MSG_FC_PARTY_REQUEST_PARTY_WARP
 {
-	int				nPartyMembers;				// °°ÀÌ ¿öÇÁÇÒ ÆÄÆ¼¿øÀÇ ¼ö, Æí´ëÀå Á¦¿Ü
-	ARRAY_(UID32_t);							// ÆÄÆ¼¿ø character uniquenumberÀÇ array
+	int				nPartyMembers;				// ê°™ì´ ì›Œí”„í•  íŒŒí‹°ì›ì˜ ìˆ˜, í¸ëŒ€ì¥ ì œì™¸
+	ARRAY_(UID32_t);							// íŒŒí‹°ì› character uniquenumberì˜ array
 };
 
 struct MSG_FC_PARTY_REQUEST_PARTY_WARP_WITH_MAP_NAME
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-	int					nPartyMembers;				// °°ÀÌ ¿öÇÁÇÒ ÆÄÆ¼¿øÀÇ ¼ö, Æí´ëÀå Á¦¿Ü
-	ARRAY_(UID32_t);								// ÆÄÆ¼¿ø character uniquenumberÀÇ array
+	int					nPartyMembers;				// ê°™ì´ ì›Œí”„í•  íŒŒí‹°ì›ì˜ ìˆ˜, í¸ëŒ€ì¥ ì œì™¸
+	ARRAY_(UID32_t);								// íŒŒí‹°ì› character uniquenumberì˜ array
 };
 
 //typedef struct
 //{
-//	INT				ObjectIndex;				// ObjectÀÇ Index
-//	int				nPartyMembers;				// °°ÀÌ ¿öÇÁÇÒ ÆÄÆ¼¿øÀÇ ¼ö, Æí´ëÀå Á¦¿Ü
-//	ARRAY_(UID32_t);							// ÆÄÆ¼¿ø character uniquenumberÀÇ array
+//	INT				ObjectIndex;				// Objectì˜ Index
+//	int				nPartyMembers;				// ê°™ì´ ì›Œí”„í•  íŒŒí‹°ì›ì˜ ìˆ˜, í¸ëŒ€ì¥ ì œì™¸
+//	ARRAY_(UID32_t);							// íŒŒí‹°ì› character uniquenumberì˜ array
 //} MSG_FC_PARTY_REQUEST_PARTY_OBJECT_EVENT;
 struct MSG_FC_PARTY_REQUEST_PARTY_OBJECT_EVENT
 {
 	DWORD			ObjectType;
 	AVECTOR3		ObjectPosition;
-	int				nPartyMembers;				// °°ÀÌ ¿öÇÁÇÒ ÆÄÆ¼¿øÀÇ ¼ö, Æí´ëÀå Á¦¿Ü
-	ARRAY_(UID32_t);							// ÆÄÆ¼¿ø character uniquenumberÀÇ array
+	int				nPartyMembers;				// ê°™ì´ ì›Œí”„í•  íŒŒí‹°ì›ì˜ ìˆ˜, í¸ëŒ€ì¥ ì œì™¸
+	ARRAY_(UID32_t);							// íŒŒí‹°ì› character uniquenumberì˜ array
 };
 
-// ÆÄÆ¼¿øÀÇ MOVE Á¤º¸ ¿äÃ»
+// íŒŒí‹°ì›ì˜ MOVE ì •ë³´ ìš”ì²­
 struct MSG_FC_PARTY_GET_OTHER_MOVE
 {
 	UID32_t			OtherCharacterUniqueNumber;
 };
 
-// °ÔÀÓ¿¡¼­ ³ª°¬´Ù°¡ µé¾î¿ÔÀ» ¶§ Æí´ë À¯Áö °ü·Ã
+// ê²Œì„ì—ì„œ ë‚˜ê°”ë‹¤ê°€ ë“¤ì–´ì™”ì„ ë•Œ í¸ëŒ€ ìœ ì§€ ê´€ë ¨
 struct MSG_IC_PARTY_PUT_LAST_PARTY_INFO
 {
-	PartyID_t	PartyID;				// ÃÖ±Ù¿¡ ¸ö´ã¾Ò´ø ÆÄÆ¼°¡ ·Î±äÇÏ¿´À» ¶§ Á¸ÀçÇÏ¹Ç·Î, ±×¿¡ ´ëÇÑ ÁØºñ ¿äÃ»
-};		// I -> C, ÆÄÆ¼¿øÀÌ ´Ù½Ã °ÔÀÓÀ» ½ÃÀÛÇÏ¿´À» ¶§ Àü¼Û, ÀÚ±â ÀÚ½Å¿¡°Ô¸¸ º¸³¿
+	PartyID_t	PartyID;				// ìµœê·¼ì— ëª¸ë‹´ì•˜ë˜ íŒŒí‹°ê°€ ë¡œê¸´í•˜ì˜€ì„ ë•Œ ì¡´ì¬í•˜ë¯€ë¡œ, ê·¸ì— ëŒ€í•œ ì¤€ë¹„ ìš”ì²­
+};		// I -> C, íŒŒí‹°ì›ì´ ë‹¤ì‹œ ê²Œì„ì„ ì‹œì‘í•˜ì˜€ì„ ë•Œ ì „ì†¡, ìê¸° ìì‹ ì—ê²Œë§Œ ë³´ëƒ„
 
-		// ÆÄÆ¼Àü °ü·Ã
+		// íŒŒí‹°ì „ ê´€ë ¨
 struct MSG_FC_PARTY_BATTLE_START
 {
-	PartyID_t		PeerPartyID;				// »ó´ë PartyID
-	ClientIndex_t	PeerPartyMasterClientIndex;	// ÆÄÆ¼ÀåÀÇ ClientIndex
-	SHORT			nPeerPartyMemberToBattle;	// ÆÄÆ¼Àü¿¡ Âü¿©ÇÒ »ó´ë ÆÄÆ¼¿øÀÇ ¼ö
+	PartyID_t		PeerPartyID;				// ìƒëŒ€ PartyID
+	ClientIndex_t	PeerPartyMasterClientIndex;	// íŒŒí‹°ì¥ì˜ ClientIndex
+	SHORT			nPeerPartyMemberToBattle;	// íŒŒí‹°ì „ì— ì°¸ì—¬í•  ìƒëŒ€ íŒŒí‹°ì›ì˜ ìˆ˜
 	ARRAY_(PEER_PARTY_MEMBER);
-};					// F->C, »ó´ë ÆÄÆ¼ÀÇ Á¤º¸¸¦ º¸³½´Ù.
+};					// F->C, ìƒëŒ€ íŒŒí‹°ì˜ ì •ë³´ë¥¼ ë³´ë‚¸ë‹¤.
 
 struct PEER_PARTY_MEMBER
 {
@@ -3874,53 +3874,53 @@ struct PEER_PARTY_MEMBER
 
 struct MSG_FC_PARTY_BATTLE_END
 {
-	PartyID_t		PeerPartyID;				// »ó´ë¹æÀÇ ClientIndex
-	USHORT			EndType;					// °áÅõ Á¾·á Å¸ÀÔ, BATTLE_END_XXX
-};						// F->C, ÆÄÆ¼Àü °á°ú
+	PartyID_t		PeerPartyID;				// ìƒëŒ€ë°©ì˜ ClientIndex
+	USHORT			EndType;					// ê²°íˆ¬ ì¢…ë£Œ íƒ€ì…, BATTLE_END_XXX
+};						// F->C, íŒŒí‹°ì „ ê²°ê³¼
 
 struct MSG_FI_PARTY_NOTIFY_BATTLE_PARTY
 {
-	PartyID_t		PartyID1;					// ÆÄÆ¼ 1
-	PartyID_t		PeerPartyID1;				// ÆÄÆ¼ 1ÀÇ ´ë»ó ÆÄÆ¼
-	PartyID_t		PartyID2;					// ÆÄÆ¼ 2
-	PartyID_t		PeerPartyID2;				// ÆÄÆ¼ 2ÀÇ ´ë»ó ÆÄÆ¼
-};				// F->I, ÆÄÆ¼ÀüÀ» ¾Ë¸²
+	PartyID_t		PartyID1;					// íŒŒí‹° 1
+	PartyID_t		PeerPartyID1;				// íŒŒí‹° 1ì˜ ëŒ€ìƒ íŒŒí‹°
+	PartyID_t		PartyID2;					// íŒŒí‹° 2
+	PartyID_t		PeerPartyID2;				// íŒŒí‹° 2ì˜ ëŒ€ìƒ íŒŒí‹°
+};				// F->I, íŒŒí‹°ì „ì„ ì•Œë¦¼
 
 struct MSG_FI_PARTY_NOTIFY_BATTLE_PARTY_OK
 {
-	PartyID_t		PartyID1;					// ÆÄÆ¼ 1
-	PartyID_t		PeerPartyID1;				// ÆÄÆ¼ 1ÀÇ ´ë»ó ÆÄÆ¼
-	PartyID_t		PartyID2;					// ÆÄÆ¼ 2
-	PartyID_t		PeerPartyID2;				// ÆÄÆ¼ 2ÀÇ ´ë»ó ÆÄÆ¼
-};			// I->F, ÆÄÆ¼ÀüÀ» ¾Ë¸²¿¡ ´ëÇÑ ACK
+	PartyID_t		PartyID1;					// íŒŒí‹° 1
+	PartyID_t		PeerPartyID1;				// íŒŒí‹° 1ì˜ ëŒ€ìƒ íŒŒí‹°
+	PartyID_t		PartyID2;					// íŒŒí‹° 2
+	PartyID_t		PeerPartyID2;				// íŒŒí‹° 2ì˜ ëŒ€ìƒ íŒŒí‹°
+};			// I->F, íŒŒí‹°ì „ì„ ì•Œë¦¼ì— ëŒ€í•œ ACK
 
 struct MSG_FC_PARTY_PUT_ITEM_OTHER {
-	INT				ItemNum;					// ¾ÆÀÌÅÛÀÇ Á¾·ù
-	USHORT			Amount;						// ¾ÆÀÌÅÛÀÇ °³¼ö
+	INT				ItemNum;					// ì•„ì´í…œì˜ ì¢…ë¥˜
+	USHORT			Amount;						// ì•„ì´í…œì˜ ê°œìˆ˜
 	ClientIndex_t	ClientIndex;
-};					// F->C, ´Ù¸¥ ÆÄÆ¼¿øÀÇ ¾ÆÀÌÅÛ Ãëµæ Á¤º¸ Àü¼Û
+};					// F->C, ë‹¤ë¥¸ íŒŒí‹°ì›ì˜ ì•„ì´í…œ ì·¨ë“ ì •ë³´ ì „ì†¡
 
 struct MSG_FI_PARTY_ADD_MEMBER {
 	PartyID_t				PartyID;
-	UID32_t					CharacterUniqueNumber;	// Ãß°¡ÇÒ ÆÄÆ¼¿ø
+	UID32_t					CharacterUniqueNumber;	// ì¶”ê°€í•  íŒŒí‹°ì›
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
-};						// I->F, ÆÄÆ¼¿øÀ» Ãß°¡ÇÏ¶ó°í Field Server ¾Ë¸²
+};						// I->F, íŒŒí‹°ì›ì„ ì¶”ê°€í•˜ë¼ê³  Field Server ì•Œë¦¼
 
 struct MSG_FI_PARTY_DELETE_MEMBER {
 	PartyID_t				PartyID;
-	UID32_t					CharacterUniqueNumber;	// Á¦°ÅÇÒ ÆÄÆ¼¿ø
+	UID32_t					CharacterUniqueNumber;	// ì œê±°í•  íŒŒí‹°ì›
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
-};					// I->F, ÆÄÆ¼¿øÀ» Á¦°ÅÇÏ¶ó°í Field Server ¾Ë¸²
+};					// I->F, íŒŒí‹°ì›ì„ ì œê±°í•˜ë¼ê³  Field Server ì•Œë¦¼
 
 struct MSG_FI_PARTY_UPDATE_ITEM_POS {
-	UID32_t			CharacterUniqueNumber;	// ¾ÆÀÌÅÛ Ã¢ÀÛÀÌ °»½ÅµÈ ÆÄÆ¼¿ø
+	UID32_t			CharacterUniqueNumber;	// ì•„ì´í…œ ì°½ì‘ì´ ê°±ì‹ ëœ íŒŒí‹°ì›
 	BYTE			ItemPosition;			// POS_XXX
 	INT				ItemNum;
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - º¯°æ
-	//	INT				ColorCode;				// 2005-12-08 by cmkwon, ¾Æ¸Ó »ö»ó Æ©´× Á¤º¸
-	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-};				// F->I, ÆÄÆ¼¿øÀÌ ¾ÆÀÌÅÛ ÀåÂøÀ» ¼öÁ¤ÇßÀ» ¶§ Àü¼Û
+	// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ë³€ê²½
+	//	INT				ColorCode;				// 2005-12-08 by cmkwon, ì•„ë¨¸ ìƒ‰ìƒ íŠœë‹ ì •ë³´
+	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+};				// F->I, íŒŒí‹°ì›ì´ ì•„ì´í…œ ì¥ì°©ì„ ìˆ˜ì •í–ˆì„ ë•Œ ì „ì†¡
 
 struct MSG_FI_PARTY_ALL_FLIGHT_POSITION
 {
@@ -3932,21 +3932,21 @@ struct MSG_FI_PARTY_UPDATE_PARTY_INFO
 {
 	PartyID_t				PartyID;
 	MEX_FIELD_PARTY_INFO	FieldPartyInfo;
-};	// I->F, ÆÄÆ¼ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®
+};	// I->F, íŒŒí‹° ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸
 
 struct MSG_FI_PARTY_CHANGE_EXP_DISTRIBUTE_TYPE
-{// 2008-06-04 by dhjin, EP3 Æí´ë ¼öÁ¤ - °æÇèÄ¡ ºĞ¹è ¹æ½Ä º¯°æ 
+{// 2008-06-04 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - ê²½í—˜ì¹˜ ë¶„ë°° ë°©ì‹ ë³€ê²½ 
 	PartyID_t	PartyID;
 	BYTE		ExpDistributeType;
 };
 
 struct MSG_FI_PARTY_CHANGE_ITEM_DISTRIBUTE_TYPE
-{// 2008-06-04 by dhjin, EP3 Æí´ë ¼öÁ¤ - ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä º¯°æ 
+{// 2008-06-04 by dhjin, EP3 í¸ëŒ€ ìˆ˜ì • - ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë³€ê²½ 
 	PartyID_t	PartyID;
 	BYTE		ItemDistributeType;
 };
 
-struct MSG_FI_PARTY_CHANGE_FORMATION_SKILL		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - 
+struct MSG_FI_PARTY_CHANGE_FORMATION_SKILL		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - 
 {
 	UID32_t		PartyMasterCharcUID;	// PartyMaster CharacterUID
 	BYTE		Is_On_or_Off;			// TRUE is ON, FALSE is Off
@@ -3971,13 +3971,13 @@ struct MSG_FI_CHARACTER_CHANGE_LEVEL
 struct MSG_FI_CHARACTER_UPDATE_GUILD_INFO
 {
 	UID32_t	CharacterUniqueNumber;
-	char	GuildName[SIZE_MAX_GUILD_NAME];	// ±æµå ÀÌ¸§
-	UID32_t	GuildUniqueNumber;				// ±æµå ¹øÈ£, 0ÀÌ¸é ±æµå ¾øÀ½
-	bool	GuildDelete;					// 2006-09-29 by dhjin, ±æµå »èÁ¦ Á¤º¸, 1->»èÁ¦
+	char	GuildName[SIZE_MAX_GUILD_NAME];	// ê¸¸ë“œ ì´ë¦„
+	UID32_t	GuildUniqueNumber;				// ê¸¸ë“œ ë²ˆí˜¸, 0ì´ë©´ ê¸¸ë“œ ì—†ìŒ
+	bool	GuildDelete;					// 2006-09-29 by dhjin, ê¸¸ë“œ ì‚­ì œ ì •ë³´, 1->ì‚­ì œ
 };
 
 
-// 2007-10-06 by dhjin, ºÎÁöµµÀÚ°¡ ¿©´Ü »ı¼º½Ã InflWarManager Å¬·¡½º¿¡ ºÎÁöµµÀÚ ¿©´ÜÀ» ¼³Á¤.
+// 2007-10-06 by dhjin, ë¶€ì§€ë„ìê°€ ì—¬ë‹¨ ìƒì„±ì‹œ InflWarManager í´ë˜ìŠ¤ì— ë¶€ì§€ë„ì ì—¬ë‹¨ì„ ì„¤ì •.
 struct MSG_FI_CREATE_GUILD_BY_SUBLEADER
 {
 	unsigned char	Influence;
@@ -3998,7 +3998,7 @@ struct MSG_FI_CHARACTER_CHANGE_INFLUENCE_TYPE
 };
 
 struct MSG_FI_UPDATE_SUBLEADER
-{// 2007-02-14 by dhjin, ºÎÁöµµÀÚ ¼³Á¤ ½Ã IM¼­¹ö·Î Á¤º¸ Àü¼Û.
+{// 2007-02-14 by dhjin, ë¶€ì§€ë„ì ì„¤ì • ì‹œ IMì„œë²„ë¡œ ì •ë³´ ì „ì†¡.
 	UID32_t				CharacterUID;
 	BYTE				SubLeaderNum;
 	BYTE				InfluenceType;
@@ -4009,57 +4009,57 @@ struct MSG_FI_UPDATE_SUBLEADER
 struct MSG_FC_GUILD_GET_MAP_OWNER_INFO
 {
 	MapIndex_t	MapIndex;
-};			// C->F, ¸Ê ¼ÒÀ¯ Á¤º¸ ¿äÃ»
+};			// C->F, ë§µ ì†Œìœ  ì •ë³´ ìš”ì²­
 
 struct MSG_FC_GUILD_GET_MAP_OWNER_INFO_OK
 {
-	char	DefenderGuildName[SIZE_MAX_GUILD_NAME];	// Á¡·É ±æµå ÀÌ¸§
-	BYTE	NumOfCallengerGuilds;					// µµÀü ±æµå ¼ö
-};		// F->C, ¸Ê ¼ÒÀ¯ Á¤º¸ ¿äÃ» °á°ú
+	char	DefenderGuildName[SIZE_MAX_GUILD_NAME];	// ì ë ¹ ê¸¸ë“œ ì´ë¦„
+	BYTE	NumOfCallengerGuilds;					// ë„ì „ ê¸¸ë“œ ìˆ˜
+};		// F->C, ë§µ ì†Œìœ  ì •ë³´ ìš”ì²­ ê²°ê³¼
 
 struct MSG_FC_GUILD_REQUEST_GUILD_WAR
 {
 	char	GuildName[SIZE_MAX_GUILD_NAME];
-};			// C->F, ¿©´ÜÀü ¿äÃ»
+};			// C->F, ì—¬ë‹¨ì „ ìš”ì²­
 
 struct MSG_FC_GUILD_REQUEST_GUILD_WAR_RESULT
 {
-	INT		Order;							// ¼ø¹ø(1ºÎÅÍ ½ÃÀÛ), 0 ÀÌÇÏÀÌ¸é ½ÅÃ» ½ÇÆĞ
-};	// F->C, ¿©´ÜÀü ¿äÃ» °á°ú
+	INT		Order;							// ìˆœë²ˆ(1ë¶€í„° ì‹œì‘), 0 ì´í•˜ì´ë©´ ì‹ ì²­ ì‹¤íŒ¨
+};	// F->C, ì—¬ë‹¨ì „ ìš”ì²­ ê²°ê³¼
 
 struct MSG_FC_GUILD_GET_CHALLENGER_GUILD
 {
-	UID32_t	DefenderGuildUniqueNumber;		// Á¡·É ±æµå °íÀ¯ ¹øÈ£
-};		// C->F, ¿©´ÜÀü ¿äÃ» ´ë±â ±æµå ¸®½ºÆ® ¿äÃ»
+	UID32_t	DefenderGuildUniqueNumber;		// ì ë ¹ ê¸¸ë“œ ê³ ìœ  ë²ˆí˜¸
+};		// C->F, ì—¬ë‹¨ì „ ìš”ì²­ ëŒ€ê¸° ê¸¸ë“œ ë¦¬ìŠ¤íŠ¸ ìš”ì²­
 
 struct MSG_FC_GUILD_GET_CHALLENGER_GUILD_OK
 {
-	BYTE	NumOfCallengerGuilds;			// µµÀü ±æµå ÀÌ¸§ °³¼ö(¿ì¼± ¼øÀ§ ¼ø¼­)
+	BYTE	NumOfCallengerGuilds;			// ë„ì „ ê¸¸ë“œ ì´ë¦„ ê°œìˆ˜(ìš°ì„  ìˆœìœ„ ìˆœì„œ)
 	ARRAY_(char[SIZE_MAX_GUILD_NAME]);
-};		// F->C, ¿©´ÜÀü ¿äÃ» ´ë±â ±æµå ¸®½ºÆ® ¿äÃ» °á°ú
+};		// F->C, ì—¬ë‹¨ì „ ìš”ì²­ ëŒ€ê¸° ê¸¸ë“œ ë¦¬ìŠ¤íŠ¸ ìš”ì²­ ê²°ê³¼
 
 struct MSG_FC_GUILD_GET_WAR_INFO
 {
-	UID32_t		GuildUID;				// ÀÚ½ÅÀÌ ¼ÓÇÑ ±æµåÀÇ UID
-};			// C->F, ¿©´ÜÀü Á¤º¸¸¦ ¿äÃ»
+	UID32_t		GuildUID;				// ìì‹ ì´ ì†í•œ ê¸¸ë“œì˜ UID
+};			// C->F, ì—¬ë‹¨ì „ ì •ë³´ë¥¼ ìš”ì²­
 
 struct MSG_FC_GUILD_GET_WAR_INFO_OK
 {
-	MAP_CHANNEL_INDEX	MapChannel;		// ¿©´ÜÀüÀÌ ÀÏ¾î³ª´Â ¸Ê
-	UID32_t				PeerGuildUID;	// »ó´ë ±æµåÀÇ ±æµå ¹øÈ£
-};			// F->C, ¿©´ÜÀü Á¤º¸¸¦ Àü¼Û
+	MAP_CHANNEL_INDEX	MapChannel;		// ì—¬ë‹¨ì „ì´ ì¼ì–´ë‚˜ëŠ” ë§µ
+	UID32_t				PeerGuildUID;	// ìƒëŒ€ ê¸¸ë“œì˜ ê¸¸ë“œ ë²ˆí˜¸
+};			// F->C, ì—¬ë‹¨ì „ ì •ë³´ë¥¼ ì „ì†¡
 
 struct MSG_FC_GUILD_SUMMON_MEMBER
 {
-	UID32_t				uidGuildUID;	// ±æµå UID
-	MAP_CHANNEL_INDEX	MapChannel;		// ¿©´ÜÀåÀÌ ÀÖ´Â ¸Ê
-	AVECTOR3			PositionVector;	// ¿©´ÜÀåÀÇ ÁÂÇ¥
+	UID32_t				uidGuildUID;	// ê¸¸ë“œ UID
+	MAP_CHANNEL_INDEX	MapChannel;		// ì—¬ë‹¨ì¥ì´ ìˆëŠ” ë§µ
+	AVECTOR3			PositionVector;	// ì—¬ë‹¨ì¥ì˜ ì¢Œí‘œ
 };
 struct MSG_FC_GUILD_SUMMON_MEMBER_OK
 {
-	UID32_t				uidGuildUID;	// ±æµå UID
-	MAP_CHANNEL_INDEX	MapChannel;		// ¿©´ÜÀåÀÌ ÀÖ´Â ¸Ê
-	AVECTOR3			PositionVector;	// ¿©´ÜÀåÀÇ ÁÂÇ¥
+	UID32_t				uidGuildUID;	// ê¸¸ë“œ UID
+	MAP_CHANNEL_INDEX	MapChannel;		// ì—¬ë‹¨ì¥ì´ ìˆëŠ” ë§µ
+	AVECTOR3			PositionVector;	// ì—¬ë‹¨ì¥ì˜ ì¢Œí‘œ
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -4073,7 +4073,7 @@ struct MSG_FI_GUILD_NOTIFY_START_WAR
 
 struct MSG_FI_GUILD_NOTIFY_END_WAR
 {
-	USHORT		WarEndType;			// BATTLE_END_XXX, BATTLE_END_WIN or BATTLE_END_DEFEATÀÌ¸é ½ÂÆĞ ÀÖÀ½
+	USHORT		WarEndType;			// BATTLE_END_XXX, BATTLE_END_WIN or BATTLE_END_DEFEATì´ë©´ ìŠ¹íŒ¨ ìˆìŒ
 	UID32_t		WinnerGuildUID;
 	UID32_t		LoserGuildUID;
 	MAP_CHANNEL_INDEX	WarMapChannel;
@@ -4092,7 +4092,7 @@ struct MSG_FI_GUILD_ADD_GUILD_FAME	// 2005-12-27 by cmkwon
 };
 
 struct MSG_FI_GUILD_OUTPOST
-{// 2008-05-21 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀüÁø±âÁö °ü·Ã
+{// 2008-05-21 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì „ì§„ê¸°ì§€ ê´€ë ¨
 	UID32_t		GuildUID;
 	MapIndex_t	MapIndex;
 };
@@ -4102,76 +4102,76 @@ struct MSG_FI_GUILD_OUTPOST
 struct MSG_IC_GUILD_CREATE
 {
 	char	GuildName[SIZE_MAX_GUILD_NAME];
-};						// C->I, ±æµå »ı¼º ¿äÃ»
+};						// C->I, ê¸¸ë“œ ìƒì„± ìš”ì²­
 
 struct MSG_IC_GUILD_CREATE_OK
 {
 	char	GuildName[SIZE_MAX_GUILD_NAME];
-	UID32_t	GuildUniqueNumber;				// ±æµå °íÀ¯¹øÈ£
-	char	GuildCommanderUniqueNumber;		// ¿©´ÜÀå
-};					// I->C, ±æµå »ı¼º °á°ú
+	UID32_t	GuildUniqueNumber;				// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
+	char	GuildCommanderUniqueNumber;		// ì—¬ë‹¨ì¥
+};					// I->C, ê¸¸ë“œ ìƒì„± ê²°ê³¼
 
 struct MSG_IC_GUILD_GET_GUILD_INFO
 {
-	UID32_t	GuildUniqueNumber;				// ±æµå °íÀ¯¹øÈ£
-};				// C->I, ±æµå Á¤º¸ ¿äÃ»
+	UID32_t	GuildUniqueNumber;				// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
+};				// C->I, ê¸¸ë“œ ì •ë³´ ìš”ì²­
 
 				// GUILD_STATE_XXX
-#define GUILD_STATE_NORMAL				((BYTE)0)	// Á¤»ó ±æµå »óÅÂ
-#define GUILD_STATE_DISMEMBER_READY		((BYTE)1)	// ±æµå ÇØÃ¼ ´ë±â »óÅÂ
-#define GUILD_STATE_IN_GUILD_WAR		((BYTE)2)	// ±æµåÀü »óÅÂ
-#define GUILD_STATE_CITYWAR				((BYTE)3)	// µµ½ÃÁ¡·ÉÀü »óÅÂ
+#define GUILD_STATE_NORMAL				((BYTE)0)	// ì •ìƒ ê¸¸ë“œ ìƒíƒœ
+#define GUILD_STATE_DISMEMBER_READY		((BYTE)1)	// ê¸¸ë“œ í•´ì²´ ëŒ€ê¸° ìƒíƒœ
+#define GUILD_STATE_IN_GUILD_WAR		((BYTE)2)	// ê¸¸ë“œì „ ìƒíƒœ
+#define GUILD_STATE_CITYWAR				((BYTE)3)	// ë„ì‹œì ë ¹ì „ ìƒíƒœ
 
 				///////////////////////////////////////////////////////////////////////////////
-				// 2007-08-02 by cmkwon, ¿©´Ü ¸¶Å© ½É»ç ½Ã½ºÅÛ ±¸Çö - GUILD_MARK_STATE_XXX Á¤ÀÇ
-#define GUILD_MARK_STATE_NONE					((BYTE)0)	// ¸¶Å© ¾ø´Â »óÅÂ
-#define GUILD_MARK_STATE_WAITING_PERMISSION		((BYTE)1)	// ¸¶Å© Çã¿ëÀ» ±â´Ù¸®´Â »óÅÂ, °ÔÀÓ»ó¿¡¼­´Â »ç¿ë ºÒ°¡
-#define GUILD_MARK_STATE_NORMAL					((BYTE)2)	// ¸¶Å© »ç¿ë ÁßÀÎ »óÅÂ
+				// 2007-08-02 by cmkwon, ì—¬ë‹¨ ë§ˆí¬ ì‹¬ì‚¬ ì‹œìŠ¤í…œ êµ¬í˜„ - GUILD_MARK_STATE_XXX ì •ì˜
+#define GUILD_MARK_STATE_NONE					((BYTE)0)	// ë§ˆí¬ ì—†ëŠ” ìƒíƒœ
+#define GUILD_MARK_STATE_WAITING_PERMISSION		((BYTE)1)	// ë§ˆí¬ í—ˆìš©ì„ ê¸°ë‹¤ë¦¬ëŠ” ìƒíƒœ, ê²Œì„ìƒì—ì„œëŠ” ì‚¬ìš© ë¶ˆê°€
+#define GUILD_MARK_STATE_NORMAL					((BYTE)2)	// ë§ˆí¬ ì‚¬ìš© ì¤‘ì¸ ìƒíƒœ
 const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser = false);
 
 
 struct MSG_IC_GUILD_GET_GUILD_INFO_OK
 {
 	char	GuildName[SIZE_MAX_GUILD_NAME];
-	UID32_t	GuildUniqueNumber;				// ±æµå °íÀ¯¹øÈ£
-	UID32_t	GuildCommanderUniqueNumber;		// ¿©´ÜÀå
-	INT		GuildMemberCapacity;			// ±æµå ÀÎ¿ø Á¦ÇÑ
+	UID32_t	GuildUniqueNumber;				// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
+	UID32_t	GuildCommanderUniqueNumber;		// ì—¬ë‹¨ì¥
+	INT		GuildMemberCapacity;			// ê¸¸ë“œ ì¸ì› ì œí•œ
 	BYTE	NumOfGuildMemberInfo;
 	BYTE	GuildState;						// GUILD_STATE_XXX
 	UINT	GuildMarkVersion;
-	INT		WarWinPoint;					// ±æµåÀü ½Â¼ö
-	INT		WarLossPoint;					// ±æµåÀü ÆĞ¼ö
-	char    Notice[SIZE_MAX_NOTICE];		// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	MapIndex_t GuildOutPostCityMapIndex;	// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	INT		GuildTotalFame;					// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×			
-	INT		GuildMonthlyFame;				// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	INT		GuildTotalFameRank;				// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×	
-	INT		GuildMonthlyFameRank;			// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	bool    GuildMemberShip;					// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	ATUM_DATE_TIME GuildMemberShipExpireTime;	// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+	INT		WarWinPoint;					// ê¸¸ë“œì „ ìŠ¹ìˆ˜
+	INT		WarLossPoint;					// ê¸¸ë“œì „ íŒ¨ìˆ˜
+	char    Notice[SIZE_MAX_NOTICE];		// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	MapIndex_t GuildOutPostCityMapIndex;	// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	INT		GuildTotalFame;					// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­			
+	INT		GuildMonthlyFame;				// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	INT		GuildTotalFameRank;				// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­	
+	INT		GuildMonthlyFameRank;			// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	bool    GuildMemberShip;					// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	ATUM_DATE_TIME GuildMemberShipExpireTime;	// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 	ARRAY_(MEX_GUILD_MEMBER_INFO);
-};			// I->C, ±æµå Á¤º¸ °á°ú
+};			// I->C, ê¸¸ë“œ ì •ë³´ ê²°ê³¼
 
-			// ±æµå¿ø °è±Ş, GUILD_RANK_XXX, BYTE
-#define GUILD_RANK_PRIVATE_NULL			((BYTE)0)	// ¹«¼Ò¼Ó ´ë´ë¿ø
-#define GUILD_RANK_COMMANDER			((BYTE)1)	// ºñÇà¿©´ÜÀå, ±æµåÀå
-#define GUILD_RANK_SUBCOMMANDER			((BYTE)2)	// ºÎ¿©´ÜÀå				// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-#define GUILD_RANK_SQUAD_LEADER_1		((BYTE)3)	// Á¦ 1 ºñÇà´ë´ëÀå
-#define GUILD_RANK_PRIVATE_1			((BYTE)4)	// Á¦ 1 ºñÇà´ë´ë¿ø
-#define GUILD_RANK_SQUAD_LEADER_2		((BYTE)5)	// Á¦ 2 ºñÇà´ë´ëÀå
-#define GUILD_RANK_PRIVATE_2			((BYTE)6)	// Á¦ 2 ºñÇà´ë´ë¿ø
-#define GUILD_RANK_SQUAD_LEADER_3		((BYTE)7)	// Á¦ 3 ºñÇà´ë´ëÀå
-#define GUILD_RANK_PRIVATE_3			((BYTE)8)	// Á¦ 3 ºñÇà´ë´ë¿ø
-#define GUILD_RANK_SQUAD_LEADER_4		((BYTE)9)	// Á¦ 4 ºñÇà´ë´ëÀå
-#define GUILD_RANK_PRIVATE_4			((BYTE)10)	// Á¦ 4 ºñÇà´ë´ë¿ø
-#define GUILD_RANK_SQUAD_LEADER_5		((BYTE)11)	// Á¦ 5 ºñÇà´ë´ëÀå
-#define GUILD_RANK_PRIVATE_5			((BYTE)12)	// Á¦ 5 ºñÇà´ë´ë¿ø
+			// ê¸¸ë“œì› ê³„ê¸‰, GUILD_RANK_XXX, BYTE
+#define GUILD_RANK_PRIVATE_NULL			((BYTE)0)	// ë¬´ì†Œì† ëŒ€ëŒ€ì›
+#define GUILD_RANK_COMMANDER			((BYTE)1)	// ë¹„í–‰ì—¬ë‹¨ì¥, ê¸¸ë“œì¥
+#define GUILD_RANK_SUBCOMMANDER			((BYTE)2)	// ë¶€ì—¬ë‹¨ì¥				// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+#define GUILD_RANK_SQUAD_LEADER_1		((BYTE)3)	// ì œ 1 ë¹„í–‰ëŒ€ëŒ€ì¥
+#define GUILD_RANK_PRIVATE_1			((BYTE)4)	// ì œ 1 ë¹„í–‰ëŒ€ëŒ€ì›
+#define GUILD_RANK_SQUAD_LEADER_2		((BYTE)5)	// ì œ 2 ë¹„í–‰ëŒ€ëŒ€ì¥
+#define GUILD_RANK_PRIVATE_2			((BYTE)6)	// ì œ 2 ë¹„í–‰ëŒ€ëŒ€ì›
+#define GUILD_RANK_SQUAD_LEADER_3		((BYTE)7)	// ì œ 3 ë¹„í–‰ëŒ€ëŒ€ì¥
+#define GUILD_RANK_PRIVATE_3			((BYTE)8)	// ì œ 3 ë¹„í–‰ëŒ€ëŒ€ì›
+#define GUILD_RANK_SQUAD_LEADER_4		((BYTE)9)	// ì œ 4 ë¹„í–‰ëŒ€ëŒ€ì¥
+#define GUILD_RANK_PRIVATE_4			((BYTE)10)	// ì œ 4 ë¹„í–‰ëŒ€ëŒ€ì›
+#define GUILD_RANK_SQUAD_LEADER_5		((BYTE)11)	// ì œ 5 ë¹„í–‰ëŒ€ëŒ€ì¥
+#define GUILD_RANK_PRIVATE_5			((BYTE)12)	// ì œ 5 ë¹„í–‰ëŒ€ëŒ€ì›
 
-			// check: MSG_IC_GUILD_GET_GUILD_INFO·Î ÅëÇÕ, ÇÊ¿äÇÏ¸é »ì¸², 20040520, kelovon
+			// check: MSG_IC_GUILD_GET_GUILD_INFOë¡œ í†µí•©, í•„ìš”í•˜ë©´ ì‚´ë¦¼, 20040520, kelovon
 			//typedef struct
 			//{
-			//	UID32_t	GuildUniqueNumber;		// ±æµå °íÀ¯¹øÈ£
-			//} MSG_IC_GUILD_GET_MEMBER;		// C->I, ±æµå¿ø Á¤º¸ ¿äÃ»
+			//	UID32_t	GuildUniqueNumber;		// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
+			//} MSG_IC_GUILD_GET_MEMBER;		// C->I, ê¸¸ë“œì› ì •ë³´ ìš”ì²­
 
 class CGuildMember;
 
@@ -4181,9 +4181,9 @@ struct MEX_GUILD_MEMBER_INFO
 	UID32_t	MemberUniqueNumber;
 	BYTE	GuildRank;				// GUILD_RANK_XXX
 	BYTE	IsOnline;				// 1: TRUE, 0: FALSE
-	INT		UnitKind;				// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	BYTE	MemberLevel;			// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×	
-	EN_CHECK_TYPE	VoipType;		// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸
+	INT		UnitKind;				// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	BYTE	MemberLevel;			// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­	
+	EN_CHECK_TYPE	VoipType;		// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´
 
 #ifdef _ATUM_IM_SERVER
 									// operator overloading
@@ -4191,13 +4191,13 @@ struct MEX_GUILD_MEMBER_INFO
 #endif // _ATUM_IM_SERVER
 };
 
-// check: MSG_IC_GUILD_GET_GUILD_INFO_OK·Î ÅëÇÕ, ÇÊ¿äÇÏ¸é »ì¸², 20040520, kelovon
+// check: MSG_IC_GUILD_GET_GUILD_INFO_OKë¡œ í†µí•©, í•„ìš”í•˜ë©´ ì‚´ë¦¼, 20040520, kelovon
 //typedef struct
 //{
-//	UID32_t	GuildUniqueNumber;		// ±æµå °íÀ¯¹øÈ£
+//	UID32_t	GuildUniqueNumber;		// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
 //	BYTE	NumOfGuildMemberInfo;
 //	ARRAY_(MEX_GUILD_MEMBER_INFO);
-//} MSG_IC_GUILD_GET_MEMBER_OK;		// I->C, ±æµå¿ø Á¤º¸ °á°ú
+//} MSG_IC_GUILD_GET_MEMBER_OK;		// I->C, ê¸¸ë“œì› ì •ë³´ ê²°ê³¼
 
 class CGuild;
 
@@ -4225,61 +4225,61 @@ struct MSG_IC_GUILD_GET_OTHER_GUILD_INFO_OK
 
 struct MSG_IC_GUILD_REQUEST_INVITE
 {
-	char	InviteeCharacterName[SIZE_MAX_CHARACTER_NAME];		// ÃÊ´ëÇÒ »ó´ë¹æ ¾ÆÀÌµğ
-};		// C->I, °¡ÀÔ ±ÇÀ¯, ¼­¹ö¿¡ ¿äÃ»
+	char	InviteeCharacterName[SIZE_MAX_CHARACTER_NAME];		// ì´ˆëŒ€í•  ìƒëŒ€ë°© ì•„ì´ë””
+};		// C->I, ê°€ì… ê¶Œìœ , ì„œë²„ì— ìš”ì²­
 
 struct MSG_IC_GUILD_REQUEST_INVITE_QUESTION
 {
-	UID32_t	GuildUniqueNumber;										// ±æµå °íÀ¯ ¹øÈ£
-	char	GuildName[SIZE_MAX_GUILD_NAME];							// ±æµå ÀÌ¸§
-	char	GuildCommanderCharacterName[SIZE_MAX_CHARACTER_NAME];	// ±æµåÀå ¾ÆÀÌµğ
-};		// I->C, °¡ÀÔ ±ÇÀ¯, ´ë»óÀÚ¿¡°Ô Àü¼Û
+	UID32_t	GuildUniqueNumber;										// ê¸¸ë“œ ê³ ìœ  ë²ˆí˜¸
+	char	GuildName[SIZE_MAX_GUILD_NAME];							// ê¸¸ë“œ ì´ë¦„
+	char	GuildCommanderCharacterName[SIZE_MAX_CHARACTER_NAME];	// ê¸¸ë“œì¥ ì•„ì´ë””
+};		// I->C, ê°€ì… ê¶Œìœ , ëŒ€ìƒìì—ê²Œ ì „ì†¡
 
 struct MSG_IC_GUILD_ACCEPT_INVITE
 {
-	UID32_t	GuildUniqueNumber;		// ±æµå °íÀ¯ ¹øÈ£, MSG_IC_GUILD_REQUEST_INVITE_QUESTIONÀÇ °ª 
-};		// C->I, °¡ÀÔ ½Â³«, ¼­¹ö¿¡ ¿äÃ»
+	UID32_t	GuildUniqueNumber;		// ê¸¸ë“œ ê³ ìœ  ë²ˆí˜¸, MSG_IC_GUILD_REQUEST_INVITE_QUESTIONì˜ ê°’ 
+};		// C->I, ê°€ì… ìŠ¹ë‚™, ì„œë²„ì— ìš”ì²­
 
 struct MSG_IC_GUILD_ACCEPT_INVITE_OK
 {
-	MEX_GUILD_MEMBER_INFO	MemberInfo;		// »õ ±æµå¿øÀÇ Á¤º¸
-};			// I->C, °¡ÀÔ ½Â³«, ´ë»óÀÚ ¹× ±æµå¿ø¿¡°Ô Àü¼Û
+	MEX_GUILD_MEMBER_INFO	MemberInfo;		// ìƒˆ ê¸¸ë“œì›ì˜ ì •ë³´
+};			// I->C, ê°€ì… ìŠ¹ë‚™, ëŒ€ìƒì ë° ê¸¸ë“œì›ì—ê²Œ ì „ì†¡
 
 struct MSG_IC_GUILD_REJECT_INVITE
 {
-	UID32_t	GuildUniqueNumber;		// ±æµå °íÀ¯ ¹øÈ£, MSG_IC_GUILD_REQUEST_INVITE_QUESTIONÀÇ °ª
-};		// C->I, °¡ÀÔ °ÅºÎ, ¼­¹ö¿¡ ¿äÃ»
+	UID32_t	GuildUniqueNumber;		// ê¸¸ë“œ ê³ ìœ  ë²ˆí˜¸, MSG_IC_GUILD_REQUEST_INVITE_QUESTIONì˜ ê°’
+};		// C->I, ê°€ì… ê±°ë¶€, ì„œë²„ì— ìš”ì²­
 
 struct MSG_IC_GUILD_REJECT_INVITE_OK
 {
-	char	CharacterName[SIZE_MAX_CHARACTER_NAME];	// °¡ÀÔ °ÅºÎÇÑ characterÀÇ ÀÌ¸§
-};	// I->C, °¡ÀÔ °ÅºÎ, ´ë»óÀÚ¿¡°Ô Àü¼Û
+	char	CharacterName[SIZE_MAX_CHARACTER_NAME];	// ê°€ì… ê±°ë¶€í•œ characterì˜ ì´ë¦„
+};	// I->C, ê°€ì… ê±°ë¶€, ëŒ€ìƒìì—ê²Œ ì „ì†¡
 
 struct MSG_IC_GUILD_BAN_MEMBER
 {
 	UID32_t	MemberUniqueNumber;
-};			// C->I, ±æµå¿ø Ãß¹æ
+};			// C->I, ê¸¸ë“œì› ì¶”ë°©
 
 struct MSG_IC_GUILD_BAN_MEMBER_OK
 {
 	UID32_t	MemberUniqueNumber;
-};		// I->C, ±æµå¿ø Ãß¹æ °á°ú
+};		// I->C, ê¸¸ë“œì› ì¶”ë°© ê²°ê³¼
 
 struct MSG_IC_GUILD_LEAVE
 {
 	UID32_t	GuildUniqueNumber;
-};				// C->I, ¿©´Ü Å»Åğ
+};				// C->I, ì—¬ë‹¨ íƒˆí‡´
 
 struct MSG_IC_GUILD_LEAVE_OK
 {
 	UID32_t	MemberUniqueNumber;
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
-};			// I->C, ¿©´Ü Å»Åğ °á°ú
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];				// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
+};			// I->C, ì—¬ë‹¨ íƒˆí‡´ ê²°ê³¼
 
 struct MSG_IC_GUILD_DISMEMBER
 {
 	UID32_t	GuildUniqueNumber;
-};			// C->I, ¿©´Ü ÇØÃ¼
+};			// C->I, ì—¬ë‹¨ í•´ì²´
 using MSG_FC_GUILD_DISMEMBER = MSG_IC_GUILD_DISMEMBER;
 using MSG_FI_GUILD_DISMEMBER = MSG_IC_GUILD_DISMEMBER;
 
@@ -4287,7 +4287,7 @@ using MSG_FI_GUILD_DISMEMBER = MSG_IC_GUILD_DISMEMBER;
 struct MSG_IC_GUILD_DISMEMBER_OK
 {
 	char	GuildName[SIZE_MAX_GUILD_NAME];
-};		// I->C, ¿©´Ü ÇØÃ¼ °á°ú
+};		// I->C, ì—¬ë‹¨ í•´ì²´ ê²°ê³¼
 
 		// GUILD_MEMBER_STATE_XXX
 #define GUILD_MEMBER_STATE_OFFLINE		((BYTE)0)
@@ -4297,160 +4297,160 @@ struct MSG_IC_GUILD_SET_MEMBER_STATE
 {
 	UID32_t	MemberUniqueNumber;
 	BYTE	GuildMemberState;		// GUILD_MEMBER_STATE_XXX
-};	// I->C, ±æµå¿øÀÇ »óÅÂ º¯È­(ONLINE, OFFLINE µî)
+};	// I->C, ê¸¸ë“œì›ì˜ ìƒíƒœ ë³€í™”(ONLINE, OFFLINE ë“±)
 
 struct MSG_IC_GUILD_CANCEL_DISMEMBER
 {
 	UID32_t	GuildUniqueNumber;
-};		// C->I, ¿©´Ü ÇØÃ¼ Ãë¼Ò ¿äÃ»
+};		// C->I, ì—¬ë‹¨ í•´ì²´ ì·¨ì†Œ ìš”ì²­
 
 struct MSG_IC_GUILD_CANCEL_DISMEMBER_OK
 {
 	BYTE	GuildState;					// GUILD_STATE_XXX
-};		// I->C, ¿©´Ü ÇØÃ¼ Ãë¼Ò °á°ú
+};		// I->C, ì—¬ë‹¨ í•´ì²´ ì·¨ì†Œ ê²°ê³¼
 
 struct MSG_IC_GUILD_GET_DISMEMBER_DATE
 {
 	UID32_t	GuildUniqueNumber;
-};		// C->I, ±æµå ÇØ»ê ½Ã°£ ¿äÃ»
+};		// C->I, ê¸¸ë“œ í•´ì‚° ì‹œê°„ ìš”ì²­
 
 struct MSG_IC_GUILD_GET_DISMEMBER_DATE_OK
 {
 	ATUM_DATE_TIME	DismemberDateTime;
-};	// C->I, ±æµå ÇØ»ê ½Ã°£ °á°ú
+};	// C->I, ê¸¸ë“œ í•´ì‚° ì‹œê°„ ê²°ê³¼
 
 struct MSG_IC_GUILD_CHANGE_GUILD_NAME
 {
 	char	NewGuildName[SIZE_MAX_GUILD_NAME];
-};		// C->I, ¿©´Ü ÀÌ¸§ º¯°æ ¿äÃ»
+};		// C->I, ì—¬ë‹¨ ì´ë¦„ ë³€ê²½ ìš”ì²­
 
 struct MSG_IC_GUILD_CHANGE_GUILD_NAME_OK
 {
 	char	NewGuildName[SIZE_MAX_GUILD_NAME];
-};	// I->C, ¿©´Ü ÀÌ¸§ º¯°æ °á°ú
+};	// I->C, ì—¬ë‹¨ ì´ë¦„ ë³€ê²½ ê²°ê³¼
 
 struct MSG_IC_GUILD_GET_GUILD_MARK
 {
 	UID32_t	GuildUniqueNumber;
-};			// C->I, ¿©´Ü ¹®¾ç ¿äÃ»
+};			// C->I, ì—¬ë‹¨ ë¬¸ì–‘ ìš”ì²­
 
 			// MSG_SEQUENCE_XXX
-#define MSG_SEQUENCE_SINGLE		((BYTE)0)	// ´Üµ¶ MSG
-#define MSG_SEQUENCE_BEGIN		((BYTE)1)	// LONG MSGÀÇ ½ÃÀÛ
-#define MSG_SEQUENCE_MIDDLE		((BYTE)2)	// LONG MSGÀÇ Áß°£
-#define MSG_SEQUENCE_END		((BYTE)3)	// LONG MSGÀÇ ³¡
+#define MSG_SEQUENCE_SINGLE		((BYTE)0)	// ë‹¨ë… MSG
+#define MSG_SEQUENCE_BEGIN		((BYTE)1)	// LONG MSGì˜ ì‹œì‘
+#define MSG_SEQUENCE_MIDDLE		((BYTE)2)	// LONG MSGì˜ ì¤‘ê°„
+#define MSG_SEQUENCE_END		((BYTE)3)	// LONG MSGì˜ ë
 
 struct MSG_IC_GUILD_GET_GUILD_MARK_OK
 {
 	UID32_t	GuildUniqueNumber;
 	UINT	GuildMarkVersion;
-	UINT	SizeOfGuildMark;			// ±æµå ¹®¾çÀÇ size <= SIZE_MAX_GUILD_MARK_IMAGE
-	ARRAY_(char);						// ±æµå ¹®¾ç, image(bmp, gif, jpg, ...)
-};		// I->C, ¿©´Ü ¹®¾ç °á°ú
+	UINT	SizeOfGuildMark;			// ê¸¸ë“œ ë¬¸ì–‘ì˜ size <= SIZE_MAX_GUILD_MARK_IMAGE
+	ARRAY_(char);						// ê¸¸ë“œ ë¬¸ì–‘, image(bmp, gif, jpg, ...)
+};		// I->C, ì—¬ë‹¨ ë¬¸ì–‘ ê²°ê³¼
 
 struct MSG_IC_GUILD_SET_GUILD_MARK
 {
-	UINT	SizeOfGuildMark;			// ±æµå ¹®¾çÀÇ size <= SIZE_MAX_GUILD_MARK_IMAGE
-	ARRAY_(char);						// ±æµå ¹®¾ç, image(bmp, gif, jpg, ...)
-};			// C->I, ¿©´Ü ¹®¾ç ¼ºÁ¤ ¿äÃ»
+	UINT	SizeOfGuildMark;			// ê¸¸ë“œ ë¬¸ì–‘ì˜ size <= SIZE_MAX_GUILD_MARK_IMAGE
+	ARRAY_(char);						// ê¸¸ë“œ ë¬¸ì–‘, image(bmp, gif, jpg, ...)
+};			// C->I, ì—¬ë‹¨ ë¬¸ì–‘ ì„±ì • ìš”ì²­
 
 struct MSG_IC_GUILD_SET_GUILD_MARK_OK
 {
 	UINT	GuildMarkVersion;
-	UINT	SizeOfGuildMark;			// ±æµå ¹®¾çÀÇ size <= SIZE_MAX_GUILD_MARK_IMAGE
-	ARRAY_(char);						// ±æµå ¹®¾ç, image(bmp, gif, jpg, ...)
-};		// I->C, ¿©´Ü ¹®¾ç ¼ºÁ¤ °á°ú
+	UINT	SizeOfGuildMark;			// ê¸¸ë“œ ë¬¸ì–‘ì˜ size <= SIZE_MAX_GUILD_MARK_IMAGE
+	ARRAY_(char);						// ê¸¸ë“œ ë¬¸ì–‘, image(bmp, gif, jpg, ...)
+};		// I->C, ì—¬ë‹¨ ë¬¸ì–‘ ì„±ì • ê²°ê³¼
 
 struct MSG_IC_GUILD_SET_RANK
 {
 	UID32_t	MemberUniqueNumber;
 	BYTE	GuildRank;					// GUILD_RANK_XXX
-};				// C->I, °è±Ş ¼³Á¤
+};				// C->I, ê³„ê¸‰ ì„¤ì •
 
 struct MSG_IC_GUILD_SET_RANK_OK
 {
 	UID32_t	MemberUniqueNumber;
 	BYTE	GuildRank;					// GUILD_RANK_XXX
-};				// I->C, °è±Ş ¼³Á¤ °á°ú
+};				// I->C, ê³„ê¸‰ ì„¤ì • ê²°ê³¼
 
 struct MSG_IC_GUILD_CHANGE_GUILD_STATE
 {
 	BYTE	GuildState;					// GUILD_STATE_XXX
-};		// I->C, ¿©´Ü »óÅÂ Àü¼Û
+};		// I->C, ì—¬ë‹¨ ìƒíƒœ ì „ì†¡
 
 struct MSG_IC_GUILD_LOADING_GUILD_DONE
 {
 	UID32_t	GuildUniqueNumber;
-};		// I->C, ¼­¹öÃø¿¡¼­ ±æµå Á¤º¸ ·Îµù ¿Ï·á ¾Ë¸²
+};		// I->C, ì„œë²„ì¸¡ì—ì„œ ê¸¸ë“œ ì •ë³´ ë¡œë”© ì™„ë£Œ ì•Œë¦¼
 
 struct MSG_IC_GUILD_WAR_READY
 {
-	UID32_t		PeerGuildUID;			// »ó´ë ±æµå
-	INT			WaitingTime;			// ´ë±â ½Ã°£, ¿©±â ¸í½ÃµÈ ½Ã°£ ÈÄ¿¡ ¿©´ÜÀü ½ÃÀÛ
-};				// I->C, ¿©´ÜÀü ½ÃÀÛ ´ë±â »óÅÂ¸¦ ¾Ë¸²
+	UID32_t		PeerGuildUID;			// ìƒëŒ€ ê¸¸ë“œ
+	INT			WaitingTime;			// ëŒ€ê¸° ì‹œê°„, ì—¬ê¸° ëª…ì‹œëœ ì‹œê°„ í›„ì— ì—¬ë‹¨ì „ ì‹œì‘
+};				// I->C, ì—¬ë‹¨ì „ ì‹œì‘ ëŒ€ê¸° ìƒíƒœë¥¼ ì•Œë¦¼
 
 struct MSG_IC_GUILD_START_WAR
 {
-	UID32_t		PeerGuildUID;			// »ó´ë ±æµå
-};				// I->C, ¿©´ÜÀü ½ÃÀÛÀ» ¾Ë¸²
+	UID32_t		PeerGuildUID;			// ìƒëŒ€ ê¸¸ë“œ
+};				// I->C, ì—¬ë‹¨ì „ ì‹œì‘ì„ ì•Œë¦¼
 
 struct MSG_IC_GUILD_END_WAR
 {
-	USHORT		WarEndType;				// °á°ú, BATTLE_END_XXX
-	char		PeerGuildName[SIZE_MAX_GUILD_NAME];	// »ó´ë ±æµå ÀÌ¸§
-};					// I->C, ¿©´ÜÀü Á¾·á¸¦ ¾Ë¸²
+	USHORT		WarEndType;				// ê²°ê³¼, BATTLE_END_XXX
+	char		PeerGuildName[SIZE_MAX_GUILD_NAME];	// ìƒëŒ€ ê¸¸ë“œ ì´ë¦„
+};					// I->C, ì—¬ë‹¨ì „ ì¢…ë£Œë¥¼ ì•Œë¦¼
 
 struct MSG_IC_GUILD_UPDATE_WAR_POINT
 {
-	INT			WarWinPoint;			// ±æµåÀü ½Â¼ö
-	INT			WarLossPoint;			// ±æµåÀü ÆĞ¼ö
+	INT			WarWinPoint;			// ê¸¸ë“œì „ ìŠ¹ìˆ˜
+	INT			WarLossPoint;			// ê¸¸ë“œì „ íŒ¨ìˆ˜
 };
 
 struct MSG_IC_GUILD_CHANGE_MEMBER_CAPACITY
 {
-	UID32_t		guildUID;				// ±æµå UID
-	INT			nMemberCapacity;		// ¿©´Ü Á¦ÇÑ ÀÎ¿ø
-	INT			IncreaseCapacity;		// 2008-05-28 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø Áõ°¡ Ä³½¬ ¾ÆÀÌÅÛ
+	UID32_t		guildUID;				// ê¸¸ë“œ UID
+	INT			nMemberCapacity;		// ì—¬ë‹¨ ì œí•œ ì¸ì›
+	INT			IncreaseCapacity;		// 2008-05-28 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ì¦ê°€ ìºì‰¬ ì•„ì´í…œ
 };
 
 struct MSG_IC_GUILD_GET_GUILD_MEMBER_LIST_OK
 {
-	UID32_t	GuildUniqueNumber;				// ±æµå °íÀ¯¹øÈ£
+	UID32_t	GuildUniqueNumber;				// ê¸¸ë“œ ê³ ìœ ë²ˆí˜¸
 	BYTE	NumOfGuildMemberInfo;
 	ARRAY_(MEX_GUILD_MEMBER_INFO);
 };
 
 struct MSG_IC_GUILD_END_WAR_ADMIN_NOTIFY		// 2006-08-09 by cmkwon
 {
-	USHORT		WarEndType;								// °á°ú, BATTLE_END_XXX
-	char		WinerGuildName[SIZE_MAX_GUILD_NAME];	// ½Â¸® ±æµå ÀÌ¸§
-	char		LoserGuildName[SIZE_MAX_GUILD_NAME];	// ÆĞ¹è ±æµå ÀÌ¸§
+	USHORT		WarEndType;								// ê²°ê³¼, BATTLE_END_XXX
+	char		WinerGuildName[SIZE_MAX_GUILD_NAME];	// ìŠ¹ë¦¬ ê¸¸ë“œ ì´ë¦„
+	char		LoserGuildName[SIZE_MAX_GUILD_NAME];	// íŒ¨ë°° ê¸¸ë“œ ì´ë¦„
 };
 
 struct MSG_IC_GUILD_MEMBER_LEVEL_UP
-{// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø ·¹º§¾÷ °ü·Ã
+{// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ë ˆë²¨ì—… ê´€ë ¨
 	UID32_t		CharacterUID;
 	INT			Level;
 };
 
 struct MSG_IC_GUILD_NEW_COMMANDER
-{// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´ÜÀå À§ÀÓ
+{// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì¥ ìœ„ì„
 	UID32_t		NewCommanderUID;
 };
 
 struct MSG_IC_GUILD_NOTICE_WRITE
-{// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü °øÁö
+{// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ê³µì§€
 	char		Notice[SIZE_MAX_NOTICE];
 };
 using MSG_IC_GUILD_NOTICE_WRITE_OK = MSG_IC_GUILD_NOTICE_WRITE;
 
 struct MSG_IC_GUILD_GET_INTRODUCTION_OK
-{// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü Áö¿øÀÚ °ü¸®
+{// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì§€ì›ì ê´€ë¦¬
 	char		GuildIntroduction[SIZE_MAX_NOTICE];
 };
 
 struct MSG_IC_GUILD_GET_APPLICANT_OK
-{// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü Áö¿øÀÚ °ü¸®
+{// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì§€ì›ì ê´€ë¦¬
 	UID32_t		CharacterUID;
 	char		CharacterName[SIZE_MAX_CHARACTER_NAME];
 	BYTE		UnitKind;
@@ -4458,18 +4458,18 @@ struct MSG_IC_GUILD_GET_APPLICANT_OK
 };
 
 struct MSG_IC_GUILD_GET_SELF_INTRODUCTION
-{// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü Áö¿øÀÚ ¼Ò°³¼­ 
+{// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì§€ì›ì ì†Œê°œì„œ 
 	UID32_t		CharacterUID;
 };
 
 struct MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK
-{// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü Áö¿øÀÚ ¼Ò°³¼­ 
+{// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì§€ì›ì ì†Œê°œì„œ 
 	char		GuildName[SIZE_MAX_GUILD_NAME];
 	char		SelfIntroduction[SIZE_MAX_NOTICE];
 };
 
 struct MSG_IC_GUILD_SEARCH_INTRODUCTION_OK
-{// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ °Ë»ö
+{// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ê²€ìƒ‰
 	UID32_t			GuildUID;
 	char			GuildName[SIZE_MAX_GUILD_NAME];
 	ATUM_DATE_TIME	WriteDate;
@@ -4478,24 +4478,24 @@ struct MSG_IC_GUILD_SEARCH_INTRODUCTION_OK
 };
 
 struct MSG_IC_GUILD_UPDATE_INTRODUCTION
-{// 2008-05-28 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ ÀÛ¼º 
+{// 2008-05-28 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ì‘ì„± 
 	char			GuildIntroduction[SIZE_MAX_NOTICE];
 };
 
 struct MSG_IC_GUILD_UPDATE_SELFINTRODUCTION
-{// 2008-05-28 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀÚ±â ¼Ò°³ ÀÛ¼º
+{// 2008-05-28 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ìê¸° ì†Œê°œ ì‘ì„±
 	UID32_t			TargetGuildUID;
 	char			SelfIntroduction[SIZE_MAX_NOTICE];
 };
 
 struct MSG_IC_GUILD_CHANGE_FAME_RANK
-{// 2008-06-10 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¸í¼º º¯°æ
+{// 2008-06-10 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ëª…ì„± ë³€ê²½
 	INT		GuildTotalFameRank;
 	INT		GuildMonthlyFameRank;
 };
 
 struct MSG_IC_GUILD_APPLICANT_INVITE
-{// 2008-06-12 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - Áö¿øÀÚ °ü¸®¿¡¼­ ¿©´Ü¿ø ÃÊ´ë
+{// 2008-06-12 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì§€ì›ì ê´€ë¦¬ì—ì„œ ì—¬ë‹¨ì› ì´ˆëŒ€
 	UID32_t		CharacterUID;
 	char		CharacterName[SIZE_MAX_CHARACTER_NAME];
 	BYTE		UnitKind;
@@ -4503,30 +4503,30 @@ struct MSG_IC_GUILD_APPLICANT_INVITE
 };
 
 struct MSG_IC_GUILD_APPLICANT_REJECT_INVITE
-{// 2008-06-12 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - Áö¿øÀÚ °ü¸®¿¡¼­ ¿©´Ü¿ø ÃÊ´ë °ÅºÎ 
+{// 2008-06-12 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì§€ì›ì ê´€ë¦¬ì—ì„œ ì—¬ë‹¨ì› ì´ˆëŒ€ ê±°ë¶€ 
 	UID32_t		CharacterUID;
 	char		GuildName[SIZE_MAX_GUILD_NAME];
 };
 
 struct MSG_IC_GUILD_CHANGE_MEMBERSHIP
-{// I->C, // 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´ÜÀå ¸É¹ö½± Á¤º¸ Àü¼Û
+{// I->C, // 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì¥ ë§´ë²„ì‰½ ì •ë³´ ì „ì†¡
 	bool			MemberShip;
 	ATUM_DATE_TIME	MemberShipExpireTime;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 // FC_QUEST
-struct MEX_QUEST_INFO						// CharacterÀÇ Äù½ºÆ® Á¤º¸
+struct MEX_QUEST_INFO						// Characterì˜ í€˜ìŠ¤íŠ¸ ì •ë³´
 {
-	INT				QuestIndex;				// Äù½ºÆ® ¹øÈ£
-	BYTE			QuestState;				// ¿Ï·á, ÁøÇàÁß
-	LONGLONG		QuestPlayTimeStamp;		// Äù½ºÆ® ½ÃÀÛ ½ÃÀÇ TotalPlayTime
+	INT				QuestIndex;				// í€˜ìŠ¤íŠ¸ ë²ˆí˜¸
+	BYTE			QuestState;				// ì™„ë£Œ, ì§„í–‰ì¤‘
+	LONGLONG		QuestPlayTimeStamp;		// í€˜ìŠ¤íŠ¸ ì‹œì‘ ì‹œì˜ TotalPlayTime
 	//char			szCityWarServerGroupName[SIZE_MAX_SERVER_NAME];
 };
 
-struct MEX_QUEST_MONSTER_COUNT						// CharacterÀÇ Äù½ºÆ® Á¤º¸
+struct MEX_QUEST_MONSTER_COUNT						// Characterì˜ í€˜ìŠ¤íŠ¸ ì •ë³´
 {
-	INT				QuestIndex;				// Äù½ºÆ® ¹øÈ£
+	INT				QuestIndex;				// í€˜ìŠ¤íŠ¸ ë²ˆí˜¸
 	INT				MonsterUniqueNumber;
 	INT				Count;
 };
@@ -4535,78 +4535,78 @@ struct MSG_FC_QUEST_REQUEST_START
 {
 	INT			QuestIndex;
 	BYTE		QuestStartType;			// QUEST_START_TYPE_XXX
-	BYTE		PassQuest;				// Äù½ºÆ®¸¦ ±×³É ³Ñ±è, CQuest::IsDiscardableÀÌ TRUEÀÏ ¶§¸¸ Ã³¸®ÇÔ
-	AVECTOR3	AVec3QuestPosition;		// Äù½ºÆ® ½ÃÀÛ½Ã ÁÂÇ¥, 2005-08-29 by cmkwon
+	BYTE		PassQuest;				// í€˜ìŠ¤íŠ¸ë¥¼ ê·¸ëƒ¥ ë„˜ê¹€, CQuest::IsDiscardableì´ TRUEì¼ ë•Œë§Œ ì²˜ë¦¬í•¨
+	AVECTOR3	AVec3QuestPosition;		// í€˜ìŠ¤íŠ¸ ì‹œì‘ì‹œ ì¢Œí‘œ, 2005-08-29 by cmkwon
 	char		szCouponNumber[SIZE_MAX_COUPON_NUMBER];
-};		// C->F, Quest ½ÃÀÛÀ» ¿äÃ»
+};		// C->F, Quest ì‹œì‘ì„ ìš”ì²­
 
 struct MSG_FC_QUEST_REQUEST_START_RESULT
 {
-	MEX_QUEST_INFO	MexQuestInfo;	// Äù½ºÆ® Á¤º¸
-	float			fVCNInflDistributionPercent;	// 2006-02-08 by cmkwon, ¹ÙÀÌÁ¦´ÏÀ¯ Á¤±Ô±º ¼¼·ÂºĞÆ÷ - ¼¼·Â¼±ÅÃ ¹Ì¼Ç½Ã¸¸ »ç¿ëµÊ
-	float			fANIInflDistributionPercent;	// 2006-02-08 by cmkwon, ¾Ë¸µÅÏ Á¤±Ô±º - ¼¼·Â¼±ÅÃ ¹Ì¼Ç½Ã¸¸ »ç¿ëµÊ
-};	// F->C, Quest ½ÃÀÛÀ» ½ÂÀÎ, Client´Â ÀÌ MSG¸¦ ¹ŞÀ¸¸é Pre NPCTalkÀ» ·ÎµùÇÑ´Ù
+	MEX_QUEST_INFO	MexQuestInfo;	// í€˜ìŠ¤íŠ¸ ì •ë³´
+	float			fVCNInflDistributionPercent;	// 2006-02-08 by cmkwon, ë°”ì´ì œë‹ˆìœ  ì •ê·œêµ° ì„¸ë ¥ë¶„í¬ - ì„¸ë ¥ì„ íƒ ë¯¸ì…˜ì‹œë§Œ ì‚¬ìš©ë¨
+	float			fANIInflDistributionPercent;	// 2006-02-08 by cmkwon, ì•Œë§í„´ ì •ê·œêµ° - ì„¸ë ¥ì„ íƒ ë¯¸ì…˜ì‹œë§Œ ì‚¬ìš©ë¨
+};	// F->C, Quest ì‹œì‘ì„ ìŠ¹ì¸, ClientëŠ” ì´ MSGë¥¼ ë°›ìœ¼ë©´ Pre NPCTalkì„ ë¡œë”©í•œë‹¤
 
 struct MSG_FC_QUEST_ACCEPT_QUEST
 {
 	INT		QuestIndex;
-};	// C->F, Quest¸¦ ¹Ş¾ÆµéÀÓ
+};	// C->F, Questë¥¼ ë°›ì•„ë“¤ì„
 
 struct MSG_FC_QUEST_CANCEL_QUEST
 {
 	INT		QuestIndex;
-};	// C->F, Quest¸¦ °ÅÀıÇÔ(°ÅÀıÇÒ ¼ö ¾ø´Â Questµµ Á¸ÀçÇÔ)
+};	// C->F, Questë¥¼ ê±°ì ˆí•¨(ê±°ì ˆí•  ìˆ˜ ì—†ëŠ” Questë„ ì¡´ì¬í•¨)
 
-	// check: no body, ÇÊ¿äÇÏ¸é »ì¸²
+	// check: no body, í•„ìš”í•˜ë©´ ì‚´ë¦¼
 	//typedef struct {
-	//} MSG_FC_QUEST_LEAVE_NPC;		// C->F, NPC¸¦ ¶°³²
+	//} MSG_FC_QUEST_LEAVE_NPC;		// C->F, NPCë¥¼ ë– ë‚¨
 	//
 	//typedef struct {
-	//} MSG_FC_QUEST_LEAVE_NPC_OK;	// F->C, NPC¸¦ ¶°³²¿¡ ´ëÇÑ ACK
+	//} MSG_FC_QUEST_LEAVE_NPC_OK;	// F->C, NPCë¥¼ ë– ë‚¨ì— ëŒ€í•œ ACK
 
 struct MSG_FC_QUEST_REQUEST_SUCCESS
 {
 	INT			QuestIndex;
-	INT			QuestResult;			// Äù½ºÆ®ÀÇ ¼ºÀû È¤Àº Á¡¼ö, 0ÀÌ¸é ¹«½Ã, 10~13(A~D)ÀÌ¸é ³Ñ°ÜÁÖ±â, check: ÇöÀç´Â ¹ŞÀº´ë·Î ³Ñ°ÜÁÖ±â, 20040224, kelovon
-	INT			SpentTimeInSeconds;		// Äù½ºÆ® ½ÃÀÛ ÈÄ Áö³­ ½Ã°£, 20041129, kelovon, ¼­¹ö¿¡¼­´Â Å¬¶óÀÌ¾ğÆ® ½Ã°£À» ÀüÀûÀ¸·Î ¹ÏÀ½
-	AVECTOR3	AVec3QuestPosition;		// Äù½ºÆ® ¿Ï·á½Ã ÁÂÇ¥, 2005-08-29 by cmkwon
-};	// C->F, Quest °á°ú °ËÁõÀ» ¿äÃ»
+	INT			QuestResult;			// í€˜ìŠ¤íŠ¸ì˜ ì„±ì  í˜¹ì€ ì ìˆ˜, 0ì´ë©´ ë¬´ì‹œ, 10~13(A~D)ì´ë©´ ë„˜ê²¨ì£¼ê¸°, check: í˜„ì¬ëŠ” ë°›ì€ëŒ€ë¡œ ë„˜ê²¨ì£¼ê¸°, 20040224, kelovon
+	INT			SpentTimeInSeconds;		// í€˜ìŠ¤íŠ¸ ì‹œì‘ í›„ ì§€ë‚œ ì‹œê°„, 20041129, kelovon, ì„œë²„ì—ì„œëŠ” í´ë¼ì´ì–¸íŠ¸ ì‹œê°„ì„ ì „ì ìœ¼ë¡œ ë¯¿ìŒ
+	AVECTOR3	AVec3QuestPosition;		// í€˜ìŠ¤íŠ¸ ì™„ë£Œì‹œ ì¢Œí‘œ, 2005-08-29 by cmkwon
+};	// C->F, Quest ê²°ê³¼ ê²€ì¦ì„ ìš”ì²­
 
 struct QUEST_PAY_ITEM_INFO
 {
-	INT		ItemNum;					// 2007-07-09 by dhjin, º¸»ó ¾ÆÀÌÅÛ ¹øÈ£ 
-	INT		ItemCount;					// 2007-07-09 by dhjin, º¸»ó ¾ÆÀÌÅÛ ¼ö
+	INT		ItemNum;					// 2007-07-09 by dhjin, ë³´ìƒ ì•„ì´í…œ ë²ˆí˜¸ 
+	INT		ItemCount;					// 2007-07-09 by dhjin, ë³´ìƒ ì•„ì´í…œ ìˆ˜
 };
 
 struct MSG_FC_QUEST_REQUEST_SUCCESS_RESULT
 {
 	INT		QuestIndex;
 	bool	IsSuccessful;
-	INT		QuestResult;		// Äù½ºÆ®ÀÇ ¼ºÀû È¤Àº Á¡¼ö, 0ÀÌ¸é ¹«½Ã, 10~13(A~D)ÀÌ¸é ³Ñ°ÜÁÖ±â, check: ÇöÀç´Â ¹ŞÀº´ë·Î ³Ñ°ÜÁÖ±â, 20040224, kelovon
-	INT		ExpOfCompensation;			// 2007-03-06 by cmkwon, Äù½ºÆ® ¿Ï·á½Ã ½ÇÁ¦·Î Ãß°¡µÈ º¸»ó °æÇèÄ¡
-	BYTE	BonusStatOfCompensation;	// 2007-07-09 by dhjin, BonusStat º¸»ó Á¤º¸ 
-	INT		QuestPayInfoListCount;		// 2007-07-09 by dhjin, ¾ÆÀÌÅÛ º¸»ó ¼ö
+	INT		QuestResult;		// í€˜ìŠ¤íŠ¸ì˜ ì„±ì  í˜¹ì€ ì ìˆ˜, 0ì´ë©´ ë¬´ì‹œ, 10~13(A~D)ì´ë©´ ë„˜ê²¨ì£¼ê¸°, check: í˜„ì¬ëŠ” ë°›ì€ëŒ€ë¡œ ë„˜ê²¨ì£¼ê¸°, 20040224, kelovon
+	INT		ExpOfCompensation;			// 2007-03-06 by cmkwon, í€˜ìŠ¤íŠ¸ ì™„ë£Œì‹œ ì‹¤ì œë¡œ ì¶”ê°€ëœ ë³´ìƒ ê²½í—˜ì¹˜
+	BYTE	BonusStatOfCompensation;	// 2007-07-09 by dhjin, BonusStat ë³´ìƒ ì •ë³´ 
+	INT		QuestPayInfoListCount;		// 2007-07-09 by dhjin, ì•„ì´í…œ ë³´ìƒ ìˆ˜
 	ARRAY_(QUEST_PAY_ITEM_INFO);
-};	// F->C, Quest °á°ú(¿Ï·á)¸¦ ¾Ë¸², Client´Â ÀÌ MSG¸¦ ¹ŞÀ¸¸é quest¸¦ Á¾·áÇÏ°í After NPCTalkÀ» ·ÎµùÇÑ´Ù
+};	// F->C, Quest ê²°ê³¼(ì™„ë£Œ)ë¥¼ ì•Œë¦¼, ClientëŠ” ì´ MSGë¥¼ ë°›ìœ¼ë©´ questë¥¼ ì¢…ë£Œí•˜ê³  After NPCTalkì„ ë¡œë”©í•œë‹¤
 
 struct MSG_FC_QUEST_PUT_ALL_QUEST
 {
-	float			fVCNInflDistributionPercent;	// 2006-02-08 by cmkwon, ¹ÙÀÌÁ¦´ÏÀ¯ Á¤±Ô±º ¼¼·ÂºĞÆ÷ - ¼¼·Â¼±ÅÃ ¹Ì¼Ç½Ã¸¸ »ç¿ëµÊ
-	float			fANIInflDistributionPercent;	// 2006-02-08 by cmkwon, ¾Ë¸µÅÏ Á¤±Ô±º - ¼¼·Â¼±ÅÃ ¹Ì¼Ç½Ã¸¸ »ç¿ëµÊ
+	float			fVCNInflDistributionPercent;	// 2006-02-08 by cmkwon, ë°”ì´ì œë‹ˆìœ  ì •ê·œêµ° ì„¸ë ¥ë¶„í¬ - ì„¸ë ¥ì„ íƒ ë¯¸ì…˜ì‹œë§Œ ì‚¬ìš©ë¨
+	float			fANIInflDistributionPercent;	// 2006-02-08 by cmkwon, ì•Œë§í„´ ì •ê·œêµ° - ì„¸ë ¥ì„ íƒ ë¯¸ì…˜ì‹œë§Œ ì‚¬ìš©ë¨
 	INT		NumOfQuest;
-	ARRAY_(MEX_QUEST_INFO);		// QuestIndexÀÇ array, see below
-};			// F->C, ¿Ï·áµÇ°Å³ª ÁøÇàÁßÀÎ ¸ğµç Äù½ºÆ®¸¦ Àü¼Û, °ÔÀÓ ½ÃÀÛ ½Ã ¾ÆÀÌÅÛ Àü¼Û ÈÄ ÀÌ¾î¼­ º¸³¿
+	ARRAY_(MEX_QUEST_INFO);		// QuestIndexì˜ array, see below
+};			// F->C, ì™„ë£Œë˜ê±°ë‚˜ ì§„í–‰ì¤‘ì¸ ëª¨ë“  í€˜ìŠ¤íŠ¸ë¥¼ ì „ì†¡, ê²Œì„ ì‹œì‘ ì‹œ ì•„ì´í…œ ì „ì†¡ í›„ ì´ì–´ì„œ ë³´ëƒ„
 
 struct MSG_FC_QUEST_DISCARD_QUEST
 {
 	INT		QuestIndex;
-};		// C->F, ÀÌ¹Ì ½ÃÀÛµÈ Äù½ºÆ®¸¦ Æ÷±âÇÔ
+};		// C->F, ì´ë¯¸ ì‹œì‘ëœ í€˜ìŠ¤íŠ¸ë¥¼ í¬ê¸°í•¨
 
 struct MSG_FC_QUEST_DISCARD_QUEST_OK
 {
 	INT		QuestIndex;
-	BYTE	IsDiscarded;			// Äù½ºÆ® Æ÷±â ¼º°ø ¿©ºÎ, 1: TRUE, 0:FALSE
-};	// F->C, ÀÌ¹Ì ½ÃÀÛµÈ Äù½ºÆ®¸¦ Æ÷±âÇÔ¿¡ ´ëÇÑ °á°ú
+	BYTE	IsDiscarded;			// í€˜ìŠ¤íŠ¸ í¬ê¸° ì„±ê³µ ì—¬ë¶€, 1: TRUE, 0:FALSE
+};	// F->C, ì´ë¯¸ ì‹œì‘ëœ í€˜ìŠ¤íŠ¸ë¥¼ í¬ê¸°í•¨ì— ëŒ€í•œ ê²°ê³¼
 
 struct MSG_FC_QUEST_MOVE_QUEST_MAP
 {
@@ -4627,8 +4627,8 @@ using MSG_FC_QUEST_REQUEST_SUCCESS_CHECK_RESULT = MSG_FC_QUEST_REQUEST_SUCCESS_R
 
 struct MSG_FC_QUEST_REQUEST_PARTY_WARP			// 2006-10-16 by cmkwon
 {
-	UID32_t				callerCharacterUID;			// È£ÃâÀÚ CharcterUID
-	DWORD				dwRemainTime;				// ´ÜÀ§:ms(ex> 1000 <== 1ÃÊ)
+	UID32_t				callerCharacterUID;			// í˜¸ì¶œì CharcterUID
+	DWORD				dwRemainTime;				// ë‹¨ìœ„:ms(ex> 1000 <== 1ì´ˆ)
 	MAP_CHANNEL_INDEX	warpMapChannIndex;
 };
 
@@ -4662,28 +4662,28 @@ struct MSG_FC_MONSTER_CHANGE_HP
 {
 	ClientIndex_t	MonsterIndex;
 	INT				CurrentHP;
-};					// F -> C, ¸ó½ºÅÍÀÇ ÇöÀç HP¸¦ Àü¼ÛÇÔ
+};					// F -> C, ëª¬ìŠ¤í„°ì˜ í˜„ì¬ HPë¥¼ ì „ì†¡í•¨
 
 struct MSG_FC_MONSTER_CHANGE_BODYCONDITION
 {
 	ClientIndex_t	MonsterIndex;
-	BodyCond_t		BodyCondition;					// ¾ÕÀÇ 32bit¸¸ »ç¿ë <-- check: ½ºÅ³ bodyconÀÌ Á¤ÇØÁö¸é °áÁ¤ÇÏ±â!
+	BodyCond_t		BodyCondition;					// ì•ì˜ 32bitë§Œ ì‚¬ìš© <-- check: ìŠ¤í‚¬ bodyconì´ ì •í•´ì§€ë©´ ê²°ì •í•˜ê¸°!
 };
 
 struct MSG_FC_MONSTER_SKILL_USE_SKILL
 {
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
-	ClientIndex_t		ClientIndex;				// ¸ó½ºÅÍ ½ºÅ³ÀÇ Á¾·á¸¦ ¾Ë·ÁÁÙ Å¬¶óÀÌ¾ğÆ® ÀÎµ¦½º
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
+	ClientIndex_t		ClientIndex;				// ëª¬ìŠ¤í„° ìŠ¤í‚¬ì˜ ì¢…ë£Œë¥¼ ì•Œë ¤ì¤„ í´ë¼ì´ì–¸íŠ¸ ì¸ë±ìŠ¤
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 };
 
-// start 2011-05-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ ¸ó½ºÅÍ ±³Ã¼ ±â´É
+// start 2011-05-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ëª¬ìŠ¤í„° êµì²´ ê¸°ëŠ¥
 struct MSG_FC_MONSTER_CHANGE_INDEX
 {
 	ClientIndex_t	MonsterIndex;
 	INT				ChangeMonsterUnitKind;
-};					// F -> C, ¸ó½ºÅÍ ±³Ã¼ ¸Ş½ÃÁö Àü´Ş
-					// end 2011-05-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ ¸ó½ºÅÍ ±³Ã¼ ±â´É
+};					// F -> C, ëª¬ìŠ¤í„° êµì²´ ë©”ì‹œì§€ ì „ë‹¬
+					// end 2011-05-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ëª¬ìŠ¤í„° êµì²´ ê¸°ëŠ¥
 
 struct MSG_FC_MONSTER_SKILL_END_SKILL
 {
@@ -4695,7 +4695,7 @@ struct MSG_FC_MONSTER_SKILL_END_SKILL
 struct MSG_FC_MONSTER_SUMMON_MONSTER
 {
 	ClientIndex_t	clientIdx;
-	INT				SummonMonsterUnitKind;			// ¸ó½ºÅÍ °íÀ¯¹øÈ£
+	INT				SummonMonsterUnitKind;			// ëª¬ìŠ¤í„° ê³ ìœ ë²ˆí˜¸
 	INT				nSummonCounts;
 	BYTE			byMonsterTargetType2;
 	int				nTargetTypeData2;
@@ -4723,17 +4723,17 @@ struct MSG_FN_MAPPROJECT_START_OK
 struct MSG_FN_MONSTER_CREATE
 {
 	ChannelIndex_t			ChannelIndex;
-	ClientIndex_t			MonsterIndex;				// ÀÎµ¦½º
-	INT						MonsterUnitKind;				// ¸ó½ºÅÍ °íÀ¯¹øÈ£
+	ClientIndex_t			MonsterIndex;				// ì¸ë±ìŠ¤
+	INT						MonsterUnitKind;				// ëª¬ìŠ¤í„° ê³ ìœ ë²ˆí˜¸
 	BYTE					MonsterTargetType1;
 	int						TargetTypeData1;
 	ClientIndex_t			CltIdxForTargetType1;
-	BodyCond_t				BodyCondition;					// ¸ó½ºÅÍ BodyCondition
-	AVECTOR3				PositionVector;					// ¸ó½ºÅÍ ÁÂÇ¥
+	BodyCond_t				BodyCondition;					// ëª¬ìŠ¤í„° BodyCondition
+	AVECTOR3				PositionVector;					// ëª¬ìŠ¤í„° ì¢Œí‘œ
 	AVECTOR3				TargetVector;					//
 	BYTE					ObjectMonsterType;
-	MONSTER_BALANCE_DATA	MonsterBalanceData;				// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ ¹ë·±½º Á¤º¸ Ãß°¡.
-};	// check: ºÒÇÊ¿äÇÑ Á¤º¸¸¦ ¾ø¾Ö¾ß ÇÏÁö ¾ÊÀ»±î? È®ÀÎ ¿ä¸Á!
+	MONSTER_BALANCE_DATA	MonsterBalanceData;				// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì •ë³´ ì¶”ê°€.
+};	// check: ë¶ˆí•„ìš”í•œ ì •ë³´ë¥¼ ì—†ì• ì•¼ í•˜ì§€ ì•Šì„ê¹Œ? í™•ì¸ ìš”ë§!
 
 struct MSG_FN_MONSTER_CREATE_OK
 {
@@ -4745,24 +4745,24 @@ struct MSG_FN_MONSTER_DELETE
 {
 	ChannelIndex_t	ChannelIndex;
 	ClientIndex_t	MonsterIndex;
-	bool			CinemaDelete;		// 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ »èÁ¦ Å¬¶óÀÌ¾ğÆ® ¹İ¿µ - ½Ã³×¸¶¿¡¼­ »èÁ¦ÇÑ°æ¿ì TRUE
+	bool			CinemaDelete;		// 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ì‚­ì œ í´ë¼ì´ì–¸íŠ¸ ë°˜ì˜ - ì‹œë„¤ë§ˆì—ì„œ ì‚­ì œí•œê²½ìš° TRUE
 };
 
-// start 2011-05-11 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - ÇØ´ç ¸ÊÃ¤³Î Æ¯Á¤ ¸ó½ºÅÍ º¯°æ ±â´É Ãß°¡
+// start 2011-05-11 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - í•´ë‹¹ ë§µì±„ë„ íŠ¹ì • ëª¬ìŠ¤í„° ë³€ê²½ ê¸°ëŠ¥ ì¶”ê°€
 struct MSG_FN_MONSTER_CHANGE_OK
 {
 	ChannelIndex_t	ChannelIndex;
 	ClientIndex_t	MonsterIndex;
 	INT				ChangeMonsterUnitKind;
 };
-// end 2011-05-11 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - ÇØ´ç ¸ÊÃ¤³Î Æ¯Á¤ ¸ó½ºÅÍ º¯°æ ±â´É Ãß°¡
+// end 2011-05-11 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - í•´ë‹¹ ë§µì±„ë„ íŠ¹ì • ëª¬ìŠ¤í„° ë³€ê²½ ê¸°ëŠ¥ ì¶”ê°€
 
-// start 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ »èÁ¦ Å¬¶óÀÌ¾ğÆ® ¹İ¿µ
+// start 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ì‚­ì œ í´ë¼ì´ì–¸íŠ¸ ë°˜ì˜
 struct MSG_FC_MONSTER_CINEMA_DELETE_NOTIFY
 {
 	ClientIndex_t	MonsterIdx;
 };
-// end 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ »èÁ¦ Å¬¶óÀÌ¾ğÆ® ¹İ¿µ
+// end 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ì‚­ì œ í´ë¼ì´ì–¸íŠ¸ ë°˜ì˜
 
 struct MSG_FN_MONSTER_MOVE
 {
@@ -4784,15 +4784,15 @@ struct MSG_FN_MOVE_OK
 
 struct MEX_CHARACTER_1
 {
-	USHORT			Race;						// Á¾Á·
+	USHORT			Race;						// ì¢…ì¡±
 	USHORT			UnitKind;
 	BYTE			InfluenceType0;				// 2005-12-27 by cmkwon
 	BYTE			CharacterMode0;				// 2005-07-15 by cmkwon
 	UID32_t			CharacterUniqueNumber;
 	UID32_t			GuildUID;
-	BodyCond_t		BodyCondition;				// »óÅÂ, bit flag »ç¿ë
-	float			CurrentHP;					// ¿¡³ÊÁö
-	AVECTOR3		PositionVector;				// Ä³¸¯ÅÍ ÁÂÇ¥
+	BodyCond_t		BodyCondition;				// ìƒíƒœ, bit flag ì‚¬ìš©
+	float			CurrentHP;					// ì—ë„ˆì§€
+	AVECTOR3		PositionVector;				// ìºë¦­í„° ì¢Œí‘œ
 
 	MEX_CHARACTER_1 &operator=(const CHARACTER &rhs)
 	{
@@ -4815,7 +4815,7 @@ struct MSG_FN_CLIENT_GAMESTART_OK
 	MEX_CHARACTER_1	mexCharacter;
 	UID32_t			GuildMasterCharUID;
 	bool			bStealthState1;
-	bool			bInvisible;			// 2006-11-27 by dhjin, Ä³¸¯ÅÍ ¾Èº¸ÀÌ±â ÇÃ·¡±×
+	bool			bInvisible;			// 2006-11-27 by dhjin, ìºë¦­í„° ì•ˆë³´ì´ê¸° í”Œë˜ê·¸
 };
 
 struct MSG_FN_GET_CHARACTER_INFO
@@ -4837,7 +4837,7 @@ struct MSG_FN_ADMIN_SUMMON_MONSTER
 	INT						NumOfMonster;
 	AVECTOR3				Position;
 
-	// 2010. 06. 08 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¾Æ±º µ¿ÀÏ ¹ë·±½º Àû¿ë.)
+	// 2010. 06. 08 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì•„êµ° ë™ì¼ ë°¸ëŸ°ìŠ¤ ì ìš©.)
 	MONSTER_BALANCE_DATA	MonsterBalanceData;
 
 };
@@ -4857,9 +4857,9 @@ struct MSG_FN_MONSTER_CHANGE_BODYCONDITION : MSG_FC_CHARACTER_CHANGE_BODYCONDITI
 struct MSG_FN_MONSTER_SKILL_USE_SKILL
 {
 	ChannelIndex_t		ChannelIndex;
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
-	ClientIndex_t		ClientIndex;				// ¸ó½ºÅÍ ½ºÅ³ÀÇ Á¾·á¸¦ ¾Ë·ÁÁÙ Å¬¶óÀÌ¾ğÆ® ÀÎµ¦½º
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
+	ClientIndex_t		ClientIndex;				// ëª¬ìŠ¤í„° ìŠ¤í‚¬ì˜ ì¢…ë£Œë¥¼ ì•Œë ¤ì¤„ í´ë¼ì´ì–¸íŠ¸ ì¸ë±ìŠ¤
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 };
 
 struct MSG_FN_MONSTER_SKILL_END_SKILL
@@ -4872,19 +4872,19 @@ struct MSG_FN_MONSTER_SKILL_END_SKILL
 
 struct MSG_FN_MONSTER_AUTO_DESTROYED		// 2006-04-17 by cmkwon
 {
-	MAP_CHANNEL_INDEX	MapChannIdx;				// 2007-11-26 by cmkwon, ¸ó½ºÅÍ ÀÚµ¿»èÁ¦ ¸Ş½ÃÁö TCP·Î Àü¼Û(N->F) - MSG_FN_MONSTER_AUTO_DESTROYED ¿¡ ÇÊµå Ãß°¡
-													// 2007-11-26 by cmkwon, ¸ó½ºÅÍ ÀÚµ¿»èÁ¦ ¸Ş½ÃÁö TCP·Î Àü¼Û(N->F) - MapChannIdx ·Î Ãß°¡
+	MAP_CHANNEL_INDEX	MapChannIdx;				// 2007-11-26 by cmkwon, ëª¬ìŠ¤í„° ìë™ì‚­ì œ ë©”ì‹œì§€ TCPë¡œ ì „ì†¡(N->F) - MSG_FN_MONSTER_AUTO_DESTROYED ì— í•„ë“œ ì¶”ê°€
+													// 2007-11-26 by cmkwon, ëª¬ìŠ¤í„° ìë™ì‚­ì œ ë©”ì‹œì§€ TCPë¡œ ì „ì†¡(N->F) - MapChannIdx ë¡œ ì¶”ê°€
 													//	ChannelIndex_t		ChannelIndex;
 	ClientIndex_t		MonsterIndex;
-	BodyCond_t			BodyCondition;				// 2007-11-26 by cmkwon, ¸ó½ºÅÍ ÀÚµ¿»èÁ¦ ¸Ş½ÃÁö TCP·Î Àü¼Û(N->F) - MSG_FN_MONSTER_AUTO_DESTROYED ¿¡ ÇÊµå Ãß°¡
+	BodyCond_t			BodyCondition;				// 2007-11-26 by cmkwon, ëª¬ìŠ¤í„° ìë™ì‚­ì œ ë©”ì‹œì§€ TCPë¡œ ì „ì†¡(N->F) - MSG_FN_MONSTER_AUTO_DESTROYED ì— í•„ë“œ ì¶”ê°€
 };
 
 struct MSG_FN_MONSTER_STRATEGYPOINT_INIT		// 2006-11-20 by cmkwon
 {
 	ChannelIndex_t		ChannelIndex;
-	int					bVCNMapInflTyforInit;	// 2007-09-16 by dhjin, Belligerence °Ë»öÀ¸·Î ¼öÁ¤À¸·Î ÀÎÇÏ¿© ¿ÀºêÁ§Æ® Bell°ªÀ¸·Î ¼öÁ¤ // 2006-11-21 by cmkwon, ÃÊ±âÈ­ ÇÒ ¸ÊÀÌ VCNÀÎÁö ¿©ºÎ(TRUE=IS_MAP_INFLUENCE_VCN, FALSE=IS_MAP_INFLUENCE_ANI)
-	bool				bCreateFlag;			// ÃÊ±âÈ­ ÈÄ¿¡ ¼ÒÈ¯ ¿©ºÎ ÇÃ·¡±×
-	bool				bInfluenceBoss;			// 2007-08-30 by dhjin, ¸ğ¼±Àü½Ã Àü·«Æ÷ÀÎÆ® ¼ÒÈ¯ÀÎÁö Ã¼Å© ºñÆ® 0 : FASLE, 1 : TRUE
+	int					bVCNMapInflTyforInit;	// 2007-09-16 by dhjin, Belligerence ê²€ìƒ‰ìœ¼ë¡œ ìˆ˜ì •ìœ¼ë¡œ ì¸í•˜ì—¬ ì˜¤ë¸Œì íŠ¸ Bellê°’ìœ¼ë¡œ ìˆ˜ì • // 2006-11-21 by cmkwon, ì´ˆê¸°í™” í•  ë§µì´ VCNì¸ì§€ ì—¬ë¶€(TRUE=IS_MAP_INFLUENCE_VCN, FALSE=IS_MAP_INFLUENCE_ANI)
+	bool				bCreateFlag;			// ì´ˆê¸°í™” í›„ì— ì†Œí™˜ ì—¬ë¶€ í”Œë˜ê·¸
+	bool				bInfluenceBoss;			// 2007-08-30 by dhjin, ëª¨ì„ ì „ì‹œ ì „ëµí¬ì¸íŠ¸ ì†Œí™˜ì¸ì§€ ì²´í¬ ë¹„íŠ¸ 0 : FASLE, 1 : TRUE
 };
 
 struct MSG_FN_MONSTER_STRATEGYPOINT_SUMMON
@@ -4893,23 +4893,23 @@ struct MSG_FN_MONSTER_STRATEGYPOINT_SUMMON
 };
 
 struct MSG_FN_MONSTER_OUTPOST_INIT
-{// 2007-08-24 by dhjin, ÀüÁø±âÁö ¸Ê ¸ó½ºÅÍ ÃÊ±âÈ­ ¸Ê ¼ÒÀ¯¿¡ ¸Â°Ô ¸ó½ºÅÍ¸¦ ¼ÒÈ¯ÇØ¾ßÇÔ 
+{// 2007-08-24 by dhjin, ì „ì§„ê¸°ì§€ ë§µ ëª¬ìŠ¤í„° ì´ˆê¸°í™” ë§µ ì†Œìœ ì— ë§ê²Œ ëª¬ìŠ¤í„°ë¥¼ ì†Œí™˜í•´ì•¼í•¨ 
 	MAP_CHANNEL_INDEX	mapChann;
-	int					bell1;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	int					bell2;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	int					bell3;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
+	int					bell1;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	int					bell2;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	int					bell3;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
 };
 
 struct MSG_FN_MONSTER_OUTPOST_RESET_SUMMON
-{// 2007-08-24 by dhjin, ÀüÁø±âÁö ¸ó½ºÅÍ ¼ÒÈ¯, ÁÖÀÇ~!! º¸È£¸·À» ÆÄ±«ÇÑ ¼¼·Â ¼ÒÀ¯·Î ¼ÒÈ¯ÇØ¾ßÇÑ´Ù.
+{// 2007-08-24 by dhjin, ì „ì§„ê¸°ì§€ ëª¬ìŠ¤í„° ì†Œí™˜, ì£¼ì˜~!! ë³´í˜¸ë§‰ì„ íŒŒê´´í•œ ì„¸ë ¥ ì†Œìœ ë¡œ ì†Œí™˜í•´ì•¼í•œë‹¤.
 	MAP_CHANNEL_INDEX	mapChann;
-	int					bell1;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
+	int					bell1;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
 };
 using MSG_FN_MONSTER_TELEPORT_SUMMON = MSG_FN_MONSTER_OUTPOST_RESET_SUMMON;
 
 struct MSG_MONSTER_SUMMON_BY_BELL
-{// 2007-09-19 by cmkwon, ±¸Á¶Ã¼ Ãß°¡
-	int					MonsterBell;	// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
+{// 2007-09-19 by cmkwon, êµ¬ì¡°ì²´ ì¶”ê°€
+	int					MonsterBell;	// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
 };
 
 
@@ -4920,18 +4920,18 @@ struct MSG_FN_NPCSERVER_SUMMON_JACO_MONSTER		// 2006-04-18 by cmkwon
 	bool			IsSummonJacoMonster;		// 
 };
 
-struct MSG_FN_NPCSERVER_DELETE_MONSTER_IN_MAPCHANNEL		// TCP:F->N, // 2007-08-22 by cmkwon, ÇØ´ç ¸ÊÃ¤³Î ¸ó½ºÅÍ ¸ğµÎ »èÁ¦ÇÏ±â ±â´É Ãß°¡
+struct MSG_FN_NPCSERVER_DELETE_MONSTER_IN_MAPCHANNEL		// TCP:F->N, // 2007-08-22 by cmkwon, í•´ë‹¹ ë§µì±„ë„ ëª¬ìŠ¤í„° ëª¨ë‘ ì‚­ì œí•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€
 {
 	MAP_CHANNEL_INDEX	mapChann;
-	bool				bAllFlag;		// FALSE°¡ ¾Æ´Ï¸é ¾Æ·¡ÀÇ ÇÊµåµé¿¡ »ó°ü¾øÀÌ ¸ğµç ¸ó½ºÅÍ°¡ »èÁ¦µÊ
-	int					bell1;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	int					bell2;			// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	int					excludeBell1;	// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	int					excludeBell2;	// ±âº»°ªÀÌ -1 ÀÌ¾î¾ß ÇÔ
-	bool				bNotCreateMonster;	// ¸ó½ºÅÍ »ı¼º ±İÁö 0 => False 1 => True
+	bool				bAllFlag;		// FALSEê°€ ì•„ë‹ˆë©´ ì•„ë˜ì˜ í•„ë“œë“¤ì— ìƒê´€ì—†ì´ ëª¨ë“  ëª¬ìŠ¤í„°ê°€ ì‚­ì œë¨
+	int					bell1;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	int					bell2;			// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	int					excludeBell1;	// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	int					excludeBell2;	// ê¸°ë³¸ê°’ì´ -1 ì´ì–´ì•¼ í•¨
+	bool				bNotCreateMonster;	// ëª¬ìŠ¤í„° ìƒì„± ê¸ˆì§€ 0 => False 1 => True
 };
 
-struct MSG_FN_MONSTER_CREATE_IN_MAPCHANNEL_BYVALUE		// TCP:F->N, // 2007-08-29 by dhjin, ÇØ´ç ¸ÊÃ¤³Î ¸ó½ºÅÍ ¸ğµÎ »ı¼º°¡´ÉÇÏ°Ô ¼³Á¤
+struct MSG_FN_MONSTER_CREATE_IN_MAPCHANNEL_BYVALUE		// TCP:F->N, // 2007-08-29 by dhjin, í•´ë‹¹ ë§µì±„ë„ ëª¬ìŠ¤í„° ëª¨ë‘ ìƒì„±ê°€ëŠ¥í•˜ê²Œ ì„¤ì •
 {
 	MAP_CHANNEL_INDEX	mapChann;
 };
@@ -4940,9 +4940,9 @@ struct MSG_FN_MONSTER_CREATE_IN_MAPCHANNEL_BYVALUE		// TCP:F->N, // 2007-08-29 b
 struct MSG_FN_MISSILE_MOVE
 {
 	ChannelIndex_t	ChannelIndex;
-	UINT			ItemNum;						// °ø°İ ¹«±âÀÇ Á¾·ù
-	ClientIndex_t	MonsterIndex;					// °ø°İ ¸ó½ºÅÍÀÇ ÀÎµ¦½º
-	INT				WeaponIndex;					// °ø°İ ¹«±â ÀÎµ¦½º(¸ó½ºÅÍ¿¡ ÇÑÇØ À¯ÀÏÇÔ)
+	UINT			ItemNum;						// ê³µê²© ë¬´ê¸°ì˜ ì¢…ë¥˜
+	ClientIndex_t	MonsterIndex;					// ê³µê²© ëª¬ìŠ¤í„°ì˜ ì¸ë±ìŠ¤
+	INT				WeaponIndex;					// ê³µê²© ë¬´ê¸° ì¸ë±ìŠ¤(ëª¬ìŠ¤í„°ì— í•œí•´ ìœ ì¼í•¨)
 	AVECTOR3		PositionVector;
 	AVECTOR3		TargetVector;
 };
@@ -4965,23 +4965,23 @@ using MSG_FN_MONSTER_SHOW = MSG_FN_MONSTER_HIDE;
 ///////////////////////////////////////////////////////////////////////////////
 // FC_EVENT (Field server <-> Client)
 
-// ¿öÇÁ Å¸ÀÔ: WARP_TYPE_XXX
-#define WARP_TYPE_SAME_MAP				(BYTE)0x00	// °°Àº ¸ÊÀ¸·ÎÀÇ ¿öÇÁ
-#define WARP_TYPE_SAME_FIELD_SERVER		(BYTE)0x01	// ´Ù¸¥ ¸Ê(°°Àº ÇÊµå ¼­¹ö)À¸·ÎÀÇ ¿öÇÁ
-#define WARP_TYPE_OTHER_FIELD_SERVER	(BYTE)0x02	// ´Ù¸¥ ¸Ê(´Ù¸¥ ÇÊµå ¼­¹ö)À¸·ÎÀÇ ¿öÇÁ
+// ì›Œí”„ íƒ€ì…: WARP_TYPE_XXX
+#define WARP_TYPE_SAME_MAP				(BYTE)0x00	// ê°™ì€ ë§µìœ¼ë¡œì˜ ì›Œí”„
+#define WARP_TYPE_SAME_FIELD_SERVER		(BYTE)0x01	// ë‹¤ë¥¸ ë§µ(ê°™ì€ í•„ë“œ ì„œë²„)ìœ¼ë¡œì˜ ì›Œí”„
+#define WARP_TYPE_OTHER_FIELD_SERVER	(BYTE)0x02	// ë‹¤ë¥¸ ë§µ(ë‹¤ë¥¸ í•„ë“œ ì„œë²„)ìœ¼ë¡œì˜ ì›Œí”„
 
 struct MSG_FC_EVENT_WARP
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
 	SERVER_ID			FieldServerID;
 	USHORT				WarpAreaIndex;
-};			// F->C, ´Ù¸¥ ÇÊµå ¼­¹ö·Î ¿öÇÁÇÔ
+};			// F->C, ë‹¤ë¥¸ í•„ë“œ ì„œë²„ë¡œ ì›Œí”„í•¨
 
 struct MSG_FC_EVENT_WARP_SAME_MAP
 {
 	AVECTOR3			PositionVector;
 	BYTE				CharacterMode0;		// 2005-07-27 by cmkwon
-};				// F->C, °°Àº ÇÊµå ¼­¹ö & °°Àº ¸ÊÀ¸·Î ¿öÇÁÇÔ
+};				// F->C, ê°™ì€ í•„ë“œ ì„œë²„ & ê°™ì€ ë§µìœ¼ë¡œ ì›Œí”„í•¨
 
 struct MSG_FC_EVENT_WARP_SAME_FIELD_SERVER
 {
@@ -4989,12 +4989,12 @@ struct MSG_FC_EVENT_WARP_SAME_FIELD_SERVER
 	BitFlag16_t			MapWeather;
 	AVECTOR3			PositionVector;
 	BYTE				CharacterMode0;		// 2005-07-27 by cmkwon
-};		// F->C, °°Àº ÇÊµå ¼­¹ö & ´Ù¸¥ ¸ÊÀ¸·Î ¿öÇÁÇÔ
+};		// F->C, ê°™ì€ í•„ë“œ ì„œë²„ & ë‹¤ë¥¸ ë§µìœ¼ë¡œ ì›Œí”„í•¨
 
 struct MSG_FC_EVENT_OTHER_WARPED
 {
 	ClientIndex_t		ClientIndex;
-	MapIndex_t			WarpMapIndex;	// 2005-11-01 by cmkwon, ÀÌµ¿ ÇÒ MapIndex
+	MapIndex_t			WarpMapIndex;	// 2005-11-01 by cmkwon, ì´ë™ í•  MapIndex
 };
 
 struct MSG_FC_EVENT_WARP_CONNECT
@@ -5022,7 +5022,7 @@ struct MSG_FC_EVENT_ENTER_BUILDING
 	BUILDINGNPC		BuildingNPCInfo;
 	// 2006-02-08 by cmkwon
 	//	float			fCityWarTexRate;				//
-	float			fInflDistributionTexPercent;	// 2006-02-08 by cmkwon, ¼¼·ÂºĞÆ÷ ¼¼±İ
+	float			fInflDistributionTexPercent;	// 2006-02-08 by cmkwon, ì„¸ë ¥ë¶„í¬ ì„¸ê¸ˆ
 };				// F->C
 
 struct MSG_FC_EVENT_ENTER_BUILDING_OK
@@ -5045,71 +5045,71 @@ struct MSG_FC_EVENT_LEAVE_BUILDING_OK
 struct MSG_FC_EVENT_REQUEST_WARP
 {
 	ClientIndex_t	ClientIndex;
-};				// C->F, ÆÄÆ¼°¡ ÀÖÀ¸¸é ÆÄÆ¼Àå¸¸ ¿äÃ» °¡´É, ³ª¸ÓÁö´Â ¿äÃ» ºÒ°¡
+};				// C->F, íŒŒí‹°ê°€ ìˆìœ¼ë©´ íŒŒí‹°ì¥ë§Œ ìš”ì²­ ê°€ëŠ¥, ë‚˜ë¨¸ì§€ëŠ” ìš”ì²­ ë¶ˆê°€
 
 struct MSG_FC_EVENT_REJECT_WARP
 {
 	Err_t			Reason;
-};					// F->C, check: ÇÊ¿äÇÏ°Ô µÇ¸é ±¸Ã¼ÀûÀÎ MSG ³»¿ë Á¤ÇÏ±â!
+};					// F->C, check: í•„ìš”í•˜ê²Œ ë˜ë©´ êµ¬ì²´ì ì¸ MSG ë‚´ìš© ì •í•˜ê¸°!
 
 
 					//typedef struct
 					//{
-					//	INT				ObjectIndex;			// ObjectÀÇ Index
-					//} MSG_FC_EVENT_REQUEST_OBJECT_EVENT;		// F->C, Object¿¡ ÀÇÇÑ Event¸¦ ¿äÃ»
+					//	INT				ObjectIndex;			// Objectì˜ Index
+					//} MSG_FC_EVENT_REQUEST_OBJECT_EVENT;		// F->C, Objectì— ì˜í•œ Eventë¥¼ ìš”ì²­
 
 struct MSG_FC_EVENT_REQUEST_OBJECT_EVENT
 {
 	DWORD			ObjectType;
 	AVECTOR3		ObjectPosition;
-};		// F->C, Object¿¡ ÀÇÇÑ Event¸¦ ¿äÃ»
+};		// F->C, Objectì— ì˜í•œ Eventë¥¼ ìš”ì²­
 
 struct MSG_FC_EVENT_CHANGE_WEATHER
 {
 	BitFlag16_t		MapWeather;
 };
 
-#define WEATHER_DEFAULT		(BitFlag16_t)0x0000	// ±âº»
-#define WEATHER_SUNNY		(BitFlag16_t)0x0001	// ¸¼À½
-#define WEATHER_RAINY		(BitFlag16_t)0x0002	// ºñ
-#define WEATHER_SNOWY		(BitFlag16_t)0x0004	// ´«
-#define WEATHER_CLOUDY		(BitFlag16_t)0x0008	// Èå¸²
-#define WEATHER_FOGGY		(BitFlag16_t)0x0010	// ¾È°³
+#define WEATHER_DEFAULT		(BitFlag16_t)0x0000	// ê¸°ë³¸
+#define WEATHER_SUNNY		(BitFlag16_t)0x0001	// ë§‘ìŒ
+#define WEATHER_RAINY		(BitFlag16_t)0x0002	// ë¹„
+#define WEATHER_SNOWY		(BitFlag16_t)0x0004	// ëˆˆ
+#define WEATHER_CLOUDY		(BitFlag16_t)0x0008	// íë¦¼
+#define WEATHER_FOGGY		(BitFlag16_t)0x0010	// ì•ˆê°œ
 
 struct MEX_CHANNEL_INFO
 {
 	ChannelIndex_t	ChannelIndex;
-	INT				Crowdedness;		// È¥Àâµµ, 0% ~ 100%??, check: Á¤È®ÇÑ ¹æ½Ä °áÁ¤ÇØ¾ß ÇÔ
+	INT				Crowdedness;		// í˜¼ì¡ë„, 0% ~ 100%??, check: ì •í™•í•œ ë°©ì‹ ê²°ì •í•´ì•¼ í•¨
 };
 
 struct  MSG_FC_EVENT_SUGGEST_CHANNELS
 {
 	MapIndex_t		MapIndex;
-	INT				WarpTargetIndex;	// Å¬¶óÀÌ¾ğÆ®´Â ÀÌ Á¤º¸¸¦ MSG_FC_EVENT_SELECT_CHANNEL¿¡ ±×´ë·Î º¹»çÇØ¼­ ¼­¹ö¿¡ ³Ñ°ÜÁÖ¾î¾ß ÇÔ
-	INT				NumOfChannels;		// ¼±ÅÃ °¡´ÉÇÑ Ã¤³ÎÀÇ ¼ö
+	INT				WarpTargetIndex;	// í´ë¼ì´ì–¸íŠ¸ëŠ” ì´ ì •ë³´ë¥¼ MSG_FC_EVENT_SELECT_CHANNELì— ê·¸ëŒ€ë¡œ ë³µì‚¬í•´ì„œ ì„œë²„ì— ë„˜ê²¨ì£¼ì–´ì•¼ í•¨
+	INT				NumOfChannels;		// ì„ íƒ ê°€ëŠ¥í•œ ì±„ë„ì˜ ìˆ˜
 	ARRAY_(MEX_CHANNEL_INFO);
-};		// F->C, ¼±ÅÃ °¡´ÉÇÑ Ã¤³ÎÀ» Á¦½ÃÇÔ
+};		// F->C, ì„ íƒ ê°€ëŠ¥í•œ ì±„ë„ì„ ì œì‹œí•¨
 
 struct MSG_FC_EVENT_SELECT_CHANNEL {
 	ClientIndex_t		ClientIndex;
-	INT					WarpTargetIndex;	// Å¬¶óÀÌ¾ğÆ®´Â ÀÌ Á¤º¸¸¦ MSG_FC_EVENT_SUGGEST_CHANNELS·ÎºÎÅÍ ±×´ë·Î º¹»çÇØ¼­ ¼­¹ö¿¡ ³Ñ°ÜÁÖ¾î¾ß ÇÔ
+	INT					WarpTargetIndex;	// í´ë¼ì´ì–¸íŠ¸ëŠ” ì´ ì •ë³´ë¥¼ MSG_FC_EVENT_SUGGEST_CHANNELSë¡œë¶€í„° ê·¸ëŒ€ë¡œ ë³µì‚¬í•´ì„œ ì„œë²„ì— ë„˜ê²¨ì£¼ì–´ì•¼ í•¨
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};				// C->F, ¼±ÅÃÇÑ Ã¤³ÎÀ» Àü¼ÛÇÔ
+};				// C->F, ì„ íƒí•œ ì±„ë„ì„ ì „ì†¡í•¨
 
 struct MSG_FC_EVENT_SELECT_CHANNEL_WITH_PARTY
 {
 	ClientIndex_t		ClientIndex;
-	INT					WarpTargetIndex;	// Å¬¶óÀÌ¾ğÆ®´Â ÀÌ Á¤º¸¸¦ MSG_FC_EVENT_SUGGEST_CHANNELS·ÎºÎÅÍ ±×´ë·Î º¹»çÇØ¼­ ¼­¹ö¿¡ ³Ñ°ÜÁÖ¾î¾ß ÇÔ
+	INT					WarpTargetIndex;	// í´ë¼ì´ì–¸íŠ¸ëŠ” ì´ ì •ë³´ë¥¼ MSG_FC_EVENT_SUGGEST_CHANNELSë¡œë¶€í„° ê·¸ëŒ€ë¡œ ë³µì‚¬í•´ì„œ ì„œë²„ì— ë„˜ê²¨ì£¼ì–´ì•¼ í•¨
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-	int					nPartyMembers;		// °°ÀÌ ¿öÇÁÇÒ ÆÄÆ¼¿øÀÇ ¼ö, Æí´ëÀå Á¦¿Ü
-	ARRAY_(UID32_t);						// ÆÄÆ¼¿ø character uniquenumberÀÇ array
-};	// C->F, ¼±ÅÃÇÑ Ã¤³ÎÀ» Àü¼ÛÇÔ
+	int					nPartyMembers;		// ê°™ì´ ì›Œí”„í•  íŒŒí‹°ì›ì˜ ìˆ˜, í¸ëŒ€ì¥ ì œì™¸
+	ARRAY_(UID32_t);						// íŒŒí‹°ì› character uniquenumberì˜ array
+};	// C->F, ì„ íƒí•œ ì±„ë„ì„ ì „ì†¡í•¨
 
 struct MSG_FC_EVENT_REQUEST_RACING_WARP
 {
 	ClientIndex_t		ClientIndex;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};	// C->F, ·¹ÀÌ½Ì¸ÊÀ¸·ÎÀÇ ¿öÇÁ ¿äÃ»
+};	// C->F, ë ˆì´ì‹±ë§µìœ¼ë¡œì˜ ì›Œí”„ ìš”ì²­
 
 
 struct MSG_FC_EVENT_GET_SHOP_WARP_TARGET_MAP_LIST
@@ -5120,9 +5120,9 @@ struct MSG_FC_EVENT_GET_SHOP_WARP_TARGET_MAP_LIST
 struct WARP_TARGET_MAP_INFO_4_EXCHANGE
 {
 	MapIndex_t	MapIndex;
-	INT			TargetIndex;	// EVENTINFO¿¡ Á¸ÀçÇÏ´Â TargetIndex
-	char		TargetName[SIZE_MAX_WARP_TARGET_NAME];	// Å¸ÄÏÀÇ ÀÌ¸§(ex: µµ½Ã»ó´Ü, µµ½ÃÇÏ´Ü)
-	INT			Fee;			// ¿öÇÁ ¿ä±İ
+	INT			TargetIndex;	// EVENTINFOì— ì¡´ì¬í•˜ëŠ” TargetIndex
+	char		TargetName[SIZE_MAX_WARP_TARGET_NAME];	// íƒ€ì¼“ì˜ ì´ë¦„(ex: ë„ì‹œìƒë‹¨, ë„ì‹œí•˜ë‹¨)
+	INT			Fee;			// ì›Œí”„ ìš”ê¸ˆ
 };
 
 struct MSG_FC_EVENT_GET_SHOP_WARP_TARGET_MAP_LIST_OK
@@ -5134,7 +5134,7 @@ struct MSG_FC_EVENT_GET_SHOP_WARP_TARGET_MAP_LIST_OK
 struct MSG_FC_EVENT_REQUEST_SHOP_WARP
 {
 	MapIndex_t	MapIndex;
-	INT			TargetIndex;			// EVENTINFO¿¡ Á¸ÀçÇÏ´Â TargetIndex	
+	INT			TargetIndex;			// EVENTINFOì— ì¡´ì¬í•˜ëŠ” TargetIndex	
 };
 
 struct MSG_FC_EVENT_CHARACTERMODE_ENTER_BUILDING
@@ -5176,7 +5176,7 @@ struct MSG_FP_EVENT_NOTIFY_WARP_OK
 struct MSG_FP_EVENT_ENTER_SELECT_SCREEN
 {
 	char			AccountName[SIZE_MAX_ACCOUNT_NAME];
-};		// F->P, Client°¡ Ä³¸¯ÅÍ ¼±ÅÃ Ã¢¿¡ µé¾î¿È
+};		// F->P, Clientê°€ ìºë¦­í„° ì„ íƒ ì°½ì— ë“¤ì–´ì˜´
 
 struct MSG_FP_EVENT_GAME_STARTED
 {
@@ -5184,7 +5184,7 @@ struct MSG_FP_EVENT_GAME_STARTED
 	char				CharacterName[SIZE_MAX_CHARACTER_NAME];
 	UID32_t				CharacterUniqueNumber;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};			// F->P, Client°¡ °ÔÀÓÀ» ½ÃÀÛÇÔ(¸ÊÀ¸·Î µé¾î¿È)
+};			// F->P, Clientê°€ ê²Œì„ì„ ì‹œì‘í•¨(ë§µìœ¼ë¡œ ë“¤ì–´ì˜´)
 
 struct MSG_FP_EVENT_MAP_CHANGED
 {
@@ -5192,7 +5192,7 @@ struct MSG_FP_EVENT_MAP_CHANGED
 	char				CharacterName[SIZE_MAX_CHARACTER_NAME];
 	UID32_t				CharacterUniqueNumber;
 	MAP_CHANNEL_INDEX	MapChannelIndex;
-};				// F->P, Client°¡ ¸ÊÀ» ÀÌµ¿ÇÔ
+};				// F->P, Clientê°€ ë§µì„ ì´ë™í•¨
 
 				// T0_FP_MONITOR
 //struct MSG_FP_MONITOR_SET_MGAME_EVENT_TYPE
@@ -5208,38 +5208,38 @@ struct MSG_FC_STORE_GET_ITEM
 {
 	UID32_t	AccountUniqueNumber;
 	UID32_t	PossessCharacter;		// CharacterUniqueNumber 
-	BYTE	ItemStorage0;			// 0(ITEM_IN_CHARACTER):Ä³¸¯ÅÍÀÎº¥, 1(ITEM_IN_STORE):Ã¢°í
-	bool	bSendToClient;			// Client¿¡ Àü¼ÛÇÒÁö ¿©ºÎ, WARP_CONNECT½Ã´Â Àü¼Û ºÒÇÊ¿ä
-	bool	bMainGameStartFlag;		// 2012-10-08 by khkim, GLog - °ÔÀÓ½ÃÀÛ½Ã ÀÎÁö¸¦ È®ÀÎÇÒ º¯¼ö
+	BYTE	ItemStorage0;			// 0(ITEM_IN_CHARACTER):ìºë¦­í„°ì¸ë²¤, 1(ITEM_IN_STORE):ì°½ê³ 
+	bool	bSendToClient;			// Clientì— ì „ì†¡í• ì§€ ì—¬ë¶€, WARP_CONNECTì‹œëŠ” ì „ì†¡ ë¶ˆí•„ìš”
+	bool	bMainGameStartFlag;		// 2012-10-08 by khkim, GLog - ê²Œì„ì‹œì‘ì‹œ ì¸ì§€ë¥¼ í™•ì¸í•  ë³€ìˆ˜
 };
 
 struct MSG_FC_STORE_PUT_ITEM_HEADER
 {
 	UID32_t	PossessCharacter;		// CharacterUniqueNumber
-	BYTE	ItemStorage0;			// 2006-01-05 by cmkwon, 0(ITEM_IN_CHARACTER):Ä³¸¯ÅÍÀÎº¥, 1(ITEM_IN_STORE):Ã¢°í
+	BYTE	ItemStorage0;			// 2006-01-05 by cmkwon, 0(ITEM_IN_CHARACTER):ìºë¦­í„°ì¸ë²¤, 1(ITEM_IN_STORE):ì°½ê³ 
 };
 
 struct MSG_FC_STORE_PUT_ITEM
 {
-	int		BytesToRead;			// µÚ¿¡ ºÙ´Â ¾ÆÀÌÅÛÀÇ ÃÑ ¹ÙÀÌÆ®¼ö, ÁÖÀÇ°¡ ÇÊ¿äÇÔ
+	int		BytesToRead;			// ë’¤ì— ë¶™ëŠ” ì•„ì´í…œì˜ ì´ ë°”ì´íŠ¸ìˆ˜, ì£¼ì˜ê°€ í•„ìš”í•¨
 	ARRAY_(ITEM_XXX);
 };
 
 struct MSG_FC_STORE_PUT_ITEM_DONE
 {
 	UINT	NumOfItem;
-	BYTE	ItemStorage0;			// 2006-01-05 by cmkwon, 0(ITEM_IN_CHARACTER):Ä³¸¯ÅÍÀÎº¥, 1(ITEM_IN_STORE):Ã¢°í
+	BYTE	ItemStorage0;			// 2006-01-05 by cmkwon, 0(ITEM_IN_CHARACTER):ìºë¦­í„°ì¸ë²¤, 1(ITEM_IN_STORE):ì°½ê³ 
 };
 
-struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO_OK_DONE	// 2012-06-05 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â - Å¬¶ó¿äÃ» ÆĞÅ¶ Ãß°¡
+struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO_OK_DONE	// 2012-06-05 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° - í´ë¼ìš”ì²­ íŒ¨í‚· ì¶”ê°€
 {
 	struct ItemEnahcntInfo
 	{
-		// 2013-01-24 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â ÆĞÅ¶ »çÀÌÁî ÃÊ°ú·Î ÀÎÇÑ ¹ö±× ¼öÁ¤
+		// 2013-01-24 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° íŒ¨í‚· ì‚¬ì´ì¦ˆ ì´ˆê³¼ë¡œ ì¸í•œ ë²„ê·¸ ìˆ˜ì •
 		UID64_t		TargetItemUniqueNumber;
-		INT			TargetItemNum;				// ´ë»ó ¾ÆÀÌÅÛÀÇ ItemNum
-		INT			EnchantItemNum;				// enchant·Î ¾²ÀÎ ¾ÆÀÌÅÛÀÇ ItemNum
-												// end 2013-01-24 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â ÆĞÅ¶ »çÀÌÁî ÃÊ°ú·Î ÀÎÇÑ ¹ö±× ¼öÁ¤
+		INT			TargetItemNum;				// ëŒ€ìƒ ì•„ì´í…œì˜ ItemNum
+		INT			EnchantItemNum;				// enchantë¡œ ì“°ì¸ ì•„ì´í…œì˜ ItemNum
+												// end 2013-01-24 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° íŒ¨í‚· ì‚¬ì´ì¦ˆ ì´ˆê³¼ë¡œ ì¸í•œ ë²„ê·¸ ìˆ˜ì •
 		int			EnchantCount;
 	};
 	ItemEnahcntInfo ItemEnchant[6][8];
@@ -5247,10 +5247,10 @@ struct MSG_FC_CHARACTER_GET_USER_ITEM_INFO_OK_DONE	// 2012-06-05 by jhseol, ¾ÆÅÛ
 
 struct MSG_FC_STORE_MOVE_ITEM
 {
-	UID64_t		ItemUniqueNumber;		// STORE TalbeÀÇ ÀÎµ¦½º, DB paramemter´Â (STORE_ITEM*)ÀÓ
-	BYTE		FromItemStorage;		// 0(ITEM_IN_CHARACTER):Ä³¸¯ÅÍÀÎº¥, 1(ITEM_IN_STORE):Ã¢°í
-	BYTE		ToItemStorage;			// 0(ITEM_IN_CHARACTER):Ã¢°í->Ä³¸¯ÅÍÀÎº¥, 1(ITEM_IN_STORE):Ä³¸¯ÅÍÀÎº¥->Ã¢°í
-	INT			Count;					// µ¿ÀÏ ¾ÆÀÌÅÛÀÇ °³¼ö
+	UID64_t		ItemUniqueNumber;		// STORE Talbeì˜ ì¸ë±ìŠ¤, DB paramemterëŠ” (STORE_ITEM*)ì„
+	BYTE		FromItemStorage;		// 0(ITEM_IN_CHARACTER):ìºë¦­í„°ì¸ë²¤, 1(ITEM_IN_STORE):ì°½ê³ 
+	BYTE		ToItemStorage;			// 0(ITEM_IN_CHARACTER):ì°½ê³ ->ìºë¦­í„°ì¸ë²¤, 1(ITEM_IN_STORE):ìºë¦­í„°ì¸ë²¤->ì°½ê³ 
+	INT			Count;					// ë™ì¼ ì•„ì´í…œì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_STORE_MOVE_ITEM_OK
@@ -5258,17 +5258,17 @@ struct MSG_FC_STORE_MOVE_ITEM_OK
 	UID64_t		ItemUniqueNumber;
 	UID32_t		FromPossessCharacter;	// CharacterUniqueNumber or 0
 	UID32_t		ToPossessCharacter;		// CharacterUniqueNumber or 0
-	INT			Count;					// µ¿ÀÏ ¾ÆÀÌÅÛÀÇ °³¼ö
+	INT			Count;					// ë™ì¼ ì•„ì´í…œì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_STORE_LOG_GUILD_ITEM
-{// 2006-09-27 by dhjin, C --> F ¿©´Ü ·Î±× Á¤º¸ ¿äÃ»
+{// 2006-09-27 by dhjin, C --> F ì—¬ë‹¨ ë¡œê·¸ ì •ë³´ ìš”ì²­
 	UID32_t		AccountUID;
 	UID32_t		CharacterUID;
 };
 
 struct MSG_FC_STORE_LOG_GUILD_ITEM_OK
-{// 2006-09-27 by dhjin, F --> C ¿©´Ü ·Î±× Á¤º¸ Àü¼Û
+{// 2006-09-27 by dhjin, F --> C ì—¬ë‹¨ ë¡œê·¸ ì •ë³´ ì „ì†¡
 	T1<T0::FL_LOG>	LogType;
 	ATUM_DATE_TIME	Time;
 	UID32_t			CharacterUID;
@@ -5279,90 +5279,90 @@ struct MSG_FC_STORE_LOG_GUILD_ITEM_OK
 	INT				ItemChangeCount;
 };
 
-// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 struct MSG_FI_GUILD_BONUS_EXP_RATE
 {
 	INT				nBonusExpRate;
-	UID32_t			CharacterUID; // 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	UID32_t			CharacterUID; // 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 };
-// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 
-// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - IDT_XXX, ITEM_DELETE_TYPE_XXX
-#define IDT_GENERAL						((BYTE)0)	// ÀÏ¹İ ¿ëµµ
-#define IDT_EXPIRE_TIME					((BYTE)1)	// À¯È¿ ½Ã°£/±â°£ °æ°ú
-#define IDT_INVALID_ITEMNUM				((BYTE)2)	// À¯È¿ÇÏÁö ¾ÊÀº ItemNum		// 2009-11-20 by cmkwon, ¼ÒÀ¯ ¾ÆÀÌÅÛ ·Îµù½Ã À¯È¿ÇÏÁö ¾ÊÀº ¾ÆÀÌÅÛ Ã³¸® ¼öÁ¤ - 
-#define IDT_COUNTABLEITEM_ZERO			((BYTE)3)	// Ä«¿îÅÍºí ¾ÆÀÌÅÛ Count 0		// 2009-11-20 by cmkwon, ¼ÒÀ¯ ¾ÆÀÌÅÛ ·Îµù½Ã À¯È¿ÇÏÁö ¾ÊÀº ¾ÆÀÌÅÛ Ã³¸® ¼öÁ¤ - 
+// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - IDT_XXX, ITEM_DELETE_TYPE_XXX
+#define IDT_GENERAL						((BYTE)0)	// ì¼ë°˜ ìš©ë„
+#define IDT_EXPIRE_TIME					((BYTE)1)	// ìœ íš¨ ì‹œê°„/ê¸°ê°„ ê²½ê³¼
+#define IDT_INVALID_ITEMNUM				((BYTE)2)	// ìœ íš¨í•˜ì§€ ì•Šì€ ItemNum		// 2009-11-20 by cmkwon, ì†Œìœ  ì•„ì´í…œ ë¡œë”©ì‹œ ìœ íš¨í•˜ì§€ ì•Šì€ ì•„ì´í…œ ì²˜ë¦¬ ìˆ˜ì • - 
+#define IDT_COUNTABLEITEM_ZERO			((BYTE)3)	// ì¹´ìš´í„°ë¸” ì•„ì´í…œ Count 0		// 2009-11-20 by cmkwon, ì†Œìœ  ì•„ì´í…œ ë¡œë”©ì‹œ ìœ íš¨í•˜ì§€ ì•Šì€ ì•„ì´í…œ ì²˜ë¦¬ ìˆ˜ì • - 
 
 
 // IUT_XXX, ITEM_UPDATE_TYPE_XXX
-#define IUT_GENERAL						((BYTE)0)	// ÀÏ¹İ ¿ëµµ
-#define IUT_DROP_ITEM					((BYTE)1)	// µå¶ø ¾ÆÀÌÅÛ
-#define IUT_MIXING						((BYTE)2)	// ¾ÆÀÌÅÛ Á¶ÇÕ
-#define IUT_TRADE						((BYTE)3)	// °Å·¡
-#define IUT_SHOP						((BYTE)4)	// »óÁ¡ ±¸¸Å ¾ÆÀÌÅÛ, ÆÇ¸Å ±İ¾× µî
-#define IUT_QUEST						((BYTE)5)	// Äù½ºÆ®¿¡ ÀÇÇÑ »ğÀÔ
-#define IUT_ADMIN						((BYTE)6)	// °ü¸®, °³¹ß¿ë
-#define IUT_BULLET						((BYTE)7)	// ÃÑ¾Ë ¾÷µ¥ÀÌÆ®
-#define IUT_SKILL						((BYTE)8)	// ½ºÅ³ ¾ÆÀÌÅÛ
-#define IUT_LOADING						((BYTE)9)	// °ÔÀÓ ½ÃÀÛ ½Ã ·Îµù
-#define IUT_AUCTION						((BYTE)10)	// °æ¸Å °ü·Ã
-#define IUT_ENCHANT						((BYTE)11)	// ÀÎÃ¦Æ®
-#define IUT_USE_ITEM					((BYTE)12)	// ¾ÆÀÌÅÛ »ç¿ë
+#define IUT_GENERAL						((BYTE)0)	// ì¼ë°˜ ìš©ë„
+#define IUT_DROP_ITEM					((BYTE)1)	// ë“œë ì•„ì´í…œ
+#define IUT_MIXING						((BYTE)2)	// ì•„ì´í…œ ì¡°í•©
+#define IUT_TRADE						((BYTE)3)	// ê±°ë˜
+#define IUT_SHOP						((BYTE)4)	// ìƒì  êµ¬ë§¤ ì•„ì´í…œ, íŒë§¤ ê¸ˆì•¡ ë“±
+#define IUT_QUEST						((BYTE)5)	// í€˜ìŠ¤íŠ¸ì— ì˜í•œ ì‚½ì…
+#define IUT_ADMIN						((BYTE)6)	// ê´€ë¦¬, ê°œë°œìš©
+#define IUT_BULLET						((BYTE)7)	// ì´ì•Œ ì—…ë°ì´íŠ¸
+#define IUT_SKILL						((BYTE)8)	// ìŠ¤í‚¬ ì•„ì´í…œ
+#define IUT_LOADING						((BYTE)9)	// ê²Œì„ ì‹œì‘ ì‹œ ë¡œë”©
+#define IUT_AUCTION						((BYTE)10)	// ê²½ë§¤ ê´€ë ¨
+#define IUT_ENCHANT						((BYTE)11)	// ì¸ì±ˆíŠ¸
+#define IUT_USE_ITEM					((BYTE)12)	// ì•„ì´í…œ ì‚¬ìš©
 #define IUT_MGAME_EVENT					((BYTE)13)	// MGameEvent
-#define IUT_USE_ENERGY					((BYTE)14)	// ¿¡³ÊÁö·ù ¾ÆÀÌÅÛ »ç¿ë
-#define IUT_EXPIRE_CARD_ITEM			((BYTE)15)	// ½Ã°£Á¦ÇÑ ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ ¸¸·á
-#define IUT_PENALTY_ON_DEAD				((BYTE)16)	// Ä³¸¯ÅÍ Á×À» ¶§ÀÇ ÆĞ³ÎÆ¼
-#define IUT_PENALTY_AGEAR_FUEL_ALLIN	((BYTE)17)	// Ä³¸¯ÅÍ Á×À» ¶§ÀÇ ÆĞ³ÎÆ¼
-#define IUT_INFLUENCEWAR_KILLER_BONUS	((BYTE)18)	// ¼¼·ÂÀü¿¡¼­ Å³·¯ º¸³Ê½º
-#define IUT_BONUS_ITEM					((BYTE)19)	// 2006-04-26 by cmkwon, º¸³Ê½º ¾ÆÀÌÅÛ
-#define IUT_BAZAAR_SELL					((BYTE)20)	// °³ÀÎ ÆÇ¸Å »óÁ¡ °Å·¡
-#define IUT_BAZAAR_BUY					((BYTE)21)	// °³ÀÎ ±¸ÀÔ »óÁ¡ °Å·¡
-#define IUT_RANDOMBOX					((BYTE)22)	// 2006-08-10 by cmkwon, ·£´ı¹Ú½º »ç¿ë
-#define IUT_GIVEEVENTITEM				((BYTE)23)	// 2006-08-25 by dhjin, ÀÌº¥Æ® ¾ÆÀÌÅÛ »ç¿ë
-#define IUT_GUILD_STORE					((BYTE)24)	// 2006-09-25 by cmkwon, ¿©´Ü Ã¢°í
-#define IUT_EXPIRE_ITEM					((BYTE)25)	// 2006-09-29 by cmkwon, ¾ÆÀÌÅÛ ¸¸·á
-#define IUT_STORE						((BYTE)26)	// 2006-10-26 by cmkwon, Ã¢°í ÀÌ¿ë
-#define IUT_STORE_FEE					((BYTE)27)	// 2006-10-26 by cmkwon, Ã¢°í ÀÌ¿ë·á
-#define IUT_ARENA_ITEM					((BYTE)28)	// 2007-06-04 by dhjin, ¾Æ·¹³ª Àü¿ë ¾ÆÀÌÅÛ
-#define IUT_TUTORIAL_PAY_ITEM			((BYTE)29)	// 2007-07-24 by dhjin, Tutorial Áö±Ş ¾ÆÀÌÅÛ
-#define IUT_EXPEDIENCYFUND_PAYBACK		((BYTE)30)	// 2007-08-22 by dhjin, ÆÇ°øºñ È¯±Ş
-#define IUT_GIVEEVENTITEM_COUPONEVENT	((BYTE)31)	// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
-#define IUT_LUCKY_ITEM					((BYTE)32)	// 2008-11-10 by dhjin, ·°Å°¸Ó½Å
-#define IUT_WAR_CONTRIBUTION			((BYTE)33)	// 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
-#define IUT_WAR_CONTRIBUTION_LEADER		((BYTE)34)	// 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È - ÁöµµÀÚ
-#define IUT_WAR_CONTRIBUTION_GUILD		((BYTE)35)	// 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È - ±æµå
-#define IUT_DISSOLUTION_ITEM			((BYTE)36)	// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ½Ã½ºÅÛ ÆĞÅ¶ Ã³¸®
-#define IUT_DEPENDENCY_ITEM				((BYTE)37)	// 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - Á¾¼ÓÀû ¾ÆÀÌÅÛ Ã³¸® (Æê »èÁ¦½Ã ¼ÒÄÏ ¾ÆÀÌÅÛ °°ÀÌ »èÁ¦)
-#define IUT_WARP						((BYTE)38)	// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ - ¿öÇÁ ÀÔÀå Á¶°Ç¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ »èÁ¦
+#define IUT_USE_ENERGY					((BYTE)14)	// ì—ë„ˆì§€ë¥˜ ì•„ì´í…œ ì‚¬ìš©
+#define IUT_EXPIRE_CARD_ITEM			((BYTE)15)	// ì‹œê°„ì œí•œ ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ë§Œë£Œ
+#define IUT_PENALTY_ON_DEAD				((BYTE)16)	// ìºë¦­í„° ì£½ì„ ë•Œì˜ íŒ¨ë„í‹°
+#define IUT_PENALTY_AGEAR_FUEL_ALLIN	((BYTE)17)	// ìºë¦­í„° ì£½ì„ ë•Œì˜ íŒ¨ë„í‹°
+#define IUT_INFLUENCEWAR_KILLER_BONUS	((BYTE)18)	// ì„¸ë ¥ì „ì—ì„œ í‚¬ëŸ¬ ë³´ë„ˆìŠ¤
+#define IUT_BONUS_ITEM					((BYTE)19)	// 2006-04-26 by cmkwon, ë³´ë„ˆìŠ¤ ì•„ì´í…œ
+#define IUT_BAZAAR_SELL					((BYTE)20)	// ê°œì¸ íŒë§¤ ìƒì  ê±°ë˜
+#define IUT_BAZAAR_BUY					((BYTE)21)	// ê°œì¸ êµ¬ì… ìƒì  ê±°ë˜
+#define IUT_RANDOMBOX					((BYTE)22)	// 2006-08-10 by cmkwon, ëœë¤ë°•ìŠ¤ ì‚¬ìš©
+#define IUT_GIVEEVENTITEM				((BYTE)23)	// 2006-08-25 by dhjin, ì´ë²¤íŠ¸ ì•„ì´í…œ ì‚¬ìš©
+#define IUT_GUILD_STORE					((BYTE)24)	// 2006-09-25 by cmkwon, ì—¬ë‹¨ ì°½ê³ 
+#define IUT_EXPIRE_ITEM					((BYTE)25)	// 2006-09-29 by cmkwon, ì•„ì´í…œ ë§Œë£Œ
+#define IUT_STORE						((BYTE)26)	// 2006-10-26 by cmkwon, ì°½ê³  ì´ìš©
+#define IUT_STORE_FEE					((BYTE)27)	// 2006-10-26 by cmkwon, ì°½ê³  ì´ìš©ë£Œ
+#define IUT_ARENA_ITEM					((BYTE)28)	// 2007-06-04 by dhjin, ì•„ë ˆë‚˜ ì „ìš© ì•„ì´í…œ
+#define IUT_TUTORIAL_PAY_ITEM			((BYTE)29)	// 2007-07-24 by dhjin, Tutorial ì§€ê¸‰ ì•„ì´í…œ
+#define IUT_EXPEDIENCYFUND_PAYBACK		((BYTE)30)	// 2007-08-22 by dhjin, íŒê³µë¹„ í™˜ê¸‰
+#define IUT_GIVEEVENTITEM_COUPONEVENT	((BYTE)31)	// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
+#define IUT_LUCKY_ITEM					((BYTE)32)	// 2008-11-10 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
+#define IUT_WAR_CONTRIBUTION			((BYTE)33)	// 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
+#define IUT_WAR_CONTRIBUTION_LEADER		((BYTE)34)	// 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ - ì§€ë„ì
+#define IUT_WAR_CONTRIBUTION_GUILD		((BYTE)35)	// 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ - ê¸¸ë“œ
+#define IUT_DISSOLUTION_ITEM			((BYTE)36)	// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì‹œìŠ¤í…œ íŒ¨í‚· ì²˜ë¦¬
+#define IUT_DEPENDENCY_ITEM				((BYTE)37)	// 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì¢…ì†ì  ì•„ì´í…œ ì²˜ë¦¬ (í« ì‚­ì œì‹œ ì†Œì¼“ ì•„ì´í…œ ê°™ì´ ì‚­ì œ)
+#define IUT_WARP						((BYTE)38)	// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ - ì›Œí”„ ì…ì¥ ì¡°ê±´ì— ì˜í•œ ì•„ì´í…œ ì‚­ì œ
 
-// start 2012-11-21 by khkim, GLog 2Â÷
-#define GLOG_WARPOINTSHOP				((BYTE)39)	// ¿öÆ÷ »óÁ¡ 
-#define GLOG_INFINITYOBSHOP				((BYTE)40)	// ¿Àºê	»óÁ¡
-#define GLOG_CASHSHOP					((BYTE)41)	// Ä³½¬ »óÁ¡
-#define GLOG_DEFAULT_ZERO				((BYTE)0) 	// µğÆúÆ® 0°ª »ç¿ë½Ã
-// end 2012-11-21 by khkim, GLog 2Â÷
+// start 2012-11-21 by khkim, GLog 2ì°¨
+#define GLOG_WARPOINTSHOP				((BYTE)39)	// ì›Œí¬ ìƒì  
+#define GLOG_INFINITYOBSHOP				((BYTE)40)	// ì˜¤ë¸Œ	ìƒì 
+#define GLOG_CASHSHOP					((BYTE)41)	// ìºì‰¬ ìƒì 
+#define GLOG_DEFAULT_ZERO				((BYTE)0) 	// ë””í´íŠ¸ 0ê°’ ì‚¬ìš©ì‹œ
+// end 2012-11-21 by khkim, GLog 2ì°¨
 
-#define IUT_CITYWAR_BRING_SUMOFTEX		((BYTE)100)	// µµ½ÃÁ¡·ÉÀü ¼¼±İ
+#define IUT_CITYWAR_BRING_SUMOFTEX		((BYTE)100)	// ë„ì‹œì ë ¹ì „ ì„¸ê¸ˆ
 
 struct MSG_FC_STORE_INSERT_ITEM
 {
-	UID32_t			FromCharacterUniqueNumber;		// From Possess, È¤Àº FromCharacterUniqueNumber
-	BYTE			ItemInsertionType;				// ¾ÆÀÌÅÛ »ğÀÔ Å¸ÀÔ, IUT_XXX
+	UID32_t			FromCharacterUniqueNumber;		// From Possess, í˜¹ì€ FromCharacterUniqueNumber
+	BYTE			ItemInsertionType;				// ì•„ì´í…œ ì‚½ì… íƒ€ì…, IUT_XXX
 	ITEM_GENERAL	ItemGeneral;
 };
 
 struct MSG_FC_STORE_DELETE_ITEM
 {
-	UID64_t			ItemUniqueNumber;	// Áö¿ï ¾ÆÀÌÅÛ
-	BYTE			ItemDeletionType;	// ¾ÆÀÌÅÛ »èÁ¦ Å¸ÀÔ, IUT_XXX
+	UID64_t			ItemUniqueNumber;	// ì§€ìš¸ ì•„ì´í…œ
+	BYTE			ItemDeletionType;	// ì•„ì´í…œ ì‚­ì œ íƒ€ì…, IUT_XXX
 };
 
 struct MSG_FC_STORE_UPDATE_ITEM_COUNT
 {
-	UID64_t			ItemUniqueNumber;	// UpdateÇÒ ¾ÆÀÌÅÛ
-	INT				NewCount;			// CountÀÇ »õ °ª
-	BYTE			ItemUpdateType;		// ¾ÆÀÌÅÛ ¼öÁ¤ Å¸ÀÔ, IUT_XXX
+	UID64_t			ItemUniqueNumber;	// Updateí•  ì•„ì´í…œ
+	INT				NewCount;			// Countì˜ ìƒˆ ê°’
+	BYTE			ItemUpdateType;		// ì•„ì´í…œ ìˆ˜ì • íƒ€ì…, IUT_XXX
 };
 
 struct MSG_FC_STORE_UPDATE_ENDURANCE
@@ -5381,28 +5381,28 @@ struct MSG_FC_STORE_UPDATE_POSSESS
 struct MSG_FC_STORE_UPDATE_RARE_FIX
 {
 	UID64_t	ItemUID;
-	INT		PrefixCodeNum;	// Á¢µÎ»ç, ¾øÀ¸¸é 0
-	INT		SuffixCodeNum;	// Á¢¹Ì»ç, ¾øÀ¸¸é 0
+	INT		PrefixCodeNum;	// ì ‘ë‘ì‚¬, ì—†ìœ¼ë©´ 0
+	INT		SuffixCodeNum;	// ì ‘ë¯¸ì‚¬, ì—†ìœ¼ë©´ 0
 };
 
 struct MSG_FC_STORE_INSERT_USINGITEM
 {
 	INT				ItemNum;
 	UID64_t			ItemUID;						// 2006-04-24 by cmkwon
-	BYTE			ItemInsertionType;				// ¾ÆÀÌÅÛ »ğÀÔ Å¸ÀÔ, IUT_XXX
+	BYTE			ItemInsertionType;				// ì•„ì´í…œ ì‚½ì… íƒ€ì…, IUT_XXX
 	INT				nRemainSecond;
 };
 
 struct MSG_FC_STORE_DELETE_USINGITEM
 {
 	INT				ItemNum;
-	BYTE			ItemDeletionType;	// ¾ÆÀÌÅÛ »èÁ¦ Å¸ÀÔ, IUT_XXX
+	BYTE			ItemDeletionType;	// ì•„ì´í…œ ì‚­ì œ íƒ€ì…, IUT_XXX
 };
 
 struct MSG_FC_STORE_UPDATE_USINGITEM
 {
 	UID64_t			ItemUID0;
-	INT				UsingTimeStamp0;	// Áö±İ±îÁö »ç¿ëµÈ ½Ã°£(´ÜÀ§:ÃÊ)
+	INT				UsingTimeStamp0;	// ì§€ê¸ˆê¹Œì§€ ì‚¬ìš©ëœ ì‹œê°„(ë‹¨ìœ„:ì´ˆ)
 };
 
 struct MSG_FC_STORE_EXPIRE_USINGITEM		// 2006-10-11 by cmkwon
@@ -5412,7 +5412,7 @@ struct MSG_FC_STORE_EXPIRE_USINGITEM		// 2006-10-11 by cmkwon
 
 struct MSG_FC_STORE_UPDATE_ITEMSTORAGE
 {
-	//	UID32_t			PossessCharacter;		// 2006-09-18 by dhjin, ¼±ÅÃµÈ ÄÉ¸¯ÅÍ
+	//	UID32_t			PossessCharacter;		// 2006-09-18 by dhjin, ì„ íƒëœ ì¼€ë¦­í„°
 	UID64_t			ItemUniqueNumber;
 	UID32_t			FromItemStorage;
 	UID32_t			ToItemStorage;
@@ -5422,13 +5422,13 @@ struct MSG_FC_STORE_UPDATE_ITEMNUM		// 2006-06-14 by cmkwon
 {
 	UID64_t			ItemUniqueNumber;
 	INT				ItemNum;
-	BYTE			ItemUpdateType;		// ¾ÆÀÌÅÛ ¼öÁ¤ Å¸ÀÔ, IUT_XXX
+	BYTE			ItemUpdateType;		// ì•„ì´í…œ ìˆ˜ì • íƒ€ì…, IUT_XXX
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2006-09-04 by dhjin, Äü ½½·Ô °ü·Ã 
+// 2006-09-04 by dhjin, í€µ ìŠ¬ë¡¯ ê´€ë ¨ 
 #define QUICKTABCOUNT		3
-#define QUICKSLOTCOUNT		10			// 2008-06-19 by dhjin, EP3 - 8 -> 10À¸·Î ¼öÁ¤  
+#define QUICKSLOTCOUNT		10			// 2008-06-19 by dhjin, EP3 - 8 -> 10ìœ¼ë¡œ ìˆ˜ì •  
 
 struct SQUICKSLOT_INFO
 {
@@ -5444,103 +5444,103 @@ struct MSG_FC_STORE_REQUEST_QUICKSLOT_OK
 struct MSG_FC_STORE_SAVE_QUICKSLOT
 {
 	SQUICKSLOT_INFO		POS[QUICKTABCOUNT];
-	int					SlotPurpose;	// 2012-06-21 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ¾Æ·¹³ª Àü¿ë Äü½½·Ô
+	int					SlotPurpose;	// 2012-06-21 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì•„ë ˆë‚˜ ì „ìš© í€µìŠ¬ë¡¯
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 // FC_ITEM
 struct MSG_FC_ITEM_SHOW_ITEM
 {
-	UINT			ItemFieldIndex;				// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	INT				ItemNum;					// Å¬¶óÀÌ¾ğÆ®¿¡ ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ º¸¿©ÁÖ±â À§ÇØ º¸³¿
-	UID32_t			FirstCharacterUID;			// ¾ÆÀÌÅÛ ½Àµæ °¡´ÉÇÑ Ã¹¹øÂ° Ä³¸¯ÅÍ
-	INT				Amount;						// ¾ÆÀÌÅÛÀÇ °³¼ö
+	UINT			ItemFieldIndex;				// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	INT				ItemNum;					// í´ë¼ì´ì–¸íŠ¸ì— ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë³´ëƒ„
+	UID32_t			FirstCharacterUID;			// ì•„ì´í…œ ìŠµë“ ê°€ëŠ¥í•œ ì²«ë²ˆì§¸ ìºë¦­í„°
+	INT				Amount;						// ì•„ì´í…œì˜ ê°œìˆ˜
 	AVECTOR3		Position;
-	BYTE			DropItemType;				// ¶³¾îÁø ¾ÆÀÌÅÛÀÇ Á¾·ù(½Àµæ¿ë ¾ÆÀÌÅÛ, °ø°İ¿ë(¸¶ÀÎ·ù) ¾ÆÀÌÅÛ µîµî)
+	BYTE			DropItemType;				// ë–¨ì–´ì§„ ì•„ì´í…œì˜ ì¢…ë¥˜(ìŠµë“ìš© ì•„ì´í…œ, ê³µê²©ìš©(ë§ˆì¸ë¥˜) ì•„ì´í…œ ë“±ë“±)
 };
 
-#define DROP_ITEM_TYPE_PICKUP		(BYTE)0x00		// ½Àµæ¿ë ¾ÆÀÌÅÛ
-#define DROP_ITEM_TYPE_ATTACK_MINE	(BYTE)0x01		// °ø°İ¿ë ¸¶ÀÎ·ù ¾ÆÀÌÅÛ
+#define DROP_ITEM_TYPE_PICKUP		(BYTE)0x00		// ìŠµë“ìš© ì•„ì´í…œ
+#define DROP_ITEM_TYPE_ATTACK_MINE	(BYTE)0x01		// ê³µê²©ìš© ë§ˆì¸ë¥˜ ì•„ì´í…œ
 
 struct MSG_FC_ITEM_HIDE_ITEM
 {
-	UINT			ItemFieldIndex;				// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	ClientIndex_t	ClientIndex;				// ¾ÆÀÌÅÛÀ» ¸ÔÀº characterÀÇ client index
+	UINT			ItemFieldIndex;				// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	ClientIndex_t	ClientIndex;				// ì•„ì´í…œì„ ë¨¹ì€ characterì˜ client index
 };
 
 struct MSG_FC_ITEM_GET_ITEM
 {
 	ClientIndex_t	ClientIndex;
-	UINT			ItemFieldIndex;					// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT			ItemFieldIndex;					// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 };
 
 struct MSG_FC_ITEM_GET_ITEM_OK
 {
 	ClientIndex_t	ClientIndex;
-	UINT			ItemFieldIndex;				// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	INT				ItemNum;					// ¾ÆÀÌÅÛÀÇ Á¾·ù
-	INT				Amount;						// ¾ÆÀÌÅÛÀÇ °³¼ö
-	INT				SizeOfItem;					// sizeof(ÇØ´çItem)
-	ARRAY_(ITEM_XXX);							// ITEM_XXX°¡ ¿Â´Ù
+	UINT			ItemFieldIndex;				// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	INT				ItemNum;					// ì•„ì´í…œì˜ ì¢…ë¥˜
+	INT				Amount;						// ì•„ì´í…œì˜ ê°œìˆ˜
+	INT				SizeOfItem;					// sizeof(í•´ë‹¹Item)
+	ARRAY_(ITEM_XXX);							// ITEM_XXXê°€ ì˜¨ë‹¤
 };
 
 struct MSG_FC_ITEM_GET_ITEM_FAIL
 {
 	ClientIndex_t	ClientIndex;
-	UINT			ItemFieldIndex;				// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT			ItemFieldIndex;				// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 };
 
 struct MSG_FC_ITEM_PUT_ITEM
 {
-	UINT			ItemFieldIndex;				// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	STRUCT_(ITEM_XXX);							// ÀÌÈÄ¿¡ ÇØ´ç ITEM_XXXX°¡ ¿Â´Ù
+	UINT			ItemFieldIndex;				// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	STRUCT_(ITEM_XXX);							// ì´í›„ì— í•´ë‹¹ ITEM_XXXXê°€ ì˜¨ë‹¤
 };
 
-// 2005-11-15 by cmkwon, »èÁ¦ÇÔ
+// 2005-11-15 by cmkwon, ì‚­ì œí•¨
 //typedef struct
 //{
 //	ClientIndex_t	ClientIndex;
-//	BYTE			KindOfSkill;				// check: ÀÇ¹Ì ÆÄ¾Ç ¹× ÀÌ¸§ Á¤ÀÇ ÇÊ¿ä
+//	BYTE			KindOfSkill;				// check: ì˜ë¯¸ íŒŒì•… ë° ì´ë¦„ ì •ì˜ í•„ìš”
 //} MSG_FC_ITEM_BONUSSKILLPOINT;
 //
 //typedef struct
 //{
 //	ClientIndex_t	ClientIndex;
-//	BYTE			OldKindOfSkill;				// check: ÀÇ¹Ì ÆÄ¾Ç ¹× ÀÌ¸§ Á¤ÀÇ ÇÊ¿ä
-//	BYTE			NewKindOfSkill;				// check: ÀÇ¹Ì ÆÄ¾Ç ¹× ÀÌ¸§ Á¤ÀÇ ÇÊ¿ä
-//	BYTE			RemainedAmountOfSkill;		// check: º¯¼ö type È®ÀÎÇØ¾ß ÇÔ!
+//	BYTE			OldKindOfSkill;				// check: ì˜ë¯¸ íŒŒì•… ë° ì´ë¦„ ì •ì˜ í•„ìš”
+//	BYTE			NewKindOfSkill;				// check: ì˜ë¯¸ íŒŒì•… ë° ì´ë¦„ ì •ì˜ í•„ìš”
+//	BYTE			RemainedAmountOfSkill;		// check: ë³€ìˆ˜ type í™•ì¸í•´ì•¼ í•¨!
 //} MSG_FC_ITEM_BONUSSKILLPOINT_OK;
 
 struct MSG_FC_ITEM_CHANGE_WINDOW_POSITION
 {
 	UID32_t			CharacterUniqueNumber;
-	UID64_t			FromItemUniqueNumber;	// °ÔÀÓ À¯Àú°¡ ÀÌµ¿ÇÒ ¾ÆÀÌÅÛ
-	INT				FromItemWindowIndex;	// °ÔÀÓ À¯Àú°¡ ÀÌµ¿ÇÒ ¾ÆÀÌÅÛÀÇ ±âÁ¸ À§Ä¡
-	UID64_t			ToItemUniqueNumber;		// ÀÌµ¿ À§Ä¡(destination)¿¡ µé¾î ÀÖ´Â ¾ÆÀÌÅÛ(Á¸ÀçÇÑ´Ù¸é), ¾ø´Ù¸é 0
-	INT				ToItemWindowIndex;		// ÀÌµ¿ À§Ä¡(destination)ÀÇ ItemWindowIndex
+	UID64_t			FromItemUniqueNumber;	// ê²Œì„ ìœ ì €ê°€ ì´ë™í•  ì•„ì´í…œ
+	INT				FromItemWindowIndex;	// ê²Œì„ ìœ ì €ê°€ ì´ë™í•  ì•„ì´í…œì˜ ê¸°ì¡´ ìœ„ì¹˜
+	UID64_t			ToItemUniqueNumber;		// ì´ë™ ìœ„ì¹˜(destination)ì— ë“¤ì–´ ìˆëŠ” ì•„ì´í…œ(ì¡´ì¬í•œë‹¤ë©´), ì—†ë‹¤ë©´ 0
+	INT				ToItemWindowIndex;		// ì´ë™ ìœ„ì¹˜(destination)ì˜ ItemWindowIndex
 };
 
 struct MSG_FC_ITEM_CHANGE_WINDOW_POSITION_OK
 {
-	UID64_t			UniqueNumber;			// °ÔÀÓ À¯Àú°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛ
-	INT				ItemWindowIndex;		// °ÔÀÓ À¯Àú°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛÀÇ »õ À§Ä¡
-	BYTE			Wear;					// °ÔÀÓ À¯Àú°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛÀÇ wear »óÅÂ
-	UID64_t			UniqueNumberDest;		// ÀÌµ¿ À§Ä¡(destination)¿¡ µé¾î ÀÖ´ø ±âÁ¸ ¾ÆÀÌÅÛ(Á¸ÀçÇÑ´Ù¸é), ¾ø´Ù¸é 0
-	INT				ItemWindowIndexDest;	// ÀÌµ¿ À§Ä¡(destination)¿¡ µé¾î ÀÖ´ø ±âÁ¸ ¾ÆÀÌÅÛÀÇ »õ À§Ä¡(Á¸ÀçÇÑ´Ù¸é), ¾ø´Ù¸é POS_INVALID_POSITION
-	BYTE			WearDest;				// ÀÌµ¿ À§Ä¡(destination)¿¡ µé¾î ÀÖ´ø ±âÁ¸ ¾ÆÀÌÅÛ wear »óÅÂ(Á¸ÀçÇÑ´Ù¸é), ¾ø´Ù¸é 0
+	UID64_t			UniqueNumber;			// ê²Œì„ ìœ ì €ê°€ ì´ë™í•œ ì•„ì´í…œ
+	INT				ItemWindowIndex;		// ê²Œì„ ìœ ì €ê°€ ì´ë™í•œ ì•„ì´í…œì˜ ìƒˆ ìœ„ì¹˜
+	BYTE			Wear;					// ê²Œì„ ìœ ì €ê°€ ì´ë™í•œ ì•„ì´í…œì˜ wear ìƒíƒœ
+	UID64_t			UniqueNumberDest;		// ì´ë™ ìœ„ì¹˜(destination)ì— ë“¤ì–´ ìˆë˜ ê¸°ì¡´ ì•„ì´í…œ(ì¡´ì¬í•œë‹¤ë©´), ì—†ë‹¤ë©´ 0
+	INT				ItemWindowIndexDest;	// ì´ë™ ìœ„ì¹˜(destination)ì— ë“¤ì–´ ìˆë˜ ê¸°ì¡´ ì•„ì´í…œì˜ ìƒˆ ìœ„ì¹˜(ì¡´ì¬í•œë‹¤ë©´), ì—†ë‹¤ë©´ POS_INVALID_POSITION
+	BYTE			WearDest;				// ì´ë™ ìœ„ì¹˜(destination)ì— ë“¤ì–´ ìˆë˜ ê¸°ì¡´ ì•„ì´í…œ wear ìƒíƒœ(ì¡´ì¬í•œë‹¤ë©´), ì—†ë‹¤ë©´ 0
 };
 
-// start 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// start 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 struct MSG_FC_ITEM_NOTIFY_WINDOW_POSITION
 {
-	UID64_t			UniqueNumber;			// ¼­¹ö°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛ
-	INT				ItemWindowIndex;		// ¼­¹ö°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛÀÇ À§Ä¡
-	BYTE			Wear;					// ¼­¹ö°¡ ÀÌµ¿ÇÑ ¾ÆÀÌÅÛÀÇ wear »óÅÂ
+	UID64_t			UniqueNumber;			// ì„œë²„ê°€ ì´ë™í•œ ì•„ì´í…œ
+	INT				ItemWindowIndex;		// ì„œë²„ê°€ ì´ë™í•œ ì•„ì´í…œì˜ ìœ„ì¹˜
+	BYTE			Wear;					// ì„œë²„ê°€ ì´ë™í•œ ì•„ì´í…œì˜ wear ìƒíƒœ
 
-											// ¼­¹ö¿¡¼­ ÀÌ ¸Ş½ÃÁö »ç¿ë½Ã CalcInventoryHiddenItemCounts() ÇÔ¼ö¸¦ ²À È£ÃâÇØÁÖ¾î¾ßÇÔ (¼û°ÜÁø ¾ÆÀÌÅÛ ¼ıÀÚ °»½Å)
+											// ì„œë²„ì—ì„œ ì´ ë©”ì‹œì§€ ì‚¬ìš©ì‹œ CalcInventoryHiddenItemCounts() í•¨ìˆ˜ë¥¼ ê¼­ í˜¸ì¶œí•´ì£¼ì–´ì•¼í•¨ (ìˆ¨ê²¨ì§„ ì•„ì´í…œ ìˆ«ì ê°±ì‹ )
 
-};		// F -> C, ¾ÆÀÌÅÛÀÇ ItemWindowIndex º¯°æµÉ½Ã¿¡ Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¾Ë·ÁÁØ´Ù
-		// end 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+};		// F -> C, ì•„ì´í…œì˜ ItemWindowIndex ë³€ê²½ë ì‹œì— í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì•Œë ¤ì¤€ë‹¤
+		// end 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 
 struct MSG_FC_ITEM_UPDATE_WINDOW_ITEM_LIST
 {
@@ -5560,14 +5560,14 @@ struct MSG_FC_ITEM_THROW_AWAY_ITEM
 {
 	ClientIndex_t	ClientIndex;
 	UID64_t			ItemUniqueNumber;
-	INT				Amount;					// ¹ö¸®´Â °³¼ö
+	INT				Amount;					// ë²„ë¦¬ëŠ” ê°œìˆ˜
 };
 
 struct MSG_FC_ITEM_THROW_AWAY_ITEM_OK
 {
 	ClientIndex_t	ClientIndex;
 	UID64_t			ItemUniqueNumber;
-	INT				RemainedNumOfItem;		// ¹ö¸° ÈÄ ³²¾ÆÀÖ´Â °³¼ö. 0 ÀÌ¸é ¿ÏÀüÈ÷ ¹ö¸®±â.
+	INT				RemainedNumOfItem;		// ë²„ë¦° í›„ ë‚¨ì•„ìˆëŠ” ê°œìˆ˜. 0 ì´ë©´ ì™„ì „íˆ ë²„ë¦¬ê¸°.
 };
 
 struct MSG_FC_ITEM_USE_ENERGY
@@ -5586,7 +5586,7 @@ struct MSG_FC_ITEM_USE_ITEM
 {
 	ClientIndex_t	ClientIndex;
 	UID64_t			ItemUniqueNumber;
-	char			str256ChatMsg[SIZE_MAX_STRING_256];		// 2007-08-09 by cmkwon, ¸ğµç ¼¼·Â¿¡ Ã¤ÆÃ Àü¼ÛÇÏ±â - 
+	char			str256ChatMsg[SIZE_MAX_STRING_256];		// 2007-08-09 by cmkwon, ëª¨ë“  ì„¸ë ¥ì— ì±„íŒ… ì „ì†¡í•˜ê¸° - 
 };
 struct MSG_FC_ITEM_USE_ITEM_OK
 {
@@ -5596,44 +5596,44 @@ struct MSG_FC_ITEM_USE_ITEM_OK
 
 struct MSG_FC_ITEM_DELETE_ITEM_ADMIN
 {
-	UINT			ItemFieldIndex;	// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	AVECTOR3		DropPosition;	// ¾ÆÀÌÅÛÀÇ À§Ä¡
+	UINT			ItemFieldIndex;	// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	AVECTOR3		DropPosition;	// ì•„ì´í…œì˜ ìœ„ì¹˜
 };
 
 struct MSG_FC_ITEM_DELETE_DROP_ITEM
 {
-	UINT			ItemFieldIndex;	// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	AVECTOR3		DropPosition;	// ¾ÆÀÌÅÛ(¸¶ÀÎ)ÀÇ À§Ä¡
-};		// F->C, ÀÚ½ÅÀÌ »Ñ¸° ¾ÆÀÌÅÛ(¸¶ÀÎµî)À» Áö¿ï ¶§ ¾²ÀÓ
+	UINT			ItemFieldIndex;	// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	AVECTOR3		DropPosition;	// ì•„ì´í…œ(ë§ˆì¸)ì˜ ìœ„ì¹˜
+};		// F->C, ìì‹ ì´ ë¿Œë¦° ì•„ì´í…œ(ë§ˆì¸ë“±)ì„ ì§€ìš¸ ë•Œ ì“°ì„
 
 struct MSG_FC_ITEM_UPDATE_ITEM_POS {
 	ClientIndex_t	ClientIndex;
 	BYTE			ItemPosition;	// POS_XXX
 	INT				ItemNum;
-	// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - º¯°æ
-	//	INT				ColorCode;		// 2005-12-08 by cmkwon, ¾Æ¸Ó »ö»ó Æ©´× Á¤º¸
-	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
-	INT				nPetLevel;		// 2012-12-05 by hskim, ÆÄÆ®³Ê ±â°£Á¦ ¿ÜÇü º¯°æ
-};		// F->C, ¾ÆÀÌÅÛ ÀåÂø(Àü)À» °»½ÅÇÔ, ¾ÆÀÌÅÛ ÀåÂøÀ» ¹Ù²Ù¸é ÁÖÀ§¿¡ Àü¼ÛÇÔ
+	// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ë³€ê²½
+	//	INT				ColorCode;		// 2005-12-08 by cmkwon, ì•„ë¨¸ ìƒ‰ìƒ íŠœë‹ ì •ë³´
+	INT				nShapeItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				nEffectItemNum;		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				nPetLevel;		// 2012-12-05 by hskim, íŒŒíŠ¸ë„ˆ ê¸°ê°„ì œ ì™¸í˜• ë³€ê²½
+};		// F->C, ì•„ì´í…œ ì¥ì°©(ì „)ì„ ê°±ì‹ í•¨, ì•„ì´í…œ ì¥ì°©ì„ ë°”ê¾¸ë©´ ì£¼ìœ„ì— ì „ì†¡í•¨
 
 struct MSG_FC_ITEM_USE_ENCHANT
 {
-	UID64_t			EnchantItemUniqueNumber;	// ÀÎÃ¦Æ® ¾ÆÀÌÅÛ
-	UID64_t			TargetItemUniqueNumber;		// ÀÎÃ¦Æ®¸¦ ¹Ù¸¦ ´ë»ó ¾ÆÀÌÅÛ
-	UID64_t			AttachItemUniqueNumber;		// Ãß°¡ ¾ÆÀÌÅÛ
-	UID64_t			IncreaseProbabilityItemUID;	// 2009-01-19 by dhjin, ÀÎÃ¾Æ® È®·ü Áõ°¡, 10ÀÎÃ¾ ÆÄ¹æ Ä«µå - ÀÎÃ¾Æ® È®·ü Áõ°¡ Ä«µå
-	UID64_t			EnchantItemUniqueNumber2;	// ÀÎÃ¦Æ® ¾ÆÀÌÅÛ2 // 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - SuffixCard ItemUID 
+	UID64_t			EnchantItemUniqueNumber;	// ì¸ì±ˆíŠ¸ ì•„ì´í…œ
+	UID64_t			TargetItemUniqueNumber;		// ì¸ì±ˆíŠ¸ë¥¼ ë°”ë¥¼ ëŒ€ìƒ ì•„ì´í…œ
+	UID64_t			AttachItemUniqueNumber;		// ì¶”ê°€ ì•„ì´í…œ
+	UID64_t			IncreaseProbabilityItemUID;	// 2009-01-19 by dhjin, ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€, 10ì¸ì²¸ íŒŒë°© ì¹´ë“œ - ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€ ì¹´ë“œ
+	UID64_t			EnchantItemUniqueNumber2;	// ì¸ì±ˆíŠ¸ ì•„ì´í…œ2 // 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - SuffixCard ItemUID 
 };
 
 struct MSG_FC_ITEM_USE_ENCHANT_OK
 {
-	// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
-	//INT				ItemNum;					// ÀÎÃ¦Æ® ¾ÆÀÌÅÛ
-	INT				EnchantItemNum;			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
-	INT				SuffixRareItemNum;		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
-	bool			bSuccessFlag;			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
-};					// ÀÎÃ¦Æ® ¿Ï·á¸¦ º¸³¿
+	// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
+	//INT				ItemNum;					// ì¸ì±ˆíŠ¸ ì•„ì´í…œ
+	INT				EnchantItemNum;			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
+	INT				SuffixRareItemNum;		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
+	bool			bSuccessFlag;			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
+};					// ì¸ì±ˆíŠ¸ ì™„ë£Œë¥¼ ë³´ëƒ„
 
 struct MSG_FC_ITEM_PUT_ENCHANT
 {
@@ -5642,20 +5642,20 @@ struct MSG_FC_ITEM_PUT_ENCHANT
 
 struct MSG_FC_ITEM_DELETE_ALL_ENCHANT
 {
-	UID64_t			ItemUniqueNumber;			// ÀÎÃ¦Æ®¸¦ »èÁ¦ÇÒ ¾ÆÀÌÅÛ	
+	UID64_t			ItemUniqueNumber;			// ì¸ì±ˆíŠ¸ë¥¼ ì‚­ì œí•  ì•„ì´í…œ	
 };
 
 struct MSG_FC_ITEM_MIX_ITEMS
 {
 	INT				NumOfItems;
-	INT				nMixCounts;		// 2008-03-17 by cmkwon, Á¶ÇÕ ½Ã½ºÅÛ ±â´É Ãß°¡ - 
+	INT				nMixCounts;		// 2008-03-17 by cmkwon, ì¡°í•© ì‹œìŠ¤í…œ ê¸°ëŠ¥ ì¶”ê°€ - 
 	ARRAY_(ITEM_UNIQUE_NUMBER_W_COUNT);
-};		// C->F, Á¶ÇÕÇÒ ¾ÆÀÌÅÛÀÇ ¸®½ºÆ®¸¦ Àü¼Û
+};		// C->F, ì¡°í•©í•  ì•„ì´í…œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ì „ì†¡
 
 struct MSG_FC_ITEM_MIX_ITEMS_RESULT
 {
-	Err_t			Err;		// ERR_XXX, ERROR_NO_ERRORÀÌ¸é ¼º°ø
-};	// F->C, ¾ÆÀÌÅÛ Á¶ÇÕ °á°ú¸¦ Àü¼Û
+	Err_t			Err;		// ERR_XXX, ERROR_NO_ERRORì´ë©´ ì„±ê³µ
+};	// F->C, ì•„ì´í…œ ì¡°í•© ê²°ê³¼ë¥¼ ì „ì†¡
 
 struct MSG_FC_ITEM_USE_CARDITEM_GUILDSUMMON
 {
@@ -5739,7 +5739,7 @@ struct MSG_FC_ITEM_USE_INFLUENCE_BUFF				// 2006-04-21 by cmkwon
 };
 struct MSG_FC_ITEM_USE_INFLUENCE_BUFF_OK			// 2006-04-21 by cmkwon
 {
-	// 2009-01-05 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ - Æí´ë ¹öÇÁ ¾ÆÀÌÅÛ Ãß°¡ - ¹Ø°ú °°ÀÌ º¯°æ
+	// 2009-01-05 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° - í¸ëŒ€ ë²„í”„ ì•„ì´í…œ ì¶”ê°€ - ë°‘ê³¼ ê°™ì´ ë³€ê²½
 	//	UID64_t			ItemUniqueNumber;
 	char			ItemUseCharacterName[SIZE_MAX_CHARACTER_NAME];
 	INT				ItemNum;
@@ -5754,13 +5754,13 @@ struct MSG_FC_ITEM_USE_INFLUENCE_GAMEEVENT_OK		// 2006-04-21 by cmkwon
 };
 
 // 2006-08-10 by cmkwon
-#define RANDOMBOX_RESULT_FAIL				0		// ½ÇÆĞ
-#define RANDOMBOX_RESULT_ITEM				1		// ¾ÆÀÌÅÛ
+#define RANDOMBOX_RESULT_FAIL				0		// ì‹¤íŒ¨
+#define RANDOMBOX_RESULT_ITEM				1		// ì•„ì´í…œ
 #define RANDOMBOX_RESULT_SPI				2		// Money(SPI)
-#define RANDOMBOX_RESULT_EXP				3		// °æÇèÄ¡
-#define RANDOMBOX_RESULT_SKILL_SUPPORT_ITEM	4		// ½ºÅ³ º¸Á¶ ¾ÆÀÌÅÛ, 2006-09-29 by cmkwon Ãß°¡ÇÔ, ITEM_ATTR_SKILL_SUPPORT_ITEM
+#define RANDOMBOX_RESULT_EXP				3		// ê²½í—˜ì¹˜
+#define RANDOMBOX_RESULT_SKILL_SUPPORT_ITEM	4		// ìŠ¤í‚¬ ë³´ì¡° ì•„ì´í…œ, 2006-09-29 by cmkwon ì¶”ê°€í•¨, ITEM_ATTR_SKILL_SUPPORT_ITEM
 #define RANDOMBOX_RESULT_CREDITS			5		// 2015-08-03 Future, added credit Randombox
-#define RANDOMBOX_RESULT_KIND_COUNT			6		// ·£´ı¹Ú½º °á°ú Á¾·ù °³¼ö
+#define RANDOMBOX_RESULT_KIND_COUNT			6		// ëœë¤ë°•ìŠ¤ ê²°ê³¼ ì¢…ë¥˜ ê°œìˆ˜
 
 struct MSG_FC_ITEM_USE_RANDOMBOX		// 2006-08-10 by cmkwon
 {
@@ -5768,19 +5768,19 @@ struct MSG_FC_ITEM_USE_RANDOMBOX		// 2006-08-10 by cmkwon
 };
 struct MSG_FC_ITEM_USE_RANDOMBOX_OK		// 2006-08-10 by cmkwon
 {
-	char			szCharacterName0[SIZE_MAX_CHARACTER_NAME];	// »ç¿ëÀÚ CharacterName
+	char			szCharacterName0[SIZE_MAX_CHARACTER_NAME];	// ì‚¬ìš©ì CharacterName
 	INT				nRandomBoxResult;							// RANDOMBOX_RESULT_XXX
-	INT				nResultItemNum0;							// »ı¼ºµÈ ItemNum
+	INT				nResultItemNum0;							// ìƒì„±ëœ ItemNum
 	INT64			n64ResultCounts;							//
-	INT				nPrefixCodeNum0;							// Á¢µÎ»ç, ¾øÀ¸¸é 0
-	INT				nSuffixCodeNum0;							// Á¢¹Ì»ç, ¾øÀ¸¸é 0
+	INT				nPrefixCodeNum0;							// ì ‘ë‘ì‚¬, ì—†ìœ¼ë©´ 0
+	INT				nSuffixCodeNum0;							// ì ‘ë¯¸ì‚¬, ì—†ìœ¼ë©´ 0
 };
 
 using MSG_FC_ITEM_USE_SKILL_SUPPORT_ITEM = MSG_FC_ITEM_USE_ITEM;		// 2006-09-29 by cmkwon
 using MSG_FC_ITEM_USE_SKILL_SUPPORT_ITEM_OK = MSG_FC_ITEM_USE_ITEM_OK;	// 2006-09-29 by cmkwon
 
 																		///////////////////////////////////////////////////////////////////////////////////////
-																		// start 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+																		// start 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 
 struct MSG_FC_ITEM_USE_PET_SOCKET_ITEM
 {
@@ -5806,12 +5806,12 @@ struct MSG_FC_ITEM_CANCEL_PET_SOCKET_ITEM_OK
 	UID64_t			ItemUniqueNumber;
 };
 
-// end 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// end 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-11-04 by dhjin, ·°Å°¸Ó½Å
-// 2009-03-03 by dhjin, ·°Å°¸Ó½Å ¼öÁ¤¾È - ¹Ø°ú °°ÀÌ º¯°æ
+// 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
+// 2009-03-03 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ìˆ˜ì •ì•ˆ - ë°‘ê³¼ ê°™ì´ ë³€ê²½
 // typedef MSG_FC_ITEM_USE_RANDOMBOX		MSG_FC_ITEM_USE_LUCKY_ITEM;
 struct MSG_FC_ITEM_USE_LUCKY_ITEM
 {
@@ -5825,8 +5825,8 @@ struct LUCKY_ITEM_SIMPLEINFO
 	INT				MysteryItemDropNum;
 	INT				Itemnum;
 	INT64			n64ResultCounts;							//
-	INT				nPrefixCodeNum0;							// Á¢µÎ»ç, ¾øÀ¸¸é 0
-	INT				nSuffixCodeNum0;							// Á¢¹Ì»ç, ¾øÀ¸¸é 0
+	INT				nPrefixCodeNum0;							// ì ‘ë‘ì‚¬, ì—†ìœ¼ë©´ 0
+	INT				nSuffixCodeNum0;							// ì ‘ë¯¸ì‚¬, ì—†ìœ¼ë©´ 0
 };
 
 struct MSG_FC_ITEM_USE_LUCKY_ITEM_OK
@@ -5835,15 +5835,15 @@ struct MSG_FC_ITEM_USE_LUCKY_ITEM_OK
 };
 
 
-struct MSG_FC_ITEM_CHANGED_SHAPEITEMNUM			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FC_ITEM_CHANGED_SHAPEITEMNUM			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	UINT64				nItemUID;
 	INT					nShapeItemNum;
 
-	FIXED_TERM_INFO		FixedTermShape;			// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	FIXED_TERM_INFO		FixedTermShape;			// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 };
 
-struct MSG_FC_ITEM_CHANGED_EFFECTITEMNUM		// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FC_ITEM_CHANGED_EFFECTITEMNUM		// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	UINT64			nItemUID;
 	INT				nEffectItemNum;
@@ -5859,12 +5859,12 @@ struct MSG_FC_SHOP_PUT_ITEM_HEADER
 
 struct MSG_FC_SHOP_PUT_ITEM
 {
-	USHORT		BytesToRead;			// µÚ¿¡ ºÙ´Â ¾ÆÀÌÅÛµéÀÇ ÃÑ ¹ÙÀÌÆ®¼ö
+	USHORT		BytesToRead;			// ë’¤ì— ë¶™ëŠ” ì•„ì´í…œë“¤ì˜ ì´ ë°”ì´íŠ¸ìˆ˜
 	ARRAY_(SHOP_ITEM);
 };
 
-#define UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION		-1		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
-#define SOLD_OUT_REMAIN_COUNT_FOR_LIMITED_EDITION		0		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+#define UNLIMITED_REMAIN_COUNT_FOR_LIMITED_EDITION		-1		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+#define SOLD_OUT_REMAIN_COUNT_FOR_LIMITED_EDITION		0		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
 struct SHOP_ITEM
 {
@@ -5873,10 +5873,10 @@ struct SHOP_ITEM
 	USHORT		MinTradeQuantity;
 	INT			Price;
 	BYTE		ItemKind;
-	BYTE		CashShopIndex;		// 2009-01-28 by cmkwon, Ä³½¬˜?¼öÁ¤(ÃßÃµÅÇ,½Å»óÇ° Ãß°¡) - SHOP_ITEM¿¡ Ãß°¡, ÇÏÀ§ 4ºñÆ®´Â ÅÇÀÎµ¦½º, »óÀ§ 4ºñÆ®´Â ºñÆ® ÇÃ·¡±×·Î »ç¿ë
-	INT			RemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+	BYTE		CashShopIndex;		// 2009-01-28 by cmkwon, ìºì‰¬Â˜?ìˆ˜ì •(ì¶”ì²œíƒ­,ì‹ ìƒí’ˆ ì¶”ê°€) - SHOP_ITEMì— ì¶”ê°€, í•˜ìœ„ 4ë¹„íŠ¸ëŠ” íƒ­ì¸ë±ìŠ¤, ìƒìœ„ 4ë¹„íŠ¸ëŠ” ë¹„íŠ¸ í”Œë˜ê·¸ë¡œ ì‚¬ìš©
+	INT			RemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
-													// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - ¸ÅÁø¿©ºÎ
+													// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - ë§¤ì§„ì—¬ë¶€
 	bool IsSoldOutShopItem(void)
 	{
 		if (SOLD_OUT_REMAIN_COUNT_FOR_LIMITED_EDITION != RemainCountForLimitedEdition)
@@ -5894,10 +5894,10 @@ struct SHOP_ITEM
 		return TRUE;
 	}
 
-	// start 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+	// start 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 
-	// ÇöÀç Ãß°¡µÇ´Â°Ç °³ÀÎ¸¸ ¾µ ¼ö ÀÖ´Â 1È¸¼º »óÁ¡¿¡ ÇÑÁ¤ ÆÇ¸Å ±â´É(DB ÀúÀåÀÌ ÇÊ¿ä¾ø´Â)ÀÌ µé¾î°¨ (Å©¸®½ºÅ» ½Ã½ºÅÛ)
-	// ¸¸ÀÏ ¿©·¯ »ç¶÷ÀÌ µ¿½Ã¿¡ »ç¿ëÇÏ´Â ÇÑÁ¤ ÆÇ¸Å ±â´ÉÀÌ ÇÊ¿äÇÏ´Ù¸é µ¿±âÈ­ ¹× Ãß°¡ ±â´ÉÀÌ µé¾î°¡¾ßÇÔ
+	// í˜„ì¬ ì¶”ê°€ë˜ëŠ”ê±´ ê°œì¸ë§Œ ì“¸ ìˆ˜ ìˆëŠ” 1íšŒì„± ìƒì ì— í•œì • íŒë§¤ ê¸°ëŠ¥(DB ì €ì¥ì´ í•„ìš”ì—†ëŠ”)ì´ ë“¤ì–´ê° (í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ)
+	// ë§Œì¼ ì—¬ëŸ¬ ì‚¬ëŒì´ ë™ì‹œì— ì‚¬ìš©í•˜ëŠ” í•œì • íŒë§¤ ê¸°ëŠ¥ì´ í•„ìš”í•˜ë‹¤ë©´ ë™ê¸°í™” ë° ì¶”ê°€ ê¸°ëŠ¥ì´ ë“¤ì–´ê°€ì•¼í•¨
 
 	bool IsAvailableShopItem(int Amount)
 	{
@@ -5913,7 +5913,7 @@ struct SHOP_ITEM
 
 		return FALSE;
 	}
-	// end 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+	// end 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 };
 
 struct MSG_FC_SHOP_PUT_ITEM_DONE
@@ -5935,18 +5935,18 @@ struct MSG_FC_SHOP_BUY_ITEM
 {
 	UINT		BuildingIndex;
 	UINT		ItemNum;
-	INT			Amount;					// ±¸¸ÅÇÒ ¾ÆÀÌÅÛÀÇ °³¼ö
+	INT			Amount;					// êµ¬ë§¤í•  ì•„ì´í…œì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_SHOP_BUY_ITEM_OK
 {
-	INT			RemainedMoney;			// ±¸¸Å ÈÄ ³²Àº µ·
-	INT			SizeOfItem;				// sizeof(ÇØ´çItem)ÀÇ ÃÑÇÕ
-	ARRAY_(ITEM_XXX);						// ITEM_XXX°¡ ¿Â´Ù
+	INT			RemainedMoney;			// êµ¬ë§¤ í›„ ë‚¨ì€ ëˆ
+	INT			SizeOfItem;				// sizeof(í•´ë‹¹Item)ì˜ ì´í•©
+	ARRAY_(ITEM_XXX);						// ITEM_XXXê°€ ì˜¨ë‹¤
 };
 
 #ifdef S_WEB_CASHSHOP_SERVER_MODULE_HSKIM
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 // TODO : remove referencing to this module
 //#define T_FC_SHOP_AUTH_KEY		(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_CHARACTER_XIGNCODE_S_ACK_PACKET)
 #endif
@@ -5956,30 +5956,30 @@ struct MSG_FC_SHOP_AUTH_KEY
 	char AuthenticationKey[SIZE_MAX_WEB_AUTHENTICATION_KEY];
 	INT ServerID;
 };
-// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 
-// 2011-12-26 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// 2011-12-26 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 struct MSG_FC_SHOP_BUY_ITEM_UPDATE
 {
 	UINT		BuildingIndex;
 	UINT		ItemNum;
 	INT			RemainCountForLimitedEdition;
 };
-// 2011-12-26 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// 2011-12-26 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 
 struct MSG_FC_SHOP_SELL_ITEM
 {
 	UINT		BuildingIndex;
 	UID64_t		ItemUniqueNumber;
 	BYTE		ItemKind;
-	INT			Amount;					// ÆÇ¸ÅÇÒ ¾ÆÀÌÅÛÀÇ °³¼ö
+	INT			Amount;					// íŒë§¤í•  ì•„ì´í…œì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_SHOP_SELL_ITEM_OK
 {
 	UID64_t		ItemUniqueNumber;
-	INT			RemainedNumOfItem;		// ÆÇ¸Å ÈÄ ³²¾Æ ÀÖ´Â ¼ö·®(0ÀÌ¸é »èÁ¦, Countable Item ÀÎ °æ¿ì ÀÇ¹Ì °¡Áü)
-	INT			RemainedMoney;			// ÆÇ¸Å ÈÄ ³²Àº µ·
+	INT			RemainedNumOfItem;		// íŒë§¤ í›„ ë‚¨ì•„ ìˆëŠ” ìˆ˜ëŸ‰(0ì´ë©´ ì‚­ì œ, Countable Item ì¸ ê²½ìš° ì˜ë¯¸ ê°€ì§)
+	INT			RemainedMoney;			// íŒë§¤ í›„ ë‚¨ì€ ëˆ
 };
 
 struct MSG_FC_SHOP_GET_USED_ITEM_PRICE
@@ -5997,35 +5997,35 @@ struct MSG_FC_SHOP_GET_USED_ITEM_PRICE_OK
 struct MSG_FC_SHOP_GET_SHOP_ITEM_LIST
 {
 	INT			BuildingIndex;
-};	// C->F, »óÁ¡¿¡¼­ ÆÄ´Â ¾ÆÀÌÅÛÀÇ ¸®½ºÆ®¸¦ ¿äÃ», ÀÀ´äÀº T_FC_SHOP_PUT_ITEM_XXX
+};	// C->F, ìƒì ì—ì„œ íŒŒëŠ” ì•„ì´í…œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ìš”ì²­, ì‘ë‹µì€ T_FC_SHOP_PUT_ITEM_XXX
 
 struct MSG_FC_SHOP_REQUEST_REPAIR
 {
-	INT			DesParam;			// ¼ö¸®ÇÒ ºÎºĞ(DES_HP, DES_DP, DES_EP, DES_SP, DES_BULLET_01, DES_BULLET_02)
-	INT			Count;				// ¾î´À ¾ç¸¸Å­ ¼ö¸®ÇÒ °ÍÀÎÁö
-};		// C->F, ±âÃ¼ ¼ö¸® ¿äÃ»
+	INT			DesParam;			// ìˆ˜ë¦¬í•  ë¶€ë¶„(DES_HP, DES_DP, DES_EP, DES_SP, DES_BULLET_01, DES_BULLET_02)
+	INT			Count;				// ì–´ëŠ ì–‘ë§Œí¼ ìˆ˜ë¦¬í•  ê²ƒì¸ì§€
+};		// C->F, ê¸°ì²´ ìˆ˜ë¦¬ ìš”ì²­
 
 struct MSG_FC_SHOP_REQUEST_REPAIR_OK
 {
-	INT			DesParam;			// ¼ö¸®ÇÒ ºÎºĞ(DES_HP, DES_DP, DES_EP, DES_SP, DES_BULLET_01, DES_BULLET_02)
-	INT			Count;				// ¼ö¸®ÇÑ ¾ç
-	INT			RepairCost;			// ¼ö¸® ºñ¿ë
+	INT			DesParam;			// ìˆ˜ë¦¬í•  ë¶€ë¶„(DES_HP, DES_DP, DES_EP, DES_SP, DES_BULLET_01, DES_BULLET_02)
+	INT			Count;				// ìˆ˜ë¦¬í•œ ì–‘
+	INT			RepairCost;			// ìˆ˜ë¦¬ ë¹„ìš©
 };
 
 struct MSG_FC_SHOP_BUY_CASH_ITEM
 {
 	UINT		BuildingIndex;
 	UINT		ItemNum;
-	INT			Amount;					// ±¸¸ÅÇÒ ¾ÆÀÌÅÛÀÇ °³¼ö
-	UID32_t		GiveTargetCharacterUID;	// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 0 ÀÌ¸é ÀÚ½ÅÀÌ ±¸ÀÔ, 0ÀÌ ¾Æ´Ï¸é ÇØ´ç Ä³¸¯ÅÍ¿¡°Ô ¼±¹°ÇÏ±â
+	INT			Amount;					// êµ¬ë§¤í•  ì•„ì´í…œì˜ ê°œìˆ˜
+	UID32_t		GiveTargetCharacterUID;	// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 0 ì´ë©´ ìì‹ ì´ êµ¬ì…, 0ì´ ì•„ë‹ˆë©´ í•´ë‹¹ ìºë¦­í„°ì—ê²Œ ì„ ë¬¼í•˜ê¸°
 };
 struct MSG_FC_SHOP_BUY_CASH_ITEM_OK
-{// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - MSG_FC_SHOP_BUY_CASH_ITEM_OK ±¸Á¶Ã¼ Ãß°¡
+{// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - MSG_FC_SHOP_BUY_CASH_ITEM_OK êµ¬ì¡°ì²´ ì¶”ê°€
 	UINT		ItemNum;
-	INT			Amount;					// ±¸¸ÅÇÒ ¾ÆÀÌÅÛÀÇ °³¼ö
-	UID32_t		GiveTargetCharacterUID;	// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 0 ÀÌ¸é ÀÚ½ÅÀÌ ±¸ÀÔ, 0ÀÌ ¾Æ´Ï¸é ÇØ´ç Ä³¸¯ÅÍ¿¡°Ô ¼±¹°ÇÏ±â
-	char		GiveTargetCharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 
-	INT			RemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+	INT			Amount;					// êµ¬ë§¤í•  ì•„ì´í…œì˜ ê°œìˆ˜
+	UID32_t		GiveTargetCharacterUID;	// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 0 ì´ë©´ ìì‹ ì´ êµ¬ì…, 0ì´ ì•„ë‹ˆë©´ í•´ë‹¹ ìºë¦­í„°ì—ê²Œ ì„ ë¬¼í•˜ê¸°
+	char		GiveTargetCharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 
+	INT			RemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 };
 
 struct MSG_FC_SHOP_BUY_COLOR_ITEM	// 2005-12-06 by cmkwon
@@ -6041,54 +6041,54 @@ struct MSG_FC_SHOP_BUY_COLOR_ITEM_OK	// 2005-12-06 by cmkwon
 };
 
 struct MSG_FC_SHOP_BUY_WARPOINT_ITEM
-{// 2007-06-13 by dhjin, WarPoint ¼¥ 
+{// 2007-06-13 by dhjin, WarPoint ìƒµ 
 	UINT		BuildingIndex;
 	UINT		ItemNum;
-	INT			Amount;					// ±¸¸ÅÇÒ ¾ÆÀÌÅÛÀÇ °³¼ö
+	INT			Amount;					// êµ¬ë§¤í•  ì•„ì´í…œì˜ ê°œìˆ˜
 };
 
 struct MSG_FC_SHOP_BUY_WARPOINT_ITEM_OK
-{// 2007-06-13 by dhjin, WarPointItem ±¸ÀÔÇÏ°í ³­ Á¤º¸.
-	INT				PayWarPoint;			// 2007-06-13 by dhjin, Â÷°¨µÈ WarPoint
-	INT				WarPoint;				// 2007-06-13 by dhjin, ÃÑ WarPoint
+{// 2007-06-13 by dhjin, WarPointItem êµ¬ì…í•˜ê³  ë‚œ ì •ë³´.
+	INT				PayWarPoint;			// 2007-06-13 by dhjin, ì°¨ê°ëœ WarPoint
+	INT				WarPoint;				// 2007-06-13 by dhjin, ì´ WarPoint
 };
 
 struct MSG_FC_SHOP_CHECK_GIVE_TARGET
-{// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - MSG_FC_SHOP_CHECK_GIVE_TARGET ±¸Á¶Ã¼ Ãß°¡
-	char			GiveTargetCharName[SIZE_MAX_CHARACTER_NAME];	// ¼±¹°¹Ş´Â Ä³¸¯ÅÍ¸í
+{// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - MSG_FC_SHOP_CHECK_GIVE_TARGET êµ¬ì¡°ì²´ ì¶”ê°€
+	char			GiveTargetCharName[SIZE_MAX_CHARACTER_NAME];	// ì„ ë¬¼ë°›ëŠ” ìºë¦­í„°ëª…
 	INT				GiveItemNum;
 };
 
 struct MSG_FC_SHOP_CHECK_GIVE_TARGET_OK
-{// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - MSG_FC_SHOP_CHECK_GIVE_TARGET_OK ±¸Á¶Ã¼ Ãß°¡
-	char			GiveTargetCharName[SIZE_MAX_CHARACTER_NAME];	// ¼±¹°¹Ş´Â Ä³¸¯ÅÍ¸í
+{// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - MSG_FC_SHOP_CHECK_GIVE_TARGET_OK êµ¬ì¡°ì²´ ì¶”ê°€
+	char			GiveTargetCharName[SIZE_MAX_CHARACTER_NAME];	// ì„ ë¬¼ë°›ëŠ” ìºë¦­í„°ëª…
 	UID32_t			GiveTargetCharUID;
 	char			GiveTargetGuildName[SIZE_MAX_GUILD_NAME];
 	USHORT			GiveTargetUnitKind;
 	BYTE			GiveTargetLevel;
 };
 
-// start 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// start 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 struct MSG_FC_SHOP_CLOSE
 {
 	UINT BuildingIndex;
 };
-// end 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// end 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 
-// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 struct MSG_FC_SHOP_INFLUENCE_BUFF
 {
-	INT	nConsecutiveVictories;		// ¿¬½Â Æ÷ÀÎÆ®
+	INT	nConsecutiveVictories;		// ì—°ìŠ¹ í¬ì¸íŠ¸
 };
 
 struct MSG_FC_SHOP_INFLUENCE_BUFF_OK
 {
 	INT	nLastSkillNum;
 };
-// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
 struct SGIVE_TARGET_CHARACTER
-{// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - SGIVE_TARGET_CHARACTER ±¸Á¶Ã¼ Ãß°¡
+{// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - SGIVE_TARGET_CHARACTER êµ¬ì¡°ì²´ ì¶”ê°€
 	char			AccountName0[SIZE_MAX_ACCOUNT_NAME];
 	UID32_t			AccountUID0;
 	INT				ConnectingServerGroupID;
@@ -6100,7 +6100,7 @@ struct SGIVE_TARGET_CHARACTER
 	char			GuildName0[SIZE_MAX_GUILD_NAME];
 	USHORT			UnitKind0;
 	BYTE			Level0;
-	INT				BuyItemNum;								// ±¸¸Å ÇÒ ItemNum
+	INT				BuyItemNum;								// êµ¬ë§¤ í•  ItemNum
 };
 
 
@@ -6108,116 +6108,116 @@ struct SGIVE_TARGET_CHARACTER
 // FC_TRADE
 struct MSG_FC_TRADE_REQUEST_TRADE
 {
-	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// ÇÇ¿äÃ»ÀÚ
+	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// í”¼ìš”ì²­ì
 };
 
 struct MSG_FC_TRADE_REQUEST_TRADE_OK
 {
-	char			TradeSource[SIZE_MAX_CHARACTER_NAME];	// ¿äÃ»ÀÚ
-	UID32_t			TradeSourceCharacterUniqueNumber;		// ¿äÃ»ÀÚÀÇ character unique number
+	char			TradeSource[SIZE_MAX_CHARACTER_NAME];	// ìš”ì²­ì
+	UID32_t			TradeSourceCharacterUniqueNumber;		// ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_CANCEL_REQUEST
 {
-	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// ÇÇ¿äÃ»ÀÚ
+	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// í”¼ìš”ì²­ì
 };
 
 struct MSG_FC_TRADE_CANCEL_REQUEST_OK
 {
-	char			TradeSource[SIZE_MAX_CHARACTER_NAME];	// ¿äÃ»ÀÚ
-	UID32_t			TradeSourceCharacterUniqueNumber;		// ¿äÃ»ÀÚÀÇ character unique number
+	char			TradeSource[SIZE_MAX_CHARACTER_NAME];	// ìš”ì²­ì
+	UID32_t			TradeSourceCharacterUniqueNumber;		// ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_ACCEPT_TRADE
 {
-	UID32_t			TradeSourceCharacterUniqueNumber;		// ¿äÃ»ÀÚÀÇ character unique number
+	UID32_t			TradeSourceCharacterUniqueNumber;		// ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_ACCEPT_TRADE_OK
 {
-	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// ÇÇ¿äÃ»ÀÚ
-	UID32_t			TradeTargetCharacterUniqueNumber;		// ÇÇ¿äÃ»ÀÚÀÇ character unique number
+	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// í”¼ìš”ì²­ì
+	UID32_t			TradeTargetCharacterUniqueNumber;		// í”¼ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_REJECT_TRADE
 {
-	UID32_t			TradeSourceCharacterUniqueNumber;		// ¿äÃ»ÀÚÀÇ character unique number
+	UID32_t			TradeSourceCharacterUniqueNumber;		// ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_REJECT_TRADE_OK
 {
-	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// ÇÇ¿äÃ»ÀÚ
-	UID32_t			TradeTargetCharacterUniqueNumber;		// ÇÇ¿äÃ»ÀÚÀÇ character unique number
+	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// í”¼ìš”ì²­ì
+	UID32_t			TradeTargetCharacterUniqueNumber;		// í”¼ìš”ì²­ìì˜ character unique number
 };
 
 struct MSG_FC_TRADE_REJECT_TRADING
 {
-	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// ÇÇ¿äÃ»ÀÚ
-};								// °Å·¡ÁßÀÌ¹Ç·Î °Å·¡¸¦ ÇÒ ¼ö°¡ ¾ø´Ù
+	char			TradeTarget[SIZE_MAX_CHARACTER_NAME];	// í”¼ìš”ì²­ì
+};								// ê±°ë˜ì¤‘ì´ë¯€ë¡œ ê±°ë˜ë¥¼ í•  ìˆ˜ê°€ ì—†ë‹¤
 
 struct MSG_FC_TRADE_SHOW_TRADE_WINDOW
 {
-	UID32_t			PeerTradeCharacterUniqueNumber;			// °Å·¡ »ó´ëÀÇ character unique number
+	UID32_t			PeerTradeCharacterUniqueNumber;			// ê±°ë˜ ìƒëŒ€ì˜ character unique number
 };
 
 struct MSG_FC_TRADE_TRANS_ITEM
 {
-	UID32_t			CharacterUniqueNumber;					// ¾ÆÀÌÅÛ ¿Ã¸° »ç¶÷
-	UID64_t			ItemUniqueNumber;						// ¿Ã¸° ¾ÆÀÌÅÛ
-	INT				ItemNum;								// ¾ÆÀÌÅÛ Á¾·ù
-	INT				Amount;									// ¿Ã¸° °³¼ö(¿¡³ÊÁö·ù¸¸ ÇØ´ç, ³ª¸ÓÁö´Â 1)
+	UID32_t			CharacterUniqueNumber;					// ì•„ì´í…œ ì˜¬ë¦° ì‚¬ëŒ
+	UID64_t			ItemUniqueNumber;						// ì˜¬ë¦° ì•„ì´í…œ
+	INT				ItemNum;								// ì•„ì´í…œ ì¢…ë¥˜
+	INT				Amount;									// ì˜¬ë¦° ê°œìˆ˜(ì—ë„ˆì§€ë¥˜ë§Œ í•´ë‹¹, ë‚˜ë¨¸ì§€ëŠ” 1)
 };
 
 struct MSG_FC_TRADE_TRANS_ITEM_OK
 {
-	UID32_t			CharacterUniqueNumber;					// ¾ÆÀÌÅÛ ¿Ã¸° »ç¶÷
-	ITEM_GENERAL	TradeItem;								// ÀÌ ¾ÆÀÌÅÛÀÇ count´Â ÃÖÁ¾ °³¼ö
-	INT				NumOfEnchants;							// ¾ÆÀÌÅÛÀÇ ÃÑ ÀÎÃ¦Æ® °³¼ö
-	ARRAY_(INT);											// EnchantItemNumÀÇ Array
+	UID32_t			CharacterUniqueNumber;					// ì•„ì´í…œ ì˜¬ë¦° ì‚¬ëŒ
+	ITEM_GENERAL	TradeItem;								// ì´ ì•„ì´í…œì˜ countëŠ” ìµœì¢… ê°œìˆ˜
+	INT				NumOfEnchants;							// ì•„ì´í…œì˜ ì´ ì¸ì±ˆíŠ¸ ê°œìˆ˜
+	ARRAY_(INT);											// EnchantItemNumì˜ Array
 };
 
 struct MSG_FC_TRADE_SEE_ITEM
 {
-	UID32_t			CharacterUniqueNumber;					// ¾ÆÀÌÅÛ ¿Ã¸° »ç¶÷
-	UID64_t			ItemUniqueNumber;						// ¿Ã¸° ¾ÆÀÌÅÛ
-	INT				ItemNum;								// ¾ÆÀÌÅÛ Á¾·ù
-	INT				Amount;									// ¿Ã¸° °³¼ö(countable itemÀº ÃÖÁ¾ °³¼ö, ³ª¸ÓÁö´Â 1)
+	UID32_t			CharacterUniqueNumber;					// ì•„ì´í…œ ì˜¬ë¦° ì‚¬ëŒ
+	UID64_t			ItemUniqueNumber;						// ì˜¬ë¦° ì•„ì´í…œ
+	INT				ItemNum;								// ì•„ì´í…œ ì¢…ë¥˜
+	INT				Amount;									// ì˜¬ë¦° ê°œìˆ˜(countable itemì€ ìµœì¢… ê°œìˆ˜, ë‚˜ë¨¸ì§€ëŠ” 1)
 };
 
 struct MSG_FC_TRADE_SEE_ITEM_OK
 {
-	UID32_t			CharacterUniqueNumber;					// ¾ÆÀÌÅÛ ¿Ã¸° »ç¶÷
-	STRUCT_(ITEM_XXX);										// ÀÌ ¾ÆÀÌÅÛÀÇ count´Â ÃÖÁ¾ °³¼ö
+	UID32_t			CharacterUniqueNumber;					// ì•„ì´í…œ ì˜¬ë¦° ì‚¬ëŒ
+	STRUCT_(ITEM_XXX);										// ì´ ì•„ì´í…œì˜ countëŠ” ìµœì¢… ê°œìˆ˜
 };
 
 struct MSG_FC_TRADE_OK_TRADE
 {
-	UID32_t			CharacterUniqueNumber;					// ÀÚ½Å
+	UID32_t			CharacterUniqueNumber;					// ìì‹ 
 };
 
 struct MSG_FC_TRADE_OK_TRADE_OK
 {
-	UID32_t			CharacterUniqueNumber;					// »ó´ë¹æ
+	UID32_t			CharacterUniqueNumber;					// ìƒëŒ€ë°©
 };
 
 struct MSG_FC_TRADE_CANCEL_TRADE
 {
-	UID32_t			CharacterUniqueNumber;					// »ó´ë¹æ
+	UID32_t			CharacterUniqueNumber;					// ìƒëŒ€ë°©
 };
 
 struct MSG_FC_TRADE_CANCEL_TRADE_OK
 {
-	UID32_t			CharacterUniqueNumber;					// »ó´ë¹æ
+	UID32_t			CharacterUniqueNumber;					// ìƒëŒ€ë°©
 };
 
 using MSG_FC_TRADE_INSERT_ITEM = MSG_FC_STORE_INSERT_ITEM;
-using MSG_FC_ENEMY_ITEM_INFO = MSG_FC_STORE_INSERT_ITEM;		// 2012-06-05 by jhseol, ¾ÆÅÛ¹Ì¸®º¸±â - Å¬¶ó¿äÃ» ÆĞÅ¶ Ãß°¡
+using MSG_FC_ENEMY_ITEM_INFO = MSG_FC_STORE_INSERT_ITEM;		// 2012-06-05 by jhseol, ì•„í…œë¯¸ë¦¬ë³´ê¸° - í´ë¼ìš”ì²­ íŒ¨í‚· ì¶”ê°€
 using MSG_FC_TRADE_DELETE_ITEM = MSG_FC_STORE_DELETE_ITEM;
 using MSG_FC_TRADE_UPDATE_ITEM_COUNT = MSG_FC_STORE_UPDATE_ITEM_COUNT;
 
-struct MSG_FC_TRADE_OK_TRADE_NOTIFY		// 2008-11-21 by cmkwon, °Å·¡ ½ÂÀÎ È®ÀÎ ½Ã½ºÅÛ ±¸Çö - 
+struct MSG_FC_TRADE_OK_TRADE_NOTIFY		// 2008-11-21 by cmkwon, ê±°ë˜ ìŠ¹ì¸ í™•ì¸ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
-	UID32_t			CharacterUniqueNumber;					// °Å·¡ ½ÂÀÎ ¹öÆ°À» ½ÇÇàÇÑ Ä³¸¯ÅÍ
+	UID32_t			CharacterUniqueNumber;					// ê±°ë˜ ìŠ¹ì¸ ë²„íŠ¼ì„ ì‹¤í–‰í•œ ìºë¦­í„°
 };
 
 enum COUNTDOWN_TYPE
@@ -6252,7 +6252,7 @@ struct MSG_FC_OBJECT_CHANGE_BODYCONDITION
 using MSG_FC_OBJECT_CHANGE_BODYCONDITION_OK = MSG_FC_OBJECT_CHANGE_BODYCONDITION;
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// start 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤
+// start 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì •
 
 struct MSG_TRADE_PET_DATA
 {
@@ -6265,10 +6265,10 @@ struct MSG_TRADE_PET_DATA
 
 	Experience_t	PetExp;
 
-	// Å¬¶ó¿¡¼­ ÇÊ¿äÇÑ Á¤º¸ ¹Ş¾Æ¼­ Ã³¸® by hskim
+	// í´ë¼ì—ì„œ í•„ìš”í•œ ì •ë³´ ë°›ì•„ì„œ ì²˜ë¦¬ by hskim
 
 };
-// end 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤
+// end 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì •
 ///////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -6277,45 +6277,45 @@ struct MSG_FC_AUCTION_REGISTER_ITEM
 {
 	UID32_t		ItemUID;
 	INT			Price;
-};			// C->F, °æ¸Å ¾ÆÀÌÅÛ µî·Ï
+};			// C->F, ê²½ë§¤ ì•„ì´í…œ ë“±ë¡
 
 struct MSG_FC_AUCTION_REGISTER_ITEM_OK
 {
 	UID32_t		ItemUID;
 	INT			Price;
-};		// F->C, °æ¸Å ¾ÆÀÌÅÛ µî·Ï °á°ú
+};		// F->C, ê²½ë§¤ ì•„ì´í…œ ë“±ë¡ ê²°ê³¼
 
 struct MSG_FC_AUCTION_CANCEL_REGISTER
 {
 	UID32_t		ItemUID;
-};		// C->F, °æ¸Å ¾ÆÀÌÅÛ µî·Ï Ãë¼Ò
+};		// C->F, ê²½ë§¤ ì•„ì´í…œ ë“±ë¡ ì·¨ì†Œ
 
 struct MSG_FC_AUCTION_CANCEL_REGISTER_OK
 {
 	UID32_t		ItemUID;
-};	// F->C, °æ¸Å ¾ÆÀÌÅÛ µî·Ï Ãë¼Ò °á°ú
+};	// F->C, ê²½ë§¤ ì•„ì´í…œ ë“±ë¡ ì·¨ì†Œ ê²°ê³¼
 
 struct MSG_FC_AUCTION_BUY_ITEM
 {
 	UID32_t		ItemUID;
-};				// C->F, °æ¸Å ¾ÆÀÌÅÛ ±¸¸Å
+};				// C->F, ê²½ë§¤ ì•„ì´í…œ êµ¬ë§¤
 
 struct MSG_FC_AUCTION_BUY_ITEM_OK
 {
 	UID32_t		ItemUID;
-};			// F->C, °æ¸Å ¾ÆÀÌÅÛ ±¸¸Å °á°ú
+};			// F->C, ê²½ë§¤ ì•„ì´í…œ êµ¬ë§¤ ê²°ê³¼
 
 struct MSG_FC_AUCTION_GET_ITEM_LIST
 {
-	UID32_t		CharacterUID;			// ÀÚ½ÅÀÌ µî·ÏÇÑ °æ¸Å ¾ÆÀÌÅÛÀ» ¿äÃ»ÇÒ ¶§´Â ÀÚ½ÅÀÇ CharacterUID, ¾Æ´Ï¸é 0
-	BYTE		AuctionKind;			// ¿äÃ»ÇÒ °æ¸Å ¾ÆÀÌÅÛ Á¾·ù, AUCTION_KIND_XXX
-};			// C->F, °æ¸Å ¾ÆÀÌÅÛ ¸ñ·Ï ¿äÃ»
+	UID32_t		CharacterUID;			// ìì‹ ì´ ë“±ë¡í•œ ê²½ë§¤ ì•„ì´í…œì„ ìš”ì²­í•  ë•ŒëŠ” ìì‹ ì˜ CharacterUID, ì•„ë‹ˆë©´ 0
+	BYTE		AuctionKind;			// ìš”ì²­í•  ê²½ë§¤ ì•„ì´í…œ ì¢…ë¥˜, AUCTION_KIND_XXX
+};			// C->F, ê²½ë§¤ ì•„ì´í…œ ëª©ë¡ ìš”ì²­
 
 			// AUCTION_KIND_XXX
-#define AUCTION_KIND_MY_ITEM	((BYTE)0)	// ÀÚ½ÅÀÌ µî·ÏÇÑ ¾ÆÀÌÅÛ
-#define AUCTION_KIND_ATTACH		((BYTE)1)	// ÀåÂø·ù 0 ~ 17, 22, 25 ~ 26
-#define AUCTION_KIND_CARD		((BYTE)2)	// Ä«µå·ù 21, 27
-#define AUCTION_KIND_ETC		((BYTE)3)	// ±âÅ¸·ù 18 ~ 20, 23 ~ 24
+#define AUCTION_KIND_MY_ITEM	((BYTE)0)	// ìì‹ ì´ ë“±ë¡í•œ ì•„ì´í…œ
+#define AUCTION_KIND_ATTACH		((BYTE)1)	// ì¥ì°©ë¥˜ 0 ~ 17, 22, 25 ~ 26
+#define AUCTION_KIND_CARD		((BYTE)2)	// ì¹´ë“œë¥˜ 21, 27
+#define AUCTION_KIND_ETC		((BYTE)3)	// ê¸°íƒ€ë¥˜ 18 ~ 20, 23 ~ 24
 
 template<typename T> bool IS_AUCTION_KIND_ATTACH(T _ITEM_KIND)
 {
@@ -6345,16 +6345,16 @@ struct MSG_FC_AUCTION_INSERT_ITEM
 {
 	BYTE			AuctionKind;		// AUCTION_KIND_XXX
 	char			SellerCharacterName[SIZE_MAX_CHARACTER_NAME];
-	ITEM_GENERAL	AuctionItemGeneral;	// °æ¸Å ¾ÆÀÌÅÛ
-	int				AuctionPrice;		// °æ¸Å °¡°İ
-	ATUM_DATE_TIME	AuctionStartDate;	// °æ¸Å ½ÃÀÛ ½Ã°£
-};			// F->C, °æ¸Å ¾ÆÀÌÅÛ Àü¼Û¿ë
+	ITEM_GENERAL	AuctionItemGeneral;	// ê²½ë§¤ ì•„ì´í…œ
+	int				AuctionPrice;		// ê²½ë§¤ ê°€ê²©
+	ATUM_DATE_TIME	AuctionStartDate;	// ê²½ë§¤ ì‹œì‘ ì‹œê°„
+};			// F->C, ê²½ë§¤ ì•„ì´í…œ ì „ì†¡ìš©
 
 struct MSG_FC_AUCTION_PUT_ENCHANT
 {
 	BYTE			AuctionKind;		// AUCTION_KIND_XXX
 	ENCHANT			AuctionItemEnchant;
-};			// F->C, °æ¸Å ¾ÆÀÌÅÛÀÇ ÀÎÃ¦Æ® Á¤º¸ Àü¼Û¿ë
+};			// F->C, ê²½ë§¤ ì•„ì´í…œì˜ ì¸ì±ˆíŠ¸ ì •ë³´ ì „ì†¡ìš©
 
 			///////////////////////////////////////////////////////////////////////////////
 			// FC_SKILL
@@ -6385,16 +6385,16 @@ struct MSG_FC_SKILL_USE_SKILL
 {
 	ItemID_t		SkillItemID;
 	ClientIndex_t	AttackIndex;
-	ClientIndex_t	TargetIndex;	// targetÀÌ ¾ø´Â skillÀÎ °æ¿ì 0
-	UID32_t			TargetCharUID;	// 2005-11-24 by cmkwon, targetÀÖÁö¸¸ TargetIndex°¡ 0ÀÏ¶§ »ç¿ëµÊ, TargetIndex°¡ Æí´ë¿ø 1¸í ¼ÒÈ¯ ½ºÅ³½Ã »ç¿ëÇÑ´Ù.
+	ClientIndex_t	TargetIndex;	// targetì´ ì—†ëŠ” skillì¸ ê²½ìš° 0
+	UID32_t			TargetCharUID;	// 2005-11-24 by cmkwon, targetìˆì§€ë§Œ TargetIndexê°€ 0ì¼ë•Œ ì‚¬ìš©ë¨, TargetIndexê°€ í¸ëŒ€ì› 1ëª… ì†Œí™˜ ìŠ¤í‚¬ì‹œ ì‚¬ìš©í•œë‹¤.
 };
 
 struct MSG_FC_SKILL_USE_SKILL_OK
 {
 	ItemID_t		SkillItemID;
 	ClientIndex_t	AttackIndex;
-	ClientIndex_t	TargetIndex;	// targetÀÌ ¾ø´Â skillÀÎ °æ¿ì 0
-	ATUM_DATE_TIME	UseTime;		// 2006-11-17 by dhjin, 2Â÷ ½ºÅ³ »ç¿ë ½Ã°£
+	ClientIndex_t	TargetIndex;	// targetì´ ì—†ëŠ” skillì¸ ê²½ìš° 0
+	ATUM_DATE_TIME	UseTime;		// 2006-11-17 by dhjin, 2ì°¨ ìŠ¤í‚¬ ì‚¬ìš© ì‹œê°„
 #ifdef NEMERIAN_NATION_BALANCE_BUFF_PENALITY
 	float			penality;
 #endif
@@ -6402,22 +6402,22 @@ struct MSG_FC_SKILL_USE_SKILL_OK
 
 struct MSG_FC_SKILL_CANCEL_SKILL
 {
-	ItemID_t		SkillItemID;			// Á¾·áµÇ´Â ½ºÅ³ Á¤º¸
-	INT				AttackSkillItemNum0;	// 2006-12-12 by cmkwon, ÇöÀç ½ºÅ³À» Á¾·áµÇ°Ô ÇÏ´Â °ø°İ½ºÅ³ ¾ÆÀÌÅÛ³Ñ¹ö 
+	ItemID_t		SkillItemID;			// ì¢…ë£Œë˜ëŠ” ìŠ¤í‚¬ ì •ë³´
+	INT				AttackSkillItemNum0;	// 2006-12-12 by cmkwon, í˜„ì¬ ìŠ¤í‚¬ì„ ì¢…ë£Œë˜ê²Œ í•˜ëŠ” ê³µê²©ìŠ¤í‚¬ ì•„ì´í…œë„˜ë²„ 
 };
 
 struct MSG_FC_SKILL_CANCEL_SKILL_OK
 {
 	ClientIndex_t	ClientIndex;
 	ItemID_t		SkillItemID;
-	INT				AttackSkillItemNum0;	// 2006-12-12 by cmkwon, ÇöÀç ½ºÅ³À» Á¾·áµÇ°Ô ÇÏ´Â °ø°İ½ºÅ³ ¾ÆÀÌÅÛ³Ñ¹ö
+	INT				AttackSkillItemNum0;	// 2006-12-12 by cmkwon, í˜„ì¬ ìŠ¤í‚¬ì„ ì¢…ë£Œë˜ê²Œ í•˜ëŠ” ê³µê²©ìŠ¤í‚¬ ì•„ì´í…œë„˜ë²„
 };
 
 struct MSG_FC_SKILL_INVALIDATE_SKILL
 {
 	ItemID_t		SkillItemID;
 	ClientIndex_t	ClientIndex;
-};	// skill »ç¿ë ÁßÁö(½Ã°£ Á¦ÇÑÀÌ ÀÖÀ» °æ¿ì)
+};	// skill ì‚¬ìš© ì¤‘ì§€(ì‹œê°„ ì œí•œì´ ìˆì„ ê²½ìš°)
 
 struct MSG_FC_SKILL_PREPARE_USE
 {
@@ -6443,21 +6443,21 @@ struct MSG_FC_SKILL_CANCEL_PREPARE_OK
 
 struct MSG_FC_SKILL_CONFIRM_USE			// 2005-12-02 by cmkwon
 {
-	char				szAttackCharacterName[SIZE_MAX_CHARACTER_NAME];	// ½ºÅ³ »ç¿ëÀÚÀÇ CharacterName;
-	UID32_t				AttackCharacterUID;		// ½ºÅ³ »ç¿ëÀÚ CharacterUID
-	UID32_t				TargetCharacterUID;		// ½ºÅ³ Å¸°Ù CharacterUID
-	int					UsingSkillItemNum;		// »ç¿ë ½ºÅ³ ItemNum
-	MAP_CHANNEL_INDEX	MapChannelIndex;		// ½ºÅ³ »ç¿ëÀÚÀÇ MapChannelIndex
-	int					SkillConfirmUseUID;		// 2009-04-06 by cmkwon, Äİ¿Àºê È÷¾î·Î ½ºÅ³ ½Ã½ºÅÛ º¯°æ - ÇØ´ç ¿äÃ»ÀÇ UID
+	char				szAttackCharacterName[SIZE_MAX_CHARACTER_NAME];	// ìŠ¤í‚¬ ì‚¬ìš©ìì˜ CharacterName;
+	UID32_t				AttackCharacterUID;		// ìŠ¤í‚¬ ì‚¬ìš©ì CharacterUID
+	UID32_t				TargetCharacterUID;		// ìŠ¤í‚¬ íƒ€ê²Ÿ CharacterUID
+	int					UsingSkillItemNum;		// ì‚¬ìš© ìŠ¤í‚¬ ItemNum
+	MAP_CHANNEL_INDEX	MapChannelIndex;		// ìŠ¤í‚¬ ì‚¬ìš©ìì˜ MapChannelIndex
+	int					SkillConfirmUseUID;		// 2009-04-06 by cmkwon, ì½œì˜¤ë¸Œ íˆì–´ë¡œ ìŠ¤í‚¬ ì‹œìŠ¤í…œ ë³€ê²½ - í•´ë‹¹ ìš”ì²­ì˜ UID
 };
 
 struct MSG_FC_SKILL_CONFIRM_USE_ACK		// 2005-12-02 by cmkwon
 {
-	bool				bYesOrNo;				// ¼ö¶ô ¿©ºÎ
-	UID32_t				AttackCharacterUID;		// ½ºÅ³ »ç¿ëÀÚ CharacterUID
-	UID32_t				TargetCharacterUID;		// ½ºÅ³ Å¸°Ù CharacterUID
-	int					UsingSkillItemNum;		// »ç¿ë ½ºÅ³ ItemNum
-	int					SkillConfirmUseUID;		// 2009-04-06 by cmkwon, Äİ¿Àºê È÷¾î·Î ½ºÅ³ ½Ã½ºÅÛ º¯°æ - ÇØ´ç ¿äÃ»ÀÇ UID
+	bool				bYesOrNo;				// ìˆ˜ë½ ì—¬ë¶€
+	UID32_t				AttackCharacterUID;		// ìŠ¤í‚¬ ì‚¬ìš©ì CharacterUID
+	UID32_t				TargetCharacterUID;		// ìŠ¤í‚¬ íƒ€ê²Ÿ CharacterUID
+	int					UsingSkillItemNum;		// ì‚¬ìš© ìŠ¤í‚¬ ItemNum
+	int					SkillConfirmUseUID;		// 2009-04-06 by cmkwon, ì½œì˜¤ë¸Œ íˆì–´ë¡œ ìŠ¤í‚¬ ì‹œìŠ¤í…œ ë³€ê²½ - í•´ë‹¹ ìš”ì²­ì˜ UID
 };
 
 
@@ -6481,25 +6481,25 @@ struct MSG_FN_SKILL_USE_SKILL_OK : public MSG_FC_SKILL_USE_SKILL_OK
 // FC_INFO
 struct MSG_FC_INFO_GET_MONSTER_INFO
 {
-	INT				MonsterUnitKind;	// ¸ó½ºÅÍ °íÀ¯ ¹øÈ£
+	INT				MonsterUnitKind;	// ëª¬ìŠ¤í„° ê³ ìœ  ë²ˆí˜¸
 };
 
 struct MEX_MONSTER_INFO
 {
-	INT				MonsterUnitKind;					// ¸ó½ºÅÍ °íÀ¯¹øÈ£
-	char			MonsterName[SIZE_MAX_MONSTER_NAME];	// ¸ó½ºÅÍ ÀÌ¸§
-	BYTE			Level;								// ¸ó½ºÅÍÀÇ Level
-	INT				HP;									// ¸¸ÇÇ
-	BYTE			Size;								// ÇÊµå ¼­¹ö´Â SizeForClient¸¦ loading,  NPC ¼­¹ö´Â SizeForServer¸¦ loading
-	BYTE			Belligerence;						// È£Àü¼º, // 2005-12-28 by cmkwon Ãß°¡ÇÔ
-	BYTE			AlphaBlending;						// alpha blending ¿©ºÎ, TRUE(1), FALSE(0), clientÃø »ç¿ëÀ» À§ÇØ Ãß°¡, 20030616
+	INT				MonsterUnitKind;					// ëª¬ìŠ¤í„° ê³ ìœ ë²ˆí˜¸
+	char			MonsterName[SIZE_MAX_MONSTER_NAME];	// ëª¬ìŠ¤í„° ì´ë¦„
+	BYTE			Level;								// ëª¬ìŠ¤í„°ì˜ Level
+	INT				HP;									// ë§Œí”¼
+	BYTE			Size;								// í•„ë“œ ì„œë²„ëŠ” SizeForClientë¥¼ loading,  NPC ì„œë²„ëŠ” SizeForServerë¥¼ loading
+	BYTE			Belligerence;						// í˜¸ì „ì„±, // 2005-12-28 by cmkwon ì¶”ê°€í•¨
+	BYTE			AlphaBlending;						// alpha blending ì—¬ë¶€, TRUE(1), FALSE(0), clientì¸¡ ì‚¬ìš©ì„ ìœ„í•´ ì¶”ê°€, 20030616
 	USHORT			RenderIndex;
 	float			ScaleValue;
 	BYTE			TextureIndex;
 	UINT			SourceIndex;
-	BitFlag64_t		MPOption;			// 2010-01-11 by cmkwon, ¸ó½ºÅÍ MPOption 64bit·Î º¯°æ - ±âÁ¸(BYTE)
-	BYTE			ClickEvent;							// 2007-09-05 by dhjin, ¸ó½ºÅÍ Å¬¸¯ ÀÌº¥Æ® Ãß°¡
-	char			PortraitFileName[SIZE_MAX_FILE_NAME];	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - ¸ó½ºÅÍ ÃÊ»óÈ­ ÆÄÀÏ
+	BitFlag64_t		MPOption;			// 2010-01-11 by cmkwon, ëª¬ìŠ¤í„° MPOption 64bitë¡œ ë³€ê²½ - ê¸°ì¡´(BYTE)
+	BYTE			ClickEvent;							// 2007-09-05 by dhjin, ëª¬ìŠ¤í„° í´ë¦­ ì´ë²¤íŠ¸ ì¶”ê°€
+	char			PortraitFileName[SIZE_MAX_FILE_NAME];	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - ëª¬ìŠ¤í„° ì´ˆìƒí™” íŒŒì¼
 
 															// operator overloading
 	MEX_MONSTER_INFO& operator=(const MONSTER_INFO& rhs)
@@ -6509,7 +6509,7 @@ struct MEX_MONSTER_INFO
 		this->Level = rhs.Level;
 		this->HP = rhs.MonsterHP;
 		this->Size = rhs.Size;
-		this->Belligerence = rhs.Belligerence;				// È£Àü¼º
+		this->Belligerence = rhs.Belligerence;				// í˜¸ì „ì„±
 		this->AlphaBlending = rhs.AlphaBlending;
 		this->RenderIndex = rhs.RenderIndex;
 		this->ScaleValue = rhs.ScaleValue;
@@ -6517,7 +6517,7 @@ struct MEX_MONSTER_INFO
 		this->SourceIndex = rhs.SourceIndex;
 		this->MPOption = rhs.MPOption;
 		this->ClickEvent = rhs.ClickEvent;				// 2007-09-05 by dhjin
-		util::strncpy(this->PortraitFileName, rhs.PortraitFileName, SIZE_MAX_FILE_NAME);	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - ¸ó½ºÅÍ ÃÊ»óÈ­ ÆÄÀÏ
+		util::strncpy(this->PortraitFileName, rhs.PortraitFileName, SIZE_MAX_FILE_NAME);	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - ëª¬ìŠ¤í„° ì´ˆìƒí™” íŒŒì¼
 
 		return *this;
 	}
@@ -6575,49 +6575,49 @@ struct MSG_FC_INFO_GET_SIMPLE_ITEM_INFO
 
 struct MEX_ITEM_INFO
 {
-	INT			ItemNum;						// ¾ÆÀÌÅÛ °íÀ¯¹øÈ£, ÀåÂø ¾ÆÀÌÅÛÀÏ ¶§ (ITEM_BASE*)
-	BYTE		Kind;							// ¾ÆÀÌÅÛ Á¾·ù(±â°üÆ÷, ºö, ·ÎÄÏ, ½ºÅ³.....), ITEMKIND_XXX
-	float		AbilityMin;						// ¾ÆÀÌÅÛÃÖ¼Ò¼º´É
-	float		AbilityMax;						// ¾ÆÀÌÅÛÃÖ´ë¼º´É
-	USHORT		ReqUnitKind;					// ÇÊ¿äÀ¯´ÖÁ¾·ù
-	BYTE		ReqMinLevel;					// ÇÊ¿ä ÃÖÀú ·¹º§
-	BYTE		ReqMaxLevel;					// ÇÊ¿ä ÃÖÀú ·¹º§
-	float		HitRate;						// ¸íÁßÈ®·ü(0~255), // 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
-	BYTE		Defense;						// ¹æ¾î·Â
-	BYTE		SpeedPenalty;					// ½ºÇÇµåÆä³ÎÆ¼, ÀÌµ¿¼Óµµ¿¡¹ÌÄ¡´Â ¿µÇâ(-:°¨¼Ò)
-	USHORT		Range;							// °ø°İ¹üÀ§, ¿£Áø·ùÀÎ °æ¿ì¿¡´Â ºÎ½ºÅÍ °¡µ¿ ½Ã ¼Óµµ
+	INT			ItemNum;						// ì•„ì´í…œ ê³ ìœ ë²ˆí˜¸, ì¥ì°© ì•„ì´í…œì¼ ë•Œ (ITEM_BASE*)
+	BYTE		Kind;							// ì•„ì´í…œ ì¢…ë¥˜(ê¸°ê´€í¬, ë¹”, ë¡œì¼“, ìŠ¤í‚¬.....), ITEMKIND_XXX
+	float		AbilityMin;						// ì•„ì´í…œìµœì†Œì„±ëŠ¥
+	float		AbilityMax;						// ì•„ì´í…œìµœëŒ€ì„±ëŠ¥
+	USHORT		ReqUnitKind;					// í•„ìš”ìœ ë‹›ì¢…ë¥˜
+	BYTE		ReqMinLevel;					// í•„ìš” ìµœì € ë ˆë²¨
+	BYTE		ReqMaxLevel;					// í•„ìš” ìµœì € ë ˆë²¨
+	float		HitRate;						// ëª…ì¤‘í™•ë¥ (0~255), // 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
+	BYTE		Defense;						// ë°©ì–´ë ¥
+	BYTE		SpeedPenalty;					// ìŠ¤í”¼ë“œí˜ë„í‹°, ì´ë™ì†ë„ì—ë¯¸ì¹˜ëŠ” ì˜í–¥(-:ê°ì†Œ)
+	USHORT		Range;							// ê³µê²©ë²”ìœ„, ì—”ì§„ë¥˜ì¸ ê²½ìš°ì—ëŠ” ë¶€ìŠ¤í„° ê°€ë™ ì‹œ ì†ë„
 #ifdef SHOP_PRICES_PER_BUILDING_NPC
 	UINT		SellingPrice;
 #else
-	UINT		Price;							// ÃÖ¼Ò °Å·¡ ¼ö·®ÀÇ °¡°İ
-	UINT		CashPrice;						// ÃÖ¼Ò °Å·¡ ¼ö·®ÀÇ Çö±İ °¡°İ
+	UINT		Price;							// ìµœì†Œ ê±°ë˜ ìˆ˜ëŸ‰ì˜ ê°€ê²©
+	UINT		CashPrice;						// ìµœì†Œ ê±°ë˜ ìˆ˜ëŸ‰ì˜ í˜„ê¸ˆ ê°€ê²©
 #endif
-												// 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - 
-												// 	BYTE		DestParameter1;					// ´ë»óÆÄ¶ó¹ÌÅÍ1
-												// 	float		ParameterValue1;				// ¼öÁ¤ÆÄ¶ó¹ÌÅÍ1
-												// 	BYTE		DestParameter2;					// ´ë»óÆÄ¶ó¹ÌÅÍ2
-												// 	float		ParameterValue2;				// ¼öÁ¤ÆÄ¶ó¹ÌÅÍ2
-												// 	BYTE		DestParameter3;					// ´ë»óÆÄ¶ó¹ÌÅÍ3
-												// 	float		ParameterValue3;				// ¼öÁ¤ÆÄ¶ó¹ÌÅÍ3
-												// 	BYTE		DestParameter4;					// ´ë»óÆÄ¶ó¹ÌÅÍ4
-												// 	float		ParameterValue4;				// ¼öÁ¤ÆÄ¶ó¹ÌÅÍ4
-	DestParam_t	ArrDestParameter[SIZE_MAX_DESPARAM_COUNT_IN_ITEM];	// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)) - // 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - 
-	float		ArrParameterValue[SIZE_MAX_DESPARAM_COUNT_IN_ITEM];	// 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - 
+												// 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - 
+												// 	BYTE		DestParameter1;					// ëŒ€ìƒíŒŒë¼ë¯¸í„°1
+												// 	float		ParameterValue1;				// ìˆ˜ì •íŒŒë¼ë¯¸í„°1
+												// 	BYTE		DestParameter2;					// ëŒ€ìƒíŒŒë¼ë¯¸í„°2
+												// 	float		ParameterValue2;				// ìˆ˜ì •íŒŒë¼ë¯¸í„°2
+												// 	BYTE		DestParameter3;					// ëŒ€ìƒíŒŒë¼ë¯¸í„°3
+												// 	float		ParameterValue3;				// ìˆ˜ì •íŒŒë¼ë¯¸í„°3
+												// 	BYTE		DestParameter4;					// ëŒ€ìƒíŒŒë¼ë¯¸í„°4
+												// 	float		ParameterValue4;				// ìˆ˜ì •íŒŒë¼ë¯¸í„°4
+	DestParam_t	ArrDestParameter[SIZE_MAX_DESPARAM_COUNT_IN_ITEM];	// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)) - // 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - 
+	float		ArrParameterValue[SIZE_MAX_DESPARAM_COUNT_IN_ITEM];	// 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - 
 
-	UINT		ReAttacktime;					// Àç °ø°İ½Ã°£(ms)
-	INT			Time;							// Áö¼Ó ½Ã°£(½ºÅ³·ù µî)
-	USHORT		RepeatTime;						// 2006-12-08 by cmkwon, Ãß°¡ÇÔ(¹«±â·ù¿¡¼­´Â ³²Àº ÃÑ¾Ë ¼ö·Î »ç¿ë, ³ª¸ÓÁö´Â °³¼ö, ½Ã°£Çü ½ºÅ³·ù¿¡¼± ³²Àº ½Ã°£, ³ª¸ÓÁö ½ºÅ³Àº »ç¿ë ¿©ºÎ)
-	float		RangeAngle;						// ¹üÀ§°¢µµ(0 ~ PI)
-	BYTE		MultiTarget;					// µ¿½Ã¿¡ ÀâÀ» ¼ö ÀÖ´Â Å¸°ÙÀÇ ¼ö
-	USHORT		ExplosionRange;					// Æø¹ß¹İ°æ(Æø¹ß ½Ã µ¥¹ÌÁöÀÇ ¿µÇâÀÌ ¹ÌÄ¡´Â ¹İ°æ)
-	USHORT		ReactionRange;					// ¹İÀÀ¹İ°æ(¸¶ÀÎ µîÀÌ ¹İÀÀÇÏ´Â ¹İ°æ)
-	BYTE		ShotNum;						// Á¡»ç ¼ö,	Á¡»ç ½Ã ¹ß»ç ¼ö¸¦ ³ªÅ¸³½´Ù.
-	BYTE		MultiNum;						// µ¿½Ã ¹ß»ç Åº ¼ö,	1¹ø ¹ß»ç¿¡ ¸î¹ßÀÌ µ¿½Ã¿¡ ³ª°¡´À³Ä
-	USHORT		AttackTime;						// °ø°İ½Ã°£, °ø°İÀ» ÇÏ±â À§ÇØ ÇÊ¿äÇÑ ½Ã°£
-	BYTE		ReqSP;							// SP ¼Ò¸ğ·®(½ºÅ³)
-	BYTE		OrbitType;						// ¹Ì»çÀÏ, ·ÎÄÏ µîÀÇ ±ËÀû
-	BitFlag64_t	ItemAttribute;					// ¾ÆÀÌÅÛÀÇ ¼Ó¼º, ITEM_ATTR_XXX
-	FLOAT		BoosterAngle;					// ºÎ½ºÅÍ½Ã¿¡ À¯´ÖÀÇ È¸Àü°¢, ÇöÀç´Â ¿£Áø¿¡¸¸ »ç¿ë
+	UINT		ReAttacktime;					// ì¬ ê³µê²©ì‹œê°„(ms)
+	INT			Time;							// ì§€ì† ì‹œê°„(ìŠ¤í‚¬ë¥˜ ë“±)
+	USHORT		RepeatTime;						// 2006-12-08 by cmkwon, ì¶”ê°€í•¨(ë¬´ê¸°ë¥˜ì—ì„œëŠ” ë‚¨ì€ ì´ì•Œ ìˆ˜ë¡œ ì‚¬ìš©, ë‚˜ë¨¸ì§€ëŠ” ê°œìˆ˜, ì‹œê°„í˜• ìŠ¤í‚¬ë¥˜ì—ì„  ë‚¨ì€ ì‹œê°„, ë‚˜ë¨¸ì§€ ìŠ¤í‚¬ì€ ì‚¬ìš© ì—¬ë¶€)
+	float		RangeAngle;						// ë²”ìœ„ê°ë„(0 ~ PI)
+	BYTE		MultiTarget;					// ë™ì‹œì— ì¡ì„ ìˆ˜ ìˆëŠ” íƒ€ê²Ÿì˜ ìˆ˜
+	USHORT		ExplosionRange;					// í­ë°œë°˜ê²½(í­ë°œ ì‹œ ë°ë¯¸ì§€ì˜ ì˜í–¥ì´ ë¯¸ì¹˜ëŠ” ë°˜ê²½)
+	USHORT		ReactionRange;					// ë°˜ì‘ë°˜ê²½(ë§ˆì¸ ë“±ì´ ë°˜ì‘í•˜ëŠ” ë°˜ê²½)
+	BYTE		ShotNum;						// ì ì‚¬ ìˆ˜,	ì ì‚¬ ì‹œ ë°œì‚¬ ìˆ˜ë¥¼ ë‚˜íƒ€ë‚¸ë‹¤.
+	BYTE		MultiNum;						// ë™ì‹œ ë°œì‚¬ íƒ„ ìˆ˜,	1ë²ˆ ë°œì‚¬ì— ëª‡ë°œì´ ë™ì‹œì— ë‚˜ê°€ëŠëƒ
+	USHORT		AttackTime;						// ê³µê²©ì‹œê°„, ê³µê²©ì„ í•˜ê¸° ìœ„í•´ í•„ìš”í•œ ì‹œê°„
+	BYTE		ReqSP;							// SP ì†Œëª¨ëŸ‰(ìŠ¤í‚¬)
+	BYTE		OrbitType;						// ë¯¸ì‚¬ì¼, ë¡œì¼“ ë“±ì˜ ê¶¤ì 
+	BitFlag64_t	ItemAttribute;					// ì•„ì´í…œì˜ ì†ì„±, ITEM_ATTR_XXX
+	FLOAT		BoosterAngle;					// ë¶€ìŠ¤í„°ì‹œì— ìœ ë‹›ì˜ íšŒì „ê°, í˜„ì¬ëŠ” ì—”ì§„ì—ë§Œ ì‚¬ìš©
 
 												// operator overloading
 	MEX_ITEM_INFO& operator=(const ITEM& rhs);
@@ -6629,53 +6629,53 @@ struct MSG_FC_INFO_GET_SIMPLE_ITEM_INFO_OK
 struct MSG_FC_INFO_GET_ENCHANT_COST
 {
 	INT				EnchantItemNum;
-};		// C->F, ÀÎÃ¦Æ® °¡°İÀ» ¿äÃ»
+};		// C->F, ì¸ì±ˆíŠ¸ ê°€ê²©ì„ ìš”ì²­
 struct MSG_FC_INFO_GET_ENCHANT_COST_OK
 {
 	INT				Cost;
-};	// F->C, ÀÎÃ¦Æ® °¡°İÀ» Àü¼Û
+};	// F->C, ì¸ì±ˆíŠ¸ ê°€ê²©ì„ ì „ì†¡
 
-struct MSG_FC_INFO_GET_CURRENT_MAP_INFO		// 2007-04-06 by cmkwon, Ãß°¡ÇÔ
+struct MSG_FC_INFO_GET_CURRENT_MAP_INFO		// 2007-04-06 by cmkwon, ì¶”ê°€í•¨
 {
 	MAP_CHANNEL_INDEX	mapChannelIdx0;			// 2007-04-06 by cmkwon
-												// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
-												//UINT				checkSum0;				// 2007-04-06 by cmkwon, mapÀÌ checksum °á°ú
-	int					nFileSize;			// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
-	BYTE				byDigest[32];		// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+												// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
+												//UINT				checkSum0;				// 2007-04-06 by cmkwon, mapì´ checksum ê²°ê³¼
+	int					nFileSize;			// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
+	BYTE				byDigest[32];		// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 };
 
 struct MSG_FC_INFO_GET_CURRENT_MAP_INFO_OK
 {
-	BYTE			IsPKMap;				// 2005-02-15 by cmkwon, ¾ÆÁ÷ »ç¿ëÇÏÁö ¾ÊÀ½
-	BYTE			IsCityWarStarted;		// µµ½ÃÁ¡·ÉÀü ½ÃÀÛ ÇÃ·¡±×
+	BYTE			IsPKMap;				// 2005-02-15 by cmkwon, ì•„ì§ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+	BYTE			IsCityWarStarted;		// ë„ì‹œì ë ¹ì „ ì‹œì‘ í”Œë˜ê·¸
 	BYTE			byCityWarTeamType;		//
 };
 
 enum
 {
-	HAPPYEV_STATE_TYPE_END = 0,			// ÀÏ¹İ ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® Á¾·áµÊ
-	HAPPYEV_STATE_TYPE_START = 1,			// ÀÏ¹İ ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ½ÃÀÛµÊ
-	HAPPYEV_STATE_TYPE_STARTING = 2,			// ÀÏ¹İ ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ÁøÇàÁß
-	PCBANG_HAPPYEV_STATE_TYPE_END = 10,			// PCBang ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® Á¾·áµÊ
-	PCBANG_HAPPYEV_STATE_TYPE_START = 11,			// PCBang ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ½ÃÀÛµÊ
-	PCBANG_HAPPYEV_STATE_TYPE_STARTING = 12,			// PCBang ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ÁøÇàÁß
-	GAME_EVENT_GROUP_MOTHERSHIP_END = 20,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_MOTHERSHIP_START = 21,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_MOTHERSHIP_STARTING = 22,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_ITEM_END = 30,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_ITEM_START = 31,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_ITEM_STARTING = 32,		// 2008-05-20 by cmkwon, ¸ğµç ÀÌº¥Æ®(HappyHoure,MotherShip,Item) ±×·ì µ¿½Ã¿¡ °¡´ÉÇÏ°Ô - 
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_END = 40,		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_START = 41,		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_STARTING = 42,		// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_END = 50,		// 2012-05-08 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ 2Â÷
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_START = 51,		// 2012-05-08 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ 2Â÷
-	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_STARTING = 52		// 2012-05-08 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ 2Â÷
+	HAPPYEV_STATE_TYPE_END = 0,			// ì¼ë°˜ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì¢…ë£Œë¨
+	HAPPYEV_STATE_TYPE_START = 1,			// ì¼ë°˜ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì‹œì‘ë¨
+	HAPPYEV_STATE_TYPE_STARTING = 2,			// ì¼ë°˜ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì§„í–‰ì¤‘
+	PCBANG_HAPPYEV_STATE_TYPE_END = 10,			// PCBang í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì¢…ë£Œë¨
+	PCBANG_HAPPYEV_STATE_TYPE_START = 11,			// PCBang í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì‹œì‘ë¨
+	PCBANG_HAPPYEV_STATE_TYPE_STARTING = 12,			// PCBang í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ ì§„í–‰ì¤‘
+	GAME_EVENT_GROUP_MOTHERSHIP_END = 20,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_MOTHERSHIP_START = 21,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_MOTHERSHIP_STARTING = 22,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_ITEM_END = 30,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_ITEM_START = 31,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_ITEM_STARTING = 32,		// 2008-05-20 by cmkwon, ëª¨ë“  ì´ë²¤íŠ¸(HappyHoure,MotherShip,Item) ê·¸ë£¹ ë™ì‹œì— ê°€ëŠ¥í•˜ê²Œ - 
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_END = 40,		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_START = 41,		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_STARTING = 42,		// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_END = 50,		// 2012-05-08 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ 2ì°¨
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_START = 51,		// 2012-05-08 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ 2ì°¨
+	GAME_EVENT_GROUP_CRYSTAL_SYSTEM_2ND_STARTING = 52		// 2012-05-08 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ 2ì°¨
 };
 struct MSG_FC_INFO_GET_HAPPY_HOUR_EVENT_INFO_OK
 {
-	BYTE			byStateType;			// 0(Á¾·áµÊ), 1(½ÃÀÛµÊ), 2(ÁøÇàÁß)
-	BYTE			byInfluenceType4;		// 2007-10-30 by cmkwon, ¼¼·Âº° ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ±¸Çö - MSG_FC_INFO_GET_HAPPY_HOUR_EVENT_INFO_OK ±¸Á¶Ã¼¿¡ Ãß°¡µÈ ÇÊµå
+	BYTE			byStateType;			// 0(ì¢…ë£Œë¨), 1(ì‹œì‘ë¨), 2(ì§„í–‰ì¤‘)
+	BYTE			byInfluenceType4;		// 2007-10-30 by cmkwon, ì„¸ë ¥ë³„ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ êµ¬í˜„ - MSG_FC_INFO_GET_HAPPY_HOUR_EVENT_INFO_OK êµ¬ì¡°ì²´ì— ì¶”ê°€ëœ í•„ë“œ
 	ATUM_DATE_TIME	StartATime;
 	ATUM_DATE_TIME	EndATime;
 	float			fEXPRate2;
@@ -6683,94 +6683,94 @@ struct MSG_FC_INFO_GET_HAPPY_HOUR_EVENT_INFO_OK
 	float			fEXPRepairRate2;
 	float			fDropItemRate2;
 	float			fDropRareRate2;
-	float			fWarPointRate2;			// 2007-06-26 by dhjin, ¿öÆ÷ÀÎÆ® ÀÌº¥Æ® °ü·Ã Ãß°¡
+	float			fWarPointRate2;			// 2007-06-26 by dhjin, ì›Œí¬ì¸íŠ¸ ì´ë²¤íŠ¸ ê´€ë ¨ ì¶”ê°€
 };
 struct MSG_FC_INFO_GET_GAME_EVENT_INFO_OK
 {
-	BYTE			byStateType;			// 0(Á¾·áµÊ), 1(½ÃÀÛµÊ), 2(ÁøÇàÁß)
-	int				nGameEventType;			// ÀÌº¥Æ® Å¸ÀÔ
-	float			fRate;					// ÀÌº¥Æ® Rate
-	int				nRemainMinute;			// ³²Àº ½Ã°£(´ÜÀ§:ºĞ)
+	BYTE			byStateType;			// 0(ì¢…ë£Œë¨), 1(ì‹œì‘ë¨), 2(ì§„í–‰ì¤‘)
+	int				nGameEventType;			// ì´ë²¤íŠ¸ íƒ€ì…
+	float			fRate;					// ì´ë²¤íŠ¸ Rate
+	int				nRemainMinute;			// ë‚¨ì€ ì‹œê°„(ë‹¨ìœ„:ë¶„)
 };
 
 struct MSG_FC_INFO_GET_SERVER_DATE_TIME_OK		// 2006-10-11 by cmkwon
 {
-	ATUM_DATE_TIME	atimeCurServerTime;		// 2006-10-11 by cmkwon, ÇöÀç ¼­¹ö ³¯Â¥ ½Ã°£
+	ATUM_DATE_TIME	atimeCurServerTime;		// 2006-10-11 by cmkwon, í˜„ì¬ ì„œë²„ ë‚ ì§œ ì‹œê°„
 };
 
 struct MSG_FC_INFO_CHECK_RESOBJ_CHECKSUM		// 2007-05-28 by cmkwon
 {
 	int			nItemNum0;
 	char		szObjFileName[SIZE_MAX_RESOBJ_FILE_NAME];
-	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 	//UINT		uiCheckSum0;
 	int			nFileSize0;
-	BYTE		byDigest[32];		// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	BYTE		byDigest[32];		// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// FC_REQUEST - Ä³¸¯ÅÍ°£ÀÇ ¿äÃ», ¼ö¶ô, °ÅÀı µî¿¡ ¾²ÀÓ, general-purpose
+// FC_REQUEST - ìºë¦­í„°ê°„ì˜ ìš”ì²­, ìˆ˜ë½, ê±°ì ˆ ë“±ì— ì“°ì„, general-purpose
 // REQUEST_TYPE_XXX
 #define REQUEST_TYPE_NULL			((BYTE)0)
-#define REQUEST_TYPE_TRADE			((BYTE)1)	// °Å·¡
-#define REQUEST_TYPE_PARTY_INVITE	((BYTE)2)	// ÆÄÆ¼ ÃÊ´ë
-#define REQUEST_TYPE_GUILD_INVITE	((BYTE)3)	// ƒˆµå ÃÊ´ë
-#define REQUEST_TYPE_P2P_PK			((BYTE)4)	// 1´ë 1 °áÅõ
-#define REQUEST_TYPE_PARTY_BATTLE	((BYTE)5)	// ÆÄÆ¼°£ °áÅõ
-#define REQUEST_TYPE_GUILD_WAR		((BYTE)6)	// ¿©´ÜÀü ½ÅÃ», °°Àº ¸Ê¿¡¸¸ ÀÖÀ¸¸é °¡´É
+#define REQUEST_TYPE_TRADE			((BYTE)1)	// ê±°ë˜
+#define REQUEST_TYPE_PARTY_INVITE	((BYTE)2)	// íŒŒí‹° ì´ˆëŒ€
+#define REQUEST_TYPE_GUILD_INVITE	((BYTE)3)	// ÂƒÂˆë“œ ì´ˆëŒ€
+#define REQUEST_TYPE_P2P_PK			((BYTE)4)	// 1ëŒ€ 1 ê²°íˆ¬
+#define REQUEST_TYPE_PARTY_BATTLE	((BYTE)5)	// íŒŒí‹°ê°„ ê²°íˆ¬
+#define REQUEST_TYPE_GUILD_WAR		((BYTE)6)	// ì—¬ë‹¨ì „ ì‹ ì²­, ê°™ì€ ë§µì—ë§Œ ìˆìœ¼ë©´ ê°€ëŠ¥
 
 struct MSG_FC_REQUEST_REQUEST
 {
-	ClientIndex_t	TargetClientIndex;	// ÇÇ¿äÃ»ÀÚ
-	char			TargetCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	TargetClientIndex;	// í”¼ìš”ì²­ì
+	char			TargetCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};				// C->F, ¿äÃ»
+};				// C->F, ìš”ì²­
 
 struct MSG_FC_REQUEST_REQUEST_OK
 {
-	ClientIndex_t	SourceClientIndex;	// ¿äÃ»ÀÚ
-	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	SourceClientIndex;	// ìš”ì²­ì
+	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};			// F->C, ¿äÃ»À» Àü´Ş
+};			// F->C, ìš”ì²­ì„ ì „ë‹¬
 
 struct MSG_FC_REQUEST_ACCEPT_REQUEST
 {
-	ClientIndex_t	SourceClientIndex;	// ¿äÃ»ÀÚ
-	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	SourceClientIndex;	// ìš”ì²­ì
+	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};		// C->F, ½Â³«
+};		// C->F, ìŠ¹ë‚™
 
 struct MSG_FC_REQUEST_ACCEPT_REQUEST_OK
 {
-	ClientIndex_t	PeerClientIndex;	// »ó´ë¹æ
-	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	PeerClientIndex;	// ìƒëŒ€ë°©
+	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};		// F->C, ½Â³«À» Àü´Ş, ¾ç(È¤Àº ÇÑ) ÂÊÀ¸·Î º¸³¿
+};		// F->C, ìŠ¹ë‚™ì„ ì „ë‹¬, ì–‘(í˜¹ì€ í•œ) ìª½ìœ¼ë¡œ ë³´ëƒ„
 
 struct MSG_FC_REQUEST_REJECT_REQUEST
 {
-	ClientIndex_t	SourceClientIndex;	// ¿äÃ»ÀÚ
-	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	SourceClientIndex;	// ìš”ì²­ì
+	char			SourceCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};		// C->F, °ÅÀı
+};		// C->F, ê±°ì ˆ
 
 struct MSG_FC_REQUEST_REJECT_REQUEST_OK
 {
-	ClientIndex_t	PeerClientIndex;	// »ó´ë¹æ
-	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	PeerClientIndex;	// ìƒëŒ€ë°©
+	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};		// F->C, °ÅÀıÀ» Àü´Ş, ¾ç(È¤Àº ÇÑ) ÂÊÀ¸·Î º¸³¿
+};		// F->C, ê±°ì ˆì„ ì „ë‹¬, ì–‘(í˜¹ì€ í•œ) ìª½ìœ¼ë¡œ ë³´ëƒ„
 
 struct MSG_FC_REQUEST_CANCEL_REQUEST
 {
-	ClientIndex_t	PeerClientIndex;	// »ó´ë¹æ
-	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndex°¡ 0ÀÎ °æ¿ì ÀÌ ÇÊµå ÂüÁ¶
+	ClientIndex_t	PeerClientIndex;	// ìƒëŒ€ë°©
+	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ClientIndexê°€ 0ì¸ ê²½ìš° ì´ í•„ë“œ ì°¸ì¡°
 	BYTE			RequestType;
-};		// C->F, ¿äÃ» Ãë¼ÒµÊ, ¾ç(È¤Àº ÇÑ) ÂÊÀ¸·Î º¸³¿
+};		// C->F, ìš”ì²­ ì·¨ì†Œë¨, ì–‘(í˜¹ì€ í•œ) ìª½ìœ¼ë¡œ ë³´ëƒ„
 
 		///////////////////////////////////////////////////////////////////////////////
-		// FC_CITY - µµ½Ã¿ë ÇÁ·ÎÅäÄİ
+		// FC_CITY - ë„ì‹œìš© í”„ë¡œí† ì½œ
 struct MSG_FC_CITY_GET_BUILDING_LIST
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
@@ -6778,7 +6778,7 @@ struct MSG_FC_CITY_GET_BUILDING_LIST
 
 struct CITY_BUILDING_INFO_4_EXCHANGE
 {
-	UINT	BuildingIndex;	// °Ç¹°(°¡°Ô µî) °íÀ¯ ¹øÈ£
+	UINT	BuildingIndex;	// ê±´ë¬¼(ê°€ê²Œ ë“±) ê³ ìœ  ë²ˆí˜¸
 	BYTE	BuildingKind;
 };
 
@@ -6793,13 +6793,13 @@ struct MSG_FC_CITY_GET_WARP_TARGET_MAP_LIST
 	MAP_CHANNEL_INDEX	MapChannelIndex;
 };
 
-// 2004-11-10 by cmkwon, À§¿¡¼­ ¼±¾ğÇÔ
+// 2004-11-10 by cmkwon, ìœ„ì—ì„œ ì„ ì–¸í•¨
 //struct WARP_TARGET_MAP_INFO_4_EXCHANGE
 //{
 //	MapIndex_t	MapIndex;
-//	INT			TargetIndex;	// EVENTINFO¿¡ Á¸ÀçÇÏ´Â TargetIndex
-//	char		TargetName[SIZE_MAX_WARP_TARGET_NAME];	// Å¸ÄÏÀÇ ÀÌ¸§(ex: µµ½Ã»ó´Ü, µµ½ÃÇÏ´Ü)
-//	INT			Fee;			// ¿öÇÁ ¿ä±İ
+//	INT			TargetIndex;	// EVENTINFOì— ì¡´ì¬í•˜ëŠ” TargetIndex
+//	char		TargetName[SIZE_MAX_WARP_TARGET_NAME];	// íƒ€ì¼“ì˜ ì´ë¦„(ex: ë„ì‹œìƒë‹¨, ë„ì‹œí•˜ë‹¨)
+//	INT			Fee;			// ì›Œí”„ ìš”ê¸ˆ
 //};
 
 struct MSG_FC_CITY_GET_WARP_TARGET_MAP_LIST_OK
@@ -6811,131 +6811,131 @@ struct MSG_FC_CITY_GET_WARP_TARGET_MAP_LIST_OK
 struct MSG_FC_CITY_REQUEST_ENTER_BUILDING
 {
 	INT		BuildingIndex;
-};	// C->F, »óÁ¡ µé¾î°¥ °ÍÀ» ¿äÃ»
+};	// C->F, ìƒì  ë“¤ì–´ê°ˆ ê²ƒì„ ìš”ì²­
 
 struct MSG_FC_CITY_REQUEST_ENTER_BUILDING_OK
 {
 	INT		BuildingIndex;
 	// 2006-02-08 by cmkwon
 	//	float	fCityWarTexRate;			//
-	float	fInflDistributionTexPercent;	// 2006-02-08 by cmkwon, ¼¼·ÂºĞÆ÷ ¼¼±İ
-};	// F->C, »óÁ¡ ÁøÀÔ ¿Ï·á¸¦ ¾Ë¸²
+	float	fInflDistributionTexPercent;	// 2006-02-08 by cmkwon, ì„¸ë ¥ë¶„í¬ ì„¸ê¸ˆ
+};	// F->C, ìƒì  ì§„ì… ì™„ë£Œë¥¼ ì•Œë¦¼
 
 struct MSG_FC_CITY_REQUEST_WARP
 {
 	MapIndex_t	MapIndex;
-	INT			TargetIndex;			// EVENTINFO¿¡ Á¸ÀçÇÏ´Â TargetIndex	
-};				// C->F, µµ½Ã¿¡¼­ ¿öÇÁÇØ¼­ ³ª°¡±â À§ÇÑ ¿äÃ»
+	INT			TargetIndex;			// EVENTINFOì— ì¡´ì¬í•˜ëŠ” TargetIndex	
+};				// C->F, ë„ì‹œì—ì„œ ì›Œí”„í•´ì„œ ë‚˜ê°€ê¸° ìœ„í•œ ìš”ì²­
 
 struct MSG_FC_CITY_CHECK_WARP_STATE_OK
 {
-	Err_t		Err;				// ERR_NO_ERRORÀÌ¸é ¼º°ø
-};	// F->C, ¿öÇÁ °¡´ÉÇÑ »óÅÂÀÎÁö¿¡ ´ëÇÑ °á°ú
+	Err_t		Err;				// ERR_NO_ERRORì´ë©´ ì„±ê³µ
+};	// F->C, ì›Œí”„ ê°€ëŠ¥í•œ ìƒíƒœì¸ì§€ì— ëŒ€í•œ ê²°ê³¼
 
 	///////////////////////////////////////////////////////////////////////////////
-	// FC_TIMER - Å¸ÀÌ¸Ó °ü¸®¿ë ÇÁ·ÎÅäÄİ
+	// FC_TIMER - íƒ€ì´ë¨¸ ê´€ë¦¬ìš© í”„ë¡œí† ì½œ
 	///////////////////////////////////////////////////////////////////////////////
 
-	// TimerEventType ÀÇ Á¾·ù, TE_TYPE_XXX
+	// TimerEventType ì˜ ì¢…ë¥˜, TE_TYPE_XXX
 #define TE_TYPE_TEST					(TimerEventType)0
 	//#define TE_TYPE_SYNC_PRI				(TimerEventType)1
 	//#define TE_TYPE_SYNC_SEC				(TimerEventType)2
 	//#define TE_TYPE_SYNC_SKILL			(TimerEventType)3
-	//#define TE_TYPE_END_SKILL				(TimerEventType)4		// check: Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»¿¡ ÀÇÇØ »èÁ¦ÇÔ, ÇØ´ç ½Ã°£ °æ°ú ÈÄ Å¬¶óÀÌ¾ğÆ®¿¡¼­ CANCEL_SKILL Àü¼Û, 20041005, kelovon with jschoi
-	//#define TE_TYPE_DELETE_MINE			(TimerEventType)5	// check: ¸¶ÀÎ Áö¿ì±â´Â Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¸ğµÎ °ü¸®ÇÏ±â·Î ÇÏ¸é¼­ Á¦°ÅÇÔ, 20041118, kelovon with dhkwon
+	//#define TE_TYPE_END_SKILL				(TimerEventType)4		// check: í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì— ì˜í•´ ì‚­ì œí•¨, í•´ë‹¹ ì‹œê°„ ê²½ê³¼ í›„ í´ë¼ì´ì–¸íŠ¸ì—ì„œ CANCEL_SKILL ì „ì†¡, 20041005, kelovon with jschoi
+	//#define TE_TYPE_DELETE_MINE			(TimerEventType)5	// check: ë§ˆì¸ ì§€ìš°ê¸°ëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ëª¨ë‘ ê´€ë¦¬í•˜ê¸°ë¡œ í•˜ë©´ì„œ ì œê±°í•¨, 20041118, kelovon with dhkwon
 #define TE_TYPE_DELETE_DUMMY			(TimerEventType)6
 #define TE_TYPE_DELETE_FIXER			(TimerEventType)7
-#define TE_TYPE_DELETE_DECOY			(TimerEventType)8		// µğÄÚÀÌ´Â TimeOut¹ß»ı ½Ã CurrentCount¸¦ ÁÙÀÌ°í, CurrentCount=0±îÁö ¹İº¹ÇÔ
-#define TE_TYPE_GRADUAL_SHIELD_UP		(TimerEventType)9		// 2-2Çü ¹«±â ½¯µå, intervalÀº ¹«Á¶°Ç 1000 ms
-#define TE_TYPE_RECOVER_HP				(TimerEventType)10		// Âø·úÇßÀ» ¶§¸¸ Ã¤¿ò(5ÃÊ´ç 3)
-#define TE_TYPE_RECOVER_DP				(TimerEventType)11		// Âø·úÇßÀ» ¶§¸¸ Ã¤¿ò
+#define TE_TYPE_DELETE_DECOY			(TimerEventType)8		// ë””ì½”ì´ëŠ” TimeOutë°œìƒ ì‹œ CurrentCountë¥¼ ì¤„ì´ê³ , CurrentCount=0ê¹Œì§€ ë°˜ë³µí•¨
+#define TE_TYPE_GRADUAL_SHIELD_UP		(TimerEventType)9		// 2-2í˜• ë¬´ê¸° ì‰´ë“œ, intervalì€ ë¬´ì¡°ê±´ 1000 ms
+#define TE_TYPE_RECOVER_HP				(TimerEventType)10		// ì°©ë¥™í–ˆì„ ë•Œë§Œ ì±„ì›€(5ì´ˆë‹¹ 3)
+#define TE_TYPE_RECOVER_DP				(TimerEventType)11		// ì°©ë¥™í–ˆì„ ë•Œë§Œ ì±„ì›€
 #define TE_TYPE_RECOVER_SP				(TimerEventType)12
-#define TE_TYPE_GRADUAL_HP_UP			(TimerEventType)13		// intervalÀº ¹«Á¶°Ç 1000 ms, ITEM_GENERAL.Endurance°¡ 0ÀÌ µÉ ¶§±îÁö ¹İº¹ÇÔ
-#define TE_TYPE_GRADUAL_DP_UP			(TimerEventType)14		// intervalÀº ¹«Á¶°Ç 1000 ms, ITEM_GENERAL.Endurance°¡ 0ÀÌ µÉ ¶§±îÁö ¹İº¹ÇÔ
-#define TE_TYPE_GRADUAL_SP_UP			(TimerEventType)15		// intervalÀº ¹«Á¶°Ç 1000 ms, ITEM_GENERAL.Endurance°¡ 0ÀÌ µÉ ¶§±îÁö ¹İº¹ÇÔ, not used yet: SP´Â ÀÚµ¿À¸·Î È¸º¹µÊ, TE_TYPE_RECOVER_SP¸¦ »ç¿ë
-#define TE_TYPE_GRADUAL_EP_UP			(TimerEventType)16		// intervalÀº ¹«Á¶°Ç 1000 ms, ITEM_GENERAL.Endurance°¡ 0ÀÌ µÉ ¶§±îÁö ¹İº¹ÇÔ
-#define TE_TYPE_IMMEDIATE_HP_UP			(TimerEventType)17		// »ç¿ë½Ã ¹Ù·Î Ã¤¿ì°í Time µ¿¾È Àç»ç¿ëÀÌ ¾ÈµÈ´Ù
-#define TE_TYPE_IMMEDIATE_DP_UP			(TimerEventType)18		// »ç¿ë½Ã ¹Ù·Î Ã¤¿ì°í Time µ¿¾È Àç»ç¿ëÀÌ ¾ÈµÈ´Ù
-#define TE_TYPE_IMMEDIATE_SP_UP			(TimerEventType)19		// »ç¿ë½Ã ¹Ù·Î Ã¤¿ì°í Time µ¿¾È Àç»ç¿ëÀÌ ¾ÈµÈ´Ù
-#define TE_TYPE_IMMEDIATE_EP_UP			(TimerEventType)20		// »ç¿ë½Ã ¹Ù·Î Ã¤¿ì°í Time µ¿¾È Àç»ç¿ëÀÌ ¾ÈµÈ´Ù
-#define TE_TYPE_REQUEST_TIMEOUT			(TimerEventType)21		// °Å·¡, ÆÄÆ¼Àü, ÀÏ´ëÀÏ´ë°á µîÀÇ ¿äÃ»¿¡ ´ëÇÑ TimeOut
-#define TE_TYPE_DECREASE_SP				(TimerEventType)22		// TOGGLEÇü ½ºÅ³ »ç¿ë ½Ã, SP¸¦ ReqSP¸¸Å­ ¼Ò¸ğ, SP ¼ÒÁø ½Ã ½ºÅ³ ÀÚµ¿ Ãë¼Ò
-#define TE_TYPE_DO_MINUTELY_WORK		(TimerEventType)23		// 1ºĞ¿¡ ÇÑ¹ø¾¿ ¹ßÇàÇÏ´Â Å¸ÀÌ¸Ó
+#define TE_TYPE_GRADUAL_HP_UP			(TimerEventType)13		// intervalì€ ë¬´ì¡°ê±´ 1000 ms, ITEM_GENERAL.Enduranceê°€ 0ì´ ë  ë•Œê¹Œì§€ ë°˜ë³µí•¨
+#define TE_TYPE_GRADUAL_DP_UP			(TimerEventType)14		// intervalì€ ë¬´ì¡°ê±´ 1000 ms, ITEM_GENERAL.Enduranceê°€ 0ì´ ë  ë•Œê¹Œì§€ ë°˜ë³µí•¨
+#define TE_TYPE_GRADUAL_SP_UP			(TimerEventType)15		// intervalì€ ë¬´ì¡°ê±´ 1000 ms, ITEM_GENERAL.Enduranceê°€ 0ì´ ë  ë•Œê¹Œì§€ ë°˜ë³µí•¨, not used yet: SPëŠ” ìë™ìœ¼ë¡œ íšŒë³µë¨, TE_TYPE_RECOVER_SPë¥¼ ì‚¬ìš©
+#define TE_TYPE_GRADUAL_EP_UP			(TimerEventType)16		// intervalì€ ë¬´ì¡°ê±´ 1000 ms, ITEM_GENERAL.Enduranceê°€ 0ì´ ë  ë•Œê¹Œì§€ ë°˜ë³µí•¨
+#define TE_TYPE_IMMEDIATE_HP_UP			(TimerEventType)17		// ì‚¬ìš©ì‹œ ë°”ë¡œ ì±„ìš°ê³  Time ë™ì•ˆ ì¬ì‚¬ìš©ì´ ì•ˆëœë‹¤
+#define TE_TYPE_IMMEDIATE_DP_UP			(TimerEventType)18		// ì‚¬ìš©ì‹œ ë°”ë¡œ ì±„ìš°ê³  Time ë™ì•ˆ ì¬ì‚¬ìš©ì´ ì•ˆëœë‹¤
+#define TE_TYPE_IMMEDIATE_SP_UP			(TimerEventType)19		// ì‚¬ìš©ì‹œ ë°”ë¡œ ì±„ìš°ê³  Time ë™ì•ˆ ì¬ì‚¬ìš©ì´ ì•ˆëœë‹¤
+#define TE_TYPE_IMMEDIATE_EP_UP			(TimerEventType)20		// ì‚¬ìš©ì‹œ ë°”ë¡œ ì±„ìš°ê³  Time ë™ì•ˆ ì¬ì‚¬ìš©ì´ ì•ˆëœë‹¤
+#define TE_TYPE_REQUEST_TIMEOUT			(TimerEventType)21		// ê±°ë˜, íŒŒí‹°ì „, ì¼ëŒ€ì¼ëŒ€ê²° ë“±ì˜ ìš”ì²­ì— ëŒ€í•œ TimeOut
+#define TE_TYPE_DECREASE_SP				(TimerEventType)22		// TOGGLEí˜• ìŠ¤í‚¬ ì‚¬ìš© ì‹œ, SPë¥¼ ReqSPë§Œí¼ ì†Œëª¨, SP ì†Œì§„ ì‹œ ìŠ¤í‚¬ ìë™ ì·¨ì†Œ
+#define TE_TYPE_DO_MINUTELY_WORK		(TimerEventType)23		// 1ë¶„ì— í•œë²ˆì”© ë°œí–‰í•˜ëŠ” íƒ€ì´ë¨¸
 	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
-#define TE_TYPE_DOTSKILL_STEALING		(TimerEventType)24		// Stealing ½ºÅ³ - SP°¨¼Ò (SP°¡ ¼ÒÁø µÇ¾îµµ °è¼Ó Àû¿ë µÇ¾î¾ß ÇÑ´Ù.)
-#define TE_TYPE_DOTSKILL_DRAIN			(TimerEventType)25		// Drain ½ºÅ³ - ÇÇ°İ´ë»ó¿¡ HP°¨¼Ò½ÃÄÑ °ø°İ´ë»ó¿¡°Ô Ã¤¿öÁØ´Ù.
-#define TE_TYPE_DOTSKILL_TIME_BOMB		(TimerEventType)26		// TimeBomb ½ºÅ³ - ÇÇ ´ë»ó¿¡°Ô ½Ã°£ Á¾·á½Ã ÇöÀç ÇÇ¿¡ %·Î µ¥¹ÌÁö¸¦ ÀÔÈù´Ù.
-#define TE_TYPE_FIXED_TERM_SHAPE		(TimerEventType)27		// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
+#define TE_TYPE_DOTSKILL_STEALING		(TimerEventType)24		// Stealing ìŠ¤í‚¬ - SPê°ì†Œ (SPê°€ ì†Œì§„ ë˜ì–´ë„ ê³„ì† ì ìš© ë˜ì–´ì•¼ í•œë‹¤.)
+#define TE_TYPE_DOTSKILL_DRAIN			(TimerEventType)25		// Drain ìŠ¤í‚¬ - í”¼ê²©ëŒ€ìƒì— HPê°ì†Œì‹œì¼œ ê³µê²©ëŒ€ìƒì—ê²Œ ì±„ì›Œì¤€ë‹¤.
+#define TE_TYPE_DOTSKILL_TIME_BOMB		(TimerEventType)26		// TimeBomb ìŠ¤í‚¬ - í”¼ ëŒ€ìƒì—ê²Œ ì‹œê°„ ì¢…ë£Œì‹œ í˜„ì¬ í”¼ì— %ë¡œ ë°ë¯¸ì§€ë¥¼ ì…íŒë‹¤.
+#define TE_TYPE_FIXED_TERM_SHAPE		(TimerEventType)27		// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
 
 #define TIMER_DOT_INTERVAL					1000
 
 
 #define TIMER_DECOY_TIME_CHECK_INTERVAL		1000
-#define TIMER_GRADUAL_UP_INTERVAL			1000	// gradual up¿¡ »ç¿ëµÇ´Â interval, DELETE_DECOY¿¡µµ »ç¿ëÇÔ
+#define TIMER_GRADUAL_UP_INTERVAL			1000	// gradual upì— ì‚¬ìš©ë˜ëŠ” interval, DELETE_DECOYì—ë„ ì‚¬ìš©í•¨
 #define _DEFAULT_TIME_GRANULARITY			100		// milli-seconds
-#define _MAX_TIMER_INTERVAL_TIME			150000	// maximum 150 seconds, check: Á¶Á¤ÇØ¾ß ÇÔ
+#define _MAX_TIMER_INTERVAL_TIME			150000	// maximum 150 seconds, check: ì¡°ì •í•´ì•¼ í•¨
 #define SIZE_MAX_TIMER_EVENT_MEMPOOL		1000
 #define _TIMER_TICK							_DEFAULT_TIME_GRANULARITY/3
 #define TIMER_REPEAT_INFINITE				MAX_INT_VALUE
-#define TIMER_DECREASE_SP_INTERVAL			1000				// 1ÃÊ
-#define TIMER_DO_MINUTELY_WORK				60*1000				// 1ºĞ
+#define TIMER_DECREASE_SP_INTERVAL			1000				// 1ì´ˆ
+#define TIMER_DO_MINUTELY_WORK				60*1000				// 1ë¶„
 
 
-#define MANAGE_MAX_TIME_FIXED_TERM_MINUTELY		10080				// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü) - 1´Ş 60ºĞ * 24½Ã°£ * 7ÀÏ (±â°£Á¦ °ü¸®´Â 7ÀÏÀÌÇÏ ³²Àº °Í¸¸ Ã³¸®)
+#define MANAGE_MAX_TIME_FIXED_TERM_MINUTELY		10080				// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•) - 1ë‹¬ 60ë¶„ * 24ì‹œê°„ * 7ì¼ (ê¸°ê°„ì œ ê´€ë¦¬ëŠ” 7ì¼ì´í•˜ ë‚¨ì€ ê²ƒë§Œ ì²˜ë¦¬)
 
 struct MEX_TIMER_EVENT
 {
 	TimerEventType		Type;
-	UID32_t				TimerUID;				// Å¸ÀÌ¸Ó ¾ÆÀÌµğ
+	UID32_t				TimerUID;				// íƒ€ì´ë¨¸ ì•„ì´ë””
 	TimeUnit_t			StartTimeStamp;			// milli-seconds
 	TimeUnit_t			ExpireTime;				// milli-seconds
 	TimeUnit_t			TimeInterval;			// milli-seconds, (ExpireTime - StartTimeStamp)
-	UID32_t				CharacterUniqueNumber;	// event¸¦ ½ÃÀÛÇÑ characÀÌ ³ª°¡°í ´Ù¸¥ characÀÌ socketÀ» »ç¿ëÇÏ´Â °æ¿ì¸¦ ¸·±â À§ÇØ, IsUsing()°ú CharacterUniqueNumber°¡ °°¾Æ¾ß ÇÔ!
-	ClientIndex_t		ClientIndex;			// event¸¦ ½ÃÀÛÇÑ characÀÌ ³ª°¡°í ´Ù¸¥ characÀÌ socketÀ» »ç¿ëÇÏ´Â °æ¿ì¸¦ ¸·±â À§ÇØ, IsUsing()°ú ClientIndex°¡ °°¾Æ¾ß ÇÔ!
-	UINT				nGeneralParam1;			// end_skill: ITEM_SKILL* ,	mine: CMapBlock*,	delete_item·ù: ITEM_GENERAL*, GRADUAL_SHIELD_UP: HI(ItemUID), GRADUAL_XXX_UP: ITEM*, DELETE_DUMMY: FIELD_DUMMY*
-	UINT				nGeneralParam2;			// end_skill: ,				mine: DROPMINE*,	delete_item·ù:              , GRADUAL_SHIELD_UP: LO(ItemUID)
-	UINT				nGeneralParam3;			// end_skill: ,				mine: CFieldIOCP*,	delete_item·ù:              , GRADUAL_SHIELD_UP: ItemNum
-	bool				bRepeatable;			// repeatÇØ¾ß ÇÏ´ÂÁö ¿©ºÎ
-	INT					nRemainedRepeatCount;	// ³²Àº È½¼ö, ~0(0xFFFFFFFF): ¹«ÇÑ ¹İº¹, 0ÀÌÇÏ: Á¤Áö, 1ÀÌ»ó: È¸¼ö¸¸Å­ ¹İº¹
+	UID32_t				CharacterUniqueNumber;	// eventë¥¼ ì‹œì‘í•œ characì´ ë‚˜ê°€ê³  ë‹¤ë¥¸ characì´ socketì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ë¥¼ ë§‰ê¸° ìœ„í•´, IsUsing()ê³¼ CharacterUniqueNumberê°€ ê°™ì•„ì•¼ í•¨!
+	ClientIndex_t		ClientIndex;			// eventë¥¼ ì‹œì‘í•œ characì´ ë‚˜ê°€ê³  ë‹¤ë¥¸ characì´ socketì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ë¥¼ ë§‰ê¸° ìœ„í•´, IsUsing()ê³¼ ClientIndexê°€ ê°™ì•„ì•¼ í•¨!
+	UINT				nGeneralParam1;			// end_skill: ITEM_SKILL* ,	mine: CMapBlock*,	delete_itemë¥˜: ITEM_GENERAL*, GRADUAL_SHIELD_UP: HI(ItemUID), GRADUAL_XXX_UP: ITEM*, DELETE_DUMMY: FIELD_DUMMY*
+	UINT				nGeneralParam2;			// end_skill: ,				mine: DROPMINE*,	delete_itemë¥˜:              , GRADUAL_SHIELD_UP: LO(ItemUID)
+	UINT				nGeneralParam3;			// end_skill: ,				mine: CFieldIOCP*,	delete_itemë¥˜:              , GRADUAL_SHIELD_UP: ItemNum
+	bool				bRepeatable;			// repeatí•´ì•¼ í•˜ëŠ”ì§€ ì—¬ë¶€
+	INT					nRemainedRepeatCount;	// ë‚¨ì€ íšŸìˆ˜, ~0(0xFFFFFFFF): ë¬´í•œ ë°˜ë³µ, 0ì´í•˜: ì •ì§€, 1ì´ìƒ: íšŒìˆ˜ë§Œí¼ ë°˜ë³µ
 };
 
 struct MSG_FC_TIMER_START_TIMER
 {
 	MEX_TIMER_EVENT		TimerEvent;
-};			// F->C, TIMER_EVENT ½ÃÀÛ
+};			// F->C, TIMER_EVENT ì‹œì‘
 
 struct MSG_FC_TIMER_STOP_TIMER
 {
 	UID32_t				TimerUID;
-};			// F->C, TIMER_EVENT Á¤Áö
+};			// F->C, TIMER_EVENT ì •ì§€
 
 struct MSG_FC_TIMER_UPDATE_TIMER
 {
 	MEX_TIMER_EVENT		TimerEvent;
-};		// F->C, TIMER_EVENT °»½Å(½Ã°£ ¿¬Àå)
+};		// F->C, TIMER_EVENT ê°±ì‹ (ì‹œê°„ ì—°ì¥)
 
 struct MSG_FC_TIMER_PAUSE_TIMER
 {
 	UID32_t				TimerUID;
-};			// F->C, TIMER_EVENT ÀÏ½Ã Á¤Áö
+};			// F->C, TIMER_EVENT ì¼ì‹œ ì •ì§€
 
 struct MSG_FC_TIMER_CONTINUE_TIMER
 {
 	UID32_t				TimerUID;
-};		// F->C, TIMER_EVENT Àç½ÃÀÛ
+};		// F->C, TIMER_EVENT ì¬ì‹œì‘
 
 struct MSG_FC_TIMER_TIMEOUT
 {
 	MEX_TIMER_EVENT		TimerEvent;
-};				// C->F, ½Ã°£ÀÌ ´Ù µÊÀ» ¾Ë¸²
+};				// C->F, ì‹œê°„ì´ ë‹¤ ë¨ì„ ì•Œë¦¼
 
 				///////////////////////////////////////////////////////////////////////////////
 				// FC_CLIENT_REPORT
 struct MSG_FC_CLIENT_REPORT
 {
-	char			ClientPrivateIP[SIZE_MAX_IPADDRESS];	// »ç¼³¸ÁÀÎ °æ¿ì private ip
+	char			ClientPrivateIP[SIZE_MAX_IPADDRESS];	// ì‚¬ì„¤ë§ì¸ ê²½ìš° private ip
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 	char			Message[SIZE_MAX_CLIENT_REPORT];
 };		// C -> F
@@ -6964,11 +6964,11 @@ struct MSF_FC_WORLD_NOTIFICATION
 	bool	Notification;
 };
 
-#define STR128_PRINT_TYPE_CHAT		(BYTE)0x00	// Ã¤ÆÃÃ¢¿¡ Ãâ·Â
-#define STR128_PRINT_TYPE_STATIC	(BYTE)0x01	// °íÁ¤ text·Î Ãâ·Â
-#define STR128_PRINT_TYPE_DBGOUT	(BYTE)0x02	// Å¬¶óÀÌ¾ğÆ® DBGOUT Ãâ·Â - // 2012-02-13 by hskim, ¸ó½ºÅÍ ¾ÆÀÌÅÛ µå¶ø Å×½ºÆ® ¸í·É¾î
-#define STR128_PRINT_TYPE_NOTICE	(BYTE)0x03	// Å¬¶óÀÌ¾ğÆ® °øÁö ½ºÅ©·Ñ¿¡ ¿Ã¸² - // 2012-03-30 by hskim, EP4 Æ®¸®°Å ½Ã½ºÅÛ ÀÌº¥Æ® ¾Ë¸²
-#define STR128_PRINT_TYPE_POPUP		(BYTE)0x04	// Å¬¶óÀÌ¾ğÆ® °øÁö ÆË¾÷À¸·ç ¶Ù¿ò - // 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - STR128_PRINT_TYPE_POPUP Ãß°¡
+#define STR128_PRINT_TYPE_CHAT		(BYTE)0x00	// ì±„íŒ…ì°½ì— ì¶œë ¥
+#define STR128_PRINT_TYPE_STATIC	(BYTE)0x01	// ê³ ì • textë¡œ ì¶œë ¥
+#define STR128_PRINT_TYPE_DBGOUT	(BYTE)0x02	// í´ë¼ì´ì–¸íŠ¸ DBGOUT ì¶œë ¥ - // 2012-02-13 by hskim, ëª¬ìŠ¤í„° ì•„ì´í…œ ë“œë í…ŒìŠ¤íŠ¸ ëª…ë ¹ì–´
+#define STR128_PRINT_TYPE_NOTICE	(BYTE)0x03	// í´ë¼ì´ì–¸íŠ¸ ê³µì§€ ìŠ¤í¬ë¡¤ì— ì˜¬ë¦¼ - // 2012-03-30 by hskim, EP4 íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ ì´ë²¤íŠ¸ ì•Œë¦¼
+#define STR128_PRINT_TYPE_POPUP		(BYTE)0x04	// í´ë¼ì´ì–¸íŠ¸ ê³µì§€ íŒì—…ìœ¼ë£¨ ë›°ì›€ - // 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - STR128_PRINT_TYPE_POPUP ì¶”ê°€
 
 using MSG_IC_STRING_128 = MSG_FC_STRING_128;
 using MSG_IC_STRING_256 = MSG_FC_STRING_256;
@@ -6983,8 +6983,8 @@ struct MSG_FI_ADMIN_GET_CHARACTER_INFO
 	UID32_t	CharacterUniqueNumber;
 };
 
-#define ADMIN_GET_CHARAC_TYPE_SEND	 (BYTE)0	// ±×³É Àü¼Û¿ë
-#define ADMIN_GET_CHARAC_TYPE_MOVETO (BYTE)1	// ¿öÇÁ¿ë
+#define ADMIN_GET_CHARAC_TYPE_SEND	 (BYTE)0	// ê·¸ëƒ¥ ì „ì†¡ìš©
+#define ADMIN_GET_CHARAC_TYPE_MOVETO (BYTE)1	// ì›Œí”„ìš©
 
 struct MSG_FI_ADMIN_GET_CHARACTER_INFO_OK
 {
@@ -7000,20 +7000,20 @@ struct MSG_FI_ADMIN_GET_CHARACTER_INFO_OK
 struct MSG_FI_ADMIN_CALL_CHARACTER
 {
 	UID32_t			CharacterUniqueNumber;
-	MAP_CHANNEL_INDEX	MapChannelIndex;			// adminÀÇ ¸ÊÀÌ¸§
-	AVECTOR3		Position;						// adminÀÇ ÁÂÇ¥
+	MAP_CHANNEL_INDEX	MapChannelIndex;			// adminì˜ ë§µì´ë¦„
+	AVECTOR3		Position;						// adminì˜ ì¢Œí‘œ
 };	// I -> F
 
 struct MSG_FI_ADMIN_MOVETO_CHARACTER
 {
 	UID32_t			AdminCharacterUniqueNumber;
-	MAP_CHANNEL_INDEX	MapChannelIndex;			// TargetÀÇ ¸ÊÀÌ¸§
-	AVECTOR3		Position;						// TargetÀÇ ÁÂÇ¥
+	MAP_CHANNEL_INDEX	MapChannelIndex;			// Targetì˜ ë§µì´ë¦„
+	AVECTOR3		Position;						// Targetì˜ ì¢Œí‘œ
 };
 
 struct MSG_FI_ADMIN_CHANGE_WEATHER
 {
-	MapIndex_t		MapIndex;		// MAP_INDEX_ALL ÀÌ¸é ¸ğµç ¸Ê ÀÇ¹Ì
+	MapIndex_t		MapIndex;		// MAP_INDEX_ALL ì´ë©´ ëª¨ë“  ë§µ ì˜ë¯¸
 	BitFlag16_t		MapWeather;
 	bool			OnOff;
 };
@@ -7023,13 +7023,13 @@ struct MSG_FI_ADMIN_CHANGE_WEATHER
 struct MSG_IC_ADMIN_CALL_CHARACTER
 {
 	char				CharacterName[SIZE_MAX_CHARACTER_NAME];
-	MAP_CHANNEL_INDEX	MapChannelIndex;				// adminÀÇ ¸ÊÀÌ¸§
-	AVECTOR3			Position;						// adminÀÇ ÁÂÇ¥
+	MAP_CHANNEL_INDEX	MapChannelIndex;				// adminì˜ ë§µì´ë¦„
+	AVECTOR3			Position;						// adminì˜ ì¢Œí‘œ
 };	// I -> C
 
 struct MSG_IC_ADMIN_GET_SERVER_STAT_OK
 {
-	INT					TotalUserCount;				// ¼­¹ö±º ÀüÃ¼ÀÇ »ç¿ëÀÚ ¼ö
+	INT					TotalUserCount;				// ì„œë²„êµ° ì „ì²´ì˜ ì‚¬ìš©ì ìˆ˜
 	INT					BCUUserCount;
 	INT					ANIUSerCount;
 };					// I -> C
@@ -7037,8 +7037,8 @@ struct MSG_IC_ADMIN_GET_SERVER_STAT_OK
 struct MSG_IC_ADMIN_CALL_GUILD
 {
 	char				GuildName[SIZE_MAX_GUILD_NAME];
-	MAP_CHANNEL_INDEX	MapChannelIndex;				// adminÀÇ ¸ÊÀÌ¸§
-	AVECTOR3			Position;						// adminÀÇ ÁÂÇ¥
+	MAP_CHANNEL_INDEX	MapChannelIndex;				// adminì˜ ë§µì´ë¦„
+	AVECTOR3			Position;						// adminì˜ ì¢Œí‘œ
 };	// I -> C
 
 struct MSG_IC_ADMIN_CALLGM_INFO_OK		// 2006-05-08 by cmkwon
@@ -7051,7 +7051,7 @@ struct MSG_IC_ADMIN_CALLGM_INFO_OK		// 2006-05-08 by cmkwon
 struct SCALLGM			// 2006-05-08 by cmkwon
 {
 	UID32_t			CallerCharacterUID;
-	BYTE			CallerInflTy;			// 2007-11-19 by cmkwon, ÁøÁ¤½Ã½ºÅÛ ¾÷µ¥ÀÌÆ® - SCALLGM ±¸Á¶Ã¼¿¡ ¼¼·Â ÇÊµå Ãß°¡
+	BYTE			CallerInflTy;			// 2007-11-19 by cmkwon, ì§„ì •ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸ - SCALLGM êµ¬ì¡°ì²´ì— ì„¸ë ¥ í•„ë“œ ì¶”ê°€
 	char			szCallerCharacterName[SIZE_MAX_CHARACTER_NAME];
 	ATUM_DATE_TIME	atimeCallTime;
 	char			szCallGMDescription[SIZE_MAX_CHAT_MESSAGE];
@@ -7068,8 +7068,8 @@ using MSG_IC_ADMIN_CALLGM_BRING_OK = MSG_IC_ADMIN_CALLGM_VIEW_OK;		// 2006-05-08
 																		// FC_ADMIN
 struct MSG_FC_ADMIN_GET_SERVER_STAT_OK
 {
-	MAP_CHANNEL_INDEX	CurrentMapChannelIndex;		// ÇöÀç ¸Ê
-	INT					CurrentUserCount;			// ÇöÀç ¸ÊÀÇ »ç¿ëÀÚ ¼ö
+	MAP_CHANNEL_INDEX	CurrentMapChannelIndex;		// í˜„ì¬ ë§µ
+	INT					CurrentUserCount;			// í˜„ì¬ ë§µì˜ ì‚¬ìš©ì ìˆ˜
 	INT					CurrentBCUUserCount;
 	INT					CurrentANIUserCount;
 };					// F -> C
@@ -7078,9 +7078,9 @@ struct MSG_FC_ADMIN_GET_SERVER_STAT_OK
 					// ERROR
 struct MSG_ERROR
 {
-	MessageType_t	MsgType;	// ¿¡·¯°¡ ÀÏ¾î³µÀ» ¶§ Ã³¸®ÁßÀÌ¾ú´ø Message Type
+	MessageType_t	MsgType;	// ì—ëŸ¬ê°€ ì¼ì–´ë‚¬ì„ ë•Œ ì²˜ë¦¬ì¤‘ì´ì—ˆë˜ Message Type
 	Err_t			ErrorCode;			// 2 bytes
-	bool			CloseConnection;	// Client¿¡¼­ ¿¬°áÀ» ²÷À»Áö¿¡ ´ëÇÑ ¿©ºÎ
+	bool			CloseConnection;	// Clientì—ì„œ ì—°ê²°ì„ ëŠì„ì§€ì— ëŒ€í•œ ì—¬ë¶€
 	INT				ErrParam1;			// general-purpose err parameter 1
 	INT				ErrParam2;			// general-purpose err parameter 2
 	USHORT			StringLength;		// 2 bytes
@@ -7091,48 +7091,48 @@ struct MSG_ERROR
 // Log Server Protocol (T0: 0x20~)
 ///////////////////////////////////////////////////////////////////////////////
 /*
-- Item:		½Àµæ(°Å·¡,Áİ´Â°æ¿ì), ¾ÆÀÌÅÛÃ¢->Ã¢°í,Ã¢°í->¾ÆÀÌÅÛÃ¢, ¼ÒÀ¯±ÇºĞ½Ç(°Å·¡½Ã »ó´ëÁ¤º¸, ¹Ù´Ú¿¡ ¶³¾î¶ß¸± °æ¿ì ÁÂÇ¥)
-- Skill:	½Àµæ, ¼ÒÀ¯±Ç ºĞ½Ç
+- Item:		ìŠµë“(ê±°ë˜,ì¤ëŠ”ê²½ìš°), ì•„ì´í…œì°½->ì°½ê³ ,ì°½ê³ ->ì•„ì´í…œì°½, ì†Œìœ ê¶Œë¶„ì‹¤(ê±°ë˜ì‹œ ìƒëŒ€ì •ë³´, ë°”ë‹¥ì— ë–¨ì–´ëœ¨ë¦´ ê²½ìš° ì¢Œí‘œ)
+- Skill:	ìŠµë“, ì†Œìœ ê¶Œ ë¶„ì‹¤
 - Level:	Up(n), down(-n)
 - Exp:		Up(n), down(-n)
-- Stat:		6°³(AttackPart, DefensePart, FuelPart, SoulPart, ShieldPart, DodgePart), type,n
-- EndGame:	Á¢¼Ó½Ã°£, Á¾·á½Ã°£, IP, PlayTime, ÁÂÇ¥
+- Stat:		6ê°œ(AttackPart, DefensePart, FuelPart, SoulPart, ShieldPart, DodgePart), type,n
+- EndGame:	ì ‘ì†ì‹œê°„, ì¢…ë£Œì‹œê°„, IP, PlayTime, ì¢Œí‘œ
 */
 
 
-// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 // enum EN_ENCHANT_LOGTYPE
 // {
 // 	ENCHANT_LOGTYPE_FAIL		= 0,
 // 	ENCHANT_LOGTYPE_SUCCESS		= 1,
 // 	ENCHANT_LOGTYPE_TARGETITEM	= 2,
 // 	ENCHANT_LOGTYPE_ATTACHITEM	= 3,
-// 	ENCHANT_LOGTYPE_INCREASE_PROBABILITY = 4		// 2009-01-19 by dhjin, ÀÎÃ¾Æ® È®·ü Áõ°¡, 10ÀÎÃ¾ ÆÄ¹æ Ä«µå
+// 	ENCHANT_LOGTYPE_INCREASE_PROBABILITY = 4		// 2009-01-19 by dhjin, ì¸ì²¸íŠ¸ í™•ë¥  ì¦ê°€, 10ì¸ì²¸ íŒŒë°© ì¹´ë“œ
 // };
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 enum EN_ENCHANT_LOGTYPE
 {
 	ENCHANT_LOGTYPE_UNKNOWN = 0,		// 
-	ENCHANT_LOGTYPE_ENCHANT_FAIL = 100,		// ÀÎÃ¦Æ® ½ÇÆĞ
-	ENCHANT_LOGTYPE_ENCHANT_SUCCESS = 101,		// ÀÎÃ¦Æ® ¼º°ø
-	ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL = 110,		// ÀÎÃ¦Æ® ÃÊ±âÈ­ ¼º°ø
+	ENCHANT_LOGTYPE_ENCHANT_FAIL = 100,		// ì¸ì±ˆíŠ¸ ì‹¤íŒ¨
+	ENCHANT_LOGTYPE_ENCHANT_SUCCESS = 101,		// ì¸ì±ˆíŠ¸ ì„±ê³µ
+	ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL = 110,		// ì¸ì±ˆíŠ¸ ì´ˆê¸°í™” ì„±ê³µ
 	ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS = 111,
-	ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL = 120,		// Á¢µÎ °×ºí ¼º°ø
+	ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL = 120,		// ì ‘ë‘ ê²œë¸” ì„±ê³µ
 	ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS = 121,
-	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL = 122,		// Á¢¹Ì °×ºí ¼º°ø
+	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL = 122,		// ì ‘ë¯¸ ê²œë¸” ì„±ê³µ
 	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS = 123,
-	ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL = 130,		// Á¢µÎ °×ºí ÃÊ±âÈ­ ¼º°ø
+	ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL = 130,		// ì ‘ë‘ ê²œë¸” ì´ˆê¸°í™” ì„±ê³µ
 	ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS = 131,
-	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL = 132,		// Á¢¹Ì °×ºí ÃÊ±âÈ­ ¼º°ø
+	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL = 132,		// ì ‘ë¯¸ ê²œë¸” ì´ˆê¸°í™” ì„±ê³µ
 	ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS = 133
 };
-char *GetEnchatLogTypeString(int i_nEnchantLogTy);		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+char *GetEnchatLogTypeString(int i_nEnchantLogTy);		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 int GetEnchantLogType(ITEM *i_pEnchantItemInfo, bool i_bSuccessFlag);
 
 
 
-// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 enum EN_TRY_ENCHANT_SUCCESS_LOGTYPE
 {
 	TRY_ENCHANT_FAIL = 0,
@@ -7141,139 +7141,139 @@ enum EN_TRY_ENCHANT_SUCCESS_LOGTYPE
 	TRY_ENCHANT_PREVENT_10 = 10
 };
 char *GetTryEnchantSuccessTypeString(int i_nSuccessType);
-// End. 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+// End. 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 
 
 // CONNECTION LOG(0x00~)
-//#define T1_FL_LOG_LOGIN							0x00	// 0 - ·Î±×ÀÎ
-//#define T1_FL_LOG_LOGOUT						0x01	// 1 - ·Î±×¾Æ¿ô
+//#define T1_FL_LOG_LOGIN							0x00	// 0 - ë¡œê·¸ì¸
+//#define T1_FL_LOG_LOGOUT						0x01	// 1 - ë¡œê·¸ì•„ì›ƒ
 // USER LOG(0x10~)
-//#define T1_FL_LOG_LEVEL							0x10	// 16 - ·¹º§ º¯È­
-//#define T1_FL_LOG_EXP							0x11	// 17 - °æÇèÄ¡ º¯È­
-//#define T1_FL_LOG_STAT							0x12	// 18 - ½ºÅÈ »ç¿ë
-//#define T1_FL_LOG_GAME_START					0x13	// 19 - °ÔÀÓ ½ÃÀÛ
-//#define T1_FL_LOG_GAME_END						0x14	// 20 - °ÔÀÓ Á¾·á
-//#define T1_FL_LOG_QUEST_COMPLETION				0x15	// 21 - Äù½ºÆ® ¿Ï·á
-//#define T1_FL_LOG_PKWIN							0x16	// 22 - 1:1 °áÅõ ½Â¸®
-//#define T1_FL_LOG_PKLOSS						0x17	// 23 - 1:1 °áÅõ ÆĞ¹è
-//#define T1_FL_LOG_DEAD							0x18	// 24 - ±âÃ¼ ÆøÆÄ
-//#define T1_FL_LOG_WARP							0x19	// 25 - ¿öÇÁ
-//#define T1_FL_LOG_SPEED_HACK					0x1A	// 26 - ½ºÇÇµå ÇÙ
-//#define T1_FL_LOG_CREATE_CHARACTER				0x1B	// 27 - Ä³¸¯ÅÍ »ı¼º
-//#define T1_FL_LOG_DELETE_CHARACTER				0x1C	// 28 - Ä³¸¯ÅÍ »èÁ¦
-//#define T1_FL_LOG_MEMORY_HACK					0x1D	// 29 - ¸Ş¸ğ¸®ÇÙ, 2005-12-20 by cmkwon
-//#define T1_FL_LOG_PvEWIN						0x1E	// 30 - ¼¼·ÂÀü¿¡¼­ »ó´ë ¼¼·Â Ä³¸¯ÅÍ¸¦ Á×ÀÓ, 2006-03-06 by cmkwon
-//#define T1_FL_LOG_PvELOSS						0x1F	// 31 - ¼¼·ÂÀü¿¡¼­ »ó´ë ¼¼·Â¿¡ ÀÇÇØ Á×À½, 2006-03-06 by cmkwon
+//#define T1_FL_LOG_LEVEL							0x10	// 16 - ë ˆë²¨ ë³€í™”
+//#define T1_FL_LOG_EXP							0x11	// 17 - ê²½í—˜ì¹˜ ë³€í™”
+//#define T1_FL_LOG_STAT							0x12	// 18 - ìŠ¤íƒ¯ ì‚¬ìš©
+//#define T1_FL_LOG_GAME_START					0x13	// 19 - ê²Œì„ ì‹œì‘
+//#define T1_FL_LOG_GAME_END						0x14	// 20 - ê²Œì„ ì¢…ë£Œ
+//#define T1_FL_LOG_QUEST_COMPLETION				0x15	// 21 - í€˜ìŠ¤íŠ¸ ì™„ë£Œ
+//#define T1_FL_LOG_PKWIN							0x16	// 22 - 1:1 ê²°íˆ¬ ìŠ¹ë¦¬
+//#define T1_FL_LOG_PKLOSS						0x17	// 23 - 1:1 ê²°íˆ¬ íŒ¨ë°°
+//#define T1_FL_LOG_DEAD							0x18	// 24 - ê¸°ì²´ í­íŒŒ
+//#define T1_FL_LOG_WARP							0x19	// 25 - ì›Œí”„
+//#define T1_FL_LOG_SPEED_HACK					0x1A	// 26 - ìŠ¤í”¼ë“œ í•µ
+//#define T1_FL_LOG_CREATE_CHARACTER				0x1B	// 27 - ìºë¦­í„° ìƒì„±
+//#define T1_FL_LOG_DELETE_CHARACTER				0x1C	// 28 - ìºë¦­í„° ì‚­ì œ
+//#define T1_FL_LOG_MEMORY_HACK					0x1D	// 29 - ë©”ëª¨ë¦¬í•µ, 2005-12-20 by cmkwon
+//#define T1_FL_LOG_PvEWIN						0x1E	// 30 - ì„¸ë ¥ì „ì—ì„œ ìƒëŒ€ ì„¸ë ¥ ìºë¦­í„°ë¥¼ ì£½ì„, 2006-03-06 by cmkwon
+//#define T1_FL_LOG_PvELOSS						0x1F	// 31 - ì„¸ë ¥ì „ì—ì„œ ìƒëŒ€ ì„¸ë ¥ì— ì˜í•´ ì£½ìŒ, 2006-03-06 by cmkwon
 // ITEM LOG(0x20~)
-//#define T1_FL_LOG_ITEM_CHARACTER_ITEM			0x20	// 32 - ¸ğµç ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå
-//#define T1_FL_LOG_ITEM_GET_ITEM					0x21	// 33 - Drop Item ½Àµæ
-//#define T1_FL_LOG_ITEM_TRADE_SEND				0x22	// 34 - ¾ÆÀÌÅÛ °Å·¡: ÁÖ±â
-//#define T1_FL_LOG_ITEM_TRADE_RECV				0x23	// 35 - ¾ÆÀÌÅÛ °Å·¡: ¹Ş±â
-//#define T1_FL_LOG_ITEM_THROWAWAY_ITEM			0x24	// 36 - ¾ÆÀÌÅÛ ¹ö¸®±â
-//#define T1_FL_LOG_ITEM_BUY_ITEM					0x25	// 37 - ¾ÆÀÌÅÛ ±¸¸Å
-//#define T1_FL_LOG_ITEM_SELL_ITEM				0x26	// 38 - ¾ÆÀÌÅÛ ÆÇ¸Å
-//#define T1_FL_LOG_ITEM_USE_ITEM					0x27	// 39 - ¾ÆÀÌÅÛ »ç¿ë
-//#define T1_FL_LOG_ITEM_USE_ENERGY				0x28	// 40 - ¿¡³ÊÁö·ù ¾ÆÀÌÅÛ »ç¿ë
-//#define T1_FL_LOG_ITEM_USE_ENCHANT				0x29	// 41 - ÀÎÃ¦Æ®·ù ¾ÆÀÌÅÛ »ç¿ë
-//#define T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN		0x2A	// 42 - ¿î¿µÅø¿¡ ÀÇÇÑ ½Àµæ
-//#define T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN		0x2B	// 43 - ¿î¿µÅø¿¡ ÀÇÇÑ Á¦°Å
-//#define T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND		0x2C	// 44 - ¸í·É¾î¿¡ ÀÇÇÑ ½Àµæ
-//#define T1_FL_LOG_ITEM_INSERT_TO_STORE			0x2D	// 45 - Ã¢°í¿¡ »ğÀÔ
-//#define T1_FL_LOG_ITEM_DRAW_FROM_STORE			0x2E	// 46 - Ã¢°í¿¡¼­ ²¨³»±â
-//#define T1_FL_LOG_ITEM_STORE_ITEM				0x2F	// 47 - Ã¢°í ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå, Ã¢°í ½ÃÀÛ ¾ÆÀÌÅÛ
-//#define T1_FL_LOG_ITEM_USE_MIX					0x30	// 48 - Á¶ÇÕ
-//#define T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN	0x31	// 49 - Ä³¸¯¸í º¯°æ½Ã ¿À¸®Áö³¯ Ä³¸¯¸í
-//#define T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW	0x32	// 50 - Ä³¸¯¸í º¯°æ½Ã »õ·Î¿î Ä³¸¯¸í
-//#define T1_FL_LOG_ITEM_BAZAAR_SEND				0x33	// 51 - °³ÀÎ»óÁ¡ °Å·¡: ÁÖ±â, 2006-07-27 by cmkwon
-//#define T1_FL_LOG_ITEM_BAZAAR_RECV				0x34	// 52 - °³ÀÎ»óÁ¡ °Å·¡: ¹Ş±â, 2006-07-27 by cmkwon
-//#define T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE		0x35	// 53 - ¿©´Ü Ã¢°í¿¡ »ğÀÔ, 2006-09-27 by dhjin
-//#define T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE		0x36	// 54 - ¿©´Ü Ã¢°í¿¡¼­ ²¨³»±â, 2006-09-27 by dhjin
-//#define T1_FL_LOG_ITEM_SPI						0x37	// 55 - Ä³¸¯ÅÍ Á×À»¶§ ´Ù¿î SPI Log, 2006-10-27 by cmkwon
-//#define T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT	0x38	// 56 - ItemEvent¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ Ãß°¡, 2007-01-11 by cmkwon
-//#define T1_FL_LOG_QUEST_COMPENSATION			0x39	// 57 - Äù½ºÆ® º¸»ó, 2007-01-16 by dhjin
-//#define T1_FL_LOG_WARPOINT						0x3A	// 58 - WarPoint º¯°æ, 2007-05-15 by dhjin
-//#define T1_FL_LOG_ARENA_TEAM_MATCH				0x3B	// 59 - Arena ÆÀ ¸ÅÄª, 2007-06-11 by dhjin
+//#define T1_FL_LOG_ITEM_CHARACTER_ITEM			0x20	// 32 - ëª¨ë“  ì†Œìœ  ì•„ì´í…œ ì €ì¥
+//#define T1_FL_LOG_ITEM_GET_ITEM					0x21	// 33 - Drop Item ìŠµë“
+//#define T1_FL_LOG_ITEM_TRADE_SEND				0x22	// 34 - ì•„ì´í…œ ê±°ë˜: ì£¼ê¸°
+//#define T1_FL_LOG_ITEM_TRADE_RECV				0x23	// 35 - ì•„ì´í…œ ê±°ë˜: ë°›ê¸°
+//#define T1_FL_LOG_ITEM_THROWAWAY_ITEM			0x24	// 36 - ì•„ì´í…œ ë²„ë¦¬ê¸°
+//#define T1_FL_LOG_ITEM_BUY_ITEM					0x25	// 37 - ì•„ì´í…œ êµ¬ë§¤
+//#define T1_FL_LOG_ITEM_SELL_ITEM				0x26	// 38 - ì•„ì´í…œ íŒë§¤
+//#define T1_FL_LOG_ITEM_USE_ITEM					0x27	// 39 - ì•„ì´í…œ ì‚¬ìš©
+//#define T1_FL_LOG_ITEM_USE_ENERGY				0x28	// 40 - ì—ë„ˆì§€ë¥˜ ì•„ì´í…œ ì‚¬ìš©
+//#define T1_FL_LOG_ITEM_USE_ENCHANT				0x29	// 41 - ì¸ì±ˆíŠ¸ë¥˜ ì•„ì´í…œ ì‚¬ìš©
+//#define T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN		0x2A	// 42 - ìš´ì˜íˆ´ì— ì˜í•œ ìŠµë“
+//#define T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN		0x2B	// 43 - ìš´ì˜íˆ´ì— ì˜í•œ ì œê±°
+//#define T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND		0x2C	// 44 - ëª…ë ¹ì–´ì— ì˜í•œ ìŠµë“
+//#define T1_FL_LOG_ITEM_INSERT_TO_STORE			0x2D	// 45 - ì°½ê³ ì— ì‚½ì…
+//#define T1_FL_LOG_ITEM_DRAW_FROM_STORE			0x2E	// 46 - ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°
+//#define T1_FL_LOG_ITEM_STORE_ITEM				0x2F	// 47 - ì°½ê³  ì†Œìœ  ì•„ì´í…œ ì €ì¥, ì°½ê³  ì‹œì‘ ì•„ì´í…œ
+//#define T1_FL_LOG_ITEM_USE_MIX					0x30	// 48 - ì¡°í•©
+//#define T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN	0x31	// 49 - ìºë¦­ëª… ë³€ê²½ì‹œ ì˜¤ë¦¬ì§€ë‚  ìºë¦­ëª…
+//#define T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW	0x32	// 50 - ìºë¦­ëª… ë³€ê²½ì‹œ ìƒˆë¡œìš´ ìºë¦­ëª…
+//#define T1_FL_LOG_ITEM_BAZAAR_SEND				0x33	// 51 - ê°œì¸ìƒì  ê±°ë˜: ì£¼ê¸°, 2006-07-27 by cmkwon
+//#define T1_FL_LOG_ITEM_BAZAAR_RECV				0x34	// 52 - ê°œì¸ìƒì  ê±°ë˜: ë°›ê¸°, 2006-07-27 by cmkwon
+//#define T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE		0x35	// 53 - ì—¬ë‹¨ ì°½ê³ ì— ì‚½ì…, 2006-09-27 by dhjin
+//#define T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE		0x36	// 54 - ì—¬ë‹¨ ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°, 2006-09-27 by dhjin
+//#define T1_FL_LOG_ITEM_SPI						0x37	// 55 - ìºë¦­í„° ì£½ì„ë•Œ ë‹¤ìš´ SPI Log, 2006-10-27 by cmkwon
+//#define T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT	0x38	// 56 - ItemEventì— ì˜í•œ ì•„ì´í…œ ì¶”ê°€, 2007-01-11 by cmkwon
+//#define T1_FL_LOG_QUEST_COMPENSATION			0x39	// 57 - í€˜ìŠ¤íŠ¸ ë³´ìƒ, 2007-01-16 by dhjin
+//#define T1_FL_LOG_WARPOINT						0x3A	// 58 - WarPoint ë³€ê²½, 2007-05-15 by dhjin
+//#define T1_FL_LOG_ARENA_TEAM_MATCH				0x3B	// 59 - Arena íŒ€ ë§¤ì¹­, 2007-06-11 by dhjin
 //#define T1_FL_LOG_TUTORIAL_COMPLETION			0x3C	// 60 - Tutorial, 2007-07-06 by dhjin
-//#define T1_FL_LOG_OUTPOST_START					0x3D	// 61 - OutPost½ÃÀÛ ·Î±×, 2007-10-02 by dhjin
-//#define T1_FL_LOG_OUTPOST_END					0x3E	// 62 - OutPostÁ¾·á ·Î±×, 2007-10-02 by dhjin
-//#define T1_FL_LOG_EXPEDIENCYFUND				0x3F	// 63 - ÆÇ°øºñ Áõ/°¨ ·Î±×, 2007-10-02 by dhjin
+//#define T1_FL_LOG_OUTPOST_START					0x3D	// 61 - OutPostì‹œì‘ ë¡œê·¸, 2007-10-02 by dhjin
+//#define T1_FL_LOG_OUTPOST_END					0x3E	// 62 - OutPostì¢…ë£Œ ë¡œê·¸, 2007-10-02 by dhjin
+//#define T1_FL_LOG_EXPEDIENCYFUND				0x3F	// 63 - íŒê³µë¹„ ì¦/ê° ë¡œê·¸, 2007-10-02 by dhjin
 
-//#define T1_FL_LOG_ITEM_BUY_CASH_PRICE			0x46	// 70 - // 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
-//#define T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT 0x49 // 73 - // 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±× 
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É
-//#define T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN			0x47	// 71 - ¾ÆÀÌÅÛ ÀÎÃ¦Æ® Áõ°¡ Log Ãß°¡
-//#define T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN		0x48	// 72 - ¾ÆÀÌÅÛ ÀÎÃ¦Æ® °¨¼Ò Log Ãß°¡
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É. End 
+//#define T1_FL_LOG_ITEM_BUY_CASH_PRICE			0x46	// 70 - // 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
+//#define T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT 0x49 // 73 - // 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸ 
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥
+//#define T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN			0x47	// 71 - ì•„ì´í…œ ì¸ì±ˆíŠ¸ ì¦ê°€ Log ì¶”ê°€
+//#define T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN		0x48	// 72 - ì•„ì´í…œ ì¸ì±ˆíŠ¸ ê°ì†Œ Log ì¶”ê°€
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥. End 
 
-//#define T1_FL_LOG_ITEM_TRY_ENCHANT_INFO			0x4B	// 75 - // 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
-//#define T1_FL_LOG_ITEM_DISSOLUTION_ITEM			0x4C	// 76 - // 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+//#define T1_FL_LOG_ITEM_TRY_ENCHANT_INFO			0x4B	// 75 - // 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
+//#define T1_FL_LOG_ITEM_DISSOLUTION_ITEM			0x4C	// 76 - // 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 
 
 // ETC LOG(0x40~)
-//#define T1_FL_LOG_SERVER_INFO_MAP				0x40	// 64 - ¸Êº° µ¿Á¢¼ö
+//#define T1_FL_LOG_SERVER_INFO_MAP				0x40	// 64 - ë§µë³„ ë™ì ‘ìˆ˜
 //#define T1_FL_LOG_SERVER_INFO_TOTAL				0x41	// 65 - 
 //#define T1_FL_LOG_HACKING_LOG					0x42	// 66 - 
-//#define T1_FL_LOG_LIVE_DELETED_CHARACTER		0x43	// 67 - º¹±¸µÈ ÄÉ¸¯ÅÍ, 2007-02-22 by dhjin
-//#define T1_FL_LOG_EVENT_PARTICIPATION_RATE		0x44	// 68 - // 2010-06-01 by shcho, GLogDB °ü·Ã -
+//#define T1_FL_LOG_LIVE_DELETED_CHARACTER		0x43	// 67 - ë³µêµ¬ëœ ì¼€ë¦­í„°, 2007-02-22 by dhjin
+//#define T1_FL_LOG_EVENT_PARTICIPATION_RATE		0x44	// 68 - // 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 
 // MONSTER LOG(0x50~)
-//#define T1_FL_LOG_MONSTER_BOSS					0x50	// 80 - º¸½º±Ş ¸ó½ºÅÍ
-//#define T1_FL_LOG_MS_WAR						0x51	// 81 - // 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-//#define T1_FL_LOG_SP_WAR						0x52	// 82 - // 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-//#define T1_FL_LOG_WAR_CONTRIBUTION				0x53	// 83 - // 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
-//#define T1_FL_LOG_WAR_CONTRIBUTION_GEAR			0x54	// 84 - // 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
+//#define T1_FL_LOG_MONSTER_BOSS					0x50	// 80 - ë³´ìŠ¤ê¸‰ ëª¬ìŠ¤í„°
+//#define T1_FL_LOG_MS_WAR						0x51	// 81 - // 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+//#define T1_FL_LOG_SP_WAR						0x52	// 82 - // 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+//#define T1_FL_LOG_WAR_CONTRIBUTION				0x53	// 83 - // 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
+//#define T1_FL_LOG_WAR_CONTRIBUTION_GEAR			0x54	// 84 - // 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
 
 //
-//#define T1_FL_LOG_SERVER_INTEGRAION							0x80	// 128 - ¼­¹ö ÅëÇÕ °ü·Ã - Ä³¸¯ÅÍ ÀÌÀü Ã³¸® ÇÔ
-//#define T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS		0x81	// 129 - ¼­¹ö ÅëÇÕ °ü·Ã - ¿©´Ü Ã¢°í ¾ÆÀÌÅÛ ÀÌÀü Ã³¸®ÇÔ, // 2007-02-15 by cmkwon
-//#define T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS	0x82	// 130 - ¼­¹ö ÅëÇÕ °ü·Ã - Ä³½¬ ¾ÆÀÌÅÛ¸¸ ÅëÇÕ¼­¹ö±º DB ·Î ÀÌµ¿, // 2008-02-28 by cmkwon, ¿¹´ç ¼­¹ö±º ÅëÇÕ Ä³½¬ ¾ÆÀÌÅÛ¸¸ ÀÌµ¿ÇÏ´Â ÇÁ·Î½ÃÀú
+//#define T1_FL_LOG_SERVER_INTEGRAION							0x80	// 128 - ì„œë²„ í†µí•© ê´€ë ¨ - ìºë¦­í„° ì´ì „ ì²˜ë¦¬ í•¨
+//#define T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS		0x81	// 129 - ì„œë²„ í†µí•© ê´€ë ¨ - ì—¬ë‹¨ ì°½ê³  ì•„ì´í…œ ì´ì „ ì²˜ë¦¬í•¨, // 2007-02-15 by cmkwon
+//#define T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS	0x82	// 130 - ì„œë²„ í†µí•© ê´€ë ¨ - ìºì‰¬ ì•„ì´í…œë§Œ í†µí•©ì„œë²„êµ° DB ë¡œ ì´ë™, // 2008-02-28 by cmkwon, ì˜ˆë‹¹ ì„œë²„êµ° í†µí•© ìºì‰¬ ì•„ì´í…œë§Œ ì´ë™í•˜ëŠ” í”„ë¡œì‹œì €
 
-//#define T1_FL_LOG_INFLWAR_START							0x90	// 144 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ¼¼·ÂÀü ·Î±×
-//#define T1_FL_LOG_INFLWAR_END							0x91	// 145 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ¼¼·ÂÀü ·Î±×
-//#define T1_FL_LOG_OUTPOSTWAR_RESET_START				0x95	// 149 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY				0x96	// 150 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE				0x97	// 151 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY			0x98	// 152 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME				0x99	// 153 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
+//#define T1_FL_LOG_INFLWAR_START							0x90	// 144 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì„¸ë ¥ì „ ë¡œê·¸
+//#define T1_FL_LOG_INFLWAR_END							0x91	// 145 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì„¸ë ¥ì „ ë¡œê·¸
+//#define T1_FL_LOG_OUTPOSTWAR_RESET_START				0x95	// 149 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY				0x96	// 150 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE				0x97	// 151 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY			0x98	// 152 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME				0x99	// 153 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
 
-//#define T1_FL_LOG_POLL_VOTE								0xA0	// 160 - // 2007-11-08 by dhjin, ÅõÇ¥ ·Î±× 
-//#define T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE			0xA1	// 161 - // 2007-11-08 by dhjin, ÁöµµÀÚ Ãâ¸¶ Å»Åğ ·Î±×
+//#define T1_FL_LOG_POLL_VOTE								0xA0	// 160 - // 2007-11-08 by dhjin, íˆ¬í‘œ ë¡œê·¸ 
+//#define T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE			0xA1	// 161 - // 2007-11-08 by dhjin, ì§€ë„ì ì¶œë§ˆ íƒˆí‡´ ë¡œê·¸
 
 //#define T1_FL_LOG_DISMEMBER_GUILD						0xA2	// 162 - // 2007-11-09 by dhjin
-//#define T1_FL_LOG_NOTIFY_MSG_DELETE						0xA3	// 163 - // 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
-//#define T1_FL_LOG_USE_COUPON							0xA4	// 164 - // 2008-01-23 by cmkwon, S_F, S_L: ÄíÆù »ç¿ë °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÄíÆù »ç¿ëµÈ ·Î±×
+//#define T1_FL_LOG_NOTIFY_MSG_DELETE						0xA3	// 163 - // 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
+//#define T1_FL_LOG_USE_COUPON							0xA4	// 164 - // 2008-01-23 by cmkwon, S_F, S_L: ì¿ í° ì‚¬ìš© ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¿ í° ì‚¬ìš©ëœ ë¡œê·¸
 
-//#define T1_FL_LOG_ITEM_GIFT_SEND						0xB0	// 176 - // 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â : ÁÖ±â
-//#define T1_FL_LOG_ITEM_GIFT_RECV						0xB1	// 177 - // 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â : ¹Ş±â
-//#define T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM			0xB2	// 178 - // 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - Áö¿öÁø ¾ÆÀÌÅÛ
-//#define T1_FL_LOG_ITEM_REARRANGE_ITEM					0xB3	// 179 - // 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - ÇÕÃÄÁø ¾ÆÀÌÅÛ
-//#define T1_FL_LOG_ITEM_ATTACH_ITEM						0xB4	// 180 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÀåÂø
-//#define T1_FL_LOG_ITEM_DETACH_ITEM						0xB5	// 181 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÀåÂøÇØÁ¦
-//#define T1_FL_LOG_ITEM_DELETE							0xB6	// 182 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ¾ÆÀÌÅÛ »èÁ¦µÊ(À¯È¿½Ã°£ °æ°ú)
+//#define T1_FL_LOG_ITEM_GIFT_SEND						0xB0	// 176 - // 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° : ì£¼ê¸°
+//#define T1_FL_LOG_ITEM_GIFT_RECV						0xB1	// 177 - // 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° : ë°›ê¸°
+//#define T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM			0xB2	// 178 - // 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - ì§€ì›Œì§„ ì•„ì´í…œ
+//#define T1_FL_LOG_ITEM_REARRANGE_ITEM					0xB3	// 179 - // 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - í•©ì³ì§„ ì•„ì´í…œ
+//#define T1_FL_LOG_ITEM_ATTACH_ITEM						0xB4	// 180 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¥ì°©
+//#define T1_FL_LOG_ITEM_DETACH_ITEM						0xB5	// 181 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¥ì°©í•´ì œ
+//#define T1_FL_LOG_ITEM_DELETE							0xB6	// 182 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì•„ì´í…œ ì‚­ì œë¨(ìœ íš¨ì‹œê°„ ê²½ê³¼)
 
-//#define T1_FL_LOG_LUCKY_DROP							0xC0	// 192 - // 2009-03-31 by dhjin, ·°Å°¸Ó½Å ·Î±×
-//#define T1_FL_LOG_INFINITY_START						0xC1	// 193 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ °ü·Ã Á¤º¸ 
-//#define T1_FL_LOG_INFINITY_START_ITEM					0xC2	// 194 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-//#define T1_FL_LOG_INFINITY_CINEMA						0xC3	// 195 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¿¬Ãâ ·Î±×
-//#define T1_FL_LOG_MONSTER_SKILL							0xC4	// 196 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ½ºÅ³ »ç¿ë½Ã
-//#define T1_FL_LOG_HPACTION_TALK							0xC5	// 197 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ´ëÈ­ »ç¿ë½Ã
-//#define T1_FL_LOG_INFINITY_FIN							0xC6	// 198 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á °ü·Ã Á¤º¸ 
-//#define T1_FL_LOG_INFINITY_FIN_ITEM						0xC7	// 199 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-//#define T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER		0xC8	// 200 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã »ì¾ÆÀÖ´Â ¸ó½ºÅÍ Á¤º¸
-//#define T1_FL_LOG_INFINITY_LEAVE_ITEM					0xC9	// 201 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ÀÎÇÇ Å»Åğ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+//#define T1_FL_LOG_LUCKY_DROP							0xC0	// 192 - // 2009-03-31 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ë¡œê·¸
+//#define T1_FL_LOG_INFINITY_START						0xC1	// 193 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ ê´€ë ¨ ì •ë³´ 
+//#define T1_FL_LOG_INFINITY_START_ITEM					0xC2	// 194 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+//#define T1_FL_LOG_INFINITY_CINEMA						0xC3	// 195 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì—°ì¶œ ë¡œê·¸
+//#define T1_FL_LOG_MONSTER_SKILL							0xC4	// 196 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš©ì‹œ
+//#define T1_FL_LOG_HPACTION_TALK							0xC5	// 197 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ëŒ€í™” ì‚¬ìš©ì‹œ
+//#define T1_FL_LOG_INFINITY_FIN							0xC6	// 198 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œ ê´€ë ¨ ì •ë³´ 
+//#define T1_FL_LOG_INFINITY_FIN_ITEM						0xC7	// 199 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+//#define T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER		0xC8	// 200 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„° ì •ë³´
+//#define T1_FL_LOG_INFINITY_LEAVE_ITEM					0xC9	// 201 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¸í”¼ íƒˆí‡´ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 
-//#define T1_FL_LOG_BLOCK_ACCOUNT							0xD0	// 208 - // 2008-01-30 by cmkwon, °èÁ¤ ºí·° ·Î±× ³²±â±â ±¸Çö - °èÁ¤ ºí·°
-//#define T1_FL_LOG_UNBLOCK_ACCOUNT						0xD1	// 209 - // 2008-01-30 by cmkwon, °èÁ¤ ºí·° ·Î±× ³²±â±â ±¸Çö - °èÁ¤ ºí·° ÇØÁ¦
+//#define T1_FL_LOG_BLOCK_ACCOUNT							0xD0	// 208 - // 2008-01-30 by cmkwon, ê³„ì • ë¸”ëŸ­ ë¡œê·¸ ë‚¨ê¸°ê¸° êµ¬í˜„ - ê³„ì • ë¸”ëŸ­
+//#define T1_FL_LOG_UNBLOCK_ACCOUNT						0xD1	// 209 - // 2008-01-30 by cmkwon, ê³„ì • ë¸”ëŸ­ ë¡œê·¸ ë‚¨ê¸°ê¸° êµ¬í˜„ - ê³„ì • ë¸”ëŸ­ í•´ì œ
 
-//#define T1_FL_LOG_PET_LEVEL								0xD5	// 213 - // 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ·¹º§ º¯°æ
+//#define T1_FL_LOG_PET_LEVEL								0xD5	// 213 - // 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€ê²½
 
-//#define T1_FL_LOG_CONNECT_USER_NEW						0xD6	// 214 - // 2012-01-08 by hskim, GLog 2Â÷ - À¯Àú ½Å±Ô Á¢¼Ó
-//#define T1_FL_LOG_CONNECT_USER_LOGIN					0xD7	// 215 - // 2012-01-08 by hskim, GLog 2Â÷ - À¯Àú Á¢¼Ó
+//#define T1_FL_LOG_CONNECT_USER_NEW						0xD6	// 214 - // 2012-01-08 by hskim, GLog 2ì°¨ - ìœ ì € ì‹ ê·œ ì ‘ì†
+//#define T1_FL_LOG_CONNECT_USER_LOGIN					0xD7	// 215 - // 2012-01-08 by hskim, GLog 2ì°¨ - ìœ ì € ì ‘ì†
 
-//#define T1_FL_LOG_STATISTICS_MONEY						0xD8	// 216 - // 2012-01-16 by hskim, Åë°è - È­ÆĞ
+//#define T1_FL_LOG_STATISTICS_MONEY						0xD8	// 216 - // 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
-//#define T1_FL_LOG_FIXED_TERM_SHAPE_START				0xD9	// 217 - // 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
-//#define T1_FL_LOG_FIXED_TERM_SHAPE_END					0xDA	// 218 - // 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+//#define T1_FL_LOG_FIXED_TERM_SHAPE_START				0xD9	// 217 - // 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
+//#define T1_FL_LOG_FIXED_TERM_SHAPE_END					0xDA	// 218 - // 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
 // 2013-1-02 by khkim, GLog
 //#define T1_FL_LOG_ACCOUNTCONNECT						0xDB		 
@@ -7284,128 +7284,128 @@ char *GetTryEnchantSuccessTypeString(int i_nSuccessType);
 // end 2013-1-02 by khkim, GLog
 
 
-//#define T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE			0xE0	// 224 - // 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×
-//#define T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT			0xE1	// 225 - // 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡
+//#define T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE			0xE0	// 224 - // 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸
+//#define T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT			0xE1	// 225 - // 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€
 
-//#define T1_FL_LOG_COLLECTION_STATE						0xE2	// 226 - // 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
-//#define T1_FL_LOG_COLLECTION_SHAPE_CHANGE				0xE3	// 227 - // 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
-//#define T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN			0xE4	// 228 - // 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+//#define T1_FL_LOG_COLLECTION_STATE						0xE2	// 226 - // 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
+//#define T1_FL_LOG_COLLECTION_SHAPE_CHANGE				0xE3	// 227 - // 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
+//#define T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN			0xE4	// 228 - // 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 
 //#define T1_FL_LOG_START_FIELD_SERVER			0xFF	// 255 - FieldServer Start
 
 
 
-//#define T_FL_LOG_LOGIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LOGIN)				// ·Î±×ÀÎ
-//#define T_FL_LOG_LOGOUT					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LOGOUT)			// ·Î±×¾Æ¿ô
-//#define T_FL_LOG_LEVEL					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LEVEL)				// ·¹º§ º¯È­
-//#define T_FL_LOG_EXP					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EXP)				// °æÇèÄ¡ º¯È­
-//#define T_FL_LOG_STAT					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_STAT)				// ½ºÅÈ »ç¿ë
-//#define T_FL_LOG_GAME_START				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_GAME_START)		// °ÔÀÓ ½ÃÀÛ
-//#define T_FL_LOG_GAME_END				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_GAME_END)			// °ÔÀÓ Á¾·á
-//#define T_FL_LOG_QUEST_COMPLETION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_QUEST_COMPLETION)	// Äù½ºÆ® ¿Ï·á
-//#define T_FL_LOG_QUEST_COMPENSATION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_QUEST_COMPENSATION)// Äù½ºÆ® º¸»ó
-//#define T_FL_LOG_PKWIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PKWIN)				// 1:1 °áÅõ ½Â¸®
-//#define T_FL_LOG_PKLOSS					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PKLOSS)			// 1:1 °áÅõ ÆĞ¹è
-//#define T_FL_LOG_DEAD					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DEAD)				// ±âÃ¼ ÆøÆÄ
-//#define T_FL_LOG_WARP					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WARP)				// ¿öÇÁ
-//#define T_FL_LOG_SPEED_HACK				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SPEED_HACK)		// ½ºÇÇµå ÇÙ
-//#define T_FL_LOG_CREATE_CHARACTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CREATE_CHARACTER)	// Ä³¸¯ÅÍ »ı¼º
-//#define T_FL_LOG_DELETE_CHARACTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DELETE_CHARACTER)	// Ä³¸¯ÅÍ »èÁ¦
-//#define T_FL_LOG_MEMORY_HACK			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MEMORY_HACK)		// 29 - ¸Ş¸ğ¸®ÇÙ, 2005-12-20 by cmkwon
-//#define T_FL_LOG_PvEWIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PvEWIN)			// 30 - ¼¼·ÂÀü¿¡¼­ »ó´ë ¼¼·Â Ä³¸¯ÅÍ¸¦ Á×ÀÓ, 2006-03-06 by cmkwon
-//#define T_FL_LOG_PvELOSS				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PvELOSS)			// 31 - ¼¼·ÂÀü¿¡¼­ »ó´ë ¼¼·Â¿¡ ÀÇÇØ Á×À½, 2006-03-06 by cmkwon
+//#define T_FL_LOG_LOGIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LOGIN)				// ë¡œê·¸ì¸
+//#define T_FL_LOG_LOGOUT					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LOGOUT)			// ë¡œê·¸ì•„ì›ƒ
+//#define T_FL_LOG_LEVEL					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LEVEL)				// ë ˆë²¨ ë³€í™”
+//#define T_FL_LOG_EXP					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EXP)				// ê²½í—˜ì¹˜ ë³€í™”
+//#define T_FL_LOG_STAT					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_STAT)				// ìŠ¤íƒ¯ ì‚¬ìš©
+//#define T_FL_LOG_GAME_START				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_GAME_START)		// ê²Œì„ ì‹œì‘
+//#define T_FL_LOG_GAME_END				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_GAME_END)			// ê²Œì„ ì¢…ë£Œ
+//#define T_FL_LOG_QUEST_COMPLETION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_QUEST_COMPLETION)	// í€˜ìŠ¤íŠ¸ ì™„ë£Œ
+//#define T_FL_LOG_QUEST_COMPENSATION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_QUEST_COMPENSATION)// í€˜ìŠ¤íŠ¸ ë³´ìƒ
+//#define T_FL_LOG_PKWIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PKWIN)				// 1:1 ê²°íˆ¬ ìŠ¹ë¦¬
+//#define T_FL_LOG_PKLOSS					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PKLOSS)			// 1:1 ê²°íˆ¬ íŒ¨ë°°
+//#define T_FL_LOG_DEAD					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DEAD)				// ê¸°ì²´ í­íŒŒ
+//#define T_FL_LOG_WARP					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WARP)				// ì›Œí”„
+//#define T_FL_LOG_SPEED_HACK				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SPEED_HACK)		// ìŠ¤í”¼ë“œ í•µ
+//#define T_FL_LOG_CREATE_CHARACTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CREATE_CHARACTER)	// ìºë¦­í„° ìƒì„±
+//#define T_FL_LOG_DELETE_CHARACTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DELETE_CHARACTER)	// ìºë¦­í„° ì‚­ì œ
+//#define T_FL_LOG_MEMORY_HACK			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MEMORY_HACK)		// 29 - ë©”ëª¨ë¦¬í•µ, 2005-12-20 by cmkwon
+//#define T_FL_LOG_PvEWIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PvEWIN)			// 30 - ì„¸ë ¥ì „ì—ì„œ ìƒëŒ€ ì„¸ë ¥ ìºë¦­í„°ë¥¼ ì£½ì„, 2006-03-06 by cmkwon
+//#define T_FL_LOG_PvELOSS				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PvELOSS)			// 31 - ì„¸ë ¥ì „ì—ì„œ ìƒëŒ€ ì„¸ë ¥ì— ì˜í•´ ì£½ìŒ, 2006-03-06 by cmkwon
 
-//#define T_FL_LOG_ITEM_CHARACTER_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_CHARACTER_ITEM)	// ¸ğµç ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå
-//#define T_FL_LOG_ITEM_GET_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_ITEM)		// Drop Item ½Àµæ
-//#define T_FL_LOG_ITEM_TRADE_SEND		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRADE_SEND)	// ¾ÆÀÌÅÛ °Å·¡: ÁÖ±â
-//#define T_FL_LOG_ITEM_TRADE_RECV		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRADE_RECV)	// ¾ÆÀÌÅÛ °Å·¡: ¹Ş±â
-//#define T_FL_LOG_ITEM_THROWAWAY_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_THROWAWAY_ITEM)	// ¾ÆÀÌÅÛ ¹ö¸®±â
+//#define T_FL_LOG_ITEM_CHARACTER_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_CHARACTER_ITEM)	// ëª¨ë“  ì†Œìœ  ì•„ì´í…œ ì €ì¥
+//#define T_FL_LOG_ITEM_GET_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_ITEM)		// Drop Item ìŠµë“
+//#define T_FL_LOG_ITEM_TRADE_SEND		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRADE_SEND)	// ì•„ì´í…œ ê±°ë˜: ì£¼ê¸°
+//#define T_FL_LOG_ITEM_TRADE_RECV		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRADE_RECV)	// ì•„ì´í…œ ê±°ë˜: ë°›ê¸°
+//#define T_FL_LOG_ITEM_THROWAWAY_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_THROWAWAY_ITEM)	// ì•„ì´í…œ ë²„ë¦¬ê¸°
 
-//#define T_FL_LOG_ITEM_TRY_ENCHANT_INFO	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRY_ENCHANT_INFO)	// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
-//#define T_FL_LOG_ITEM_DISSOLUTION_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DISSOLUTION_ITEM)	// 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+//#define T_FL_LOG_ITEM_TRY_ENCHANT_INFO	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_TRY_ENCHANT_INFO)	// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
+//#define T_FL_LOG_ITEM_DISSOLUTION_ITEM	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DISSOLUTION_ITEM)	// 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 
-//#define T_FL_LOG_ITEM_BUY_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BUY_ITEM)		// ¾ÆÀÌÅÛ ±¸¸Å
+//#define T_FL_LOG_ITEM_BUY_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BUY_ITEM)		// ì•„ì´í…œ êµ¬ë§¤
 
-//#define T_FL_LOG_ITEM_BUY_CASH_PRICE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BUY_CASH_PRICE)	// 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
-//#define T_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT)	// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±× 
-//#define T_FL_LOG_ITEM_INITIALIZED_GUILD_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE)	// 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×
-//#define T_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT)	// 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡
+//#define T_FL_LOG_ITEM_BUY_CASH_PRICE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BUY_CASH_PRICE)	// 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
+//#define T_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT)	// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸ 
+//#define T_FL_LOG_ITEM_INITIALIZED_GUILD_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE)	// 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸
+//#define T_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT)	// 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€
 
-//#define T_FL_LOG_ITEM_SELL_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_SELL_ITEM)	// ¾ÆÀÌÅÛ ÆÇ¸Å
-//#define T_FL_LOG_ITEM_USE_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ITEM)		// ¾ÆÀÌÅÛ »ç¿ë
-//#define T_FL_LOG_ITEM_USE_ENERGY		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ENERGY)	// ¿¡³ÊÁö·ù ¾ÆÀÌÅÛ »ç¿ë
-//#define T_FL_LOG_ITEM_USE_ENCHANT		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ENCHANT)	// ÀÎÃ¦Æ®·ù ¾ÆÀÌÅÛ »ç¿ë
-//#define T_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN)		// ¿î¿µÅø¿¡ ÀÇÇÑ ½Àµæ
-//#define T_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN)		// ¿î¿µÅø¿¡ ÀÇÇÑ Á¦°Å
-//#define T_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND)	// ¸í·É¾î¿¡ ÀÇÇÑ ½Àµæ
-//#define T_FL_LOG_ITEM_INSERT_TO_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INSERT_TO_STORE)	// Ã¢°í¿¡ »ğÀÔ
-//#define T_FL_LOG_ITEM_DRAW_FROM_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DRAW_FROM_STORE)	// Ã¢°í¿¡¼­ ²¨³»±â
-//#define T_FL_LOG_ITEM_STORE_ITEM		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_STORE_ITEM)		// Ã¢°í ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå, Ã¢°í ½ÃÀÛ ¾ÆÀÌÅÛ
-//#define T_FL_LOG_ITEM_USE_MIX			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_MIX)			// Á¶ÇÕ
-//#define T_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN)	// Ä³¸¯¸íº¯°æ
-//#define T_FL_LOG_ITEM_BAZAAR_SEND		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BAZAAR_SEND)	// °³ÀÎ»óÁ¡ °Å·¡: ÁÖ±â
-//#define T_FL_LOG_ITEM_BAZAAR_RECV		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BAZAAR_RECV)	// °³ÀÎ»óÁ¡ °Å·¡: ¹Ş±â
-//#define T_FL_LOG_ITEM_INSERT_TO_GUILDSTORE			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE)		// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í ·Î±× ³²±â±â
-//#define T_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE)		// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í ·Î±× ³²±â±â
+//#define T_FL_LOG_ITEM_SELL_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_SELL_ITEM)	// ì•„ì´í…œ íŒë§¤
+//#define T_FL_LOG_ITEM_USE_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ITEM)		// ì•„ì´í…œ ì‚¬ìš©
+//#define T_FL_LOG_ITEM_USE_ENERGY		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ENERGY)	// ì—ë„ˆì§€ë¥˜ ì•„ì´í…œ ì‚¬ìš©
+//#define T_FL_LOG_ITEM_USE_ENCHANT		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_ENCHANT)	// ì¸ì±ˆíŠ¸ë¥˜ ì•„ì´í…œ ì‚¬ìš©
+//#define T_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN)		// ìš´ì˜íˆ´ì— ì˜í•œ ìŠµë“
+//#define T_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN)		// ìš´ì˜íˆ´ì— ì˜í•œ ì œê±°
+//#define T_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND)	// ëª…ë ¹ì–´ì— ì˜í•œ ìŠµë“
+//#define T_FL_LOG_ITEM_INSERT_TO_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INSERT_TO_STORE)	// ì°½ê³ ì— ì‚½ì…
+//#define T_FL_LOG_ITEM_DRAW_FROM_STORE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DRAW_FROM_STORE)	// ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°
+//#define T_FL_LOG_ITEM_STORE_ITEM		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_STORE_ITEM)		// ì°½ê³  ì†Œìœ  ì•„ì´í…œ ì €ì¥, ì°½ê³  ì‹œì‘ ì•„ì´í…œ
+//#define T_FL_LOG_ITEM_USE_MIX			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_MIX)			// ì¡°í•©
+//#define T_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN)	// ìºë¦­ëª…ë³€ê²½
+//#define T_FL_LOG_ITEM_BAZAAR_SEND		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BAZAAR_SEND)	// ê°œì¸ìƒì  ê±°ë˜: ì£¼ê¸°
+//#define T_FL_LOG_ITEM_BAZAAR_RECV		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_BAZAAR_RECV)	// ê°œì¸ìƒì  ê±°ë˜: ë°›ê¸°
+//#define T_FL_LOG_ITEM_INSERT_TO_GUILDSTORE			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE)		// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³  ë¡œê·¸ ë‚¨ê¸°ê¸°
+//#define T_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE)		// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³  ë¡œê·¸ ë‚¨ê¸°ê¸°
 //#define T_FL_LOG_ITEM_SPI							(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_SPI)							// 55 - SPI Log, 2006-10-27 by cmkwon
-//#define T_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT)		// 56 - ItemEvent¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ Ãß°¡, 2007-01-11 by cmkwon
-//#define T_FL_LOG_WARPOINT							(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WARPOINT)						// 58 - WarPoint º¯°æ, 2007-05-15 by dhjin
-//#define T_FL_LOG_ARENA_TEAM_MATCH					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ARENA_TEAM_MATCH)				// 59 - Arena ÆÀ ¸ÅÄª, 2007-06-11 by dhjin
+//#define T_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT)		// 56 - ItemEventì— ì˜í•œ ì•„ì´í…œ ì¶”ê°€, 2007-01-11 by cmkwon
+//#define T_FL_LOG_WARPOINT							(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WARPOINT)						// 58 - WarPoint ë³€ê²½, 2007-05-15 by dhjin
+//#define T_FL_LOG_ARENA_TEAM_MATCH					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ARENA_TEAM_MATCH)				// 59 - Arena íŒ€ ë§¤ì¹­, 2007-06-11 by dhjin
 //#define T_FL_LOG_TUTORIAL_COMPLETION				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_TUTORIAL_COMPLETION)			// 60 - Tutorial, 2007-07-06 by dhjin
-//#define T_FL_LOG_OUTPOST_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOST_START)				// 61 - OutPost½ÃÀÛ ·Î±×, 2007-10-02 by dhjin
-//#define T_FL_LOG_OUTPOST_END			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOST_END)				// 62 - OutPostÁ¾·á ·Î±×, 2007-10-02 by dhjin
-//#define T_FL_LOG_EXPEDIENCYFUND			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EXPEDIENCYFUND)			// 63 - ÆÇ°øºñ Áõ/°¨ ·Î±×, 2007-10-02 by dhjin
+//#define T_FL_LOG_OUTPOST_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOST_START)				// 61 - OutPostì‹œì‘ ë¡œê·¸, 2007-10-02 by dhjin
+//#define T_FL_LOG_OUTPOST_END			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOST_END)				// 62 - OutPostì¢…ë£Œ ë¡œê·¸, 2007-10-02 by dhjin
+//#define T_FL_LOG_EXPEDIENCYFUND			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EXPEDIENCYFUND)			// 63 - íŒê³µë¹„ ì¦/ê° ë¡œê·¸, 2007-10-02 by dhjin
 
 //#define T_FL_LOG_SERVER_INFO_MAP		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SERVER_INFO_MAP)
 //#define T_FL_LOG_SERVER_INFO_TOTAL		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SERVER_INFO_TOTAL)
 //#define T_FL_LOG_HACKING_LOG			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_HACKING_LOG)
 
-//#define T_FL_LOG_MONSTER_BOSS			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MONSTER_BOSS)			// º¸½º±Ş ¸ó½ºÅÍ
-//#define T_FL_LOG_MS_WAR					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MS_WAR)			// 81 - // 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-//#define T_FL_LOG_SP_WAR					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SP_WAR)			// 82 - // 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-//#define T_FL_LOG_WAR_CONTRIBUTION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WAR_CONTRIBUTION)			// 83  - // 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
-//#define T_FL_LOG_WAR_CONTRIBUTION_GEAR	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WAR_CONTRIBUTION_GEAR)		// 84  - // 2008-12-23 by dhjin, ÀüÀï º¸»ó Ãß°¡¾È
+//#define T_FL_LOG_MONSTER_BOSS			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MONSTER_BOSS)			// ë³´ìŠ¤ê¸‰ ëª¬ìŠ¤í„°
+//#define T_FL_LOG_MS_WAR					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MS_WAR)			// 81 - // 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+//#define T_FL_LOG_SP_WAR					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_SP_WAR)			// 82 - // 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+//#define T_FL_LOG_WAR_CONTRIBUTION		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WAR_CONTRIBUTION)			// 83  - // 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
+//#define T_FL_LOG_WAR_CONTRIBUTION_GEAR	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_WAR_CONTRIBUTION_GEAR)		// 84  - // 2008-12-23 by dhjin, ì „ìŸ ë³´ìƒ ì¶”ê°€ì•ˆ
 
-//#define T_FL_LOG_INFLWAR_START					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFLWAR_START)					// 144 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ¼¼·ÂÀü ·Î±×
-//#define T_FL_LOG_INFLWAR_END					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFLWAR_END)					// 145 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ¼¼·ÂÀü ·Î±×
-//#define T_FL_LOG_OUTPOSTWAR_RESET_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_START)		// 151 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T_FL_LOG_OUTPOSTWAR_RESET_DESTROY		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY)		// 154 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T_FL_LOG_OUTPOSTWAR_RESET_COMPLETE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE)		// 152 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY)	// 153 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
-//#define T_FL_LOG_OUTPOSTWAR_SET_NEXTTIME		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME)		// 156 - // 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ÀüÁø±âÁöÀü ·Î±×
+//#define T_FL_LOG_INFLWAR_START					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFLWAR_START)					// 144 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì„¸ë ¥ì „ ë¡œê·¸
+//#define T_FL_LOG_INFLWAR_END					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFLWAR_END)					// 145 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì„¸ë ¥ì „ ë¡œê·¸
+//#define T_FL_LOG_OUTPOSTWAR_RESET_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_START)		// 151 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T_FL_LOG_OUTPOSTWAR_RESET_DESTROY		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY)		// 154 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T_FL_LOG_OUTPOSTWAR_RESET_COMPLETE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE)		// 152 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY)	// 153 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
+//#define T_FL_LOG_OUTPOSTWAR_SET_NEXTTIME		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME)		// 156 - // 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì „ì§„ê¸°ì§€ì „ ë¡œê·¸
 
-//#define T_FL_LOG_POLL_VOTE						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_POLL_VOTE)						// 160 - // 2007-11-08 by dhjin, ÅõÇ¥ ·Î±×
-//#define T_FL_LOG_POLL_DELETE_LEADERCANDIDATE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE)	// 161 - // 2007-11-08 by dhjin, ÁöµµÀÚ Ãâ¸¶ Å»Åğ ·Î±×
+//#define T_FL_LOG_POLL_VOTE						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_POLL_VOTE)						// 160 - // 2007-11-08 by dhjin, íˆ¬í‘œ ë¡œê·¸
+//#define T_FL_LOG_POLL_DELETE_LEADERCANDIDATE	(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE)	// 161 - // 2007-11-08 by dhjin, ì§€ë„ì ì¶œë§ˆ íƒˆí‡´ ë¡œê·¸
 
-//#define T_FL_LOG_DISMEMBER_GUILD				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DISMEMBER_GUILD)		// 162 - // 2007-11-09 by dhjin, ¿©´Ü ÇØÃ¼·Î±×
-//#define T_FL_LOG_NOTIFY_MSG_DELETE				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_NOTIFY_MSG_DELETE)		// 163 - // 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
-//#define T_FL_LOG_USE_COUPON						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_USE_COUPON)			// 164 - // 2008-01-23 by cmkwon, S_F, S_L: ÄíÆù »ç¿ë °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÄíÆù »ç¿ëµÈ ·Î±×
+//#define T_FL_LOG_DISMEMBER_GUILD				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_DISMEMBER_GUILD)		// 162 - // 2007-11-09 by dhjin, ì—¬ë‹¨ í•´ì²´ë¡œê·¸
+//#define T_FL_LOG_NOTIFY_MSG_DELETE				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_NOTIFY_MSG_DELETE)		// 163 - // 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
+//#define T_FL_LOG_USE_COUPON						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_USE_COUPON)			// 164 - // 2008-01-23 by cmkwon, S_F, S_L: ì¿ í° ì‚¬ìš© ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¿ í° ì‚¬ìš©ëœ ë¡œê·¸
 
-//#define T_FL_LOG_ITEM_ATTACH_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ATTACH_ITEM)		// 180 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÀåÂø
-//#define T_FL_LOG_ITEM_DETACH_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DETACH_ITEM)		// 181 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - ÀåÂøÇØÁ¦
-//#define T_FL_LOG_ITEM_DELETE					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DELETE)			// 182 - // 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - »èÁ¦µÊ
+//#define T_FL_LOG_ITEM_ATTACH_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_ATTACH_ITEM)		// 180 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¥ì°©
+//#define T_FL_LOG_ITEM_DETACH_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DETACH_ITEM)		// 181 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì¥ì°©í•´ì œ
+//#define T_FL_LOG_ITEM_DELETE					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ITEM_DELETE)			// 182 - // 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - ì‚­ì œë¨
 
-//#define T_FL_LOG_LUCKY_DROP						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LUCKY_DROP)			// 192 - // 2009-03-31 by dhjin, ·°Å°¸Ó½Å ·Î±×
+//#define T_FL_LOG_LUCKY_DROP						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_LUCKY_DROP)			// 192 - // 2009-03-31 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ë¡œê·¸
 
-//#define T_FL_LOG_INFINITY_START					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_START)			// 193 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ °ü·Ã Á¤º¸ 
-//#define T_FL_LOG_INFINITY_START_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_START_ITEM)		// 194 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-//#define T_FL_LOG_INFINITY_CINEMA				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_CINEMA)			// 195 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¿¬Ãâ ·Î±×
-//#define T_FL_LOG_MONSTER_SKILL					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MONSTER_SKILL)				// 196 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ½ºÅ³ »ç¿ë½Ã
-//#define T_FL_LOG_HPACTION_TALK					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_HPACTION_TALK)				// 197 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ´ëÈ­ »ç¿ë½Ã
-//#define T_FL_LOG_INFINITY_FIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN)				// 198 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á °ü·Ã Á¤º¸ 
-//#define T_FL_LOG_INFINITY_FIN_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN_ITEM)			// 199 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
-//#define T_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER)	// 200 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã »ì¾ÆÀÖ´Â ¸ó½ºÅÍ Á¤º¸
-//#define T_FL_LOG_INFINITY_LEAVE_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_LEAVE_ITEM)		// 201 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ÀÎÇÇ Å»Åğ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+//#define T_FL_LOG_INFINITY_START					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_START)			// 193 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ ê´€ë ¨ ì •ë³´ 
+//#define T_FL_LOG_INFINITY_START_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_START_ITEM)		// 194 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+//#define T_FL_LOG_INFINITY_CINEMA				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_CINEMA)			// 195 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì—°ì¶œ ë¡œê·¸
+//#define T_FL_LOG_MONSTER_SKILL					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_MONSTER_SKILL)				// 196 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš©ì‹œ
+//#define T_FL_LOG_HPACTION_TALK					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_HPACTION_TALK)				// 197 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ëŒ€í™” ì‚¬ìš©ì‹œ
+//#define T_FL_LOG_INFINITY_FIN					(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN)				// 198 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œ ê´€ë ¨ ì •ë³´ 
+//#define T_FL_LOG_INFINITY_FIN_ITEM				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN_ITEM)			// 199 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
+//#define T_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER)	// 200 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„° ì •ë³´
+//#define T_FL_LOG_INFINITY_LEAVE_ITEM			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_INFINITY_LEAVE_ITEM)		// 201 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¸í”¼ íƒˆí‡´ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 
-//#define T_FL_LOG_PET_LEVEL						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PET_LEVEL)					// 213 - // 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ·¹º§ º¯°æ
+//#define T_FL_LOG_PET_LEVEL						(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_PET_LEVEL)					// 213 - // 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€ê²½
 
-//#define T_FL_LOG_CONNECT_USER_NEW				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CONNECT_USER_NEW)			// 214 - // 2012-01-08 by hskim, GLog 2Â÷ - À¯Àú ½Å±Ô Á¢¼Ó
-//#define T_FL_LOG_CONNECT_USER_LOGIN				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CONNECT_USER_LOGIN)		// 215 - // 2012-01-08 by hskim, GLog 2Â÷ - À¯Àú Á¢¼Ó
+//#define T_FL_LOG_CONNECT_USER_NEW				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CONNECT_USER_NEW)			// 214 - // 2012-01-08 by hskim, GLog 2ì°¨ - ìœ ì € ì‹ ê·œ ì ‘ì†
+//#define T_FL_LOG_CONNECT_USER_LOGIN				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_CONNECT_USER_LOGIN)		// 215 - // 2012-01-08 by hskim, GLog 2ì°¨ - ìœ ì € ì ‘ì†
 
-//#define T_FL_LOG_STATISTICS_MONEY				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_STATISTICS_MONEY)			// 216 - // 2012-01-16 by hskim, Åë°è - È­ÆĞ
+//#define T_FL_LOG_STATISTICS_MONEY				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_STATISTICS_MONEY)			// 216 - // 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
-//#define T_FL_LOG_FIXED_TERM_SHAPE_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_FIXED_TERM_SHAPE_START)	// 217 - // 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
-//#define T_FL_LOG_FIXED_TERM_SHAPE_END			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_FIXED_TERM_SHAPE_END)		// 218 - // 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+//#define T_FL_LOG_FIXED_TERM_SHAPE_START			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_FIXED_TERM_SHAPE_START)	// 217 - // 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
+//#define T_FL_LOG_FIXED_TERM_SHAPE_END			(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_FIXED_TERM_SHAPE_END)		// 218 - // 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
 //#define T_FL_LOG_START_FIELD_SERVER				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_START_FIELD_SERVER)		// FieldServer Start
 
@@ -7417,9 +7417,9 @@ char *GetTryEnchantSuccessTypeString(int i_nSuccessType);
 //#define T_FL_LOG_SERVER							(MessageType_t)((T0_FL_LOG<<8)| T1_FL_LOG_SERVER)					// 222
 // end 2012-10-08 by khkim, GLog
 
-//#define T_FL_LOG_COLLECTION_STATE				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_COLLECTION_STATE)			// 226		// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
-//#define T_FL_LOG_COLLECTION_SHAPE_CHANGE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_COLLECTION_SHAPE_CHANGE)	// 227		// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - GameLog Ãß°¡
-//#define T_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN)	// 228 - // 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+//#define T_FL_LOG_COLLECTION_STATE				(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_COLLECTION_STATE)			// 226		// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
+//#define T_FL_LOG_COLLECTION_SHAPE_CHANGE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_COLLECTION_SHAPE_CHANGE)	// 227		// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - GameLog ì¶”ê°€
+//#define T_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN)	// 228 - // 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 
 ////////////////////////////////
 // CONNECTION LOG(0x00~)
@@ -7436,7 +7436,7 @@ struct MSG_FL_LOG_LOGIN
 			, IPAddress[0], IPAddress[1], IPAddress[2], IPAddress[3], ServerGroupName, MACAddress);
 		return o_szLogString;
 	}
-};					// ·Î±×ÀÎ
+};					// ë¡œê·¸ì¸
 
 struct MSG_FL_LOG_LOGOUT
 {
@@ -7451,7 +7451,7 @@ struct MSG_FL_LOG_LOGOUT
 			, IPAddress[0], IPAddress[1], IPAddress[2], IPAddress[3], ServerGroupName, MACAddress);
 		return o_szLogString;
 	}
-};				// ·Î±×¾Æ¿ô
+};				// ë¡œê·¸ì•„ì›ƒ
 
 				////////////////////////////////
 				// USER LOG(0x10~)
@@ -7459,11 +7459,11 @@ struct FL_USER_LOG_BASE
 {
 	UID32_t		CharacterUniqueNumber;
 	MapIndex_t	CurrentMapIndex;
-	ChannelIndex_t	CurrentChannIdx;		// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - FL_USER_LOG_BASE ¿¡ ÇÊµå Ãß°¡
+	ChannelIndex_t	CurrentChannIdx;		// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - FL_USER_LOG_BASE ì— í•„ë“œ ì¶”ê°€
 	AVECTOR3	CurrentPosition;
 	char *GetLogBaseString(char *o_szLogString)
 	{
-		// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - °ÔÀÓ ·Î±× ³»¿ë ¼öÁ¤
+		// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - ê²Œì„ ë¡œê·¸ ë‚´ìš© ìˆ˜ì •
 		sprintf(o_szLogString, "%d|%d|%d|(%d, %d, %d)", CharacterUniqueNumber, CurrentMapIndex, CurrentChannIdx, CurrentPosition.x, CurrentPosition.y, CurrentPosition.z);
 		return o_szLogString;
 	}
@@ -7480,93 +7480,93 @@ struct MSG_FL_LOG_LEVEL : public FL_USER_LOG_BASE
 		sprintf(o_szLogString, "%s|%s|%d|%d|%I64d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), FromLevel, ToLevel, TotalPlayTime);
 		return o_szLogString;
 	}
-};					// ·¹º§ º¯È­
+};					// ë ˆë²¨ ë³€í™”
 
 struct MSG_FL_LOG_EXP : public FL_USER_LOG_BASE
 {
-	float		AcquiredExperience;	// ½Àµæ °æÇèÄ¡
-	LONGLONG	CharacterExperiece;	// ÃÖÁ¾ °æÇèÄ¡, Experience_tÀÌ³ª DB¿¡´Â BIGINT·Î ÀúÀå
+	float		AcquiredExperience;	// ìŠµë“ ê²½í—˜ì¹˜
+	LONGLONG	CharacterExperiece;	// ìµœì¢… ê²½í—˜ì¹˜, Experience_tì´ë‚˜ DBì—ëŠ” BIGINTë¡œ ì €ì¥
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%.0f|%I64d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), AcquiredExperience, CharacterExperiece);
 		return o_szLogString;
 	}
-};					// °æÇèÄ¡ º¯È­
+};					// ê²½í—˜ì¹˜ ë³€í™”
 
 struct MSG_FL_LOG_STAT : public FL_USER_LOG_BASE
 {
-	BYTE	StatKind;				// STAT_XXX, ½ºÅÈÀÇ Á¾·ù
-	BYTE	RemainedBonusStat;		// ¾²°í ³²Àº º¸³Ê½º ½ºÅÈ
+	BYTE	StatKind;				// STAT_XXX, ìŠ¤íƒ¯ì˜ ì¢…ë¥˜
+	BYTE	RemainedBonusStat;		// ì“°ê³  ë‚¨ì€ ë³´ë„ˆìŠ¤ ìŠ¤íƒ¯
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%d|%d|0\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), StatKind, RemainedBonusStat);
 		return o_szLogString;
 	}
-};					// ½ºÅÈ »ç¿ë
+};					// ìŠ¤íƒ¯ ì‚¬ìš©
 
 struct MSG_FL_LOG_GAME_START : public FL_USER_LOG_BASE
 {
 	CHAR	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	UID32_t	AccountUniqueNumber;
 	CHAR	AccountName[SIZE_MAX_ACCOUNT_NAME];
-	LONGLONG	TotalPlayTime;		// ÃÑ °ÔÀÓ ½Ã°£
-	UID32_t		PCBangUID;			// 2007-01-22 by dhjin, °¡¸Í PCBang UID
-	INT			GameContinueTimeOfToday;	// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - ÇÊµå Ãß°¡
+	LONGLONG	TotalPlayTime;		// ì´ ê²Œì„ ì‹œê°„
+	UID32_t		PCBangUID;			// 2007-01-22 by dhjin, ê°€ë§¹ PCBang UID
+	INT			GameContinueTimeOfToday;	// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - í•„ë“œ ì¶”ê°€
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
-		// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - GameContinueTimeOfToday Ãß°¡
+		// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - GameContinueTimeOfToday ì¶”ê°€
 		sprintf(o_szLogString, "%s|%s|%s|%u|%s|0|%I64d|%u|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), CharacterName
 			, AccountUniqueNumber, AccountName, TotalPlayTime, PCBangUID, GameContinueTimeOfToday);
 		return o_szLogString;
 	}
-};			// °ÔÀÓ ½ÃÀÛ
+};			// ê²Œì„ ì‹œì‘
 
 struct MSG_FL_LOG_GAME_END : public FL_USER_LOG_BASE
 {
 	CHAR	CharacterName[SIZE_MAX_CHARACTER_NAME];
 	UID32_t	AccountUniqueNumber;
 	CHAR	AccountName[SIZE_MAX_ACCOUNT_NAME];
-	UINT	PlayTime;				// ÀÌÀü °ÔÀÓ ½ÃÀÛ ÈÄ °ÔÀÓ ½Ã°£
-	LONGLONG	TotalPlayTime;		// ÃÑ °ÔÀÓ ½Ã°£
-	UINT		PCBangPlayTime;		// 2006-12-18 by cmkwon, °¡¸Í PCBang¿¡¼­ °ÔÀÓ½Ã°£
-	UID32_t		PCBangUID;			// 2007-01-22 by dhjin, °¡¸Í PCBang UID
-	INT			GameContinueTimeOfToday;	// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - ÇÊµå Ãß°¡
-	ATUM_DATE_TIME	LoginDate;								// 2010-06-01 by shcho, GLogDB °ü·Ã -		
-	CHAR			CharacterRace[SIZE_MAX_GLOG_CHARACTER_RACE_NAME];		// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	CHAR			CharacterClass[SIZE_MAX_GLOG_CHARACTER_CLASS_NAME];		// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	Experience_t	PlayExp;											// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	Experience_t	TotalExp;											// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	Lv_t			CharacterLevel;										// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	CHAR			MostStayedInZoneName[SIZE_MAX_MAP_NAME];			// 2010-06-01 by shcho, GLogDB °ü·Ã -	
+	UINT	PlayTime;				// ì´ì „ ê²Œì„ ì‹œì‘ í›„ ê²Œì„ ì‹œê°„
+	LONGLONG	TotalPlayTime;		// ì´ ê²Œì„ ì‹œê°„
+	UINT		PCBangPlayTime;		// 2006-12-18 by cmkwon, ê°€ë§¹ PCBangì—ì„œ ê²Œì„ì‹œê°„
+	UID32_t		PCBangUID;			// 2007-01-22 by dhjin, ê°€ë§¹ PCBang UID
+	INT			GameContinueTimeOfToday;	// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - í•„ë“œ ì¶”ê°€
+	ATUM_DATE_TIME	LoginDate;								// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -		
+	CHAR			CharacterRace[SIZE_MAX_GLOG_CHARACTER_RACE_NAME];		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	CHAR			CharacterClass[SIZE_MAX_GLOG_CHARACTER_CLASS_NAME];		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	Experience_t	PlayExp;											// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	Experience_t	TotalExp;											// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	Lv_t			CharacterLevel;										// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	CHAR			MostStayedInZoneName[SIZE_MAX_MAP_NAME];			// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -	
 
-	UID32_t			CharacterUniqueNumber;								// 2011-12-12 by hskim, GLog 2Â÷
-	USHORT			Race;												// 2011-12-12 by hskim, GLog 2Â÷
-	USHORT			UnitKind;											// 2011-12-12 by hskim, GLog 2Â÷
-	BYTE			InfluenceType;										// 2011-12-12 by hskim, GLog 2Â÷
+	UID32_t			CharacterUniqueNumber;								// 2011-12-12 by hskim, GLog 2ì°¨
+	USHORT			Race;												// 2011-12-12 by hskim, GLog 2ì°¨
+	USHORT			UnitKind;											// 2011-12-12 by hskim, GLog 2ì°¨
+	BYTE			InfluenceType;										// 2011-12-12 by hskim, GLog 2ì°¨
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
-		// 2007-11-07 by cmkwon, ¿À´Ã°ÔÀÓÁö¼Ó½Ã°£ °ÔÀÓ·Î±×¿¡ Ãß°¡ - GameContinueTimeOfToday Ãß°¡
+		// 2007-11-07 by cmkwon, ì˜¤ëŠ˜ê²Œì„ì§€ì†ì‹œê°„ ê²Œì„ë¡œê·¸ì— ì¶”ê°€ - GameContinueTimeOfToday ì¶”ê°€
 		sprintf(o_szLogString, "%s|%s|%s|%u|%s|%u|%I64d|%u|%u|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), CharacterName
 			, AccountUniqueNumber, AccountName, PlayTime, TotalPlayTime, PCBangPlayTime, PCBangUID, GameContinueTimeOfToday);
 		return o_szLogString;
 	}
-};				// °ÔÀÓ Á¾·á
+};				// ê²Œì„ ì¢…ë£Œ
 
 struct MSG_FL_LOG_QUEST_COMPLETION : public FL_USER_LOG_BASE
 {
-	INT		QuestIndex;				// Äù½ºÆ® ÀÎµ¦½º
+	INT		QuestIndex;				// í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), QuestIndex);
 		return o_szLogString;
 	}
-};		// Äù½ºÆ® ¿Ï·á
+};		// í€˜ìŠ¤íŠ¸ ì™„ë£Œ
 
 
 struct MSG_FL_LOG_QUEST_COMPENSATION : public FL_USER_LOG_BASE		// 2007-04-18 by cmkwon
@@ -7574,71 +7574,71 @@ struct MSG_FL_LOG_QUEST_COMPENSATION : public FL_USER_LOG_BASE		// 2007-04-18 by
 	INT					QuestIndex;				// 2007-04-18 by cmkwon
 	INT					ExpOfCompensation;
 	INT					BonusStatOfCompensation;
-	INT					LenOfCompensation;		// º¸»ó ¾ÆÀÌÅÛ ¼ö (°æÇèÄ¡, SPIÁ¦¿Ü)
-	ARRAY_(char);								// º¸»ó ¾ÆÀÌÅÛ
+	INT					LenOfCompensation;		// ë³´ìƒ ì•„ì´í…œ ìˆ˜ (ê²½í—˜ì¹˜, SPIì œì™¸)
+	ARRAY_(char);								// ë³´ìƒ ì•„ì´í…œ
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString, char *i_szCompensationItemList)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%d|%d|%d|%s\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), QuestIndex, ExpOfCompensation, BonusStatOfCompensation, i_szCompensationItemList);
 		return o_szLogString;
 	}
-};	// 2007-01-16 by dhjin, º¸»ó ¾ÆÀÌÅÛ ·Î±×
+};	// 2007-01-16 by dhjin, ë³´ìƒ ì•„ì´í…œ ë¡œê·¸
 
 
 struct MSG_FL_LOG_PKWIN : public FL_USER_LOG_BASE
 {
-	UID32_t	PeerCharacterUniqueNumber;	// »ó´ë Ä³¸¯ÅÍ
+	UID32_t	PeerCharacterUniqueNumber;	// ìƒëŒ€ ìºë¦­í„°
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%u\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), PeerCharacterUniqueNumber);
 		return o_szLogString;
 	}
-};						// 1:1 °áÅõ ½Â¸®
+};						// 1:1 ê²°íˆ¬ ìŠ¹ë¦¬
 
 struct MSG_FL_LOG_PKLOSS : public FL_USER_LOG_BASE
 {
-	UID32_t	PeerCharacterUniqueNumber;	// »ó´ë Ä³¸¯ÅÍ
+	UID32_t	PeerCharacterUniqueNumber;	// ìƒëŒ€ ìºë¦­í„°
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%u\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), PeerCharacterUniqueNumber);
 		return o_szLogString;
 	}
-};					// 1:1 °áÅõ ÆĞ¹è
+};					// 1:1 ê²°íˆ¬ íŒ¨ë°°
 
 					// DAMAGE_BY_XXX
 #define DAMAGE_BY_COLLISION		((BYTE)0)
 #define DAMAGE_BY_MONSTER		((BYTE)1)
 #define DAMAGE_BY_PK			((BYTE)2)
 #define DAMAGE_BY_FUEL_ALLIN	((BYTE)3)
-#define DAMAGE_BY_NA			((BYTE)10)	// ¾Ë ¼ö ¾ø°Å³ª ºÒÇÊ¿äÇÑ °æ¿ì
+#define DAMAGE_BY_NA			((BYTE)10)	// ì•Œ ìˆ˜ ì—†ê±°ë‚˜ ë¶ˆí•„ìš”í•œ ê²½ìš°
 
 struct MSG_FL_LOG_DEAD : public FL_USER_LOG_BASE
 {
-	INT			DamageKind;			// DAMAGE_BY_XXX, ÃÖÁ¾ µ¥¹ÌÁö Á¾·ù(PK, Ãæµ¹, ¸ó½ºÅÍ °ø°İ µî)
-	ItemNum_t	ItemNum;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¹«±â ¾ÆÀÌÅÛ Á¤º¸
+	INT			DamageKind;			// DAMAGE_BY_XXX, ìµœì¢… ë°ë¯¸ì§€ ì¢…ë¥˜(PK, ì¶©ëŒ, ëª¬ìŠ¤í„° ê³µê²© ë“±)
+	ItemNum_t	ItemNum;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ë¬´ê¸° ì•„ì´í…œ ì •ë³´
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%d|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), DamageKind, ItemNum);
 		return o_szLogString;
 	}
-};					// ±âÃ¼ ÆøÆÄ
+};					// ê¸°ì²´ í­íŒŒ
 
 struct MSG_FL_LOG_WARP : public FL_USER_LOG_BASE
 {
-	MapIndex_t	TargetMapIndex;		// ¿öÇÁÇÒ ¸Ê
-	ChannelIndex_t	TargetChannIdx;		// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - MSG_FL_LOG_WARP ¿¡ ÇÊµå Ãß°¡
-	AVECTOR3	TargetPosition;		// ¿öÇÁÇÒ ¸ÊÀÇ À§Ä¡
+	MapIndex_t	TargetMapIndex;		// ì›Œí”„í•  ë§µ
+	ChannelIndex_t	TargetChannIdx;		// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - MSG_FL_LOG_WARP ì— í•„ë“œ ì¶”ê°€
+	AVECTOR3	TargetPosition;		// ì›Œí”„í•  ë§µì˜ ìœ„ì¹˜
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
-		// 2007-11-30 by cmkwon, °°Àº¸Ê¿¡ Ã¤³ÎÀÌ ´Ù¸¦ °æ¿ìµµ ¿öÇÁ Ã³¸® - °ÔÀÓ ·Î±× ¼öÁ¤
+		// 2007-11-30 by cmkwon, ê°™ì€ë§µì— ì±„ë„ì´ ë‹¤ë¥¼ ê²½ìš°ë„ ì›Œí”„ ì²˜ë¦¬ - ê²Œì„ ë¡œê·¸ ìˆ˜ì •
 		sprintf(o_szLogString, "%s|%s|%d|%d|(%d,%d,%d)\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), TargetMapIndex, TargetChannIdx, TargetPosition.x, TargetPosition.y, TargetPosition.z);
 		return o_szLogString;
 	}
-};					// ¿öÇÁ, ¿öÇÁ ½ÃÀÛ ½Ã ·Î±× ³²±è
+};					// ì›Œí”„, ì›Œí”„ ì‹œì‘ ì‹œ ë¡œê·¸ ë‚¨ê¹€
 
 enum SPEEDHACK_CHECK_TYPE
 {
@@ -7677,7 +7677,7 @@ struct MSG_FL_LOG_CREATE_CHARACTER : public FL_USER_LOG_BASE
 			, AccountName, UnitKind);
 		return o_szLogString;
 	}
-};		// Ä³¸¯ÅÍ »ı¼º
+};		// ìºë¦­í„° ìƒì„±
 
 struct MSG_FL_LOG_DELETE_CHARACTER : public FL_USER_LOG_BASE
 {
@@ -7693,17 +7693,17 @@ struct MSG_FL_LOG_DELETE_CHARACTER : public FL_USER_LOG_BASE
 			, AccountName, UnitKind, Level);
 		return o_szLogString;
 	}
-};		// Ä³¸¯ÅÍ »èÁ¦
+};		// ìºë¦­í„° ì‚­ì œ
 
 struct MSG_FL_LOG_MEMORY_HACK : public FL_USER_LOG_BASE		// 2005-12-20 by cmkwon
 {
-	int		nItemKind;			// Ã¼Å© ¾ÆÀÌÅÛ Á¾·ù(1Çü¹«±â, 2Çü¹«±â, ¿£Áø, ¾Æ¸Ó)
+	int		nItemKind;			// ì²´í¬ ì•„ì´í…œ ì¢…ë¥˜(1í˜•ë¬´ê¸°, 2í˜•ë¬´ê¸°, ì—”ì§„, ì•„ë¨¸)
 	int		nItemNum0;			// ItemNum
 	UID64_t	uid64ItemUID;		// Item UniqueNumber
-	int		nMemHackCheckType;	// Ã¼Å© Å¸ÀÔ(CHECK_TYPE_XXXXXX)
-	float	fValidValue;		// À¯È¿ÇÑ °ª
-	float	fCurrentValue;		// ÇöÀç °ª
-	int		nParam1;			// Ã¼??Å¸ÀÔ¿¡ µû¶ó ÀÇ¹Ì°¡ ´Ù¸£´Ù
+	int		nMemHackCheckType;	// ì²´í¬ íƒ€ì…(CHECK_TYPE_XXXXXX)
+	float	fValidValue;		// ìœ íš¨í•œ ê°’
+	float	fCurrentValue;		// í˜„ì¬ ê°’
+	int		nParam1;			// ì²´??íƒ€ì…ì— ë”°ë¼ ì˜ë¯¸ê°€ ë‹¤ë¥´ë‹¤
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
@@ -7715,25 +7715,25 @@ struct MSG_FL_LOG_MEMORY_HACK : public FL_USER_LOG_BASE		// 2005-12-20 by cmkwon
 
 struct MSG_FL_LOG_PvEWIN : public FL_USER_LOG_BASE		// 2006-03-06 by cmkwon
 {
-	UID32_t	PeerCharacterUniqueNumber;	// »ó´ë Ä³¸¯ÅÍ
+	UID32_t	PeerCharacterUniqueNumber;	// ìƒëŒ€ ìºë¦­í„°
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%u\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), PeerCharacterUniqueNumber);
 		return o_szLogString;
 	}
-};						// 1:1 °áÅõ ½Â¸®
+};						// 1:1 ê²°íˆ¬ ìŠ¹ë¦¬
 
 struct MSG_FL_LOG_PvELOSS : public FL_USER_LOG_BASE		// 2006-03-06 by cmkwon
 {
-	UID32_t	PeerCharacterUniqueNumber;	// »ó´ë Ä³¸¯ÅÍ
+	UID32_t	PeerCharacterUniqueNumber;	// ìƒëŒ€ ìºë¦­í„°
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%u\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), PeerCharacterUniqueNumber);
 		return o_szLogString;
 	}
-};					// 1:1 °áÅõ ÆĞ¹è
+};					// 1:1 ê²°íˆ¬ íŒ¨ë°°
 
 
 					///////////////////////////////////////////////////////////////////////////////
@@ -7776,25 +7776,25 @@ struct ITEM_FOR_LOG
 struct MSG_FL_LOG_ITEM_CHARACTER_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ChangeCount;	// º¯°æ °³¼ö, 			// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - MSG_FL_LOG_ITEM_STORE_ITEM ¿¡ ÇÊµå Ãß°¡
+	INT				ChangeCount;	// ë³€ê²½ ê°œìˆ˜, 			// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - MSG_FL_LOG_ITEM_STORE_ITEM ì— í•„ë“œ ì¶”ê°€
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - 
+		// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - 
 		//		sprintf(o_szLogString, "%s|%s|%s|-1\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem));
 		sprintf(o_szLogString, "%s|%s|%s|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem), ChangeCount);
 		return o_szLogString;
 	}
-};	// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - Ã¢°í-->ÀÎº¥ À¸·Î Ä«¿îÅÍºí ¾ÆÀÌÅÛ ÀÌµ¿½Ã ÀÎº¥¿¡ ÇØ´ç ¾ÆÀÌÅÛ Ãß°¡ ¹× °³¼ö º¯°æ½Ã ÀúÀå, // (°ÔÀÓ ½ÃÀÛ ½Ã µî¿¡)¸ğµç ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå
+};	// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - ì°½ê³ -->ì¸ë²¤ ìœ¼ë¡œ ì¹´ìš´í„°ë¸” ì•„ì´í…œ ì´ë™ì‹œ ì¸ë²¤ì— í•´ë‹¹ ì•„ì´í…œ ì¶”ê°€ ë° ê°œìˆ˜ ë³€ê²½ì‹œ ì €ì¥, // (ê²Œì„ ì‹œì‘ ì‹œ ë“±ì—)ëª¨ë“  ì†Œìœ  ì•„ì´í…œ ì €ì¥
 
 
-	// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±× 
+	// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸ 
 struct MSG_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
 	INT				ChangeCount;
-	UID32_t			GuildUID;	/// ±æµå UID
-	CHAR			GuildName[SIZE_MAX_GUILD_NAME];	/// ±æµå ÀÌ¸§ 
+	UID32_t			GuildUID;	/// ê¸¸ë“œ UID
+	CHAR			GuildName[SIZE_MAX_GUILD_NAME];	/// ê¸¸ë“œ ì´ë¦„ 
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -7803,7 +7803,7 @@ struct MSG_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT : public FL_ITEM_LOG_BAS
 		return o_szLogString;
 	}
 };
-// 2012-12-17 by bckim, ±æµåÃ¢°í ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã Ãß°¡·Î±×.End
+// 2012-12-17 by bckim, ê¸¸ë“œì°½ê³  ì•„ì´í…œ ì´ë™ ê´€ë ¨ ì¶”ê°€ë¡œê·¸.End
 
 
 
@@ -7812,18 +7812,18 @@ struct MSG_FL_LOG_ITEM_GET_ITEM : public FL_ITEM_LOG_BASE
 	ITEM_FOR_LOG	Item4Log;
 	UID32_t			StoreCharacterUID;			// 2006-11-01 by cmkwon
 	INT				ChangeCount;
-	BYTE			ItemUpdateType;				// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - IUT_XXX
+	BYTE			ItemUpdateType;				// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - IUT_XXX
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+		// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 		//sprintf(o_szLogString, "%s|%s|%d|%s|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), StoreCharacterUID, Item4Log.GetLogItemString(szItem), ChangeCount);
 		sprintf(o_szLogString, "%s|%s|%d|%s|%d|%s\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), StoreCharacterUID, Item4Log.GetLogItemString(szItem), ChangeCount, GetItemUpdateTypeString(ItemUpdateType));
 		return o_szLogString;
 	}
-};			// Drop Item ½Àµæ
+};			// Drop Item ìŠµë“
 
-			// 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+			// 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 struct MSG_FL_LOG_ITEM_DISSOLUTION_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
@@ -7836,9 +7836,9 @@ struct MSG_FL_LOG_ITEM_DISSOLUTION_ITEM : public FL_ITEM_LOG_BASE
 		return o_szLogString;
 	}
 };
-// End. 2013-08-05 by bckim, ¿ëÇØ ´ë»ó¾ÆÀÌÅÛ ·Î±× Ãß°¡
+// End. 2013-08-05 by bckim, ìš©í•´ ëŒ€ìƒì•„ì´í…œ ë¡œê·¸ ì¶”ê°€
 
-struct MSG_FL_LOG_ITEM_GET_ITEM_2 : public FL_ITEM_LOG_BASE		// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - »õ·Î Ãß°¡ÇÔ
+struct MSG_FL_LOG_ITEM_GET_ITEM_2 : public FL_ITEM_LOG_BASE		// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - ìƒˆë¡œ ì¶”ê°€í•¨
 {
 	ITEM_FOR_LOG	Item4Log;
 	UID32_t			StoreCharacterUID;			// 2006-11-01 by cmkwon
@@ -7851,65 +7851,65 @@ struct MSG_FL_LOG_ITEM_GET_ITEM_2 : public FL_ITEM_LOG_BASE		// 2008-09-26 by cm
 	}
 };
 
-// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - ¾Æ·¡¿Í °°ÀÌ MSG_FL_LOG_ITEM_GET_ITEM_2 ·Î ÀçÁ¤ÀÇ ÇÔ.
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN;		// ¿î¿µÅø¿¡ ÀÇÇÑ ½Àµæ
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN;		// ¿î¿µÅø¿¡ ÀÇÇÑ Á¦°Å
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND;	// ¸í·É¾î¿¡ ÀÇÇÑ ½Àµæ
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_INSERT_TO_STORE;		// Ã¢°í¿¡ »ğÀÔ
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_DRAW_FROM_STORE;		// Ã¢°í¿¡¼­ ²¨³»±â
-using MSG_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ¿î¿µÅø¿¡ ÀÇÇÑ ½Àµæ
-using MSG_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ¿î¿µÅø¿¡ ÀÇÇÑ Á¦°Å
-using MSG_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND = MSG_FL_LOG_ITEM_GET_ITEM_2;	// ¸í·É¾î¿¡ ÀÇÇÑ ½Àµæ
-using MSG_FL_LOG_ITEM_INSERT_TO_STORE = MSG_FL_LOG_ITEM_GET_ITEM_2;		// Ã¢°í¿¡ »ğÀÔ
-using MSG_FL_LOG_ITEM_DRAW_FROM_STORE = MSG_FL_LOG_ITEM_GET_ITEM_2;		// Ã¢°í¿¡¼­ ²¨³»±â
+// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - ì•„ë˜ì™€ ê°™ì´ MSG_FL_LOG_ITEM_GET_ITEM_2 ë¡œ ì¬ì •ì˜ í•¨.
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN;		// ìš´ì˜íˆ´ì— ì˜í•œ ìŠµë“
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN;		// ìš´ì˜íˆ´ì— ì˜í•œ ì œê±°
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND;	// ëª…ë ¹ì–´ì— ì˜í•œ ìŠµë“
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_INSERT_TO_STORE;		// ì°½ê³ ì— ì‚½ì…
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_DRAW_FROM_STORE;		// ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°
+using MSG_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ìš´ì˜íˆ´ì— ì˜í•œ ìŠµë“
+using MSG_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ìš´ì˜íˆ´ì— ì˜í•œ ì œê±°
+using MSG_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND = MSG_FL_LOG_ITEM_GET_ITEM_2;	// ëª…ë ¹ì–´ì— ì˜í•œ ìŠµë“
+using MSG_FL_LOG_ITEM_INSERT_TO_STORE = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ì°½ê³ ì— ì‚½ì…
+using MSG_FL_LOG_ITEM_DRAW_FROM_STORE = MSG_FL_LOG_ITEM_GET_ITEM_2;		// ì°½ê³ ì—ì„œ êº¼ë‚´ê¸°
 
-using MSG_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT = MSG_FL_LOG_ITEM_GET_ITEM_2;		// 2012-12-27 by bckim, µ¿ÀÏ°èÁ¤, °¢°¢ÀÇ ÄÉ¸¯ÅÍ°£ÀÇ ¾ÆÀÌÅÛ ÀÌµ¿½Ã ·Î±×Ãß°¡
+using MSG_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT = MSG_FL_LOG_ITEM_GET_ITEM_2;		// 2012-12-27 by bckim, ë™ì¼ê³„ì •, ê°ê°ì˜ ì¼€ë¦­í„°ê°„ì˜ ì•„ì´í…œ ì´ë™ì‹œ ë¡œê·¸ì¶”ê°€
 
 struct MSG_FL_LOG_ITEM_TRADE_SEND : public FL_ITEM_LOG_BASE
 {
-	UID32_t			PeerCharacterUniqueNumber;	// °Å·¡ »ó´ë
-	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// °Å·¡ »ó´ë
-	ITEM_FOR_LOG	Item4Log;					// °Å·¡ ¾ÆÀÌÅÛ
-	INT				ChangeCount;				// °Å·¡ °³¼ö
-	BYTE			bGiftItem;					// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â ·Î±× ÇÃ·¡±× º¯¼ö
-	BYTE			bRearrangeItem;				// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
-	BYTE			bStoreItem;					// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - FALSE ÀÌ¸é ÀÎº¥, FALSE °¡ ¾Æ´Ï¸é Ä³¸¯ÅÍÃ¢°í
+	UID32_t			PeerCharacterUniqueNumber;	// ê±°ë˜ ìƒëŒ€
+	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ê±°ë˜ ìƒëŒ€
+	ITEM_FOR_LOG	Item4Log;					// ê±°ë˜ ì•„ì´í…œ
+	INT				ChangeCount;				// ê±°ë˜ ê°œìˆ˜
+	BYTE			bGiftItem;					// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° ë¡œê·¸ í”Œë˜ê·¸ ë³€ìˆ˜
+	BYTE			bRearrangeItem;				// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
+	BYTE			bStoreItem;					// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - FALSE ì´ë©´ ì¸ë²¤, FALSE ê°€ ì•„ë‹ˆë©´ ìºë¦­í„°ì°½ê³ 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â ·Î±× ÇÃ·¡±× º¯¼ö
-		// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+		// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° ë¡œê·¸ í”Œë˜ê·¸ ë³€ìˆ˜
+		// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 		sprintf(o_szLogString, "%s|%s|%u|%s|%s|%d|%d|%d|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), PeerCharacterUniqueNumber
 			, PeerCharacterName, Item4Log.GetLogItemString(szItem), ChangeCount, bGiftItem, bRearrangeItem, bStoreItem);
 		return o_szLogString;
 	}
-};					// ¾ÆÀÌÅÛ °Å·¡: ÁÖ±â
+};					// ì•„ì´í…œ ê±°ë˜: ì£¼ê¸°
 
 struct MSG_FL_LOG_ITEM_TRADE_RECV : public FL_ITEM_LOG_BASE
 {
-	UID32_t			PeerCharacterUniqueNumber;	// °Å·¡ »ó´ë
-	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// °Å·¡ »ó´ë
-	ITEM_FOR_LOG	Item4Log;					// ¾ÆÀÌÅÛ
-	INT				ChangeCount;				// °Å·¡ °³¼ö
-	BYTE			bGiftItem;					// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â ·Î±× ÇÃ·¡±× º¯¼ö
-	BYTE			bRearrangeItem;				// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
-	BYTE			bStoreItem;					// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - FALSE ÀÌ¸é ÀÎº¥, FALSE °¡ ¾Æ´Ï¸é Ä³¸¯ÅÍÃ¢°í
+	UID32_t			PeerCharacterUniqueNumber;	// ê±°ë˜ ìƒëŒ€
+	char			PeerCharacterName[SIZE_MAX_CHARACTER_NAME];	// ê±°ë˜ ìƒëŒ€
+	ITEM_FOR_LOG	Item4Log;					// ì•„ì´í…œ
+	INT				ChangeCount;				// ê±°ë˜ ê°œìˆ˜
+	BYTE			bGiftItem;					// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° ë¡œê·¸ í”Œë˜ê·¸ ë³€ìˆ˜
+	BYTE			bRearrangeItem;				// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
+	BYTE			bStoreItem;					// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - FALSE ì´ë©´ ì¸ë²¤, FALSE ê°€ ì•„ë‹ˆë©´ ìºë¦­í„°ì°½ê³ 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - ¼±¹°ÇÏ±â ·Î±× ÇÃ·¡±× º¯¼ö
-		// 2007-11-29 by cmkwon, Ä«¿îÅÍºí¾ÆÀÌÅÛ ÇÕÃÄÁö´Â °ÔÀÓ ·Î±× ³²±â±â - 
+		// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì„ ë¬¼í•˜ê¸° ë¡œê·¸ í”Œë˜ê·¸ ë³€ìˆ˜
+		// 2007-11-29 by cmkwon, ì¹´ìš´í„°ë¸”ì•„ì´í…œ í•©ì³ì§€ëŠ” ê²Œì„ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 		sprintf(o_szLogString, "%s|%s|%u|%s|%s|%d|%d|%d|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), PeerCharacterUniqueNumber
 			, PeerCharacterName, Item4Log.GetLogItemString(szItem), ChangeCount, bGiftItem, bRearrangeItem, bStoreItem);
 		return o_szLogString;
 	}
-};					// ¾ÆÀÌÅÛ °Å·¡: ¹Ş±â
+};					// ì•„ì´í…œ ê±°ë˜: ë°›ê¸°
 
-					// 2007-06-05 by cmkwon, ·¹¾îÁ¤º¸/ÀÎÃ¦Æ®Á¤º¸µµ ÀúÀåÇÏ±â
+					// 2007-06-05 by cmkwon, ë ˆì–´ì •ë³´/ì¸ì±ˆíŠ¸ì •ë³´ë„ ì €ì¥í•˜ê¸°
 struct MSG_FL_LOG_ITEM_THROWAWAY_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ChangeCount;	// °Å·¡ °³¼ö
+	INT				ChangeCount;	// ê±°ë˜ ê°œìˆ˜
 	INT				PrefixCodeNum;			// 2007-06-05 by cmkwon
 	INT				SuffixCodeNum;			// 2007-06-05 by cmkwon
 	INT				EnchatItemNumCount;		// 2007-06-05 by cmkwon, EnchantItemNum List Count
@@ -7921,9 +7921,9 @@ struct MSG_FL_LOG_ITEM_THROWAWAY_ITEM : public FL_ITEM_LOG_BASE
 			, PrefixCodeNum, SuffixCodeNum);
 		return o_szLogString;
 	}
-};	// ¾ÆÀÌÅÛ ¹ö¸®±â
+};	// ì•„ì´í…œ ë²„ë¦¬ê¸°
 
-	// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+	// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 struct MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
@@ -7946,25 +7946,25 @@ struct MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO_STRING
 	MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO TryEnchantInfo;
 	char szCardList[1024];
 };
-// End. 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+// End. 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 
 
 struct MSG_FL_LOG_ITEM_BUY_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ChangeCount;	// °Å·¡ °³¼ö
-	INT				RemainedMoney;	// ³²Àº µ·
-	bool			IsCashItem;		// 2006-06-21 by cmkwon, À¯·á ¾ÆÀÌÅÛ
-	INT				nRemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
-	INT				CashItemPrice;							// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	CHAR			AccountName[SIZE_MAX_ACCOUNT_NAME];		// 2010-06-01 by shcho, GLogDB °ü·Ã -
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME]; // 2010-06-01 by shcho, GLogDB °ü·Ã -
-	INT				CharacterLevel;							// 2010-06-01 by shcho, GLogDB °ü·Ã - GLogDBÇÊµå°¡ int ÇüÀÌ¹Ç·Î Int·Î ¹Ş´Â´Ù.
-	CHAR			ItemName[SIZE_MAX_ITEM_NAME];			// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	INT				ChangeCount;	// ê±°ë˜ ê°œìˆ˜
+	INT				RemainedMoney;	// ë‚¨ì€ ëˆ
+	bool			IsCashItem;		// 2006-06-21 by cmkwon, ìœ ë£Œ ì•„ì´í…œ
+	INT				nRemainCountForLimitedEdition;		// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	INT				CashItemPrice;							// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	CHAR			AccountName[SIZE_MAX_ACCOUNT_NAME];		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME]; // 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+	INT				CharacterLevel;							// 2010-06-01 by shcho, GLogDB ê´€ë ¨ - GLogDBí•„ë“œê°€ int í˜•ì´ë¯€ë¡œ Intë¡œ ë°›ëŠ”ë‹¤.
+	CHAR			ItemName[SIZE_MAX_ITEM_NAME];			// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 
-	bool			GLog;									// 2011-12-12 by hskim, GLog 2Â÷
-	UID32_t			AccountUniqueNumber;					// 2011-12-12 by hskim, GLog 2Â÷
-	INT				ItemNum;								// 2011-12-12 by hskim, GLog 2Â÷
+	bool			GLog;									// 2011-12-12 by hskim, GLog 2ì°¨
+	UID32_t			AccountUniqueNumber;					// 2011-12-12 by hskim, GLog 2ì°¨
+	INT				ItemNum;								// 2011-12-12 by hskim, GLog 2ì°¨
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -7973,16 +7973,16 @@ struct MSG_FL_LOG_ITEM_BUY_ITEM : public FL_ITEM_LOG_BASE
 			, ChangeCount, RemainedMoney, IsCashItem, nRemainCountForLimitedEdition);
 		return o_szLogString;
 	}
-};			// ¾ÆÀÌÅÛ ±¸¸Å
+};			// ì•„ì´í…œ êµ¬ë§¤
 
 
-			// 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+			// 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 struct MSG_FL_LOG_ITEM_BUY_CASH_PRICE : public FL_ITEM_LOG_BASE
 {
-	ITEM_FOR_LOG	Item4Log;								// ¾ÆÀÌÅÛ °íÀ¯³Ñ¹ö, ¾ÆÀÌÅÛ¹øÈ£
-	UID32_t			AccountUniqueNumber;					// °èÁ¤ °íÀ¯ ³Ñ¹ö 
-	INT				nAmount;								// ¾ÆÀÌÅÛ ±¸¸Å¼ö·® 
-	INT				nType;									// ÁöºÒ Å¸ÀÔ.
+	ITEM_FOR_LOG	Item4Log;								// ì•„ì´í…œ ê³ ìœ ë„˜ë²„, ì•„ì´í…œë²ˆí˜¸
+	UID32_t			AccountUniqueNumber;					// ê³„ì • ê³ ìœ  ë„˜ë²„ 
+	INT				nAmount;								// ì•„ì´í…œ êµ¬ë§¤ìˆ˜ëŸ‰ 
+	INT				nType;									// ì§€ë¶ˆ íƒ€ì….
 
 	INT64			nSPI;
 	INT64			nWarPoint;
@@ -8003,13 +8003,13 @@ struct MSG_FL_LOG_ITEM_BUY_CASH_PRICE : public FL_ITEM_LOG_BASE
 		return o_szLogString;
 	}
 };
-// end 2012-10-16 by bckim, Ä³½¬¾ÆÀÌÅÛ ÁöºÒÁ¤º¸ Log Ãß°¡
+// end 2012-10-16 by bckim, ìºì‰¬ì•„ì´í…œ ì§€ë¶ˆì •ë³´ Log ì¶”ê°€
 
 
-// 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×
+// 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸
 struct MSG_FL_LOG_ITEM_INITIALIZED_GUILD_STORE
 {
-	// °èÁ¤UID/°èÁ¤ÀÌ¸§/ÄÉ¸¯ÅÍUID/ÄÉ¸¯ÅÍÀÌ¸§/¾ÆÀÌÅÛUID/¾ÆÀÌÅÛ³Ñ¹ö/ÀúÀå¼Ò/¾ÆÀÌÅÛÁ¾·ù/Àü´Ş°³¼ö/±æµå³Ñ¹ö/±æµåÀÌ¸§
+	// ê³„ì •UID/ê³„ì •ì´ë¦„/ì¼€ë¦­í„°UID/ì¼€ë¦­í„°ì´ë¦„/ì•„ì´í…œUID/ì•„ì´í…œë„˜ë²„/ì €ì¥ì†Œ/ì•„ì´í…œì¢…ë¥˜/ì „ë‹¬ê°œìˆ˜/ê¸¸ë“œë„˜ë²„/ê¸¸ë“œì´ë¦„
 	INT			AccountUniqueNumber;
 	CHAR		AccountName[SIZE_MAX_ACCOUNT_NAME];
 	INT			CharacterUniqueNumber;
@@ -8030,28 +8030,28 @@ struct MSG_FL_LOG_ITEM_INITIALIZED_GUILD_STORE
 		return o_szLogString;
 	}
 };
-// 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×. End
+// 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸. End
 
 
 
 struct MSG_FL_LOG_ITEM_SELL_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ChangeCount;	// °Å·¡ °³¼ö
-	INT				RemainedMoney;	// ³²Àº µ·
-	INT				PrefixCodeNum;			// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Á¢µÎ
-	INT				SuffixCodeNum;			// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Á¢¹Ì
-	INT				EnchatItemNumCount;		// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - EnchantItemNum List Count
-	_ARRAY(INT);							// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - EnchantItemNum List
+	INT				ChangeCount;	// ê±°ë˜ ê°œìˆ˜
+	INT				RemainedMoney;	// ë‚¨ì€ ëˆ
+	INT				PrefixCodeNum;			// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì ‘ë‘
+	INT				SuffixCodeNum;			// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì ‘ë¯¸
+	INT				EnchatItemNumCount;		// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - EnchantItemNum List Count
+	_ARRAY(INT);							// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - EnchantItemNum List
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2007-07-20 by cmkwon, ÆÇ¸Å¾ÆÀÌÅÛ ·Î±× Ãß°¡ - Á¢µÎ/Á¢¹Ì Ãß°¡
+		// 2007-07-20 by cmkwon, íŒë§¤ì•„ì´í…œ ë¡œê·¸ ì¶”ê°€ - ì ‘ë‘/ì ‘ë¯¸ ì¶”ê°€
 		sprintf(o_szLogString, "%s|%s|%s|%d|%d|%d|%d", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem)
 			, ChangeCount, RemainedMoney, PrefixCodeNum, SuffixCodeNum);
 		return o_szLogString;
 	}
-};		// ¾ÆÀÌÅÛ ÆÇ¸Å
+};		// ì•„ì´í…œ íŒë§¤
 
 struct MSG_FL_LOG_ITEM_USE_ITEM : public FL_ITEM_LOG_BASE
 {
@@ -8062,7 +8062,7 @@ struct MSG_FL_LOG_ITEM_USE_ITEM : public FL_ITEM_LOG_BASE
 		sprintf(o_szLogString, "%s|%s|%s|-1\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem));
 		return o_szLogString;
 	}
-};			// ¾ÆÀÌÅÛ »ç¿ë
+};			// ì•„ì´í…œ ì‚¬ìš©
 
 struct MSG_FL_LOG_ITEM_USE_ENERGY : public FL_ITEM_LOG_BASE
 {
@@ -8073,81 +8073,81 @@ struct MSG_FL_LOG_ITEM_USE_ENERGY : public FL_ITEM_LOG_BASE
 		sprintf(o_szLogString, "%s|%s|%s|-1\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem));
 		return o_szLogString;
 	}
-};		// ¿¡³ÊÁö·ù ¾ÆÀÌÅÛ »ç¿ë
+};		// ì—ë„ˆì§€ë¥˜ ì•„ì´í…œ ì‚¬ìš©
 
 struct MSG_FL_LOG_ITEM_USE_ENCHANT : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
 	INT				EnchantLogType;	// ENCHANT_LOGTYPE_FAIL, ENCHANT_LOGTYPE_SUCCESS, ENCHANT_LOGTYPE_TARGETITEM, ENCHANT_LOGTYPE_ATTACHITEM
-	INT				nTargetItemPrefixCodeNum;	// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - ÇÊµåÃß°¡
-	INT				nTargetItemSuffixCodeNum;	// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - ÇÊµåÃß°¡
-	INT				nTargetItemEnchantCnt;		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	INT				nEnchantItemKind;			// ÀÎÃ¦Æ® ¾ÆÀÌÅÛÀÇ ItemKind // 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	INT				nEnchantItemNum;			// ÀÎÃ¦Æ® ¾ÆÀÌÅÛÀÇ ItemNum // 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	bool			bSuccessFlag;				// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-	UID64_t			arrAddedItemUID[2];			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
-	INT				arrAddedItemNum[2];			// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
+	INT				nTargetItemPrefixCodeNum;	// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - í•„ë“œì¶”ê°€
+	INT				nTargetItemSuffixCodeNum;	// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - í•„ë“œì¶”ê°€
+	INT				nTargetItemEnchantCnt;		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	INT				nEnchantItemKind;			// ì¸ì±ˆíŠ¸ ì•„ì´í…œì˜ ItemKind // 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	INT				nEnchantItemNum;			// ì¸ì±ˆíŠ¸ ì•„ì´í…œì˜ ItemNum // 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	bool			bSuccessFlag;				// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+	UID64_t			arrAddedItemUID[2];			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
+	INT				arrAddedItemNum[2];			// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
 
-		// 2007-07-30 by cmkwon, °·ºí/ÀÎÃ¦Æ® ·Î±×¿¡ Á¢µÎ/Á¢¹Ì Á¤º¸ ÀúÀå - °ÔÀÓ ·Î±× ¼öÁ¤µÊ
-		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+		// 2007-07-30 by cmkwon, ê°¬ë¸”/ì¸ì±ˆíŠ¸ ë¡œê·¸ì— ì ‘ë‘/ì ‘ë¯¸ ì •ë³´ ì €ì¥ - ê²Œì„ ë¡œê·¸ ìˆ˜ì •ë¨
+		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 		//sprintf(o_szLogString, "%s|%s|%s|%d|%d|%d\r\n"
 		//	, GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem)
 		//	, EnchantLogType, nTargetItemPrefixCodeNum, nTargetItemSuffixCodeNum);
 		///////////////////////////////////////////////////////////////////////////////
-		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (Ãß°¡ ¼öÁ¤) - 
+		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ì¶”ê°€ ìˆ˜ì •) - 
 		sprintf(o_szLogString, "%s|%s|%s|%s|%d|%d|%d|%d|%d|%d|%I64d|%d|%I64d|%d\r\n"
 			, GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem)
 			, GetEnchatLogTypeString(EnchantLogType), nTargetItemPrefixCodeNum, nTargetItemSuffixCodeNum, nTargetItemEnchantCnt, nEnchantItemKind, nEnchantItemNum, bSuccessFlag
 			, arrAddedItemUID[0], arrAddedItemNum[0], arrAddedItemUID[1], arrAddedItemNum[1]);
 		return o_szLogString;
 	}
-};		// ÀÎÃ¦Æ®·ù ¾ÆÀÌÅÛ »ç¿ë
+};		// ì¸ì±ˆíŠ¸ë¥˜ ì•„ì´í…œ ì‚¬ìš©
 
 struct MSG_FL_LOG_ITEM_STORE_ITEM : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ChangeCount;	// º¯°æ °³¼ö, 			// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - MSG_FL_LOG_ITEM_STORE_ITEM ¿¡ ÇÊµå Ãß°¡
+	INT				ChangeCount;	// ë³€ê²½ ê°œìˆ˜, 			// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - MSG_FL_LOG_ITEM_STORE_ITEM ì— í•„ë“œ ì¶”ê°€
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - 
+		// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - 
 		//		sprintf(o_szLogString, "%s|%s|%s|-1\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem));
 		sprintf(o_szLogString, "%s|%s|%s|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem), ChangeCount);
 		return o_szLogString;
 	}
-};		// 2008-02-15 by cmkwon, ÀÎº¥<->Ã¢°í ÀÌµ¿ ·Î±× ¼öÁ¤ - ÀÎº¥-->Ã¢°í ·Î Ä«¿îÅÍºí ¾ÆÀÌÅÛ ÀÌµ¿½Ã Ã¢°í¿¡ ÇØ´ç ¾ÆÀÌÅÛ Ãß°¡ ¹× °³¼ö º¯°æ½Ã ÀúÀå, // Ã¢°í ¼ÒÀ¯ ¾ÆÀÌÅÛ ÀúÀå, Ã¢°í ½ÃÀÛ ¾ÆÀÌÅÛ
+};		// 2008-02-15 by cmkwon, ì¸ë²¤<->ì°½ê³  ì´ë™ ë¡œê·¸ ìˆ˜ì • - ì¸ë²¤-->ì°½ê³  ë¡œ ì¹´ìš´í„°ë¸” ì•„ì´í…œ ì´ë™ì‹œ ì°½ê³ ì— í•´ë‹¹ ì•„ì´í…œ ì¶”ê°€ ë° ê°œìˆ˜ ë³€ê²½ì‹œ ì €ì¥, // ì°½ê³  ì†Œìœ  ì•„ì´í…œ ì €ì¥, ì°½ê³  ì‹œì‘ ì•„ì´í…œ
 
 
 struct MSG_FL_LOG_ITEM_USE_MIX : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	bool						IsSuccess;										// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-	ITEM_UID_W_ITEMNUM_COUNT	arrSourceItemList[COUNT_ITEM_MIXING_SOURCE];	// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
+	bool						IsSuccess;										// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+	ITEM_UID_W_ITEMNUM_COUNT	arrSourceItemList[COUNT_ITEM_MIXING_SOURCE];	// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
-		// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ ÇÔ
+		// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì • í•¨
 		//sprintf(o_szLogString, "%s|%s|%s|-1\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem));
 		sprintf(o_szLogString, "%s|%s|%s|%s|%I64d|%d|%d|%I64d|%d|%d|%I64d|%d|%d|%I64d|%d|%d|%I64d|%d|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp),
-			((IsSuccess) ? "SUCCESS" : "FAIL"), Item4Log.GetLogItemString(szItem)  // 2013-07-02 by bckim, Á¶ÇÕ·Î±× º¸¿Ï 
+			((IsSuccess) ? "SUCCESS" : "FAIL"), Item4Log.GetLogItemString(szItem)  // 2013-07-02 by bckim, ì¡°í•©ë¡œê·¸ ë³´ì™„ 
 			, arrSourceItemList[0].ItemUID, arrSourceItemList[0].ItemNum, arrSourceItemList[0].Count, arrSourceItemList[1].ItemUID, arrSourceItemList[1].ItemNum, arrSourceItemList[1].Count
 			, arrSourceItemList[2].ItemUID, arrSourceItemList[2].ItemNum, arrSourceItemList[2].Count, arrSourceItemList[3].ItemUID, arrSourceItemList[3].ItemNum, arrSourceItemList[3].Count
 			, arrSourceItemList[4].ItemUID, arrSourceItemList[4].ItemNum, arrSourceItemList[4].Count);
 		return o_szLogString;
 	}
-};			// Á¶ÇÕ Á¤º¸, CurrentCount( 0ÀÌ¸é ½ÇÆĞ 1ÀÌ¸é ¼º°ø)
+};			// ì¡°í•© ì •ë³´, CurrentCount( 0ì´ë©´ ì‹¤íŒ¨ 1ì´ë©´ ì„±ê³µ)
 
 struct MSG_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
 	char			szOriginCharName[SIZE_MAX_CHARACTER_NAME];
 	char			szNewCharName[SIZE_MAX_CHARACTER_NAME];
-	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD			Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
@@ -8164,8 +8164,8 @@ struct MSG_FL_LOG_ITEM_SPI : public FL_ITEM_LOG_BASE			// 2006-10-27 by cmkwon
 {
 	ITEM_FOR_LOG	Item4Log;
 	BYTE			ItemUpdateType;	// 2006-10-27 by cmkwon, IUT_XXXX
-	INT				ChangeCount;	// º¯°æ °³¼ö
-	INT				RemainedMoney;	// ³²Àº µ·
+	INT				ChangeCount;	// ë³€ê²½ ê°œìˆ˜
+	INT				RemainedMoney;	// ë‚¨ì€ ëˆ
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024], szItem[1024];
@@ -8175,12 +8175,12 @@ struct MSG_FL_LOG_ITEM_SPI : public FL_ITEM_LOG_BASE			// 2006-10-27 by cmkwon
 	}
 };
 
-// 2008-09-26 by cmkwon, Á¶ÇÕ½Ã GameLog ¼öÁ¤ - 
-//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT;		// 56 - ItemEvent¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ Ãß°¡, 2007-01-11 by cmkwon
-using MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT = MSG_FL_LOG_ITEM_GET_ITEM_2;		// 56 - ItemEvent¿¡ ÀÇÇÑ ¾ÆÀÌÅÛ Ãß°¡, 2007-01-11 by cmkwon
+// 2008-09-26 by cmkwon, ì¡°í•©ì‹œ GameLog ìˆ˜ì • - 
+//typedef MSG_FL_LOG_ITEM_GET_ITEM		MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT;		// 56 - ItemEventì— ì˜í•œ ì•„ì´í…œ ì¶”ê°€, 2007-01-11 by cmkwon
+using MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT = MSG_FL_LOG_ITEM_GET_ITEM_2;		// 56 - ItemEventì— ì˜í•œ ì•„ì´í…œ ì¶”ê°€, 2007-01-11 by cmkwon
 
 struct MSG_FL_LOG_WARPOINT
-{// 58 - WarPoint º¯°æ, 2007-05-15 by dhjin
+{// 58 - WarPoint ë³€ê²½, 2007-05-15 by dhjin
 	UID32_t			AccountUID;
 	CHAR			AccountName[SIZE_MAX_ACCOUNT_NAME];
 	UID32_t			CharacterUID;
@@ -8188,38 +8188,38 @@ struct MSG_FL_LOG_WARPOINT
 	INT				ChangeWarPoint;
 	INT				TotalWarPoint;
 	INT				CumulativeWarPoint;
-	BYTE			WPUpdateType;				// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - MSG_FL_LOG_WARPOINT¿¡ Ãß°¡
-	INT				ArenaPlayCount;				// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : ÇÃ·¹ÀÌÇÑ ¾Æ·¹³ª È½¼ö ·Î±× Ãß°¡
+	BYTE			WPUpdateType;				// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - MSG_FL_LOG_WARPOINTì— ì¶”ê°€
+	INT				ArenaPlayCount;				// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : í”Œë ˆì´í•œ ì•„ë ˆë‚˜ íšŸìˆ˜ ë¡œê·¸ ì¶”ê°€
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
-		// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - ¾Æ·¡¿Í °°ÀÌ Ãß°¡ÇÔ.
+		// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - ì•„ë˜ì™€ ê°™ì´ ì¶”ê°€í•¨.
 		//sprintf(o_szLogString, "%s|%d|%s|%d|%s|%d|%d|%d\r\n"
 		//	, GetGameLogTypeString(i_nLogType), AccountUID, AccountName, CharacterUID, CharacterName, ChangeWarPoint, TotalWarPoint, CumulativeWarPoint);
 		//////////////////////////////////////////////////////////////////////
-		// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : ÇÃ·¹ÀÌÇÑ ¾Æ·¹³ª È½¼ö ·Î±× Ãß°¡
+		// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : í”Œë ˆì´í•œ ì•„ë ˆë‚˜ íšŸìˆ˜ ë¡œê·¸ ì¶”ê°€
 		//sprintf(o_szLogString, "%s|%d|%s|%d|%s|%d|%d|%d|%s\r\n"
 		//	, GetGameLogTypeString(i_nLogType), AccountUID, AccountName, CharacterUID, CharacterName, ChangeWarPoint, TotalWarPoint, CumulativeWarPoint, GetWPUTString(WPUpdateType));
 		sprintf(o_szLogString, "%s|%d|%s|%d|%s|%d|%d|%d|%s|ArenaPlayCount(%d)\r\n"
 			, GetGameLogTypeString(i_nLogType), AccountUID, AccountName, CharacterUID, CharacterName, ChangeWarPoint, TotalWarPoint, CumulativeWarPoint, GetWPUTString(WPUpdateType), ArenaPlayCount);
-		// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : ÇÃ·¹ÀÌÇÑ ¾Æ·¹³ª È½¼ö ·Î±× Ãß°¡
+		// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : í”Œë ˆì´í•œ ì•„ë ˆë‚˜ íšŸìˆ˜ ë¡œê·¸ ì¶”ê°€
 		return o_szLogString;
 	}
 };
 
 struct MSG_FL_LOG_ARENA_TEAM_MATCH
-{// 59 - Arena ÆÀ ¸ÅÄª, 2007-06-11 by dhjin
+{// 59 - Arena íŒ€ ë§¤ì¹­, 2007-06-11 by dhjin
 	BYTE			TeamMode;
 	BYTE			TeamSize;
 	BYTE			StartLevel;
 	BYTE			EndLevel;
-	MapIndex_t		ArenaMap;	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+	MapIndex_t		ArenaMap;	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		//////////////////////////////////////////////////////////////////////
-		// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+		// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 		//		sprintf(o_szLogString, "%s|%d|%d|%d~%d\r\n", GetGameLogTypeString(i_nLogType), TeamMode, TeamSize, StartLevel, EndLevel);
 		sprintf(o_szLogString, "%s|%d|%d|%d~%d|%d\r\n", GetGameLogTypeString(i_nLogType), TeamMode, TeamSize, StartLevel, EndLevel, ArenaMap);
-		// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê ·Î±× Ãß°¡
+		// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ ë¡œê·¸ ì¶”ê°€
 		return o_szLogString;
 	}
 };
@@ -8240,7 +8240,7 @@ struct MSG_FL_LOG_TUTORIAL_COMPLETION
 };
 
 struct MSG_FL_LOG_GUILD_STORE
-{// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í ·Î±× ³²±â´Â ±¸Á¶Ã¼
+{// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³  ë¡œê·¸ ë‚¨ê¸°ëŠ” êµ¬ì¡°ì²´
 	UID32_t			GuildUID;
 	CHAR			GuildName[SIZE_MAX_GUILD_NAME];
 	UID32_t			AccountUID;
@@ -8263,7 +8263,7 @@ struct MSG_FL_LOG_GUILD_STORE
 };
 
 struct MSG_FL_LOG_OUTPOST_START
-{// 61 - OutPost½ÃÀÛ ·Î±×, 2007-10-02 by dhjin
+{// 61 - OutPostì‹œì‘ ë¡œê·¸, 2007-10-02 by dhjin
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8275,7 +8275,7 @@ struct MSG_FL_LOG_OUTPOST_START
 };
 
 struct MSG_FL_LOG_OUTPOST_END
-{// 62 - OutPostÁ¾·á ·Î±×, 2007-10-02 by dhjin
+{// 62 - OutPostì¢…ë£Œ ë¡œê·¸, 2007-10-02 by dhjin
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8289,17 +8289,17 @@ struct MSG_FL_LOG_OUTPOST_END
 };
 
 struct MSG_FL_LOG_EXPEDIENCYFUND
-{// 63 - ÆÇ°øºñ Áõ/°¨ ·Î±×, 2007-10-02 by dhjin
+{// 63 - íŒê³µë¹„ ì¦/ê° ë¡œê·¸, 2007-10-02 by dhjin
 	MapIndex_t		MapIndex;
-	UID32_t			CharacterUID;	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - Ãß°¡
-	UID32_t			GuildUID;		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - Ãß°¡
-	bool			Increase;		// FALSE : °¨¼Ò, TRUE : Áõ°¡
+	UID32_t			CharacterUID;	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¶”ê°€
+	UID32_t			GuildUID;		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ì¶”ê°€
+	bool			Increase;		// FALSE : ê°ì†Œ, TRUE : ì¦ê°€
 	INT				Count;
-	INT				ExpediencyFundVRate;	// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - EXPEDIENCYFUND_RATE_VALUE ·Î ³ª´«°ÍÀÌ ½ÇÁ¦ Â¡¼öÀ²
+	INT				ExpediencyFundVRate;	// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - EXPEDIENCYFUND_RATE_VALUE ë¡œ ë‚˜ëˆˆê²ƒì´ ì‹¤ì œ ì§•ìˆ˜ìœ¨
 	INT				TotalCount;
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
-		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - ¼öÁ¤ÇÔ
+		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - ìˆ˜ì •í•¨
 		sprintf(o_szLogString, "%s|%d|%u|%u|%d|%d|%.3f|%d\r\n"
 			, GetGameLogTypeString(i_nLogType), MapIndex, CharacterUID, GuildUID, Increase, Count, ((float)ExpediencyFundVRate) / EXPEDIENCYFUND_RATE_VALUE, TotalCount);
 		return o_szLogString;
@@ -8314,7 +8314,7 @@ struct MSG_FL_LOG_SERVER_INFO_MAP
 	ChannelIndex_t	ChannelIndex;
 	INT				ClientCount;
 	INT				MonsterCount;
-	char			MapName[SIZE_MAX_MAP_NAME];						// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	char			MapName[SIZE_MAX_MAP_NAME];						// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		sprintf(o_szLogString, "%s|%d|%d|%d|%d\r\n", GetGameLogTypeString(i_nLogType), MapIndex, ChannelIndex, ClientCount, MonsterCount);
@@ -8326,7 +8326,7 @@ struct MSG_FL_LOG_SERVER_INFO_TOTAL
 {
 	INT				ClientCount;
 	INT				MonsterCount;
-	bool			bGlogUpdate;		// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	bool			bGlogUpdate;		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		sprintf(o_szLogString, "%s|0|0|%d|%d\r\n", GetGameLogTypeString(i_nLogType), ClientCount, MonsterCount);
@@ -8338,7 +8338,7 @@ struct MSG_FL_LOG_HACKING_LOG : public FL_USER_LOG_BASE
 {
 	char			AccountName0[SIZE_MAX_ACCOUNT_NAME];
 	long			hackingCode;
-	char			szErrString[SIZE_STRING_128];			// 2006-10-20 by cmkwon, Ãß°¡ÇÔ(ÇØÅ· ÇÁ·Î±×·¥¸í)
+	char			szErrString[SIZE_STRING_128];			// 2006-10-20 by cmkwon, ì¶”ê°€í•¨(í•´í‚¹ í”„ë¡œê·¸ë¨ëª…)
 	char			IPAddress[SIZE_MAX_IPADDRESS];
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -8357,7 +8357,7 @@ struct MSG_FL_LOG_MONSTER_BOSS
 	ATUM_DATE_TIME		CreatedTime;
 	ATUM_DATE_TIME		DeadTime;
 	char				AttackUser[SIZE_MAX_USERLIST_ON_BOSS_MONSTER_DEAD][SIZE_MAX_CHARACTER_NAME];
-	INT					LenOfDropItemList;		// Drop Item List stringÀÇ ±æÀÌ
+	INT					LenOfDropItemList;		// Drop Item List stringì˜ ê¸¸ì´
 	ARRAY_(char);								// Drop Item List string
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString, char *i_szDropItemList)
 	{
@@ -8367,12 +8367,12 @@ struct MSG_FL_LOG_MONSTER_BOSS
 			, AttackUser[6], AttackUser[7], AttackUser[8], AttackUser[9], i_szDropItemList);
 		return o_szLogString;
 	}
-};	// º¸½º±Ş ¸ó½ºÅÍ
+};	// ë³´ìŠ¤ê¸‰ ëª¬ìŠ¤í„°
 
 
 
 struct MSG_FL_LOG_INFLWAR_START
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			MothershipCreatedMapIdx;
 	BYTE				InfluenceType2;
 	INT					MonsterUnitKind;
@@ -8384,7 +8384,7 @@ struct MSG_FL_LOG_INFLWAR_START
 	}
 };
 struct MSG_FL_LOG_INFLWAR_END
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			MothershipCreatedMapIdx;
 	BYTE				InfluenceType2;
 	INT					MonsterUnitKind;
@@ -8397,7 +8397,7 @@ struct MSG_FL_LOG_INFLWAR_END
 	}
 };
 struct MSG_FL_LOG_OUTPOSTWAR_RESET_START
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8412,7 +8412,7 @@ struct MSG_FL_LOG_OUTPOSTWAR_RESET_START
 	}
 };
 struct MSG_FL_LOG_OUTPOSTWAR_RESET_DESTROY
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8425,7 +8425,7 @@ struct MSG_FL_LOG_OUTPOSTWAR_RESET_DESTROY
 	}
 };
 struct MSG_FL_LOG_OUTPOSTWAR_RESET_COMPLETE
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8436,9 +8436,9 @@ struct MSG_FL_LOG_OUTPOSTWAR_RESET_COMPLETE
 	}
 };
 
-#define SIZE_MAX_OUTPOSTWAR_DAMAGELIST			10		// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ - 
+#define SIZE_MAX_OUTPOSTWAR_DAMAGELIST			10		// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ - 
 struct MSG_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8448,13 +8448,13 @@ struct MSG_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY
 	float				ArrDamage[SIZE_MAX_OUTPOSTWAR_DAMAGELIST];
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
-		// 2007-10-16 by cmkwon, µ¥¹ÌÁö ¸®½ºÆ®¸¦ ¿ÜºÎ¿¡¼­ ¸¸µé¾î ÀÌ¾î¼­ ºÙÀÎ´Ù
+		// 2007-10-16 by cmkwon, ë°ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ë¥¼ ì™¸ë¶€ì—ì„œ ë§Œë“¤ì–´ ì´ì–´ì„œ ë¶™ì¸ë‹¤
 		sprintf(o_szLogString, "%s|%d|%d|%u|%d|%u", GetGameLogTypeString(i_nLogType), OutPostMapIdx, PossessInflTy, PossessGuildUID, InflTy4Reset, GuildUID4Reset);
 		return o_szLogString;
 	}
 };
 struct MSG_FL_LOG_OUTPOSTWAR_SET_NEXTTIME
-{// 2007-10-16 by cmkwon, ·Î±× Ãß°¡ -
+{// 2007-10-16 by cmkwon, ë¡œê·¸ ì¶”ê°€ -
 	MapIndex_t			OutPostMapIdx;
 	BYTE				PossessInflTy;
 	UID32_t				PossessGuildUID;
@@ -8501,7 +8501,7 @@ struct MSG_FL_LOG_DISMEMBER_GUILD
 	}
 };
 
-struct MSG_FL_LOG_NOTIFY_MSG_DELETE : public SNOTIFY_MSG		// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
+struct MSG_FL_LOG_NOTIFY_MSG_DELETE : public SNOTIFY_MSG		// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
 {
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -8509,7 +8509,7 @@ struct MSG_FL_LOG_NOTIFY_MSG_DELETE : public SNOTIFY_MSG		// 2007-11-28 by cmkwo
 		return o_szLogString;
 	}
 };
-struct MSG_FL_LOG_USE_COUPON : public FL_USER_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ÄíÆù »ç¿ë °ÔÀÓ ·Î±×¿¡ Ãß°¡ - 
+struct MSG_FL_LOG_USE_COUPON : public FL_USER_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ì¿ í° ì‚¬ìš© ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - 
 {
 	char AccountName[SIZE_MAX_ACCOUNT_NAME];
 	char CouponNumber[SIZE_MAX_COUPON_NUMBER];
@@ -8521,7 +8521,7 @@ struct MSG_FL_LOG_USE_COUPON : public FL_USER_LOG_BASE		// 2008-01-23 by cmkwon,
 	}
 };
 
-struct MSG_FL_LOG_ITEM_ATTACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - 
+struct MSG_FL_LOG_ITEM_ATTACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - 
 {
 	ITEM_FOR_LOG	Item4Log;
 	INT				ReaminTimeSec;
@@ -8533,7 +8533,7 @@ struct MSG_FL_LOG_ITEM_ATTACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by c
 		return o_szLogString;
 	}
 };
-struct MSG_FL_LOG_ITEM_DETACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - 
+struct MSG_FL_LOG_ITEM_DETACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - 
 {
 	ITEM_FOR_LOG	Item4Log;
 	INT				ReaminTimeSec;
@@ -8545,15 +8545,15 @@ struct MSG_FL_LOG_ITEM_DETACH_ITEM : public FL_ITEM_LOG_BASE		// 2008-01-23 by c
 		return o_szLogString;
 	}
 };
-struct MSG_FL_LOG_ITEM_DELETE : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ÀåÂø/ÀåÂøÇØÁ¦ °ÔÀÓ ·Î±×¿¡ Ãß°¡ - 
+struct MSG_FL_LOG_ITEM_DELETE : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon, S_F, S_L: ì¥ì°©/ì¥ì°©í•´ì œ ê²Œì„ ë¡œê·¸ì— ì¶”ê°€ - 
 {
 	ITEM_FOR_LOG	Item4Log;
 	INT				ItemDeleteType;
-	ATUM_DATE_TIME	atCreatedTime;			// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - MSG_FL_LOG_ITEM_DELETE
-	INT				nUsedTime;				// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - MSG_FL_LOG_ITEM_DELETE
+	ATUM_DATE_TIME	atCreatedTime;			// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - MSG_FL_LOG_ITEM_DELETE
+	INT				nUsedTime;				// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - MSG_FL_LOG_ITEM_DELETE
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
-		// 2009-11-17 by cmkwon, ½ÃÀÛÁ¦ÇÑ °ü·Ã ¾ÆÀÌÅÛ »èÁ¦½Ã ·Î±× Á¤º¸ Ãß°¡ - 
+		// 2009-11-17 by cmkwon, ì‹œì‘ì œí•œ ê´€ë ¨ ì•„ì´í…œ ì‚­ì œì‹œ ë¡œê·¸ ì •ë³´ ì¶”ê°€ - 
 		char szTemp[1024], szItem[1024];
 		sprintf(o_szLogString, "%s|%s|%s|%s|%s|%d\r\n", GetGameLogTypeString(i_nLogType), GetLogItemBaseString(szTemp), Item4Log.GetLogItemString(szItem)
 			, GetItemDeleteTypeString(ItemDeleteType), atCreatedTime.GetDateTimeString().GetBuffer(), nUsedTime);
@@ -8562,7 +8562,7 @@ struct MSG_FL_LOG_ITEM_DELETE : public FL_ITEM_LOG_BASE		// 2008-01-23 by cmkwon
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
+// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
 struct MSG_FL_LOG_MS_WAR
 {
 	BYTE			AttInfluence;
@@ -8627,13 +8627,13 @@ struct MSG_FL_LOG_WAR_CONTRIBUTION_GEAR
 };
 
 struct MSG_FL_LOG_LUCKY_DROP
-{// 2009-03-31 by dhjin, ·°Å°¸Ó½Å ·Î±×
+{// 2009-03-31 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ë¡œê·¸
 	INT				MysteryItemDropNum;
 	INT				DropItemNum;
-	ATUM_DATE_TIME	Starttime;				// ·°Å°¸Ó½Å ½ÃÀÛ ½Ã°£, 2008-11-04 by dhjin, ·°Å°¸Ó½Å
-	ATUM_DATE_TIME	Endtime;				// ·°Å°¸Ó½Å Á¾·á ½Ã°£, 2008-11-04 by dhjin, ·°Å°¸Ó½Å
-	INT				CountPerPeriod;			// ±â°£µ¿¾È µå¶øµÉ ÃÖ´ë ¾ÆÀÌÅÛ ¼ö, 2008-11-04 by dhjin, ·°Å°¸Ó½Å
-	INT				DropCount;				// ±â°£µ¿¾È ÇöÀç µå¶øµÈ ¾ÆÀÌÅÛ ¼ö, 2008-11-04 by dhjin, ·°Å°¸Ó½Å
+	ATUM_DATE_TIME	Starttime;				// ëŸ­í‚¤ë¨¸ì‹  ì‹œì‘ ì‹œê°„, 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
+	ATUM_DATE_TIME	Endtime;				// ëŸ­í‚¤ë¨¸ì‹  ì¢…ë£Œ ì‹œê°„, 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
+	INT				CountPerPeriod;			// ê¸°ê°„ë™ì•ˆ ë“œëë  ìµœëŒ€ ì•„ì´í…œ ìˆ˜, 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
+	INT				DropCount;				// ê¸°ê°„ë™ì•ˆ í˜„ì¬ ë“œëëœ ì•„ì´í…œ ìˆ˜, 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -8645,15 +8645,15 @@ struct MSG_FL_LOG_LUCKY_DROP
 };
 
 struct MSG_FL_LOG_INFINITY_START {
-	// 193 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ °ü·Ã Á¤º¸ 
-	InfinityCreateUID_t		InfinityCreateUID;		// ÇØ´ç ¹æÀÇ °íÀ¯ ¹øÈ£
-	//USHORT					MainServerID;			// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ¼­¹ö
-	BYTE					InfluenceType;			// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ¼¼·Â
-	char					CharacterName[SIZE_MAX_CHARACTER_NAME];		//	Ä³¸¯ÅÍ¸í
-	UID32_t					CharacterUID;			// (Ä³¸¯ÅÍ UID)
-	Lv_t					Level;					// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ·¹º§
-	USHORT					UnitKind;				// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ±â¾îÁ¾·ù
-	Experience_t			Experience;				// °æÇèÄ¡·®
+	// 193 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ ê´€ë ¨ ì •ë³´ 
+	InfinityCreateUID_t		InfinityCreateUID;		// í•´ë‹¹ ë°©ì˜ ê³ ìœ  ë²ˆí˜¸
+	//USHORT					MainServerID;			// ì…ì¥í•œ ìºë¦­í„°ì˜ ì„œë²„
+	BYTE					InfluenceType;			// ì…ì¥í•œ ìºë¦­í„°ì˜ ì„¸ë ¥
+	char					CharacterName[SIZE_MAX_CHARACTER_NAME];		//	ìºë¦­í„°ëª…
+	UID32_t					CharacterUID;			// (ìºë¦­í„° UID)
+	Lv_t					Level;					// ì…ì¥í•œ ìºë¦­í„°ì˜ ë ˆë²¨
+	USHORT					UnitKind;				// ì…ì¥í•œ ìºë¦­í„°ì˜ ê¸°ì–´ì¢…ë¥˜
+	Experience_t			Experience;				// ê²½í—˜ì¹˜ëŸ‰
 	float					CurrentHP;				// HP
 	float					CurrentDP;				// DP
 	SHORT					CurrentSP;				// SP
@@ -8666,7 +8666,7 @@ struct MSG_FL_LOG_INFINITY_START {
 };
 
 struct MSG_FL_LOG_INFINITY_START_ITEM : public FL_ITEM_LOG_BASE {
-	// 194 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ½ÃÀÛ½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸
+	// 194 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì‹œì‘ì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´
 	ITEM_FOR_LOG	Item4Log;
 	INT				ReaminTimeMSec;
 	UID64_t			MainSvrItemUID;
@@ -8679,8 +8679,8 @@ struct MSG_FL_LOG_INFINITY_START_ITEM : public FL_ITEM_LOG_BASE {
 };
 
 struct MSG_FL_LOG_INFINITY_CINEMA {
-	// 195 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¿¬Ãâ ·Î±×
-	InfinityCreateUID_t		InfinityCreateUID;		// ÇØ´ç ¹æÀÇ °íÀ¯ ¹øÈ£
+	// 195 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì—°ì¶œ ë¡œê·¸
+	InfinityCreateUID_t		InfinityCreateUID;		// í•´ë‹¹ ë°©ì˜ ê³ ìœ  ë²ˆí˜¸
 	MSec_t					StartTime;
 	EffectIdx_t				EffectIdx;
 	ObjectIdx_t				ObjectIdx;
@@ -8688,17 +8688,17 @@ struct MSG_FL_LOG_INFINITY_CINEMA {
 	MonIdx_t				MonsterIdx;
 	MSec_t					CameraTremble;
 	CinemaTalk_t			CinemaTalk[SIZE_MAX_CINEMATALK_DESCRIPTION];
-	QuestIndex_t			QuestIndex;		// 2011-03-09 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡ -
+	QuestIndex_t			QuestIndex;		// 2011-03-09 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€ -
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString) {
 		sprintf(o_szLogString, "%s|%I64d|%d|%d|%d|%d|%d|%d|%s|%d\r\n", GetGameLogTypeString(i_nLogType)
-			, InfinityCreateUID, StartTime, EffectIdx, ObjectIdx, ChangeObjectIdx, MonsterIdx, CameraTremble, CinemaTalk, QuestIndex);		// 2011-03-09 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡
+			, InfinityCreateUID, StartTime, EffectIdx, ObjectIdx, ChangeObjectIdx, MonsterIdx, CameraTremble, CinemaTalk, QuestIndex);		// 2011-03-09 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€
 		return o_szLogString;
 	}
 };
 
 struct MSG_FL_LOG_MONSTER_SKILL {
-	// 196 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ½ºÅ³ »ç¿ë½Ã
+	// 196 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš©ì‹œ
 	MonIdx_t				MonsterIdx;
 	ItemNum_t				MonsterSkillNum;
 
@@ -8710,7 +8710,7 @@ struct MSG_FL_LOG_MONSTER_SKILL {
 };
 
 struct MSG_FL_LOG_HPACTION_TALK {
-	// 197 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, ¸ó½ºÅÍ ´ëÈ­ »ç¿ë½Ã
+	// 197 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ëª¬ìŠ¤í„° ëŒ€í™” ì‚¬ìš©ì‹œ
 	MonIdx_t				MonsterIdx;
 	HPTalk_t				HPTalk[SIZE_MAX_HPTALK_DESCRIPTION];
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString) {
@@ -8721,21 +8721,21 @@ struct MSG_FL_LOG_HPACTION_TALK {
 };
 
 struct MSG_FL_LOG_INFINITY_FIN {
-	// 198 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á °ü·Ã Á¤º¸ 
-	InfinityCreateUID_t		InfinityCreateUID;		// ÇØ´ç ¹æÀÇ °íÀ¯ ¹øÈ£
-	//USHORT					MainServerID;			// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ¼­¹ö
-	BYTE					InfluenceType;			// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ¼¼·Â
-	char					CharacterName[SIZE_MAX_CHARACTER_NAME];		//	Ä³¸¯ÅÍ¸í
-	UID32_t					CharacterUID;			// (Ä³¸¯ÅÍ UID)
-	Lv_t					Level;					// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ·¹º§
-	USHORT					UnitKind;				// ÀÔÀåÇÑ Ä³¸¯ÅÍÀÇ ±â¾îÁ¾·ù
-	Experience_t			Experience;				// °æÇèÄ¡·®
+	// 198 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œ ê´€ë ¨ ì •ë³´ 
+	InfinityCreateUID_t		InfinityCreateUID;		// í•´ë‹¹ ë°©ì˜ ê³ ìœ  ë²ˆí˜¸
+	//USHORT					MainServerID;			// ì…ì¥í•œ ìºë¦­í„°ì˜ ì„œë²„
+	BYTE					InfluenceType;			// ì…ì¥í•œ ìºë¦­í„°ì˜ ì„¸ë ¥
+	char					CharacterName[SIZE_MAX_CHARACTER_NAME];		//	ìºë¦­í„°ëª…
+	UID32_t					CharacterUID;			// (ìºë¦­í„° UID)
+	Lv_t					Level;					// ì…ì¥í•œ ìºë¦­í„°ì˜ ë ˆë²¨
+	USHORT					UnitKind;				// ì…ì¥í•œ ìºë¦­í„°ì˜ ê¸°ì–´ì¢…ë¥˜
+	Experience_t			Experience;				// ê²½í—˜ì¹˜ëŸ‰
 	float					CurrentHP;				// HP
 	float					CurrentDP;				// DP
 	SHORT					CurrentSP;				// SP
-	bool					Clear;					// ÀÎÇÇ´ÏÆ¼ ÇÊµå Å¬¸®¾î À¯¹«
-	KillCnt_t				KillCount;				// ¸ó½ºÅÍ »ç¸ÁÀ» ÇÏ°ÔÇÑ ¼ö(¸·Å¸ È½¼ö)
-	DeathCnt_t				DeathCount;				// Å¬¸®¾î ÇÏ±â±îÁö »ç¸Á È½¼ö
+	bool					Clear;					// ì¸í”¼ë‹ˆí‹° í•„ë“œ í´ë¦¬ì–´ ìœ ë¬´
+	KillCnt_t				KillCount;				// ëª¬ìŠ¤í„° ì‚¬ë§ì„ í•˜ê²Œí•œ ìˆ˜(ë§‰íƒ€ íšŸìˆ˜)
+	DeathCnt_t				DeathCount;				// í´ë¦¬ì–´ í•˜ê¸°ê¹Œì§€ ì‚¬ë§ íšŸìˆ˜
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString) {
 		sprintf(o_szLogString, "%s|%I64d|%d|%s(%d)|%d|%d|%f|%f|%f|%d|%d|%d|%d\r\n", GetGameLogTypeString(i_nLogType)
@@ -8745,7 +8745,7 @@ struct MSG_FL_LOG_INFINITY_FIN {
 };
 
 struct MSG_FL_LOG_INFINITY_FIN_ITEM : public FL_ITEM_LOG_BASE {
-	// 199 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã ¾ÆÀÌÅÛ º¹»ç Á¤º¸ 
+	// 199 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì•„ì´í…œ ë³µì‚¬ ì •ë³´ 
 	ITEM_FOR_LOG	Item4Log;
 	INT				ReaminTimeMSec;
 	UID64_t			MainSvrItemUID;
@@ -8758,7 +8758,7 @@ struct MSG_FL_LOG_INFINITY_FIN_ITEM : public FL_ITEM_LOG_BASE {
 };
 
 struct MSG_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER {
-	// 200 - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °ÔÀÓ·Î±× Ãß°¡, Á¾·á½Ã »ì¾ÆÀÖ´Â ¸ó½ºÅÍ Á¤º¸
+	// 200 - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê²Œì„ë¡œê·¸ ì¶”ê°€, ì¢…ë£Œì‹œ ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„° ì •ë³´
 	MonIdx_t				MonsterIdx;
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString) {
@@ -8769,24 +8769,24 @@ struct MSG_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER {
 };
 
 struct MSG_FL_LOG_PET_LEVEL : public FL_USER_LOG_BASE {
-	// 213 - // 2011-09-15 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ·¹º§ º¯°æ
+	// 213 - // 2011-09-15 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€ê²½
 	BYTE		FromPetLevel;
 	BYTE		ToPetLevel;
 	LONGLONG	TotalPlayTime;
-	// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+	// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 	UID64_t		UniqueNumber;
 	Experience_t	PetTotalExp;
 	Experience_t	PetAcquisitionExp;
-	// 2012-10-04 by hskim, ÇÑ±¹ ÀÚÃ¼ ¼­ºñ½º (°¡ºñ¾Æ IDC) - ÆÄÆ®³Ê ·Î±× º¸¾È
+	// 2012-10-04 by hskim, í•œêµ­ ìì²´ ì„œë¹„ìŠ¤ (ê°€ë¹„ì•„ IDC) - íŒŒíŠ¸ë„ˆ ë¡œê·¸ ë³´ì•ˆ
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
 		char szTemp[1024];
 		sprintf(o_szLogString, "%s|%s|%I64d|%f|%f|%d|%d|%I64d\r\n", GetGameLogTypeString(i_nLogType), GetLogBaseString(szTemp), UniqueNumber, PetTotalExp, PetAcquisitionExp, FromPetLevel, ToPetLevel, TotalPlayTime);
 		return o_szLogString;
 	}
-};					// ÆÄÆ®³Ê ·¹º§ º¯È­
+};					// íŒŒíŠ¸ë„ˆ ë ˆë²¨ ë³€í™”
 
-					// start 2011-12-12 by hskim, GLog 2Â÷
+					// start 2011-12-12 by hskim, GLog 2ì°¨
 struct MSG_FL_LOG_CONNECT_USER_NEW
 {
 	char AccountName[SIZE_MAX_ACCOUNT_NAME];
@@ -8808,7 +8808,7 @@ struct MSG_FL_LOG_CONNECT_USER_LOGIN
 		return o_szLogString;
 	}
 };
-// end 2011-12-12 by hskim, GLog 2Â÷
+// end 2011-12-12 by hskim, GLog 2ì°¨
 
 // start 2012-10-08 by khkim, GLog
 struct MSG_FL_LOG_ACCOUNTCONNECT
@@ -8900,9 +8900,9 @@ struct MSG_FL_LOG_SERVER
 
 	MSG_FL_LOG_SERVER() : LogType { 0 } { }
 };
-// end 2012-10-08 by khkim, GLog 2Â÷
+// end 2012-10-08 by khkim, GLog 2ì°¨
 
-// start 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// start 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 struct MSG_FL_LOG_STATISTICS_MONEY
 {
 	BYTE					FunctionType;
@@ -8920,16 +8920,16 @@ struct MSG_FL_LOG_STATISTICS_MONEY
 		return o_szLogString;
 	}
 };
-// end 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// end 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
-// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü) 
+// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•) 
 struct MSG_FL_LOG_FIXED_TERM_SHAPE_START : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ShapeItemNum;		// ¿ÜÇü ¹øÈ£
-	INT				ApplyItemNum;		// ¿ÜÇü º¯°æ ¾ÆÀÌÅÛ ¹øÈ£
-	ATUM_DATE_TIME	Starttime;			// ¿ÜÇü º¯°æ ½ÃÀÛ ½Ã°£
-	ATUM_DATE_TIME	Endtime;			// ¿ÜÇü º¯°æ Á¾·á ½Ã°£
+	INT				ShapeItemNum;		// ì™¸í˜• ë²ˆí˜¸
+	INT				ApplyItemNum;		// ì™¸í˜• ë³€ê²½ ì•„ì´í…œ ë²ˆí˜¸
+	ATUM_DATE_TIME	Starttime;			// ì™¸í˜• ë³€ê²½ ì‹œì‘ ì‹œê°„
+	ATUM_DATE_TIME	Endtime;			// ì™¸í˜• ë³€ê²½ ì¢…ë£Œ ì‹œê°„
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -8943,10 +8943,10 @@ struct MSG_FL_LOG_FIXED_TERM_SHAPE_START : public FL_ITEM_LOG_BASE
 struct MSG_FL_LOG_FIXED_TERM_SHAPE_END : public FL_ITEM_LOG_BASE
 {
 	ITEM_FOR_LOG	Item4Log;
-	INT				ShapeItemNum;		// ¿ÜÇü º¯°æ ¾ÆÀÌÅÛ ¹øÈ£
-	INT				ApplyItemNum;		// ¿ÜÇü º¯°æ ¾ÆÀÌÅÛ ¹øÈ£
-	ATUM_DATE_TIME	Starttime;			// ¿ÜÇü º¯°æ ½ÃÀÛ ½Ã°£
-	ATUM_DATE_TIME	Endtime;			// ¿ÜÇü º¯°æ Á¾·á ½Ã°£
+	INT				ShapeItemNum;		// ì™¸í˜• ë³€ê²½ ì•„ì´í…œ ë²ˆí˜¸
+	INT				ApplyItemNum;		// ì™¸í˜• ë³€ê²½ ì•„ì´í…œ ë²ˆí˜¸
+	ATUM_DATE_TIME	Starttime;			// ì™¸í˜• ë³€ê²½ ì‹œì‘ ì‹œê°„
+	ATUM_DATE_TIME	Endtime;			// ì™¸í˜• ë³€ê²½ ì¢…ë£Œ ì‹œê°„
 
 	char *GetWriteLogString(T1<T0::FL_LOG> i_nLogType, char *o_szLogString)
 	{
@@ -8956,7 +8956,7 @@ struct MSG_FL_LOG_FIXED_TERM_SHAPE_END : public FL_ITEM_LOG_BASE
 		return o_szLogString;
 	}
 };
-// end 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+// end 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Monitor Server Protocol (T0: 0x30~)
@@ -8975,7 +8975,7 @@ struct MSG_FL_LOG_FIXED_TERM_SHAPE_END : public FL_ITEM_LOG_BASE
 //#define T1_FM_PRINT_DEBUG_MSG			0x08	// No Body
 //#define T1_FM_SEND_CHANNEL_INFO			0x09	// F->M
 //#define T1_FM_CHANGE_BANDWIDTH_FLAG		0x0A	// No Body
-//#define T1_FM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// º¯°æµÈ ÇÃ·¡±×°ª
+//#define T1_FM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// ë³€ê²½ëœ í”Œë˜ê·¸ê°’
 //#define T1_FM_SET_MSG_PRINT_LEVEL		0x0C
 //#define T1_FM_GET_CHARACTER_INFO		0x0D
 //#define T1_FM_GET_CHARACTER_INFO_OK		0x0E
@@ -8990,10 +8990,10 @@ struct MSG_FL_LOG_FIXED_TERM_SHAPE_END : public FL_ITEM_LOG_BASE
 //#define T1_FM_SET_SERVICE_STATE_OK		0x17	// No Body
 //#define T1_FM_RELOAD_SERVER_INFO		0x18
 //#define T1_FM_RELOAD_SERVER_INFO_OK		0x19	// No Body
-//#define T1_FM_INCREASE_CHANNEL			0x1A	// M->F, Channel ¼ö Áõ°¡
-//#define T1_FM_INCREASE_CHANNEL_OK		0x1B	// F->M, Channel ¼ö Áõ°¡ °á°ú
+//#define T1_FM_INCREASE_CHANNEL			0x1A	// M->F, Channel ìˆ˜ ì¦ê°€
+//#define T1_FM_INCREASE_CHANNEL_OK		0x1B	// F->M, Channel ìˆ˜ ì¦ê°€ ê²°ê³¼
 //#define T1_FM_SET_CHANNEL_STATE			0x1C	// M->F, Channel Enable/Disable
-//#define T1_FM_SET_CHANNEL_STATE_OK		0x1D	// F->M, Channel Enable/Disable °á°ú
+//#define T1_FM_SET_CHANNEL_STATE_OK		0x1D	// F->M, Channel Enable/Disable ê²°ê³¼
 //#define T1_FM_CITYWAR_CHANGE_WAR_TIME		0x20		// M->F
 //#define T1_FM_CITYWAR_CHANGED_OCCUPY_INFO	0x21	// F->M
 
@@ -9023,10 +9023,10 @@ struct MSG_FL_LOG_FIXED_TERM_SHAPE_END : public FL_ITEM_LOG_BASE
 //#define T_FM_SET_SERVICE_STATE_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_SET_SERVICE_STATE_OK)	// No Body
 //#define T_FM_RELOAD_SERVER_INFO			(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_RELOAD_SERVER_INFO)
 //#define T_FM_RELOAD_SERVER_INFO_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_RELOAD_SERVER_INFO_OK)	// No Body
-//#define T_FM_INCREASE_CHANNEL			(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_INCREASE_CHANNEL)		// M->F, Channel ¼ö Áõ°¡
-//#define T_FM_INCREASE_CHANNEL_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_INCREASE_CHANNEL_OK)	// F->M, Channel ¼ö Áõ°¡ °á°ú
+//#define T_FM_INCREASE_CHANNEL			(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_INCREASE_CHANNEL)		// M->F, Channel ìˆ˜ ì¦ê°€
+//#define T_FM_INCREASE_CHANNEL_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_INCREASE_CHANNEL_OK)	// F->M, Channel ìˆ˜ ì¦ê°€ ê²°ê³¼
 //#define T_FM_SET_CHANNEL_STATE			(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_SET_CHANNEL_STATE)		// M->F, Channel Enable/Disable
-//#define T_FM_SET_CHANNEL_STATE_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_SET_CHANNEL_STATE_OK)	// F->M, Channel Enable/Disable °á°ú
+//#define T_FM_SET_CHANNEL_STATE_OK		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_SET_CHANNEL_STATE_OK)	// F->M, Channel Enable/Disable ê²°ê³¼
 //#define T_FM_CITYWAR_CHANGE_WAR_TIME		(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_CITYWAR_CHANGE_WAR_TIME)		// M->F
 //#define T_FM_CITYWAR_CHANGED_OCCUPY_INFO	(MessageType_t)((T0_FM_MONITOR<<8)|T1_FM_CITYWAR_CHANGED_OCCUPY_INFO)	// F->M
 
@@ -9080,15 +9080,15 @@ struct MSG_FM_SEND_CHANNEL_INFO
 	PROJECTINFO			projectInfo;
 	bool				bCityWarMap;
 	SCITY_OCCUPY_INFO	cityWarOccupyInfo;
-	ChannelIndex_t		ChannelIndex;	// Ã¤³ÎÀÇ ÀÎµ¦½º
-	bool				IsEnabled;		// Ã¤³ÎÀÇ È°¼ºÈ­ ¿©ºÎ¿¡ ´ëÇÑ Á¤º¸
+	ChannelIndex_t		ChannelIndex;	// ì±„ë„ì˜ ì¸ë±ìŠ¤
+	bool				IsEnabled;		// ì±„ë„ì˜ í™œì„±í™” ì—¬ë¶€ì— ëŒ€í•œ ì •ë³´
 };			// F->M
 
 struct MSG_NM_SEND_CHANNEL_INFO
 {
 	PROJECTINFO		projectInfo;
-	ChannelIndex_t	ChannelIndex;	// Ã¤³ÎÀÇ ÀÎµ¦½º
-	bool			IsEnabled;		// Ã¤³ÎÀÇ È°¼ºÈ­ ¿©ºÎ¿¡ ´ëÇÑ Á¤º¸
+	ChannelIndex_t	ChannelIndex;	// ì±„ë„ì˜ ì¸ë±ìŠ¤
+	bool			IsEnabled;		// ì±„ë„ì˜ í™œì„±í™” ì—¬ë¶€ì— ëŒ€í•œ ì •ë³´
 	UINT			LimitMonsterCount;
 };
 
@@ -9148,7 +9148,7 @@ struct MSG_FM_SERVER_THREAD_STATUS
 };
 
 // SERVER_SERVICE_TYPE_XXX
-#define SERVER_SERVICE_TYPE_QUEST		((BYTE)0)	// Äù½ºÆ® ¼­ºñ½º
+#define SERVER_SERVICE_TYPE_QUEST		((BYTE)0)	// í€˜ìŠ¤íŠ¸ ì„œë¹„ìŠ¤
 
 struct MSG_FM_SET_SERVICE_STATE
 {
@@ -9157,7 +9157,7 @@ struct MSG_FM_SET_SERVICE_STATE
 };
 
 // SERVER_INFO_TYPE_XXX
-#define SERVER_INFO_TYPE_QUEST			((BYTE)0)	// Äù½ºÆ®
+#define SERVER_INFO_TYPE_QUEST			((BYTE)0)	// í€˜ìŠ¤íŠ¸
 
 struct MSG_FM_RELOAD_SERVER_INFO
 {
@@ -9167,13 +9167,13 @@ struct MSG_FM_RELOAD_SERVER_INFO
 struct MSG_FM_INCREASE_CHANNEL
 {
 	MapIndex_t	MapIndex;
-};	// M->F, Channel ¼ö Áõ°¡
+};	// M->F, Channel ìˆ˜ ì¦ê°€
 
 struct MSG_FM_INCREASE_CHANNEL_OK
 {
 	MapIndex_t	MapIndex;
 	INT			TotalChannelCount;
-};	// F->M, Channel ¼ö Áõ°¡ °á°ú
+};	// F->M, Channel ìˆ˜ ì¦ê°€ ê²°ê³¼
 
 struct MSG_FM_SET_CHANNEL_STATE
 {
@@ -9185,7 +9185,7 @@ struct MSG_FM_SET_CHANNEL_STATE_OK
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
 	bool				IsEnabled;			// TRUE: Enable, FALSE: Disable
-};	// F->M, Channel Enable/Disable °á°ú
+};	// F->M, Channel Enable/Disable ê²°ê³¼
 struct MSG_FM_CITYWAR_CHANGE_WAR_TIME
 {
 	MAP_CHANNEL_INDEX	MapChannelIndex;
@@ -9210,7 +9210,7 @@ struct MSG_FM_CITYWAR_CHANGED_OCCUPY_INFO
 //#define T1_PM_RELOAD_VERSION_INFO		0x08	// M->P
 //#define T1_PM_RELOAD_VERSION_INFO_OK	0x09	// No Body
 //#define T1_PM_CHANGE_BANDWIDTH_FLAG		0x0A	// No Body
-//#define T1_PM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// º¯°æµÈ ÇÃ·¡±×°ª
+//#define T1_PM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// ë³€ê²½ëœ í”Œë˜ê·¸ê°’
 //#define T1_PM_SET_MSG_PRINT_LEVEL		0x0C
 //#define T1_PM_PAUSE_SERVICE				0x0D
 //#define T1_PM_PAUSE_SERVICE_OK			0x0E
@@ -9305,7 +9305,7 @@ struct MSG_PM_PREPARE_SHUTDOWN				// 2006-08-04 by cmkwon
 	char	ServerGroupName[SIZE_MAX_SERVER_NAME];
 };
 
-struct MSG_PM_AUTO_UPDATE_HTTP_SERVER_SETTING		// 2007-01-06 by cmkwon, Http Auto Update server ±¸Çö Ãß°¡
+struct MSG_PM_AUTO_UPDATE_HTTP_SERVER_SETTING		// 2007-01-06 by cmkwon, Http Auto Update server êµ¬í˜„ ì¶”ê°€
 {						// 2007-01-06 by cmkwon, AU_SERVER_TYPE_XXX
 	char		szDownloadHttpServerIP[SIZE_MAX_FTP_URL];
 	USHORT		nDownloadHttpServerPort;
@@ -9344,14 +9344,14 @@ struct MSG_PM_RELOAD_VERSION_INFO_LIST				// 2007-01-09 by cmkwon
 //#define T1_NM_SAVE_MAPBLOCK_INFO			0x07	// No Body
 //#define T1_NM_SEND_CHANNEL_INFO				0x08	//
 //#define T1_NM_CHANGE_BANDWIDTH_FLAG			0x0A	// No Body
-//#define T1_NM_CHANGE_BANDWIDTH_FLAG_OK		0x0B	// º¯°æµÈ ÇÃ·¡±×°ª
+//#define T1_NM_CHANGE_BANDWIDTH_FLAG_OK		0x0B	// ë³€ê²½ëœ í”Œë˜ê·¸ê°’
 //#define T1_NM_SET_MSG_PRINT_LEVEL			0x0C
 //#define T1_NM_GET_MAP_USER_COUNTS			0x0D	// No Body
 //#define T1_NM_GET_MAP_USER_COUNTS_ACK		0x0E
 //#define T1_NM_SET_LIMIT_MONSTER_COUNT		0x0F
 //#define T1_NM_SET_LIMIT_MONSTER_COUNT_ACK	0x10
 //#define T1_NM_SERVER_THREAD_STATUS			0x11
-//#define T1_NM_SET_CHANNEL_STATE_OK			0x12	// N->M, Channel Enable/Disable °á°ú
+//#define T1_NM_SET_CHANNEL_STATE_OK			0x12	// N->M, Channel Enable/Disable ê²°ê³¼
 
 //#define T_NM_GET_NUM_MONSTERS				(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_GET_NUM_MONSTERS)
 //#define T_NM_GET_NUM_MONSTERS_OK			(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_GET_NUM_MONSTERS_OK)
@@ -9370,7 +9370,7 @@ struct MSG_PM_RELOAD_VERSION_INFO_LIST				// 2007-01-09 by cmkwon
 //#define T_NM_SET_LIMIT_MONSTER_COUNT		(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_SET_LIMIT_MONSTER_COUNT)
 //#define T_NM_SET_LIMIT_MONSTER_COUNT_ACK	(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_SET_LIMIT_MONSTER_COUNT_ACK)
 //#define T_NM_SERVER_THREAD_STATUS			(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_SERVER_THREAD_STATUS)
-//#define T_NM_SET_CHANNEL_STATE_OK			(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_SET_CHANNEL_STATE_OK)	// N->M, Channel Enable/Disable °á°ú
+//#define T_NM_SET_CHANNEL_STATE_OK			(MessageType_t)((T0_NM_MONITOR<<8)|T1_NM_SET_CHANNEL_STATE_OK)	// N->M, Channel Enable/Disable ê²°ê³¼
 
 struct MSG_NM_GET_NUM_MONSTERS_OK
 {
@@ -9402,7 +9402,7 @@ using MSG_NM_SET_CHANNEL_STATE_OK = MSG_FM_SET_CHANNEL_STATE_OK;
 //#define T1_IM_PRINTMAP					0x06	// No Body
 //#define T1_IM_PRINT_DEBUG_MSG			0x08	// No Body
 //#define T1_IM_CHANGE_BANDWIDTH_FLAG		0x0A	// No Body
-//#define T1_IM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// º¯°æµÈ ÇÃ·¡±×°ª
+//#define T1_IM_CHANGE_BANDWIDTH_FLAG_OK	0x0B	// ë³€ê²½ëœ í”Œë˜ê·¸ê°’
 //#define T1_IM_SET_MSG_PRINT_LEVEL		0x0C
 //#define T1_IM_GET_TOTAL_USER_COUNTS		0x0D	// No Body
 //#define T1_IM_GET_TOTAL_USER_COUNTS_ACK	0x0E
@@ -9464,18 +9464,18 @@ using MSG_IM_SERVER_THREAD_STATUS = MSG_FM_SERVER_THREAD_STATUS;
 //#define T1_PA_ADMIN_RELOAD_ITEMEV		0x10		// A->P, No body, 2006-08-31 by dhjin
 //#define T1_PA_ADMIN_UPDATE_PCBANGLIST	0x11		// A->P, No body, 2007-01-22 by dhjin
 //#define T1_PA_ADMIN_UPDATE_STRATEGYPOINT_NOTSUMMONTIME	0x12		// A->P, No body, 2007-03-06 by dhjin
-//#define T1_PA_ADMIN_PETITION_SET_PERIOD	0x13			// 2007-11-19 by cmkwon, ÁøÁ¤½Ã½ºÅÛ ¾÷µ¥ÀÌÆ® - A->P
-//#define T1_PA_ADMIN_SET_DBSERVER_GROUP		0x14			// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - A->P
-//#define T1_PA_ADMIN_SET_DBSERVER_GROUP_OK	0x15			// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - P->A
-//#define T1_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM	0x16		// 2009-01-14 by cmkwon, ¿î¿µÀÚ ÀÚµ¿ °øÁö ½Ã½ºÅÛ ±¸Çö - A->P, °¢ ¼­¹ö±º ÀÚµ¿ °øÁö ¸®·Îµå
-//#define T1_PA_ADMIN_RELOAD_WORLDRANKING			0x17		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - A->P, 
-//#define T1_PA_ADMIN_RELOAD_INFLUENCERATE		0x18		// A->P // 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - 
+//#define T1_PA_ADMIN_PETITION_SET_PERIOD	0x13			// 2007-11-19 by cmkwon, ì§„ì •ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸ - A->P
+//#define T1_PA_ADMIN_SET_DBSERVER_GROUP		0x14			// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - A->P
+//#define T1_PA_ADMIN_SET_DBSERVER_GROUP_OK	0x15			// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - P->A
+//#define T1_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM	0x16		// 2009-01-14 by cmkwon, ìš´ì˜ì ìë™ ê³µì§€ ì‹œìŠ¤í…œ êµ¬í˜„ - A->P, ê° ì„œë²„êµ° ìë™ ê³µì§€ ë¦¬ë¡œë“œ
+//#define T1_PA_ADMIN_RELOAD_WORLDRANKING			0x17		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - A->P, 
+//#define T1_PA_ADMIN_RELOAD_INFLUENCERATE		0x18		// A->P // 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - 
 
-// 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
+// 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
 //#define T1_PA_ADMIN_LOG_ACCOUNT_ACCOUNTTYPE_CHANGE					0x1B		
 //#define T1_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE			0x1C
-// end 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
-//#define T1_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE						0x1D		// 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü, °ÅÁ¡Àü ¼ÂÆÃ ½Ç½Ã°£ Àû¿ë
+// end 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
+//#define T1_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE						0x1D		// 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „, ê±°ì ì „ ì…‹íŒ… ì‹¤ì‹œê°„ ì ìš©
 
 //#define T_PA_ADMIN_CONNECT				(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_CONNECT)				// A->P
 //#define T_PA_ADMIN_CONNECT_OK			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_CONNECT_OK)			// P->A
@@ -9496,33 +9496,33 @@ using MSG_IM_SERVER_THREAD_STATUS = MSG_FM_SERVER_THREAD_STATUS;
 //#define T_PA_ADMIN_RELOAD_ITEMEV		(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_ITEMEV)			// A->P, No body, 2006-08-31 by dhjin
 //#define T_PA_ADMIN_UPDATE_PCBANGLIST	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_UPDATE_PCBANGLIST)		// A->P, No body, 2007-01-22 by dhjin
 //#define T_PA_ADMIN_UPDATE_STRATEGYPOINT_NOTSUMMONTIME	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_UPDATE_STRATEGYPOINT_NOTSUMMONTIME)		// A->P, No body, 2007-01-22 by dhjin
-//#define T_PA_ADMIN_PETITION_SET_PERIOD	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_PETITION_SET_PERIOD)	// 2007-11-19 by cmkwon, ÁøÁ¤½Ã½ºÅÛ ¾÷µ¥ÀÌÆ® - A->P
-//#define T_PA_ADMIN_SET_DBSERVER_GROUP		(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_SET_DBSERVER_GROUP)	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - A->P
-//#define T_PA_ADMIN_SET_DBSERVER_GROUP_OK	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_SET_DBSERVER_GROUP_OK)	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - P->A
-//#define T_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM)	// 2009-01-14 by cmkwon, ¿î¿µÀÚ ÀÚµ¿ °øÁö ½Ã½ºÅÛ ±¸Çö - A->P, °¢ ¼­¹ö±º ÀÚµ¿ °øÁö ¸®·Îµå
-//#define T_PA_ADMIN_RELOAD_WORLDRANKING			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_WORLDRANKING)			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - A->P, 
-//#define T_PA_ADMIN_RELOAD_INFLUENCERATE			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_INFLUENCERATE)		// A->P // 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - 
+//#define T_PA_ADMIN_PETITION_SET_PERIOD	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_PETITION_SET_PERIOD)	// 2007-11-19 by cmkwon, ì§„ì •ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸ - A->P
+//#define T_PA_ADMIN_SET_DBSERVER_GROUP		(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_SET_DBSERVER_GROUP)	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - A->P
+//#define T_PA_ADMIN_SET_DBSERVER_GROUP_OK	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_SET_DBSERVER_GROUP_OK)	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - P->A
+//#define T_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM	(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM)	// 2009-01-14 by cmkwon, ìš´ì˜ì ìë™ ê³µì§€ ì‹œìŠ¤í…œ êµ¬í˜„ - A->P, ê° ì„œë²„êµ° ìë™ ê³µì§€ ë¦¬ë¡œë“œ
+//#define T_PA_ADMIN_RELOAD_WORLDRANKING			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_WORLDRANKING)			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - A->P, 
+//#define T_PA_ADMIN_RELOAD_INFLUENCERATE			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_RELOAD_INFLUENCERATE)		// A->P // 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - 
 
-// 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
+// 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
 //#define T_PA_ADMIN_LOG_ACCOUNT_ACCOUNTTYPE_CHANGE			(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_LOG_ACCOUNT_ACCOUNTTYPE_CHANGE)		// A->P
 //#define T_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE		(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE)	// A->P
-// end 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
-//#define T_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE				(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE)	// A->P	// 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+// end 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
+//#define T_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE				(MessageType_t)((T0_PA_ADMIN<<8)|T1_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE)	// A->P	// 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 
 struct MSG_PA_ADMIN_CONNECT
 {
 	char	UID[SIZE_MAX_ACCOUNT_NAME];
 	char	PWD[SIZE_MAX_PASSWORD];
-	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
+	DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
 };
 
 struct MSG_PA_ADMIN_CONNECT_OK
 {
-	// 2006-04-15 by cmkwon, ÇÊµå º¯°æ
+	// 2006-04-15 by cmkwon, í•„ë“œ ë³€ê²½
 	//	BYTE	AuthOK;				// 0: FALSE, 1:TRUE
-	USHORT	AccountType0;		// °èÁ¤ ±ÇÇÑ
-	//DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö - ±âÁ¸ ¼­¹ö¿Í È£È¯ ¾ÈµÇµµ·Ï ±¸Á¶Ã¼ Å©±â ¹Ù²Ş
-	//int		IsMasang;	// 2012-06-16 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - Àü´Ş : ¸¶»ó ³»ºÎ°¡ ¾Æ´Ï¸é »ç¿ë ºÒ°¡
+	USHORT	AccountType0;		// ê³„ì • ê¶Œí•œ
+	//DWORD	Padding[SIZE_MAX_PACKET_PADDING];		// 2011-07-21 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„ - ê¸°ì¡´ ì„œë²„ì™€ í˜¸í™˜ ì•ˆë˜ë„ë¡ êµ¬ì¡°ì²´ í¬ê¸° ë°”ê¿ˆ
+	//int		IsMasang;	// 2012-06-16 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì „ë‹¬ : ë§ˆìƒ ë‚´ë¶€ê°€ ì•„ë‹ˆë©´ ì‚¬ìš© ë¶ˆê°€
 };
 
 struct MSG_PA_ADMIN_CHANGE_SERVER_STATE
@@ -9592,14 +9592,14 @@ using MSG_PA_ADMIN_BLOCK_ACCOUNT_OK = SBLOCKED_ACCOUNT_INFO;
 // {
 // 	char	AccountName[SIZE_MAX_ACCOUNT_NAME];
 // } MSG_PA_ADMIN_UNBLOCK_ACCOUNT;
-using MSG_PA_ADMIN_UNBLOCK_ACCOUNT = SBLOCKED_ACCOUNT_INFO;	// 2008-01-30 by cmkwon, °èÁ¤ ºí·° ·Î±× ³²±â±â ±¸Çö - 
+using MSG_PA_ADMIN_UNBLOCK_ACCOUNT = SBLOCKED_ACCOUNT_INFO;	// 2008-01-30 by cmkwon, ê³„ì • ë¸”ëŸ­ ë¡œê·¸ ë‚¨ê¸°ê¸° êµ¬í˜„ - 
 
 struct MSG_PA_ADMIN_UNBLOCK_ACCOUNT_OK
 {
 	char	AccountName[SIZE_MAX_ACCOUNT_NAME];
 };
 
-// 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
+// 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
 struct MSG_PA_ADMIN_LOG_ACCOUNT_ACCOUNTTYPE_CHANGE
 {
 	char	AccountName[SIZE_MAX_ACCOUNT_NAME];
@@ -9617,7 +9617,7 @@ struct MSG_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE
 	USHORT	OldAccountType;
 	USHORT	NewAccountType;
 };
-// end 2012-06-07 by hskim, °ü¸®ÀÚ °èÁ¤ º¸¾È °­È­ - °èÁ¤ ±ÇÇÑ º¯°æ½Ã ·Î±× ³²±è
+// end 2012-06-07 by hskim, ê´€ë¦¬ì ê³„ì • ë³´ì•ˆ ê°•í™” - ê³„ì • ê¶Œí•œ ë³€ê²½ì‹œ ë¡œê·¸ ë‚¨ê¹€
 
 //typedef struct
 //{
@@ -9627,7 +9627,7 @@ struct MSG_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE
 #define SERVER_STATE_NORMAL		((BYTE)1)
 #define SERVER_STATE_ABNORMAL	((BYTE)2)
 
-// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - MEX_SERVER_GROUP_INFO_FOR_ADMIN ·Î ´ëÃ¼ ÇÔ
+// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - MEX_SERVER_GROUP_INFO_FOR_ADMIN ë¡œ ëŒ€ì²´ í•¨
 // struct MEX_SERVER_INFO_FOR_ADMIN
 // {
 // 	char		ServerName[SIZE_MAX_SERVER_NAME];
@@ -9637,7 +9637,7 @@ struct MSG_PA_ADMIN_LOG_CHARACTER_RACEACCOUNTTYPE_CHANGE
 // 	BYTE		ServerState;						// SERVER_STATE_XXX
 // };
 
-struct MEX_SERVER_GROUP_INFO_FOR_ADMIN				// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+struct MEX_SERVER_GROUP_INFO_FOR_ADMIN				// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 {
 	char		ServerName[SIZE_MAX_SERVER_NAME];
 	SERVER_ID	IMServerID;
@@ -9645,18 +9645,18 @@ struct MEX_SERVER_GROUP_INFO_FOR_ADMIN				// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ D
 	BYTE		IMServerState;						// SERVER_STATE_XXX
 	SERVER_ID	FieldServerID;
 	BYTE		FieldServerState;					// SERVER_STATE_XXX
-	int			ServerGroupID;						// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
-	int			LimitUserCount;						// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
-	bool		LockCreateCharacterForNewAccount;	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	int			ServerGroupID;						// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
+	int			LimitUserCount;						// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
+	bool		LockCreateCharacterForNewAccount;	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 };
 
 struct MSG_PA_ADMIN_GET_SERVER_INFO_OK
 {
-	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 	//	INT		NumOfServers;
 	//	ARRAY_(MEX_SERVER_INFO_FOR_ADMIN);
-	INT		NumOfServerGroups;						// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
-	ARRAY_(MEX_SERVER_GROUP_INFO_FOR_ADMIN);		// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	INT		NumOfServerGroups;						// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
+	ARRAY_(MEX_SERVER_GROUP_INFO_FOR_ADMIN);		// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 };
 
 struct MSG_PA_ADMIN_GET_ACCOUNT_LIST
@@ -9677,18 +9677,18 @@ struct MSG_PA_ADMIN_GET_ACCOUNT_LIST_OK
 };
 
 
-using MSG_PA_ADMIN_PETITION_SET_PERIOD = MSG_IP_ADMIN_PETITION_SET_PERIOD;	// 2007-11-19 by cmkwon, ÁøÁ¤½Ã½ºÅÛ ¾÷µ¥ÀÌÆ® - 
+using MSG_PA_ADMIN_PETITION_SET_PERIOD = MSG_IP_ADMIN_PETITION_SET_PERIOD;	// 2007-11-19 by cmkwon, ì§„ì •ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸ - 
 
-struct MSG_PA_ADMIN_SET_DBSERVER_GROUP		// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+struct MSG_PA_ADMIN_SET_DBSERVER_GROUP		// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 {
 	char		ServerGroupName[SIZE_MAX_SERVER_NAME];
 	int			LimitUserCount;
 	bool		LockCreateCharacterForNewAccount;
 };
 
-using MSG_PA_ADMIN_SET_DBSERVER_GROUP_OK = MSG_PA_ADMIN_SET_DBSERVER_GROUP;		// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+using MSG_PA_ADMIN_SET_DBSERVER_GROUP_OK = MSG_PA_ADMIN_SET_DBSERVER_GROUP;		// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 
-struct MSG_PA_ADMIN_RELOAD_INFLUENCERATE	// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - 
+struct MSG_PA_ADMIN_RELOAD_INFLUENCERATE	// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - 
 {
 	char		ServerGroupName[SIZE_MAX_SERVER_NAME];
 };
@@ -9721,9 +9721,9 @@ struct MSG_IA_ADMIN_CONNECT
 
 struct MSG_IA_ADMIN_CONNECT_OK
 {
-	// 2006-04-15 by cmkwon, ÇÊµå º¯°æ
+	// 2006-04-15 by cmkwon, í•„ë“œ ë³€ê²½
 	//	BYTE	AuthOK;				// 0: FALSE, 1:TRUE
-	USHORT	AccountType0;		// °èÁ¤ ±ÇÇÑ
+	USHORT	AccountType0;		// ê³„ì • ê¶Œí•œ
 };
 
 using MSG_IA_ADMIN_CHANGE_SERVER_STATE = MSG_PA_ADMIN_CHANGE_SERVER_STATE;
@@ -9764,9 +9764,9 @@ struct MSG_FA_ADMIN_CONNECT
 
 struct MSG_FA_ADMIN_CONNECT_OK
 {
-	// 2006-04-15 by cmkwon, ÇÊµå º¯°æ
+	// 2006-04-15 by cmkwon, í•„ë“œ ë³€ê²½
 	//	BYTE	AuthOK;				// 0: FALSE, 1:TRUE
-	USHORT	AccountType0;		// °èÁ¤ ±ÇÇÑ
+	USHORT	AccountType0;		// ê³„ì • ê¶Œí•œ
 };
 
 using MSG_FA_ADMIN_CHANGE_SERVER_STATE = MSG_PA_ADMIN_CHANGE_SERVER_STATE;
@@ -9778,20 +9778,20 @@ using MSG_IC_COUNTDOWN_START = MSG_FC_COUNTDOWN_START;
 using MSG_IC_COUNTDOWN_DONE = MSG_FC_COUNTDOWN_DONE;
 
 //struct MSG_IC_VOIP_SET
-//{// 2008-06-17 by dhjin, EP3 VOIP - ¼³Á¤
+//{// 2008-06-17 by dhjin, EP3 VOIP - ì„¤ì •
 //	EN_CHECK_TYPE	VoipType;
 //};
 //
 //struct MSG_IC_VOIP_SET_OK
-//{// 2008-06-17 by dhjin, EP3 VOIP - ¼³Á¤
+//{// 2008-06-17 by dhjin, EP3 VOIP - ì„¤ì •
 //	UID32_t	CharacterUID;
 //	EN_CHECK_TYPE	VoipType;
 //};
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ -
+// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© -
 struct MSG_IC_CHATROOM_CREATE
-{// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ »ı¼º
+{// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ìƒì„±
 	CHAR	ChatRoomName[SIZE_MAX_CHATROOM_NAME];
 	bool	ChatRoomLock;
 	CHAR	ChatRoomPW[SIZE_MAX_TEAM_PW];
@@ -9799,17 +9799,17 @@ struct MSG_IC_CHATROOM_CREATE
 };
 
 struct MSG_IC_CHATROOM_CREATE_OK
-{// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ »ı¼º
+{// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ìƒì„±
 	INT			ChatRoomNum;
 };
 
 struct MSG_IC_CHATROOM_LIST_INFO
-{// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸®½ºÆ® 
+{// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë¦¬ìŠ¤íŠ¸ 
 	INT			StartNum;
 };
 
 struct SCHATROOM_LIST_INFO
-{// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸®½ºÆ®  OK
+{// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë¦¬ìŠ¤íŠ¸  OK
 	INT			ChatRoomNum;
 	CHAR		ChatRoomName[SIZE_MAX_CHATROOM_NAME];
 	bool		ChatRoomLock;
@@ -9819,131 +9819,131 @@ struct SCHATROOM_LIST_INFO
 };
 
 struct MSG_IC_CHATROOM_LIST_INFO_OK
-{// 2008-06-16 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸®½ºÆ®  OK
-	INT			ChatRoomInfoTotalCount;	// 2008-06-17 by dhjin, Ã¤ÆÃ¹æ ÃÖ´ë ¸ñ·Ï
+{// 2008-06-16 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë¦¬ìŠ¤íŠ¸  OK
+	INT			ChatRoomInfoTotalCount;	// 2008-06-17 by dhjin, ì±„íŒ…ë°© ìµœëŒ€ ëª©ë¡
 	INT			ChatRoomInfoListCount;		// 2008-06-17 by dhjin,
 	_ARRAY(SCHATROOM_LIST_INFO);
 };
 
 struct MSG_IC_CHATROOM_REQUEST_INVITE
-{// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÊ´ë 
+{// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ˆëŒ€ 
 	INT		ChatRoomNum;
-	char	InviteeCharacterName[SIZE_MAX_CHARACTER_NAME];		// ÃÊ´ëÇÒ »ó´ë¹æ ¾ÆÀÌµğ
+	char	InviteeCharacterName[SIZE_MAX_CHARACTER_NAME];		// ì´ˆëŒ€í•  ìƒëŒ€ë°© ì•„ì´ë””
 };
 
 struct MSG_IC_CHATROOM_REQUEST_INVITE_QUESTION
-{// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÊ´ëÀÚ¿¡°Ô Á¤º¸ Àü¼Û
+{// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ˆëŒ€ìì—ê²Œ ì •ë³´ ì „ì†¡
 	INT		ChatRoomNum;
 	char	ChatRoomMasterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_ACCEPT_INVITE
-{// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÊ´ë ½Â¶ô
+{// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ˆëŒ€ ìŠ¹ë½
 	INT		ChatRoomNum;
 };
 
 struct MSG_IC_CHATROOM_ACCEPT_INVITE_OK
-{// 2008-06-17 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÊ´ë ½Â¶ô À¯Àú Á¤º¸ Àü¼Û
+{// 2008-06-17 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ˆëŒ€ ìŠ¹ë½ ìœ ì € ì •ë³´ ì „ì†¡
 	UID32_t	CharacterUID;
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_JOIN
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÀÚÀ¯ Âü¿©
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ììœ  ì°¸ì—¬
 	INT		ChatRoomNum;
 	bool    ChatRoomLock;
 	char	ChatRoomPW[SIZE_MAX_TEAM_PW];
 };
 
 struct MSG_IC_CHATROOM_REJECT_INVITE
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÊ´ë Ãë¼Ò
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ˆëŒ€ ì·¨ì†Œ
 	INT		ChatRoomNum;
 };
 
 struct MSG_IC_CHATROOM_LEAVE
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ³ª°¡±â
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë‚˜ê°€ê¸°
 	INT		ChatRoomNum;
 	char	LeaveCharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_LEAVE_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ³ª°¡±â
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë‚˜ê°€ê¸°
 	UID32_t	CharacterUID;
 	char	LeaveCharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_BAN
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ Ãß¹æ 
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì¶”ë°© 
 	INT		ChatRoomNum;
 	UID32_t	BanCharacterUID;
 	char	BanCharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_BAN_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ Ãß¹æ 
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì¶”ë°© 
 	UID32_t	BanCharacterUID;
 	char	BanCharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_CHANGE_NAME
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÀÌ¸§ º¯°æ 
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ë¦„ ë³€ê²½ 
 	INT		ChatRoomNum;
 	char	ChatRoomName[SIZE_MAX_CHATROOM_NAME];
 };
 
 struct MSG_IC_CHATROOM_CHANGE_NAME_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÀÌ¸§ º¯°æ 
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì´ë¦„ ë³€ê²½ 
 	char	ChatRoomName[SIZE_MAX_CHATROOM_NAME];
 };
 
 struct MSG_IC_CHATROOM_CHANGE_MASTER
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¹æÀå º¯°æ
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë°©ì¥ ë³€ê²½
 	INT		ChatRoomNum;
 	UID32_t	NewCharacterUID;
 };
 
 struct MSG_IC_CHATROOM_CHANGE_MASTER_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¹æÀå º¯°æ
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë°©ì¥ ë³€ê²½
 	UID32_t	NewCharacterUID;
 	char	CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_CHANGE_LOCK_PW
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ Àá±İ º¯°æ 
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì ê¸ˆ ë³€ê²½ 
 	INT		ChatRoomNum;
 	bool    ChatRoomLock;
 	char	ChatRoomPW[SIZE_MAX_TEAM_PW];
 };
 
 struct MSG_IC_CHATROOM_CHANGE_LOCK_PW_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ Àá±İ º¯°æ
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ì ê¸ˆ ë³€ê²½
 	bool    ChatRoomLock;
 };
 
 struct MSG_IC_CHATROOM_CHANGE_MAX_MEMBER
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÖ´ë ÀÎ¿ø¼ö º¯°æ
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ìµœëŒ€ ì¸ì›ìˆ˜ ë³€ê²½
 	INT		ChatRoomNum;
 	BYTE	ChatRoomMaxMember;
 };
 
 struct MSG_IC_CHATROOM_CHANGE_MAX_MEMBER_OK
-{// 2008-06-18 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ÃÖ´ë ÀÎ¿ø¼ö º¯°æ
+{// 2008-06-18 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ìµœëŒ€ ì¸ì›ìˆ˜ ë³€ê²½
 	BYTE	ChatRoomMaxMember;
 };
 
 struct MSG_IC_CHATROOM_MEMBER_INFO
-{// 2008-06-25 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸É¹ö Á¤º¸
+{// 2008-06-25 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë§´ë²„ ì •ë³´
 	INT		ChatRoomNum;
 };
 
 struct SCHATROOM_MEMBER_INFO
-{/// 2008-06-25 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸É¹ö Á¤º¸
+{/// 2008-06-25 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë§´ë²„ ì •ë³´
 	UID32_t		CharacterUID;
 	char		CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_IC_CHATROOM_MEMBER_INFO_OK
-{/// 2008-06-25 by dhjin, EP3 Ã¤ÆÃ¹æ - Ã¤ÆÃ¹æ ¸É¹ö Á¤º¸
+{/// 2008-06-25 by dhjin, EP3 ì±„íŒ…ë°© - ì±„íŒ…ë°© ë§´ë²„ ì •ë³´
 	INT			ChatRoomNum;
 	INT			ChatRoomInfoListCount;
 	UID32_t		MasterCharacterUID;
@@ -9971,18 +9971,18 @@ struct MSG_FC_RACING_RACINGINFO_REQUEST
 struct MSG_FC_RACING_RACINGINFO_REQUEST_ACK
 {
 	MAP_CHANNEL_INDEX	mapChannelIndex;
-	BYTE				byMaxUserCounts;				// ÃÖ´ë Âü°¡ÀÚ¼ö
-	BYTE				byMinUserCounts;				// ÃÖ¼Ò Âü°¡ÀÚ¼ö
-	BYTE				byRacingGameNumber;				// ÁøÇàµÇ´Â °ÔÀÓ ³Ñ¹ö
-	int					nEntryFee;						// Âü°¡ºñ(´ÜÀ§:spi)
-	int					nLimitTimeForRacing;			// RacingÀÌ ÁøÇàµÇ´Â Á¦ÇÑ½Ã°£(´ÜÀ§:ÃÊ)
-	int					nRamainTimeForJoinRacing;		// Âü°¡ °¡´É ½Ã°£±îÁö ³²Àº ½Ã°£(´ÜÀ§:ÃÊ)	
+	BYTE				byMaxUserCounts;				// ìµœëŒ€ ì°¸ê°€ììˆ˜
+	BYTE				byMinUserCounts;				// ìµœì†Œ ì°¸ê°€ììˆ˜
+	BYTE				byRacingGameNumber;				// ì§„í–‰ë˜ëŠ” ê²Œì„ ë„˜ë²„
+	int					nEntryFee;						// ì°¸ê°€ë¹„(ë‹¨ìœ„:spi)
+	int					nLimitTimeForRacing;			// Racingì´ ì§„í–‰ë˜ëŠ” ì œí•œì‹œê°„(ë‹¨ìœ„:ì´ˆ)
+	int					nRamainTimeForJoinRacing;		// ì°¸ê°€ ê°€ëŠ¥ ì‹œê°„ê¹Œì§€ ë‚¨ì€ ì‹œê°„(ë‹¨ìœ„:ì´ˆ)	
 };
 
 struct MSG_FC_RACING_RACINGNOTIFY
 {
 	MAP_CHANNEL_INDEX	mapChannIdx;
-	DWORD				dwRamainTimeForJoinRacing;		// Âü°¡ °¡´É ½Ã°£±îÁö ³²Àº ½Ã°£(´ÜÀ§:ÃÊ)
+	DWORD				dwRamainTimeForJoinRacing;		// ì°¸ê°€ ê°€ëŠ¥ ì‹œê°„ê¹Œì§€ ë‚¨ì€ ì‹œê°„(ë‹¨ìœ„:ì´ˆ)
 };
 
 struct MSG_FC_RACING_JOIN_ENABLE
@@ -9997,8 +9997,8 @@ struct MSG_FC_RACING_JOIN_REQUEST
 
 struct MSG_FC_RACING_JOIN_REQUEST_ACK
 {
-	BYTE				byJoinedFlag : 1;					// 1 bit »ç¿ë, ·¹ÀÌ½Ì¿¡ Âü¿© µÇ¾ú´ÂÁöÀÇ ÇÃ·¡±×
-	BYTE				byJoinedOrder : 7;				// 7 bit »ç¿ë, ·¹ÀÌ½Ì¿¡ Âü¿©µÈ ¼ø¼­(ex, 8¸íÀÌ¸é 1ºÎÅÍ 8±îÁö)
+	BYTE				byJoinedFlag : 1;					// 1 bit ì‚¬ìš©, ë ˆì´ì‹±ì— ì°¸ì—¬ ë˜ì—ˆëŠ”ì§€ì˜ í”Œë˜ê·¸
+	BYTE				byJoinedOrder : 7;				// 7 bit ì‚¬ìš©, ë ˆì´ì‹±ì— ì°¸ì—¬ëœ ìˆœì„œ(ex, 8ëª…ì´ë©´ 1ë¶€í„° 8ê¹Œì§€)
 	MAP_CHANNEL_INDEX	mapChannIdx;
 };
 
@@ -10041,14 +10041,14 @@ struct RankingInfo
 
 struct MSG_FC_RACING_FINALRANKING
 {
-	BYTE				byRankingInfoCounts;		// Ranking Á¤º¸ Ä«¿îÆ®
+	BYTE				byRankingInfoCounts;		// Ranking ì •ë³´ ì¹´ìš´íŠ¸
 	ARRAY_(RankingInfo);
 };
 
 //////////////////////////////////////////////////////////////////////////
 // 2007-04-17 by dhjin
 // T0_FC_ARENA
-//#define T_FC_ARENA_PLAY_CHARACTER_TYPE		(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_PLAY_CHARACTER_TYPE)			// c->f(a)	// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ÄÉ¸¯ÅÍ : Å¸ÀÔ º¹»ç
+//#define T_FC_ARENA_PLAY_CHARACTER_TYPE		(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_PLAY_CHARACTER_TYPE)			// c->f(a)	// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì¼€ë¦­í„° : íƒ€ì… ë³µì‚¬
 //#define T_FC_ARENA_REQUEST_TEAM				(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_REQUEST_TEAM)					// C->F
 //#define T_FC_ARENA_REQUEST_TEAM_OK			(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_REQUEST_TEAM_OK)				// F->C
 //#define T_FC_ARENA_CREATE_TEAM				(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_CREATE_TEAM)					// C->F
@@ -10085,7 +10085,7 @@ struct MSG_FC_RACING_FINALRANKING
 //#define T_FC_ARENA_WATCH_START				(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_WATCH_START)		// F->C
 //#define T_FC_ARENA_WATCH_END				(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_WATCH_END)			// F->C
 //#define T_FC_ARENA_WATCH_REMOVE_USER		(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_WATCH_REMOVE_USER)			// F->C
-// 2008-01-08 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
+// 2008-01-08 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
 //#define T_FC_ARENA_POSSIBLE_GAMESTART		(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_POSSIBLE_GAMESTART)			// F->C
 //#define T_FC_ARENA_CHARACTER_GAMESTART		(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_CHARACTER_GAMESTART)			// C->F
 //#define T_FC_ARENA_USE_CITYWARPITEM			(MessageType_t)((T0_FC_ARENA<<8)|T1_FC_ARENA_USE_CITYWARPITEM)				// F->C
@@ -10094,212 +10094,212 @@ struct MSG_FC_RACING_FINALRANKING
 
 struct MSG_FC_ARENA_REQUEST_TEAM
 {
-	BYTE				ArenaMode;			// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	BYTE				RequestTeamState;	// 2007-06-05 by dhjin, ÆÀ Á¤º¸ ¿äÃ» ÇÃ·¡±× 1 : ¸ğµÎ º¸±â, 2 : ´ë±âÆÀ. 3 : »ó´ëÆÀ º¸±â
-	ClientIndex_t		ClientIndex;		// 2007-04-17 by dhjin, ¿äÃ»ÇÑ Å¬¶óÀÌ¾ğÆ®
-	INT					StartTeamNum;		// 2007-04-27 by dhjin, ÇÑ ¹ø¿¡ ¿äÃ»ÇÏ¿© º¸³»ÁÖ´Â ÆÀ ½ÃÀÛ ¹øÈ£ ex)11 => 11¹øÂ° ¹æºÎÅÍ ARENA_MAX_REQUEST_TEAM±îÁö Àü¼Û
-	MapIndex_t			ArenaMap;			// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	BYTE				ArenaMode;			// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	BYTE				RequestTeamState;	// 2007-06-05 by dhjin, íŒ€ ì •ë³´ ìš”ì²­ í”Œë˜ê·¸ 1 : ëª¨ë‘ ë³´ê¸°, 2 : ëŒ€ê¸°íŒ€. 3 : ìƒëŒ€íŒ€ ë³´ê¸°
+	ClientIndex_t		ClientIndex;		// 2007-04-17 by dhjin, ìš”ì²­í•œ í´ë¼ì´ì–¸íŠ¸
+	INT					StartTeamNum;		// 2007-04-27 by dhjin, í•œ ë²ˆì— ìš”ì²­í•˜ì—¬ ë³´ë‚´ì£¼ëŠ” íŒ€ ì‹œì‘ ë²ˆí˜¸ ex)11 => 11ë²ˆì§¸ ë°©ë¶€í„° ARENA_MAX_REQUEST_TEAMê¹Œì§€ ì „ì†¡
+	MapIndex_t			ArenaMap;			// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 };
 
 struct SARENA_TEAM_INFO
 {
-	bool			TeamLock;				// 2007-04-17 by dhjin, ÆÀ °ø°³ ¿©ºÎ  0 : °ø°³, 1: ºñ°ø°³ 
-	bool			TeamEvent;				// 2008-03-10 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ÀÌº¥Æ®ÆÀÀÎÁö 0: ÀÏ¹İÆÀ 1: ÀÌº¥Æ®ÆÀ
-	BYTE			TeamSize;				// 2007-04-17 by dhjin, ÆÀ ÀÎ¿ø Á¦ÇÑ 
-	BYTE			CurrentTeamSize;		// 2007-04-25 by dhjin, ÇöÀç ÆÀ ÀÎ¿ø
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	BYTE			ArenaState;				// 2007-06-05 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ
-	BYTE			TeamStartLevel;			// 2007-06-05 by dhjin, ÆÀÀÇ ½ÃÀÛ ·¹º§
-	BYTE			TeamEndLevel;			// 2007-06-05 by dhjin, ÆÀÀÇ ³¡ ·¹º§
-	INT				TeamNum;				// 2007-04-17 by dhjin, ÆÀ ¹øÈ£
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		// 2007-04-17 by dhjin, ¹æÀå ÀÌ¸§
-	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	bool			TeamLock;				// 2007-04-17 by dhjin, íŒ€ ê³µê°œ ì—¬ë¶€  0 : ê³µê°œ, 1: ë¹„ê³µê°œ 
+	bool			TeamEvent;				// 2008-03-10 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì´ë²¤íŠ¸íŒ€ì¸ì§€ 0: ì¼ë°˜íŒ€ 1: ì´ë²¤íŠ¸íŒ€
+	BYTE			TeamSize;				// 2007-04-17 by dhjin, íŒ€ ì¸ì› ì œí•œ 
+	BYTE			CurrentTeamSize;		// 2007-04-25 by dhjin, í˜„ì¬ íŒ€ ì¸ì›
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	BYTE			ArenaState;				// 2007-06-05 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ
+	BYTE			TeamStartLevel;			// 2007-06-05 by dhjin, íŒ€ì˜ ì‹œì‘ ë ˆë²¨
+	BYTE			TeamEndLevel;			// 2007-06-05 by dhjin, íŒ€ì˜ ë ë ˆë²¨
+	INT				TeamNum;				// 2007-04-17 by dhjin, íŒ€ ë²ˆí˜¸
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		// 2007-04-17 by dhjin, ë°©ì¥ ì´ë¦„
+	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 };
 
 struct MSG_FC_ARENA_REQUEST_TEAM_OK
 {
-	INT				ArenaTeamInfoTotalCount;	// 2007-04-27 by dhjin, ÆÀ ÃÖ´ë ¸ñ·Ï
+	INT				ArenaTeamInfoTotalCount;	// 2007-04-27 by dhjin, íŒ€ ìµœëŒ€ ëª©ë¡
 	INT				ArenaTeamInfoListCount;		// 2007-04-19 by dhjin,
-	BYTE			RequetTeamState;			// 2007-06-07 by dhjin, ÆÀ Á¤º¸ ¿äÃ» ÇÃ·¡±× 1 : ¸ğµÎ º¸±â, 2 : ´ë±âÆÀ. 3 : »ó´ëÆÀ º¸±â 
-	MapIndex_t		ArenaMap;					// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	BYTE			RequetTeamState;			// 2007-06-07 by dhjin, íŒ€ ì •ë³´ ìš”ì²­ í”Œë˜ê·¸ 1 : ëª¨ë‘ ë³´ê¸°, 2 : ëŒ€ê¸°íŒ€. 3 : ìƒëŒ€íŒ€ ë³´ê¸° 
+	MapIndex_t		ArenaMap;					// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 	_ARRAY(SARENA_TEAM_INFO);
 };
 
 struct MSG_FC_ARENA_CREATE_TEAM
 {
-	bool			TeamLock;				// 2007-04-17 by dhjin, ÆÀ °ø°³ ¿©ºÎ 0 : °ø°³, 1: ºñ°ø°³
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	BYTE			TeamSize;				// 2007-04-17 by dhjin, ÆÀ ÀÎ¿ø Á¦ÇÑ 
-	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ¿äÃ»ÇÑ Å¬¶óÀÌ¾ğÆ®
-	CHAR			TeamPW[SIZE_MAX_TEAM_PW];	// 2007-04-17 by dhjin, ÆÀ ºñ¹Ğ ¹øÈ£
-	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	bool			TeamLock;				// 2007-04-17 by dhjin, íŒ€ ê³µê°œ ì—¬ë¶€ 0 : ê³µê°œ, 1: ë¹„ê³µê°œ
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	BYTE			TeamSize;				// 2007-04-17 by dhjin, íŒ€ ì¸ì› ì œí•œ 
+	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ìš”ì²­í•œ í´ë¼ì´ì–¸íŠ¸
+	CHAR			TeamPW[SIZE_MAX_TEAM_PW];	// 2007-04-17 by dhjin, íŒ€ ë¹„ë°€ ë²ˆí˜¸
+	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 };
 
 struct MSG_FC_ARENA_CREATE_TEAM_OK
 {
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	BYTE			TeamSize;				// 2007-04-17 by dhjin, ÆÀ ÀÎ¿ø Á¦ÇÑ 
-	INT				TeamNum;				// 2007-04-17 by dhjin, »ı¼ºµÈ ÆÀ ¹øÈ£
-	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	BYTE			TeamSize;				// 2007-04-17 by dhjin, íŒ€ ì¸ì› ì œí•œ 
+	INT				TeamNum;				// 2007-04-17 by dhjin, ìƒì„±ëœ íŒ€ ë²ˆí˜¸
+	MapIndex_t		ArenaMap;				// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 };
 
 struct MSG_FC_ARENA_ENTER_TEAM
 {
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ¿äÃ»ÇÑ Å¬¶óÀÌ¾ğÆ®
-	CHAR			TeamPW[SIZE_MAX_TEAM_PW];	// 2007-04-17 by dhjin, ÆÀ ºñ¹Ğ ¹øÈ£
-	INT				TeamNum;				// 2007-04-17 by dhjin, ÀÔÀåÇÏ·Á´Â ÆÀ ¹øÈ£	
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ìš”ì²­í•œ í´ë¼ì´ì–¸íŠ¸
+	CHAR			TeamPW[SIZE_MAX_TEAM_PW];	// 2007-04-17 by dhjin, íŒ€ ë¹„ë°€ ë²ˆí˜¸
+	INT				TeamNum;				// 2007-04-17 by dhjin, ì…ì¥í•˜ë ¤ëŠ” íŒ€ ë²ˆí˜¸	
 };
 
 struct MSG_FC_ARENA_ENTER_TEAM_OK
 {
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	BYTE			TeamSize;				// 2007-04-17 by dhjin, ÆÀ ÀÎ¿ø Á¦ÇÑ 
-	INT				TeamNum;				// 2007-04-17 by dhjin, »ı¼ºµÈ ÆÀ ¹øÈ£
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	BYTE			TeamSize;				// 2007-04-17 by dhjin, íŒ€ ì¸ì› ì œí•œ 
+	INT				TeamNum;				// 2007-04-17 by dhjin, ìƒì„±ëœ íŒ€ ë²ˆí˜¸
 };
 
 struct SARENA_TEAM_CHARACTERINFO
 {
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ
 	ClientIndex_t	ClientIndex;
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, ÆÀ¿øµéÀÇ ÀÌ¸§
-	INT				PlayCharacterType;		// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ÄÉ¸¯ÅÍ : Å¸ÀÔ º¹»ç
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, íŒ€ì›ë“¤ì˜ ì´ë¦„
+	INT				PlayCharacterType;		// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì¼€ë¦­í„° : íƒ€ì… ë³µì‚¬
 };
 
 struct MSG_FC_ARENA_TEAM_MEMBER_LIST
 {
-	BYTE			ArenaTeamState;						// 2007-05-07 by dhjin, ¾Æ·¹³ª ÆÀ »óÅÂ
+	BYTE			ArenaTeamState;						// 2007-05-07 by dhjin, ì•„ë ˆë‚˜ íŒ€ ìƒíƒœ
 	BYTE			ArenaTeamCharacterNameListCount;	// 2007-04-19 by dhjin
 	_ARRAY(SARENA_TEAM_CHARACTERINFO);
 };
 
 struct MSG_FC_ARENA_PLAY_CHARACTER_TYPE
 {
-	INT				PlayCharacterType;		// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ÄÉ¸¯ÅÍ : Å¸ÀÔ º¹»ç
+	INT				PlayCharacterType;		// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì¼€ë¦­í„° : íƒ€ì… ë³µì‚¬
 };
 
 struct MSG_FC_ARENA_REAVE_TEAM
 {
-	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ¾Æ·¹³ª ¹æ½Ä   1 : DeathMatch, 2 : Round, so on..
-	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ¿äÃ»ÇÑ Å¬¶óÀÌ¾ğÆ®
-	INT				TeamNum;				// 2007-04-17 by dhjin, Å»ÅğÇÏ·Á´Â ÆÀ ¹øÈ£
+	BYTE			ArenaMode;				// 2007-04-17 by dhjin, ì•„ë ˆë‚˜ ë°©ì‹   1 : DeathMatch, 2 : Round, so on..
+	ClientIndex_t	ClientIndex;			// 2007-04-17 by dhjin, ìš”ì²­í•œ í´ë¼ì´ì–¸íŠ¸
+	INT				TeamNum;				// 2007-04-17 by dhjin, íƒˆí‡´í•˜ë ¤ëŠ” íŒ€ ë²ˆí˜¸
 };
 
 struct MSG_FC_ARENA_TEAM_READY
 {
 	BYTE			ArenaMode;
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 2 : ARENA_STATE_READY
-	INT				TeamNum;				// 2007-04-17 by dhjin, ÆÀ ¹øÈ£
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 2 : ARENA_STATE_READY
+	INT				TeamNum;				// 2007-04-17 by dhjin, íŒ€ ë²ˆí˜¸
 };
 
 struct MSG_FC_ARENA_ENTER_ROOM
 {
 	BYTE			ArenaMode;
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 3 : ARENA_STATE_WARREADY
-	BYTE			VCNDeathCount;			// 2007-04-17 by dhjin, ¹ÙÀÌÁ¦´ÏÀ¯ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-	BYTE			ANIDeathCount;			// 2007-04-17 by dhjin, ¾Ë¸µÅÏ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-	BYTE			PlayLimitedTime;		// 2007-05-04 by dhjin, °æ±â Á¦ÇÑ ½Ã°£
-	INT				TeamNum;				// 2007-04-17 by dhjin, ÆÀ ¹øÈ£
-	ATUM_DATE_TIME	StartRoomTime;			// 2007-04-17 by dhjin, ¹æ »ı¼º ½Ã°£
-	ATUM_DATE_TIME	ArenaServerTime;		// 2009-09-10 by jwlee, ¾Æ·¹³ª ¼­¹ö ½Ã°£ ¿ÀÂ÷ ¹ö±× ¼öÁ¤ - 
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 3 : ARENA_STATE_WARREADY
+	BYTE			VCNDeathCount;			// 2007-04-17 by dhjin, ë°”ì´ì œë‹ˆìœ  ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+	BYTE			ANIDeathCount;			// 2007-04-17 by dhjin, ì•Œë§í„´ ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+	BYTE			PlayLimitedTime;		// 2007-05-04 by dhjin, ê²½ê¸° ì œí•œ ì‹œê°„
+	INT				TeamNum;				// 2007-04-17 by dhjin, íŒ€ ë²ˆí˜¸
+	ATUM_DATE_TIME	StartRoomTime;			// 2007-04-17 by dhjin, ë°© ìƒì„± ì‹œê°„
+	ATUM_DATE_TIME	ArenaServerTime;		// 2009-09-10 by jwlee, ì•„ë ˆë‚˜ ì„œë²„ ì‹œê°„ ì˜¤ì°¨ ë²„ê·¸ ìˆ˜ì • - 
 };
 
 struct MSG_FC_ARENA_ENTER_ROOM_WARP
-{// 2008-02-21 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
-	bool			CheckCommand;			// 2008-02-21 by dhjin, '/¾Æ·¹³ªÀÌµ¿' ¸í·É¾î »ç¿ëÀÎÁö Ã¼Å©
+{// 2008-02-21 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
+	bool			CheckCommand;			// 2008-02-21 by dhjin, '/ì•„ë ˆë‚˜ì´ë™' ëª…ë ¹ì–´ ì‚¬ìš©ì¸ì§€ ì²´í¬
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_START
 {
 	BYTE			ArenaMode;
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 4 : ARENA_STATE_WARING
-	ATUM_DATE_TIME	Time;					// 2007-04-17 by dhjin, ´ëÀü ½ÃÀÛ ½Ã°£
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 4 : ARENA_STATE_WARING
+	ATUM_DATE_TIME	Time;					// 2007-04-17 by dhjin, ëŒ€ì „ ì‹œì‘ ì‹œê°„
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_INFO
 {
 	BYTE			ArenaMode;
-	BYTE			VCNDeathCount;			// 2007-04-17 by dhjin, ¹ÙÀÌÁ¦´ÏÀ¯ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-	BYTE			ANIDeathCount;			// 2007-04-17 by dhjin, ¾Ë¸µÅÏ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-											//	ATUM_DATE_TIME	Time;					// 2007-04-17 by dhjin, ´ëÀü ³²Àº ½Ã°£
+	BYTE			VCNDeathCount;			// 2007-04-17 by dhjin, ë°”ì´ì œë‹ˆìœ  ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+	BYTE			ANIDeathCount;			// 2007-04-17 by dhjin, ì•Œë§í„´ ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+											//	ATUM_DATE_TIME	Time;					// 2007-04-17 by dhjin, ëŒ€ì „ ë‚¨ì€ ì‹œê°„
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_FINISH
 {
-	BYTE			Influence;				// 2007-04-17 by dhjin, ¼¼·Â 
-	BYTE 			ShootingDown;			// 2007-04-17 by dhjin, °İÃß¼ö 
-	BYTE 			SufferingAttack;		// 2007-04-17 by dhjin, ÇÇ°İ¼ö 
+	BYTE			Influence;				// 2007-04-17 by dhjin, ì„¸ë ¥ 
+	BYTE 			ShootingDown;			// 2007-04-17 by dhjin, ê²©ì¶”ìˆ˜ 
+	BYTE 			SufferingAttack;		// 2007-04-17 by dhjin, í”¼ê²©ìˆ˜ 
 	BYTE			LostPoint;				// 2007-06-01 by dhjin, LostPoint
-	USHORT			UnitKind;				// 2007-04-17 by dhjin, ±â¾î Á¾·ù 
-	CHAR			CharacterLevelRank[SIZE_MAX_LEVELRANK];	// 2007-04-17 by dhjin, À¯Àú ·¹º§ µî±Ş
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, À¯Àú ÀÌ¸§
-	FLOAT			Average;				// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - HP/DP Á¤º¸
-	INT				TeamAverage;			// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - HP/DP Á¤º¸
+	USHORT			UnitKind;				// 2007-04-17 by dhjin, ê¸°ì–´ ì¢…ë¥˜ 
+	CHAR			CharacterLevelRank[SIZE_MAX_LEVELRANK];	// 2007-04-17 by dhjin, ìœ ì € ë ˆë²¨ ë“±ê¸‰
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, ìœ ì € ì´ë¦„
+	FLOAT			Average;				// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - HP/DP ì •ë³´
+	INT				TeamAverage;			// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - HP/DP ì •ë³´
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_FINISH_HEADER
 {
 	BYTE			ArenaMode;
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 5 : ARENA_STATE_WARFINISH
-	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ´ëÀü Á¾·á ½Ã°£
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 5 : ARENA_STATE_WARFINISH
+	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ëŒ€ì „ ì¢…ë£Œ ì‹œê°„
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_FINISH_DONE
 {
-	BYTE			Issue;					// 2007-04-20 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ¿©ºÎ, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
-	BYTE			EndState;				// 2007-05-16 by dhjin, ¾Æ·¹³ª Á¾·á Å¸ÀÔ, 1 : ARENA_END_TYPE_POINT, 2 : ARENA_END_TYPE_TIME, 3 : ARENA_END_TYPE_GIVEUP
-	INT				InflPoint;				// 2007-04-17 by dhjin, ¼¼·Â Æ÷ÀÎÆ® º¸»ó°ª
-	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint º¸»ó°ª
+	BYTE			Issue;					// 2007-04-20 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì—¬ë¶€, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
+	BYTE			EndState;				// 2007-05-16 by dhjin, ì•„ë ˆë‚˜ ì¢…ë£Œ íƒ€ì…, 1 : ARENA_END_TYPE_POINT, 2 : ARENA_END_TYPE_TIME, 3 : ARENA_END_TYPE_GIVEUP
+	INT				InflPoint;				// 2007-04-17 by dhjin, ì„¸ë ¥ í¬ì¸íŠ¸ ë³´ìƒê°’
+	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint ë³´ìƒê°’
 	INT				TotalWarPoint;			// 2007-05-28 by dhjin, WP
 	INT				CumulativeWarPoint;		// 2007-05-28 by dhjin, CumulativeWP
-	INT				ArenaWin;				// 2007-06-07 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ÀüÀû ½Â
-	INT				ArenaLose;				// 2007-06-07 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ÀüÀû ÆĞ
+	INT				ArenaWin;				// 2007-06-07 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì „ì  ìŠ¹
+	INT				ArenaLose;				// 2007-06-07 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì „ì  íŒ¨
 };
 
 struct MSG_FC_ARENA_ROOM_WAR_FINISH_DRAW
 {
 	BYTE			ArenaMode;
-	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 5 : ARENA_STATE_WARFINISH
-	BYTE			Issue;					// 2007-04-20 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ¿©ºÎ, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
-	BYTE			EndState;				// 2007-05-16 by dhjin, ¾Æ·¹³ª Á¾·á Å¸ÀÔ, 1 : ARENA_END_TYPE_POINT, 2 : ARENA_END_TYPE_TIME, 3 : ARENA_END_TYPE_GIVEUP
-	INT				InflPoint;				// 2007-04-17 by dhjin, ¼¼·Â Æ÷ÀÎÆ® º¸»ó°ª
-	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint º¸»ó°ª
-	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ´ëÀü Á¾·á ½Ã°£
+	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 5 : ARENA_STATE_WARFINISH
+	BYTE			Issue;					// 2007-04-20 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì—¬ë¶€, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
+	BYTE			EndState;				// 2007-05-16 by dhjin, ì•„ë ˆë‚˜ ì¢…ë£Œ íƒ€ì…, 1 : ARENA_END_TYPE_POINT, 2 : ARENA_END_TYPE_TIME, 3 : ARENA_END_TYPE_GIVEUP
+	INT				InflPoint;				// 2007-04-17 by dhjin, ì„¸ë ¥ í¬ì¸íŠ¸ ë³´ìƒê°’
+	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint ë³´ìƒê°’
+	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ëŒ€ì „ ì¢…ë£Œ ì‹œê°„
 };
 
 //struct SARENA_ROOM_FINISH_INFO
 //{
-//	BYTE			Influence;				// 2007-04-17 by dhjin, ¼¼·Â 
-//// 	BYTE			Rank;					// 2007-04-17 by dhjin, °İÃß¼ö¿¡ ÀÇÇÑ ·©Å·
-//	BYTE 			ShootingDown;			// 2007-04-17 by dhjin, °İÃß¼ö 
-//	BYTE 			SufferingAttack;		// 2007-04-17 by dhjin, ÇÇ°İ¼ö 
-//	USHORT			UnitKind;				// 2007-04-17 by dhjin, ±â¾î Á¾·ù 
-//	CHAR			CharacterLevelRank[SIZE_MAX_LEVELRANK];	// 2007-04-17 by dhjin, À¯Àú ·¹º§ µî±Ş
-//	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, À¯Àú ÀÌ¸§
+//	BYTE			Influence;				// 2007-04-17 by dhjin, ì„¸ë ¥ 
+//// 	BYTE			Rank;					// 2007-04-17 by dhjin, ê²©ì¶”ìˆ˜ì— ì˜í•œ ë­í‚¹
+//	BYTE 			ShootingDown;			// 2007-04-17 by dhjin, ê²©ì¶”ìˆ˜ 
+//	BYTE 			SufferingAttack;		// 2007-04-17 by dhjin, í”¼ê²©ìˆ˜ 
+//	USHORT			UnitKind;				// 2007-04-17 by dhjin, ê¸°ì–´ ì¢…ë¥˜ 
+//	CHAR			CharacterLevelRank[SIZE_MAX_LEVELRANK];	// 2007-04-17 by dhjin, ìœ ì € ë ˆë²¨ ë“±ê¸‰
+//	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];	// 2007-04-17 by dhjin, ìœ ì € ì´ë¦„
 //};
 //
 //struct MSG_FC_ARENA_ROOM_WAR_FINISH
 //{
 //	BYTE			ArenaMode;
-//	BYTE			ArenaState;				// 2007-04-17 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ, 5 : ARENA_STATE_WARFINISH
-//	BYTE			Issue;					// 2007-04-20 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ¿©ºÎ, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
-//	INT				InflPoint;				// 2007-04-17 by dhjin, ¼¼·Â Æ÷ÀÎÆ® º¸»ó°ª
-//	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint º¸»ó°ª
-//	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ´ëÀü Á¾·á ½Ã°£
+//	BYTE			ArenaState;				// 2007-04-17 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ, 5 : ARENA_STATE_WARFINISH
+//	BYTE			Issue;					// 2007-04-20 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì—¬ë¶€, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
+//	INT				InflPoint;				// 2007-04-17 by dhjin, ì„¸ë ¥ í¬ì¸íŠ¸ ë³´ìƒê°’
+//	INT				WarPoint;				// 2007-04-17 by dhjin, WarPoint ë³´ìƒê°’
+//	ATUM_DATE_TIME	FinishTime;				// 2007-04-17 by dhjin, ëŒ€ì „ ì¢…ë£Œ ì‹œê°„
 //	BYTE			ArenaRoomFinishInfoDeathMatchListCount; // 2007-04-19 by dhjin
 //	_ARRAY(SARENA_ROOM_FINISH_INFO);
 //};
 
 struct MSG_FC_ARENA_FINISH_WARP_OK
 {
-	MAP_CHANNEL_INDEX	MapChannelIndex;	// 2007-04-17 by dhjin, ¸Ê Ã¤³Î Á¤º¸
+	MAP_CHANNEL_INDEX	MapChannelIndex;	// 2007-04-17 by dhjin, ë§µ ì±„ë„ ì •ë³´
 };
 
 struct SARENA_REQUEST_CREATE_TEAMINFO
 {
-	BYTE 	ArenaMode;				// ¾Æ·¹³ª ¸ğµå 1 : DeathMatch, 2 : Round
-	BYTE 	ReqMemberNum; 			// ÆÀ ÀÎ¿ø Á¦ÇÑ
-	MapIndex_t	ArenaMap;			// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¼±ÅÃÇÑ ¾Æ·¹³ª ¸Ê
+	BYTE 	ArenaMode;				// ì•„ë ˆë‚˜ ëª¨ë“œ 1 : DeathMatch, 2 : Round
+	BYTE 	ReqMemberNum; 			// íŒ€ ì¸ì› ì œí•œ
+	MapIndex_t	ArenaMap;			// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì„ íƒí•œ ì•„ë ˆë‚˜ ë§µ
 };
 
 struct MSG_FC_ARENA_REQUEST_CREATE_TEAMINFO_OK
@@ -10308,27 +10308,27 @@ struct MSG_FC_ARENA_REQUEST_CREATE_TEAMINFO_OK
 	_ARRAY(SARENA_REQUEST_CREATE_TEAMINFO);
 };
 
-// 2007-05-23 by dhjin, »ó´ë ÆÀ Á¤º¸ Àü¼Û
+// 2007-05-23 by dhjin, ìƒëŒ€ íŒ€ ì •ë³´ ì „ì†¡
 struct SARENA_REQUEST_OTHER_TEAM_INFO_OK
 {
-	BYTE	MemberCount;			// ÆÀ ÀÎ¿ø¼ö
-	INT		TeamCount;				// ÆÀ ¼ö
+	BYTE	MemberCount;			// íŒ€ ì¸ì›ìˆ˜
+	INT		TeamCount;				// íŒ€ ìˆ˜
 };
 
 struct MSG_FC_ARENA_REQUEST_OTHER_TEAM_INFO_OK
 {
-	BYTE 	ArenaMode;				// ¾Æ·¹³ª ¸ğµå 1 : DeathMatch, 2 : Round
+	BYTE 	ArenaMode;				// ì•„ë ˆë‚˜ ëª¨ë“œ 1 : DeathMatch, 2 : Round
 	BYTE	ArenaOtherTeamListCount;
 	_ARRAY(SARENA_REQUEST_OTHER_TEAM_INFO_OK);
 };
 
-// 2007-05-25 by dhjin, GM¸í·É¾î Ãâ·ÂÀ» À§ÇÑ ±¸Á¶Ã¼
+// 2007-05-25 by dhjin, GMëª…ë ¹ì–´ ì¶œë ¥ì„ ìœ„í•œ êµ¬ì¡°ì²´
 struct SARENA_GM_COMMAND_INFO
 {
-	BYTE 	ArenaMode;							// ¾Æ·¹³ª ¸ğµå 1 : DeathMatch, 2 : Round
-	BYTE	Level;								// ÆÀ ·¹º§
-	BYTE	MemberCount;						// ÆÀ ÀÎ¿ø¼ö
-	INT		TeamCount;							// ÆÀ ¼ö
+	BYTE 	ArenaMode;							// ì•„ë ˆë‚˜ ëª¨ë“œ 1 : DeathMatch, 2 : Round
+	BYTE	Level;								// íŒ€ ë ˆë²¨
+	BYTE	MemberCount;						// íŒ€ ì¸ì›ìˆ˜
+	INT		TeamCount;							// íŒ€ ìˆ˜
 };
 using MSG_FC_ARENA_GM_COMMAND_INFO = SARENA_GM_COMMAND_INFO;
 
@@ -10341,7 +10341,7 @@ struct MSG_FC_ARENA_GM_COMMAND_INFO_DONE
 
 struct MSG_FC_ARENA_WATCH_READY
 {
-	BYTE			ArenaState;			// 2007-06-18 by dhjin, ÆÀÀÇ ¾Æ·¹³ª »óÅÂ
+	BYTE			ArenaState;			// 2007-06-18 by dhjin, íŒ€ì˜ ì•„ë ˆë‚˜ ìƒíƒœ
 };
 
 struct SARENA_WATCH_START_USER_INFO
@@ -10357,36 +10357,36 @@ struct SARENA_WATCH_START_USER_INFO
 	float			CurrentDP;
 	BYTE			Influence;
 	ClientIndex_t	ClientIndex;
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		// 2007-06-15 by dhjin, À¯Àú ÀÌ¸§
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		// 2007-06-15 by dhjin, ìœ ì € ì´ë¦„
 };
 
 struct MSG_FC_ARENA_WATCH_START
 {
-	BYTE			VCNDeathCount;			// 2007-06-18 by dhjin, ¹ÙÀÌÁ¦´ÏÀ¯ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-	BYTE			ANIDeathCount;			// 2007-06-18 by dhjin, ¾Ë¸µÅÏ µ¥½º¸ÅÄ¡ Æ÷ÀÎÆ®
-	INT				Time;					// 2007-06-18 by dhjin, ´ëÀü ³²Àº ½Ã°£ (ÃÊ)
+	BYTE			VCNDeathCount;			// 2007-06-18 by dhjin, ë°”ì´ì œë‹ˆìœ  ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+	BYTE			ANIDeathCount;			// 2007-06-18 by dhjin, ì•Œë§í„´ ë°ìŠ¤ë§¤ì¹˜ í¬ì¸íŠ¸
+	INT				Time;					// 2007-06-18 by dhjin, ëŒ€ì „ ë‚¨ì€ ì‹œê°„ (ì´ˆ)
 	INT				ArenaWatchStartUserInfoListCount;		// 2007-06-15 by dhjin,
 	_ARRAY(SARENA_WATCH_START_USER_INFO);
 };
 
 struct MSG_FC_ARENA_WATCH_REMOVE_USER
 {
-	ClientIndex_t	ClientIndex;			// 2007-06-18 by dhjin, ¾Æ·¹³ª¿¡¼­ ³ª°£ À¯Àú
+	ClientIndex_t	ClientIndex;			// 2007-06-18 by dhjin, ì•„ë ˆë‚˜ì—ì„œ ë‚˜ê°„ ìœ ì €
 };
 
-// 2008-01-08 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
+// 2008-01-08 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
 struct MSG_FC_ARENA_POSSIBLE_GAMESTART
-{// 2008-01-08 by dhjin, ¾Æ·¹³ª ÄÉ¸¯ÅÍ Á¤º¸¸¦ Àü¼ÛÇÑ´Ù.
+{// 2008-01-08 by dhjin, ì•„ë ˆë‚˜ ì¼€ë¦­í„° ì •ë³´ë¥¼ ì „ì†¡í•œë‹¤.
 	BitFlag16_t		MapWeather;
 	CHARACTER		AFSCharacter;
 	char			ServerGroupName0[SIZE_MAX_SERVER_NAME];
 	char			MainORTestServerName[SIZE_MAX_SERVER_NAME];
 	char			GamePublisher[SIZE_MAX_GAME_PUBLISHER_NAME];
-	bool			IsPCBangUser;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
+	bool			IsPCBangUser;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
 };
 
 struct MSG_FC_CHARACTER_READY_GAMESTART_FROM_ARENA_TO_MAINSERVER_OK
-{// 2008-01-15 by dhjin, ¾Æ·¹³ª °æ±â Á¾·á ÈÄ ÇÊµå ¼­¹ö °ÔÀÓ ½Ã ¹Ì¸® ÇÊ¿äÇÑ Á¤º¸¸¦ ¿©±â¼­ Àü¼ÛÇÑ´Ù.
+{// 2008-01-15 by dhjin, ì•„ë ˆë‚˜ ê²½ê¸° ì¢…ë£Œ í›„ í•„ë“œ ì„œë²„ ê²Œì„ ì‹œ ë¯¸ë¦¬ í•„ìš”í•œ ì •ë³´ë¥¼ ì—¬ê¸°ì„œ ì „ì†¡í•œë‹¤.
 	BitFlag16_t		MapWeather;
 	BYTE			CharacterMode0;
 	bool			bMemberPCBang;
@@ -10394,7 +10394,7 @@ struct MSG_FC_CHARACTER_READY_GAMESTART_FROM_ARENA_TO_MAINSERVER_OK
 	char			ServerGroupName0[SIZE_MAX_SERVER_NAME];
 	char			MainORTestServerName[SIZE_MAX_SERVER_NAME];
 	char			GamePublisher[SIZE_MAX_GAME_PUBLISHER_NAME];
-	BYTE			bIsLockSecondPW;			// 2008-08-26 by cmkwon, º£Æ®³² VTC-Intecom_Viet 2Â÷ ÆĞ½º¿öµå ½Ã½ºÅÛ ¹ö±× ¼öÁ¤ - 2Â÷ ÆĞ½º¿öµå ¼³Á¤ Á¤º¸
+	BYTE			bIsLockSecondPW;			// 2008-08-26 by cmkwon, ë² íŠ¸ë‚¨ VTC-Intecom_Viet 2ì°¨ íŒ¨ìŠ¤ì›Œë“œ ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì • - 2ì°¨ íŒ¨ìŠ¤ì›Œë“œ ì„¤ì • ì •ë³´
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -10408,24 +10408,24 @@ struct MSG_FC_CHARACTER_READY_GAMESTART_FROM_ARENA_TO_MAINSERVER_OK
 //#define T_FC_TUTORIAL_WARP				(MessageType_t)((T0_FC_TUTORIAL<<8)|T1_FC_TUTORIAL_WARP)			// C->F
 
 struct STUTORIAL_LIST_INFO
-{// 2007-07-06 by dhjin, Tutorial ¿Ï·á Á¤º¸ ¿©ºÎ ±¸Á¶Ã¼
-	INT		TutorialNum;				// 2007-07-06 by dhjin, Tutorial ¹øÈ£ 
-	BYTE 	TutorialComplete;			// 2007-07-06 by dhjin, Tutorial ¿Ï·á ¿©ºÎ, 0 : FALSE, 1 : TRUE
+{// 2007-07-06 by dhjin, Tutorial ì™„ë£Œ ì •ë³´ ì—¬ë¶€ êµ¬ì¡°ì²´
+	INT		TutorialNum;				// 2007-07-06 by dhjin, Tutorial ë²ˆí˜¸ 
+	BYTE 	TutorialComplete;			// 2007-07-06 by dhjin, Tutorial ì™„ë£Œ ì—¬ë¶€, 0 : FALSE, 1 : TRUE
 };
 
 struct MSG_FC_TUTORIAL_START_OK
-{// 2007-07-06 by dhjin, Tutorial ¿Ï·á Á¤º¸ ¸Ş¼¼Áö
-	INT		TutorialInfoListCount;		// 2007-07-06 by dhjin, Tutorial Á¤º¸ ¸®½ºÆ® ¼ö
+{// 2007-07-06 by dhjin, Tutorial ì™„ë£Œ ì •ë³´ ë©”ì„¸ì§€
+	INT		TutorialInfoListCount;		// 2007-07-06 by dhjin, Tutorial ì •ë³´ ë¦¬ìŠ¤íŠ¸ ìˆ˜
 	_ARRAY(STUTORIAL_LIST_INFO);
 };
 
 struct MSG_FC_TUTORIAL_COMPLETE
-{// 2007-07-06 by dhjin, Tutorial ¿Ï·á ¹øÈ£
+{// 2007-07-06 by dhjin, Tutorial ì™„ë£Œ ë²ˆí˜¸
 	INT		TutorialNum;
 };
 
 struct MSG_FC_TUTORIAL_COMPLETE_OK
-{// 2007-07-06 by dhjin, Tutorial ¿Ï·á ¹øÈ£
+{// 2007-07-06 by dhjin, Tutorial ì™„ë£Œ ë²ˆí˜¸
 	INT		TutorialNum;
 	INT		TutorialItemNum1;
 	INT		TutorialItemCount1;
@@ -10456,14 +10456,14 @@ struct MSG_FC_TUTORIAL_COMPLETE_OK
 
 
 struct MSG_FC_OUTPOST_WAR_BEFORE
-{// 2007-08-13 by dhjin, OutPost ½ÃÀÛ Àü ³²Àº ½Ã°£ Á¤º¸ Àü¼Û
+{// 2007-08-13 by dhjin, OutPost ì‹œì‘ ì „ ë‚¨ì€ ì‹œê°„ ì •ë³´ ì „ì†¡
 	BYTE	RemainTime;
 	BYTE	Influence;
 	INT		MapIndex;
 };
 
 struct MSG_FC_OUTPOST_WAR_START
-{// 2007-08-13 by dhjin, OutPost ½ÃÀÛ Á¤º¸ Àü¼Û
+{// 2007-08-13 by dhjin, OutPost ì‹œì‘ ì •ë³´ ì „ì†¡
 	BYTE			OutPostState;
 	BYTE			Influence;
 	INT				MapIndex;
@@ -10472,7 +10472,7 @@ struct MSG_FC_OUTPOST_WAR_START
 };
 
 struct MSG_FC_OUTPOST_PROTECTOR_DESTROY
-{// 2007-08-13 by dhjin, OutPost º¸È£¸· ÆÄ±« Àü¼Û
+{// 2007-08-13 by dhjin, OutPost ë³´í˜¸ë§‰ íŒŒê´´ ì „ì†¡
 	BYTE	Influence;
 	INT		MapIndex;
 	UID32_t	GuildUID;
@@ -10480,12 +10480,12 @@ struct MSG_FC_OUTPOST_PROTECTOR_DESTROY
 };
 
 struct MSG_FC_OUTPOST_RESET_START
-{// 2007-08-16 by dhjin, Áß¾ÓÃ³¸®ÀåÄ¡ Á¦¾î ½ÃÀÛ
+{// 2007-08-16 by dhjin, ì¤‘ì•™ì²˜ë¦¬ì¥ì¹˜ ì œì–´ ì‹œì‘
 	ClientIndex_t	TargetIndex;
 };
 
 struct MSG_FC_OUTPOST_RESET_START_OK
-{// 2007-08-16 by dhjin, Áß¾ÓÃ³¸®ÀåÄ¡ Á¦¾î ½ÃÀÛ
+{// 2007-08-16 by dhjin, ì¤‘ì•™ì²˜ë¦¬ì¥ì¹˜ ì œì–´ ì‹œì‘
 	BYTE	Influence;
 	INT		MapIndex;
 	UID32_t	GuildUID;
@@ -10495,12 +10495,12 @@ struct MSG_FC_OUTPOST_RESET_START_OK
 };
 
 struct MSG_FC_OUTPOST_RESET_DESTROY
-{// 2007-08-13 by dhjin, Áß¾ÓÃ³¸®ÀåÄ¡ ÆÄ±«µÊ
+{// 2007-08-13 by dhjin, ì¤‘ì•™ì²˜ë¦¬ì¥ì¹˜ íŒŒê´´ë¨
 	INT		MapIndex;
 };
 
 struct MSG_FC_OUTPOST_RESET_SUCCESS
-{// 2007-08-13 by dhjin, Áß¾ÓÃ³¸®ÀåÄ¡ Á¦¾î ¼º°ø 
+{// 2007-08-13 by dhjin, ì¤‘ì•™ì²˜ë¦¬ì¥ì¹˜ ì œì–´ ì„±ê³µ 
 	BYTE	Influence;
 	INT		MapIndex;
 	UID32_t	GuildUID;
@@ -10508,7 +10508,7 @@ struct MSG_FC_OUTPOST_RESET_SUCCESS
 };
 
 struct MSG_FC_OUTPOST_WAR_END
-{// 2007-08-13 by dhjin, ÀüÁø±âÁöÀü Á¾·á
+{// 2007-08-13 by dhjin, ì „ì§„ê¸°ì§€ì „ ì¢…ë£Œ
 	BYTE	Influence;
 	INT		MapIndex;
 	UID32_t	GuildUID;
@@ -10516,7 +10516,7 @@ struct MSG_FC_OUTPOST_WAR_END
 };
 
 struct MSG_FC_OUTPOST_NEXTWAR_INFO_REQUEST_OK
-{// 2007-08-13 by dhjin, ÀüÁø±âÁöÀü ½Ã°£ ¼³Á¤ Á¤º¸ Àü¼Û
+{// 2007-08-13 by dhjin, ì „ì§„ê¸°ì§€ì „ ì‹œê°„ ì„¤ì • ì •ë³´ ì „ì†¡
 	ATUM_DATE_TIME	    OutPostNextWarTime;
 	INT					OutPostNextWarSelectTimeChoice;
 	INT					OutPostNextWarTimeListCount;
@@ -10524,22 +10524,22 @@ struct MSG_FC_OUTPOST_NEXTWAR_INFO_REQUEST_OK
 };
 
 struct MSG_FC_OUTPOST_NEXTWAR_SET_TIME
-{// 2007-08-13 by dhjin, ÀüÁø±âÁöÀü ´ÙÀ½ ½Ã°£ ¼³Á¤
+{// 2007-08-13 by dhjin, ì „ì§„ê¸°ì§€ì „ ë‹¤ìŒ ì‹œê°„ ì„¤ì •
 	INT		OutPostNextWarSelectTimeChoice;
 };
 
 struct MSG_FC_OUTPOST_NEXTWAR_SET_TIME_OK
-{// 2007-09-06 by dhjin, ÀüÁø±âÁöÀü ´ÙÀ½ ½Ã°£ ¼³Á¤ Á¤º¸¸¦ ¸ğµç À¯Àú¿¡°Ô º¸³»ÁØ´Ù.
+{// 2007-09-06 by dhjin, ì „ì§„ê¸°ì§€ì „ ë‹¤ìŒ ì‹œê°„ ì„¤ì • ì •ë³´ë¥¼ ëª¨ë“  ìœ ì €ì—ê²Œ ë³´ë‚´ì¤€ë‹¤.
 	MapIndex_t		MapIndex;
 	ATUM_DATE_TIME	OutPostNextWarTime;
 };
 
 struct SOUTPOST_WAR_INFO
-{// 2007-09-14 by dhjin, À¯Àú Á¢¼Ó ½Ã ÀüÀï±âÁö ÀüÀïÀÌ ½ÃÀÛ ÁßÀÌ¸é ÀüÀï±âÁö Á¤º¸¸¦ À¯Àú¿¡°Ô º¸³»ÁØ´Ù.
+{// 2007-09-14 by dhjin, ìœ ì € ì ‘ì† ì‹œ ì „ìŸê¸°ì§€ ì „ìŸì´ ì‹œì‘ ì¤‘ì´ë©´ ì „ìŸê¸°ì§€ ì •ë³´ë¥¼ ìœ ì €ì—ê²Œ ë³´ë‚´ì¤€ë‹¤.
 	BYTE			OutPostState;
-	BYTE			OutPostResetIngInfluence;			// 2007-10-04 by dhjin, ¸®¼Â ÁßÀÎ ¼¼·Â
+	BYTE			OutPostResetIngInfluence;			// 2007-10-04 by dhjin, ë¦¬ì…‹ ì¤‘ì¸ ì„¸ë ¥
 	MapIndex_t		MapIndex;
-	INT				OutPostWarResetRamainSecondTime;	// 2007-10-04 by dhjin, ¸®¼Â ¿Ï·á±îÁö ³²Àº ½Ã°£
+	INT				OutPostWarResetRamainSecondTime;	// 2007-10-04 by dhjin, ë¦¬ì…‹ ì™„ë£Œê¹Œì§€ ë‚¨ì€ ì‹œê°„
 	ATUM_DATE_TIME	OutPostWarStartTime;
 	ATUM_DATE_TIME  OutPostWarEndTime;
 	//	ATUM_DATE_TIME	OutPostWarResetStartTime;
@@ -10547,14 +10547,14 @@ struct SOUTPOST_WAR_INFO
 };
 
 struct MSG_FC_OUTPOST_WAR_INFO
-{// 2007-09-14 by dhjin, À¯Àú Á¢¼Ó ½Ã ÀüÀï±âÁö ÀüÀïÀÌ ½ÃÀÛ ÁßÀÌ¸é ÀüÀï±âÁö Á¤º¸¸¦ À¯Àú¿¡°Ô º¸³»ÁØ´Ù.
+{// 2007-09-14 by dhjin, ìœ ì € ì ‘ì† ì‹œ ì „ìŸê¸°ì§€ ì „ìŸì´ ì‹œì‘ ì¤‘ì´ë©´ ì „ìŸê¸°ì§€ ì •ë³´ë¥¼ ìœ ì €ì—ê²Œ ë³´ë‚´ì¤€ë‹¤.
 	INT					OutPostWarInfoListCount;
 	_ARRAY(SOUTPOST_WAR_INFO);
 };
 
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-08-13 by dhjin, °øÁö»çÇ× (ÁÖÀÇ~! FC ÇÁ·ÎÅäÄİÀÌ ¸¹ÀÌ ³²¾Æ ÀÖÁö ¾Ê¾Æ¼­ ÀÇ¹Ì°¡ ºñ½ÁÇÑ T_FC_INFO¿¡ ¿ì¼± ÇÒ´çÇÏ¿© ÁøÇà)
+// 2007-08-13 by dhjin, ê³µì§€ì‚¬í•­ (ì£¼ì˜~! FC í”„ë¡œí† ì½œì´ ë§ì´ ë‚¨ì•„ ìˆì§€ ì•Šì•„ì„œ ì˜ë¯¸ê°€ ë¹„ìŠ·í•œ T_FC_INFOì— ìš°ì„  í• ë‹¹í•˜ì—¬ ì§„í–‰)
 //#define T_FC_INFO_NOTICE_REQUEST		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_NOTICE_REQUEST)			// C->F
 //#define T_FC_INFO_NOTICE_REQUEST_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_NOTICE_REQUEST_OK)		// F->C
 //#define T_FC_INFO_NOTICE_REG 			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_NOTICE_REG)			// C->F
@@ -10563,60 +10563,60 @@ struct MSG_FC_OUTPOST_WAR_INFO
 //#define T_FC_INFO_NOTICE_MODIFY_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_NOTICE_MODIFY_OK)		// F->C
 
 struct MSG_FC_INFO_NOTICE_REQUEST
-{// 2007-08-13 by dhjin, °øÁö»çÇ× ¿äÃ»
+{// 2007-08-13 by dhjin, ê³µì§€ì‚¬í•­ ìš”ì²­
 	BYTE	NoticeState;
 	INT		MapIndex;
 };
 
 struct MSG_FC_INFO_NOTICE_REQUEST_OK
-{// 2007-08-13 by dhjin, °øÁö»çÇ× ¿äÃ» Àü¼Û
+{// 2007-08-13 by dhjin, ê³µì§€ì‚¬í•­ ìš”ì²­ ì „ì†¡
 	CHAR	NoticeString[SIZE_MAX_NOTICE];
 };
 
 struct MSG_FC_INFO_NOTICE_REG
-{// 2007-08-13 by dhjin, °øÁö»çÇ× µî·Ï
+{// 2007-08-13 by dhjin, ê³µì§€ì‚¬í•­ ë“±ë¡
 	UID32_t	GuildUID;
 	CHAR	NoticeString[SIZE_MAX_NOTICE];
 };
 
 struct MSG_FC_INFO_NOTICE_MODIFY
-{// 2007-08-13 by dhjin, °øÁö»çÇ× ¼öÁ¤
+{// 2007-08-13 by dhjin, ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	UID32_t	GuildUID;
 	CHAR	NoticeString[SIZE_MAX_NOTICE];
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-08-13 by dhjin, ÆÇ°øºñ (ÁÖÀÇ~! FC ÇÁ·ÎÅäÄİÀÌ ¸¹ÀÌ ³²¾Æ ÀÖÁö ¾Ê¾Æ¼­ ÀÇ¹Ì°¡ ºñ½ÁÇÑ T_FC_INFO¿¡ ¿ì¼± ÇÒ´çÇÏ¿© ÁøÇà)
+// 2007-08-13 by dhjin, íŒê³µë¹„ (ì£¼ì˜~! FC í”„ë¡œí† ì½œì´ ë§ì´ ë‚¨ì•„ ìˆì§€ ì•Šì•„ì„œ ì˜ë¯¸ê°€ ë¹„ìŠ·í•œ T_FC_INFOì— ìš°ì„  í• ë‹¹í•˜ì—¬ ì§„í–‰)
 //#define T_FC_INFO_EXPEDIENCYFUND_REQUEST 		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_EXPEDIENCYFUND_REQUEST)			// C->F
 //#define T_FC_INFO_EXPEDIENCYFUND_REQUEST_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_EXPEDIENCYFUND_REQUEST_OK)		// F->C
 //#define T_FC_INFO_EXPEDIENCYFUND_PAYBACK 		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_EXPEDIENCYFUND_PAYBACK)			// C->F
 //#define T_FC_INFO_EXPEDIENCYFUND_PAYBACK_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_EXPEDIENCYFUND_PAYBACK_OK)		// F->C
-//#define T_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD)	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, C->F
-//#define T_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD_OK	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD_OK)	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, F->C
-//#define T_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD)	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, C->F
-//#define T_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD_OK	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD_OK)	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, F->C
-//#define T_FC_INFO_SECONDARYPASSWORD_LOCK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_LOCK)				// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, C->F
-//#define T_FC_INFO_SECONDARYPASSWORD_LOCK_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_LOCK_OK)			// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö - ÇÁ·ÎÅäÄİ Ãß°¡, F->C
+//#define T_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD)	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, C->F
+//#define T_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD_OK	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD_OK)	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, F->C
+//#define T_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD)	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, C->F
+//#define T_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD_OK	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD_OK)	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, F->C
+//#define T_FC_INFO_SECONDARYPASSWORD_LOCK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_LOCK)				// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, C->F
+//#define T_FC_INFO_SECONDARYPASSWORD_LOCK_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SECONDARYPASSWORD_LOCK_OK)			// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ - í”„ë¡œí† ì½œ ì¶”ê°€, F->C
 
 struct MSG_FC_INFO_EXPEDIENCYFUND_REQUEST
-{// 2007-08-13 by dhjin, ÆÇ°øºñ Á¤º¸ ¿äÃ»
+{// 2007-08-13 by dhjin, íŒê³µë¹„ ì •ë³´ ìš”ì²­
 	INT 	MapIndex;
 };
 
 struct MSG_FC_INFO_EXPEDIENCYFUND_REQUEST_OK
-{// 2007-08-13 by dhjin, ÆÇ°øºñ Á¤º¸ Àü¼Û
+{// 2007-08-13 by dhjin, íŒê³µë¹„ ì •ë³´ ì „ì†¡
 	INT		CumulativeExpediencyFund;
 	INT		ExpediencyFund;
 	INT		ExpediencyFundRate;
 };
 
 struct MSG_FC_INFO_EXPEDIENCYFUND_PAYBACK
-{// 2007-08-13 by dhjin, ÆÇ°øºñ ½ÅÃ» ¿äÃ»
+{// 2007-08-13 by dhjin, íŒê³µë¹„ ì‹ ì²­ ìš”ì²­
 	INT	 ExpediencyFundPayBackCount;
 };
 
 struct MSG_FC_INFO_EXPEDIENCYFUND_PAYBACK_OK
-{// 2007-08-13 by dhjin, ÆÇ°øºñ ½ÅÃ» Ã³¸® Á¤º¸ Àü¼Û
+{// 2007-08-13 by dhjin, íŒê³µë¹„ ì‹ ì²­ ì²˜ë¦¬ ì •ë³´ ì „ì†¡
 	INT		CumulativeExpediencyFund;
 	INT		ExpediencyFund;
 	INT		ExpediencyFundPayBackCount;
@@ -10624,91 +10624,91 @@ struct MSG_FC_INFO_EXPEDIENCYFUND_PAYBACK_OK
 };
 
 struct MSG_FC_INFO_SECONDARYPASSWORD_UPDATE_PASSWORD
-{// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö -
+{// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ -
 	char	CurrentSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];
 	char	NewSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];
 };
 struct MSG_FC_INFO_SECONDARYPASSWORD_CHECK_PASSWORD
-{// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö -
+{// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ -
 	char	CurrentSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];
 };
 struct MSG_FC_INFO_SECONDARYPASSWORD_LOCK
-{// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö -	
-	BYTE	bIsUnlockFlag;		// FALSEÀÌ¸é Lock, FALSE°¡ ¾Æ´Ï¸é Unlock
+{// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ -	
+	BYTE	bIsUnlockFlag;		// FALSEì´ë©´ Lock, FALSEê°€ ì•„ë‹ˆë©´ Unlock
 	char	CurrentSecPassword[SIZE_MAX_PASSWORD_MD5_STRING];
 };
 struct MSG_FC_INFO_SECONDARYPASSWORD_LOCK_OK
-{// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö -	
-	BYTE	bIsUnlockFlag;		// FALSEÀÌ¸é Lock, FALSE°¡ ¾Æ´Ï¸é Unlock
+{// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ -	
+	BYTE	bIsUnlockFlag;		// FALSEì´ë©´ Lock, FALSEê°€ ì•„ë‹ˆë©´ Unlock
 };
 
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-09-06 by dhjin, ÅÚ·¹Æ÷Æ® Å¬¸¯ÇÏ¿© ºôµùÀ» ½ÃÀÛÇÑ´Ù.
+// 2007-09-06 by dhjin, í…”ë ˆí¬íŠ¸ í´ë¦­í•˜ì—¬ ë¹Œë”©ì„ ì‹œì‘í•œë‹¤.
 //#define T_FC_EVENT_CLICK_TELEPORT			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_CLICK_TELEPORT)		// 2007-09-06 by dhjin, C->F
-//#define T_FC_EVENT_CLICK_TELEPORT_OK		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_CLICK_TELEPORT_OK)		// 2008-04-22 by dhjin, F->C ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ÅÚ·¹Æ÷Æ® ºôµù ¿Ï·á ½Ã°£
+//#define T_FC_EVENT_CLICK_TELEPORT_OK		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_CLICK_TELEPORT_OK)		// 2008-04-22 by dhjin, F->C ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - í…”ë ˆí¬íŠ¸ ë¹Œë”© ì™„ë£Œ ì‹œê°„
 //#define T_FC_EVENT_TELEPORT_BUILDCOMPLETE	(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_TELEPORT_BUILDCOMPLETE)		// 2007-09-19 by dhjin, F->C(n)
 //#define T_FC_EVENT_TELEPORT_DESTROY			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_TELEPORT_DESTROY)		// 2007-09-19 by dhjin, F->C(n)
 
 struct MSG_FC_EVENT_CLICK_TELEPORT
-{// 2007-09-06 by dhjin, ÅÚ·¹Æ÷Æ® Å¬¸¯
+{// 2007-09-06 by dhjin, í…”ë ˆí¬íŠ¸ í´ë¦­
 	INT 			MapIndex;
 	ClientIndex_t	TargetIndex;
 };
 
 struct MSG_FC_EVENT_CLICK_TELEPORT_OK
-{// 2008-04-22 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ÅÚ·¹Æ÷Æ® ºôµù ¿Ï·á ½Ã°£
+{// 2008-04-22 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - í…”ë ˆí¬íŠ¸ ë¹Œë”© ì™„ë£Œ ì‹œê°„
 	INT				MapIndex;
 	ATUM_DATE_TIME 	StartTime;
 	ATUM_DATE_TIME 	EndTime;
 };
 
 struct MSG_FC_EVENT_TELEPORT_BUILDCOMPLETE
-{// 2007-09-06 by dhjin, ÅÚ·¹Æ÷Æ® ¿Ï¼º
+{// 2007-09-06 by dhjin, í…”ë ˆí¬íŠ¸ ì™„ì„±
 	MapIndex_t 		MapIndex;
 };
 
 struct MSG_FC_EVENT_TELEPORT_DESTROY
-{// 2007-09-20 by cmkwon, ÅÚ·¹Æ÷Æ® ¼öÁ¤ - 
+{// 2007-09-20 by cmkwon, í…”ë ˆí¬íŠ¸ ìˆ˜ì • - 
 	MapIndex_t 		MapIndex;
-	bool			bInactivateByOtherTeleport;		// 2007-09-20 by cmkwon, ÅÚ·¹Æ÷Æ® ¼öÁ¤ - ÇÊµåÃß°¡, FALSEÀÌ¸é °ø°İ¿¡ ÀÇÇÑ ÆøÆÄ, TRUEÀÌ¸é ´Ù¸¥ Teleport »ı¼ºÀ¸·Î ÀÎÇÑ ºñÈ°¼ºÈ­
+	bool			bInactivateByOtherTeleport;		// 2007-09-20 by cmkwon, í…”ë ˆí¬íŠ¸ ìˆ˜ì • - í•„ë“œì¶”ê°€, FALSEì´ë©´ ê³µê²©ì— ì˜í•œ í­íŒŒ, TRUEì´ë©´ ë‹¤ë¥¸ Teleport ìƒì„±ìœ¼ë¡œ ì¸í•œ ë¹„í™œì„±í™”
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
-//#define T_FC_EVENT_NOTIFY_MSG_GET			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_GET)	// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö - C->F
-//#define T_FC_EVENT_NOTIFY_MSG_GET_OK		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_GET_OK)	// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_EVENT_NOTIFY_MSG_DELETE		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_DELETE)	// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö - C->F
+// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
+//#define T_FC_EVENT_NOTIFY_MSG_GET			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_GET)	// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ - C->F
+//#define T_FC_EVENT_NOTIFY_MSG_GET_OK		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_GET_OK)	// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_EVENT_NOTIFY_MSG_DELETE		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_NOTIFY_MSG_DELETE)	// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ - C->F
 
-struct MSG_FC_EVENT_NOTIFY_MSG_GET_OK		// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
+struct MSG_FC_EVENT_NOTIFY_MSG_GET_OK		// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
 {
 	UID64_t			NotifyMsgUID;				//	
-	UID32_t			CharacterUID;				// ÅëÁö¸Ş½ÃÁö ¹ŞÀ» Ä³¸¯ÅÍ UID, 0 ÀÌ¸é ¸ğµç Ä³¸¯ÅÍ¿¡°Ô Àü¼Û(0 ÀÎ°ÍÀº À¯Àú°¡ Áö¿ï ¼ö ¾ø´Ù)
+	UID32_t			CharacterUID;				// í†µì§€ë©”ì‹œì§€ ë°›ì„ ìºë¦­í„° UID, 0 ì´ë©´ ëª¨ë“  ìºë¦­í„°ì—ê²Œ ì „ì†¡(0 ì¸ê²ƒì€ ìœ ì €ê°€ ì§€ìš¸ ìˆ˜ ì—†ë‹¤)
 	BYTE			NotifyMsgType;				// NOTIFY_MSG_TYPE_XXX
 	char			NotifyMsgString[SIZE_MAX_NOTIFY_MSG_STRING];
 };
 
-struct MSG_FC_EVENT_NOTIFY_MSG_DELETE		// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
+struct MSG_FC_EVENT_NOTIFY_MSG_DELETE		// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
 {
 	UID64_t			NotifyMsgUID;				//	
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
-//#define T_FC_EVENT_COUPON_EVENT_INFO			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_INFO)				// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - F->C
-//#define T_FC_EVENT_COUPON_EVENT_USE_COUPON		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_USE_COUPON)		// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - C->F
-//#define T_FC_EVENT_COUPON_EVENT_USE_COUPON_OK	(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_USE_COUPON_OK)	// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - F->C
-struct MSG_FC_EVENT_COUPON_EVENT_INFO				// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
+// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
+//#define T_FC_EVENT_COUPON_EVENT_INFO			(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_INFO)				// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - F->C
+//#define T_FC_EVENT_COUPON_EVENT_USE_COUPON		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_USE_COUPON)		// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - C->F
+//#define T_FC_EVENT_COUPON_EVENT_USE_COUPON_OK	(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_COUPON_EVENT_USE_COUPON_OK)	// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - F->C
+struct MSG_FC_EVENT_COUPON_EVENT_INFO				// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
 {
 	int		ItemEventUID;
 	int		ItemEventType;
 };
-struct MSG_FC_EVENT_COUPON_EVENT_USE_COUPON			// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
+struct MSG_FC_EVENT_COUPON_EVENT_USE_COUPON			// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
 {
 	int		ItemEventUID;
 	char	CouponNumber[SIZE_MAX_COUPON_NUMBER];
 };
-struct MSG_FC_EVENT_COUPON_EVENT_USE_COUPON_OK		// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
+struct MSG_FC_EVENT_COUPON_EVENT_USE_COUPON_OK		// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
 {
 	int		ItemEventUID;
 };
@@ -10716,113 +10716,113 @@ struct MSG_FC_EVENT_COUPON_EVENT_USE_COUPON_OK		// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ 
 
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-10-29 by dhjin, Poll½Ã½ºÅÛ °ü·Ã
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST)			// C->F, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_HEADER	(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_HEADER)		// F->C, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK)		// F->C, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_DONE	(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_DONE)		// F->C, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO)			// C->F, ÁöµµÀÚ ÈÄº¸ Á¤º¸ ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK)		// F->C, ÁöµµÀÚ ÈÄº¸ Á¤º¸ ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK_GUILDMARK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK_GUILDMARK)		// F->C, ÁöµµÀÚ ÈÄº¸ Á¤º¸ ¿äÃ»
-//#define T_FC_CITY_POLL_REG_LEADER_CANDIDATE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REG_LEADER_CANDIDATE)					// C->F, ÁöµµÀÚ ÈÄº¸ µî·Ï
-//#define T_FC_CITY_POLL_REG_LEADER_CANDIDATE_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REG_LEADER_CANDIDATE_OK)				// F->C, ÁöµµÀÚ ÈÄº¸ µî·Ï
-//#define T_FC_CITY_POLL_DELETE_LEADER_CANDIDATE					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_DELETE_LEADER_CANDIDATE)				// C->F, ÁöµµÀÚ ÈÄº¸ Å»Åğ
-//#define T_FC_CITY_POLL_DELETE_LEADER_CANDIDATE_OK				(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_DELETE_LEADER_CANDIDATE_OK)				// F->C, ÁöµµÀÚ ÈÄº¸ Å»Åğ
-//#define T_FC_CITY_POLL_VOTE										(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_VOTE)									// C->F, ÁöµµÀÚ ÈÄº¸¿¡°Ô ÅõÇ¥
-//#define T_FC_CITY_POLL_VOTE_OK									(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_VOTE_OK)								// F->C, ÁöµµÀÚ ÈÄº¸¿¡°Ô ÅõÇ¥
-//#define T_FC_CITY_POLL_REQUEST_POLL_DATE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_POLL_DATE)						// C->F, ¼±°Å ±â°£ ¿äÃ»
-//#define T_FC_CITY_POLL_REQUEST_POLL_DATE_OK						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_POLL_DATE_OK)					// F->C, ¼±°Å ±â°£ ¿äÃ»
-//#define T_FC_CITY_POLL_LEADER_ELECTION_INFO						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_LEADER_ELECTION_INFO)					// F->C, ¼±°Å °á°ú Àü¼Û
+// 2007-10-29 by dhjin, Pollì‹œìŠ¤í…œ ê´€ë ¨
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST)			// C->F, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_HEADER	(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_HEADER)		// F->C, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK)		// F->C, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_DONE	(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_DONE)		// F->C, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO)			// C->F, ì§€ë„ì í›„ë³´ ì •ë³´ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK)		// F->C, ì§€ë„ì í›„ë³´ ì •ë³´ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK_GUILDMARK			(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK_GUILDMARK)		// F->C, ì§€ë„ì í›„ë³´ ì •ë³´ ìš”ì²­
+//#define T_FC_CITY_POLL_REG_LEADER_CANDIDATE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REG_LEADER_CANDIDATE)					// C->F, ì§€ë„ì í›„ë³´ ë“±ë¡
+//#define T_FC_CITY_POLL_REG_LEADER_CANDIDATE_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REG_LEADER_CANDIDATE_OK)				// F->C, ì§€ë„ì í›„ë³´ ë“±ë¡
+//#define T_FC_CITY_POLL_DELETE_LEADER_CANDIDATE					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_DELETE_LEADER_CANDIDATE)				// C->F, ì§€ë„ì í›„ë³´ íƒˆí‡´
+//#define T_FC_CITY_POLL_DELETE_LEADER_CANDIDATE_OK				(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_DELETE_LEADER_CANDIDATE_OK)				// F->C, ì§€ë„ì í›„ë³´ íƒˆí‡´
+//#define T_FC_CITY_POLL_VOTE										(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_VOTE)									// C->F, ì§€ë„ì í›„ë³´ì—ê²Œ íˆ¬í‘œ
+//#define T_FC_CITY_POLL_VOTE_OK									(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_VOTE_OK)								// F->C, ì§€ë„ì í›„ë³´ì—ê²Œ íˆ¬í‘œ
+//#define T_FC_CITY_POLL_REQUEST_POLL_DATE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_POLL_DATE)						// C->F, ì„ ê±° ê¸°ê°„ ìš”ì²­
+//#define T_FC_CITY_POLL_REQUEST_POLL_DATE_OK						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_REQUEST_POLL_DATE_OK)					// F->C, ì„ ê±° ê¸°ê°„ ìš”ì²­
+//#define T_FC_CITY_POLL_LEADER_ELECTION_INFO						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_POLL_LEADER_ELECTION_INFO)					// F->C, ì„ ê±° ê²°ê³¼ ì „ì†¡
 
 struct MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK_HEADER
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® Àü¼Û
-	bool			RegLeaderCandidate;								// ÁöµµÀÚ ÈÄº¸ Ãâ¸¶ ÇÑ Á¤º¸, TURE = Ãâ¸¶
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ì „ì†¡
+	bool			RegLeaderCandidate;								// ì§€ë„ì í›„ë³´ ì¶œë§ˆ í•œ ì •ë³´, TURE = ì¶œë§ˆ
 };
 
 struct MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_LIST_OK
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ ¸®½ºÆ® Á¤º¸
-	INT				LeaderCandidateNum;							//	ÁöµµÀÚ ÈÄº¸ ¹øÈ£
-	UID32_t			CharacterUID;								//	ÁöµµÀÚ ÈÄº¸ UID
-	UID32_t			GuildUID;									//  ÁöµµÀÚ ÈÄº¸ ±æµå UID
-	bool			DeleteCandidate;							//  ÀÌ¹ø ¼±°Å ±â°£¿¡ ÈÄº¸ Å»Åğ Çß´ÂÁö ¿©ºÎ, TRUE = Å»Åğ
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ÁöµµÀÚ ÈÄº¸ ÀÌ¸§
-	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ÁöµµÀÚ ÈÄº¸ ±æµå¸í
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ë¦¬ìŠ¤íŠ¸ ì •ë³´
+	INT				LeaderCandidateNum;							//	ì§€ë„ì í›„ë³´ ë²ˆí˜¸
+	UID32_t			CharacterUID;								//	ì§€ë„ì í›„ë³´ UID
+	UID32_t			GuildUID;									//  ì§€ë„ì í›„ë³´ ê¸¸ë“œ UID
+	bool			DeleteCandidate;							//  ì´ë²ˆ ì„ ê±° ê¸°ê°„ì— í›„ë³´ íƒˆí‡´ í–ˆëŠ”ì§€ ì—¬ë¶€, TRUE = íƒˆí‡´
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ì§€ë„ì í›„ë³´ ì´ë¦„
+	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ì§€ë„ì í›„ë³´ ê¸¸ë“œëª…
 };
 
 struct MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ Á¤º¸ Àü¼Û
-	INT				LeaderCandidateNum;							//	ÁöµµÀÚ ÈÄº¸ ¹øÈ£
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ì •ë³´ ì „ì†¡
+	INT				LeaderCandidateNum;							//	ì§€ë„ì í›„ë³´ ë²ˆí˜¸
 };
 
 struct MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ Á¤º¸ Àü¼Û
-	BYTE			PilotFace;									//  ÁöµµÀÚ ÈÄº¸ ¾ó±¼
-	BYTE			Level;										//	ÁöµµÀÚ ÈÄº¸ Level
-	INT				GuildFame;									//	ÁöµµÀÚ ÈÄº¸ ¿©´Ü ¸í¼º
-	UID32_t			AccountUID;									//	ÁöµµÀÚ ÈÄº¸ °èÁ¤ UID
-	UID32_t			CharacterUID;								//	ÁöµµÀÚ ÈÄº¸ UID
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ÁöµµÀÚ ÈÄº¸ ÀÌ¸§
-	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ÁöµµÀÚ ÈÄº¸ ±æµå¸í
-	CHAR			CampaignPromises[SIZE_MAX_CAMPAIGNPROMISES];//  ÁöµµÀÚ ÈÄº¸ °ø¾à
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ì •ë³´ ì „ì†¡
+	BYTE			PilotFace;									//  ì§€ë„ì í›„ë³´ ì–¼êµ´
+	BYTE			Level;										//	ì§€ë„ì í›„ë³´ Level
+	INT				GuildFame;									//	ì§€ë„ì í›„ë³´ ì—¬ë‹¨ ëª…ì„±
+	UID32_t			AccountUID;									//	ì§€ë„ì í›„ë³´ ê³„ì • UID
+	UID32_t			CharacterUID;								//	ì§€ë„ì í›„ë³´ UID
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ì§€ë„ì í›„ë³´ ì´ë¦„
+	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ì§€ë„ì í›„ë³´ ê¸¸ë“œëª…
+	CHAR			CampaignPromises[SIZE_MAX_CAMPAIGNPROMISES];//  ì§€ë„ì í›„ë³´ ê³µì•½
 };
 
 struct MSG_FC_CITY_POLL_REQUEST_LEADER_CANDIDATE_INFO_OK_GUILDMARK
-{// 2007-11-01 by dhjin, ÁöµµÀÚ ÈÄº¸ Á¤º¸ Àü¼Û ¿©´Ü ¸¶Å©
-	INT				GuildMarkSize;								//  ÁöµµÀÚ ÈÄº¸ ¿©´Ü ¸¶Å© Å©±â
-	UID32_t			GuildUID;									//  ÁöµµÀÚ ÈÄº¸ ±æµå UID
-	ARRAY_(char);												//	ÁöµµÀÚ ÈÄº¸ ¿©´Ü ¸¶Å©
+{// 2007-11-01 by dhjin, ì§€ë„ì í›„ë³´ ì •ë³´ ì „ì†¡ ì—¬ë‹¨ ë§ˆí¬
+	INT				GuildMarkSize;								//  ì§€ë„ì í›„ë³´ ì—¬ë‹¨ ë§ˆí¬ í¬ê¸°
+	UID32_t			GuildUID;									//  ì§€ë„ì í›„ë³´ ê¸¸ë“œ UID
+	ARRAY_(char);												//	ì§€ë„ì í›„ë³´ ì—¬ë‹¨ ë§ˆí¬
 };
 
 struct MSG_FC_CITY_POLL_REG_LEADER_CANDIDATE
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï
-	UID32_t			CharacterUID;								//	ÁöµµÀÚ ÈÄº¸ UID
-	UID32_t			GuildUID;									//  ÁöµµÀÚ ÈÄº¸ ±æµå UID
-	CHAR			CampaignPromises[SIZE_MAX_CAMPAIGNPROMISES];//  ÁöµµÀÚ ÈÄº¸ °ø¾à
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ë“±ë¡
+	UID32_t			CharacterUID;								//	ì§€ë„ì í›„ë³´ UID
+	UID32_t			GuildUID;									//  ì§€ë„ì í›„ë³´ ê¸¸ë“œ UID
+	CHAR			CampaignPromises[SIZE_MAX_CAMPAIGNPROMISES];//  ì§€ë„ì í›„ë³´ ê³µì•½
 };
 
 struct MSG_FC_CITY_POLL_REG_LEADER_CANDIDATE_OK
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ µî·Ï
-	INT				LeaderCandidateNum;							//	ÁöµµÀÚ ÈÄº¸ ¹øÈ£
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ ë“±ë¡
+	INT				LeaderCandidateNum;							//	ì§€ë„ì í›„ë³´ ë²ˆí˜¸
 };
 
 struct MSG_FC_CITY_POLL_DELETE_LEADER_CANDIDATE
-{// 2007-10-29 by dhjin, ÁöµµÀÚ ÈÄº¸ Å»Åğ
-	UID32_t			CharacterUID;								//	ÁöµµÀÚ ÈÄº¸ UID
+{// 2007-10-29 by dhjin, ì§€ë„ì í›„ë³´ íƒˆí‡´
+	UID32_t			CharacterUID;								//	ì§€ë„ì í›„ë³´ UID
 };
 
 struct MSG_FC_CITY_POLL_VOTE
-{// 2007-10-29 by dhjin, ÅõÇ¥
-	INT				LeaderCandidateNum;							//	ÁöµµÀÚ ÈÄº¸ ¹øÈ£
-	UID32_t			CharacterUID;								//	ÁöµµÀÚ ÈÄº¸ UID
-	UID32_t			VoteCharacterUID;							//	ÅõÇ¥ÀÚ UID
+{// 2007-10-29 by dhjin, íˆ¬í‘œ
+	INT				LeaderCandidateNum;							//	ì§€ë„ì í›„ë³´ ë²ˆí˜¸
+	UID32_t			CharacterUID;								//	ì§€ë„ì í›„ë³´ UID
+	UID32_t			VoteCharacterUID;							//	íˆ¬í‘œì UID
 };
 
 struct MSG_FC_CITY_POLL_REQUEST_POLL_DATE_OK
-{// 2007-10-29 by dhjin, ¼±°Å ÀÏÁ¤
-	ATUM_DATE_TIME	ApplicationStartDate;		// ÈÄº¸ ½ÅÃ» ½ÃÀÛ ³¯
-	ATUM_DATE_TIME	ApplicationEndDate;			// ÈÄº¸ ½ÃÃ» ³¡³ª´Â ³¯
-	ATUM_DATE_TIME	VoteStartDate;				// ÅõÇ¥ ½ÃÀÛ ³¯
-	ATUM_DATE_TIME	VoteEndDate;				// ÅõÇ¥ ¸¶Áö¸· ³¯
-	ATUM_DATE_TIME	Election;					// ¼±ÃâÀÏ
+{// 2007-10-29 by dhjin, ì„ ê±° ì¼ì •
+	ATUM_DATE_TIME	ApplicationStartDate;		// í›„ë³´ ì‹ ì²­ ì‹œì‘ ë‚ 
+	ATUM_DATE_TIME	ApplicationEndDate;			// í›„ë³´ ì‹œì²­ ëë‚˜ëŠ” ë‚ 
+	ATUM_DATE_TIME	VoteStartDate;				// íˆ¬í‘œ ì‹œì‘ ë‚ 
+	ATUM_DATE_TIME	VoteEndDate;				// íˆ¬í‘œ ë§ˆì§€ë§‰ ë‚ 
+	ATUM_DATE_TIME	Election;					// ì„ ì¶œì¼
 };
 
 struct MSG_FC_CITY_POLL_LEADER_ELECTION_INFO
-{// 2007-11-16 by dhjin, ¼±°Å °á°ú
-	INT				LeaderCandidateNum;							//	ÁöµµÀÚ ÈÄº¸ ¹øÈ£
-	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ÁöµµÀÚ ÈÄº¸ ÀÌ¸§
-	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ÁöµµÀÚ ÈÄº¸ ±æµå¸í
-	INT				Percent;									//  ÁöµµÀÚ µæÇ¥À²
+{// 2007-11-16 by dhjin, ì„ ê±° ê²°ê³¼
+	INT				LeaderCandidateNum;							//	ì§€ë„ì í›„ë³´ ë²ˆí˜¸
+	CHAR			CharacterName[SIZE_MAX_CHARACTER_NAME];		//  ì§€ë„ì í›„ë³´ ì´ë¦„
+	CHAR			GuildName[SIZE_MAX_GUILD_NAME];				//  ì§€ë„ì í›„ë³´ ê¸¸ë“œëª…
+	INT				Percent;									//  ì§€ë„ì ë“í‘œìœ¨
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2007-12-03 by dhjin, ÀüÀå Á¤º¸ 
-//#define T_FC_CITY_WARINFO_INFLUENCE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_INFLUENCE)		// C->F, ¼¼·Â Á¤º¸
-//#define T_FC_CITY_WARINFO_INFLUENCE_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_INFLUENCE_OK)	// F->C, ¼¼·Â Á¤º¸
-//#define T_FC_CITY_WARINFO_OUTPOST						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_OUTPOST)			// C->F, ÀüÁø±âÁö Á¤º¸ 
-//#define T_FC_CITY_WARINFO_OUTPOST_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_OUTPOST_OK)		// F->C, ÀüÁø±âÁö Á¤º¸ 
+// 2007-12-03 by dhjin, ì „ì¥ ì •ë³´ 
+//#define T_FC_CITY_WARINFO_INFLUENCE						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_INFLUENCE)		// C->F, ì„¸ë ¥ ì •ë³´
+//#define T_FC_CITY_WARINFO_INFLUENCE_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_INFLUENCE_OK)	// F->C, ì„¸ë ¥ ì •ë³´
+//#define T_FC_CITY_WARINFO_OUTPOST						(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_OUTPOST)			// C->F, ì „ì§„ê¸°ì§€ ì •ë³´ 
+//#define T_FC_CITY_WARINFO_OUTPOST_OK					(MessageType_t)((T0_FC_CITY<<8)|T1_FC_CITY_WARINFO_OUTPOST_OK)		// F->C, ì „ì§„ê¸°ì§€ ì •ë³´ 
 
 struct MSG_FC_CITY_WARINFO_INFLUENCE_OK
-{// 2007-12-03 by dhjin, ¼¼·Â Á¤º¸ 
+{// 2007-12-03 by dhjin, ì„¸ë ¥ ì •ë³´ 
 	INT			VCNInfluencePoint;
 	INT			ANIInfluencePoint;
 	CHAR		VCNInfluenceLeader[SIZE_MAX_CHARACTER_NAME];
@@ -10834,7 +10834,7 @@ struct MSG_FC_CITY_WARINFO_INFLUENCE_OK
 };
 
 struct SCITY_WARINFO_OUTPOST
-{// 2007-12-03 by dhjin, ÀüÁø±âÁö Á¤º¸ 
+{// 2007-12-03 by dhjin, ì „ì§„ê¸°ì§€ ì •ë³´ 
 	BYTE			Influence;
 	MapIndex_t		MapIndex;
 	UID32_t			GuildUID;
@@ -10844,40 +10844,40 @@ struct SCITY_WARINFO_OUTPOST
 };
 
 struct MSG_FC_CITY_WARINFO_OUTPOST_OK
-{// 2007-12-03 by dhjin, ÀüÁø±âÁöÀü Á¤º¸
+{// 2007-12-03 by dhjin, ì „ì§„ê¸°ì§€ì „ ì •ë³´
 	INT					CityWarInfoOutpostListCount;
 	_ARRAY(SCITY_WARINFO_OUTPOST);
 };
 
-//#define T_FC_INFO_GET_GUILDMARK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_GET_GUILDMARK)			// 2007-12-07 by dhjin, ¿©´Ü ¸¶Å© C->F
-//#define T_FC_INFO_GET_GUILDMARK_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_GET_GUILDMARK_OK)		// 2007-12-07 by dhjin, ¿©´Ü ¸¶Å© F->C
+//#define T_FC_INFO_GET_GUILDMARK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_GET_GUILDMARK)			// 2007-12-07 by dhjin, ì—¬ë‹¨ ë§ˆí¬ C->F
+//#define T_FC_INFO_GET_GUILDMARK_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_GET_GUILDMARK_OK)		// 2007-12-07 by dhjin, ì—¬ë‹¨ ë§ˆí¬ F->C
 struct MSG_FC_INFO_GET_GUILDMARK
 {// 2007-12-07 by dhjin
 	UID32_t			GuildUID;
 };
 
 struct MSG_FC_INFO_GET_GUILDMARK_OK
-{// 2007-12-07 by dhjin, ¿©´Ü ¸¶Å© Àü¼Û
+{// 2007-12-07 by dhjin, ì—¬ë‹¨ ë§ˆí¬ ì „ì†¡
 	INT				GuildMarkSize;
 	INT				GuildMarkVersion;
 	UID32_t			GuildUID;
 	ARRAY_(char);
 };
 
-// 2007-12-27 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ¾Æ·¹³ª ÇÁ·ÎÅäÄİ MainField <=> ArenaField 
-//#define T_FtoA_MFSINFO						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_MFSINFO)			// 2007-12-27 by dhjin, ¾Æ·¹³ª ¼­¹ö¿¡ ÇÊµå ¼­¹ö µî·Ï ¹× ÇÊµå ¼­¹ö Á¤º¸ Àü¼Û, MF->AF
-//#define T_FtoA_MFSINFO_OK					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_MFSINFO_OK)		// 2007-12-27 by dhjin, ¾Æ·¹³ª ¼­¹ö¿¡ ÇÊµå ¼­¹ö µî·Ï ¹× ÇÊµå ¼­¹ö Á¤º¸ Àü¼Û, AF->MF
+// 2007-12-27 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì•„ë ˆë‚˜ í”„ë¡œí† ì½œ MainField <=> ArenaField 
+//#define T_FtoA_MFSINFO						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_MFSINFO)			// 2007-12-27 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì— í•„ë“œ ì„œë²„ ë“±ë¡ ë° í•„ë“œ ì„œë²„ ì •ë³´ ì „ì†¡, MF->AF
+//#define T_FtoA_MFSINFO_OK					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_MFSINFO_OK)		// 2007-12-27 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì— í•„ë“œ ì„œë²„ ë“±ë¡ ë° í•„ë“œ ì„œë²„ ì •ë³´ ì „ì†¡, AF->MF
 //#define T_FtoA_ALIVE						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ALIVE)				// 2007-12-27 by dhjin,
-//#define T_FtoA_AUTH_CHARACTER				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_AUTH_CHARACTER)	// 2007-12-27 by dhjin, ¾Æ·¹³ª ¼­¹ö¿¡¼­ À¯È¿ÇÑ À¯ÀúÀÎÁö ÇÊµå ¼­¹ö·Î È®ÀÎ ¿äÃ», AF->MF
-//#define T_FtoA_AUTH_CHARACTER_OK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_AUTH_CHARACTER_OK)	// 2007-12-27 by dhjin, ¾Æ·¹³ª ¼­¹ö¿¡¼­ À¯È¿ÇÑ À¯ÀúÀÎÁö ÇÊµå ¼­¹ö·Î È®ÀÎ ¿äÃ», MF->AF
-//#define T_FtoA_ARENA_STATE_CHANGE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_STATE_CHANGE)	// 2008-01-03 by dhjin, ÇÊµå ¼­¹ö¿¡ À¯Àú ¾Æ·¹³ª »óÅÂ°ª º¯°æ, AF->MF
-//#define T_FtoA_ARENA_TEAM_MATCHING			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_TEAM_MATCHING)	// 2008-01-04 by dhjin, ÇÊµå ¼­¹ö·Î ¸ÅÄª Á¤º¸¸¦ Àü¼ÛÇÑ´Ù, AF->MF
-//#define T_FtoA_ARENA_TEAM_MATCHING_OK		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_TEAM_MATCHING_OK)	// 2008-01-04 by dhjin, ÇÊµå ¼­¹ö·Î ¸ÅÄª Á¤º¸¸¦ Àü¼ÛÇÑ´Ù, MF->AF
-//#define T_FtoA_ARENA_SERVER_PAY				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_SERVER_PAY)		// 2008-01-10 by dhjin, ÇÊµå ¼­¹ö·Î ¼­¹ö ¾Æ·¹³ª º¸»ó Àü¼Û, AF->MF
-//#define T_FtoA_ARENA_CHARACTER_PAY			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_PAY)	// 2008-01-10 by dhjin, ÇÊµå ¼­¹ö·Î ÄÉ¸¯ÅÍ ¾Æ·¹³ª º¸»ó Àü¼Û, AF->MF
-//#define T_FtoA_ARENA_CHARACTER_DISCONNECT	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_DISCONNECT)	// 2008-01-15 by dhjin, ÇÊµå ¼­¹ö·Î ÄÉ¸¯ÅÍ ¾Æ·¹³ª º¸»ó Àü¼Û, AF->MF
-//#define T_FtoA_ARENA_CHARACTERARENAINFO_UPDATA	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTERARENAINFO_UPDATA)	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : AFS -> MFS CharacterArena UUpdata ¿äÃ» ÆĞÅ¶
-//#define T_FtoA_ARENA_CHARACTER_RESET_RELOAD	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_RESET_RELOAD)	// 2012-12-18 by jhseol, ¾Æ·¹³ª Ä³¸¯ÅÍ ¸®¼Â ÈÄ Ä³¸¯ÅÍ Á¤º¸ ´Ù½Ã ·ÎµùÇÏ±â.
+//#define T_FtoA_AUTH_CHARACTER				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_AUTH_CHARACTER)	// 2007-12-27 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì—ì„œ ìœ íš¨í•œ ìœ ì €ì¸ì§€ í•„ë“œ ì„œë²„ë¡œ í™•ì¸ ìš”ì²­, AF->MF
+//#define T_FtoA_AUTH_CHARACTER_OK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_AUTH_CHARACTER_OK)	// 2007-12-27 by dhjin, ì•„ë ˆë‚˜ ì„œë²„ì—ì„œ ìœ íš¨í•œ ìœ ì €ì¸ì§€ í•„ë“œ ì„œë²„ë¡œ í™•ì¸ ìš”ì²­, MF->AF
+//#define T_FtoA_ARENA_STATE_CHANGE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_STATE_CHANGE)	// 2008-01-03 by dhjin, í•„ë“œ ì„œë²„ì— ìœ ì € ì•„ë ˆë‚˜ ìƒíƒœê°’ ë³€ê²½, AF->MF
+//#define T_FtoA_ARENA_TEAM_MATCHING			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_TEAM_MATCHING)	// 2008-01-04 by dhjin, í•„ë“œ ì„œë²„ë¡œ ë§¤ì¹­ ì •ë³´ë¥¼ ì „ì†¡í•œë‹¤, AF->MF
+//#define T_FtoA_ARENA_TEAM_MATCHING_OK		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_TEAM_MATCHING_OK)	// 2008-01-04 by dhjin, í•„ë“œ ì„œë²„ë¡œ ë§¤ì¹­ ì •ë³´ë¥¼ ì „ì†¡í•œë‹¤, MF->AF
+//#define T_FtoA_ARENA_SERVER_PAY				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_SERVER_PAY)		// 2008-01-10 by dhjin, í•„ë“œ ì„œë²„ë¡œ ì„œë²„ ì•„ë ˆë‚˜ ë³´ìƒ ì „ì†¡, AF->MF
+//#define T_FtoA_ARENA_CHARACTER_PAY			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_PAY)	// 2008-01-10 by dhjin, í•„ë“œ ì„œë²„ë¡œ ì¼€ë¦­í„° ì•„ë ˆë‚˜ ë³´ìƒ ì „ì†¡, AF->MF
+//#define T_FtoA_ARENA_CHARACTER_DISCONNECT	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_DISCONNECT)	// 2008-01-15 by dhjin, í•„ë“œ ì„œë²„ë¡œ ì¼€ë¦­í„° ì•„ë ˆë‚˜ ë³´ìƒ ì „ì†¡, AF->MF
+//#define T_FtoA_ARENA_CHARACTERARENAINFO_UPDATA	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTERARENAINFO_UPDATA)	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : AFS -> MFS CharacterArena UUpdata ìš”ì²­ íŒ¨í‚·
+//#define T_FtoA_ARENA_CHARACTER_RESET_RELOAD	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_ARENA_CHARACTER_RESET_RELOAD)	// 2012-12-18 by jhseol, ì•„ë ˆë‚˜ ìºë¦­í„° ë¦¬ì…‹ í›„ ìºë¦­í„° ì •ë³´ ë‹¤ì‹œ ë¡œë”©í•˜ê¸°.
 struct MSG_FtoA_MFSINFO
 {
 	USHORT		MFS_Port;
@@ -10903,10 +10903,10 @@ struct MSG_FtoA_AUTH_CHARACTER_OK
 	UID32_t			AFSCharacterUID;
 	CHAR			AFSCharacterName[SIZE_MAX_CHARACTER_NAME];
 	ClientIndex_t	AFSClientIndex;
-	MessageType_t	ErrorMsgType;			// 2010-04-05 by cmkwon, ÀÎÇÇ ÀçÀÔÀå Ä«µå °ü·Ã ½Ã½ºÅÛ ¼öÁ¤ - 
-	Err_t			ErrorCode;				// 2010-04-05 by cmkwon, ÀÎÇÇ ÀçÀÔÀå Ä«µå °ü·Ã ½Ã½ºÅÛ ¼öÁ¤ - 
-	bool			ShutDownMins; // 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - ¾Æ·¹³ª¼­¹ö ¼Ë´Ù¿îÁ¦ ÀÎÁõ¿ë
-	SArenaPlayInfo	ArenaPlayInfo;			// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : ¾Æ·¹³ª ÇÃ·¹ÀÌ Á¤º¸¸¦ ÀúÀåÇÒ ±¸Á¶Ã¼ º¯¼ö.
+	MessageType_t	ErrorMsgType;			// 2010-04-05 by cmkwon, ì¸í”¼ ì¬ì…ì¥ ì¹´ë“œ ê´€ë ¨ ì‹œìŠ¤í…œ ìˆ˜ì • - 
+	Err_t			ErrorCode;				// 2010-04-05 by cmkwon, ì¸í”¼ ì¬ì…ì¥ ì¹´ë“œ ê´€ë ¨ ì‹œìŠ¤í…œ ìˆ˜ì • - 
+	bool			ShutDownMins; // 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - ì•„ë ˆë‚˜ì„œë²„ ì…§ë‹¤ìš´ì œ ì¸ì¦ìš©
+	SArenaPlayInfo	ArenaPlayInfo;			// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : ì•„ë ˆë‚˜ í”Œë ˆì´ ì •ë³´ë¥¼ ì €ì¥í•  êµ¬ì¡°ì²´ ë³€ìˆ˜.
 };
 
 struct MSG_FtoA_ARENA_STATE_CHANGE
@@ -10942,7 +10942,7 @@ struct MSG_FtoA_ARENA_SERVER_PAY
 
 struct MSG_FtoA_ARENA_CHARACTER_PAY
 {
-	BYTE			Issue;					// 2007-04-20 by dhjin, ¾Æ·¹³ª ½ÂÆĞ ¿©ºÎ, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
+	BYTE			Issue;					// 2007-04-20 by dhjin, ì•„ë ˆë‚˜ ìŠ¹íŒ¨ ì—¬ë¶€, 1 : ARENA_ISSUE_WIN, 2 : ARENA_ISSUE_LOSE, 3 : ARENA_ISSUE_DRAW
 	INT				PayWarPoint;
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
@@ -10954,21 +10954,21 @@ struct MSG_FtoA_ARENA_CHARACTER_DISCONNECT
 {
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
-	UID32_t			ArenaCharacterUID;	// 2012-10-21 by jhseol, ¾Æ·¹³ª ¹ö±×¼öÁ¤ - ¾Æ·¹³ª Á¾·á½Ã ÄÉ¸¯ÅÍ Á¤º¸ ¸®¼Â.
+	UID32_t			ArenaCharacterUID;	// 2012-10-21 by jhseol, ì•„ë ˆë‚˜ ë²„ê·¸ìˆ˜ì • - ì•„ë ˆë‚˜ ì¢…ë£Œì‹œ ì¼€ë¦­í„° ì •ë³´ ë¦¬ì…‹.
 	ClientIndex_t	MFSClientIndex;
 	ClientIndex_t	AFSClientIndex;
 };
 
-// 2012-12-18 by jhseol, ¾Æ·¹³ª Ä³¸¯ÅÍ ¸®¼Â ÈÄ Ä³¸¯ÅÍ Á¤º¸ ´Ù½Ã ·ÎµùÇÏ±â.
+// 2012-12-18 by jhseol, ì•„ë ˆë‚˜ ìºë¦­í„° ë¦¬ì…‹ í›„ ìºë¦­í„° ì •ë³´ ë‹¤ì‹œ ë¡œë”©í•˜ê¸°.
 struct MSG_FtoA_ARENA_CHARACTER_RESET_RELOAD
 {
 	UID32_t			AccountUID;
 	UID32_t			ArenaCharacterUID;
 };
-// end 2012-12-18 by jhseol, ¾Æ·¹³ª Ä³¸¯ÅÍ ¸®¼Â ÈÄ Ä³¸¯ÅÍ Á¤º¸ ´Ù½Ã ·ÎµùÇÏ±â.
+// end 2012-12-18 by jhseol, ì•„ë ˆë‚˜ ìºë¦­í„° ë¦¬ì…‹ í›„ ìºë¦­í„° ì •ë³´ ë‹¤ì‹œ ë¡œë”©í•˜ê¸°.
 
 //////////////////////////////////////////////////////////////////////
-// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : MF CharacterArena ¾÷µ¥ÀÌÆ® ÆĞÅ¶
+// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : MF CharacterArena ì—…ë°ì´íŠ¸ íŒ¨í‚·
 struct MSG_FtoA_ARENA_CHARACTERARENAINFO_UPDATA
 {
 	UID32_t			AccountUID;
@@ -10977,17 +10977,17 @@ struct MSG_FtoA_ARENA_CHARACTERARENAINFO_UPDATA
 	ClientIndex_t	AFSClientIndex;
 	SArenaPlayInfo	ArenaInfo;
 };
-// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : MF CharacterArena ¾÷µ¥ÀÌÆ® ÆĞÅ¶
+// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : MF CharacterArena ì—…ë°ì´íŠ¸ íŒ¨í‚·
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-03-27 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - 
-//#define T_FC_INFO_MSWARINFO_DISPLAY					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY)					// 2008-03-27 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ¸ğ¼±Àü Á¤º¸ Àü¼Û F->C
-//#define T_FC_INFO_MSWARINFO_DISPLAY_OPTION			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY_OPTION)			// 2008-03-27 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ¸ğ¼±Àü Á¤º¸ ¿É¼Ç Àü¼Û C->F
-//#define T_FC_INFO_MSWARINFO_DISPLAY_OPTION_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY_OPTION_OK)			// 2008-03-27 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ¸ğ¼±Àü Á¤º¸ ¿É¼Ç Àü¼Û F->C(n)
+// 2008-03-27 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - 
+//#define T_FC_INFO_MSWARINFO_DISPLAY					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY)					// 2008-03-27 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ëª¨ì„ ì „ ì •ë³´ ì „ì†¡ F->C
+//#define T_FC_INFO_MSWARINFO_DISPLAY_OPTION			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY_OPTION)			// 2008-03-27 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ëª¨ì„ ì „ ì •ë³´ ì˜µì…˜ ì „ì†¡ C->F
+//#define T_FC_INFO_MSWARINFO_DISPLAY_OPTION_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_DISPLAY_OPTION_OK)			// 2008-03-27 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ëª¨ì„ ì „ ì •ë³´ ì˜µì…˜ ì „ì†¡ F->C(n)
 //#define T_FC_INFO_STRATEGICPOINTINFO_DISPLAY_LIST	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_STRATEGICPOINTINFO_DISPLAY_LIST)		// 2015-05-01 by killburne
 //#define T_FC_INFO_STRATEGICPOINTINFO_DISPLAY		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_STRATEGICPOINTINFO_DISPLAY)			// 2015-05-02 by killburne
 struct SMSWARINFO_DISPLAY
-{// 2008-03-26 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - À¯Àú¿¡°Ô ÇÊ¿äÇÑ Á¤º¸ Ç¥½Ã µ¥ÀÌÅ¸
+{// 2008-03-26 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ìœ ì €ì—ê²Œ í•„ìš”í•œ ì •ë³´ í‘œì‹œ ë°ì´íƒ€
 	MapIndex_t		MapIndex;
 	INT				MapInfluenceType;
 	INT				HPRate;
@@ -10997,64 +10997,64 @@ struct SMSWARINFO_DISPLAY
 };
 
 struct MSG_FC_INFO_MSWARINFO_DISPLAY
-{// 2008-03-26 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - À¯Àú¿¡°Ô ÇÊ¿äÇÑ Á¤º¸ Ç¥½Ã µ¥ÀÌÅ¸
+{// 2008-03-26 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ìœ ì €ì—ê²Œ í•„ìš”í•œ ì •ë³´ í‘œì‹œ ë°ì´íƒ€
 	INT				MSWarInfoDisPlayListCount;
 	_ARRAY(SMSWARINFO_DISPLAY);
 };
 
 struct MSG_FC_INFO_MSWARINFO_DISPLAY_OPTION
-{// 2008-03-26 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ¸ğ¼±Àü Á¤º¸ ¿É¼Ç
+{// 2008-03-26 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ëª¨ì„ ì „ ì •ë³´ ì˜µì…˜
 	SHORT			MSWarOptionType;
 	UID32_t			CharacterUID;
 	ClientIndex_t	ClientIndex;
 };
 
 struct MSG_FC_INFO_MSWARINFO_DISPLAY_OPTION_OK
-{// 2008-03-26 by dhjin, ¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ¸ğ¼±Àü Á¤º¸ ¿É¼Ç
+{// 2008-03-26 by dhjin, ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ëª¨ì„ ì „ ì •ë³´ ì˜µì…˜
 	SHORT			MSWarOptionType;
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-//#define T_FC_INFO_MSWARINFO_RESULT				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_RESULT)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - ¸ğ¼±Àü °á°ú Á¤º¸ C->F
-//#define T_FC_INFO_MSWARINFO_RESULT_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_RESULT_OK)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - ¸ğ¼±Àü °á°ú Á¤º¸ F->C
-//#define T_FC_INFO_SPWARINFO_RESULT				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - °ÅÁ¡Àü °á°ú Á¤º¸ C->F
-//#define T_FC_INFO_SPWARINFO_RESULT_OK_HEADER	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK_HEADER)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - °ÅÁ¡Àü °á°ú Á¤º¸ F->C
-//#define T_FC_INFO_SPWARINFO_RESULT_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - °ÅÁ¡Àü °á°ú Á¤º¸ F->C
-//#define T_FC_INFO_SPWARINFO_RESULT_OK_DONE		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK_DONE)	// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - °ÅÁ¡Àü °á°ú Á¤º¸ F->C
+// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+//#define T_FC_INFO_MSWARINFO_RESULT				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_RESULT)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ëª¨ì„ ì „ ê²°ê³¼ ì •ë³´ C->F
+//#define T_FC_INFO_MSWARINFO_RESULT_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_MSWARINFO_RESULT_OK)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ëª¨ì„ ì „ ê²°ê³¼ ì •ë³´ F->C
+//#define T_FC_INFO_SPWARINFO_RESULT				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ê±°ì ì „ ê²°ê³¼ ì •ë³´ C->F
+//#define T_FC_INFO_SPWARINFO_RESULT_OK_HEADER	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK_HEADER)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ê±°ì ì „ ê²°ê³¼ ì •ë³´ F->C
+//#define T_FC_INFO_SPWARINFO_RESULT_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ê±°ì ì „ ê²°ê³¼ ì •ë³´ F->C
+//#define T_FC_INFO_SPWARINFO_RESULT_OK_DONE		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_SPWARINFO_RESULT_OK_DONE)	// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ê±°ì ì „ ê²°ê³¼ ì •ë³´ F->C
 struct MSG_FC_INFO_MSWARINFO_RESULT_OK
-{// 2008-04-02 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - ¸ğ¼±Àü °á°ú Á¤º¸ F->C
+{// 2008-04-02 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - ëª¨ì„ ì „ ê²°ê³¼ ì •ë³´ F->C
 	INT				MSWarInfoResultListCount;
 	_ARRAY(SMSWAR_INFO_RESULT);
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - 
-//#define T_FC_CHAT_LETTER_REQUEST_TITLE			(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE)			// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ¸®½ºÆ® ¿äÃ» C->F
-//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK_HEADER (MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK_HEADER)	// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK		(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK)			// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE	(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE)	// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_LETTER_READ					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_READ)						// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ÀĞ±â ¿äÃ» C->F
-//#define T_FC_CHAT_LETTER_READ_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_READ_OK)					// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ÀĞ±â ¿Ï·á F->C
-//#define T_FC_CHAT_LETTER_DELETE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_DELETE)					// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Áö¿ì±â ¿äÃ» C->F
-//#define T_FC_CHAT_LETTER_DELETE_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_DELETE_OK)				// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Áö¿ì±â ¿Ï·á F->C
-//#define T_FC_CHAT_LETTER_SEND					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_SEND)						// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Àü¼Û C->F
-//#define T_FC_CHAT_LETTER_SEND_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_SEND_OK)					// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Àü¼Û ¿Ï·á F->C 
-//#define T_FC_CHAT_LETTER_RECEIVE				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_RECEIVE)					// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Àü¼Û ¹ŞÀ½ F->C
-//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE			(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE)				// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ¸®½ºÆ® ¿äÃ» C->F
-//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_HEADER (MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_HEADER)	// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK		(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK)			// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE	(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE)		// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ¸®½ºÆ® Àü¼Û F->C
-//#define T_FC_CHAT_ALLLETTER_READ					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_READ)						// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ÀĞ±â ¿äÃ» C->F
-//#define T_FC_CHAT_ALLLETTER_READ_OK					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_READ_OK)					// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ÀĞ±â ¿Ï·á F->C
-//#define T_FC_CHAT_ALLLETTER_DELETE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_DELETE)					// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö Áö¿ì±â ¿äÃ» C->F
-//#define T_FC_CHAT_ALLLETTER_DELETE_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_DELETE_OK)					// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö Áö¿ì±â ¿Ï·á F->C
-//#define T_FC_CHAT_ALLLETTER_SEND					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_SEND)						// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö Àü¼Û C->F
-//#define T_FC_CHAT_ALLLETTER_SEND_OK					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_SEND_OK)					// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö Àü¼Û ¿Ï·á F->C 
-//#define T_FC_CHAT_ALLLETTER_RECEIVE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_RECEIVE)					// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö Àü¼Û ¹ŞÀ½ F->C
+// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - 
+//#define T_FC_CHAT_LETTER_REQUEST_TITLE			(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE)			// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë¦¬ìŠ¤íŠ¸ ìš”ì²­ C->F
+//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK_HEADER (MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK_HEADER)	// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK		(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK)			// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE	(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE)	// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_LETTER_READ					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_READ)						// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì½ê¸° ìš”ì²­ C->F
+//#define T_FC_CHAT_LETTER_READ_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_READ_OK)					// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì½ê¸° ì™„ë£Œ F->C
+//#define T_FC_CHAT_LETTER_DELETE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_DELETE)					// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì§€ìš°ê¸° ìš”ì²­ C->F
+//#define T_FC_CHAT_LETTER_DELETE_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_DELETE_OK)				// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì§€ìš°ê¸° ì™„ë£Œ F->C
+//#define T_FC_CHAT_LETTER_SEND					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_SEND)						// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì „ì†¡ C->F
+//#define T_FC_CHAT_LETTER_SEND_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_SEND_OK)					// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì „ì†¡ ì™„ë£Œ F->C 
+//#define T_FC_CHAT_LETTER_RECEIVE				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_LETTER_RECEIVE)					// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì „ì†¡ ë°›ìŒ F->C
+//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE			(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE)				// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ë¦¬ìŠ¤íŠ¸ ìš”ì²­ C->F
+//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_HEADER (MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_HEADER)	// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK		(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK)			// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE	(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE)		// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡ F->C
+//#define T_FC_CHAT_ALLLETTER_READ					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_READ)						// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì½ê¸° ìš”ì²­ C->F
+//#define T_FC_CHAT_ALLLETTER_READ_OK					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_READ_OK)					// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì½ê¸° ì™„ë£Œ F->C
+//#define T_FC_CHAT_ALLLETTER_DELETE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_DELETE)					// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì§€ìš°ê¸° ìš”ì²­ C->F
+//#define T_FC_CHAT_ALLLETTER_DELETE_OK				(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_DELETE_OK)					// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì§€ìš°ê¸° ì™„ë£Œ F->C
+//#define T_FC_CHAT_ALLLETTER_SEND					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_SEND)						// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì „ì†¡ C->F
+//#define T_FC_CHAT_ALLLETTER_SEND_OK					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_SEND_OK)					// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì „ì†¡ ì™„ë£Œ F->C 
+//#define T_FC_CHAT_ALLLETTER_RECEIVE					(MessageType_t)((T0_FC_CHAT<<8)|T1_FC_CHAT_ALLLETTER_RECEIVE)					// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì „ì†¡ ë°›ìŒ F->C
 
 struct MSG_FC_CHAT_LETTER_REQUEST_TITLE_OK
-{// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ¸®½ºÆ® Àü¼Û
+{// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë¦¬ìŠ¤íŠ¸ ì „ì†¡
 	UID64_t			LetterUID;
 	CHAR			SendCharacterName[SIZE_MAX_CHARACTER_NAME];
 	ATUM_DATE_TIME  SendDate;
@@ -11064,33 +11064,33 @@ struct MSG_FC_CHAT_LETTER_REQUEST_TITLE_OK
 using MSG_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK = MSG_FC_CHAT_LETTER_REQUEST_TITLE_OK;
 
 struct MSG_FC_CHAT_LETTER_READ
-{// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ³»¿ë ¿äÃ»
+{// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë‚´ìš© ìš”ì²­
 	UID64_t			LetterUID;
 	bool			CheckRead;
 };
 using MSG_FC_CHAT_ALLLETTER_READ = MSG_FC_CHAT_LETTER_READ;
 
 struct MSG_FC_CHAT_LETTER_READ_OK
-{// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ³»¿ë Àü¼Û
+{// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë‚´ìš© ì „ì†¡
 	UID64_t			LetterUID;
 	CHAR			Content[SIZE_MAX_LETTER_CONTENT];
 };
 using MSG_FC_CHAT_ALLLETTER_READ_OK = MSG_FC_CHAT_LETTER_READ_OK;
 
 struct MSG_FC_CHAT_LETTER_DELETE
-{// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Áö¿ì±â 
+{// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì§€ìš°ê¸° 
 	UID64_t			LetterUID;
 };
 using MSG_FC_CHAT_ALLLETTER_DELETE = MSG_FC_CHAT_LETTER_DELETE;
 
 struct MSG_FC_CHAT_LETTER_DELETE_OK
-{// 2008-04-29 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Áö¿ì±â ¿Ï·á
+{// 2008-04-29 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì§€ìš°ê¸° ì™„ë£Œ
 	UID64_t			LetterUID;
 };
 using MSG_FC_CHAT_ALLLETTER_DELETE_OK = MSG_FC_CHAT_LETTER_DELETE_OK;
 
 struct MSG_FC_CHAT_LETTER_SEND
-{// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö º¸³»±â
+{// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë³´ë‚´ê¸°
 	INT				SendCharacterUID;
 	CHAR			RecvCharacterName[SIZE_MAX_CHARACTER_NAME];
 	CHAR			Title[SIZE_MAX_LETTER_TITLE];
@@ -11099,28 +11099,28 @@ struct MSG_FC_CHAT_LETTER_SEND
 using MSG_FC_CHAT_ALLLETTER_SEND = MSG_FC_CHAT_LETTER_SEND;
 
 struct MSG_FC_CHAT_LETTER_RECEIVE
-{// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö Àü¼Û ¹ŞÀ½
+{// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì „ì†¡ ë°›ìŒ
 	CHAR				SendCharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 using MSG_FC_CHAT_ALLLETTER_RECEIVE = MSG_FC_CHAT_LETTER_RECEIVE;
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-08-18 by dhjin, ¼¼·Â¸¶Å©ÀÌº¥Æ® 
+// 2008-08-18 by dhjin, ì„¸ë ¥ë§ˆí¬ì´ë²¤íŠ¸ 
 //#define T_FC_EVENT_INFLUENCEMARK		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_INFLUENCEMARK)		
 //#define T_FC_EVENT_INFLUENCEMARKEND		(MessageType_t)((T0_FC_EVENT<<8)|T1_FC_EVENT_INFLUENCEMARKEND)
 struct MSG_FC_EVENT_INFLUENCEMARK
 {
-	BYTE			Influence;		// ¼¼·Â¸¶Å©ÀÌº¥Æ®¼¼·Â
+	BYTE			Influence;		// ì„¸ë ¥ë§ˆí¬ì´ë²¤íŠ¸ì„¸ë ¥
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ
-//#define T_FC_QUEST_REQUEST_MISSIONMASTER_HELP			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_REQUEST_MISSIONMASTER_HELP)		// 2008-12-02 by dhjin, C -> F, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ»
-//#define T_FC_QUEST_REQUEST_MISSIONMASTER_HELP_INVITE	(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_REQUEST_MISSIONMASTER_HELP_INVITE)	// 2008-12-02 by dhjin, F -> C(n), ·£´ıÀ¸·Î »ÌÈù ¹Ì¼Ç¸¶½ºÅÍ¿¡°Ô ¿äÃ»
-//#define T_FC_QUEST_MISSIONMASTER_HELP_INVITE			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_INVITE)			// 2008-12-02 by dhjin, C -> F, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ» ½Â¶ô 
-//#define T_FC_QUEST_MISSIONMASTER_HELP_INVITE_OK			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_INVITE_OK)		// 2008-12-02 by dhjin, F -> C, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ» ½Â¶ô
-//#define T_FC_QUEST_MISSIONMASTER_HELP_REJECT			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_REJECT)			// 2008-12-02 by dhjin, C -> F, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ» °ÅÀı 
-//#define T_FC_QUEST_MISSIONMASTER_HELP_REJECT_OK			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_REJECT_OK)		// 2008-12-02 by dhjin, F -> C, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ» °ÅÀı
+// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°
+//#define T_FC_QUEST_REQUEST_MISSIONMASTER_HELP			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_REQUEST_MISSIONMASTER_HELP)		// 2008-12-02 by dhjin, C -> F, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­
+//#define T_FC_QUEST_REQUEST_MISSIONMASTER_HELP_INVITE	(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_REQUEST_MISSIONMASTER_HELP_INVITE)	// 2008-12-02 by dhjin, F -> C(n), ëœë¤ìœ¼ë¡œ ë½‘íŒ ë¯¸ì…˜ë§ˆìŠ¤í„°ì—ê²Œ ìš”ì²­
+//#define T_FC_QUEST_MISSIONMASTER_HELP_INVITE			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_INVITE)			// 2008-12-02 by dhjin, C -> F, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­ ìŠ¹ë½ 
+//#define T_FC_QUEST_MISSIONMASTER_HELP_INVITE_OK			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_INVITE_OK)		// 2008-12-02 by dhjin, F -> C, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­ ìŠ¹ë½
+//#define T_FC_QUEST_MISSIONMASTER_HELP_REJECT			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_REJECT)			// 2008-12-02 by dhjin, C -> F, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­ ê±°ì ˆ 
+//#define T_FC_QUEST_MISSIONMASTER_HELP_REJECT_OK			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_MISSIONMASTER_HELP_REJECT_OK)		// 2008-12-02 by dhjin, F -> C, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­ ê±°ì ˆ
 struct MSG_FC_QUEST_REQUEST_MISSIONMASTER_HELP
 {
 	INT				QuestIdx;
@@ -11129,59 +11129,59 @@ struct MSG_FC_QUEST_REQUEST_MISSIONMASTER_HELP
 struct MSG_FC_QUEST_REQUEST_MISSIONMASTER_HELP_INVITE
 {
 	ClientIndex_t	ClientIdx;
-	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ»ÇÑ ÄÉ¸¯ÅÍ
+	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­í•œ ì¼€ë¦­í„°
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 	PartyID_t		PartyID;
 };
 
 struct MSG_FC_QUEST_MISSIONMASTER_HELP_INVITE
 {
-	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ»ÇÑ ÄÉ¸¯ÅÍ
+	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­í•œ ì¼€ë¦­í„°
 };
 
 struct MSG_FC_QUEST_MISSIONMASTER_HELP_INVITE_OK
 {
 	ClientIndex_t	ClientIdx;
-	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ ÄÉ¸¯ÅÍ
+	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° ì¼€ë¦­í„°
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 struct MSG_FC_QUEST_MISSIONMASTER_HELP_REJECT
 {
-	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ ¿äÃ»ÇÑ ÄÉ¸¯ÅÍ
+	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° ìš”ì²­í•œ ì¼€ë¦­í„°
 };
 
 struct MSG_FC_QUEST_MISSIONMASTER_HELP_REJECT_OK
 {
 	ClientIndex_t	ClientIdx;
-	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ ÄÉ¸¯ÅÍ
+	UID32_t			CharacterUID;		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„° ì¼€ë¦­í„°
 	char			CharacterName[SIZE_MAX_CHARACTER_NAME];
 };
 
 //////////////////////////////////////////////////////////////////////////
-// 2009-01-12 by dhjin, ¼±Àü Æ÷°í -
-//#define T_FC_INFO_DECLARATION_MSWAR_INFO		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_INFO)		// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í Á¤º¸ ¿äÃ» C->F
-//#define T_FC_INFO_DECLARATION_MSWAR_INFO_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_INFO_OK)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í Á¤º¸ Àü¼Û F->C
-//#define T_FC_INFO_DECLARATION_MSWAR_SET			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_SET)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í ½Ã°£ ¹× Æ÷±â ¼³Á¤ C->F
-//#define T_FI_INFO_DECLARATION_MSWAR_SET_OK		(MessageType_t)((T0_FI_INFO<<8)|T1_FI_INFO_DECLARATION_MSWAR_SET_OK)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í ½Ã°£ ¹× Æ÷±â ¼³Á¤ F->I
-//#define T_IC_INFO_DECLARATION_MSWAR_SET_OK		(MessageType_t)((T0_IC_INFO<<8)|T1_IC_INFO_DECLARATION_MSWAR_SET_OK)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í ½Ã°£ ¹× Æ÷±â ¼³Á¤ I->C
+// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  -
+//#define T_FC_INFO_DECLARATION_MSWAR_INFO		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_INFO)		// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì •ë³´ ìš”ì²­ C->F
+//#define T_FC_INFO_DECLARATION_MSWAR_INFO_OK		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_INFO_OK)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì •ë³´ ì „ì†¡ F->C
+//#define T_FC_INFO_DECLARATION_MSWAR_SET			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_DECLARATION_MSWAR_SET)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì‹œê°„ ë° í¬ê¸° ì„¤ì • C->F
+//#define T_FI_INFO_DECLARATION_MSWAR_SET_OK		(MessageType_t)((T0_FI_INFO<<8)|T1_FI_INFO_DECLARATION_MSWAR_SET_OK)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì‹œê°„ ë° í¬ê¸° ì„¤ì • F->I
+//#define T_IC_INFO_DECLARATION_MSWAR_SET_OK		(MessageType_t)((T0_IC_INFO<<8)|T1_IC_INFO_DECLARATION_MSWAR_SET_OK)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì‹œê°„ ë° í¬ê¸° ì„¤ì • I->C
 struct MSG_FC_INFO_DECLARATION_MSWAR_INFO_OK
-{// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í Á¤º¸ Àü¼Û F->C
+{// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì •ë³´ ì „ì†¡ F->C
 	INT								DeclarationOfWarListCount;
 	SDECLARATION_OF_WAR_FORBID_TIME	ForbidTime;
 	_ARRAY(SDECLARATION_OF_WAR);
 };
 
 struct MSG_FC_INFO_DECLARATION_MSWAR_SET
-{// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í ½Ã°£ ¹× Æ÷±â ¼³Á¤ C->F
+{// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì‹œê°„ ë° í¬ê¸° ì„¤ì • C->F
 	BYTE			MSWarStep;
 	ATUM_DATE_TIME	MSWarStartTime;
 	bool			GiveUp;
 };
 
 struct MSG_FI_INFO_DECLARATION_MSWAR_SET_OK
-{// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼±ÀüÆ÷°í ½Ã°£ ¹× Æ÷±â ¼³Á¤ F->C
-	BYTE			Influence;		// ¼±Àü Æ÷°íÇÑ ÁöµµÀÚ ¼¼·Â.
+{// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„ ì „í¬ê³  ì‹œê°„ ë° í¬ê¸° ì„¤ì • F->C
+	BYTE			Influence;		// ì„ ì „ í¬ê³ í•œ ì§€ë„ì ì„¸ë ¥.
 	ATUM_DATE_TIME	MSWarStartTime;
 	bool			GiveUp;
 	BYTE			SelectCount;
@@ -11190,17 +11190,17 @@ using MSG_IC_INFO_DECLARATION_MSWAR_SET_OK = MSG_FI_INFO_DECLARATION_MSWAR_SET_O
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-//#define T_FC_INFO_WRK_GET_SERVICE_INFO					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO)			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - C->F
-//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK)			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK_IMAGE			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK_IMAGE)	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK_DONE			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK_DONE)	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_RANKER_LIST					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_RANKER_LIST)				// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - C->F
-//#define T_FC_INFO_WRK_GET_LEVEL_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_LEVEL_RANKER_LIST_OK)	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_FAME_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_FAME_RANKER_LIST_OK)		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_PVP_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_PVP_RANKER_LIST_OK)		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_INFO_WRK_GET_SELF_RANKING					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SELF_RANKING)			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - C->F
-//#define T_FC_INFO_WRK_GET_SELF_RANKING_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SELF_RANKING_OK)			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - F->C
+// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+//#define T_FC_INFO_WRK_GET_SERVICE_INFO					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO)			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - C->F
+//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK)			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK_IMAGE			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK_IMAGE)	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_SERVICE_INFO_OK_DONE			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SERVICE_INFO_OK_DONE)	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_RANKER_LIST					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_RANKER_LIST)				// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - C->F
+//#define T_FC_INFO_WRK_GET_LEVEL_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_LEVEL_RANKER_LIST_OK)	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_FAME_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_FAME_RANKER_LIST_OK)		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_PVP_RANKER_LIST_OK			(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_PVP_RANKER_LIST_OK)		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_INFO_WRK_GET_SELF_RANKING					(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SELF_RANKING)			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - C->F
+//#define T_FC_INFO_WRK_GET_SELF_RANKING_OK				(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_WRK_GET_SELF_RANKING_OK)			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
 struct MSG_FC_INFO_WRK_GET_SERVICE_INFO_OK
 {
 	//INT		ServiceUID;
@@ -11251,14 +11251,14 @@ struct MSG_FC_INFO_WRK_GET_SELF_RANKING_OK
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - 
-//#define T_FC_QUEST_INSERT_QUEST			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_INSERT_QUEST)	// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - F->C
-//#define T_FC_QUEST_DELETE_QUEST			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_DELETE_QUEST)	// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - F->C
+// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - 
+//#define T_FC_QUEST_INSERT_QUEST			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_INSERT_QUEST)	// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
+//#define T_FC_QUEST_DELETE_QUEST			(MessageType_t)((T0_FC_QUEST<<8)|T1_FC_QUEST_DELETE_QUEST)	// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - F->C
 
 struct MSG_FC_QUEST_INSERT_QUEST
 {
 	INT		QuestIndex;
-	BYTE	QuestState;				// ¿Ï·á, ÁøÇàÁß
+	BYTE	QuestState;				// ì™„ë£Œ, ì§„í–‰ì¤‘
 };
 struct MSG_FC_QUEST_DELETE_QUEST
 {
@@ -11266,75 +11266,75 @@ struct MSG_FC_QUEST_DELETE_QUEST
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
-//#define T_FN_MONSTER_HPTALK							(MessageType_t)((T0_FN_MONSTER<<8)|T1_FN_MONSTER_HPTALK)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - , N->F
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
+//#define T_FN_MONSTER_HPTALK							(MessageType_t)((T0_FN_MONSTER<<8)|T1_FN_MONSTER_HPTALK)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - , N->F
 struct MSG_FN_MONSTER_HPTALK {
 	MAP_CHANNEL_INDEX				ChannelIndex;
-	ClientIndex_t					MonsterIndex;				// ÀÎµ¦½º
-	INT								MonsterUnitKind;			// ¸ó½ºÅÍ °íÀ¯¹øÈ£
+	ClientIndex_t					MonsterIndex;				// ì¸ë±ìŠ¤
+	INT								MonsterUnitKind;			// ëª¬ìŠ¤í„° ê³ ìœ ë²ˆí˜¸
 	HPValueRate_t					HPValueRate;
 	eHPACTION_TALK_IMPORTANCE		HPTalkImportance;
 	MSec_t							HPCameraTremble;
-	ClientIndex_t					TargetIndex;				// ´ë»ó¿¡ °ü·ÃµÈ ´ë»ç°¡ ÀÖ´Ù¸é ¼³Á¤ÇÑ´Ù.	
+	ClientIndex_t					TargetIndex;				// ëŒ€ìƒì— ê´€ë ¨ëœ ëŒ€ì‚¬ê°€ ìˆë‹¤ë©´ ì„¤ì •í•œë‹¤.	
 	HPTalk_t						HPTalk[SIZE_MAX_HPTALK_DESCRIPTION];
 };
 
-//#define T_FC_MONSTER_HPTALK							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_HPTALK)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - , F->C(n)
+//#define T_FC_MONSTER_HPTALK							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_HPTALK)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - , F->C(n)
 struct MSG_FC_MONSTER_HPTALK {
-	ClientIndex_t					MonsterIndex;				// ÀÎµ¦½º
-	INT								MonsterUnitKind;			// ¸ó½ºÅÍ °íÀ¯¹øÈ£
+	ClientIndex_t					MonsterIndex;				// ì¸ë±ìŠ¤
+	INT								MonsterUnitKind;			// ëª¬ìŠ¤í„° ê³ ìœ ë²ˆí˜¸
 	eHPACTION_TALK_IMPORTANCE		HPTalkImportance;
 	MSec_t							HPCameraTremble;
-	ClientIndex_t					TargetIndex;				// ´ë»ó¿¡ °ü·ÃµÈ ´ë»ç°¡ ÀÖ´Ù¸é ¼³Á¤ÇÑ´Ù.
+	ClientIndex_t					TargetIndex;				// ëŒ€ìƒì— ê´€ë ¨ëœ ëŒ€ì‚¬ê°€ ìˆë‹¤ë©´ ì„¤ì •í•œë‹¤.
 	HPTalk_t						HPTalk[SIZE_MAX_HPTALK_DESCRIPTION];
 };
 
-//#define T_FN_BATTLE_ATTACK_SKILL					(MessageType_t)((T0_FN_BATTLE<<8)|T1_FN_BATTLE_ATTACK_SKILL)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - N -> F
+//#define T_FN_BATTLE_ATTACK_SKILL					(MessageType_t)((T0_FN_BATTLE<<8)|T1_FN_BATTLE_ATTACK_SKILL)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - N -> F
 struct MSG_FN_BATTLE_ATTACK_SKILL
 {
 	MAP_CHANNEL_INDEX	MapInfo;
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
-	ClientIndex_t		ClientIndex;				// Å¬¶óÀÌ¾ğÆ® ÀÎµ¦½º
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
+	ClientIndex_t		ClientIndex;				// í´ë¼ì´ì–¸íŠ¸ ì¸ë±ìŠ¤
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 	AVECTOR3			PositionVector;
 	AVECTOR3			TargetVector;
-	float				fIncreasePowerRatio;		// ½ºÅ³ÀÇ ÆÄ¿ö(µ¥¹ÌÁö or ¹öÇÁ/µğ¹öÇÁ °ü·Ã È¿°ú) Áõ°¡À².		// 2010. 06. 08 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¾Æ±º µ¿ÀÏ ¹ë·±½º Àû¿ë.) - ¸ó½ºÅÍ ½ºÅ³ ¹ë·±½º Àû¿ë.
+	float				fIncreasePowerRatio;		// ìŠ¤í‚¬ì˜ íŒŒì›Œ(ë°ë¯¸ì§€ or ë²„í”„/ë””ë²„í”„ ê´€ë ¨ íš¨ê³¼) ì¦ê°€ìœ¨.		// 2010. 06. 08 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì•„êµ° ë™ì¼ ë°¸ëŸ°ìŠ¤ ì ìš©.) - ëª¬ìŠ¤í„° ìŠ¤í‚¬ ë°¸ëŸ°ìŠ¤ ì ìš©.
 };
 
-//#define T_FC_MONSTER_SKILL							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_SKILL)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - , F->C(n)
+//#define T_FC_MONSTER_SKILL							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_SKILL)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - , F->C(n)
 struct MSG_FC_MONSTER_SKILL {
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
-	ClientIndex_t		ClientIndex;				// Å¬¶óÀÌ¾ğÆ® ÀÎµ¦½º
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
+	ClientIndex_t		ClientIndex;				// í´ë¼ì´ì–¸íŠ¸ ì¸ë±ìŠ¤
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 	AVECTOR3			PositionVector;
 	AVECTOR3			TargetVector;
 };
 
-//#define T_FC_BATTLE_MONSTER_BARRIER_USING		(MessageType_t)((T0_FC_BATTLE<<8)|T1_FC_BATTLE_MONSTER_BARRIER_USING)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - F -> C
+//#define T_FC_BATTLE_MONSTER_BARRIER_USING		(MessageType_t)((T0_FC_BATTLE<<8)|T1_FC_BATTLE_MONSTER_BARRIER_USING)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - F -> C
 struct MSG_FC_BATTLE_MONSTER_BARRIER_USING {
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
 };
 
-//#define T_FC_BATTLE_MONSTER_BARRIER_USE			(MessageType_t)((T0_FC_BATTLE<<8)|T1_FC_BATTLE_MONSTER_BARRIER_USE)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - F -> C(n)
+//#define T_FC_BATTLE_MONSTER_BARRIER_USE			(MessageType_t)((T0_FC_BATTLE<<8)|T1_FC_BATTLE_MONSTER_BARRIER_USE)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - F -> C(n)
 struct MSG_FC_BATTLE_MONSTER_BARRIER_USE {
-	ClientIndex_t		MonsterIndex;				// ½ºÅ³À» »ç¿ëÇÑ ¸ó½ºÅÍ
+	ClientIndex_t		MonsterIndex;				// ìŠ¤í‚¬ì„ ì‚¬ìš©í•œ ëª¬ìŠ¤í„°
 	INT					SkillItemNum;
 };
 
-//#define T_FC_CHARACTER_DEBUFF_DOT_INFO			(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_INFO)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - C -> F
-//#define T_FC_CHARACTER_DEBUFF_DOT_INFO_OK		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_INFO_OK)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - F -> C
-//#define T_FC_CHARACTER_DEBUFF_DOT_APPLYING		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_APPLYING)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - F -> C
-//#define T_FC_CHARACTER_DEBUFF_DOT_RELEASE		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_RELEASE)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - F -> C
+//#define T_FC_CHARACTER_DEBUFF_DOT_INFO			(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_INFO)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - C -> F
+//#define T_FC_CHARACTER_DEBUFF_DOT_INFO_OK		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_INFO_OK)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - F -> C
+//#define T_FC_CHARACTER_DEBUFF_DOT_APPLYING		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_APPLYING)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - F -> C
+//#define T_FC_CHARACTER_DEBUFF_DOT_RELEASE		(MessageType_t)((T0_FC_CHARACTER<<8)|T1_FC_CHARACTER_DEBUFF_DOT_RELEASE)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - F -> C
 struct MSG_FC_CHARACTER_DEBUFF_DOT_INFO {
 	UID32_t			CharacterUID;
 };
 
 struct MSG_DEBUFF_INFO {
-	INT					ItemNum;						// ¾ÆÀÌÅÛ °íÀ¯¹øÈ£, ÀåÂø ¾ÆÀÌÅÛÀÏ ¶§ (ITEM_BASE*)
+	INT					ItemNum;						// ì•„ì´í…œ ê³ ìœ ë²ˆí˜¸, ì¥ì°© ì•„ì´í…œì¼ ë•Œ (ITEM_BASE*)
 };
 
 struct MSG_DOT_INFO {
-	INT					ItemNum;						// ¾ÆÀÌÅÛ °íÀ¯¹øÈ£, ÀåÂø ¾ÆÀÌÅÛÀÏ ¶§ (ITEM_BASE*)
+	INT					ItemNum;						// ì•„ì´í…œ ê³ ìœ ë²ˆí˜¸, ì¥ì°© ì•„ì´í…œì¼ ë•Œ (ITEM_BASE*)
 };
 
 struct MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK {
@@ -11355,8 +11355,8 @@ struct MSG_FC_CHARACTER_DEBUFF_DOT_RELEASE {
 };
 
 
-//#define T_FC_INFINITY_MODE_LIST					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MODE_LIST)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸®½ºÆ® ¿äÃ», C -> F
-//#define T_FC_INFINITY_MODE_LIST_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MODE_LIST_OK)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸®½ºÆ® ¿äÃ», F -> C
+//#define T_FC_INFINITY_MODE_LIST					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MODE_LIST)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë¦¬ìŠ¤íŠ¸ ìš”ì²­, C -> F
+//#define T_FC_INFINITY_MODE_LIST_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MODE_LIST_OK)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë¦¬ìŠ¤íŠ¸ ìš”ì²­, F -> C
 struct INFINITY_MODE_INFO {
 	MapIndex_t		InfinityMapIdx;
 	InfiModeUID_t	InfinityModeUID;
@@ -11364,19 +11364,19 @@ struct INFINITY_MODE_INFO {
 	Lv_t			MinLv;
 	Lv_t			MaxLv;
 	bool			Join;
-	Minute_t		TimePenaltyValue;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ç¸Á½Ã ÆĞ³ÎÆ¼ Ãß°¡
-	INT				MinMemberCount;			// 2009-09-09 ~ 2010-01-22 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÃÖ¼Ò,ÃÖ´ëÀÎ¿ø Á¤º¸ Ãß°¡
-	INT				MaxMemberCount;			// 2009-09-09 ~ 2010-01-22 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÃÖ¼Ò,ÃÖ´ëÀÎ¿ø Á¤º¸ Ãß°¡
-	INT				InfinityDifficultyStep; // 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¼³Á¤µÈ ³­ÀÌµµ Á¤º¸ Ãß°¡.
-	Penalty_t		HPPenaltyValue;			// 2011-06-14 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÆĞ³ÎÆ¼ ±â´É Ãß°¡ (HP ¹× ½Ã°£ µ¿½Ã Áö¿øÀ» À§ÇØ)
+	Minute_t		TimePenaltyValue;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‚¬ë§ì‹œ íŒ¨ë„í‹° ì¶”ê°€
+	INT				MinMemberCount;			// 2009-09-09 ~ 2010-01-22 by dhjin, ì¸í”¼ë‹ˆí‹° - ìµœì†Œ,ìµœëŒ€ì¸ì› ì •ë³´ ì¶”ê°€
+	INT				MaxMemberCount;			// 2009-09-09 ~ 2010-01-22 by dhjin, ì¸í”¼ë‹ˆí‹° - ìµœì†Œ,ìµœëŒ€ì¸ì› ì •ë³´ ì¶”ê°€
+	INT				InfinityDifficultyStep; // 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ì„¤ì •ëœ ë‚œì´ë„ ì •ë³´ ì¶”ê°€.
+	Penalty_t		HPPenaltyValue;			// 2011-06-14 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - íŒ¨ë„í‹° ê¸°ëŠ¥ ì¶”ê°€ (HP ë° ì‹œê°„ ë™ì‹œ ì§€ì›ì„ ìœ„í•´)
 };
 struct MSG_FC_INFINITY_MODE_LIST_OK {
 	INT				InfinityModeListCount;
 	_ARRAY(INFINITY_MODE_INFO);
 };
 
-//#define T_FC_INFINITY_READY_LIST					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_LIST)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸®½ºÆ® ¿äÃ», C -> F
-//#define T_FC_INFINITY_READY_LIST_OK					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_LIST_OK)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸®½ºÆ® ¿äÃ», F -> C
+//#define T_FC_INFINITY_READY_LIST					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_LIST)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë¦¬ìŠ¤íŠ¸ ìš”ì²­, C -> F
+//#define T_FC_INFINITY_READY_LIST_OK					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_LIST_OK)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë¦¬ìŠ¤íŠ¸ ìš”ì²­, F -> C
 struct MSG_FC_INFINITY_READY_LIST {
 	MapIndex_t		InfinityMapIdx;
 	eINFINITY_MODE	InfinityMode;
@@ -11395,8 +11395,8 @@ struct MSG_FC_INFINITY_READY_LIST_OK {
 	_ARRAY(INFINITY_READY_LIST);
 };
 
-//#define T_FC_INFINITY_CREATE						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CREATE)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ı¼º ¿äÃ», C -> F
-//#define T_FC_INFINITY_CREATE_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CREATE_OK)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ı¼º ¿äÃ», F -> C
+//#define T_FC_INFINITY_CREATE						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CREATE)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì„± ìš”ì²­, C -> F
+//#define T_FC_INFINITY_CREATE_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CREATE_OK)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì„± ìš”ì²­, F -> C
 struct MSG_FC_INFINITY_CREATE {
 	InfiModeUID_t	InfinityModeUID;
 	eINFINITY_MODE	InfinityMode;
@@ -11407,22 +11407,22 @@ struct MSG_FC_INFINITY_CREATE {
 struct MSG_FC_INFINITY_CREATE_OK {
 	InfinityCreateUID_t	InfinityCreateUID;
 
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	INT					IntinityDifficultyLevel;
-	// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
 };
 
-//#define T_FC_INFINITY_JOIN							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °¡ÀÔ ¿äÃ», C -> F
-//#define T_FC_INFINITY_JOIN_REQUEST_MASTERUSER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_REQUEST_MASTERUSER)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¹æÀå¿¡°Å °¡ÀÔÀÚ ½ÂÀÎ ¿©ºÎ ¿äÃ», F -> C
-//#define T_FC_INFINITY_JOIN_REQUEST_MASTERUSER_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_REQUEST_MASTERUSER_OK)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¹æÀå¿¡°Å °¡ÀÔÀÚ ½ÂÀÎ ¿©ºÎ ¿äÃ», C -> F
-//#define T_FC_INFINITY_JOIN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_OK)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °¡ÀÔ ¿äÃ», F -> C
-//#define T_FC_INFINITY_MEMBER_INFO_LIST				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MEMBER_INFO_LIST)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸É¹ö Á¤º¸, C -> F
-//#define T_FC_INFINITY_MEMBER_INFO_LIST_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MEMBER_INFO_LIST_OK)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸É¹ö Á¤º¸, F -> C
+//#define T_FC_INFINITY_JOIN							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê°€ì… ìš”ì²­, C -> F
+//#define T_FC_INFINITY_JOIN_REQUEST_MASTERUSER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_REQUEST_MASTERUSER)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë°©ì¥ì—ê±° ê°€ì…ì ìŠ¹ì¸ ì—¬ë¶€ ìš”ì²­, F -> C
+//#define T_FC_INFINITY_JOIN_REQUEST_MASTERUSER_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_REQUEST_MASTERUSER_OK)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë°©ì¥ì—ê±° ê°€ì…ì ìŠ¹ì¸ ì—¬ë¶€ ìš”ì²­, C -> F
+//#define T_FC_INFINITY_JOIN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_OK)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê°€ì… ìš”ì²­, F -> C
+//#define T_FC_INFINITY_MEMBER_INFO_LIST				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MEMBER_INFO_LIST)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§´ë²„ ì •ë³´, C -> F
+//#define T_FC_INFINITY_MEMBER_INFO_LIST_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MEMBER_INFO_LIST_OK)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§´ë²„ ì •ë³´, F -> C
 struct MSG_FC_INFINITY_JOIN {
 	eINFINITY_MODE		InfinityMode;
 	InfinityCreateUID_t	InfinityCreateUID;
-	InfiModeUID_t		InfinityModeUID;		// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
+	InfiModeUID_t		InfinityModeUID;		// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
 };
 struct MSG_FC_INFINITY_JOIN_REQUEST_MASTERUSER {
 	ClientIndex_t		ReQuestClientIdx;
@@ -11456,12 +11456,12 @@ struct MSG_FC_INFINITY_MEMBER_INFO_LIST_OK {
 	_ARRAY(INFINITY_MEMBER_INFO_LIST);
 };
 
-//#define T_FC_INFINITY_CHANGE_MASTER					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_MASTER)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸¶½ºÅÍ º¯°æ, C -> F
-//#define T_FC_INFINITY_CHANGE_MASTER_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_MASTER_OK)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸¶½ºÅÍ º¯°æ, F -> C
-//#define T_FC_INFINITY_LEAVE							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_LEAVE)					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Å»Åğ, C -> F
-//#define T_FC_INFINITY_LEAVE_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_LEAVE_OK)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Å»Åğ, F -> C
-//#define T_FC_INFINITY_BAN							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_BAN)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Ãß¹æ, C -> F
-//#define T_FC_INFINITY_BAN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_BAN_OK)					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Ãß¹æ, F -> C
+//#define T_FC_INFINITY_CHANGE_MASTER					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_MASTER)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§ˆìŠ¤í„° ë³€ê²½, C -> F
+//#define T_FC_INFINITY_CHANGE_MASTER_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_MASTER_OK)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§ˆìŠ¤í„° ë³€ê²½, F -> C
+//#define T_FC_INFINITY_LEAVE							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_LEAVE)					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ íƒˆí‡´, C -> F
+//#define T_FC_INFINITY_LEAVE_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_LEAVE_OK)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ íƒˆí‡´, F -> C
+//#define T_FC_INFINITY_BAN							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_BAN)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì¶”ë°©, C -> F
+//#define T_FC_INFINITY_BAN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_BAN_OK)					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì¶”ë°©, F -> C
 struct MSG_FC_INFINITY_CHANGE_MASTER {
 	ClientIndex_t		ChangeMasterClientIdx;
 };
@@ -11478,19 +11478,19 @@ struct MSG_FC_INFINITY_BAN_OK {
 	ClientIndex_t		BanClientIdx;
 };
 
-//#define T_FtoA_INFINITY_IMPUTE_LIST					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_IMPUTE_LIST)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ±Í¼Ó Á¤º¸ Àü¼Û, MFS -> AFS
+//#define T_FtoA_INFINITY_IMPUTE_LIST					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_IMPUTE_LIST)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê·€ì† ì •ë³´ ì „ì†¡, MFS -> AFS
 struct MSG_FtoA_INFINITY_IMPUTE_LIST {
 	ClientIndex_t	AFSClientIndex;
 	INT				InfinityImputeListCount;
-	bool			bHaveReentryTicket;			// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
+	bool			bHaveReentryTicket;			// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
 	_ARRAY(INFINITY_IMPUTE);
 };
 
-//#define T_FC_INFINITY_READY							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ·¡µğ ¹öÆ° ´©¸§, C -> F
-//#define T_FC_INFINITY_READY_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_OK)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ·¡µğ ¹öÆ° ´©¸§, F -> C
-//#define T_FC_INFINITY_READY_CANCEL					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ·¡µğÃë¼Ò ¹öÆ° ´©¸§, C -> F
-//#define T_FC_INFINITY_READY_CANCEL_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL_OK)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ·¡µğÃë¼Ò ¹öÆ° ´©¸§, F -> C
-//#define T_FC_INFINITY_READY_CANCEL_ALL_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL_ALL_OK)	// // 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.) - ÀÎÇÇ´ÏÆ¼ - ³­ÀÌµµ º¯°æ½Ã ¸ğµç ·¡µğ Ãë¼Ò. ( AFS -> C )
+//#define T_FC_INFINITY_READY							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë˜ë”” ë²„íŠ¼ ëˆ„ë¦„, C -> F
+//#define T_FC_INFINITY_READY_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_OK)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë˜ë”” ë²„íŠ¼ ëˆ„ë¦„, F -> C
+//#define T_FC_INFINITY_READY_CANCEL					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë˜ë””ì·¨ì†Œ ë²„íŠ¼ ëˆ„ë¦„, C -> F
+//#define T_FC_INFINITY_READY_CANCEL_OK				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL_OK)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë˜ë””ì·¨ì†Œ ë²„íŠ¼ ëˆ„ë¦„, F -> C
+//#define T_FC_INFINITY_READY_CANCEL_ALL_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_CANCEL_ALL_OK)	// // 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.) - ì¸í”¼ë‹ˆí‹° - ë‚œì´ë„ ë³€ê²½ì‹œ ëª¨ë“  ë˜ë”” ì·¨ì†Œ. ( AFS -> C )
 struct MSG_FC_INFINITY_READY_OK {
 	ClientIndex_t		ReadyClientIdx;
 };
@@ -11498,20 +11498,20 @@ struct MSG_FC_INFINITY_READY_CANCEL_OK {
 	ClientIndex_t		ReadyCancelClientIdx;
 };
 
-// 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.) - ÀÎÇÇ´ÏÆ¼ ¹æ ³­ÀÌµµ º¯°æ½Ã ¸ğµÎ ·¡µğ Ãë¼Ò ÆĞÅ¶.
+// 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.) - ì¸í”¼ë‹ˆí‹° ë°© ë‚œì´ë„ ë³€ê²½ì‹œ ëª¨ë‘ ë˜ë”” ì·¨ì†Œ íŒ¨í‚·.
 struct MSG_FC_INFINITY_READY_CANCEL_ALL_OK
 {
 	InfinityCreateUID_t	InfinityCreateUID;
 };
-// End 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.)
+// End 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.)
 
-//#define T_FC_INFINITY_START							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_START)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ½ÃÀÛ ¹öÆ° ´©¸§(ÀÎÇÇ ½ÃÀÛ), C -> F
-//#define T_FtoA_INFINITY_START						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ½ÃÀÛ MainFieldServer·Î ¾Ë¸², AFS -> MFS
-//#define T_FtoA_INFINITY_START_OK					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_OK)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ½ÃÀÛ MainFieldSeverÁØºñ ¿Ï·á Àü¼Û, MFS -> AFS
-//#define T_FC_INFINITY_MAP_LOADING					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADING)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸Ê ·Îµù »óÅÂÀÓÀ» ¾Ë¸², F -> C  <-- ÁÖÀÇ!!!! »èÁ¦ ´ë±âÁß!
-//#define T_FC_INFINITY_MAP_LOADED					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADED)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸Ê ·Îµù ¿Ï·á, C -> F
-//#define T_FtoA_INFINITY_IMPUTE						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_IMPUTE)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ±Í¼Ó Á¤º¸ Àü¼Û, AFS -> MFS
-//#define T_FC_INFINITY_ENTER							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_ENTER)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ¸Ê ÀÔÀå Çã°¡, F -> C
+//#define T_FC_INFINITY_START							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_START)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‹œì‘ ë²„íŠ¼ ëˆ„ë¦„(ì¸í”¼ ì‹œì‘), C -> F
+//#define T_FtoA_INFINITY_START						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‹œì‘ MainFieldServerë¡œ ì•Œë¦¼, AFS -> MFS
+//#define T_FtoA_INFINITY_START_OK					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_OK)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‹œì‘ MainFieldSeverì¤€ë¹„ ì™„ë£Œ ì „ì†¡, MFS -> AFS
+//#define T_FC_INFINITY_MAP_LOADING					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADING)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§µ ë¡œë”© ìƒíƒœì„ì„ ì•Œë¦¼, F -> C  <-- ì£¼ì˜!!!! ì‚­ì œ ëŒ€ê¸°ì¤‘!
+//#define T_FC_INFINITY_MAP_LOADED					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADED)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§µ ë¡œë”© ì™„ë£Œ, C -> F
+//#define T_FtoA_INFINITY_IMPUTE						(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_IMPUTE)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ê·€ì† ì •ë³´ ì „ì†¡, AFS -> MFS
+//#define T_FC_INFINITY_ENTER							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_ENTER)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë§µ ì…ì¥ í—ˆê°€, F -> C
 struct MSG_FtoA_INFINITY_START {
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
@@ -11539,19 +11539,19 @@ struct MSG_FtoA_INFINITY_IMPUTE {
 };
 
 
-//#define T_FC_INFINITY_CINEMA						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CINEMA)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ½Ã³×¸¶ Á¤º¸ Àü¼Û, F -> C
+//#define T_FC_INFINITY_CINEMA						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CINEMA)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì‹œë„¤ë§ˆ ì •ë³´ ì „ì†¡, F -> C
 using MSG_FC_INFINITY_CINEMA = CINEMAINFO;
 
-struct MSG_FN_NPCSERVER_CINEMA_MONSTER_CREATE		// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) -
+struct MSG_FN_NPCSERVER_CINEMA_MONSTER_CREATE		// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) -
 {
 	MAP_CHANNEL_INDEX		mapChann;
 	INT						MonsterUnitKind;
-	SummonCnt_t				MonsterSummonCount;			// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) -	
-	Distance_t				MaxRandomDistance;			// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) -
-	MONSTER_BALANCE_DATA	MonsterBalanceInfo;			// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ ¹ë·±½º Á¤º¸(È®Àå Á¤º¸ ´ëÀÔ).
+	SummonCnt_t				MonsterSummonCount;			// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) -	
+	Distance_t				MaxRandomDistance;			// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) -
+	MONSTER_BALANCE_DATA	MonsterBalanceInfo;			// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì •ë³´(í™•ì¥ ì •ë³´ ëŒ€ì…).
 };
 
-// start 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - ÇØ´ç ¸ÊÃ¤³Î Æ¯Á¤ ¸ó½ºÅÍ »èÁ¦/º¯°æ ±â´É Ãß°¡
+// start 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - í•´ë‹¹ ë§µì±„ë„ íŠ¹ì • ëª¬ìŠ¤í„° ì‚­ì œ/ë³€ê²½ ê¸°ëŠ¥ ì¶”ê°€
 struct MSG_FN_NPCSERVER_CINEMA_MONSTER_DESTROY
 {
 	MAP_CHANNEL_INDEX		mapChann;
@@ -11560,42 +11560,42 @@ struct MSG_FN_NPCSERVER_CINEMA_MONSTER_DESTROY
 
 struct MSG_FN_NPCSERVER_CINEMA_MONSTER_CHANGE
 {
-	MAP_CHANNEL_INDEX		mapChann;					// Ã¤³Î ¸Ê ¹øÈ£
-	INT						MonsterUnitKind;			// Àû¿ëÇÒ ¸ó½ºÅÍ ¹øÈ£
-	INT						ChangeMonsterUnitKind;		// º¯°æµÉ ¸ó½ºÅÍ ¹øÈ£
+	MAP_CHANNEL_INDEX		mapChann;					// ì±„ë„ ë§µ ë²ˆí˜¸
+	INT						MonsterUnitKind;			// ì ìš©í•  ëª¬ìŠ¤í„° ë²ˆí˜¸
+	INT						ChangeMonsterUnitKind;		// ë³€ê²½ë  ëª¬ìŠ¤í„° ë²ˆí˜¸
 };
-// end 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - ÇØ´ç ¸ÊÃ¤³Î Æ¯Á¤ ¸ó½ºÅÍ »èÁ¦/º¯°æ ±â´É Ãß°¡
+// end 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - í•´ë‹¹ ë§µì±„ë„ íŠ¹ì • ëª¬ìŠ¤í„° ì‚­ì œ/ë³€ê²½ ê¸°ëŠ¥ ì¶”ê°€
 
-// start 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+// start 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 struct MSG_FN_NPCSERVER_CINEMA_MONSTER_REGEN
 {
 	MAP_CHANNEL_INDEX		mapChann;
 	INT						iMonsterUnitKind;
 	bool					bRegen;
-	MONSTER_BALANCE_DATA	MonsterBalanceInfo;			// 2011-06-21 by hskim ¸ó½ºÅÍ ¹ë·±½º Á¤º¸
+	MONSTER_BALANCE_DATA	MonsterBalanceInfo;			// 2011-06-21 by hskim ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì •ë³´
 };
-// end 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+// end 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 
-//#define T_FC_INFINITY_SUCCESS_FIN					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SUCCESS_FIN)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼º°ø Á¾·á, F -> C
-//#define T_FC_INFINITY_FAIL_FIN						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_FAIL_FIN)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ½ÇÆĞ Á¾·á, F -> C
-//#define T_FC_INFINITY_FIN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_FIN_OK)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Á¾·á È®ÀÎ ÈÄ ¸¶À»(Main¼­¹ö·Î µ¹¾Æ°¨), C -> F
-//#define T_FC_INFINITY_READY_FINISH_MAINSVR_START	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_FINISH_MAINSVR_START)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Main¼­¹ö·Î µ¹¾Æ°¥ ÁØºñ°¡ ¿Ï·á µÊ, F -> C
+//#define T_FC_INFINITY_SUCCESS_FIN					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SUCCESS_FIN)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì„±ê³µ ì¢…ë£Œ, F -> C
+//#define T_FC_INFINITY_FAIL_FIN						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_FAIL_FIN)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì‹¤íŒ¨ ì¢…ë£Œ, F -> C
+//#define T_FC_INFINITY_FIN_OK						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_FIN_OK)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¢…ë£Œ í™•ì¸ í›„ ë§ˆì„(Mainì„œë²„ë¡œ ëŒì•„ê°), C -> F
+//#define T_FC_INFINITY_READY_FINISH_MAINSVR_START	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_READY_FINISH_MAINSVR_START)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Mainì„œë²„ë¡œ ëŒì•„ê°ˆ ì¤€ë¹„ê°€ ì™„ë£Œ ë¨, F -> C
 
-//#define T_FtoA_INFINITY_UPDATE_ALL_ITEM_COUNT		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ALL_ITEM_COUNT)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_INSERT_ITEM_HEADER			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM_HEADER)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_INSERT_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_INSERT_ITEM_DONE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM_DONE)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_UPDATE_ITEM_HEADER			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_HEADER)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_UPDATE_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_UPDATE_ITEM_DONE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_DONE)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_DELETE_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_DELETE_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_UPDATE_USER_INFO			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_USER_INFO)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î À¯Àú µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_READY_FINISH_MAINSVR_START  (MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_READY_FINISH_MAINSVR_START)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Main¼­¹ö·Î µ¹¾Æ°¥ ÁØºñ°¡ ¿Ï·á µÊ, MFS -> AFS
-//#define T_FtoA_INFINITY_LOG							(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_LOG)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ·Î±× Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_USING_TIME_LIMIT_ITEM		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_USING_TIME_LIMIT_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ MainFieldServer·Î ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
-//#define T_FtoA_INFINITY_COME_BACK_POSTWORK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_COME_BACK_POSTWORK)		// 2011-09-29 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÎÇÇ MainFieldServer·Î µ¹¾Æ°¡±â À§ÇÑ ÈÄ ÀÛ¾÷ Ã³¸® ¸í·É, AFS -> MFS
-//#define T_FtoA_INFINITY_COME_BACK_PREWORK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_COME_BACK_PREWORK)		// 2011-09-29 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÎÇÇ MainFieldServer·Î µ¹¾Æ°¡±â À§ÇÑ »çÀü ÀÛ¾÷ Ã³¸® ¸í·É, AFS -> MFS	
-//#define T_FtoA_INFINITY_UPDATE_ITEM_PET				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_PET)			// 2011-09-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÎÇÇ MainFieldServer·Î ÆÄÆ®³Ê ¾ÆÀÌÅÛ µ¿±âÈ­ À§ÇØ Àü¼Û, AFS -> MFS
+//#define T_FtoA_INFINITY_UPDATE_ALL_ITEM_COUNT		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ALL_ITEM_COUNT)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_INSERT_ITEM_HEADER			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM_HEADER)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_INSERT_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_INSERT_ITEM_DONE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_INSERT_ITEM_DONE)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_UPDATE_ITEM_HEADER			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_HEADER)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_UPDATE_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_UPDATE_ITEM_DONE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_DONE)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_DELETE_ITEM					(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_DELETE_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_UPDATE_USER_INFO			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_USER_INFO)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ìœ ì € ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_READY_FINISH_MAINSVR_START  (MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_READY_FINISH_MAINSVR_START)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Mainì„œë²„ë¡œ ëŒì•„ê°ˆ ì¤€ë¹„ê°€ ì™„ë£Œ ë¨, MFS -> AFS
+//#define T_FtoA_INFINITY_LOG							(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_LOG)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ë¡œê·¸ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_USING_TIME_LIMIT_ITEM		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_USING_TIME_LIMIT_ITEM)				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ MainFieldServerë¡œ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
+//#define T_FtoA_INFINITY_COME_BACK_POSTWORK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_COME_BACK_POSTWORK)		// 2011-09-29 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì¸í”¼ MainFieldServerë¡œ ëŒì•„ê°€ê¸° ìœ„í•œ í›„ ì‘ì—… ì²˜ë¦¬ ëª…ë ¹, AFS -> MFS
+//#define T_FtoA_INFINITY_COME_BACK_PREWORK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_COME_BACK_PREWORK)		// 2011-09-29 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì¸í”¼ MainFieldServerë¡œ ëŒì•„ê°€ê¸° ìœ„í•œ ì‚¬ì „ ì‘ì—… ì²˜ë¦¬ ëª…ë ¹, AFS -> MFS	
+//#define T_FtoA_INFINITY_UPDATE_ITEM_PET				(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_ITEM_PET)			// 2011-09-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ì¸í”¼ MainFieldServerë¡œ íŒŒíŠ¸ë„ˆ ì•„ì´í…œ ë™ê¸°í™” ìœ„í•´ ì „ì†¡, AFS -> MFS
 
 struct MSG_FtoA_INFINITY_UPDATE_ALL_ITEM_COUNT {
 	UID32_t			AccountUID;
@@ -11616,7 +11616,7 @@ struct MSG_FtoA_INFINITY_INSERT_ITEM {
 	INT				ShapeItemNum;
 	INT				UsingTimeStamp;
 	ATUM_DATE_TIME	CreatedTime;
-	INT				CoolingTimeStamp;	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
+	INT				CoolingTimeStamp;	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
 };
 struct MSG_FtoA_INFINITY_UPDATE_ITEM
 {
@@ -11628,10 +11628,10 @@ struct MSG_FtoA_INFINITY_UPDATE_ITEM
 	INT				CurrentCount;
 	BYTE			Wear;
 	INT				UsingTimeStamp;
-	INT				CoolingTimeStamp;	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
+	INT				CoolingTimeStamp;	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
 };
 
-// start 2011-09-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// start 2011-09-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 struct MSG_FtoA_INFINITY_UPDATE_ITEM_PET
 {
 	UID32_t			AccountUID;
@@ -11639,9 +11639,9 @@ struct MSG_FtoA_INFINITY_UPDATE_ITEM_PET
 	ClientIndex_t	MFSClientIndex;
 	UID64_t			MainSvrItemUID;
 
-	tPET_CURRENTINFO	PetCurrentData;		// Arena -> Field ·Î Àü¼ÛÈÄ Field ¼­¹ö¿¡¼­´Â PetSocketItemUID ¹× pItemPetSocket ÀÇ µ¥ÀÌÅÍ´Â Àû¿ëÇÏÁö ¾Ê´Â´Ù
+	tPET_CURRENTINFO	PetCurrentData;		// Arena -> Field ë¡œ ì „ì†¡í›„ Field ì„œë²„ì—ì„œëŠ” PetSocketItemUID ë° pItemPetSocket ì˜ ë°ì´í„°ëŠ” ì ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 };
-// end 2011-09-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// end 2011-09-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 
 struct MSG_FtoA_INFINITY_DELETE_ITEM {
 	//	INT InfinityDeleteItemInfoListCount;
@@ -11655,21 +11655,21 @@ struct MSG_FtoA_INFINITY_UPDATE_USER_INFO {
 	UID32_t				AccountUID;
 	UID32_t				MFSCharacterUID;
 	ClientIndex_t		MFSClientIndex;
-	GEAR_STAT			GearStat;						// ±â¾î ½ºÅÈ
+	GEAR_STAT			GearStat;						// ê¸°ì–´ ìŠ¤íƒ¯
 	BYTE				Level;							//
 	Experience_t		Experience;						//
-	Experience_t		DownExperience;					// Ä³¸¯ÀÌ Á×À»¶§ ¶³¾îÁø °æÇèÄ¡
-	INT					DownSPIOnDeath;					// 2006-04-10 by cmkwon, Ä³¸¯ÀÌ Á×À»¶§ ¶³¾îÁø SPI
-	BYTE				BonusStat;						// Ãß°¡ 2002.12.13
-	BYTE				BonusStatPoint;					// 2005-11-15 by cmkwon, ·¹º§¾÷ÀÌ ¾Æ´Ñ ´Ù¸¥¹æ¹ıÀ¸·Î ¹ŞÀº º¸³Ê½º ½ºÅÈ Æ÷ÀÎÆ®, BonusSkillPoint¸¦ º¯°æÇÔ // Ãß°¡ 2002.12.13
-	LONGLONG			TotalPlayTime;					// ÃÊ´ÜÀ§
-	ATUM_DATE_TIME		LevelUpTime;					// 2006-12-18 by dhjin, ·¹º§¾÷ ½Ã°£
+	Experience_t		DownExperience;					// ìºë¦­ì´ ì£½ì„ë•Œ ë–¨ì–´ì§„ ê²½í—˜ì¹˜
+	INT					DownSPIOnDeath;					// 2006-04-10 by cmkwon, ìºë¦­ì´ ì£½ì„ë•Œ ë–¨ì–´ì§„ SPI
+	BYTE				BonusStat;						// ì¶”ê°€ 2002.12.13
+	BYTE				BonusStatPoint;					// 2005-11-15 by cmkwon, ë ˆë²¨ì—…ì´ ì•„ë‹Œ ë‹¤ë¥¸ë°©ë²•ìœ¼ë¡œ ë°›ì€ ë³´ë„ˆìŠ¤ ìŠ¤íƒ¯ í¬ì¸íŠ¸, BonusSkillPointë¥¼ ë³€ê²½í•¨ // ì¶”ê°€ 2002.12.13
+	LONGLONG			TotalPlayTime;					// ì´ˆë‹¨ìœ„
+	ATUM_DATE_TIME		LevelUpTime;					// 2006-12-18 by dhjin, ë ˆë²¨ì—… ì‹œê°„
 	INT					WarPoint;						// 2007-04-17 by dhjin, WP
-	INT					CumulativeWarPoint;				// 2007-05-28 by dhjin, ´©ÀûWP
-	LONGLONG			PCBangTotalPlayTime;			// 2007-06-07 by dhjin, PC¹æ ÃÑ ÇÃ·¹ÀÌ ½Ã°£, ÃÊ´ÜÀ§
-	INT					SecretInfoOption;				// 2008-06-23 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
-	MapIndex_t			InfinityMapIndex;				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-	ChannelIndex_t		InfinityChannelIndex;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
+	INT					CumulativeWarPoint;				// 2007-05-28 by dhjin, ëˆ„ì WP
+	LONGLONG			PCBangTotalPlayTime;			// 2007-06-07 by dhjin, PCë°© ì´ í”Œë ˆì´ ì‹œê°„, ì´ˆë‹¨ìœ„
+	INT					SecretInfoOption;				// 2008-06-23 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
+	MapIndex_t			InfinityMapIndex;				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+	ChannelIndex_t		InfinityChannelIndex;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
 };
 struct MSG_FtoA_INFINITY_READY_FINISH_MAINSVR_START {
 	ClientIndex_t	AFSClientIndex;
@@ -11685,7 +11685,7 @@ struct MSG_FtoA_INFINITY_LOG {
 	KillCnt_t		KillCount;
 	ATUM_DATE_TIME	StartTime;
 	ATUM_DATE_TIME	EndTime;
-	Experience_t	AllEXP;								// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - Á¾·á½Ã ÃÖ´ë °æÇèÄ¡ Ãß°¡
+	Experience_t	AllEXP;								// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ì¢…ë£Œì‹œ ìµœëŒ€ ê²½í—˜ì¹˜ ì¶”ê°€
 };
 
 struct MSG_FtoA_INFINITY_USING_TIME_LIMIT_ITEM {
@@ -11700,19 +11700,19 @@ struct MSG_FtoA_INFINITY_USING_TIME_LIMIT_ITEM {
 	INT				UsingTimeStamp;
 	ATUM_DATE_TIME	CreatedTime;
 	UID64_t			MainSvrItemUID;
-	INT				CoolingTimeStamp;			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
+	INT				CoolingTimeStamp;			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
 };
 
-// start 2011-09-29 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// start 2011-09-29 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 struct MSG_FtoA_INFINITY_COME_BACK_PREWORK
 {
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
 	ClientIndex_t	MFSClientIndex;
 };
-// end 2011-09-29 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+// end 2011-09-29 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 
-// start 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// start 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 struct MSG_FtoA_INFINITY_COME_BACK_POSTWORK
 {
 	UID32_t			AccountUID;
@@ -11721,7 +11721,7 @@ struct MSG_FtoA_INFINITY_COME_BACK_POSTWORK
 
 	SSTATISTICS_MONEY_UNIT DeltaMoney;
 };
-// end 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// end 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
 struct MSG_FN_NPCSERVER_NEW_CHANGE_OBJECT {
 	MAP_CHANNEL_INDEX	mapChann;
@@ -11732,84 +11732,84 @@ struct MSG_FN_NPCSERVER_RESET_CHANGE_OBJECT {
 	MAP_CHANNEL_INDEX	mapChann;
 };
 
-//#define T_FC_INFINITY_TENDER_DROPITEM_INFO		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_DROPITEM_INFO)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸ó½ºÅÍ¿¡°Ô¼­ µå¶øµÈ Tender ¾ÆÀÌÅÛ, F -> C
-//#define T_FC_INFINITY_TENDER_START				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_START)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Tender ½ÃÀÛ, F -> C
-//#define T_FC_INFINITY_TENDER_PUT_IN_TENDER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_PUT_IN_TENDER)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - À¯Àú Tender ¹öÆ° ´©¸§, C -> F
-//#define T_FC_INFINITY_TENDER_PUT_IN_TENDER_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_PUT_IN_TENDER_OK)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - À¯Àú Tender ¹öÆ° ´©¸§ °á°ú, F -> C
-//#define T_FC_INFINITY_TENDER_RESULT				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_RESULT)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÔÂûÀÚ °á°ú, F -> C
-//#define T_FC_INFINITY_TENDER_RESULT_TIMEOVER	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_TIMEOVER)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Tender ½Ã°£ÀÌ Áö³µÁö¸¸ ÀÔÂûÀÚ°¡ ¾ø´Ù, F -> C
-//#define T_FC_INFINITY_TENDER_RESULT_ALLGIVEUP	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_ALLGIVEUP)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÔÂûÀÚ ¸ğµÎ Æ÷±â, F -> C
+//#define T_FC_INFINITY_TENDER_DROPITEM_INFO		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_DROPITEM_INFO)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ëª¬ìŠ¤í„°ì—ê²Œì„œ ë“œëëœ Tender ì•„ì´í…œ, F -> C
+//#define T_FC_INFINITY_TENDER_START				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_START)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Tender ì‹œì‘, F -> C
+//#define T_FC_INFINITY_TENDER_PUT_IN_TENDER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_PUT_IN_TENDER)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìœ ì € Tender ë²„íŠ¼ ëˆ„ë¦„, C -> F
+//#define T_FC_INFINITY_TENDER_PUT_IN_TENDER_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_PUT_IN_TENDER_OK)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìœ ì € Tender ë²„íŠ¼ ëˆ„ë¦„ ê²°ê³¼, F -> C
+//#define T_FC_INFINITY_TENDER_RESULT				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_RESULT)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì…ì°°ì ê²°ê³¼, F -> C
+//#define T_FC_INFINITY_TENDER_RESULT_TIMEOVER	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_TIMEOVER)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Tender ì‹œê°„ì´ ì§€ë‚¬ì§€ë§Œ ì…ì°°ìê°€ ì—†ë‹¤, F -> C
+//#define T_FC_INFINITY_TENDER_RESULT_ALLGIVEUP	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_TENDER_ALLGIVEUP)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì…ì°°ì ëª¨ë‘ í¬ê¸°, F -> C
 struct MSG_FC_INFINITY_TENDER_DROPITEM_INFO {
-	UINT			ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT			ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 	ItemNum_t		TenderDropItemNum;
 	INT				Count;
 	INT				PrefixCodeNum;
 	INT				SuffixCodeNum;
-	ATUM_DATE_TIME	TenderStartTime;		// ÀÔÂû ½ÃÀÛ ½Ã°£.
+	ATUM_DATE_TIME	TenderStartTime;		// ì…ì°° ì‹œì‘ ì‹œê°„.
 };
 struct MSG_FC_INFINITY_TENDER_START {
-	UINT			ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT			ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 	ItemNum_t		TenderItemNum;
 	INT				Count;
 };
 struct MSG_FC_INFINITY_TENDER_PUT_IN_TENDER {
-	ItemNum_t			TenderDropItemNum;	// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - ¸Ş¼¼Áö Ãß°¡
+	ItemNum_t			TenderDropItemNum;	// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ë©”ì„¸ì§€ ì¶”ê°€
 	eINFINITY_MODE		InfinityMode;
 	InfinityCreateUID_t	InfinityCreateUID;
-	UINT				ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT				ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 	bool				GiveUp;
 };
 struct MSG_FC_INFINITY_TENDER_PUT_IN_TENDER_OK {
-	UINT				ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	ClientIndex_t		DiceUserIdx;			// ÀÔÂû À¯Àú
-	DiceCnt_t			DiceCount;				// ÁÖ»çÀ§ °á°ú °ª.
+	UINT				ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	ClientIndex_t		DiceUserIdx;			// ì…ì°° ìœ ì €
+	DiceCnt_t			DiceCount;				// ì£¼ì‚¬ìœ„ ê²°ê³¼ ê°’.
 };
 struct MSG_FC_INFINITY_TENDER_RESULT {
-	UINT				ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
-	ClientIndex_t		DiceUserIdx;			// ÀÔÂû À¯Àú
-	DiceCnt_t			DiceCount;				// ÁÖ»çÀ§ °á°ú °ª.
+	UINT				ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
+	ClientIndex_t		DiceUserIdx;			// ì…ì°° ìœ ì €
+	DiceCnt_t			DiceCount;				// ì£¼ì‚¬ìœ„ ê²°ê³¼ ê°’.
 	ItemNum_t			TenderItemNum;
 	INT					Count;
 };
 struct MSG_FC_INFINITY_TENDER_RESULT_TIMEOVER {
-	UINT				ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT				ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 };
 struct MSG_FC_INFINITY_TENDER_RESULT_ALLGIVEUP {
-	UINT				ItemFieldIndex;			// ½Àµæ Àü±îÁö ¼­¹ö°¡ ÀÓ½Ã·Î °ü¸®ÇÏ´Â ¹øÈ£
+	UINT				ItemFieldIndex;			// ìŠµë“ ì „ê¹Œì§€ ì„œë²„ê°€ ì„ì‹œë¡œ ê´€ë¦¬í•˜ëŠ” ë²ˆí˜¸
 };
 
-//#define T_FC_INFO_APPLY_RESISTANCE_ITEM	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_RESISTANCE_ITEM)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀúÇ× ¾ÆÀÌÅÛ Àû¿ë Á¤º¸ Àü¼Û, F -> C(n)
+//#define T_FC_INFO_APPLY_RESISTANCE_ITEM	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_RESISTANCE_ITEM)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì €í•­ ì•„ì´í…œ ì ìš© ì •ë³´ ì „ì†¡, F -> C(n)
 struct MSG_FC_INFO_APPLY_RESISTANCE_ITEM {
 	ClientIndex_t		ResistanceUserIdx;
-	ItemNum_t			SkillNum;			// 2009-09-09 ~ 2010-01-19 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀúÇ×µÈ ½ºÅ³ Á¤º¸ Ãß°¡
-	bool				OnceResistanceItem;	// 2009-09-09 ~ 2010-01-19 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¹ø¸¸ ÀúÇ×ÇÏ°í ¾ø¾îÁö´Â ÀúÇ× ¾ÆÀÌÅÛ Ãß°¡
+	ItemNum_t			SkillNum;			// 2009-09-09 ~ 2010-01-19 by dhjin, ì¸í”¼ë‹ˆí‹° - ì €í•­ëœ ìŠ¤í‚¬ ì •ë³´ ì¶”ê°€
+	bool				OnceResistanceItem;	// 2009-09-09 ~ 2010-01-19 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ë²ˆë§Œ ì €í•­í•˜ê³  ì—†ì–´ì§€ëŠ” ì €í•­ ì•„ì´í…œ ì¶”ê°€
 };
 
-//#define T_FC_SHOP_INFINITY_ITEM_HEADER		(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM_HEADER)	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - »óÁ¡
-//#define T_FC_SHOP_INFINITY_ITEM				(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - »óÁ¡
-//#define T_FC_SHOP_INFINITY_ITEM_DONE		(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM_DONE)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - »óÁ¡
+//#define T_FC_SHOP_INFINITY_ITEM_HEADER		(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM_HEADER)	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìƒì 
+//#define T_FC_SHOP_INFINITY_ITEM				(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìƒì 
+//#define T_FC_SHOP_INFINITY_ITEM_DONE		(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_ITEM_DONE)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìƒì 
 using MSG_FC_SHOP_INFINITY_ITEM = INFINITY_SHOP_INFO;
-//#define T_FC_SHOP_INFINITY_BUY_ITEM			(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_BUY_ITEM)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - »óÁ¡, ±¸¸Å
+//#define T_FC_SHOP_INFINITY_BUY_ITEM			(MessageType_t)((T0_FC_SHOP<<8)|T1_FC_SHOP_INFINITY_BUY_ITEM)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ìƒì , êµ¬ë§¤
 struct MSG_FC_SHOP_INFINITY_BUY_ITEM {
 	InfinityShopUID_t		InfinityShopUID;
 	int						Amount;
 };
 
-//#define T_FC_INFINITY_CHANGE_LIMITTIME				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_LIMITTIME)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ç¸Á½Ã ÆĞ³ÎÆ¼ Ãß°¡, F -> C
+//#define T_FC_INFINITY_CHANGE_LIMITTIME				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_LIMITTIME)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‚¬ë§ì‹œ íŒ¨ë„í‹° ì¶”ê°€, F -> C
 struct MSG_FC_INFINITY_CHANGE_LIMITTIME {
-	char			DeadCharactarName[SIZE_MAX_CHARACTER_NAME];		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - Á×Àº À¯Àú ÀÌ¸§ Á¤º¸ Àü¼Û Ãß°¡
+	char			DeadCharactarName[SIZE_MAX_CHARACTER_NAME];		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - ì£½ì€ ìœ ì € ì´ë¦„ ì •ë³´ ì „ì†¡ ì¶”ê°€
 	MSec_t			LimitTime;
 };
 
-// start 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÇÃ·¹ÀÌ ½Ã°£ Àç¼³Á¤ ±â´É 
-//#define T_FC_INFINITY_SET_LIMITTIME				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SET_LIMITTIME)		// 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÇÃ·¹ÀÌ ½Ã°£ Àç¼³Á¤ ±â´É
+// start 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - í”Œë ˆì´ ì‹œê°„ ì¬ì„¤ì • ê¸°ëŠ¥ 
+//#define T_FC_INFINITY_SET_LIMITTIME				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SET_LIMITTIME)		// 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - í”Œë ˆì´ ì‹œê°„ ì¬ì„¤ì • ê¸°ëŠ¥
 struct MSG_FC_INFINITY_SET_LIMITTIME {
 	MSec_t			LimitTime;		// ms
 };
-// end 2011-05-30 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÇÃ·¹ÀÌ ½Ã°£ Àç¼³Á¤ ±â´É
+// end 2011-05-30 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - í”Œë ˆì´ ì‹œê°„ ì¬ì„¤ì • ê¸°ëŠ¥
 
-//#define T_FC_INFINITY_JOIN_CANCEL							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_CANCEL)							// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ÀÔÀå Ãë¼Ò
-//#define T_FC_INFINITY_JOIN_CANCEL_REQUEST_MASTERUSER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_CANCEL_REQUEST_MASTERUSER)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ÀÔÀå Ãë¼Ò
+//#define T_FC_INFINITY_JOIN_CANCEL							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_CANCEL)							// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì…ì¥ ì·¨ì†Œ
+//#define T_FC_INFINITY_JOIN_CANCEL_REQUEST_MASTERUSER		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_JOIN_CANCEL_REQUEST_MASTERUSER)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì…ì¥ ì·¨ì†Œ
 struct MSG_FC_INFINITY_JOIN_CANCEL {
 	eINFINITY_MODE		InfinityMode;
 	InfinityCreateUID_t	InfinityCreateUID;
@@ -11819,14 +11819,14 @@ struct MSG_FC_INFINITY_JOIN_CANCEL_REQUEST_MASTERUSER {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-//#define T_FC_INFINITY_REQUEST_RESTART_BY_DISCONNECT					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_REQUEST_RESTART_BY_DISCONNECT)			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®, MFS -> C
-//#define T_FC_INFINITY_RESTART_BY_DISCONNECT							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_RESTART_BY_DISCONNECT)					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®, C -> AFS
-//#define T_FC_INFINITY_MAP_LOADED_RESTART_BY_DISCONNECT				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADED_RESTART_BY_DISCONNECT)		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®, C -> AFS
-//#define T_FC_INFINITY_DELETED_CINEMA_HEADER							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA_HEADER)					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-//#define T_FC_INFINITY_DELETED_CINEMA								(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA)							// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-//#define T_FC_INFINITY_DELETED_CINEMA_DONE							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA_DONE)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-//#define T_FC_INFINITY_ENTER_BY_DISCONNECT							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_ENTER_BY_DISCONNECT)						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+//#define T_FC_INFINITY_REQUEST_RESTART_BY_DISCONNECT					(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_REQUEST_RESTART_BY_DISCONNECT)			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬, MFS -> C
+//#define T_FC_INFINITY_RESTART_BY_DISCONNECT							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_RESTART_BY_DISCONNECT)					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬, C -> AFS
+//#define T_FC_INFINITY_MAP_LOADED_RESTART_BY_DISCONNECT				(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MAP_LOADED_RESTART_BY_DISCONNECT)		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬, C -> AFS
+//#define T_FC_INFINITY_DELETED_CINEMA_HEADER							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA_HEADER)					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+//#define T_FC_INFINITY_DELETED_CINEMA								(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA)							// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+//#define T_FC_INFINITY_DELETED_CINEMA_DONE							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DELETED_CINEMA_DONE)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+//#define T_FC_INFINITY_ENTER_BY_DISCONNECT							(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_ENTER_BY_DISCONNECT)						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
 using MSG_FC_INFINITY_DELETED_CINEMA = CINEMAINFO;
 struct MSG_FC_INFINITY_ENTER_BY_DISCONNECT {
 	eINFINITY_MODE		InfinityMode;
@@ -11835,13 +11835,13 @@ struct MSG_FC_INFINITY_ENTER_BY_DISCONNECT {
 	D3DXVECTOR3			CharacterPosition;
 	ATUM_DATE_TIME		StartTime;
 	MSec_t				LimitTime;
-	MSec_t				DecreaseTimeByDead;		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-	InfinityCreateUID_t	InfinityCreateUID;	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-	ClientIndex_t		MasterClientIdx;	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-	Penalty_t			HPPenaltyValue;			// 2011-06-14 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÆĞ³ÎÆ¼ ±â´É Ãß°¡ (HP ¹× ½Ã°£ µ¿½Ã Áö¿øÀ» À§ÇØ)
+	MSec_t				DecreaseTimeByDead;		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+	InfinityCreateUID_t	InfinityCreateUID;	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+	ClientIndex_t		MasterClientIdx;	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+	Penalty_t			HPPenaltyValue;			// 2011-06-14 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - íŒ¨ë„í‹° ê¸°ëŠ¥ ì¶”ê°€ (HP ë° ì‹œê°„ ë™ì‹œ ì§€ì›ì„ ìœ„í•´)
 };
 
-//#define T_FtoA_INFINITY_STATE_CHANGE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_STATE_CHANGE)		// 2009-09-09 ~ 2010-01-20 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÅÂ °ªÀ» ¸ŞÀÎ¼­¹ö·Î Àü¼ÛÇÑ´Ù.
+//#define T_FtoA_INFINITY_STATE_CHANGE			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_STATE_CHANGE)		// 2009-09-09 ~ 2010-01-20 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒíƒœ ê°’ì„ ë©”ì¸ì„œë²„ë¡œ ì „ì†¡í•œë‹¤.
 struct MSG_FtoA_INFINITY_STATE_CHANGE {
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
@@ -11850,21 +11850,21 @@ struct MSG_FtoA_INFINITY_STATE_CHANGE {
 	ClientIndex_t	AFSClientIndex;
 };
 
-// start 2011-05-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ ¿¬Ãâ
-//#define T_FC_INFINITY_MOVIE						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MOVIE)				// 2011-05-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ ¿¬Ãâ, F -> C
+// start 2011-05-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ì—°ì¶œ
+//#define T_FC_INFINITY_MOVIE						(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_MOVIE)				// 2011-05-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ì—°ì¶œ, F -> C
 
 struct MSG_FC_INFINITY_MOVIE
 {
-	INT			UniqueNumber;			// ¿¬Ãâ ¹øÈ£
+	INT			UniqueNumber;			// ì—°ì¶œ ë²ˆí˜¸
 	USHORT		Command;				// MOVIE_COMMAND_START, MOVIE_COMMAND_END
 };
-// end 2011-05-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ ¿¬Ãâ
+// end 2011-05-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ì—°ì¶œ
 
-//#define T_FI_PARTY_AUTO_CREATE						(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_AUTO_CREATE)					// 2009-09-09 ~ 2010-01-26 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÚµ¿ Æí´ë »ı¼º ¿äÃ», F -> I
-//#define T_FI_PARTY_AUTO_CREATE_OK					(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_AUTO_CREATE_OK)				// 2009-09-09 ~ 2010-01-26 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÚµ¿ Æí´ë »ı¼º ¿Ï·á, I -> F
-//#define T_FC_PARTY_AUTO_CREATED						(MessageType_t)((T0_FC_PARTY<<8)|T1_FC_PARTY_AUTO_CREATED)					// 2009-09-09 ~ 2010-01-26 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÚµ¿ Æí´ë »ı¼º ¿Ï·á ¾Ë¸², F -> C
-//#define T_IC_PARTY_GET_AUTO_PARTY_INFO				(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_GET_AUTO_PARTY_INFO)			// 2009-09-09 ~ 2010-01-26 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÚµ¿ Æí´ë Á¤º¸ ¿äÃ», C -> I
-//#define T_IC_PARTY_GET_AUTO_PARTY_INFO_OK			(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_GET_AUTO_PARTY_INFO_OK)		// 2009-09-09 ~ 2010-01-26 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÚµ¿ Æí´ë Á¤º¸ Àü¼Û, I -> C
+//#define T_FI_PARTY_AUTO_CREATE						(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_AUTO_CREATE)					// 2009-09-09 ~ 2010-01-26 by dhjin, ì¸í”¼ë‹ˆí‹° - ìë™ í¸ëŒ€ ìƒì„± ìš”ì²­, F -> I
+//#define T_FI_PARTY_AUTO_CREATE_OK					(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_AUTO_CREATE_OK)				// 2009-09-09 ~ 2010-01-26 by dhjin, ì¸í”¼ë‹ˆí‹° - ìë™ í¸ëŒ€ ìƒì„± ì™„ë£Œ, I -> F
+//#define T_FC_PARTY_AUTO_CREATED						(MessageType_t)((T0_FC_PARTY<<8)|T1_FC_PARTY_AUTO_CREATED)					// 2009-09-09 ~ 2010-01-26 by dhjin, ì¸í”¼ë‹ˆí‹° - ìë™ í¸ëŒ€ ìƒì„± ì™„ë£Œ ì•Œë¦¼, F -> C
+//#define T_IC_PARTY_GET_AUTO_PARTY_INFO				(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_GET_AUTO_PARTY_INFO)			// 2009-09-09 ~ 2010-01-26 by dhjin, ì¸í”¼ë‹ˆí‹° - ìë™ í¸ëŒ€ ì •ë³´ ìš”ì²­, C -> I
+//#define T_IC_PARTY_GET_AUTO_PARTY_INFO_OK			(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_GET_AUTO_PARTY_INFO_OK)		// 2009-09-09 ~ 2010-01-26 by dhjin, ì¸í”¼ë‹ˆí‹° - ìë™ í¸ëŒ€ ì •ë³´ ì „ì†¡, I -> C
 struct MSG_FI_PARTY_AUTO_CREATE {
 	INT				PartyMemberListCount;
 	UID32_t			MasterUID;
@@ -11881,11 +11881,11 @@ struct MSG_FC_PARTY_AUTO_CREATED {
 	PartyID_t				PartyID;
 };
 //////////////////////////////////////////////////////////////////////
-// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : ÀÚµ¿À¸·Î ¸¸µé ÆÄÆ¼ÀÇ Á¤º¸.
+// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : ìë™ìœ¼ë¡œ ë§Œë“¤ íŒŒí‹°ì˜ ì •ë³´.
 struct MSG_FC_PARTY_AUTO_CREATED_THE_ARENA {
 	SPARTY_INFO				PartyInfo;
 };
-// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÀÚµ¿ÆÄÆ¼ : ÀÚµ¿À¸·Î ¸¸µé ÆÄÆ¼ÀÇ Á¤º¸.
+// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìë™íŒŒí‹° : ìë™ìœ¼ë¡œ ë§Œë“¤ íŒŒí‹°ì˜ ì •ë³´.
 
 struct MSG_IC_PARTY_GET_AUTO_PARTY_INFO {
 	PartyID_t				PartyID;
@@ -11893,32 +11893,32 @@ struct MSG_IC_PARTY_GET_AUTO_PARTY_INFO {
 struct MSG_IC_PARTY_GET_AUTO_PARTY_INFO_OK {
 	PartyID_t				PartyID;
 	SPARTY_INFO				PartyInfo;
-	UID32_t					MasterUniqueNumber;			// ÆÄÆ¼ÀåÀÇ CharacterUniqueNumber
+	UID32_t					MasterUniqueNumber;			// íŒŒí‹°ì¥ì˜ CharacterUniqueNumber
 	UINT					nNumOfPartyMembers;
 	ARRAY_(IM_PARTY_MEMBER_INFO);
 };
 
-//#define T_FI_PARTY_DISCONNECT_LEAVE_OK		(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_DISCONNECT_LEAVE_OK)	// 2009-09-09 ~ 2010-01-27 by dhjin, ÀÎÇÇ´ÏÆ¼ - °­Á¦ Á¾·á À¯Àú ÆÄÆ¼¿¡¼­ Å»ÅğÃ³¸®!
+//#define T_FI_PARTY_DISCONNECT_LEAVE_OK		(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_DISCONNECT_LEAVE_OK)	// 2009-09-09 ~ 2010-01-27 by dhjin, ì¸í”¼ë‹ˆí‹° - ê°•ì œ ì¢…ë£Œ ìœ ì € íŒŒí‹°ì—ì„œ íƒˆí‡´ì²˜ë¦¬!
 using MSG_FI_PARTY_DISCONNECT_LEAVE_OK = MSG_FI_PARTY_LEAVE_OK;
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 using vectITEM_W_COUNT = vector<ITEM_W_COUNT>;
 using mtvectITEM_W_COUNT = mt_vector<ITEM_W_COUNT>;
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-//#define T_FC_ITEM_USE_INVOKING_WEAR_ITEM	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_USE_INVOKING_WEAR_ITEM)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ »ç¿ë, C->F
+// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+//#define T_FC_ITEM_USE_INVOKING_WEAR_ITEM	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_USE_INVOKING_WEAR_ITEM)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ ì‚¬ìš©, C->F
 struct MSG_FC_ITEM_USE_INVOKING_WEAR_ITEM {
 	ItemUID_t				InvokingWearItemUID;
 };
 
-//#define T_FC_ITEM_EXPIRE_TIME_INVOKING_WEAR_ITEM	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_EXPIRE_TIME_INVOKING_WEAR_ITEM)	// C->F, 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ Áö¼Ó ½Ã°£ ¿Ï·á
+//#define T_FC_ITEM_EXPIRE_TIME_INVOKING_WEAR_ITEM	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_EXPIRE_TIME_INVOKING_WEAR_ITEM)	// C->F, 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ ì§€ì† ì‹œê°„ ì™„ë£Œ
 struct MSG_FC_ITEM_EXPIRE_TIME_INVOKING_WEAR_ITEM {
 	ItemUID_t				InvokingWearItemUID;
 };
 
-//#define T_FC_INFO_APPLY_DESTPARAM		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_DESTPARAM)			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, DestParam Àû¿ë À¯Àú Á¤º¸ Àü¼Û
+//#define T_FC_INFO_APPLY_DESTPARAM		(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_DESTPARAM)			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, DestParam ì ìš© ìœ ì € ì •ë³´ ì „ì†¡
 struct MSG_FC_INFO_APPLY_DESTPARAM {
 	ClientIndex_t			ApplyClientIdx;
 	DestParam_t				ApplyDestParam;
@@ -11926,7 +11926,7 @@ struct MSG_FC_INFO_APPLY_DESTPARAM {
 	ItemUID_t				ApplyItemUID;
 };
 
-//#define T_FC_INFO_APPLY_DESTPARAM_LIST	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_DESTPARAM_LIST)			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, DestParam Àû¿ë À¯Àú Á¤º¸ Àü¼Û
+//#define T_FC_INFO_APPLY_DESTPARAM_LIST	(MessageType_t)((T0_FC_INFO<<8)|T1_FC_INFO_APPLY_DESTPARAM_LIST)			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, DestParam ì ìš© ìœ ì € ì •ë³´ ì „ì†¡
 struct APPLY_DESTPARAM_INFO {
 	DestParam_t				ApplyDestParam;
 	EffectIdx_t				ApplyEffectIdx;
@@ -11938,31 +11938,31 @@ struct MSG_FC_INFO_APPLY_DESTPARAM_LIST {
 	ARRAY_(APPLY_DESTPARAM_INFO);
 };
 
-//#define T_FC_ITEM_END_COOLINGTIME_ITEM		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_END_COOLINGTIME_ITEM)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ÄğÅ¸ÀÓ Á¾·á C->F
+//#define T_FC_ITEM_END_COOLINGTIME_ITEM		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_END_COOLINGTIME_ITEM)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, ì¿¨íƒ€ì„ ì¢…ë£Œ C->F
 struct MSG_FC_ITEM_END_COOLINGTIME_ITEM {
 	ItemUID_t				ItemUID;
 };
 
-//#define T_FC_ITEM_END_COOLINGTIME_ITEM_OK		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_END_COOLINGTIME_ITEM_OK)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ÄğÅ¸ÀÓ Á¾·á F->C
+//#define T_FC_ITEM_END_COOLINGTIME_ITEM_OK		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_END_COOLINGTIME_ITEM_OK)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, ì¿¨íƒ€ì„ ì¢…ë£Œ F->C
 struct MSG_FC_ITEM_END_COOLINGTIME_ITEM_OK {
 	ItemUID_t				ItemUID;
 };
 
-//#define T_FC_ITEM_GET_COOLINGTIME_INFO		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_GET_COOLINGTIME_INFO)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ÄğÅ¸ÀÓ Á¤º¸ ¿äÃ» C->F
-//#define T_FC_ITEM_GET_COOLINGTIME_INFO_OK	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_GET_COOLINGTIME_INFO_OK)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ÄğÅ¸ÀÓ Á¤º¸ ¿äÃ» F->C
+//#define T_FC_ITEM_GET_COOLINGTIME_INFO		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_GET_COOLINGTIME_INFO)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, ì¿¨íƒ€ì„ ì •ë³´ ìš”ì²­ C->F
+//#define T_FC_ITEM_GET_COOLINGTIME_INFO_OK	(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_GET_COOLINGTIME_INFO_OK)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, ì¿¨íƒ€ì„ ì •ë³´ ìš”ì²­ F->C
 struct MSG_FC_ITEM_GET_COOLINGTIME_INFO_OK {
 	UID64_t			ItemUID;
-	INT				CoolingTimeStamp;		// Áö±İ±îÁö »ç¿ëµÈ ½Ã°£(´ÜÀ§:ÃÊ)
+	INT				CoolingTimeStamp;		// ì§€ê¸ˆê¹Œì§€ ì‚¬ìš©ëœ ì‹œê°„(ë‹¨ìœ„:ì´ˆ)
 };
 
-//#define T_FC_ITEM_USE_INVOKING_WEAR_ITEM_BUFF		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_USE_INVOKING_WEAR_ITEM_BUFF)	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ, ¹öÇÁ ¿Ã¸®¼¼¿ä F->C
+//#define T_FC_ITEM_USE_INVOKING_WEAR_ITEM_BUFF		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_USE_INVOKING_WEAR_ITEM_BUFF)	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ, ë²„í”„ ì˜¬ë¦¬ì„¸ìš” F->C
 struct MSG_FC_ITEM_USE_INVOKING_WEAR_ITEM_BUFF {
 	ItemUID_t				ItemUID;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) -
-//#define T_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP)		// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - ÀÎÇÇ »ç¸Á½Ã ÆĞ³ÎÆ¼, F -> C
+// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) -
+//#define T_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP)		// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - ì¸í”¼ ì‚¬ë§ì‹œ íŒ¨ë„í‹°, F -> C
 struct MSG_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP {
 	char			DeadCharactarName[SIZE_MAX_CHARACTER_NAME];
 	MonIdx_t		MonsterNum;
@@ -11970,37 +11970,37 @@ struct MSG_FC_INFINITY_CHANGE_ALIVE_FOR_GAMECLEAR_MONSTERHP {
 	float			CurrentHP;
 };
 
-//#define T_FC_MONSTER_CREATED_ALIVE_FOR_GAMECLEAR					(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_CREATED_ALIVE_FOR_GAMECLEAR)		// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - F -> C
+//#define T_FC_MONSTER_CREATED_ALIVE_FOR_GAMECLEAR					(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_CREATED_ALIVE_FOR_GAMECLEAR)		// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - F -> C
 struct MSG_FC_MONSTER_CREATED_ALIVE_FOR_GAMECLEAR
 {
 	MonIdx_t		MonsterNum;
 	ClientIndex_t	MonsterIdx;
 	float			CurrentHP;
 
-	// 2010. 06. 08 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¾Æ±º µ¿ÀÏ ¹ë·±½º Àû¿ë.) - MAX HP Ãß°¡.
+	// 2010. 06. 08 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì•„êµ° ë™ì¼ ë°¸ëŸ°ìŠ¤ ì ìš©.) - MAX HP ì¶”ê°€.
 	float			MaxHP;
 };
 
 
-//#define T_FC_ITEM_UPDATE_TRANSFORMER_OK				(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_UPDATE_TRANSFORMER_OK)	// F->C(n), // 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
-struct MSG_FC_ITEM_UPDATE_TRANSFORMER_OK		// 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
+//#define T_FC_ITEM_UPDATE_TRANSFORMER_OK				(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_UPDATE_TRANSFORMER_OK)	// F->C(n), // 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
+struct MSG_FC_ITEM_UPDATE_TRANSFORMER_OK		// 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
 {
 	UID32_t			CharacUID;
 	ClientIndex_t	ClientIdx;
 	INT				MonsterUnitKind;
 };
 
-//#define T_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK			(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK)	// F->I, // 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
-using MSG_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK = MSG_FC_ITEM_UPDATE_TRANSFORMER_OK;	// 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
+//#define T_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK			(MessageType_t)((T0_FI_PARTY<<8)|T1_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK)	// F->I, // 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
+using MSG_FI_PARTY_UPDATE_ITEM_TRANSFORMER_OK = MSG_FC_ITEM_UPDATE_TRANSFORMER_OK;	// 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
 
-																					//#define T_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK			(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK)	// I -> C(n), // 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
-using MSG_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK = MSG_FC_ITEM_UPDATE_TRANSFORMER_OK;	// 2010-03-18 by cmkwon, ¸ó½ºÅÍº¯½Å ±¸Çö - 
+																					//#define T_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK			(MessageType_t)((T0_IC_PARTY<<8)|T1_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK)	// I -> C(n), // 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
+using MSG_IC_PARTY_UPDATE_ITEM_TRANSFORMER_OK = MSG_FC_ITEM_UPDATE_TRANSFORMER_OK;	// 2010-03-18 by cmkwon, ëª¬ìŠ¤í„°ë³€ì‹  êµ¬í˜„ - 
 
 																					///////////////////////////////////////////////////////////////////////////////
-																					// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-																					//#define T_FtoA_INFINITY_START_CHECK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_CHECK)		// AF->MF, // 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-																					//#define T_FtoA_INFINITY_START_CHECK_ACK		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_CHECK_ACK)	// MF->AF, // 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
-struct MSG_FtoA_INFINITY_START_CHECK		// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
+																					// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+																					//#define T_FtoA_INFINITY_START_CHECK			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_CHECK)		// AF->MF, // 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+																					//#define T_FtoA_INFINITY_START_CHECK_ACK		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_START_CHECK_ACK)	// MF->AF, // 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
+struct MSG_FtoA_INFINITY_START_CHECK		// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
 {
 	UID32_t			AccountUID;
 	UID32_t			MFSCharacterUID;
@@ -12011,7 +12011,7 @@ struct MSG_FtoA_INFINITY_START_CHECK		// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½
 	InfinityCreateUID_t	InfinityCreateUID;
 };
 
-struct MSG_FtoA_INFINITY_START_CHECK_ACK		// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
+struct MSG_FtoA_INFINITY_START_CHECK_ACK		// 2010-03-23 by cmkwon, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
 {
 	Err_t			ErrorCode;
 	UID32_t			AccountUID;
@@ -12020,69 +12020,69 @@ struct MSG_FtoA_INFINITY_START_CHECK_ACK		// 2010-03-23 by cmkwon, ÀÎÇÇ´ÏÆ¼ ÀÔÀå
 	InfinityCreateUID_t	InfinityCreateUID;
 };
 
-//#define T_FN_BATTLE_ATTACK_SKILL_CANCEL					(MessageType_t)((T0_FN_BATTLE<<8)|T1_FN_BATTLE_ATTACK_SKILL_CANCEL)				// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - N -> F
+//#define T_FN_BATTLE_ATTACK_SKILL_CANCEL					(MessageType_t)((T0_FN_BATTLE<<8)|T1_FN_BATTLE_ATTACK_SKILL_CANCEL)				// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - N -> F
 struct MSG_FN_BATTLE_ATTACK_SKILL_CANCEL
 {
 	MAP_CHANNEL_INDEX	MapInfo;
 	ClientIndex_t		MonsterIndex;
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 };
 
-//#define T_FC_MONSTER_SKILL_CANCEL							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_SKILL_CANCEL)			// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - , F->C(n)
+//#define T_FC_MONSTER_SKILL_CANCEL							(MessageType_t)((T0_FC_MONSTER<<8)|T1_FC_MONSTER_SKILL_CANCEL)			// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - , F->C(n)
 struct MSG_FC_MONSTER_SKILL_CANCEL {
 	ClientIndex_t		MonsterIndex;
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
 };
 
-//#define T_FtoA_UPDATE_ITEM_NOTI			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_UPDATE_ITEM_NOTI)		//	MFS -> AFS // 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼ ÀÔÀå Ä³½¬ ¾ÆÀÌÅÛ ±¸Çö - 
+//#define T_FtoA_UPDATE_ITEM_NOTI			(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_UPDATE_ITEM_NOTI)		//	MFS -> AFS // 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹° ì…ì¥ ìºì‰¬ ì•„ì´í…œ êµ¬í˜„ - 
 struct MSG_FtoA_UPDATE_ITEM_NOTI {
 	ClientIndex_t		AFSClientIdx;
 	ItemNum_t			ItemNum;
 };
 
-//#define T_FtoA_INFINITY_UPDATE_USER_MAP_INFO	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_USER_MAP_INFO)	//	AFS -> MFS // 2010-04-06 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤ - 
+//#define T_FtoA_INFINITY_UPDATE_USER_MAP_INFO	(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_INFINITY_UPDATE_USER_MAP_INFO)	//	AFS -> MFS // 2010-04-06 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì • - 
 struct MSG_FtoA_INFINITY_UPDATE_USER_MAP_INFO
 {
 	UID32_t				AccountUID;
 	UID32_t				MFSCharacterUID;
 	ClientIndex_t		MFSClientIndex;
-	MapIndex_t			InfinityMapIndex;				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-	ChannelIndex_t		InfinityChannelIndex;			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
+	MapIndex_t			InfinityMapIndex;				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+	ChannelIndex_t		InfinityChannelIndex;			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
 };
 
 
-// 2010-05-04 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı start
-//#define T_FC_INFINITY_DIFFICULTY_LIST		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DIFFICULTY_LIST) // C -> AFS // 2010-05-04 by shcho, ³­ÀÌµµ Á¤º¸ ¸ñ·Ï ¿äÃ»
-//#define T_FC_INFINITY_DIFFICULTY_LIST_OK		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DIFFICULTY_LIST_OK) // AFS -> C // 2010-05-04 by shcho, Å¬¶óÀÌ¾ğÆ® ³­ÀÌµµ Á¤º¸ ¸ñ·Ï ¿äÃ»¿¡ ÀÀ´ä
+// 2010-05-04 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ start
+//#define T_FC_INFINITY_DIFFICULTY_LIST		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DIFFICULTY_LIST) // C -> AFS // 2010-05-04 by shcho, ë‚œì´ë„ ì •ë³´ ëª©ë¡ ìš”ì²­
+//#define T_FC_INFINITY_DIFFICULTY_LIST_OK		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_DIFFICULTY_LIST_OK) // AFS -> C // 2010-05-04 by shcho, í´ë¼ì´ì–¸íŠ¸ ë‚œì´ë„ ì •ë³´ ëª©ë¡ ìš”ì²­ì— ì‘ë‹µ
 struct MSG_INFINITY_DIFFICULTY_LIST_OK
 {
-	int Difficulty_List_count; //¸®½ºÆ®°¡ ¸î °³ÀÎÁö º¸³¿.
+	int Difficulty_List_count; //ë¦¬ìŠ¤íŠ¸ê°€ ëª‡ ê°œì¸ì§€ ë³´ëƒ„.
 	_ARRAY(INFINITY_DIFFICULTY_BONUS_INFO);
 };
-// 2010-05-04 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı end
+// 2010-05-04 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ end
 
 
-// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
-//#define T_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL)		// C -> AFS // 2010-05-24 by hsLee, ³­ÀÌµµ º¯°æ ¿äÃ».
-//#define T_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL_OK)	// AFS -> C // 2010-05-24 by hsLee, ³­ÀÌµµ º¯°æ ¿äÃ» °á°ú.
+// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
+//#define T_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL		(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL)		// C -> AFS // 2010-05-24 by hsLee, ë‚œì´ë„ ë³€ê²½ ìš”ì²­.
+//#define T_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL_OK	(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL_OK)	// AFS -> C // 2010-05-24 by hsLee, ë‚œì´ë„ ë³€ê²½ ìš”ì²­ ê²°ê³¼.
 
 struct MSG_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL
 {
 	INT	InfinityDifficultyLevel;
 };
 
-// 2010. 06. 01 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿¡µğÆ® ¹Ú½º Ãß°¡ + ³­ÀÌµµ º¯°æ °á°ú ÆĞÅ¶ º¯°æ.)
+// 2010. 06. 01 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì—ë””íŠ¸ ë°•ìŠ¤ ì¶”ê°€ + ë‚œì´ë„ ë³€ê²½ ê²°ê³¼ íŒ¨í‚· ë³€ê²½.)
 struct MSG_FC_INFINITY_CHANGE_DIFFICULTY_LEVEL_OK
 {
-	bool bUpdate;									// Å¬¶óÀÌ¾ğÆ® ¸Ş½ÃÁö Ã³¸®¸¦ À§ÇÑ Flag.
+	bool bUpdate;									// í´ë¼ì´ì–¸íŠ¸ ë©”ì‹œì§€ ì²˜ë¦¬ë¥¼ ìœ„í•œ Flag.
 	INT InfinityDifficultyLevel;
 };
-// End 2010. 06. 01 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿¡µğÆ® ¹Ú½º Ãß°¡ + ³­ÀÌµµ º¯°æ °á°ú ÆĞÅ¶ º¯°æ.)
+// End 2010. 06. 01 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì—ë””íŠ¸ ë°•ìŠ¤ ì¶”ê°€ + ë‚œì´ë„ ë³€ê²½ ê²°ê³¼ íŒ¨í‚· ë³€ê²½.)
 
-// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
-// 2010-06-01 by shcho, GLogDB °ü·Ã -
-//#define T_FL_LOG_EVENT_PARTICIPATION_RATE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EVENT_PARTICIPATION_RATE)			// F -> L // 2010-06-01 by shcho, GLogDB °ü·Ã -
+// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
+//#define T_FL_LOG_EVENT_PARTICIPATION_RATE		(MessageType_t)((T0_FL_LOG<<8)|T1_FL_LOG_EVENT_PARTICIPATION_RATE)			// F -> L // 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 struct MSG_FL_LOG_EVENT_PARTICIPATION_RATE
 {
 	ATUM_DATE_TIME		StartTime;
@@ -12092,30 +12092,30 @@ struct MSG_FL_LOG_EVENT_PARTICIPATION_RATE
 	CHAR				Description[SIZE_MAX_GLOG_EVENT_DESCRIPTION];
 };
 
-// 2010-06-01 by shcho, PC¹æ ±ÇÇÑ È¹µæ(Ä³½¬) ¾ÆÀÌÅÛ - 
-//#define T_FC_ITEM_HOMEPREMIUM_INFO			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_HOMEPREMIUM_INFO)	// F->C, // 2010-06-01 by shcho, PC¹æ ±ÇÇÑ È¹µæ(Ä³½¬) ¾ÆÀÌÅÛ -
+// 2010-06-01 by shcho, PCë°© ê¶Œí•œ íšë“(ìºì‰¬) ì•„ì´í…œ - 
+//#define T_FC_ITEM_HOMEPREMIUM_INFO			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_HOMEPREMIUM_INFO)	// F->C, // 2010-06-01 by shcho, PCë°© ê¶Œí•œ íšë“(ìºì‰¬) ì•„ì´í…œ -
 struct MSG_FC_ITEM_HOMEPREMIUM_INFO
 {
 	bool bUse; // 0:FALSE  1:TRUE
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// start 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ±â´É ±¸Çö
+// start 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê¸°ëŠ¥ êµ¬í˜„
 //
-// ±âÁ¸ 
+// ê¸°ì¡´ 
 //
 //
-//#define T_FC_ITEM_PET_HEADER				(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_HEADER)			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
-//#define T_FC_ITEM_PET						(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET)					// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
-//#define T_FC_ITEM_PET_BASEDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_BASEDATA_OK)		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
-//#define T_FC_ITEM_PET_SKILLDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_SKILLDATA_OK)	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
-//#define T_FC_ITEM_PET_SOCKETDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_SOCKETDATA_OK)	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
-//#define T_FC_ITEM_PET_DONE					(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_DONE)			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ Àü¼Û Ä¿¸Çµå Ãß°¡ 
+//#define T_FC_ITEM_PET_HEADER				(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_HEADER)			// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
+//#define T_FC_ITEM_PET						(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET)					// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
+//#define T_FC_ITEM_PET_BASEDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_BASEDATA_OK)		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
+//#define T_FC_ITEM_PET_SKILLDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_SKILLDATA_OK)	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
+//#define T_FC_ITEM_PET_SOCKETDATA_OK			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_SOCKETDATA_OK)	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
+//#define T_FC_ITEM_PET_DONE					(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_DONE)			// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚· ì „ì†¡ ì»¤ë§¨ë“œ ì¶”ê°€ 
 //
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ±âº» ¼öÄ¡ Á¤º¸ ±¸Á¶Ã¼
+// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ê¸°ë³¸ ìˆ˜ì¹˜ ì •ë³´ êµ¬ì¡°ì²´
 // struct MSG_FC_ITEM_PET_BASEDATA
 // {
-// 	BYTE			ItemUpdateType;										// ¾ÆÀÌÅÛ ¼öÁ¤ Å¸ÀÔ, IUT_XXX
+// 	BYTE			ItemUpdateType;										// ì•„ì´í…œ ìˆ˜ì • íƒ€ì…, IUT_XXX
 // 
 // 	UID64_t			CreatedPetUID;
 // 	
@@ -12141,7 +12141,7 @@ struct MSG_FC_ITEM_HOMEPREMIUM_INFO
 // };
 // 
 // 
-// // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ½ºÅ³ Á¤º¸ ±¸Á¶Ã¼
+// // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ìŠ¤í‚¬ ì •ë³´ êµ¬ì¡°ì²´
 // struct MSG_FC_ITEM_PET_SKILLDATA
 // {
 // 	UID64_t			CreatePetUID;
@@ -12152,7 +12152,7 @@ struct MSG_FC_ITEM_HOMEPREMIUM_INFO
 // };
 // 
 // 
-// // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ¼ÒÄÏ Á¤º¸ ±¸Á¶Ã¼
+// // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ì†Œì¼“ ì •ë³´ êµ¬ì¡°ì²´
 // struct MSG_FC_ITEM_PET_SOCKETDATA
 // {
 // 	UID64_t			CreatePetUID;
@@ -12163,7 +12163,7 @@ struct MSG_FC_ITEM_HOMEPREMIUM_INFO
 // };
 
 /////////
-// ¼öÁ¤
+// ìˆ˜ì •
 
 //#define T_FC_ITEM_PET_HEADER				(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET_HEADER)
 //#define T_FC_ITEM_PET						(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_PET)	
@@ -12186,7 +12186,7 @@ struct MSG_FC_ITEM_HOMEPREMIUM_INFO
 
 struct MSG_FC_ITEM_PET_BASEDATA
 {
-	BYTE			ItemUpdateType;										// ¾ÆÀÌÅÛ ¼öÁ¤ Å¸ÀÔ, IUT_XXX
+	BYTE			ItemUpdateType;										// ì•„ì´í…œ ìˆ˜ì • íƒ€ì…, IUT_XXX
 	UID64_t			CreatedPetUID;
 	char			PetName[SIZE_MAX_PET_NAME];
 	INT				PetIndex;
@@ -12204,165 +12204,165 @@ struct MSG_FC_ITEM_PET_BASEDATA
 	SPET_AUTOSKILL_SLOT_DATA	PetAutoSkill;
 };
 
-// ÀÌ¸§ º¯°æ
+// ì´ë¦„ ë³€ê²½
 
 struct MSG_FC_ITEM_PET_SET_NAME
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	char			PetName[SIZE_MAX_PET_NAME];			// º¯°æµÉ ÆÄÆ®³Ê ÀÌ¸§
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	char			PetName[SIZE_MAX_PET_NAME];			// ë³€ê²½ë  íŒŒíŠ¸ë„ˆ ì´ë¦„
 };
 
 struct MSG_FC_ITEM_PET_SET_NAME_OK
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	char			PetName[SIZE_MAX_PET_NAME];			// º¯°æµÉ ÆÄÆ®³Ê ÀÌ¸§
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	char			PetName[SIZE_MAX_PET_NAME];			// ë³€ê²½ë  íŒŒíŠ¸ë„ˆ ì´ë¦„
 };
 
-// °æÇèÄ¡ È¹µæ ºñÀ² º¯°æ
+// ê²½í—˜ì¹˜ íšë“ ë¹„ìœ¨ ë³€ê²½
 
 struct MSG_FC_ITEM_PET_SET_EXP_RATIO
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	BYTE			ExpRatio;							// °æÇèÄ¡ È¹µæ ºñÀ²
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	BYTE			ExpRatio;							// ê²½í—˜ì¹˜ íšë“ ë¹„ìœ¨
 };
 
 struct MSG_FC_ITEM_PET_SET_EXP_RATIO_OK
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	BYTE			ExpRatio;							// °æÇèÄ¡ È¹µæ ºñÀ²
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	BYTE			ExpRatio;							// ê²½í—˜ì¹˜ íšë“ ë¹„ìœ¨
 };
 
-// °æÇèÄ¡ Áõ°¡ ¹× ·¹º§ ¾÷
+// ê²½í—˜ì¹˜ ì¦ê°€ ë° ë ˆë²¨ ì—…
 
 struct MSG_FC_ITEM_PET_CHANGE_LEVEL
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	BYTE			Level;								// ÆÄÆ®³Ê ÇöÀç ·¹º§
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	BYTE			Level;								// íŒŒíŠ¸ë„ˆ í˜„ì¬ ë ˆë²¨
 };
 
 struct MSG_FC_ITEM_PET_CHANGE_EXP
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	Experience_t	Experience;							// ÃÑ °æÇèÄ¡
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	Experience_t	Experience;							// ì´ ê²½í—˜ì¹˜
 };
 
-// ¼ÒÄÏ ¾ÆÀÌÅÛ ¼³Á¤
+// ì†Œì¼“ ì•„ì´í…œ ì„¤ì •
 
 struct MSG_FC_ITEM_PET_SET_SOCKET
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT				SocketIndex;						// ¼ÒÄÏ ¹øÈ£
-	UID64_t			PetSocketItemUID;					// ¼ÒÄÏ ¾ÆÀÌÅÛ À¯´ÏÅ© ¹øÈ£
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT				SocketIndex;						// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t			PetSocketItemUID;					// ì†Œì¼“ ì•„ì´í…œ ìœ ë‹ˆí¬ ë²ˆí˜¸
 };
 
 struct MSG_FC_ITEM_PET_SET_SOCKET_OK
 {
-	UID64_t			ItemUniqueNumber;					// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT				SocketIndex;						// ¼ÒÄÏ ¹øÈ£
-	UID64_t			PetSocketItemUID;					// ¼ÒÄÏ ¾ÆÀÌÅÛ À¯´ÏÅ© ¹øÈ£
+	UID64_t			ItemUniqueNumber;					// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT				SocketIndex;						// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t			PetSocketItemUID;					// ì†Œì¼“ ì•„ì´í…œ ìœ ë‹ˆí¬ ë²ˆí˜¸
 };
 
-// Å°Æ® ½½·Ô ¼³Á¤
+// í‚¤íŠ¸ ìŠ¬ë¡¯ ì„¤ì •
 
 struct MSG_FC_ITEM_PET_SET_KIT_SLOT
 {
-	UID64_t				ItemUniqueNumber;				// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT					SocketIndex;					// ¼ÒÄÏ ¹øÈ£
-	UID64_t				PetSocketItemUID;				// ¼ÒÄÏ ¾ÆÀÌÅÛ UID
-	SPET_KIT_SLOT_DATA	PetKitHP;						// HP Å°Æ® ½½·Ô Á¤º¸
-	SPET_KIT_SLOT_DATA	PetKitShield;					// Shield Å°Æ® ½½·Ô Á¤º¸
-	SPET_KIT_SLOT_DATA	PetKitSP;						// SP Å°Æ® ½½·Ô Á¤º¸
+	UID64_t				ItemUniqueNumber;				// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT					SocketIndex;					// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t				PetSocketItemUID;				// ì†Œì¼“ ì•„ì´í…œ UID
+	SPET_KIT_SLOT_DATA	PetKitHP;						// HP í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
+	SPET_KIT_SLOT_DATA	PetKitShield;					// Shield í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
+	SPET_KIT_SLOT_DATA	PetKitSP;						// SP í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
 };
 
 struct MSG_FC_ITEM_PET_SET_KIT_SLOT_OK
 {
-	UID64_t				ItemUniqueNumber;				// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT					SocketIndex;					// ¼ÒÄÏ ¹øÈ£
-	UID64_t				PetSocketItemUID;				// ¼ÒÄÏ ¾ÆÀÌÅÛ UID
-	SPET_KIT_SLOT_DATA	PetKitHP;						// HP Å°Æ® ½½·Ô Á¤º¸
-	SPET_KIT_SLOT_DATA	PetKitShield;					// Shield Å°Æ® ½½·Ô Á¤º¸
-	SPET_KIT_SLOT_DATA	PetKitSP;						// SP Å°Æ® ½½·Ô Á¤º¸
+	UID64_t				ItemUniqueNumber;				// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT					SocketIndex;					// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t				PetSocketItemUID;				// ì†Œì¼“ ì•„ì´í…œ UID
+	SPET_KIT_SLOT_DATA	PetKitHP;						// HP í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
+	SPET_KIT_SLOT_DATA	PetKitShield;					// Shield í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
+	SPET_KIT_SLOT_DATA	PetKitSP;						// SP í‚¤íŠ¸ ìŠ¬ë¡¯ ì •ë³´
 };
 
-// ¿ÀÅä ½ºÅ³ ½½·Ô ¼³Á¤
+// ì˜¤í†  ìŠ¤í‚¬ ìŠ¬ë¡¯ ì„¤ì •
 
 struct MSG_FC_ITEM_PET_SET_AUTOSKILL_SLOT
 {
-	UID64_t						ItemUniqueNumber;		// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT							SocketIndex;			// ¼ÒÄÏ ¹øÈ£
-	UID64_t						PetSocketItemUID;		// ¼ÒÄÏ ¾ÆÀÌÅÛ UID
-	SPET_AUTOSKILL_SLOT_DATA	PetAutoSkill;			// ¿ÀÅä ½ºÅ³ Á¤º¸
+	UID64_t						ItemUniqueNumber;		// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT							SocketIndex;			// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t						PetSocketItemUID;		// ì†Œì¼“ ì•„ì´í…œ UID
+	SPET_AUTOSKILL_SLOT_DATA	PetAutoSkill;			// ì˜¤í†  ìŠ¤í‚¬ ì •ë³´
 };
 
 struct MSG_FC_ITEM_PET_SET_AUTOSKILL_SLOT_OK
 {
-	UID64_t						ItemUniqueNumber;		// ÆÄÆ®³Ê ¾ÆÀÌÅÛ UID
-	INT							SocketIndex;			// ¼ÒÄÏ ¹øÈ£
-	UID64_t						PetSocketItemUID;		// ¼ÒÄÏ ¾ÆÀÌÅÛ UID
-	SPET_AUTOSKILL_SLOT_DATA	PetAutoSkill;			// ¿ÀÅä ½ºÅ³ Á¤º¸
+	UID64_t						ItemUniqueNumber;		// íŒŒíŠ¸ë„ˆ ì•„ì´í…œ UID
+	INT							SocketIndex;			// ì†Œì¼“ ë²ˆí˜¸
+	UID64_t						PetSocketItemUID;		// ì†Œì¼“ ì•„ì´í…œ UID
+	SPET_AUTOSKILL_SLOT_DATA	PetAutoSkill;			// ì˜¤í†  ìŠ¤í‚¬ ì •ë³´
 };
 
-// end 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ±â´É ±¸Çö
+// end 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê¸°ëŠ¥ êµ¬í˜„
 ///////////////////////////////////////////////////////////////////////////////////////
 
-//#define T_FC_INFINITY_SKIP_ENDING_CINEMA			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SKIP_ENDING_CINEMA)		// ÀÎÇÇ´ÏÆ¼ °ÅÁ¡ ¹æ¾î ¿£µù ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ ¿äÃ». 2010. 07. 27 by hsLee.
-//#define T_FC_INFINITY_SKIP_ENDING_CINEMA_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SKIP_ENDING_CINEMA_OK)	// ÀÎÇÇ´ÏÆ¼ °ÅÁ¡ ¹æ¾î ¿£µù ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ °á°ú. 2010. 07. 27 by hsLee.
+//#define T_FC_INFINITY_SKIP_ENDING_CINEMA			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SKIP_ENDING_CINEMA)		// ì¸í”¼ë‹ˆí‹° ê±°ì  ë°©ì–´ ì—”ë”© ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ìš”ì²­. 2010. 07. 27 by hsLee.
+//#define T_FC_INFINITY_SKIP_ENDING_CINEMA_OK			(MessageType_t)((T0_FC_INFINITY<<8)|T1_FC_INFINITY_SKIP_ENDING_CINEMA_OK)	// ì¸í”¼ë‹ˆí‹° ê±°ì  ë°©ì–´ ì—”ë”© ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ê²°ê³¼. 2010. 07. 27 by hsLee.
 
-struct MSG_FC_INFINITY_SKIP_ENDING					// ÀÎÇÇ´ÏÆ¼ ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ ÆĞÅ¶.
+struct MSG_FC_INFINITY_SKIP_ENDING					// ì¸í”¼ë‹ˆí‹° ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ íŒ¨í‚·.
 {
-	InfinityCreateUID_t	InfinityCreateUID;			// ÀÎÇÇ´ÏÆ¼ ÆÄÆ¼ UID.
-	bool				bNormalEnding;				// Á¤»ó ¿¬Ãâ Á¾·á & ½ºÅµ ¿äÃ» ±¸º° ÀÎÀÚ.
+	InfinityCreateUID_t	InfinityCreateUID;			// ì¸í”¼ë‹ˆí‹° íŒŒí‹° UID.
+	bool				bNormalEnding;				// ì •ìƒ ì—°ì¶œ ì¢…ë£Œ & ìŠ¤í‚µ ìš”ì²­ êµ¬ë³„ ì¸ì.
 };
 
-struct MSG_FC_INFINITY_SKIP_ENDING_CINEMA_OK		// ÀÎÇÇ´ÏÆ¼ ½Ã³×¸¶ ¿¬Ãâ ½ºÅµ °á°ú ÆĞÅ¶.
+struct MSG_FC_INFINITY_SKIP_ENDING_CINEMA_OK		// ì¸í”¼ë‹ˆí‹° ì‹œë„¤ë§ˆ ì—°ì¶œ ìŠ¤í‚µ ê²°ê³¼ íŒ¨í‚·.
 {
-	bool			EnableSkip;								// ¿¬Ãâ ½ºÅµ Àû¿ë ±¸º° ÀÎÀÚ.
-	bool			NormalEnding;							// Á¤»ó ¿¬Ãâ Á¾·á & ½ºÅµ ¿äÃ» ±¸º° ÀÎÀÚ.
+	bool			EnableSkip;								// ì—°ì¶œ ìŠ¤í‚µ ì ìš© êµ¬ë³„ ì¸ì.
+	bool			NormalEnding;							// ì •ìƒ ì—°ì¶œ ì¢…ë£Œ & ìŠ¤í‚µ ìš”ì²­ êµ¬ë³„ ì¸ì.
 
-	char			szCharName[SIZE_MAX_CHARACTER_NAME];	// ½ºÅµÀÏ °æ¿ì System MessageÃ³¸®¿¡ »ç¿ëÇÒ ¿äÃ»ÀÚ Ä³¸¯ÅÍ ÀÌ¸§.
+	char			szCharName[SIZE_MAX_CHARACTER_NAME];	// ìŠ¤í‚µì¼ ê²½ìš° System Messageì²˜ë¦¬ì— ì‚¬ìš©í•  ìš”ì²­ì ìºë¦­í„° ì´ë¦„.
 
-	ATUM_DATE_TIME	sUpdateTenderItemStartTime;			// ÀÔÂû ¾ÆÀÌÅÛÀÇ ÀÔÂû Á¦ÇÑ ½Ã°£ °»½Å°ª. (¿¬Ãâ ½ºÅµÀÌ Àû¿ëµÈ ½Ã°¢).
+	ATUM_DATE_TIME	sUpdateTenderItemStartTime;			// ì…ì°° ì•„ì´í…œì˜ ì…ì°° ì œí•œ ì‹œê°„ ê°±ì‹ ê°’. (ì—°ì¶œ ìŠ¤í‚µì´ ì ìš©ëœ ì‹œê°).
 };
 
-// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ½Ã½ºÅÛ ÆĞÅ¶ Ã³¸®
+// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì‹œìŠ¤í…œ íŒ¨í‚· ì²˜ë¦¬
 //#define T_FC_DISSOLVED_ITEM			(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_DISSOLUTIONITEM)		// client -> field
 //#define T_FC_DISSOLVED_ITEM_OK		(MessageType_t)((T0_FC_ITEM<<8)|T1_FC_ITEM_DISSOLUTIONITEM_OK)	// field  -> client
 
-struct MSG_FC_DISSOLVED_ITEM // ¿ëÇØ ÇÒ ¾ÆÀÌÅÛ Á¤º¸ ±¸Á¶Ã¼ client -> field
+struct MSG_FC_DISSOLVED_ITEM // ìš©í•´ í•  ì•„ì´í…œ ì •ë³´ êµ¬ì¡°ì²´ client -> field
 {
 	UID64_t UniqueNumber;
 	INT	Itemnum;
 };
 
-struct MSG_FC_DISSOLVED_SUCCESS_AND_FAILED // ¿ëÇØµÈ ¾ÆÀÌÅÛ Ã³¸® °á°ú
+struct MSG_FC_DISSOLVED_SUCCESS_AND_FAILED // ìš©í•´ëœ ì•„ì´í…œ ì²˜ë¦¬ ê²°ê³¼
 {
-	bool Item_Success;		// ¿ëÇØ ¼º°ø ¶Ç´Â ½ÇÆĞ
+	bool Item_Success;		// ìš©í•´ ì„±ê³µ ë˜ëŠ” ì‹¤íŒ¨
 	bool Dissolved_success;
 };
-// END 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ½Ã½ºÅÛ ÆĞÅ¶ Ã³¸®
+// END 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì‹œìŠ¤í…œ íŒ¨í‚· ì²˜ë¦¬
 
-// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - ½Àµæ ¾ÆÀÌÅÛ Á¤º¸ DBÀúÀå
+// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ìŠµë“ ì•„ì´í…œ ì •ë³´ DBì €ì¥
 //#define T_FtoA_LOG_INFINITY_USER_GET_TENDERITEM		(MessageType_t)((T0_MF_TO_AF<<8)|T1_FtoA_LOG_INFINITYUSER_GET_TENDERITEM) // Field <- Arena
 
 struct MSG_FtoA_INFINITY_TENDER_ITEM
 {
-	INT			TenderItemNum;		// È¹µæÇÑ ¾ÆÀÌÅÛ ³Ñ¹ö
-	DiceCnt_t	GDicecount;			// È¹µæÇÑ ÁÖ»çÀ§ Ä«¿îÆ®
-	UID64_t		AccountUID;			// °èÁ¤ UID
-	CHAR		AccountName[SIZE_MAX_ACCOUNT_NAME];	// °èÁ¤ ÀÌ¸§
-	UID64_t		CharacterUID;						// ÄÉ¸¯ÅÍ UID
-	CHAR		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ÄÉ¸¯ÅÍ ÀÌ¸§
+	INT			TenderItemNum;		// íšë“í•œ ì•„ì´í…œ ë„˜ë²„
+	DiceCnt_t	GDicecount;			// íšë“í•œ ì£¼ì‚¬ìœ„ ì¹´ìš´íŠ¸
+	UID64_t		AccountUID;			// ê³„ì • UID
+	CHAR		AccountName[SIZE_MAX_ACCOUNT_NAME];	// ê³„ì • ì´ë¦„
+	UID64_t		CharacterUID;						// ì¼€ë¦­í„° UID
+	CHAR		CharacterName[SIZE_MAX_CHARACTER_NAME];	// ì¼€ë¦­í„° ì´ë¦„
 	INT			MFSClientIdx;
 
 };
-// END 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - ½Àµæ ¾ÆÀÌÅÛ Á¤º¸ DBÀúÀå
+// END 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ìŠµë“ ì•„ì´í…œ ì •ë³´ DBì €ì¥
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
+// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
 //#define T_PAUTH_CONNECT_LOGIN						(MessageType_t)((T0_PAUTH_CONNECT<<8)|T1_PAUTH_CONNECT_LOGIN)
 //#define T_PAUTH_CONNECT_LOGIN_OK					(MessageType_t)((T0_PAUTH_CONNECT<<8)|T1_PAUTH_CONNECT_LOGIN_OK)
 //#define T_PAUTH_CONNECT_LOGIN_FAIL					(MessageType_t)((T0_PAUTH_CONNECT<<8)|T1_PAUTH_CONNECT_LOGIN_FAIL)
-//#define T_PAUTH_CONNECT_LOGIN_SHUTDOWN				(MessageType_t)((T0_PAUTH_CONNECT<<8)|T1_PAUTH_CONNECT_LOGIN_SHUTDOWN)		// 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
+//#define T_PAUTH_CONNECT_LOGIN_SHUTDOWN				(MessageType_t)((T0_PAUTH_CONNECT<<8)|T1_PAUTH_CONNECT_LOGIN_SHUTDOWN)		// 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
 
 struct SSERVER_AUTHENTICATION_ACCOUNT
 {
@@ -12397,11 +12397,11 @@ struct QPARAM_AUTHENTICATION_ACCOUNT
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
+// 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
 
-// start 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
-//#define T_IP_AUTHENTICATION_SHUTDOWN			(MessageType_t)((T0_IP_CONNECT<<8)|T1_IP_AUTHENTICATION_SHUTDOWN)	// PreServer °¡ Authentication ¼­¹ö¿¡ ÀÎÁõµÇÁö ¾Ê¾Ò´Ù¸é ¼­¹ö Á¾·á
-//#define T_FP_AUTHENTICATION_SHUTDOWN			(MessageType_t)((T0_FP_CONNECT<<8)|T1_FP_AUTHENTICATION_SHUTDOWN)	// PreServer °¡ Authentication ¼­¹ö¿¡ ÀÎÁõµÇÁö ¾Ê¾Ò´Ù¸é ¼­¹ö Á¾·á
+// start 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
+//#define T_IP_AUTHENTICATION_SHUTDOWN			(MessageType_t)((T0_IP_CONNECT<<8)|T1_IP_AUTHENTICATION_SHUTDOWN)	// PreServer ê°€ Authentication ì„œë²„ì— ì¸ì¦ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì„œë²„ ì¢…ë£Œ
+//#define T_FP_AUTHENTICATION_SHUTDOWN			(MessageType_t)((T0_FP_CONNECT<<8)|T1_FP_AUTHENTICATION_SHUTDOWN)	// PreServer ê°€ Authentication ì„œë²„ì— ì¸ì¦ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì„œë²„ ì¢…ë£Œ
 
 struct MSG_IP_AUTHENTICATION_SHUTDOWN
 {
@@ -12412,9 +12412,9 @@ struct MSG_FP_AUTHENTICATION_SHUTDOWN
 {
 	bool	bFlag;
 };
-// end 2011-06-22 by hskim, »ç¼³ ¼­¹ö ¹æÁö
+// end 2011-06-22 by hskim, ì‚¬ì„¤ ì„œë²„ ë°©ì§€
 
-// 2012-07-11 by hskim, ¼±ÅÃÀû ¼Ë´Ù¿î
+// 2012-07-11 by hskim, ì„ íƒì  ì…§ë‹¤ìš´
 //#define T_IP_SELECTIVE_SHUTDOWN_NOTICE	(MessageType_t)((T0_IP_CONNECT<<8)|T1_IP_SELECTIVE_SHUTDOWN_NOTICE)
 
 struct MSG_IP_SELECTIVE_SHUTDOWN_NOTICE
@@ -12423,26 +12423,26 @@ struct MSG_IP_SELECTIVE_SHUTDOWN_NOTICE
 	char m_szAccountName[SIZE_MAX_ACCOUNT_NAME];
 	int nRemainingTime;
 };
-// end 2012-07-11 by hskim, ¼±ÅÃÀû ¼Ë´Ù¿î
+// end 2012-07-11 by hskim, ì„ íƒì  ì…§ë‹¤ìš´
 
-// start 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - 
+// start 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - 
 //#define T_FC_SHUTDOWNMINS_USER_ALTER			(MessageType_t)((T0_FC_CONNECT<<8)|T1_FC_CONNECT_SHUTDOWNMINS_USER_ALTER)	// nobody
 //#define T_FC_SHUTDOWNMINS_USER_ENDGAME			(MessageType_t)((T0_FC_CONNECT<<8)|T1_FC_CONNECT_SHUTDOWNMINS_USER_ENDGAME)	// nobody
 
-// end 2011-11-03 by shcho, yedang ¼Ë´Ù¿îÁ¦ ±¸Çö - 
+// end 2011-11-03 by shcho, yedang ì…§ë‹¤ìš´ì œ êµ¬í˜„ - 
 
-// start 2011-10-18 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
+// start 2011-10-18 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
 //#define T_FC_TRIGGER_MAP_BUFF_SKILL				(MessageType_t)((T0_FC_TRIGGER<<8)|T1_FC_TRIGGER_MAP_BUFF_SKILL)
 
 struct MSG_FC_TRIGGER_MAP_BUFF_SKILL
 {
-	ClientIndex_t		ClientIndex;				// Å¬¶óÀÌ¾ğÆ® ÀÎµ¦½º
-	INT					SkillItemNum;				// ½ºÅ³ÀÇ ItemNum
-	INT					AddTime;					// ½ºÅ³ Àû¿ë ½Ã°£¿¡ Ãß°¡µÇ´Â °ª (ms)
+	ClientIndex_t		ClientIndex;				// í´ë¼ì´ì–¸íŠ¸ ì¸ë±ìŠ¤
+	INT					SkillItemNum;				// ìŠ¤í‚¬ì˜ ItemNum
+	INT					AddTime;					// ìŠ¤í‚¬ ì ìš© ì‹œê°„ì— ì¶”ê°€ë˜ëŠ” ê°’ (ms)
 };
-// end 2011-10-18 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
+// end 2011-10-18 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
 
-// start 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// start 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 struct MSG_FC_OBJECT_CHANGE
 {
 	ObjectIdx_t			ObjectIdx;
@@ -12458,49 +12458,49 @@ struct MSG_FC_SET_LIMITTIME
 };
 
 using mtvectCharacterUID = mt_vector<UID32_t>;
-// end 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// end 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 
 
 
 // start 2012-10-08 by khkim, GLog
-#define GLOG_AC_LT_LOGIN						0x01	// 1 - ·Î±×ÀÎ	
-#define GLOG_AC_LT_LOGOUT						0x02	// 2 - ·Î±×¾Æ¿ô 
+#define GLOG_AC_LT_LOGIN						0x01	// 1 - ë¡œê·¸ì¸	
+#define GLOG_AC_LT_LOGOUT						0x02	// 2 - ë¡œê·¸ì•„ì›ƒ 
 
-#define GLOG_CD_LT_GAMESTART					0x01	// 1 - °ÔÀÓ ½ÃÀÛ
-#define GLOG_CD_LT_GAMEEND						0x02	// 2 - °ÔÀÓ Á¾·á
-#define GLOG_CD_LT_CHARACTERCREATE				0x03	// 3 - Ä³¸¯ÅÍ »ı¼º
-#define GLOG_CD_LT_CHARACTERDELETE				0x04	// 4 - Ä³¸¯ÅÍ »èÁ¦
-#define GLOG_CD_LT_CHARACTLEVELUP				0x05	// 5 - ·¹º§¾÷
+#define GLOG_CD_LT_GAMESTART					0x01	// 1 - ê²Œì„ ì‹œì‘
+#define GLOG_CD_LT_GAMEEND						0x02	// 2 - ê²Œì„ ì¢…ë£Œ
+#define GLOG_CD_LT_CHARACTERCREATE				0x03	// 3 - ìºë¦­í„° ìƒì„±
+#define GLOG_CD_LT_CHARACTERDELETE				0x04	// 4 - ìºë¦­í„° ì‚­ì œ
+#define GLOG_CD_LT_CHARACTLEVELUP				0x05	// 5 - ë ˆë²¨ì—…
 
-#define GLOG_SL_LT_SERVERON						0x01	// 1 - ¼­¹ö ON
-#define GLOG_SL_LT_SERVEROFF					0x02	// 2 - ¼­¹ö OFF
+#define GLOG_SL_LT_SERVERON						0x01	// 1 - ì„œë²„ ON
+#define GLOG_SL_LT_SERVEROFF					0x02	// 2 - ì„œë²„ OFF
 
-#define	GLOG_IL_LT_DROP							0x01	// 1 - µå¶ø
-#define GLOG_IL_LT_QUEST						0x02	// 2 - Äù½ºÆ®
-#define GLOG_IL_LT_SHOP_BUY						0x03	// 3 - »óÁ¡			(±¸ÀÔ)
-#define GLOG_IL_LT_SHOP_SELL					0x04	// 4 - »óÁ¡			(ÆÇ¸Å)
-#define GLOG_IL_LT_WARPOINTSHOP_BUY				0x05	// 5 - ¿öÆ÷»óÁ¡		(±¸ÀÔ)
-#define GLOG_IL_LT_INFINITYOBSHOP_BUY			0x06	// 6 - ¿Àºê»óÁ¡		(±¸ÀÔ)
-#define GLOG_IL_LT_CASHSHOP_BUY					0x07	// 7 - Ä³½¬»óÁ¡		(±¸ÀÔ)
-#define GLOG_IL_LT_LUCKYMACHINE_GET				0x08	// 8 - ·°Å°¸Ó½Å		(¹ŞÀ½)
-#define GLOG_IL_LT_LUCKYMACHINE_USE				0x09	// 9 - ·°Å°¸Ó½Å		(»ç¿ë)
+#define	GLOG_IL_LT_DROP							0x01	// 1 - ë“œë
+#define GLOG_IL_LT_QUEST						0x02	// 2 - í€˜ìŠ¤íŠ¸
+#define GLOG_IL_LT_SHOP_BUY						0x03	// 3 - ìƒì 			(êµ¬ì…)
+#define GLOG_IL_LT_SHOP_SELL					0x04	// 4 - ìƒì 			(íŒë§¤)
+#define GLOG_IL_LT_WARPOINTSHOP_BUY				0x05	// 5 - ì›Œí¬ìƒì 		(êµ¬ì…)
+#define GLOG_IL_LT_INFINITYOBSHOP_BUY			0x06	// 6 - ì˜¤ë¸Œìƒì 		(êµ¬ì…)
+#define GLOG_IL_LT_CASHSHOP_BUY					0x07	// 7 - ìºì‰¬ìƒì 		(êµ¬ì…)
+#define GLOG_IL_LT_LUCKYMACHINE_GET				0x08	// 8 - ëŸ­í‚¤ë¨¸ì‹ 		(ë°›ìŒ)
+#define GLOG_IL_LT_LUCKYMACHINE_USE				0x09	// 9 - ëŸ­í‚¤ë¨¸ì‹ 		(ì‚¬ìš©)
 
-#define GLOG_IL_LT_BAZAARBUY_GET				0x0A	// 10 - °³ÀÎ»óÁ¡BUY	(¹ŞÀ½)
-#define GLOG_IL_LT_BAZAARBUY_GIVE				0x0B	// 11 - °³ÀÎ»óÁ¡BUY	(ÁÖ±â)
-#define GLOG_IL_LT_BAZAARSELL_GET				0x0C	// 12 - °³ÀÎ»óÁ¡SELL(¹ŞÀ½)
-#define GLOG_IL_LT_BAZAARSELL_GIVE				0x0D	// 13 - °³ÀÎ»óÁ¡SELL(ÁÖ±â)
-#define GLOG_IL_LT_TREADGIVE					0x0E	// 14 - °Å·¡		(ÁÖ±â)
-#define GLOG_IL_LT_TREADGET						0x0F	// 15 - °Å·¡		(¹ŞÀ½)
-#define GLOG_IL_LT_THROWAWAY					0x10	// 16 - ¹ö¸®±â 
-#define GLOG_IL_LT_MIXING_GET					0x11	// 17 - Á¶ÇÕ		(¹ŞÀ½)
-#define GLOG_IL_LT_MIXING_USE					0x12	// 18 - Á¶ÇÕ		(»ç¿ë)
-#define GLOG_IL_LT_ENCHANT_UP					0x13	// 19 - ÀÎÃ¾Æ®		(¼º°ø)
-#define GLOG_IL_LT_ENCHANT_DWON					0x14	// 20 - ÀÎÃ¾Æ®		(½ÇÆĞ)
-#define GLOG_IL_LT_ENCHANT_DESTROY				0x15	// 21 - ÀÎÃ¾Æ®		(ÆÄ±«)
-#define GLOG_IL_LT_ENCHANT_BEGINNING			0x16    // 22 - ÀÎÃ¾Æ®		(ÃÊ±âÈ­) 
-#define GLOG_IL_LT_ENCHANT_USEITEM				0x17	// 23 - ÀÎÃ¾Æ®½Ã »ç¿ëÇÑ ¾ÆÀÌÅÛ
-#define GLOG_IL_LT_RANDOMBOX					0x18	// 24 - Ä¸½¶Çü ¾ÆÀÌÅÛ
-#define GLOG_IL_LT_DISSOLUTION_GETITEM			0x19	// 25 - ¿ëÇØ
+#define GLOG_IL_LT_BAZAARBUY_GET				0x0A	// 10 - ê°œì¸ìƒì BUY	(ë°›ìŒ)
+#define GLOG_IL_LT_BAZAARBUY_GIVE				0x0B	// 11 - ê°œì¸ìƒì BUY	(ì£¼ê¸°)
+#define GLOG_IL_LT_BAZAARSELL_GET				0x0C	// 12 - ê°œì¸ìƒì SELL(ë°›ìŒ)
+#define GLOG_IL_LT_BAZAARSELL_GIVE				0x0D	// 13 - ê°œì¸ìƒì SELL(ì£¼ê¸°)
+#define GLOG_IL_LT_TREADGIVE					0x0E	// 14 - ê±°ë˜		(ì£¼ê¸°)
+#define GLOG_IL_LT_TREADGET						0x0F	// 15 - ê±°ë˜		(ë°›ìŒ)
+#define GLOG_IL_LT_THROWAWAY					0x10	// 16 - ë²„ë¦¬ê¸° 
+#define GLOG_IL_LT_MIXING_GET					0x11	// 17 - ì¡°í•©		(ë°›ìŒ)
+#define GLOG_IL_LT_MIXING_USE					0x12	// 18 - ì¡°í•©		(ì‚¬ìš©)
+#define GLOG_IL_LT_ENCHANT_UP					0x13	// 19 - ì¸ì²¸íŠ¸		(ì„±ê³µ)
+#define GLOG_IL_LT_ENCHANT_DWON					0x14	// 20 - ì¸ì²¸íŠ¸		(ì‹¤íŒ¨)
+#define GLOG_IL_LT_ENCHANT_DESTROY				0x15	// 21 - ì¸ì²¸íŠ¸		(íŒŒê´´)
+#define GLOG_IL_LT_ENCHANT_BEGINNING			0x16    // 22 - ì¸ì²¸íŠ¸		(ì´ˆê¸°í™”) 
+#define GLOG_IL_LT_ENCHANT_USEITEM				0x17	// 23 - ì¸ì²¸íŠ¸ì‹œ ì‚¬ìš©í•œ ì•„ì´í…œ
+#define GLOG_IL_LT_RANDOMBOX					0x18	// 24 - ìº¡ìŠí˜• ì•„ì´í…œ
+#define GLOG_IL_LT_DISSOLUTION_GETITEM			0x19	// 25 - ìš©í•´
 #define GLOG_IL_LT_SKILL						0x1A	
 #define GLOG_IL_LT_LOADING						0x1B
 #define GLOG_IL_LT_AUCTION						0x1C
@@ -12533,59 +12533,59 @@ using mtvectCharacterUID = mt_vector<UID32_t>;
 #define GLOG_IL_LT_WARP							0x37
 #define GLOG_IL_LT_CITYWAR_BRING_SUMOFTEX		0x38
 
-#define GLOG_ISL_GAMESTART						0x01	// 1 - °ÔÀÓ ½ÃÀÛ
-#define GLOG_ISL_CHARACTLEVELUP					0x02	// 2 - ·¹º§¾÷
+#define GLOG_ISL_GAMESTART						0x01	// 1 - ê²Œì„ ì‹œì‘
+#define GLOG_ISL_CHARACTLEVELUP					0x02	// 2 - ë ˆë²¨ì—…
 // end 2012-10-08 by khkim, GLog
 
 struct MSG_FC_CHARACTER_XIGNCODE_C_ACK_CODE
 {
 	ULONG Code;
 };
-// END 2012-10-17 by bhsohn XignCodeÀÛ¾÷
+// END 2012-10-17 by bhsohn XignCodeì‘ì—…
 
 ////////////////////////////////////////////////////////////////////////////
-// 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+// 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 struct MSG_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE
 {
 	char DBName[20];
 };
 using MSG_FP_ADMIN_STRATRGYPOINT_INFO_CHANGE = MSG_PA_ADMIN_STRATRGYPOINT_INFO_CHANGE;
-// end 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+// end 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 
-#define TIMESECOND_USER_NOTICE_MSG_SEND_TIC		3	// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ - À¯Àú ¾Ë¸² MSG ÀçÀü¼Û ÁÖ±â ½Ã°£ 3ÃÊ
+#define TIMESECOND_USER_NOTICE_MSG_SEND_TIC		3	// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ - ìœ ì € ì•Œë¦¼ MSG ì¬ì „ì†¡ ì£¼ê¸° ì‹œê°„ 3ì´ˆ
 
-// 2013-04-18 by jhseol,bckim ÀÌ´ŞÀÇ ¾Æ¸Ó - ÀÌ´ŞÀÇ ¾Æ¸Ó º¯°æ »çÇ× Àü´Ş ÆĞÅ¶
+// 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸ - ì´ë‹¬ì˜ ì•„ë¨¸ ë³€ê²½ ì‚¬í•­ ì „ë‹¬ íŒ¨í‚·
 struct MSG_FC_STORE_UPDATE_ARMOR_ITEM_EVENT_INFO
 {
-	UID64_t			ItemUID;			// ¾ÆÀÌÅÛ UID
-	ItemNum_t		nOptionItemNum;		// ¿É¼Ç ¾ÆÀÌÅÛ
-	ATUM_DATE_TIME	atEndDate;			// ÀÌº¥Æ® Á¾·á ±â°£
+	UID64_t			ItemUID;			// ì•„ì´í…œ UID
+	ItemNum_t		nOptionItemNum;		// ì˜µì…˜ ì•„ì´í…œ
+	ATUM_DATE_TIME	atEndDate;			// ì´ë²¤íŠ¸ ì¢…ë£Œ ê¸°ê°„
 };
 
-//#define T_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INIT	(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INIT)	// F->C, // ÄÃ·º¼Ç¿¡ Ç¥½ÃÇÒ ÀÌ´ŞÀÇ¾Æ¸Ó ÀÌº¥Æ® Á¤º¸ ÃÊ±âÈ­ ÆĞÅ¶
-//#define T_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO	(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO)	// F->C, // ÄÃ·º¼Ç¿¡ Ç¥½ÃÇÒ ÀÌ´ŞÀÇ¾Æ¸Ó ÀÌº¥Æ® Á¤º¸ ÆĞÅ¶
+//#define T_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INIT	(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INIT)	// F->C, // ì»¬ë ‰ì…˜ì— í‘œì‹œí•  ì´ë‹¬ì˜ì•„ë¨¸ ì´ë²¤íŠ¸ ì •ë³´ ì´ˆê¸°í™” íŒ¨í‚·
+//#define T_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO	(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO)	// F->C, // ì»¬ë ‰ì…˜ì— í‘œì‹œí•  ì´ë‹¬ì˜ì•„ë¨¸ ì´ë²¤íŠ¸ ì •ë³´ íŒ¨í‚·
 
 struct MSG_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO
 {
-	ItemNum_t		CollectionShapeNum;			// ¿ÜÇü ¹øÈ£
-	ItemNum_t		nOptionItemNum;				// ¿É¼Ç ¾ÆÀÌÅÛ
-	ATUM_DATE_TIME	atEndDate;					// ÀÌº¥Æ® Á¾·á ±â°£
+	ItemNum_t		CollectionShapeNum;			// ì™¸í˜• ë²ˆí˜¸
+	ItemNum_t		nOptionItemNum;				// ì˜µì…˜ ì•„ì´í…œ
+	ATUM_DATE_TIME	atEndDate;					// ì´ë²¤íŠ¸ ì¢…ë£Œ ê¸°ê°„
 };
-// end 2013-04-18 by jhseol,bckim ÀÌ´ŞÀÇ ¾Æ¸Ó - ÀÌ´ŞÀÇ ¾Æ¸Ó º¯°æ »çÇ× Àü´Ş ÆĞÅ¶
+// end 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸ - ì´ë‹¬ì˜ ì•„ë¨¸ ë³€ê²½ ì‚¬í•­ ì „ë‹¬ íŒ¨í‚·
 
-// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ÆĞÅ¶ Ãß°¡ : ¸Ş¼¼Áö
-// ÆĞÅ¶ ¼±¾ğºÎºĞ
-//#define T_FC_COLLECTION_INFO					(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_INFO)			// F->C, // ÄÃ·º¼Ç Á¤º¸ ÆĞÅ¶
-//#define T_FC_COLLECTION_SHAPE_CHANGE			(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_SHAPE_CHANGE)	// C->F, // ¿ÜÇü º¯°æ ¿äÃ» ÆĞÅ¶
+// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - íŒ¨í‚· ì¶”ê°€ : ë©”ì„¸ì§€
+// íŒ¨í‚· ì„ ì–¸ë¶€ë¶„
+//#define T_FC_COLLECTION_INFO					(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_INFO)			// F->C, // ì»¬ë ‰ì…˜ ì •ë³´ íŒ¨í‚·
+//#define T_FC_COLLECTION_SHAPE_CHANGE			(MessageType_t)((T0_FC_COLLECTION<<8)|T1_FC_COLLECTION_SHAPE_CHANGE)	// C->F, // ì™¸í˜• ë³€ê²½ ìš”ì²­ íŒ¨í‚·
 
-// MSG ¼±¾ğºÎºĞ
-using MSG_FC_COLLECTION_INFO = COLLECTION_INFO;				// ÄÃ·º¼Ç Á¤º¸ ÆĞÅ¶
-using MSG_FC_COLLECTION_SHAPE_CHANGE = COLLECTION_SHAPE_CHANGE;		// ¿ÜÇü º¯°æ ¿äÃ» ÆĞÅ¶
+// MSG ì„ ì–¸ë¶€ë¶„
+using MSG_FC_COLLECTION_INFO = COLLECTION_INFO;				// ì»¬ë ‰ì…˜ ì •ë³´ íŒ¨í‚·
+using MSG_FC_COLLECTION_SHAPE_CHANGE = COLLECTION_SHAPE_CHANGE;		// ì™¸í˜• ë³€ê²½ ìš”ì²­ íŒ¨í‚·
 
-#define GAMELOG_COLLECTION_STATE_ADD			1	// ÄÃ·º¼Ç µî·Ï
-#define GAMELOG_COLLECTION_STATE_ENCHANT		2	// ÄÃ·º¼Ç ÀÎÃ¾Æ®
-#define GAMELOG_COLLECTION_STATE_TIME_START		3	// ÄÃ·º¼Ç Àû¿ë(»ç¿ë):Å¸ÀÌ¸Ó ON
-#define GAMELOG_COLLECTION_STATE_TIME_END		4	// ÄÃ·º¼Ç ÇØÁ¦(»ç¿ëÁ¾·á):Å¸ÀÌ¸Ó OFF
+#define GAMELOG_COLLECTION_STATE_ADD			1	// ì»¬ë ‰ì…˜ ë“±ë¡
+#define GAMELOG_COLLECTION_STATE_ENCHANT		2	// ì»¬ë ‰ì…˜ ì¸ì²¸íŠ¸
+#define GAMELOG_COLLECTION_STATE_TIME_START		3	// ì»¬ë ‰ì…˜ ì ìš©(ì‚¬ìš©):íƒ€ì´ë¨¸ ON
+#define GAMELOG_COLLECTION_STATE_TIME_END		4	// ì»¬ë ‰ì…˜ í•´ì œ(ì‚¬ìš©ì¢…ë£Œ):íƒ€ì´ë¨¸ OFF
 struct MSG_FL_LOG_COLLECTION_STATE
 {
 	BYTE				CollectionState;
@@ -12614,9 +12614,9 @@ struct MSG_FL_LOG_COLLECTION_SHAPE_CHANGE
 		return o_szLogString;
 	}
 };
-// end 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ÆĞÅ¶ Ãß°¡ : ¸Ş¼¼Áö
+// end 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - íŒ¨í‚· ì¶”ê°€ : ë©”ì„¸ì§€
 
-// 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+// 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 struct MSG_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN
 {
 	UID32_t				AccountUID;
@@ -12631,6 +12631,6 @@ struct MSG_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN
 		return o_szLogString;
 	}
 };
-// end 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ - GameLog Ãß°¡
+// end 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½ - GameLog ì¶”ê°€
 
 #include "AtumProtocolX.h"

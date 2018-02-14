@@ -1,16 +1,16 @@
-
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - 
+ï»¿
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - 
 // #include "StringDefineProcedure.h"
 #ifndef _STRING_DEFINE_PROCEDURE_H_
 #define _STRING_DEFINE_PROCEDURE_H_
 
 #include "LocalizationDefineCommon.h"		
 
-// 2008-08-20 by cmkwon, MySQL °ü·Ã ¼Ò½º ÅëÇÕ - 
+// 2008-08-20 by cmkwon, MySQL ê´€ë ¨ ì†ŒìŠ¤ í†µí•© - 
 //#define DB_SERVER_MYSQL
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - 
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - 
 #define PROCEDURE_080822_0001 (UCHAR*)"{call dbo.atum_InsertLeaderItem(?,?,?)}"
 #define PROCEDURE_080822_0002 (UCHAR*)"{call dbo.atum_UpdateCityLeaderByLeaderSet(?,?)}"
 #define PROCEDURE_080822_0003 (UCHAR*)"{call dbo.atum_admin_GetAllDeletedCharacter(?)}"
@@ -42,7 +42,7 @@
 #define PROCEDURE_080822_0025 (UCHAR*)"{call dbo.atum_admin_InsertStoreItemCountable_DB(?, ?, ?)}"
 							 
 #define PROCEDURE_080822_0026 (UCHAR*)"{call dbo.atum_admin_GetCharacterByCharacterName(?)}"
-#define PROCEDURE_080822_0027 (UCHAR*)"{call dbo.atum_load_ti_MysteryItemDrop}"		// 2008-11-04 by dhjin, ·°Å°¸Ó½Å
+#define PROCEDURE_080822_0027 (UCHAR*)"{call dbo.atum_load_ti_MysteryItemDrop}"		// 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
 #define PROCEDURE_080822_0028 (UCHAR*)"{call dbo.atum_log_insert_user_game_start_end(?,?,?,?,?, ?,?,?,?,?, ?,?,?)}"
 #define PROCEDURE_080822_0029 (UCHAR*)"{call dbo.atum_log_insert_item_trade(?, ?, ?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0030 (UCHAR*)"{call dbo.Insert_atum_log_Live_Deleted_Character(?, ?, ?, ?, ?)}"
@@ -51,18 +51,18 @@
 #define PROCEDURE_080822_0032 (UCHAR*)"{call dbo.atum_LoadArenaInfo}"
 #define PROCEDURE_080822_0033 (UCHAR*)"{call dbo.atum_LoadArenaMapInfo}"
 #define PROCEDURE_080822_0034 (UCHAR*)"{call dbo.atum_LoadTutorialInfo}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0017·Î ´ëÃ¼ #define PROCEDURE_080822_0035 (UCHAR*)"{call atum_LoadOutPostInfo}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0017ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0035 (UCHAR*)"{call atum_LoadOutPostInfo}"
 							 
 #define PROCEDURE_080822_0036 (UCHAR*)"{call dbo.atum_LoadOutPostNextWarTime}"
 #define PROCEDURE_080822_0037 (UCHAR*)"{call dbo.atum_LoadCityLeaderInfo}"
 #define PROCEDURE_080822_0038 (UCHAR*)"{call dbo.atum_LoadActionByLevel}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0013 À¸·Î ´ëÃ¼ #define PROCEDURE_080822_0039 (UCHAR*)"{call atum_LoadPollDate}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0013 ìœ¼ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0039 (UCHAR*)"{call atum_LoadPollDate}"
 #define PROCEDURE_080822_0040 (UCHAR*)"{call dbo.atum_LoadServerGroupInfo}"
 
 #define PROCEDURE_080822_0041 (UCHAR*)"{call dbo.atum_UpdateServerGroupInfo(?,?,?)}"
 #define PROCEDURE_080822_0042 (UCHAR*)"{call dbo.atum_GetCharacterNumByName(?)}"
 #define PROCEDURE_080822_0043 (UCHAR*)"{call dbo.atum_CreateCharacter(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,  ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,  ?,?,?,?,?, ?,?,?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0042·Î ´ëÃ¼ #define PROCEDURE_080822_0044 (UCHAR*)"{call atum_GetCharacterNumByName(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0042ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0044 (UCHAR*)"{call atum_GetCharacterNumByName(?)}"
 #define PROCEDURE_080822_0045 (UCHAR*)"{call dbo.atum_DeleteCharacter(?)}"
 							 
 #define PROCEDURE_080822_0046 (UCHAR*)"{call dbo.atum_GetAccountUniqueNumber(?)}"
@@ -95,7 +95,7 @@
 #define PROCEDURE_080822_0069 (UCHAR*)"{call dbo.atum_UpdateItemPossess(?, ?)}"
 #define PROCEDURE_080822_0070 (UCHAR*)"{call dbo.atum_UpdateItemStorage(?, ?, ?)}"
 
-#define PROCEDURE_080822_0071 (UCHAR*)"{call dbo.atum_GetEventItemList(?,?,?)}"		// 2009-11-19 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ®¿¡ Account/Character Ã¼Å© ±â´É Ãß°¡ - ÀÎÀÚ 1°³ Ãß°¡
+#define PROCEDURE_080822_0071 (UCHAR*)"{call dbo.atum_GetEventItemList(?,?,?)}"		// 2009-11-19 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ì— Account/Character ì²´í¬ ê¸°ëŠ¥ ì¶”ê°€ - ì¸ì 1ê°œ ì¶”ê°€
 #define PROCEDURE_080822_0072 (UCHAR*)"{call dbo.atum_insert_Log_ItemEvent(?, ?, ?, ?)}"
 #define PROCEDURE_080822_0073 (UCHAR*)"{call dbo.atum_UseCouponNumber(?, ?, ?)}"
 #define PROCEDURE_080822_0074 (UCHAR*)"{call dbo.atum_Get_GuildStore(?, ?)}"
@@ -103,8 +103,8 @@
 							 
 #define PROCEDURE_080822_0076 (UCHAR*)"{call dbo.atum_Update_Guild_Store(?, ?, ?, ?, ?)}"
 
-// 2009-08-25 by cmkwon, »ç¿ëÇÏÁö ¾Ê´Â ÇÊµå Á¦°Å(td_Store.ScarcityNumber) - ÀÎÀÚ 1°³ Á¦°Å
-// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - td_Store.ShapeItemNum ÇÊµå Ãß°¡, ÀÎÀÚ 1°³ Ãß°¡µÊ
+// 2009-08-25 by cmkwon, ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í•„ë“œ ì œê±°(td_Store.ScarcityNumber) - ì¸ì 1ê°œ ì œê±°
+// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - td_Store.ShapeItemNum í•„ë“œ ì¶”ê°€, ì¸ì 1ê°œ ì¶”ê°€ë¨
 #define PROCEDURE_080822_0077 (UCHAR*)"{call dbo.atum_InsertStoreItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 
 #define PROCEDURE_080822_0078 (UCHAR*)"{call dbo.atum_Delete_Guild_Store(?, ?, ?)}"
@@ -114,7 +114,7 @@
 #define PROCEDURE_080822_0081 (UCHAR*)"{call dbo.atum_insert2WarpableUserList(?, ?)}"
 #define PROCEDURE_080822_0082 (UCHAR*)"{call dbo.atum_deleteWarpableUser(?, ?)}"
 #define PROCEDURE_080822_0083 (UCHAR*)"{call dbo.atum_Update_ConnectingServerGroupID_Of_Account(?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0077·Î ´ëÃ¼ #define PROCEDURE_080822_0084 (UCHAR*)"{call atum_InsertStoreItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0077ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0084 (UCHAR*)"{call atum_InsertStoreItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_080822_0085 (UCHAR*)"{call dbo.atum_Delete_Letter_By_LetterPassedRangeDay(?,?)}"
 							 
 #define PROCEDURE_080822_0086 (UCHAR*)"{call dbo.atum_Get_Letter(?,?)}"
@@ -127,16 +127,16 @@
 #define PROCEDURE_080822_0092 (UCHAR*)"{call dbo.atum_Delete_AllLetter(?)}"
 #define PROCEDURE_080822_0093 (UCHAR*)"{call dbo.atum_log_Get_GuildStore(?)}"
 #define PROCEDURE_080822_0094 (UCHAR*)"{call dbo.atum_GetStoreItem(?, ?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0075·Î ´ëÃ¼ #define PROCEDURE_080822_0095 (UCHAR*)"{call atum_GetEnchantBYItemUID(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0075ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0095 (UCHAR*)"{call atum_GetEnchantBYItemUID(?)}"
 							 
 #define PROCEDURE_080822_0096 (UCHAR*)"{call dbo.atum_GetStoreItemSkill(?, ?)}"
 #define PROCEDURE_080822_0097 (UCHAR*)"{call dbo.atum_GetAllEnchant(?, ?)}"
 #define PROCEDURE_080822_0098 (UCHAR*)"{call dbo.atum_DeleteStoreItem(?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0077·Î ´ëÃ¼ #define PROCEDURE_080822_0099 (UCHAR*)"{call atum_InsertStoreItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0077ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0099 (UCHAR*)"{call atum_InsertStoreItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_080822_0100 (UCHAR*)"{call dbo.atum_InsertStoreItemSkill(?, ?, ?, ?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - 101
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - 101
 #define PROCEDURE_080822_0101 (UCHAR*)"{call dbo.atum_UpdateStoreItemSkillUseTime(?, ?)}"
 #define PROCEDURE_080822_0102 (UCHAR*)"{call dbo.atum_UpdateItemCount(?, ?)}"
 #define PROCEDURE_080822_0103 (UCHAR*)"{call dbo.atum_UpdateItemNum(?, ?)}"
@@ -177,11 +177,11 @@
 #define PROCEDURE_080822_0132 (UCHAR*)"{call dbo.atum_Load_ItemEvent}"
 #define PROCEDURE_080822_0133 (UCHAR*)"{call dbo.atum_GetPCBangIPList}"
 
-// 2012-06-21 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ¾Æ·¹³ª Àü¿ë Äü½½·Ô
-#define PROCEDURE_080822_0134 (UCHAR*)"{call dbo.atum_GetQuickSlot(?,?,?)}"		// ±âÁ¸ ÇÁ·Î½ÃÀú¿¡ ÆÄ¶ó¹ÌÅÍ °ª 1°Ô Ãß°¡
-#define PROCEDURE_080822_0135 (UCHAR*)"{call dbo.atum_delete_QuickSlot(?,?,?,?)}"		// ±âÁ¸ ÇÁ·Î½ÃÀú¿¡ ÆÄ¶ó¹ÌÅÍ °ª 1°Ô Ãß°¡
-#define PROCEDURE_080822_0136 (UCHAR*)"{call dbo.atum_Update_QuickSlot(?,?,?,?,?, ?,?,?,?,? ,?,?,?,?)}"		// ±âÁ¸ ÇÁ·Î½ÃÀú¿¡ ÆÄ¶ó¹ÌÅÍ °ª 1°Ô Ãß°¡
-// end 2012-06-21 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ¾Æ·¹³ª Àü¿ë Äü½½·Ô
+// 2012-06-21 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì•„ë ˆë‚˜ ì „ìš© í€µìŠ¬ë¡¯
+#define PROCEDURE_080822_0134 (UCHAR*)"{call dbo.atum_GetQuickSlot(?,?,?)}"		// ê¸°ì¡´ í”„ë¡œì‹œì €ì— íŒŒë¼ë¯¸í„° ê°’ 1ê²Œ ì¶”ê°€
+#define PROCEDURE_080822_0135 (UCHAR*)"{call dbo.atum_delete_QuickSlot(?,?,?,?)}"		// ê¸°ì¡´ í”„ë¡œì‹œì €ì— íŒŒë¼ë¯¸í„° ê°’ 1ê²Œ ì¶”ê°€
+#define PROCEDURE_080822_0136 (UCHAR*)"{call dbo.atum_Update_QuickSlot(?,?,?,?,?, ?,?,?,?,? ,?,?,?,?)}"		// ê¸°ì¡´ í”„ë¡œì‹œì €ì— íŒŒë¼ë¯¸í„° ê°’ 1ê²Œ ì¶”ê°€
+// end 2012-06-21 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì•„ë ˆë‚˜ ì „ìš© í€µìŠ¬ë¡¯
 
 #define PROCEDURE_080822_0137 (UCHAR*)"{call dbo.atum_UpdateStrategyPointSummonInfoByMapIndex}"
 #define PROCEDURE_080822_0138 (UCHAR*)"{call dbo.atum_LoadStrategyPointSummonInfo}"
@@ -189,8 +189,8 @@
 #define PROCEDURE_080822_0140 (UCHAR*)"{call dbo.atum_UpdateStrategyPointSummonInfoBySummonTime(?,?,?)}"
 
 #define PROCEDURE_080822_0141 (UCHAR*)"{call dbo.atum_UpdateStrategyPointSummonInfoByNewSummonRange}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0020·Î ´ëÃ¼ #define PROCEDURE_080822_0142 (UCHAR*)"{call atum_LoadStrategyPointSummonRangeTimeInfo}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0022·Î ´ëÃ¼ #define PROCEDURE_080822_0143 (UCHAR*)"{call atum_LoadStrategyPointNotSummonTime}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0020ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0142 (UCHAR*)"{call atum_LoadStrategyPointSummonRangeTimeInfo}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0022ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0143 (UCHAR*)"{call atum_LoadStrategyPointNotSummonTime}"
 #define PROCEDURE_080822_0144 (UCHAR*)"{call dbo.atum_UpdateCharacterWarPoint(?,?,?,?)}"
 #define PROCEDURE_080822_0145 (UCHAR*)"{call dbo.atum_UpdateCharacterArenaResult(?,?,?,?,?,?)}"
 							 
@@ -212,7 +212,7 @@
 #define PROCEDURE_080822_0159 (UCHAR*)"{call dbo.atum_UpdateSecondaryPassword(?,?)}"
 #define PROCEDURE_080822_0160 (UCHAR*)"{call dbo.atum_LoadVoterList}"
 
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0015·Î ´ëÃ¼ #define PROCEDURE_080822_0161 (UCHAR*)"{call atum_LoadLeaderCandidate}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0015ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0161 (UCHAR*)"{call atum_LoadLeaderCandidate}"
 #define PROCEDURE_080822_0162 (UCHAR*)"{call dbo.atum_SelectLeaderCandidateInfoByRealTimeVariable(?,?)}"
 #define PROCEDURE_080822_0163 (UCHAR*)"{call dbo.atum_InsertLeaderCandidate(?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_080822_0164 (UCHAR*)"{call dbo.atum_UpdateLeaderDeleteCandidate(?)}"
@@ -229,13 +229,13 @@
 #define PROCEDURE_080822_0173 (UCHAR*)"{call dbo.arena_updateCharacterInfo(?,?,?)}"
 #define PROCEDURE_080822_0174 (UCHAR*)"{call dbo.arena_GetCharacter(?, ?)}"
 //#define PROCEDURE_080822_0175 (UCHAR*)"{call dbo.arena_CopyDBInfo(?,?,?)}"
-#define PROCEDURE_080822_0175 (UCHAR*)"{call dbo.arena_CopyDBInfo(?,?,?,?,?)}"	// 2012-06-08 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ßpart2 - ÄÉ¸¯ÅÍ : Å¸ÀÔ º¹»ç ÆÄ¶÷ Ãß°¡
+#define PROCEDURE_080822_0175 (UCHAR*)"{call dbo.arena_CopyDBInfo(?,?,?,?,?)}"	// 2012-06-08 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œpart2 - ì¼€ë¦­í„° : íƒ€ì… ë³µì‚¬ íŒŒëŒ ì¶”ê°€
 							 
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0174·Î ´ëÃ¼ #define PROCEDURE_080822_0176 (UCHAR*)"{call arena_GetCharacter(?, ?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0174ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0176 (UCHAR*)"{call arena_GetCharacter(?, ?)}"
 #define PROCEDURE_080822_0177 (UCHAR*)"{call dbo.atum_log_Get_MSWar}"
 #define PROCEDURE_080822_0178 (UCHAR*)"{call dbo.atum_log_Get_SPWar}"
 #define PROCEDURE_080822_0179 (UCHAR*)"{call dbo.atum_Update_MSWarOptionType(?,?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0041·Î ´ëÃ¼ #define PROCEDURE_080822_0180 (UCHAR*)"{call atum_UpdateServerGroupInfo(?,?,?,?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0041ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0180 (UCHAR*)"{call atum_UpdateServerGroupInfo(?,?,?,?)}"
 
 #define PROCEDURE_080822_0181 (UCHAR*)"{call dbo.atum_GetNumOfCharacter(?)}"
 #define PROCEDURE_080822_0182 (UCHAR*)"{call dbo.atum_GetUserInfo(?)}"
@@ -262,7 +262,7 @@
 #define PROCEDURE_080822_0200 (UCHAR*)"{call dbo.SP_GameCashUpdate(?,?,?,?,?, ?,?,?,?,?, ?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - 201
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - 201
 #define PROCEDURE_080822_0201 (UCHAR*)"{call dbo.SP_GameCashUpdateGift(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_080822_0202 (UCHAR*)"{call dbo.atum_GetBuildingNPC(?)}"
 #define PROCEDURE_080822_0203 (UCHAR*)"{call dbo.atum_GetAllBuildingIndex(?)}"
@@ -278,13 +278,13 @@
 #define PROCEDURE_080822_0211 (UCHAR*)"{call dbo.atum_Get_Guild_Master_CashStoreInfo(?) }"
 #define PROCEDURE_080822_0212 (UCHAR*)"{call dbo.atum_InsertGuildMember(?, ?, ?)}"
 #define PROCEDURE_080822_0213 (UCHAR*)"{call dbo.atum_DeleteSelfIntroduction(?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0212·Î ´ëÃ¼ #define PROCEDURE_080822_0214 (UCHAR*)"{call atum_InsertGuildMember(?, ?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0213·Î ´ëÃ¼ #define PROCEDURE_080822_0215 (UCHAR*)"{call dbo.atum_DeleteSelfIntroduction(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0212ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0214 (UCHAR*)"{call atum_InsertGuildMember(?, ?, ?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0213ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0215 (UCHAR*)"{call dbo.atum_DeleteSelfIntroduction(?)}"
 								
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0212·Î ´ëÃ¼ #define PROCEDURE_080822_0216 (UCHAR*)"{call dbo.atum_InsertGuildMember(?, ?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0213·Î ´ëÃ¼ #define PROCEDURE_080822_0217 (UCHAR*)"{call dbo.atum_DeleteSelfIntroduction(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0212ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0216 (UCHAR*)"{call dbo.atum_InsertGuildMember(?, ?, ?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0213ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0217 (UCHAR*)"{call dbo.atum_DeleteSelfIntroduction(?)}"
 #define PROCEDURE_080822_0218 (UCHAR*)"{call dbo.atum_DeleteGuildMember(?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0218·Î ´ëÃ¼ #define PROCEDURE_080822_0219 (UCHAR*)"{call atum_DeleteGuildMember(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0218ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0219 (UCHAR*)"{call atum_DeleteGuildMember(?)}"
 #define PROCEDURE_080822_0220 (UCHAR*)"{call dbo.atum_SetDismemberDate(?)}"
 						   
 #define PROCEDURE_080822_0221 (UCHAR*)"{call dbo.atum_Guild_UpdateMemberCapacity(?, ?, ?)}"
@@ -295,7 +295,7 @@
 								
 #define PROCEDURE_080822_0226 (UCHAR*)"{call dbo.atum_DismemberGuild(?)}"
 #define PROCEDURE_080822_0227 (UCHAR*)"{call dbo.atum_GetGuildInfoByUniqueNumber(?) }"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0211·Î ´ëÃ¼ #define PROCEDURE_080822_0228 (UCHAR*)"{call dbo.atum_Get_Guild_Master_CashStoreInfo(?) }"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0211ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0228 (UCHAR*)"{call dbo.atum_Get_Guild_Master_CashStoreInfo(?) }"
 #define PROCEDURE_080822_0229 (UCHAR*)"{call dbo.atum_GetAllGuildMembers(?) }"
 #define PROCEDURE_080822_0230 (UCHAR*)"{call dbo.atum_GetGuildRank(?, ?) }"
 						   
@@ -303,15 +303,15 @@
 #define PROCEDURE_080822_0232 (UCHAR*)"{call dbo.atum_GetGuildIntroduction(?) }"
 #define PROCEDURE_080822_0233 (UCHAR*)"{call dbo.atum_SaveGuildWarPoint(?, ?, ?)}"
 #define PROCEDURE_080822_0234 (UCHAR*)"{call dbo.atum_GuildAddGuildFame(?,?,?) }"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0211·Î ´ëÃ¼ #define PROCEDURE_080822_0235 (UCHAR*)"{call dbo.atum_Get_Guild_Master_CashStoreInfo(?) }"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0211ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0235 (UCHAR*)"{call dbo.atum_Get_Guild_Master_CashStoreInfo(?) }"
 								
 #define PROCEDURE_080822_0236 (UCHAR*)"{call dbo.atum_UpdateGuildNotice(?,?) }"
 #define PROCEDURE_080822_0237 (UCHAR*)"{call dbo.atum_GetGuildApplicant(?) }"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0232·Î ´ëÃ¼ #define PROCEDURE_080822_0238 (UCHAR*)"{call dbo.atum_GetGuildIntroduction(?) }"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0232ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0238 (UCHAR*)"{call dbo.atum_GetGuildIntroduction(?) }"
 #define PROCEDURE_080822_0239 (UCHAR*)"{call dbo.atum_DeleteGuildIntroduction(?) }"
 #define PROCEDURE_080822_0240 (UCHAR*)"{call dbo.atum_GetSelfIntroduction(?) }"
 						   
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0231·Î ´ëÃ¼ #define PROCEDURE_080822_0241 (UCHAR*)"{call dbo.atum_DeleteGuildIntroduction_By_PassedRangeDay(?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0231ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0241 (UCHAR*)"{call dbo.atum_DeleteGuildIntroduction_By_PassedRangeDay(?)}"
 #define PROCEDURE_080822_0242 (UCHAR*)"{call dbo.atum_SearchGuildIntroduction(?) }"
 #define PROCEDURE_080822_0243 (UCHAR*)"{call dbo.atum_UpdateGuildIntroduction(?, ?, ?)}"
 #define PROCEDURE_080822_0244 (UCHAR*)"{call dbo.atum_FriendInsertFriend(?,?,?,?)}"
@@ -323,7 +323,7 @@
 
 #define PROCEDURE_080822_0248 (UCHAR*)"{call dbo.atum_log_insert_user_level_stat(?, ?, ?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0249 (UCHAR*)"{call dbo.atum_log_insert_exp(?, ?, ?, ?, ?, ?, ?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0028·Î ´ëÃ¼ #define PROCEDURE_080822_0250 (UCHAR*)"{call atum_log_insert_user_game_start_end(?,?,?,?,?, ?,?,?,?,?, ?,?,?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0028ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0250 (UCHAR*)"{call atum_log_insert_user_game_start_end(?,?,?,?,?, ?,?,?,?,?, ?,?,?)}"
 						   
 #define PROCEDURE_080822_0251 (UCHAR*)"{call dbo.atum_log_insert_user_quest_pk_dead(?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0252 (UCHAR*)"{call dbo.atum_log_insert_user_warp(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}"
@@ -332,7 +332,7 @@
 #define PROCEDURE_080822_0255 (UCHAR*)"{call dbo.atum_log_insert_item_charac_use(?, ?, ?, ?, ?, ?, ?)}"
 								
 #define PROCEDURE_080822_0256 (UCHAR*)"{call dbo.atum_log_insert_item_get_throw(?, ?, ?, ?, ?, ?, ?)}"
-// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - PROCEDURE_080822_0029·Î ´ëÃ¼ #define PROCEDURE_080822_0257 (UCHAR*)"{call atum_log_insert_item_trade(?, ?, ?, ?, ?, ?, ?, ?, ?)}"
+// 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - PROCEDURE_080822_0029ë¡œ ëŒ€ì²´ #define PROCEDURE_080822_0257 (UCHAR*)"{call atum_log_insert_item_trade(?, ?, ?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0258 (UCHAR*)"{call dbo.atum_log_Insert_GuildStore(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0259 (UCHAR*)"{call dbo.atum_log_insert_item_buy_sell(?, ?, ?, ?, ?, ?, ?, ?)}"
 #define PROCEDURE_080822_0260 (UCHAR*)"{call dbo.atum_log_insert_server_map(?, ?, ?, ?, ?)}"
@@ -348,7 +348,7 @@
 #define PROCEDURE_080822_0267 (UCHAR*)"{call dbo.atum_Insert_BlockedAccounts(?,?,?,?,?, ?,?)}"
 #define PROCEDURE_080822_0268 (UCHAR*)"{call dbo.atum_Delete_BlockedAccounts(?)}"
 
-#define PROCEDURE_080822_0269 (UCHAR*)"{call dbo.atum_log_insert_total_user(?, ?, ?)}"			// 2010-11 by dhjin, ¾Æ¶ó¸®¿À Ã¤³Î¸µ ·Î±×ÀÎ.
+#define PROCEDURE_080822_0269 (UCHAR*)"{call dbo.atum_log_insert_total_user(?, ?, ?)}"			// 2010-11 by dhjin, ì•„ë¼ë¦¬ì˜¤ ì±„ë„ë§ ë¡œê·¸ì¸.
 
 #define PROCEDURE_080822_0270 (UCHAR*)"{call dbo.atum_log_insert_block_unblock(?,?,?,?,?, ?,?,?)}"
 						   
@@ -361,7 +361,7 @@
 #define PROCEDURE_080822_0276 (UCHAR*)"{call dbo.atum_Load_BlockAccounts}"
 #define PROCEDURE_080822_0277 (UCHAR*)"{call dbo.atum_Send_Letter(?,?,?,?,? ,?)}"
 #define PROCEDURE_080822_0278 (UCHAR*)"{call dbo.atum_Send_AllLetter_ByLeader(?,?,?,?,? ,?)}"
-// 2008-10-13 by dhjin, ¿©´ÜÀå À§ÀÓ °¡´É ·¹º§ Ã¼Å© Ãß°¡ - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+// 2008-10-13 by dhjin, ì—¬ë‹¨ì¥ ìœ„ì„ ê°€ëŠ¥ ë ˆë²¨ ì²´í¬ ì¶”ê°€ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 //#define PROCEDURE_080822_0279 (UCHAR*)"{call dbo.atum_UpdateGuildCommander(?,?,?) }"
 #define PROCEDURE_080822_0279 (UCHAR*)"{call dbo.atum_UpdateGuildCommander(?,?,?,?) }"
 #define PROCEDURE_080822_0280 (UCHAR*)"{call dbo.atum_UpdateSelfIntroduction(?, ?, ?)}"
@@ -374,7 +374,7 @@
 #define PROCEDURE_080822_0285 (UCHAR*)"{call dbo.atum_Delete_BlockedMAC}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-08-27 by cmkwon, ³¯Äõ¸®¸¦ Procedure·Î ¼öÁ¤ - 
+// 2008-08-27 by cmkwon, ë‚ ì¿¼ë¦¬ë¥¼ Procedureë¡œ ìˆ˜ì • - 
 #define PROCEDURE_080827_0001 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0001(?)}"
 #define PROCEDURE_080827_0002 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0002(?,?,?,?)}"
 #define PROCEDURE_080827_0003 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0003}"
@@ -411,7 +411,7 @@
 #define PROCEDURE_080827_0033 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0033(?)}"
 #define PROCEDURE_080827_0034 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0034(?)}"
 
-// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - ShapeItemNum ÇÊµå Ãß°¡, ÇÁ·Î½ÃÀú ÀÎÀÚ Ãß°¡
+// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - ShapeItemNum í•„ë“œ ì¶”ê°€, í”„ë¡œì‹œì € ì¸ì ì¶”ê°€
 #define PROCEDURE_080827_0035 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0035(?,?,?,?,?, ?)}"
 
 #define PROCEDURE_080827_0036 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0036(?,?,?)}"
@@ -595,24 +595,24 @@
 #define PROCEDURE_080827_0264 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0264(?,?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_080827_0265 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0265(?,?,?,?,?,?,?,?,?)}"
 
-#ifdef S_ITEM_EVENT_RETURN_USER_BCKIM				// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
+#ifdef S_ITEM_EVENT_RETURN_USER_BCKIM				// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
 #define PROCEDURE_080827_0266 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0266(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?)}"	
 #define PROCEDURE_080827_0267 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0267(?)}"
 #define PROCEDURE_080827_0268 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0268(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?, ?,?)}"
 #define PROCEDURE_080827_0269 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0269(?,?,?,?,?,?,?,?,?)}"
 #else 
-#define PROCEDURE_080827_0266 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0266(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?)}"			// 2009-11-19 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ®¿¡ Account/Character Ã¼Å© ±â´É Ãß°¡ - ÀÎÀÚ 1°³ Ãß°¡ // 2010-06-16 by jskim, ·¹º§º° ÀÌº¥Æ® Ã¼Å© ±â´É - // start 2011-08-25 by shcho, È½¼öº° ¾ÆÀÌÅÛ Áö±Ş±â´É ±¸Çö -
+#define PROCEDURE_080827_0266 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0266(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?)}"			// 2009-11-19 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ì— Account/Character ì²´í¬ ê¸°ëŠ¥ ì¶”ê°€ - ì¸ì 1ê°œ ì¶”ê°€ // 2010-06-16 by jskim, ë ˆë²¨ë³„ ì´ë²¤íŠ¸ ì²´í¬ ê¸°ëŠ¥ - // start 2011-08-25 by shcho, íšŸìˆ˜ë³„ ì•„ì´í…œ ì§€ê¸‰ê¸°ëŠ¥ êµ¬í˜„ -
 #define PROCEDURE_080827_0267 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0267(?)}"
-#define PROCEDURE_080827_0268 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0268(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?)}"		// 2009-11-19 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ®¿¡ Account/Character Ã¼Å© ±â´É Ãß°¡ - ÀÎÀÚ 1°³ Ãß°¡ // 2010-06-16 by jskim, ·¹º§º° ÀÌº¥Æ® Ã¼Å© ±â´É -	// start 2011-08-25 by shcho, È½¼öº° ¾ÆÀÌÅÛ Áö±Ş±â´É ±¸Çö -
+#define PROCEDURE_080827_0268 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0268(?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?)}"		// 2009-11-19 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ì— Account/Character ì²´í¬ ê¸°ëŠ¥ ì¶”ê°€ - ì¸ì 1ê°œ ì¶”ê°€ // 2010-06-16 by jskim, ë ˆë²¨ë³„ ì´ë²¤íŠ¸ ì²´í¬ ê¸°ëŠ¥ -	// start 2011-08-25 by shcho, íšŸìˆ˜ë³„ ì•„ì´í…œ ì§€ê¸‰ê¸°ëŠ¥ êµ¬í˜„ -
 #define PROCEDURE_080827_0269 (UCHAR*)"{call dbo.atum_PROCEDURE_080827_0269(?,?,?,?,?,?,?,?,?)}"
 #endif
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-09-09 by dhjin, ·¯½Ã¾Æ ºô¸µ °ü·Ã -
+// 2008-09-09 by dhjin, ëŸ¬ì‹œì•„ ë¹Œë§ ê´€ë ¨ -
 #define PROCEDURE_080909_0270 (UCHAR*)"{call dbo.Usp_Check_Balance(?,?)}"
 #define PROCEDURE_080909_0271 (UCHAR*)"{call dbo.Usp_Sell_Item(?,?,?,?,?,?,?,?)}"
 
-// 2008-11-04 by dhjin, ·°Å°¸Ó½Å
+// 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
 #define PROCEDURE_081104_0272 (UCHAR*)"{call dbo.atum_Update_LuckyItem_DropCount(?,?,?)}"
 #define PROCEDURE_081104_0273 (UCHAR*)"{call dbo.atum_Update_LuckyItem_STARTTIME(?,?)}"
 #define PROCEDURE_081110_0274 (UCHAR*)"{call dbo.atum_load_ti_LuckyMachine}"
@@ -623,14 +623,14 @@
 #define PROCEDURE_081201_0279 (UCHAR*)"{call dbo.atum_Update_LuckyItem_DropCount_ServerGroupIDReset_ByAdminTool(?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-01-14 by cmkwon, ¿î¿µÀÚ ÀÚµ¿ °øÁö ½Ã½ºÅÛ ±¸Çö - 
+// 2009-01-14 by cmkwon, ìš´ì˜ì ìë™ ê³µì§€ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_090115_0280 (UCHAR*)"{call dbo.atum_Load_AdminAutoNoticeInfo}"
 #define PROCEDURE_090115_0281 (UCHAR*)"{call dbo.atum_Load_AdminAutoNoticeString}"
 #define PROCEDURE_090115_0282 (UCHAR*)"{call dbo.atum_Update_AdminAutoNoticeInfo(?,?,?,?)}"
 #define PROCEDURE_090115_0283 (UCHAR*)"{call dbo.atum_Insert_AdminAutoNoticeString(?,?,?)}"
 
 //////////////////////////////////////////////////////////////////////////
-// 2009-01-12 by dhjin, ¼±Àü Æ÷°í
+// 2009-01-12 by dhjin, ì„ ì „ í¬ê³ 
 #define PROCEDURE_090114_0284 (UCHAR*)"{call dbo.atum_Load_DeclarationOfWarInfo}"
 #define PROCEDURE_090114_0285 (UCHAR*)"{call dbo.atum_Load_DeclarationOfWarForbidTimeInfo}"
 #define PROCEDURE_090114_0286 (UCHAR*)"{call dbo.atum_UpdateStartDeclarationOfWar(?,?,?,?,?)}"
@@ -643,14 +643,14 @@
 #define PROCEDURE_090114_0293 (UCHAR*)"{call dbo.atum_UpdateMSWarStartDeclarationOfWarByAdminTool(?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-01-28 by cmkwon, Ä³½¬˜?¼öÁ¤(ÃßÃµÅÇ,½Å»óÇ° Ãß°¡) - ÇÁ·Î½ÃÀú 2°³ Ãß°¡
+// 2009-01-28 by cmkwon, ìºì‰¬Â˜?ìˆ˜ì •(ì¶”ì²œíƒ­,ì‹ ìƒí’ˆ ì¶”ê°€) - í”„ë¡œì‹œì € 2ê°œ ì¶”ê°€
 #define PROCEDURE_090129_0295 (UCHAR*)"{call dbo.atum_Load_CashShopBit}"
-// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - ÀÎÀÚ 1°³ Ãß°¡
+// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - ì¸ì 1ê°œ ì¶”ê°€
 #define PROCEDURE_090129_0296 (UCHAR*)"{call dbo.atum_Update_CashShopBit(?,?,?)}"
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_090219_0300 (UCHAR*)"{call dbo.atum_wrk_load_selfServiceInfo8ServerGroupName(?)}"
 #define PROCEDURE_090219_0301 (UCHAR*)"{call dbo.atum_wrk_delete_selfAllLevelRanking(?,?)}"
 #define PROCEDURE_090219_0302 (UCHAR*)"{call dbo.atum_wrk_arrange_selfAllLevelRanking(?,?,?)}"
@@ -693,13 +693,13 @@
 #define PROCEDURE_090219_0339 (UCHAR*)"{call dbo.atum_wrk_get_SelfFameRanking(?)}"
 #define PROCEDURE_090219_0340 (UCHAR*)"{call dbo.atum_wrk_get_SelfPVPRanking(?)}"
 
-// 2009-03-03 by dhjin, ·°Å°¸Ó½Å ¼öÁ¤¾È
+// 2009-03-03 by dhjin, ëŸ­í‚¤ë¨¸ì‹  ìˆ˜ì •ì•ˆ
 #define PROCEDURE_090303_0341 (UCHAR*)"{call dbo.atum_load_ti_LuckyMachineByOmi}"
 
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - 
+// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_090401_0342 (UCHAR*)"{call dbo.atum_Load_QuestMatching}"
 #define PROCEDURE_090401_0343 (UCHAR*)"{call dbo.atum_Load_ItemMatching}"
 #define PROCEDURE_090401_0344 (UCHAR*)"{call dbo.atum_Init_InfluenceType_AllCharacter}"
@@ -709,42 +709,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-06-25 by cmkwon, º£Æ®³² VTC ºô¸µ ½Ã½ºÅÛ ¼öÁ¤ - 
+// 2009-06-25 by cmkwon, ë² íŠ¸ë‚¨ VTC ë¹Œë§ ì‹œìŠ¤í…œ ìˆ˜ì • - 
 #define PROCEDURE_090625_0348 (UCHAR*)"{? = call dbo.SP_Account_GetTotalVcoin(?,?,?)}"
 #define PROCEDURE_090625_0349 (UCHAR*)"{? = call dbo.SP_SCO_BuyItem(?,?,?,?,?,?,?)}"
 										
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-07-09 by jwlee, °ÔÀÓ Á¤º¸ Å×ÀÌºí µ¥ÀÌÅÍ DB¿¡ ¹Ğ¾î³Ö±â Åø ±¸Çö -
-#define PROCEDURE_090709_0350 (UCHAR*)"{call dbo.atum_import_ti_item(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
+// 2009-07-09 by jwlee, ê²Œì„ ì •ë³´ í…Œì´ë¸” ë°ì´í„° DBì— ë°€ì–´ë„£ê¸° íˆ´ êµ¬í˜„ -
+#define PROCEDURE_090709_0350 (UCHAR*)"{call dbo.atum_import_ti_item(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
 
-// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - ÇÊµå 1°³Ãß°¡(DropType)
+// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - í•„ë“œ 1ê°œì¶”ê°€(DropType)
 #define PROCEDURE_090709_0351 (UCHAR*)"{call dbo.atum_import_ti_monsteritem(?,?,?,?,?,?,?,?)}"
 
 #define PROCEDURE_090709_0352 (UCHAR*)"{call dbo.atum_import_ti_rareiteminfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_090709_0353 (UCHAR*)"{call dbo.atum_import_ti_shop(?,?,?)}"
 #define PROCEDURE_090709_0354 (UCHAR*)"{call dbo.atum_import_ti_citytargetwarpmap(?,?,?,?,?,?)}"
-#define PROCEDURE_090709_0355 (UCHAR*)"{call dbo.atum_import_ti_itemmixinginfo(?,?,?,?,?)}"		// 2013-05-06 by hskim, ¾ÆÀÌÅÛ ¹Ì¸® º¸±â (¼Ó¼º °ª Ãß°¡) - // 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+#define PROCEDURE_090709_0355 (UCHAR*)"{call dbo.atum_import_ti_itemmixinginfo(?,?,?,?,?)}"		// 2013-05-06 by hskim, ì•„ì´í…œ ë¯¸ë¦¬ ë³´ê¸° (ì†ì„± ê°’ ì¶”ê°€) - // 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 #define PROCEDURE_090709_0356 (UCHAR*)"{call dbo.atum_import_ti_enchantinfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_090709_0357 (UCHAR*)"{call dbo.atum_import_ti_strategypointsummonmapindex(?,?,?)}"
 //#define PROCEDURE_090709_0358 (UCHAR*)"{call dbo.atum_import_ti_arenainfo(?,?,?,?,?,?)}"
-#define PROCEDURE_090709_0358 (UCHAR*)"{call dbo.atum_import_ti_arenainfo(?,?,?,?,?,?,?,?)}"	// 2012-05-23 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ÃÖ¼Ò º¸»ó ¿öÆ÷ ÇÊµå Ãß°¡
-// 2012-09-14 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß part3 - ¾Æ·¹³ª Áö±Ş ¾ÆÀÌÅÛ Ãß°¡ (¾Æ·¹³ª Àü¿ë Åº¾à ÀçÃæÀü Ä«µå)
+#define PROCEDURE_090709_0358 (UCHAR*)"{call dbo.atum_import_ti_arenainfo(?,?,?,?,?,?,?,?)}"	// 2012-05-23 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ìµœì†Œ ë³´ìƒ ì›Œí¬ í•„ë“œ ì¶”ê°€
+// 2012-09-14 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ part3 - ì•„ë ˆë‚˜ ì§€ê¸‰ ì•„ì´í…œ ì¶”ê°€ (ì•„ë ˆë‚˜ ì „ìš© íƒ„ì•½ ì¬ì¶©ì „ ì¹´ë“œ)
 #ifdef _ARENA_ADDITIONAL_SUPPLY_ITEMS
-#define PROCEDURE_090709_0359 (UCHAR*)"{call dbo.atum_import_ti_arenamapinfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 4¹øÂ° Áö±Ş ¾ÆÀÌÅÛ Ãß°¡
+#define PROCEDURE_090709_0359 (UCHAR*)"{call dbo.atum_import_ti_arenamapinfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 4ë²ˆì§¸ ì§€ê¸‰ ì•„ì´í…œ ì¶”ê°€
 #else
 #define PROCEDURE_090709_0359 (UCHAR*)"{call dbo.atum_import_ti_arenamapinfo(?,?,?,?,?,?,?,?,?,?,?)}"
 #endif
-// end 2012-09-14 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß part3 - ¾Æ·¹³ª Áö±Ş ¾ÆÀÌÅÛ Ãß°¡ (¾Æ·¹³ª Àü¿ë Åº¾à ÀçÃæÀü Ä«µå)
+// end 2012-09-14 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ part3 - ì•„ë ˆë‚˜ ì§€ê¸‰ ì•„ì´í…œ ì¶”ê°€ (ì•„ë ˆë‚˜ ì „ìš© íƒ„ì•½ ì¬ì¶©ì „ ì¹´ë“œ)
 #define PROCEDURE_090709_0360 (UCHAR*)"{call dbo.atum_import_ti_mysteryitemdrop(?,?,?,?,?,?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_090709_0361 (UCHAR*)"{call dbo.atum_import_ti_influencewar(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_090709_0362 (UCHAR*)"{call dbo.atum_import_ti_outpostnextwartime(?)}"
 #define PROCEDURE_090709_0363 (UCHAR*)"{call dbo.atum_import_ti_actionbylevel(?,?)}"
-#define PROCEDURE_090709_0364 (UCHAR*)"{call dbo.atum_import_ti_mapinfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
+#define PROCEDURE_090709_0364 (UCHAR*)"{call dbo.atum_import_ti_mapinfo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
 #define PROCEDURE_090709_0365 (UCHAR*)"{call dbo.atum_import_ti_buildingnpc(?,?,?,?,?,?,?,?,?)}"
 
-// 2010-04-14 by cmkwon, ÀÎÇÇ2Â÷ ¸ó½ºÅÍ ·£ÅÒ Å¸°Ù º¯°æ Ã³¸® - ChangeTargetTime ÇÊµå Ãß°¡
-#define PROCEDURE_090709_0366 (UCHAR*)"{call dbo.atum_import_ti_monster(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?)}"	// 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - // 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö - WayPointPattern ÇÊµå Ãß°¡
+// 2010-04-14 by cmkwon, ì¸í”¼2ì°¨ ëª¬ìŠ¤í„° ëœí…€ íƒ€ê²Ÿ ë³€ê²½ ì²˜ë¦¬ - ChangeTargetTime í•„ë“œ ì¶”ê°€
+#define PROCEDURE_090709_0366 (UCHAR*)"{call dbo.atum_import_ti_monster(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?)}"	// 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - // 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„ - WayPointPattern í•„ë“œ ì¶”ê°€
 
 #define PROCEDURE_090709_0367 (UCHAR*)"{call dbo.atum_import_ti_tutorialinfo(?,?,?,?,?,?,?)}"
 #define PROCEDURE_090709_0368 (UCHAR*)"{call dbo.atum_import_ti_mapobject(?,?,?,?,?,?,?,?,?,?)}"
@@ -778,24 +778,24 @@
 #define PROCEDURE_090709_0395 (UCHAR*)"{call dbo.atum_delete_ti_item_info}"
 			
 
-// 2009-07-07 by cmkwon, ·Îµå Á¦³Ê·¹ÀÌÅÍ ¹®Á¦ ÇØ°á - 
-// 2009-08-03 by cmkwon, ¼Ò½º ÅëÇÕÀ¸·Î Á¤ÀÇ º¯°æ - ±âÁ¸(PROCEDURE_090707_0350)
+// 2009-07-07 by cmkwon, ë¡œë“œ ì œë„ˆë ˆì´í„° ë¬¸ì œ í•´ê²° - 
+// 2009-08-03 by cmkwon, ì†ŒìŠ¤ í†µí•©ìœ¼ë¡œ ì •ì˜ ë³€ê²½ - ê¸°ì¡´(PROCEDURE_090707_0350)
 #define PROCEDURE_090707_0396 (UCHAR*)"{call dbo.atum_getAccountUID_byAccountName(?)}"
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-07-20 by cmkwon, ¿¹´ç PCBang Ã¼Å© ½Ã½ºÅÛ ¼öÁ¤ - 
-// 2009-08-03 by cmkwon, ¼Ò½º ÅëÇÕÀ¸·Î Á¤ÀÇ º¯°æ - ±âÁ¸(PROCEDURE_090707_0351)
+// 2009-07-20 by cmkwon, ì˜ˆë‹¹ PCBang ì²´í¬ ì‹œìŠ¤í…œ ìˆ˜ì • - 
+// 2009-08-03 by cmkwon, ì†ŒìŠ¤ í†µí•©ìœ¼ë¡œ ì •ì˜ ë³€ê²½ - ê¸°ì¡´(PROCEDURE_090707_0351)
 #define PROCEDURE_090720_0397 (UCHAR*)"{call dbo.usp_select_ipAddress(?)}"
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
+// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_090826_0398 (UCHAR*)"{call dbo.atum_Update_ShapeItemNum(?,?)}"
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - 
+// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - 
 #define PROCEDURE_090918_0400 (UCHAR*)"{call dbo.atum_Rearrange_InfluenceRate(?)}"
 #define PROCEDURE_090918_0401 (UCHAR*)"{call dbo.atum_Load_InfluenceRate}"
 #define PROCEDURE_090918_0402 (UCHAR*)"{call dbo.atum_Update_AllowablePercent(?,?,?)}"
@@ -803,23 +803,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - ti_InfluenceRate Å×ÀÌºí Ãß°¡, 
+// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - ti_InfluenceRate í…Œì´ë¸” ì¶”ê°€, 
 #define PROCEDURE_090922_0404 (UCHAR*)"{call dbo.atum_import_ti_InfluenceRate(?,?)}"
 #define PROCEDURE_090922_0405 (UCHAR*)"{call dbo.atum_delete_ti_InfluenceRate}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - 
+// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - 
 #define PROCEDURE_091013_0406 (UCHAR*)"{call dbo.atum_change_StartCityMapIndex(?,?)}"
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-01-14 by cmkwon, ¿ùµå·©Å·½Ã½ºÅÛ ¹ö±× ¼öÁ¤(¼­ºñ½º»èÁ¦,¼­¹ö±×·ì»èÁ¦) - 
+// 2010-01-14 by cmkwon, ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •(ì„œë¹„ìŠ¤ì‚­ì œ,ì„œë²„ê·¸ë£¹ì‚­ì œ) - 
 #define PROCEDURE_100114_0410 (UCHAR*)"{call dbo.atum_wrkR_delete_AllRankingList_from_WRankingServer(?,?)}"
 #define PROCEDURE_100114_0411 (UCHAR*)"{call dbo.atum_wrkR_delete_AllRankingList_from_LRankingServer(?,?)}"
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 
 #define PROCEDURE_090909_0500 (UCHAR*)"{call dbo.atum_Load_HPAction}"
 #define PROCEDURE_090909_0501 (UCHAR*)"{call dbo.atum_Load_Cinema}"
 #define PROCEDURE_090909_0502 (UCHAR*)"{call dbo.atum_Load_InfinityMode}"
@@ -830,23 +830,23 @@
 #define PROCEDURE_090909_0507 (UCHAR*)"{call dbo.atum_Reset_InfinityImpute(?)}"
 #define PROCEDURE_090909_0508 (UCHAR*)"{call dbo.atum_Load_Revision}"
 #define PROCEDURE_090909_0509 (UCHAR*)"{call dbo.arena_CopyDBInfo_Infinity(?,?,?)}"
-#define PROCEDURE_090909_0510 (UCHAR*)"{call dbo.atum_InfinityFinInsertItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_090909_0511 (UCHAR*)"{call dbo.atum_InfinityFinUpdateItem(?,?,?,?,?,?)}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_090909_0512 (UCHAR*)"{call dbo.atum_CharacterSaveDataInfinityFin(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÆÃ±ä À¯Àú ÀçÁ¢¼Ó Ã³¸®
-#define PROCEDURE_090909_0513 (UCHAR*)"{call dbo.atum_Insert_Log_Infinity(?,?,?,?,?, ?,?,?)}"	// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - Á¾·á½Ã ÃÖ´ë °æÇèÄ¡ Ãß°¡·Î ÀÎÀÚ Ãß°¡	
+#define PROCEDURE_090909_0510 (UCHAR*)"{call dbo.atum_InfinityFinInsertItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_090909_0511 (UCHAR*)"{call dbo.atum_InfinityFinUpdateItem(?,?,?,?,?,?)}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_090909_0512 (UCHAR*)"{call dbo.atum_CharacterSaveDataInfinityFin(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?)}"	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - íŒ…ê¸´ ìœ ì € ì¬ì ‘ì† ì²˜ë¦¬
+#define PROCEDURE_090909_0513 (UCHAR*)"{call dbo.atum_Insert_Log_Infinity(?,?,?,?,?, ?,?,?)}"	// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ì¢…ë£Œì‹œ ìµœëŒ€ ê²½í—˜ì¹˜ ì¶”ê°€ë¡œ ì¸ì ì¶”ê°€	
 #define PROCEDURE_090909_0514 (UCHAR*)"{call dbo.atum_delete_ti_HPAction}"
 #define PROCEDURE_090909_0515 (UCHAR*)"{call dbo.atum_import_ti_HPAction(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_090909_0516 (UCHAR*)"{call dbo.atum_delete_ti_Cinema}"
 
-// 2010-03-29 by cmkwon, ÀÎÇÇ2Â÷ ½Ã³×¸¶¿¡ È¿°úÀ½ ÆÄÀÏ ¼³Á¤ Ãß°¡ - SoundFileName ÇÊµå Ãß°¡
-#define PROCEDURE_090909_0517 (UCHAR*)"{call dbo.atum_import_ti_Cinema(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?)}"  // 2010-03-31 by dhjin, ÀÎÇÇ´ÏÆ¼(±âÁö¹æ¾î) - // 2011-03-09 by hskim, ½Ã³×¸¶ Äù½ºÆ® ÀÎµ¦½º ¼³Á¤ Ãß°¡ - // 2011-04-28 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½Ã³×¸¶ °ü·Ã ±â´É Ãß°¡ - ÇØ´ç ¸ÊÃ¤³Î Æ¯Á¤ ¸ó½ºÅÍ »èÁ¦ ±â´É Ãß°¡
+// 2010-03-29 by cmkwon, ì¸í”¼2ì°¨ ì‹œë„¤ë§ˆì— íš¨ê³¼ìŒ íŒŒì¼ ì„¤ì • ì¶”ê°€ - SoundFileName í•„ë“œ ì¶”ê°€
+#define PROCEDURE_090909_0517 (UCHAR*)"{call dbo.atum_import_ti_Cinema(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?)}"  // 2010-03-31 by dhjin, ì¸í”¼ë‹ˆí‹°(ê¸°ì§€ë°©ì–´) - // 2011-03-09 by hskim, ì‹œë„¤ë§ˆ í€˜ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì„¤ì • ì¶”ê°€ - // 2011-04-28 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì‹œë„¤ë§ˆ ê´€ë ¨ ê¸°ëŠ¥ ì¶”ê°€ - í•´ë‹¹ ë§µì±„ë„ íŠ¹ì • ëª¬ìŠ¤í„° ì‚­ì œ ê¸°ëŠ¥ ì¶”ê°€
 
 #define PROCEDURE_090909_0518 (UCHAR*)"{call dbo.atum_delete_ti_InfinityMonster}"
 #define PROCEDURE_090909_0519 (UCHAR*)"{call dbo.atum_import_ti_InfinityMonster(?,?,?,?,?)}"
 #define PROCEDURE_090909_0520 (UCHAR*)"{call dbo.atum_delete_ti_Revision}"
 #define PROCEDURE_090909_0521 (UCHAR*)"{call dbo.atum_import_ti_Revision(?,?,?,?,?, ?,?)}"
 #define PROCEDURE_090909_0522 (UCHAR*)"{call dbo.atum_delete_ti_InfinityMode}"
-#define PROCEDURE_090909_0523 (UCHAR*)"{call dbo.atum_import_ti_InfinityMode(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?, ?)}"		// 2011-06-14 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ÆĞ³ÎÆ¼ ±â´É Ãß°¡ (HP ¹× ½Ã°£ µ¿½Ã Áö¿øÀ» À§ÇØ) // 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »ç¸Á½Ã ÆĞ³ÎÆ¼ Ãß°¡
+#define PROCEDURE_090909_0523 (UCHAR*)"{call dbo.atum_import_ti_InfinityMode(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?, ?)}"		// 2011-06-14 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - íŒ¨ë„í‹° ê¸°ëŠ¥ ì¶”ê°€ (HP ë° ì‹œê°„ ë™ì‹œ ì§€ì›ì„ ìœ„í•´) // 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì‚¬ë§ì‹œ íŒ¨ë„í‹° ì¶”ê°€
 #define PROCEDURE_090909_0524 (UCHAR*)"{call dbo.atum_Reset_InfinityImputeByServerStart(?,?)}" 
 #define PROCEDURE_090909_0525 (UCHAR*)"{call dbo.atum_delete_ti_Tender}"
 #define PROCEDURE_090909_0526 (UCHAR*)"{call dbo.atum_import_ti_Tender(?,?)}" 
@@ -854,80 +854,80 @@
 #define PROCEDURE_090909_0528 (UCHAR*)"{call dbo.atum_delete_ti_InfinityShop}"
 #define PROCEDURE_090909_0529 (UCHAR*)"{call dbo.atum_import_ti_InfinityShop(?,?,?,?,?, ?,?,?,?,?, ?,?,?)}" 
 #define PROCEDURE_090909_0530 (UCHAR*)"{call dbo.atum_Load_InfinityShop}"
-#define PROCEDURE_090909_0531 (UCHAR*)"{call dbo.atum_Reset_All_InfinityImpute}"					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ±Í¼Ó Á¤º¸ ¸®¼Â
-#define PROCEDURE_090909_0532 (UCHAR*)"{call dbo.atum_Reset_Character_InfinityImpute(?)}"			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ±Í¼Ó Á¤º¸ ¸®¼Â
+#define PROCEDURE_090909_0531 (UCHAR*)"{call dbo.atum_Reset_All_InfinityImpute}"					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ê·€ì† ì •ë³´ ë¦¬ì…‹
+#define PROCEDURE_090909_0532 (UCHAR*)"{call dbo.atum_Reset_Character_InfinityImpute(?)}"			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ê·€ì† ì •ë³´ ë¦¬ì…‹
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
+// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_100118_0540 (UCHAR*)"{call dbo.atum_get_ItemParamOverlap}"
 #define PROCEDURE_100118_0541 (UCHAR*)"{call dbo.atum_import_ti_ItemParamOverlap(?,?)}"
 #define PROCEDURE_100118_0542 (UCHAR*)"{call dbo.atum_delete_ti_ItemParamOverlap}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-01-26 by cmkwon, Ä³½¬ ¾ÆÀÌÅÛ ÇÑÁ¤ÆÇ¸Å ½Ã½ºÅÛ ±¸Çö - 
+// 2010-01-26 by cmkwon, ìºì‰¬ ì•„ì´í…œ í•œì •íŒë§¤ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 #define PROCEDURE_100127_0545 (UCHAR*)"{call dbo.atum_check_Buy_LimitedEdtion_shopItem(?)}"
 
-#define PROCEDURE_100210_0550 (UCHAR*)"{call dbo.atum_delete_ti_InvokingWearItemDestParamNum}"		// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0551 (UCHAR*)"{call dbo.atum_import_ti_InvokingWearItemDestParamNum(?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0552 (UCHAR*)"{call dbo.atum_Load_InvokingWearItemDestParamNum}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0553 (UCHAR*)"{call dbo.atum_delete_ti_InvokingWearItemDestParamNumByUse}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0554 (UCHAR*)"{call dbo.atum_import_ti_InvokingWearItemDestParamNumByUse(?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0555 (UCHAR*)"{call dbo.atum_Load_InvokingWearItemDestParamNumByUse}"				// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-#define PROCEDURE_100210_0556 (UCHAR*)"{call dbo.atum_UpdateItemCoolingTimeStamp(?,?)}"				// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
+#define PROCEDURE_100210_0550 (UCHAR*)"{call dbo.atum_delete_ti_InvokingWearItemDestParamNum}"		// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0551 (UCHAR*)"{call dbo.atum_import_ti_InvokingWearItemDestParamNum(?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0552 (UCHAR*)"{call dbo.atum_Load_InvokingWearItemDestParamNum}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0553 (UCHAR*)"{call dbo.atum_delete_ti_InvokingWearItemDestParamNumByUse}"			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0554 (UCHAR*)"{call dbo.atum_import_ti_InvokingWearItemDestParamNumByUse(?,?,?,?)}"	// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0555 (UCHAR*)"{call dbo.atum_Load_InvokingWearItemDestParamNumByUse}"				// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+#define PROCEDURE_100210_0556 (UCHAR*)"{call dbo.atum_UpdateItemCoolingTimeStamp(?,?)}"				// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-04-06 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤ - 
+// 2010-04-06 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì • - 
 #define PROCEDURE_100406_0560 (UCHAR*)"{call dbo.atum_InfinityUpdateUserMapInfo(?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı -
+// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ -
 #define PROCEDURE_100506_0561 (UCHAR*)"{call dbo.atum_Load_InfinityDifficult}"
-#define PROCEDURE_100506_0562 (UCHAR*)"{call dbo.atum_Load_InfinityDifficultMonster}"	// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı -
-#define PROCEDURE_100524_0563 (UCHAR*)"{call dbo.atum_delete_ti_LevelAdjustment}"		// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define PROCEDURE_100524_0564 (UCHAR*)"{call dbo.atum_import_ti_LevelAdjustment(?,?,?,?,?,?)}"		// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define PROCEDURE_100524_0565 (UCHAR*)"{call dbo.atum_delete_ti_LevelAdjustmentReward}"	// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
-#define PROCEDURE_100524_0566 (UCHAR*)"{call dbo.atum_import_ti_LevelAdjustmentReward(?,?,?,?)}"	// 2010-05-24 by shcho, ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Àı - ÀÎÇÇ´ÏÆ¼ ³­ÀÌµµ Á¶Á¤¿¡ °üÇÑ Åø ¾÷µ¥ÀÌÆ®
+#define PROCEDURE_100506_0562 (UCHAR*)"{call dbo.atum_Load_InfinityDifficultMonster}"	// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ -
+#define PROCEDURE_100524_0563 (UCHAR*)"{call dbo.atum_delete_ti_LevelAdjustment}"		// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define PROCEDURE_100524_0564 (UCHAR*)"{call dbo.atum_import_ti_LevelAdjustment(?,?,?,?,?,?)}"		// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define PROCEDURE_100524_0565 (UCHAR*)"{call dbo.atum_delete_ti_LevelAdjustmentReward}"	// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
+#define PROCEDURE_100524_0566 (UCHAR*)"{call dbo.atum_import_ti_LevelAdjustmentReward(?,?,?,?)}"	// 2010-05-24 by shcho, ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì ˆ - ì¸í”¼ë‹ˆí‹° ë‚œì´ë„ ì¡°ì •ì— ê´€í•œ íˆ´ ì—…ë°ì´íŠ¸
 
-// 2010-08-05 by dhjin, ¹ö´×¸Ê -
+// 2010-08-05 by dhjin, ë²„ë‹ë§µ -
 #define PROCEDURE_100805_0566 (UCHAR*)"{call dbo.atum_Load_BurningMap}"
 #define PROCEDURE_100805_0567 (UCHAR*)"{call dbo.atum_delete_ti_BurningMap}"
 #define PROCEDURE_100805_0568 (UCHAR*)"{call dbo.atum_import_ti_BurningMap(?,?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ±âº»Á¤º¸
-#define PROCEDURE_100615_0567 (UCHAR*)"{call dbo.atum_Insert_td_pet(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,? ,?,?,?,?,?)}" // 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - À¯Àú°¡ °¡Áø Æê Á¤º¸ Å×ÀÌºí¿¡ Ãß°¡(¼­¹ö³»ºÎ ÀúÀå)
-#define PROCEDURE_100615_0568 (UCHAR*)"{call dbo.atum_Insert_ti_pet(?,?,?,?,?, ?,?)}" // 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ±âº» Á¤º¸ Æê Å×ÀÌºí Á¤º¸ ÀúÀå ÇÁ·Î½ÃÀú (¿¢¼¿¹Ğ±â)
-#define PROCEDURE_100615_0569 (UCHAR*)"{call dbo.atum_Load_ti_pet}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ±âº» Á¤º¸ Å×ÀÌºí °¡Á®¿À´Â ÇÁ·Î½ÃÀú(·Îµå)
-#define PROCEDURE_100615_0570 (UCHAR*)"{call dbo.atum_Load_ti_petLevel(?)}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê °æÇèÄ¡ Å×ÀÌºí °¡Á®¿À´Â ÇÁ·Î½ÃÀú(·Îµå)
-#define PROCEDURE_100615_0571 (UCHAR*)"{call dbo.atum_InsertStorePetItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}" // 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - °³ÀÎÀÌ °¡Áø ÆÖÁ¤º¸ Å×ÀÌºíÀ» °¡Á®¿À´Â ÇÁ·Î½ÃÀú(·Îµå)
-#define PROCEDURE_100615_0574 (UCHAR*)"{call dbo.atum_Insert_ti_petLevel(?,?,?,?,?, ?,?,?,?)}"  // 2011-08-17 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·á ±¸Á¶ °áÁ¤ - // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ±âº» ·¹º§ Á¤º¸ Æê Å×ÀÌºí Á¤º¸ ÀúÀå ÇÁ·Î½ÃÀú (¿¢¼¿¹Ğ±â)
+// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ê¸°ë³¸ì •ë³´
+#define PROCEDURE_100615_0567 (UCHAR*)"{call dbo.atum_Insert_td_pet(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,? ,?,?,?,?,?)}" // 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ìœ ì €ê°€ ê°€ì§„ í« ì •ë³´ í…Œì´ë¸”ì— ì¶”ê°€(ì„œë²„ë‚´ë¶€ ì €ì¥)
+#define PROCEDURE_100615_0568 (UCHAR*)"{call dbo.atum_Insert_ti_pet(?,?,?,?,?, ?,?)}" // 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ê¸°ë³¸ ì •ë³´ í« í…Œì´ë¸” ì •ë³´ ì €ì¥ í”„ë¡œì‹œì € (ì—‘ì…€ë°€ê¸°)
+#define PROCEDURE_100615_0569 (UCHAR*)"{call dbo.atum_Load_ti_pet}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ê¸°ë³¸ ì •ë³´ í…Œì´ë¸” ê°€ì ¸ì˜¤ëŠ” í”„ë¡œì‹œì €(ë¡œë“œ)
+#define PROCEDURE_100615_0570 (UCHAR*)"{call dbo.atum_Load_ti_petLevel(?)}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ê²½í—˜ì¹˜ í…Œì´ë¸” ê°€ì ¸ì˜¤ëŠ” í”„ë¡œì‹œì €(ë¡œë“œ)
+#define PROCEDURE_100615_0571 (UCHAR*)"{call dbo.atum_InsertStorePetItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}" // 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ê°œì¸ì´ ê°€ì§„ íŒ»ì •ë³´ í…Œì´ë¸”ì„ ê°€ì ¸ì˜¤ëŠ” í”„ë¡œì‹œì €(ë¡œë“œ)
+#define PROCEDURE_100615_0574 (UCHAR*)"{call dbo.atum_Insert_ti_petLevel(?,?,?,?,?, ?,?,?,?)}"  // 2011-08-17 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œ êµ¬ì¡° ê²°ì • - // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ê¸°ë³¸ ë ˆë²¨ ì •ë³´ í« í…Œì´ë¸” ì •ë³´ ì €ì¥ í”„ë¡œì‹œì € (ì—‘ì…€ë°€ê¸°)
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÄÁÅÙÃ÷ °ü·Ã
-#define PROCEDURE_100615_0572 (UCHAR*)"{call dbo.atum_Update_PetRenameOnce(?,?,?)}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ÀÌ¸§ º¯°æ ÇÁ·Î½ÃÀú 1È¸
-#define PROCEDURE_100615_0573 (UCHAR*)"{call dbo.atum_Load_td_petInfo(?)}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¼ÒÀ¯ ÆÖ Á¤º¸ °¡Á®¿À±â ÆÖUID´Â ¾ÆÀÌÅÛUID¿Í µ¿ÀÏ
-#define PROCEDURE_100615_0575 (UCHAR*)"{call dbo.atum_Delete_ti_pet}"		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ±âº» Á¤º¸ ¿¢¼¿ ¹Ğ±â(Å×ÀÌºí »èÁ¦)
-#define PROCEDURE_100615_0576 (UCHAR*)"{call dbo.atum_Delete_ti_petLevel}"	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ÆÖ ·¹º§ Á¤º¸ ¿¢¼¿ ¹Ğ±â(Å×ÀÌºí »èÁ¦)
-#define PROCEDURE_100615_0577 (UCHAR*)"{call dbo.atum_Load_ti_OperatorAction}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - omi Ãß°¡ ÀÛ¾÷. - Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
-#define PROCEDURE_100615_0578 (UCHAR*)"{call dbo.atum_import_ti_OperatorAction(?,?,?,?,?, ?)}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - DB ¹Ğ±â Ãß°¡ ÀÛ¾÷ Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
-#define PROCEDURE_100615_0579 (UCHAR*)"{call dbo.atum_Delete_ti_OperatorAction}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - DB ¹Ğ±â Ãß°¡ ÀÛ¾÷ Æê ¿ÀÆÛ·¹ÀÌÅÍ Á¤º¸.
-//#define PROCEDURE_100615_0572 (UCHAR*)"{call dbo.Update_Petmaster_changed(?,?,?,?,?,?)}" // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¾ÆÀÌÅÛ ±³È¯½Ã ¼ÒÀ¯ÀÚ º¯°æ
+// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì»¨í…ì¸  ê´€ë ¨
+#define PROCEDURE_100615_0572 (UCHAR*)"{call dbo.atum_Update_PetRenameOnce(?,?,?)}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ì´ë¦„ ë³€ê²½ í”„ë¡œì‹œì € 1íšŒ
+#define PROCEDURE_100615_0573 (UCHAR*)"{call dbo.atum_Load_td_petInfo(?)}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì†Œìœ  íŒ» ì •ë³´ ê°€ì ¸ì˜¤ê¸° íŒ»UIDëŠ” ì•„ì´í…œUIDì™€ ë™ì¼
+#define PROCEDURE_100615_0575 (UCHAR*)"{call dbo.atum_Delete_ti_pet}"		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ê¸°ë³¸ ì •ë³´ ì—‘ì…€ ë°€ê¸°(í…Œì´ë¸” ì‚­ì œ)
+#define PROCEDURE_100615_0576 (UCHAR*)"{call dbo.atum_Delete_ti_petLevel}"	// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - íŒ» ë ˆë²¨ ì •ë³´ ì—‘ì…€ ë°€ê¸°(í…Œì´ë¸” ì‚­ì œ)
+#define PROCEDURE_100615_0577 (UCHAR*)"{call dbo.atum_Load_ti_OperatorAction}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - omi ì¶”ê°€ ì‘ì—…. - í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
+#define PROCEDURE_100615_0578 (UCHAR*)"{call dbo.atum_import_ti_OperatorAction(?,?,?,?,?, ?)}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - DB ë°€ê¸° ì¶”ê°€ ì‘ì—… í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
+#define PROCEDURE_100615_0579 (UCHAR*)"{call dbo.atum_Delete_ti_OperatorAction}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - DB ë°€ê¸° ì¶”ê°€ ì‘ì—… í« ì˜¤í¼ë ˆì´í„° ì •ë³´.
+//#define PROCEDURE_100615_0572 (UCHAR*)"{call dbo.Update_Petmaster_changed(?,?,?,?,?,?)}" // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì•„ì´í…œ êµí™˜ì‹œ ì†Œìœ ì ë³€ê²½
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-08-31 by shcho&jskim ¾ÆÀÌÅÛ¿ëÇØ ½Ã½ºÅÛ - ¿ëÇØ ¾ÆÀÌÅÛ °ü·Ã.
+// 2010-08-31 by shcho&jskim ì•„ì´í…œìš©í•´ ì‹œìŠ¤í…œ - ìš©í•´ ì•„ì´í…œ ê´€ë ¨.
 #define PROCEDURE_100831_0001 (UCHAR*)"{call dbo.atum_Load_ti_DissolutionItem}" // Load
 #define PROCEDURE_100831_0002 (UCHAR*)"{call dbo.atum_Delete_ti_DissolutionItem}" // Delete
 #define PROCEDURE_100831_0003 (UCHAR*)"{call dbo.atum_insert_ti_DissolutionItem(?,?,?,?,?, ?,?,?,?,?, ?,?,?)}" // Insert
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-03-17 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+// 2011-03-17 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 #define PROCEDURE_110317_0001 (UCHAR*)"{call dbo.atum_Load_ti_MonsterMultiTarget}" // Load
 #define PROCEDURE_110317_0002 (UCHAR*)"{call dbo.atum_Delete_ti_MonsterMultiTarget}" // Delete
 #define PROCEDURE_110317_0003 (UCHAR*)"{call dbo.atum_Insert_ti_MonsterMultiTarget(?,?,?,?,?)}" // Insert
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-05-23 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¿şÀÌÆ÷ÀÎÆ® ±¸Çö
+// 2011-05-23 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì›¨ì´í¬ì¸íŠ¸ êµ¬í˜„
 #define PROCEDURE_110529_0001 (UCHAR*)"{call dbo.atum_Load_ti_WayPointMove}"					// Load
 #define PROCEDURE_110529_0002 (UCHAR*)"{call dbo.atum_Delete_ti_WayPointMove}"					// Delete
 #define PROCEDURE_110529_0003 (UCHAR*)"{call dbo.atum_Insert_ti_WayPointMove(?,?)}"				// Insert
@@ -937,10 +937,10 @@
 #define PROCEDURE_110529_0006 (UCHAR*)"{call dbo.atum_Insert_ti_WayPoint(?,?,?,?,?, ?)}"		// Insert
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - ½Àµæ ¾ÆÀÌÅÛ Á¤º¸ DBÀúÀå
+// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ìŠµë“ ì•„ì´í…œ ì •ë³´ DBì €ì¥
 #define PROCEDURE_100914_0001 (UCHAR*)"{call dbo.atum_Insert_Log_Infinity_User_Get_TenderItem(?,?,?,?,?, ?)}" // Insert
 ///////////////////////////////////////////////////////////////////////////////
-// 2010-06-01 by shcho, GLogDB °ü·Ã -
+// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 #define PROCEDURE_GLOG_100601_0001 (UCHAR*)"{call dbo.GLog_BuyCashItem_Insert(?,?,?,?,?, ?,?,?,?)}"
 #define PROCEDURE_GLOG_100601_0002 (UCHAR*)"{call dbo.GLog_CharacterPlayTime_Insert(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}" 
 #define PROCEDURE_GLOG_100601_0003 (UCHAR*)"{call dbo.GLog_ConnectTotalUserCount_Insert(?,?,?,?,?)}"
@@ -949,12 +949,12 @@
 #define PROCEDURE_GLOG_100601_0006 (UCHAR*)"{call dbo.atum_InsertGlogAccount(?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
+// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
 #define PROCEDURE_AUTHENTICATION_100701_0001 (UCHAR*)"{call dbo.authentication_server_select_account(?)}"
 #define PROCEDURE_AUTHENTICATION_100701_0002 (UCHAR*)"{call dbo.authentication_server_insert_log(?,?,?,?,?, ?,?,?,?,?, ?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ±â´É ±¸Çö
+// 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê¸°ëŠ¥ êµ¬í˜„
 #define PROCEDURE_110824_0001 (UCHAR*)"{call dbo.atum_Update_PetName(?,?)}"
 #define PROCEDURE_110824_0002 (UCHAR*)"{call dbo.atum_Update_PetExpRatio(?,?)}"
 #define PROCEDURE_110824_0003 (UCHAR*)"{call dbo.atum_Update_PetLevel(?,?)}"
@@ -966,28 +966,28 @@
 
 #define PROCEDURE_110824_0008 (UCHAR*)"{call dbo.atum_Update_PetInfo(?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?)}"
 
-#define PROCEDURE_110824_0009 (UCHAR*)"{call dbo.atum_Update_PetSocketOwner(?,?)}"		// 2012-01-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - °³ÀÎ Ã¢°í ÀÌµ¿
-#define PROCEDURE_110824_0010 (UCHAR*)"{call dbo.atum_GetStoreItemOne(?)}"				// 2012-01-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - °³ÀÎ Ã¢°í ÀÌµ¿
+#define PROCEDURE_110824_0009 (UCHAR*)"{call dbo.atum_Update_PetSocketOwner(?,?)}"		// 2012-01-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê°œì¸ ì°½ê³  ì´ë™
+#define PROCEDURE_110824_0010 (UCHAR*)"{call dbo.atum_GetStoreItemOne(?)}"				// 2012-01-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê°œì¸ ì°½ê³  ì´ë™
 
 #define PROCEDURE_110824_0011 (UCHAR*)"{call dbo.atum_Upgrade_Pet(?,?)}"						// 2015-06-22 Future, upgrading Pets with sockets
 
-// start 2011-07-15 by shcho - Ä³½¬¾ÆÀÌÅÛ Ã¼Å© ½Ã½ºÅÛ ±¸Çö
+// start 2011-07-15 by shcho - ìºì‰¬ì•„ì´í…œ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„
 #define PROCEDURE_CASHCHECK_110715_0001		 (UCHAR*)"{call dbo.atum_CashItemCheck}"
-// end 2011-07-15 by shcho - Ä³½¬¾ÆÀÌÅÛ Ã¼Å© ½Ã½ºÅÛ ±¸Çö
+// end 2011-07-15 by shcho - ìºì‰¬ì•„ì´í…œ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„
 
-// 2011-08-25 by shcho, È½¼öº° ¾ÆÀÌÅÛ Áö±Ş±â´É ±¸Çö
-#define PROCEDURE_LOGINITEMEVENT_110825_0001	(UCHAR*)"{call dbo.atum_InsertLoginItemEvent(?,?,?)}" // atum2_db_account¿¡ ÇÁ·Î½ÃÀú ÀÖÀ½
-#define PROCEDURE_LOGINITEMEVENT_110825_0002	(UCHAR*)"{?= call dbo.atum_CheckLoginItemEvent(?,?)}" // ¸®ÅÏ °ªÀ¸·Î Ä«¿îÆ® Ã¼Å© 
+// 2011-08-25 by shcho, íšŸìˆ˜ë³„ ì•„ì´í…œ ì§€ê¸‰ê¸°ëŠ¥ êµ¬í˜„
+#define PROCEDURE_LOGINITEMEVENT_110825_0001	(UCHAR*)"{call dbo.atum_InsertLoginItemEvent(?,?,?)}" // atum2_db_accountì— í”„ë¡œì‹œì € ìˆìŒ
+#define PROCEDURE_LOGINITEMEVENT_110825_0002	(UCHAR*)"{?= call dbo.atum_CheckLoginItemEvent(?,?)}" // ë¦¬í„´ ê°’ìœ¼ë¡œ ì¹´ìš´íŠ¸ ì²´í¬ 
 #define PROCEDURE_LOGINITEMEVENT_110825_0003	(UCHAR*)"{call dbo.atum_EndLoginEvent(?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-10-10 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³
+// 2011-10-10 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’
 #define PROCEDURE_111010_0001 (UCHAR*)"{call dbo.atum_Load_ti_MapBuff}"
 #define PROCEDURE_111010_0002 (UCHAR*)"{call dbo.atum_Delete_ti_MapBuff}"
 #define PROCEDURE_111010_0003 (UCHAR*)"{call dbo.atum_Insert_ti_MapBuff(?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-10-28 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - Å©¸®½ºÅ» ½Ã½ºÅÛ
+// 2011-10-28 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í¬ë¦¬ìŠ¤íƒˆ ì‹œìŠ¤í…œ
 #define PROCEDURE_111028_0001 (UCHAR*)"{call dbo.atum_Load_ti_MapTrigger}"
 #define PROCEDURE_111028_0002 (UCHAR*)"{call dbo.atum_Delete_ti_MapTrigger}"
 #define PROCEDURE_111028_0003 (UCHAR*)"{call dbo.atum_Insert_ti_MapTrigger(?,?,?,?)}"
@@ -1005,7 +1005,7 @@
 #define PROCEDURE_111028_0012 (UCHAR*)"{call dbo.atum_Insert_ti_TriggerCrystalDestroyGroup(?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
+// 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
 #define PROCEDURE_111107_0001 (UCHAR*)"{call dbo.atum_Load_ti_TriggerFunctionNGCInflWar}"
 #define PROCEDURE_111107_0002 (UCHAR*)"{call dbo.atum_Delete_ti_TriggerFunctionNGCInflWar}"
 #define PROCEDURE_111107_0003 (UCHAR*)"{call dbo.atum_Insert_ti_TriggerFunctionNGCInflWar(?,?,?,?,?, ?,?,?)}"
@@ -1015,12 +1015,12 @@
 #define PROCEDURE_111107_0006 (UCHAR*)"{call dbo.atum_Insert_ti_TriggerNGCInflWarMonsterGroup(?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-12-21 by hskim, EP4 [µ¿¿µ»ó 1È¸ Àç»ı]
+// 2011-12-21 by hskim, EP4 [ë™ì˜ìƒ 1íšŒ ì¬ìƒ]
 #define PROCEDURE_111221_0001 (UCHAR*)"{call dbo.atum_Load_ti_SystemEvent(?)}"
 #define PROCEDURE_111222_0002 (UCHAR*)"{call dbo.atum_Update_AccountLastGameEndDate(?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2011-12-12 by hskim, GLog 2Â÷
+// 2011-12-12 by hskim, GLog 2ì°¨
 #define PROCEDURE_GLOG_2ND_111212_0001 (UCHAR*)"{call dbo.GLog_TB_USER_Insert(?,?,?,?,?)}"
 #define PROCEDURE_GLOG_2ND_111212_0002 (UCHAR*)"{call dbo.GLog_TB_CONNECT_USER_Insert(?,?,?)}" 
 #define PROCEDURE_GLOG_2ND_111212_0003 (UCHAR*)"{call dbo.GLog_TB_ITEM_BUY_Insert(?,?,?,?,?, ?,?,?,?,?, ?,?)}"
@@ -1030,38 +1030,38 @@
 #define PROCEDURE_GLOG_2ND_111212_0007 (UCHAR*)"{call dbo.GLog_TB_USER_LocalUserConnectInfo_DelCount_Inc(?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-01-16 by hskim, Åë°è - È­ÆĞ
+// 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 #define PROCEDURE_120116_0001 (UCHAR*)"{call dbo.atum_log_Insert_StatisticsMoney(?,?,?,?,?, ?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-02-27 by jhseol, Åë°è - È­ÆĞ °Ë»ö ÇÁ·Î½ÃÀú
+// 2012-02-27 by jhseol, í†µê³„ - í™”íŒ¨ ê²€ìƒ‰ í”„ë¡œì‹œì €
 #define PROCEDURE_120227_0001 (UCHAR*)"{call dbo.atum_log_Search_StatisticsMoney(?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-02-20 by hskim, DB Á¤±ÔÈ­ - ItemMixingInfo
+// 2012-02-20 by hskim, DB ì •ê·œí™” - ItemMixingInfo
 #define PROCEDURE_120220_0001 (UCHAR*)"{call dbo.atum_import_ti_itemmixingelement(?,?,?)}"
 #define PROCEDURE_120220_0002 (UCHAR*)"{call dbo.atum_delete_ti_itemmixingelement}"
 #define PROCEDURE_120220_0003 (UCHAR*)"{call dbo.atum_load_ti_itemmixingelement}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-03-13 by hskim, ÇöÁöÈ­ °ü·Ã DB ±¸Á¶ º¯°æ
+// 2012-03-13 by hskim, í˜„ì§€í™” ê´€ë ¨ DB êµ¬ì¡° ë³€ê²½
 #define PROCEDURE_120313_0001 (UCHAR*)"{call dbo.atum_Load_ti_OverlapItem}"
 #define PROCEDURE_120313_0002 (UCHAR*)"{call dbo.atum_Delete_ti_OverlapItem}"
 #define PROCEDURE_120313_0003 (UCHAR*)"{call dbo.atum_Insert_ti_OverlapItem(?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-03-15 by jhseol, ÆÄÆ®³Ê - ÆÄÆ®³Ê Á¤º¸ º¯°æ»çÇ× LogÀúÀå ÇÁ·Î½ÃÀú
+// 2012-03-15 by jhseol, íŒŒíŠ¸ë„ˆ - íŒŒíŠ¸ë„ˆ ì •ë³´ ë³€ê²½ì‚¬í•­ Logì €ì¥ í”„ë¡œì‹œì €
 #define PROCEDURE_120315_0001 (UCHAR*)"{call dbo.atum_log_Insert_pet_info_updata(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : td_CharacterArena °ü·Ã ÇÁ·Î½ÃÀú
+// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : td_CharacterArena ê´€ë ¨ í”„ë¡œì‹œì €
 #define PROCEDURE_120412_0001 (UCHAR*)"{call dbo.atum_arena_CharacterArena_Insert(?,?)}"
 #define PROCEDURE_120412_0002 (UCHAR*)"{call dbo.atum_arena_CharacterArena_Get(?,?)}"
 #define PROCEDURE_120412_0003 (UCHAR*)"{call dbo.atum_arena_CharacterArena_Updata(?,?,?,?)}"
-// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - º¸»ó : td_CharacterArena °ü·Ã ÇÁ·Î½ÃÀú
+// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ë³´ìƒ : td_CharacterArena ê´€ë ¨ í”„ë¡œì‹œì €
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 2012-08-27 by hskim, º£Æ®³² ÀÎÃ¾Æ® ÇÙ °ü·Ã Ãß°¡ º¸¾È Ã³¸® (ÄÚµå»óÀÇ ¹®Á¦Á¡Àº ¹ß°ßµÇÁö ¾Ê¾ÒÀ¸³ª ¸¸ÀÏÀÇ °æ¿ì¿¡´Â ·Î±×¸¦ ³²±ä´Ù) (µ¿±âÈ­ DB Á¢¼ÓÀ» ½ÃµµÇØ¼­ ¼º´É ÀúÇÏ°¡ ÀÖÀ½ : ÇÊ¿ä¾ø´Ù°í ÆÇ´ÜµÇ¸é »èÁ¦ ÁøÇà)
+// 2012-08-27 by hskim, ë² íŠ¸ë‚¨ ì¸ì²¸íŠ¸ í•µ ê´€ë ¨ ì¶”ê°€ ë³´ì•ˆ ì²˜ë¦¬ (ì½”ë“œìƒì˜ ë¬¸ì œì ì€ ë°œê²¬ë˜ì§€ ì•Šì•˜ìœ¼ë‚˜ ë§Œì¼ì˜ ê²½ìš°ì—ëŠ” ë¡œê·¸ë¥¼ ë‚¨ê¸´ë‹¤) (ë™ê¸°í™” DB ì ‘ì†ì„ ì‹œë„í•´ì„œ ì„±ëŠ¥ ì €í•˜ê°€ ìˆìŒ : í•„ìš”ì—†ë‹¤ê³  íŒë‹¨ë˜ë©´ ì‚­ì œ ì§„í–‰)
 #define PROCEDURE_120827_0003 (UCHAR*)"{call dbo.atum_GetEnchantCountByItemUID(?)}"
 
 
@@ -1078,7 +1078,7 @@
 // end 2012-10-08 by khkim, GLog
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-10-07 by hskim, ÈŞ½Ä °æÇèÄ¡
+// 2012-10-07 by hskim, íœ´ì‹ ê²½í—˜ì¹˜
 #define PROCEDURE_121008_0001 (UCHAR*)"{call dbo.atum_Get_AddExp_RestExperienceCount(?)}"
 #define PROCEDURE_121008_0002 (UCHAR*)"{call dbo.atum_Set_AddExp_RestExperienceCount(?, ?)}"
 
@@ -1088,34 +1088,34 @@
 #define PROCEDURE_121008_0004 (UCHAR*)"{call dbo.atum_Set_AddKills_RestKillCount(?, ?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 #define PROCEDURE_121010_0001 (UCHAR*)"{call dbo.atum_Get_FixedTerm(?, ?)}"
 #define PROCEDURE_121010_0002 (UCHAR*)"{call dbo.atum_Insert_FixedTerm(?, ?, ?, ?, ?)}"
 #define PROCEDURE_121010_0003 (UCHAR*)"{call dbo.atum_Delete_FixedTerm(?, ?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+// 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 #define PROCEDURE_121113_0001 (UCHAR*)"{call dbo.atum_LoadRenewalStrategyPointSummonTime}"
 #define PROCEDURE_121113_0002 (UCHAR*)"{call dbo.atum_UpdateRenewalStrategyPointSummonTime(?,?,?,?,?)}"
 #define PROCEDURE_121113_0003 (UCHAR*)"{call dbo.atum_UpdateRenewalStrategyPointSummonInfo(?,?,?,?)}"
 #define PROCEDURE_121113_0004 (UCHAR*)"{call dbo.atum_LoadRenewalStrategyPointMapInfluenceInfo}"
-// end 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+// end 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥
 #define PROCEDURE_121121_0001 (UCHAR*)"{call dbo.atum_PROCEDURE_121121_001(?, ?, ?)}"
 #define PROCEDURE_121121_0002 (UCHAR*)"{call dbo.atum_log_insert_item_Enchant_Change_By_Admin(?, ?, ?, ?, ?, ?, ?, ? )}"
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É. End
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥. End
 
-// 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×
+// 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸
 #define PROCEDURE_121220_0001 (UCHAR*)"{call dbo.atum_LoadInitializedGuildList}"
 #define PROCEDURE_121220_0002 (UCHAR*)"{call dbo.atum_Delete_LoadInitializedGuildList}"
-// 2012-12-20 by bckim, ¼¼·ÂÃÊ±âÈ­½Ã ±æµåÃ¢°í¾ÆÀÌÅÛÀÌ ±æµåÀå¿¡°Ô ¿Å°ÜÁö´Â ¾ÆÀÌÅÛ ·Î±×. End
+// 2012-12-20 by bckim, ì„¸ë ¥ì´ˆê¸°í™”ì‹œ ê¸¸ë“œì°½ê³ ì•„ì´í…œì´ ê¸¸ë“œì¥ì—ê²Œ ì˜®ê²¨ì§€ëŠ” ì•„ì´í…œ ë¡œê·¸. End
 
-// 2013-01-16 by jhseol, ÁöµµÀÚ ±ÇÇÑ ¹ÚÅ» ½Ã ÁöµµÀÚ °ü·ÃÁ¤º¸ ÃÊ±âÈ­
+// 2013-01-16 by jhseol, ì§€ë„ì ê¶Œí•œ ë°•íƒˆ ì‹œ ì§€ë„ì ê´€ë ¨ì •ë³´ ì´ˆê¸°í™”
 #define PROCEDURE_130116_0001 (UCHAR*)"{call dbo.atum_InitCityLeader(?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-01-21 by jhseol, NGC ÀüÀü±âÁö Æ®¸®°Å ½Ã½ºÅÛ
+// 2013-01-21 by jhseol, NGC ì „ì „ê¸°ì§€ íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ
 #define PROCEDURE_130121_0001 (UCHAR*)"{call dbo.atum_InsertTriggerFunctionNGCOutPost(?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_130121_0002 (UCHAR*)"{call dbo.atum_InsertTriggerOutPosKill(?,?,?,?)}"
 #define PROCEDURE_130121_0003 (UCHAR*)"{call dbo.atum_LoadTriggerFunctionNGCOutPost}"
@@ -1126,33 +1126,33 @@
 #define PROCEDURE_130121_0008 (UCHAR*)"{call dbo.atum_LoadTriggerCrystalBuff}"
 #define PROCEDURE_130121_0009 (UCHAR*)"{call dbo.atum_DeleteTriggerCrystalBuff}"
 
-// 2013-02-05 by bckim, Ä³½Ã¼¥ ÃßÃµÅÇ Á¤·Ä¼ø¼­ºÎ¿©
+// 2013-02-05 by bckim, ìºì‹œìƒµ ì¶”ì²œíƒ­ ì •ë ¬ìˆœì„œë¶€ì—¬
 #define PROCEDURE_130204_0001 (UCHAR*)"{call dbo.atum_Load_Realignment_CashShop}"			
 #define PROCEDURE_130204_0002 (UCHAR*)"{call dbo.atum_Update_Realignment_CashShop(?,?)}"	
-// End. 2013-02-05 by bckim, Ä³½Ã¼¥ ÃßÃµÅÇ Á¤·Ä¼ø¼­ºÎ¿©
+// End. 2013-02-05 by bckim, ìºì‹œìƒµ ì¶”ì²œíƒ­ ì •ë ¬ìˆœì„œë¶€ì—¬
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
+// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
 #define PROCEDURE_130228_0001 (UCHAR*)"{call dbo.atum_update_Log_ItemEvent_fixed_period(?, ?, ?, ?)}"
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 #define PROCEDURE_130319_0001 (UCHAR*)"{call dbo.atum_insertStoreItem_FromXMLRPC(?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_130319_0002 (UCHAR*)"{call dbo.atum_GetCharacterInfo_FromXMLRPC(?,?,?)}"
 #define PROCEDURE_130319_0003 (UCHAR*)"{call dbo.atum_DeleteItem_FromXMLRPC(?,?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-03-29 by jhseol, ¾ÆÀÌÅÛ ÀÌº¥Æ® - ¸Å¿ù Ã¹ °áÀç½Ã ¼±¹°Áö±Ş
+// 2013-03-29 by jhseol, ì•„ì´í…œ ì´ë²¤íŠ¸ - ë§¤ì›” ì²« ê²°ì¬ì‹œ ì„ ë¬¼ì§€ê¸‰
 #define PROCEDURE_130329_0001 (UCHAR*)"{call dbo.atum_GetCashBuyDateByAccountUID(?)}"
 #define PROCEDURE_130329_0002 (UCHAR*)"{call dbo.atum_GetCashBuyDateByCharacterUID(?)}"
 #define PROCEDURE_130329_0003 (UCHAR*)"{call dbo.atum_InsertCashBuyDate(?,?,?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-03-29 by jhseol, ¾ÆÀÌÅÛ ÀÌº¥Æ® - ¼­ºêÅ¸ÀÔ Ãß°¡±¸Á¶·Î º¯°æ
+// 2013-03-29 by jhseol, ì•„ì´í…œ ì´ë²¤íŠ¸ - ì„œë¸Œíƒ€ì… ì¶”ê°€êµ¬ì¡°ë¡œ ë³€ê²½
 #define PROCEDURE_130329_0004 (UCHAR*)"{call dbo.atum_InsertItemEventSubType(?,?,?,?,?,?,?,?)}"
 #define PROCEDURE_130329_0005 (UCHAR*)"{call dbo.atum_GetItemEventSubType(?)}"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2013-04-18 by jhseol,bckim ÀÌ´ŞÀÇ ¾Æ¸Ó
+// 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸
 #define PROCEDURE_130503_0001 (UCHAR*)"{call dbo.atum_InsertMonthlyArmorEvent(?,?,?,?,?,?)}"
 #define PROCEDURE_130503_0002_1 (UCHAR*)"{call dbo.atum_GetMonthlyArmorEventByTool}"
 #define PROCEDURE_130503_0002_2 (UCHAR*)"{call dbo.atum_GetMonthlyArmorEventByServer}"
@@ -1160,33 +1160,33 @@
 
 #define PROCEDURE_130503_0004 (UCHAR*)"{call dbo.atum_GetMonthlyArmorList(?,?)}"
 #define PROCEDURE_130503_0005 (UCHAR*)"{call dbo.atum_GetMonthlyOptionList(?)}"
-// end 2013-04-18 by jhseol,bckim ÀÌ´ŞÀÇ ¾Æ¸Ó - ÀÌº¥Æ® ·Îµå ÇÁ·Î½ÃÀú ¼±¾ğ
+// end 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸ - ì´ë²¤íŠ¸ ë¡œë“œ í”„ë¡œì‹œì € ì„ ì–¸
 
-// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 #define PROCEDURE_130510_0001 (UCHAR*)"{call dbo.atum_UpdateInfluenceConsecutiveVictorites(?,?,?)}"
-// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
-// 2013-05-20 by hskim, [º¸¾È ½Ã½ºÅÛ] ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾ÆÀÌÅÛ Ãß°¡ ¹æÁö
+// 2013-05-20 by hskim, [ë³´ì•ˆ ì‹œìŠ¤í…œ] ë¹„ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì•„ì´í…œ ì¶”ê°€ ë°©ì§€
 #define PROCEDURE_130520_0001 (UCHAR*)"{call dbo.atum_InsertStoreExtension(?,?)}"
 #define PROCEDURE_130520_0002 (UCHAR*)"{call dbo.atum_GetStoreExtension(?)}"
 #define PROCEDURE_130520_0003 (UCHAR*)"{call dbo.atum_GetTemporarySystemInfomation(?)}"
-// end 2013-05-20 by hskim, [º¸¾È ½Ã½ºÅÛ] ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾ÆÀÌÅÛ Ãß°¡ ¹æÁö
+// end 2013-05-20 by hskim, [ë³´ì•ˆ ì‹œìŠ¤í…œ] ë¹„ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì•„ì´í…œ ì¶”ê°€ ë°©ì§€
 
 
-// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ÇÁ·Î½ÃÀú Ãß°¡
+// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - í”„ë¡œì‹œì € ì¶”ê°€
 #define PROCEDURE_130531_0001 (UCHAR*)"{call dbo.atum_GetCollectionList(?,?)}"
 #define PROCEDURE_130531_0002 (UCHAR*)"{call dbo.atum_UpdateCollectionInfo(?,?,?,?,?, ?,?)}"
 #define PROCEDURE_130531_0003 (UCHAR*)"{call dbo.atum_Get_ShapeStatLevel(?)}"
 #define PROCEDURE_130531_0004 (UCHAR*)"{call dbo.atum_Insert_ShapeStatLevel(?,?,?,?)}"
-// end 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ÇÁ·Î½ÃÀú Ãß°¡
+// end 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - í”„ë¡œì‹œì € ì¶”ê°€
 
-#define PROCEDURE_130702_0001 (UCHAR*)"{call dbo.atum_log_Insert_Try_Enchant_Info(?,?,?,?,?, ?,?,?,?)}"		// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
+#define PROCEDURE_130702_0001 (UCHAR*)"{call dbo.atum_log_Insert_Try_Enchant_Info(?,?,?,?,?, ?,?,?,?)}"		// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
 
-// 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ
+// 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½
 #define PROCEDURE_130726_0001 (UCHAR*)"{call dbo.atum_CheckInfluenceType_ByAccountUID(?,?)}"
 #define PROCEDURE_130726_0002 (UCHAR*)"{call dbo.atum_ChangeInfluence_ItemNum(?,?)}"
 #define PROCEDURE_130726_0003 (UCHAR*)"{call dbo.atum_getAccountName_byAccountUID(?)}"
-// end 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ
+// end 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½
 
 #define PROCEDURE_130727_0001 (UCHAR*)"{call dbo.atum_GetMultipleIpStatusByAccountName(?)}"
 #define PROCEDURE_130727_0002 (UCHAR*)"{call dbo.atum_Nation_Transfer(?,?)}"

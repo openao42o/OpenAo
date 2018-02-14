@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "AtumParam.h"
 #include "SystemLogManager.h"
@@ -18,11 +18,11 @@
 #define NPC_SERVER_CONFIG_FILE_PATH				(CONFIG_ROOT+string("./npc.cfg")).c_str()
 #define HAPPYHOUR_EVENT_CONFIG_FILE_PATH		(CONFIG_ROOT+string("./happyHourEvent.cfg")).c_str()
 #define LOCALIZATION_CONFIG_DIRECTORY_PATH		(CONFIG_ROOT+string("./localization")).c_str()
-#define SECURITY_HACKSHIELD_DIRECTORY_PATH		(CONFIG_ROOT+string("./Security/HackShield")).c_str()		// 2008-04-03 by cmkwon, ÇÙ½¯µå ¼­¹ö ¿¬µ¿ ½Ã½ºÅÛ ¼öÁ¤ - µğ·ºÅä¸®¸¸ ¼³Á¤ÇÔ
+#define SECURITY_HACKSHIELD_DIRECTORY_PATH		(CONFIG_ROOT+string("./Security/HackShield")).c_str()		// 2008-04-03 by cmkwon, í•µì‰´ë“œ ì„œë²„ ì—°ë™ ì‹œìŠ¤í…œ ìˆ˜ì • - ë””ë ‰í† ë¦¬ë§Œ ì„¤ì •í•¨
 
 #define	RESOBJ_DIRECTORY_PATH					(CONFIG_ROOT+string("./../map/Res-Obj")).c_str()							// 2007-05-28 by cmkwon
-#define	RESTEX_DIRECTORY_PATH					(CONFIG_ROOT+string("./../map/Res-Tex")).c_str()						// 2007-07-18 by cmkwon, omi.texµµ Ã¼Å©¼¶À» Ã¼Å© ·çÆ¾ Ãß°¡
-#define	RESEXE_DIRECTORY_PATH					(CONFIG_ROOT+string("./../map/Res-EXE")).c_str()						// 2008-09-17 by cmkwon, Å¬¶óÀÌ¾ğÆ® ½ÇÇàÆÄÀÏµµ Ã¼Å©¼¶ Ã¼Å© Ãß°¡ - 
+#define	RESTEX_DIRECTORY_PATH					(CONFIG_ROOT+string("./../map/Res-Tex")).c_str()						// 2007-07-18 by cmkwon, omi.texë„ ì²´í¬ì„¬ì„ ì²´í¬ ë£¨í‹´ ì¶”ê°€
+#define	RESEXE_DIRECTORY_PATH					(CONFIG_ROOT+string("./../map/Res-EXE")).c_str()						// 2008-09-17 by cmkwon, í´ë¼ì´ì–¸íŠ¸ ì‹¤í–‰íŒŒì¼ë„ ì²´í¬ì„¬ ì²´í¬ ì¶”ê°€ - 
 
 
 #define CONFIG_NAME_DB_SERVER_IP						"DBServerIP"
@@ -50,22 +50,22 @@ enum : UINT
 	TIMERGAP_GLOGSYSTEM = 550000,		// 9 min and 50 sec	
 };
 
-// 2008-03-03 by cmkwon, SIZE_MAX_ODBC_CONN_STRING Á¤ÀÇ À§Ä¡ º¯°æ - AtumParam.h ·Î À§Ä¡ ÀÌµ¿ ÇÔ 
+// 2008-03-03 by cmkwon, SIZE_MAX_ODBC_CONN_STRING ì •ì˜ ìœ„ì¹˜ ë³€ê²½ - AtumParam.h ë¡œ ìœ„ì¹˜ ì´ë™ í•¨ 
 //#define SIZE_MAX_ODBC_CONN_STRING				128
 
 class CGlobalGameServer;
 
 // Global Variable
-extern CGlobalGameServer *	g_pGlobal;		// Àü¿ªº¯¼ö°ü¸®¸¦ À§ÇÑ Àü¿ªÅ¬·¡½ºÆ÷ÀÎÅÍ
+extern CGlobalGameServer *	g_pGlobal;		// ì „ì—­ë³€ìˆ˜ê´€ë¦¬ë¥¼ ìœ„í•œ ì „ì—­í´ë˜ìŠ¤í¬ì¸í„°
 extern char	*				ArrCommandList[];			// Command List
-extern char	*				ArrCommandListforUser[];	// ÀÏ¹İ À¯Àú¸¦ À§ÇÑ Command List
-extern char	*				ArrGameMasterCommandList[];	// 2007-11-08 by cmkwon, GM ¸í·É¾î Á¤¸® - ¿î¿µÀÚ Command List
+extern char	*				ArrCommandListforUser[];	// ì¼ë°˜ ìœ ì €ë¥¼ ìœ„í•œ Command List
+extern char	*				ArrGameMasterCommandList[];	// 2007-11-08 by cmkwon, GM ëª…ë ¹ì–´ ì •ë¦¬ - ìš´ì˜ì Command List
 
 
 //////////////////////////////////////////////////////////////////////////
 // Global Function
 //////////////////////////////////////////////////////////////////////////
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// À©µµ¿ì ¸Ş¼¼Áö ÇÁ·Î½ÃÀú
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// ìœˆë„ìš° ë©”ì„¸ì§€ í”„ë¡œì‹œì €
 //int GDeleteNewLine(char *str);
 
 struct SServerGroupForMame
@@ -78,11 +78,11 @@ typedef vector<SServerGroupForMame>			vectorServerGroupForMGame;
 ///////////////////////////////////////////////////////////////////////////////
 /// \class		CGlobalGameServer
 ///
-/// \brief		Àü¿ªº¯¼ö¸¦ Å¬·¡½º·Î ¸¸µé¾î Ã³¸®¸¦ À§ÇØ
+/// \brief		ì „ì—­ë³€ìˆ˜ë¥¼ í´ë˜ìŠ¤ë¡œ ë§Œë“¤ì–´ ì²˜ë¦¬ë¥¼ ìœ„í•´
 /// \author		cmkwon
 /// \version	
 /// \date		2004-03-18 ~ 2004-03-18
-/// \warning	°´Ã¼´Â ÇÏ³ª¸¸ ¸¸µé¾î¾ß ÇÑ´Ù.
+/// \warning	ê°ì²´ëŠ” í•˜ë‚˜ë§Œ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
 ///////////////////////////////////////////////////////////////////////////////
 class CIOCP;
 class CGlobalGameServer // : public CGlobal
@@ -166,12 +166,12 @@ public:
 
 	bool LoadStringList(setString *o_psetStirng, const char *i_szFilePath);
 
-	// ¿å¼³ ¹× ±İÁö ¾ÆÀÌµğ
+	// ìš•ì„¤ ë° ê¸ˆì§€ ì•„ì´ë””
 	bool LoadAbuseAndProhibitedName();
 	bool CheckProhibitedName(const char *i_szName);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-07-11 by cmkwon, MySQL Áö¿øÀ» À§ÇØ ¼öÁ¤(IP,Port ·Î DB ¼­¹ö ¿¬°á) - 
+	// 2008-07-11 by cmkwon, MySQL ì§€ì›ì„ ìœ„í•´ ìˆ˜ì •(IP,Port ë¡œ DB ì„œë²„ ì—°ê²°) - 
 	const char *GetDBServerIP() const { return m_szDBServerIP; }
 	int GetDBServerPort() const { return m_nDBServerPort; }
 	const char *GetDBServerDatabaseName() const { return m_szDBServerDatabaseName; }
@@ -180,26 +180,26 @@ public:
 	const char *GetLogDBDBServerDatabaseName() const { return m_szLogDBDBServerDatabaseName; }
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-06-05 by cmkwon, AdminTool, Monitor Á¢±Ù °¡´É IP¸¦ server config file ¿¡ ¼³Á¤ÇÏ±â - 
+	// 2008-06-05 by cmkwon, AdminTool, Monitor ì ‘ê·¼ ê°€ëŠ¥ IPë¥¼ server config file ì— ì„¤ì •í•˜ê¸° - 
 	vector<string>			m_AllowedToolIPList;
 	void AddAllowedToolIP(const char *i_szAllowedToolIP);
 	BOOL CheckAllowedToolIP(const char *i_szToolIP);
 public:
 
-	virtual bool InitServerSocket() = 0;						// ¼ÒÄÏ°ü·Ã ÃÊ±âÈ­ ÇÔ¼ö
-	virtual bool EndServerSocket();							// ¼ÒÄÏ°ü·Ã Á¾·á ÇÔ¼ö
+	virtual bool InitServerSocket() = 0;						// ì†Œì¼“ê´€ë ¨ ì´ˆê¸°í™” í•¨ìˆ˜
+	virtual bool EndServerSocket();							// ì†Œì¼“ê´€ë ¨ ì¢…ë£Œ í•¨ìˆ˜
 
 protected:
 	//////////////////////////////////////////////////////////////////////////
-	// À©µµ¿ì °ü·Ã ¸â¹ö º¯¼ö
-	HINSTANCE			m_hInstanceHandle;				// ½ÇÇàµÈ ÀÎ½ºÅÏ½º ÇÚµé
-	HWND				m_hMainWndHandle;				// ½ÇÇàµÈ ¸ŞÀÎ À©µµ¿ì ÇÚµé
+	// ìœˆë„ìš° ê´€ë ¨ ë©¤ë²„ ë³€ìˆ˜
+	HINSTANCE			m_hInstanceHandle;				// ì‹¤í–‰ëœ ì¸ìŠ¤í„´ìŠ¤ í•¸ë“¤
+	HWND				m_hMainWndHandle;				// ì‹¤í–‰ëœ ë©”ì¸ ìœˆë„ìš° í•¸ë“¤
 
 	//////////////////////////////////////////////////////////////////////////
-	// À©µµ¿ì Å¸ÀÌ¹ö °ü·Ã ¸â¹ö º¯¼ö
-	UINT				m_nTimerIDTraffic;				// ¸ğµç ¼­¹ö¿¡¼­ Bandwidth °è»êÀ» À§ÇÑ TimerID
-	UINT				m_nTimerIDAliveCheck;			// ¸ğµç ¼­¹ö¿¡¼­ Å¬¶óÀÌ¾ğÆ®ÀÇ Alive Ã¼Å©¸¦ À§ÇÑ TimerID
-	UINT				m_nTimerIDReconnect;			// ¼­¹ö(IMServer, FieldServer, NPCServer)¿¡¼­ »óÀ§ ¼­¹ö¿Í Á¢¼ÓÀÌ Á¾·á µÇ¾úÀ»¶§ ÀçÁ¢¼ÓÀ» À§ÇÑ TimerID
+	// ìœˆë„ìš° íƒ€ì´ë²„ ê´€ë ¨ ë©¤ë²„ ë³€ìˆ˜
+	UINT				m_nTimerIDTraffic;				// ëª¨ë“  ì„œë²„ì—ì„œ Bandwidth ê³„ì‚°ì„ ìœ„í•œ TimerID
+	UINT				m_nTimerIDAliveCheck;			// ëª¨ë“  ì„œë²„ì—ì„œ í´ë¼ì´ì–¸íŠ¸ì˜ Alive ì²´í¬ë¥¼ ìœ„í•œ TimerID
+	UINT				m_nTimerIDReconnect;			// ì„œë²„(IMServer, FieldServer, NPCServer)ì—ì„œ ìƒìœ„ ì„œë²„ì™€ ì ‘ì†ì´ ì¢…ë£Œ ë˜ì—ˆì„ë•Œ ì¬ì ‘ì†ì„ ìœ„í•œ TimerID
 
 	//////////////////////////////////////////////////////////////////////////
 	// Configuration Variables
@@ -233,7 +233,7 @@ protected:
 	setString			m_setAbuseWords;
 	setString			m_setProhibitedNames;
 
-	BOOL				m_bIsTestServer;								// TestServer ¿©ºÎ
+	BOOL				m_bIsTestServer;								// TestServer ì—¬ë¶€
 
 	CIOCP *				m_pGIOCP;
 };

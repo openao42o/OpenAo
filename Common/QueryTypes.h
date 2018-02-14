@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 enum EnumQueryType
@@ -12,7 +12,7 @@ enum EnumQueryType
 	QT_SaveCharacterCriticalData,
 	QT_ChangeUnitKind,
 	QT_ChangeStat,
-	QT_ChangeBonusStatPoint,			// 2005-11-15 by cmkwon, Ãß°¡ÇÔ
+	QT_ChangeBonusStatPoint,			// 2005-11-15 by cmkwon, ì¶”ê°€í•¨
 	QT_ChangeGuild,
 	QT_ChangeFriendGroup,
 	QT_ChangeExp,
@@ -23,7 +23,7 @@ enum EnumQueryType
 	QT_ChangeInfluenceType,
 	QT_ChangeStatus,
 	QT_ChangePKPoint,
-	// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - »ç¿ëÇÏÁö ¾ÊÀ¸¹Ç·Î Á¦°Å
+	// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì œê±°
 	//	QT_ChangeRacingPoint,
 	QT_UpdateTotalPlayTime,
 	QT_UpdateLastStartedTime,
@@ -34,7 +34,7 @@ enum EnumQueryType
 	QT_ChangeDockingItem,
 	QT_ChangePosition,
 	QT_EventWarpConnect,
-	// Item °ü·Ã queryµé
+	// Item ê´€ë ¨ queryë“¤
 	QT_GetStoreItem,
 	QT_ReloadAllEnchant,
 	QT_DeleteStoreItem,
@@ -44,8 +44,8 @@ enum EnumQueryType
 	QT_UpdateItemCount,
 	QT_UpdateItemNum,					// 2006-06-14 by cmkwon
 	QT_UpdateEndurance,
-	QT_StoreUpdateColorCode,			// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - EffectItemNum ÀÇ ÀÇ¹Ì·Î »ç¿ë, // 2005-11-21 by cmkwon, Ãß°¡ÇÔ
-	QT_UpdateShapeItemNum,				// 2009-08-26 by cmkwon, ±×·¡ÇÈ ¸®¼Ò½º º¯°æ ½Ã½ºÅÛ ±¸Çö - 
+	QT_StoreUpdateColorCode,			// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - EffectItemNum ì˜ ì˜ë¯¸ë¡œ ì‚¬ìš©, // 2005-11-21 by cmkwon, ì¶”ê°€í•¨
+	QT_UpdateShapeItemNum,				// 2009-08-26 by cmkwon, ê·¸ë˜í”½ ë¦¬ì†ŒìŠ¤ ë³€ê²½ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
 	QT_UpdateItemUsingTimeStamp,
 	QT_UpdateItemRareFix,
@@ -54,86 +54,86 @@ enum EnumQueryType
 	QT_UpdateWindowItemList,
 	QT_UpdateItemPossess,
 	QT_UpdateItemStorage,		// 2005-12-07 by cmkwon
-	QT_LoadOneItem,			// ÇÏ³ªÀÇ ¾ÆÀÌÅÛ ·Îµù ¹× Àü¼Û, ÀÎÃ¦Æ® Á¤º¸ Æ÷ÇÔ
-	QT_INSERTLOGINITEMEVENT,	// 2011-08-25 by shcho, È½¼öº° ¾ÆÀÌÅÛ Áö±Ş±â´É ±¸Çö
-	QT_CheckEventItem,		// 2006-08-25 by dhjin, ÀÌº¥Æ® ¾ÆÀÌÅÛ °ü·Ã
-	QT_InsertEventItem,		// 2006-08-25 by dhjin, ÀÌº¥Æ® ¾ÆÀÌÅÛ °ü·Ã
-	QT_UpdateEventItemFixedPeriod,					// 2013-02-28 by bckim, º¹±ÍÀ¯Á® ¹öÇÁÃß°¡
-	QT_CheckCouponEvent,	// 2008-01-10 by cmkwon, ¾ÆÀÌÅÛ ÀÌº¥Æ® ½Ã½ºÅÛ¿¡ ½Å ÄíÆù ½Ã½ºÅÛ Ãß°¡ - 
-	QT_GetGuildStoreItem,	// 2006-09-20 by dhjin, ¿©´Ü Ã¢°í °ü·Ã
-	QT_UpdateGuildStoreItem,	// 2006-09-20 by dhjin, ¿©´Ü Ã¢°í °ü·Ã
-	QT_InsertGuildStoreItem,	// 2006-09-20 by dhjin, ¿©´Ü Ã¢°í °ü·Ã
-	QT_DeleteGuildStoreItem,	// 2006-09-20 by dhjin, ¿©´Ü Ã¢°í °ü·Ã
-	QT_GetLogGuildStoreItem,	// 2006-09-27 by dhjin, ¿©´Ü Ã¢°í ·Î±× °ü·Ã
-	QT_AllDeleteGuildStoreItem, // 2006-09-29 by dhjin, ¿©´Ü Ã¢°í °ü·Ã
-	QT_Insert2WarpableUserList,	// 2007-08-30 by cmkwon, È¸ÀÇ·ë ½Ã½ºÅÛ ±¸Çö - ÀÔÀåÇã°¡ Ãß°¡
-	QT_DeleteWarpableUser,		// 2007-08-30 by cmkwon, È¸ÀÇ·ë ½Ã½ºÅÛ ±¸Çö - ÀÔÀåÇã°¡ »èÁ¦
-	//QT_UPDATE_ConnectingServerGroupID,		// 2007-11-06 by cmkwon, °ÔÀÓ ·Î±× DB ¼­¹ö µû·Î ±¸ÃàÇÏ±â - Ãß°¡ ÇÔ
-	QT_GiveStoreItem,						// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - 
-	QT_GetLetter,					// 2008-04-24 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - DB¿¡¼­ ÆíÁö °¡Á®¿À±â
-	QT_ReadLetter,					// 2008-04-24 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö ÀĞ±â
-	QT_DeleteLetter,				// 2008-04-24 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö »èÁ¦
-	QT_SendLetter,					// 2008-05-08 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÆíÁö º¸³»±â
-	QT_GetAllLetter,				// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - DB¿¡¼­ ÀüÃ¼ ÆíÁö °¡Á®¿À±â
-	QT_SendAllLetter,				// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö º¸³»±â
-	QT_ReadAllLetter,				// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö ÀĞ±â
-	QT_DeleteAllLetter,				// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ÀüÃ¼ ÆíÁö »èÁ¦
-	QT_DeleteOldAllLetter,			// 2008-05-09 by dhjin, EP3 ÆíÁö ½Ã½ºÅÛ - ¿À·¡µÈ ÀüÃ¼ ÆíÁö »èÁ¦
+	QT_LoadOneItem,			// í•˜ë‚˜ì˜ ì•„ì´í…œ ë¡œë”© ë° ì „ì†¡, ì¸ì±ˆíŠ¸ ì •ë³´ í¬í•¨
+	QT_INSERTLOGINITEMEVENT,	// 2011-08-25 by shcho, íšŸìˆ˜ë³„ ì•„ì´í…œ ì§€ê¸‰ê¸°ëŠ¥ êµ¬í˜„
+	QT_CheckEventItem,		// 2006-08-25 by dhjin, ì´ë²¤íŠ¸ ì•„ì´í…œ ê´€ë ¨
+	QT_InsertEventItem,		// 2006-08-25 by dhjin, ì´ë²¤íŠ¸ ì•„ì´í…œ ê´€ë ¨
+	QT_UpdateEventItemFixedPeriod,					// 2013-02-28 by bckim, ë³µê·€ìœ ì ¸ ë²„í”„ì¶”ê°€
+	QT_CheckCouponEvent,	// 2008-01-10 by cmkwon, ì•„ì´í…œ ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì— ì‹  ì¿ í° ì‹œìŠ¤í…œ ì¶”ê°€ - 
+	QT_GetGuildStoreItem,	// 2006-09-20 by dhjin, ì—¬ë‹¨ ì°½ê³  ê´€ë ¨
+	QT_UpdateGuildStoreItem,	// 2006-09-20 by dhjin, ì—¬ë‹¨ ì°½ê³  ê´€ë ¨
+	QT_InsertGuildStoreItem,	// 2006-09-20 by dhjin, ì—¬ë‹¨ ì°½ê³  ê´€ë ¨
+	QT_DeleteGuildStoreItem,	// 2006-09-20 by dhjin, ì—¬ë‹¨ ì°½ê³  ê´€ë ¨
+	QT_GetLogGuildStoreItem,	// 2006-09-27 by dhjin, ì—¬ë‹¨ ì°½ê³  ë¡œê·¸ ê´€ë ¨
+	QT_AllDeleteGuildStoreItem, // 2006-09-29 by dhjin, ì—¬ë‹¨ ì°½ê³  ê´€ë ¨
+	QT_Insert2WarpableUserList,	// 2007-08-30 by cmkwon, íšŒì˜ë£¸ ì‹œìŠ¤í…œ êµ¬í˜„ - ì…ì¥í—ˆê°€ ì¶”ê°€
+	QT_DeleteWarpableUser,		// 2007-08-30 by cmkwon, íšŒì˜ë£¸ ì‹œìŠ¤í…œ êµ¬í˜„ - ì…ì¥í—ˆê°€ ì‚­ì œ
+	//QT_UPDATE_ConnectingServerGroupID,		// 2007-11-06 by cmkwon, ê²Œì„ ë¡œê·¸ DB ì„œë²„ ë”°ë¡œ êµ¬ì¶•í•˜ê¸° - ì¶”ê°€ í•¨
+	QT_GiveStoreItem,						// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - 
+	QT_GetLetter,					// 2008-04-24 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - DBì—ì„œ í¸ì§€ ê°€ì ¸ì˜¤ê¸°
+	QT_ReadLetter,					// 2008-04-24 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì½ê¸°
+	QT_DeleteLetter,				// 2008-04-24 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ì‚­ì œ
+	QT_SendLetter,					// 2008-05-08 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - í¸ì§€ ë³´ë‚´ê¸°
+	QT_GetAllLetter,				// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - DBì—ì„œ ì „ì²´ í¸ì§€ ê°€ì ¸ì˜¤ê¸°
+	QT_SendAllLetter,				// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ë³´ë‚´ê¸°
+	QT_ReadAllLetter,				// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì½ê¸°
+	QT_DeleteAllLetter,				// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì „ì²´ í¸ì§€ ì‚­ì œ
+	QT_DeleteOldAllLetter,			// 2008-05-09 by dhjin, EP3 í¸ì§€ ì‹œìŠ¤í…œ - ì˜¤ë˜ëœ ì „ì²´ í¸ì§€ ì‚­ì œ
 
-	// IM Server¿ë
+	// IM Serverìš©
 	QT_AuthChatLogin,
 	QT_SaveLastPartyID,
-	// Guild °ü·Ã
+	// Guild ê´€ë ¨
 	QT_GuildCreate,
 	QT_GuildAddMember,
-	QT_GuildAddOffMember,			// 2008-06-12 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿ÀÇÁÀ¯Àú ¿©´Ü °¡ÀÔ 		
+	QT_GuildAddOffMember,			// 2008-06-12 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì˜¤í”„ìœ ì € ì—¬ë‹¨ ê°€ì… 		
 	QT_GuildLeaveMember,
 	QT_GuildBanMember,
 	QT_GuildUpdateMemberCapacity,
 	QT_GuildLoadGuild,
-	QT_GuildDismember,			// ±æµåÀÇ ÇØÃ¼ ³¯Â¥¿Í »óÅÂ¸¸ ¼¼ÆÃÇÏ±â
+	QT_GuildDismember,			// ê¸¸ë“œì˜ í•´ì²´ ë‚ ì§œì™€ ìƒíƒœë§Œ ì„¸íŒ…í•˜ê¸°
 	QT_GuildCancelDismember,
 	QT_GuildChangeGuildName,
 	QT_GuildSetGuildMark,
-	// 2007-08-02 by cmkwon, ¿©´Ü ¸¶Å© ½É»ç ½Ã½ºÅÛ ±¸Çö - »ç¿ëÇÏÁö ¾È´Â ÇÔ¼öÀÓ
+	// 2007-08-02 by cmkwon, ì—¬ë‹¨ ë§ˆí¬ ì‹¬ì‚¬ ì‹œìŠ¤í…œ êµ¬í˜„ - ì‚¬ìš©í•˜ì§€ ì•ˆëŠ” í•¨ìˆ˜ì„
 	//	QT_GuildGetGuildMark,
 	QT_GuildSetRank,
-	QT_GuildDeleteGuild,		// ±æµå¸¦ ¿ÏÀüÈ÷ Á¦°ÅÇÏ±â
+	QT_GuildDeleteGuild,		// ê¸¸ë“œë¥¼ ì™„ì „íˆ ì œê±°í•˜ê¸°
 	QT_GuildSaveGuildWarPoint,
 	QT_GuildDeleteGuildUIDOfCharacter,
-	QT_GuildAddGuildFame,				// 2005-12-27 by cmkwon, ¿©´Ü¸í¼º ¼öÁ¤
-	QT_GuildUpdateCommander,			// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´ÜÀå À§ÀÓ
-	QT_GuildNotice,						// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü °øÁö
-	QT_GuildGetApplicant,				// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³
-	QT_GuildGetIntroduction,			// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³
-	QT_GuildDeleteIntroduction,			// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³
-	QT_GetSelfIntroduction,				// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü Áö¿øÀÚ ¼Ò°³¼­
-	QT_GuildSearchIntroduction,			// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ °Ë»ö
-	QT_GuildUpdateIntroduction,			// 2008-05-27 by dhjin,	EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ ÀÛ¼º
-	QT_GuildUpdateSelfIntroduction,		// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀÚ±â ¼Ò°³ ÀÛ¼º 
-	QT_GuildDeleteSelfIntroduction,		// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀÚ±â ¼Ò°³ Áö¿ì±â 
-	QT_GuildDeleteSelfIntroductionOffUser,		// 2008-06-13 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀÚ±â ¼Ò°³ Áö¿ì±â 
+	QT_GuildAddGuildFame,				// 2005-12-27 by cmkwon, ì—¬ë‹¨ëª…ì„± ìˆ˜ì •
+	QT_GuildUpdateCommander,			// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì¥ ìœ„ì„
+	QT_GuildNotice,						// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ê³µì§€
+	QT_GuildGetApplicant,				// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ
+	QT_GuildGetIntroduction,			// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ
+	QT_GuildDeleteIntroduction,			// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ
+	QT_GetSelfIntroduction,				// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì§€ì›ì ì†Œê°œì„œ
+	QT_GuildSearchIntroduction,			// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ê²€ìƒ‰
+	QT_GuildUpdateIntroduction,			// 2008-05-27 by dhjin,	EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ì‘ì„±
+	QT_GuildUpdateSelfIntroduction,		// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ìê¸° ì†Œê°œ ì‘ì„± 
+	QT_GuildDeleteSelfIntroduction,		// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ìê¸° ì†Œê°œ ì§€ìš°ê¸° 
+	QT_GuildDeleteSelfIntroductionOffUser,		// 2008-06-13 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ìê¸° ì†Œê°œ ì§€ìš°ê¸° 
 
 	// Trade
 	QT_ExecuteTrade,
-	QT_TradeMoveItem,					// 2006-05-11 by cmkwon, °Å·¡½Ã ¾ÆÀÌÅÛ ÀÌµ¿
+	QT_TradeMoveItem,					// 2006-05-11 by cmkwon, ê±°ë˜ì‹œ ì•„ì´í…œ ì´ë™
 	// Enchant
 	QT_InsertEnchant,
 	QT_DeleteAllEnchant,
 	// Quest
-	QT_GetAllQuest,					// »ç¿ëÀÚÀÇ ÁøÇàÁßÀÌ°Å³ª ¿Ï·áµÈ ¸ğµç quest¸¦ loading
-	QT_InsertQuest,					// »ç¿ëÀÚÀÇ quest¸¦ »ğÀÔ
-	QT_UpdateQuestState,			// Quest ÁøÇà »óÅÂ ¾÷µ¥ÀÌÆ®
-	QT_DeleteQuest,					// Quest¸¦ Áö¿ò
-	QT_UpdateQuestMonsterCount,		// ¸ó½ºÅÍ Ä«¿îÆ® Ãß°¡ È¤Àº ¼öÁ¤
-	QT_DeleteQuestMonsterCount,		// ¸ó½ºÅÍ Ä«¿îÆ® »èÁ¦
+	QT_GetAllQuest,					// ì‚¬ìš©ìì˜ ì§„í–‰ì¤‘ì´ê±°ë‚˜ ì™„ë£Œëœ ëª¨ë“  questë¥¼ loading
+	QT_InsertQuest,					// ì‚¬ìš©ìì˜ questë¥¼ ì‚½ì…
+	QT_UpdateQuestState,			// Quest ì§„í–‰ ìƒíƒœ ì—…ë°ì´íŠ¸
+	QT_DeleteQuest,					// Questë¥¼ ì§€ì›€
+	QT_UpdateQuestMonsterCount,		// ëª¬ìŠ¤í„° ì¹´ìš´íŠ¸ ì¶”ê°€ í˜¹ì€ ìˆ˜ì •
+	QT_DeleteQuestMonsterCount,		// ëª¬ìŠ¤í„° ì¹´ìš´íŠ¸ ì‚­ì œ
 
 	// Auction
-	QT_AuctionGetItemList,		// °æ¸Å ¾ÆÀÌÅÛ ¸ñ·Ï ¿äÃ»
-	QT_AuctionRegisterItem,		// °æ¸Å ¾ÆÀÌÅÛ µî·Ï
-	QT_AuctionCancelRegister,	// °æ¸Å ¾ÆÀÌÅÛ µî·Ï Ãë¼Ò
-	QT_AuctionBuyItem,			// °æ¸Å ¾ÆÀÌÅÛ ±¸¸Å
-	// ÀÏ¹İ query ½ÇÇà
+	QT_AuctionGetItemList,		// ê²½ë§¤ ì•„ì´í…œ ëª©ë¡ ìš”ì²­
+	QT_AuctionRegisterItem,		// ê²½ë§¤ ì•„ì´í…œ ë“±ë¡
+	QT_AuctionCancelRegister,	// ê²½ë§¤ ì•„ì´í…œ ë“±ë¡ ì·¨ì†Œ
+	QT_AuctionBuyItem,			// ê²½ë§¤ ì•„ì´í…œ êµ¬ë§¤
+	// ì¼ë°˜ query ì‹¤í–‰
 	QT_GeneralExec,
 	// Pre Server
 	QT_PRE_Login,
@@ -141,29 +141,29 @@ enum EnumQueryType
 	QT_UnblockUser,
 	//QT_MGameLogin,
 	QT_LogTotalUser,
-	//QT_InsertGlogAccount,		// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	//QT_InsertGlogAccount,		// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	// IM Server - Friend List
 	QT_FriendInsertFriend,
 	QT_FriendDeleteFriend,
 	QT_FriendLoadFriends,
-	// À¯·áÈ­ ÇÁ¸®¹Ì¾ö Ä«µå 
+	// ìœ ë£Œí™” í”„ë¦¬ë¯¸ì—„ ì¹´ë“œ 
 	QT_CashInsertPremiumCard,
 	QT_CashUpdatePremiumCard,
 	QT_CashDeletePremiumCard,
-	// HappyHourEvent °ü·Ã
+	// HappyHourEvent ê´€ë ¨
 	QT_LoadHappyHourEvent,
 	QT_UpdateHappyHourEventDate,
-	// 2006-08-31 by dhjin, ItemEvent °ü·Ã
+	// 2006-08-31 by dhjin, ItemEvent ê´€ë ¨
 	QT_LoadItemEvent,
 
-	// 2008-12-19 by cmkwon, QT_UpdatePCBangList->DQT_UpdatePCBangList º¯°æ - 
-	//	QT_UpdatePCBangList,	// 2007-01-22 by dhjin, PC¹æ 
+	// 2008-12-19 by cmkwon, QT_UpdatePCBangList->DQT_UpdatePCBangList ë³€ê²½ - 
+	//	QT_UpdatePCBangList,	// 2007-01-22 by dhjin, PCë°© 
 
-	// 2006-09-04 by dhjin, Äü ½½·Ô °ü·Ã
+	// 2006-09-04 by dhjin, í€µ ìŠ¬ë¡¯ ê´€ë ¨
 	QT_Get_QuickSlot,
 	QT_Delete_QuickSlot,
 	QT_Update_QuickSlot,
-	// 2007-02-28 by dhjin, Àü·«Æ÷ÀÎÆ® »ı¼º ÁÖ±â ¼öÁ¤ °ü·Ã.
+	// 2007-02-28 by dhjin, ì „ëµí¬ì¸íŠ¸ ìƒì„± ì£¼ê¸° ìˆ˜ì • ê´€ë ¨.
 	QT_LoadStrategyPointSummonInfo,
 	QT_UpdateStrategyPointSummonInfoBySummon,
 	QT_UpdateStrategyPointSummonInfoBySummonTime,
@@ -175,16 +175,16 @@ enum EnumQueryType
 	QT_LoadStrategyPointNotSummonTimeByAdminTool,
 
 	QT_UpdateInfluenceWarData,			// 2006-04-14 by cmkwon
-	QT_UpdateOwnerOfConflictArea,		// 2006-07-12 by cmkwon, ºĞÀïÁö¿ª ¼ÒÀ¯ÀÚ 
+	QT_UpdateOwnerOfConflictArea,		// 2006-07-12 by cmkwon, ë¶„ìŸì§€ì—­ ì†Œìœ ì 
 
-	QT_UpdateSubleader,					// 2007-02-13 by dhjin, ºÎÁöµµÀÚ ¼³Á¤
+	QT_UpdateSubleader,					// 2007-02-13 by dhjin, ë¶€ì§€ë„ì ì„¤ì •
 
-	//QT_JamboreeInit,					// 2007-04-10 by cmkwon, ´ëÈ¸¼­¹ö±º DB(atum2_db_20) ÃÊ±âÈ­
-	//QT_JamboreeEntrants,				// 2007-04-10 by cmkwon, Ä³¸¯ÅÍ¸¦ ´ëÈ¸¼­¹ö±º DB(atum2_db_20)·Î º¹»ç
+	//QT_JamboreeInit,					// 2007-04-10 by cmkwon, ëŒ€íšŒì„œë²„êµ° DB(atum2_db_20) ì´ˆê¸°í™”
+	//QT_JamboreeEntrants,				// 2007-04-10 by cmkwon, ìºë¦­í„°ë¥¼ ëŒ€íšŒì„œë²„êµ° DB(atum2_db_20)ë¡œ ë³µì‚¬
 
-	// 2007-04-25 by dhjin, WarPoint °ü·Ã
+	// 2007-04-25 by dhjin, WarPoint ê´€ë ¨
 	QT_UpdateWarPoint,					// 2007-04-25 by dhjin
-	// 2007-06-07 by dhjin, Arena°á°ú °ü·Ã
+	// 2007-06-07 by dhjin, Arenaê²°ê³¼ ê´€ë ¨
 	QT_UpdateArenaResult,					// 2007-06-07 by dhjin
 	QT_UpdateArenaDisConnect,				// 2007-06-07 by dhjin
 
@@ -206,10 +206,10 @@ enum EnumQueryType
 	QT_RegNotice,
 	QT_ModifyNotice,
 
-	// 2007-09-12 by cmkwon, º£Æ®³² 2Â÷ÆĞ½º¿öµå ±¸Çö -
-	QT_UpdateSecondaryPassword,		// 2Â÷ÆĞ½º¿öµå ¾÷µ¥ÀÌÆ®
+	// 2007-09-12 by cmkwon, ë² íŠ¸ë‚¨ 2ì°¨íŒ¨ìŠ¤ì›Œë“œ êµ¬í˜„ -
+	QT_UpdateSecondaryPassword,		// 2ì°¨íŒ¨ìŠ¤ì›Œë“œ ì—…ë°ì´íŠ¸
 
-	// 2007-10-29 by dhjin, poll°ü·Ã
+	// 2007-10-29 by dhjin, pollê´€ë ¨
 	QT_LoadVoterList,
 	QT_LoadLeaderCandidate,
 	QT_SelectLeaderCandidateInfoByRealTimeVariable,
@@ -218,127 +218,127 @@ enum EnumQueryType
 	QT_UpdateLeaderPollCount,
 	QT_InsertVoterList,
 
-	QT_CheckGiveTarget,			// 2007-11-13 by cmkwon, ¼±¹°ÇÏ±â ±â´É Ãß°¡ - Ãß°¡
-	QT_UpdatePilotFace,			// 2007-11-21 by cmkwon, PilotFace º¯°æ Ä«µå ±¸Çö - Ãß°¡
+	QT_CheckGiveTarget,			// 2007-11-13 by cmkwon, ì„ ë¬¼í•˜ê¸° ê¸°ëŠ¥ ì¶”ê°€ - ì¶”ê°€
+	QT_UpdatePilotFace,			// 2007-11-21 by cmkwon, PilotFace ë³€ê²½ ì¹´ë“œ êµ¬í˜„ - ì¶”ê°€
 
-	QT_InsertNotifyMsg,			// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
-	QT_GetNotifyMsg,			// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
-	QT_DeleteNotifyMsg,			// 2007-11-28 by cmkwon, ÅëÁö½Ã½ºÅÛ ±¸Çö -
+	QT_InsertNotifyMsg,			// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
+	QT_GetNotifyMsg,			// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
+	QT_DeleteNotifyMsg,			// 2007-11-28 by cmkwon, í†µì§€ì‹œìŠ¤í…œ êµ¬í˜„ -
 
 	QT_GetGuildMark,			// 2007-12-07 by dhjin
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - 
-	QT_ArenaUpdateCharacterInfo,		 // 2007-12-28 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ÄÉ¸¯ÅÍ Á¤º¸ ¾÷µ¥ÀÌÆ®
-	QT_ArenaGetCharacter,				// 2007-12-29 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ÄÉ¸¯ÅÍ Á¤º¸ ·Îµù
-	QT_ArenaCopyDBInfo,					// 2008-01-08 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ¾Æ·¹³ª DB·Î µ¥ÀÌÅ¸ º¹»ç
-	QT_ArenaStartGetCharacter,			// 2008-01-09 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ¾Æ·¹³ª ½ÃÀÛÀ» À§ÇØ ÄÉ¸¯ÅÍ Á¤º¸ ´Ù½Ã ·ÎµùÇÏ¿© Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü¼Û
+	// 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - 
+	QT_ArenaUpdateCharacterInfo,		 // 2007-12-28 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì¼€ë¦­í„° ì •ë³´ ì—…ë°ì´íŠ¸
+	QT_ArenaGetCharacter,				// 2007-12-29 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì¼€ë¦­í„° ì •ë³´ ë¡œë”©
+	QT_ArenaCopyDBInfo,					// 2008-01-08 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì•„ë ˆë‚˜ DBë¡œ ë°ì´íƒ€ ë³µì‚¬
+	QT_ArenaStartGetCharacter,			// 2008-01-09 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ì•„ë ˆë‚˜ ì‹œì‘ì„ ìœ„í•´ ì¼€ë¦­í„° ì •ë³´ ë‹¤ì‹œ ë¡œë”©í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ì†¡
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2008-04-02 by dhjin,	¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È -
+	// 2008-04-02 by dhjin,	ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ -
 	QT_GetLogMSWarInfo,
 	QT_GetLogSPWarInfo,
 	QT_UpdateMSWarOptionType,
-	QT_InsertMSWarLog,	// 2008-08-28 by dhjin, ¹ö±× ¼öÁ¤, °ÔÀÓDB¿¡ ³²°Ü¾ß Admintool·Î ÃÊ±âÈ­°¡ °¡´ÉÇÏ´Ù.
-	QT_InsertSPWarLog,	// 2008-08-28 by dhjin, ¹ö±× ¼öÁ¤, °ÔÀÓDB¿¡ ³²°Ü¾ß Admintool·Î ÃÊ±âÈ­°¡ °¡´ÉÇÏ´Ù.
+	QT_InsertMSWarLog,	// 2008-08-28 by dhjin, ë²„ê·¸ ìˆ˜ì •, ê²Œì„DBì— ë‚¨ê²¨ì•¼ Admintoolë¡œ ì´ˆê¸°í™”ê°€ ê°€ëŠ¥í•˜ë‹¤.
+	QT_InsertSPWarLog,	// 2008-08-28 by dhjin, ë²„ê·¸ ìˆ˜ì •, ê²Œì„DBì— ë‚¨ê²¨ì•¼ Admintoolë¡œ ì´ˆê¸°í™”ê°€ ê°€ëŠ¥í•˜ë‹¤.
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
-	QT_UpdateDBServerGroup,				// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
-	QT_CheckConnectableAccount,			// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - 
+	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
+	QT_UpdateDBServerGroup,				// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
+	QT_CheckConnectableAccount,			// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - 
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2008-06-23 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç -
-	QT_GetUserInfo,						// 2008-06-23 by dhjin, EP3 À¯ÀúÁ¤º¸¿É¼Ç - ´Ù¸¥ À¯Àú Á¤º¸ ¿äÃ»
+	// 2008-06-23 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
+	QT_GetUserInfo,						// 2008-06-23 by dhjin, EP3 ìœ ì €ì •ë³´ì˜µì…˜ - ë‹¤ë¥¸ ìœ ì € ì •ë³´ ìš”ì²­
 
-	// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - DQT_DailyJob ·Î º¯°æ ÇÔ.
+	// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - DQT_DailyJob ë¡œ ë³€ê²½ í•¨.
 	//	//////////////////////////////////////////////////////////////////////////
-	//	// 2008-08-19 by dhjin, MySQLÆ÷ÆÃ ¹®Á¦·Î MySQL¿¡¼­ Áö¿øÇÏÁö ¾Ê´Â MSSQL¿¡ Job°ü·Ã ÀÛ¾÷À» ¿©±â¼­ Ã³¸®ÇÑ´Ù.
+	//	// 2008-08-19 by dhjin, MySQLí¬íŒ… ë¬¸ì œë¡œ MySQLì—ì„œ ì§€ì›í•˜ì§€ ì•ŠëŠ” MSSQLì— Jobê´€ë ¨ ì‘ì—…ì„ ì—¬ê¸°ì„œ ì²˜ë¦¬í•œë‹¤.
 	//	QT_DailyJob,
 
-	// 2008-11-04 by dhjin, ·°Å°¸Ó½Å
+	// 2008-11-04 by dhjin, ëŸ­í‚¤ë¨¸ì‹ 
 	QT_UpdateLuckyItemDropCount,
 	QT_UpdateLuckyItemStarttime,
 
-	QT_ReloadAdminAutoNotice,		// 2009-01-14 by cmkwon, ¿î¿µÀÚ ÀÚµ¿ °øÁö ½Ã½ºÅÛ ±¸Çö - 
+	QT_ReloadAdminAutoNotice,		// 2009-01-14 by cmkwon, ìš´ì˜ì ìë™ ê³µì§€ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í
+	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³ 
 	QT_UpdateStartDeclarationOfWar,
 	QT_UpdateEndDeclarationOfWar,
 	QT_UpdateMSWarStartTime,
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 	QT_UpdateNickName,
 	QT_GetSelfRanking,
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö -
-	QT_ChangeItemWithItemMatching,		// 2009-03-31 by cmkwon, ¼¼·ÂÃÊ±âÈ­ ½Ã½ºÅÛ ±¸Çö - ÇØ´ç °èÁ¤ÀÇ Ã¢°í ¾ÆÀÌÅÛÀ» ¼¼·Â º¯°æ Ã³¸®ÇÑ´Ù.
+	// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ -
+	QT_ChangeItemWithItemMatching,		// 2009-03-31 by cmkwon, ì„¸ë ¥ì´ˆê¸°í™” ì‹œìŠ¤í…œ êµ¬í˜„ - í•´ë‹¹ ê³„ì •ì˜ ì°½ê³  ì•„ì´í…œì„ ì„¸ë ¥ ë³€ê²½ ì²˜ë¦¬í•œë‹¤.
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - 
-	QT_ChangeStartCityMapIndex,			// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - 
+	// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - 
+	QT_ChangeStartCityMapIndex,			// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - QT_ Ãß°¡
-	QT_ChangeAddedInventoryCount,		// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+	// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - QT_ ì¶”ê°€
+	QT_ChangeAddedInventoryCount,		// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 
 	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	
-	QT_LoadInfinityImpute,					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	ÀÎÇÇ ±Í¼Ó Á¤º¸ °¡Á®¿À±â
-	QT_InsertInfinityImpute,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	ÀÎÇÇ ±Í¼Ó Á¤º¸ Ãß°¡
-	QT_UpdateInfinityImpute,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	ÀÎÇÇ ¿Ï·á 
-	QT_ResetInfinityImpute,					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - 	ÇØ´ç ÀÎÇÇ ¸®¼ÂÀ¸·Î Á¤º¸ »èÁ¦
-	QT_ArenaCopyInfinityDBInfo,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¾Æ·¹³ªDB¿¡ º¹»çÇÏ±â
-	QT_CharacterSaveDataInfinityFin,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ÄÉ¸¯ÅÍ Á¤º¸ ¼öÁ¤
-	QT_InfinityFinUpdateItem,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ¾ÆÀÌÅÛ Á¤º¸ ¼öÁ¤
-	QT_InfinityFinInsertItem,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ¾ÆÀÌÅÛ Ãß°¡¤Ó
-	QT_InfinityInsertLog,					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ ·Î±×
-	QT_CharacterSaveDataInfinityFinByDisconnect,		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °­Á¦ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ÄÉ¸¯ÅÍ Á¤º¸ ¼öÁ¤
-	QT_InfinityFinUpdateItemByDisconnect,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °­Á¦ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ¾ÆÀÌÅÛ Á¤º¸ ¼öÁ¤
-	QT_InfinityFinInsertItemByDisconnect,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ °­Á¦ Á¾·á ÈÄ MainSvr¿¡ ÀÎÇÇ ÁøÇàÇÏ¸é¼­ ¼öÁ¤µÈ ¾ÆÀÌÅÛ Ãß°¡¤Ó
-	QT_ResetInfinityImputeByServerStart,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼­¹ö ½ÃÀÛ½Ã ÀÎÇÇ ¸®¼Â
-	QT_InfinityComBackPostWork,				// 2012-01-16 by hskim, Åë°è - È­ÆĞ
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	
+	QT_LoadInfinityImpute,					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	ì¸í”¼ ê·€ì† ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	QT_InsertInfinityImpute,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	ì¸í”¼ ê·€ì† ì •ë³´ ì¶”ê°€
+	QT_UpdateInfinityImpute,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	ì¸í”¼ ì™„ë£Œ 
+	QT_ResetInfinityImpute,					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - 	í•´ë‹¹ ì¸í”¼ ë¦¬ì…‹ìœ¼ë¡œ ì •ë³´ ì‚­ì œ
+	QT_ArenaCopyInfinityDBInfo,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì•„ë ˆë‚˜DBì— ë³µì‚¬í•˜ê¸°
+	QT_CharacterSaveDataInfinityFin,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì¼€ë¦­í„° ì •ë³´ ìˆ˜ì •
+	QT_InfinityFinUpdateItem,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì•„ì´í…œ ì •ë³´ ìˆ˜ì •
+	QT_InfinityFinInsertItem,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì•„ì´í…œ ì¶”ê°€ã…£
+	QT_InfinityInsertLog,					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ë¡œê·¸
+	QT_CharacterSaveDataInfinityFinByDisconnect,		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê°•ì œ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì¼€ë¦­í„° ì •ë³´ ìˆ˜ì •
+	QT_InfinityFinUpdateItemByDisconnect,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê°•ì œ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì•„ì´í…œ ì •ë³´ ìˆ˜ì •
+	QT_InfinityFinInsertItemByDisconnect,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ê°•ì œ ì¢…ë£Œ í›„ MainSvrì— ì¸í”¼ ì§„í–‰í•˜ë©´ì„œ ìˆ˜ì •ëœ ì•„ì´í…œ ì¶”ê°€ã…£
+	QT_ResetInfinityImputeByServerStart,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì„œë²„ ì‹œì‘ì‹œ ì¸í”¼ ë¦¬ì…‹
+	QT_InfinityComBackPostWork,				// 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
-	// 2010-04-09 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤(´Ü°èº° º¸»ó Ãß°¡) - 
-	//	QT_LoadTenderInfo,						// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - Tender
+	// 2010-04-09 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì •(ë‹¨ê³„ë³„ ë³´ìƒ ì¶”ê°€) - 
+	//	QT_LoadTenderInfo,						// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - Tender
 
-	QT_CashLoadPremiumCard,					// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÁ¸®¹Ì¾ö Á¤º¸ °¡Á®¿À±â
-	QT_LoadInfinityShopInfo,				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÀÎÇÇ »óÁ¡
-	QT_UpdateItemCoolingTimeStamp,			// 2009-09-09 ~ 2010-02-10 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹ßµ¿·ùÀåÂø¾ÆÀÌÅÛ
-	QT_InfinityUpdateUserMapInfo,			// 2010-04-06 by cmkwon, ÀÎÇÇ2Â÷ Ãß°¡ ¼öÁ¤ - 
-	QT_LoadBurningMap,						// 2010-08-05 by dhjin, ¹ö´×¸Ê -
-	QT_Log_UserGetTenderItem,				// 2010-06-25 by shcho, ÀÎÇÇ´ÏÆ¼ °ü·Ã·Î±× Âï±â - ½Àµæ ¾ÆÀÌÅÛ Á¤º¸ DBÀúÀå			
+	QT_CashLoadPremiumCard,					// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - í”„ë¦¬ë¯¸ì—„ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	QT_LoadInfinityShopInfo,				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ì¸í”¼ ìƒì 
+	QT_UpdateItemCoolingTimeStamp,			// 2009-09-09 ~ 2010-02-10 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°œë™ë¥˜ì¥ì°©ì•„ì´í…œ
+	QT_InfinityUpdateUserMapInfo,			// 2010-04-06 by cmkwon, ì¸í”¼2ì°¨ ì¶”ê°€ ìˆ˜ì • - 
+	QT_LoadBurningMap,						// 2010-08-05 by dhjin, ë²„ë‹ë§µ -
+	QT_Log_UserGetTenderItem,				// 2010-06-25 by shcho, ì¸í”¼ë‹ˆí‹° ê´€ë ¨ë¡œê·¸ ì°ê¸° - ìŠµë“ ì•„ì´í…œ ì •ë³´ DBì €ì¥			
 
 	/////////////////////////////////////////////////////////////
-	// start 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ±â´É ±¸Çö
+	// start 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê¸°ëŠ¥ êµ¬í˜„
 
-	QT_PetUpdateInfinityFin,				// 2011-08-22 by hskim, Æê Á¤º¸ ¾÷µ¥ÀÌÆ® (ÀÎÇÇ´ÏÆ¼ Á¾·á ½Ã ¾÷µ¥ÀÌÆ®)
-	QT_PetSetName,							// 2011-08-22 by hskim, Æê ÀÌ¸§ ¼³Á¤
-	QT_PetSetExpRatio,						// 2011-08-22 by hskim, Æê °æÇèÄ¡ È¹µæ ºñÀ² ¼³Á¤
-	QT_PetSetLevel,							// 2011-08-22 by hskim, Æê ·¹º§ ¼³Á¤
-	QT_PetSetExp,							// 2011-08-22 by hskim, Æê °æÇèÄ¡ ¼³Á¤
-	QT_PetSetSocket,						// 2011-08-30 by hskim, Æê ¼ÒÄÏ ¼³Á¤
-	QT_PetSetKitSlot,						// 2011-08-30 by hskim, Æê Å°Æ® ½½·Ô ¼³Á¤
-	QT_PetSetAutoSkillSlot,					// 2011-08-30 by hskim, Æê ¿ÀÅä ½ºÅ³ ½½·Ô ¼³Á¤
-	QT_PetChangeSocketOwner,				// 2012-01-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - °³ÀÎ Ã¢°í ÀÌµ¿
-	QT_StoreGetItemOne,						// 2012-01-30 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - °³ÀÎ Ã¢°í ÀÌµ¿
+	QT_PetUpdateInfinityFin,				// 2011-08-22 by hskim, í« ì •ë³´ ì—…ë°ì´íŠ¸ (ì¸í”¼ë‹ˆí‹° ì¢…ë£Œ ì‹œ ì—…ë°ì´íŠ¸)
+	QT_PetSetName,							// 2011-08-22 by hskim, í« ì´ë¦„ ì„¤ì •
+	QT_PetSetExpRatio,						// 2011-08-22 by hskim, í« ê²½í—˜ì¹˜ íšë“ ë¹„ìœ¨ ì„¤ì •
+	QT_PetSetLevel,							// 2011-08-22 by hskim, í« ë ˆë²¨ ì„¤ì •
+	QT_PetSetExp,							// 2011-08-22 by hskim, í« ê²½í—˜ì¹˜ ì„¤ì •
+	QT_PetSetSocket,						// 2011-08-30 by hskim, í« ì†Œì¼“ ì„¤ì •
+	QT_PetSetKitSlot,						// 2011-08-30 by hskim, í« í‚¤íŠ¸ ìŠ¬ë¡¯ ì„¤ì •
+	QT_PetSetAutoSkillSlot,					// 2011-08-30 by hskim, í« ì˜¤í†  ìŠ¤í‚¬ ìŠ¬ë¡¯ ì„¤ì •
+	QT_PetChangeSocketOwner,				// 2012-01-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê°œì¸ ì°½ê³  ì´ë™
+	QT_StoreGetItemOne,						// 2012-01-30 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê°œì¸ ì°½ê³  ì´ë™
 
-	QT_GetEnchantCount,						// 2012-08-27 by hskim, º£Æ®³² ÀÎÃ¾Æ® ÇÙ °ü·Ã Ãß°¡ º¸¾È Ã³¸® (ÄÚµå»óÀÇ ¹®Á¦Á¡Àº ¹ß°ßµÇÁö ¾Ê¾ÒÀ¸³ª ¸¸ÀÏÀÇ °æ¿ì¿¡´Â ·Î±×¸¦ ³²±ä´Ù) (µ¿±âÈ­ DB Á¢¼ÓÀ» ½ÃµµÇØ¼­ ¼º´É ÀúÇÏ°¡ ÀÖÀ½ : ÇÊ¿ä¾ø´Ù°í ÆÇ´ÜµÇ¸é »èÁ¦ ÁøÇà)
-	QT_GetAddExpRestExperienceCount,		// 2012-10-07 by hskim, ÈŞ½Ä °æÇèÄ¡
-	QT_SetAddExpRestExperienceCount,		// 2012-10-07 by hskim, ÈŞ½Ä °æÇèÄ¡
+	QT_GetEnchantCount,						// 2012-08-27 by hskim, ë² íŠ¸ë‚¨ ì¸ì²¸íŠ¸ í•µ ê´€ë ¨ ì¶”ê°€ ë³´ì•ˆ ì²˜ë¦¬ (ì½”ë“œìƒì˜ ë¬¸ì œì ì€ ë°œê²¬ë˜ì§€ ì•Šì•˜ìœ¼ë‚˜ ë§Œì¼ì˜ ê²½ìš°ì—ëŠ” ë¡œê·¸ë¥¼ ë‚¨ê¸´ë‹¤) (ë™ê¸°í™” DB ì ‘ì†ì„ ì‹œë„í•´ì„œ ì„±ëŠ¥ ì €í•˜ê°€ ìˆìŒ : í•„ìš”ì—†ë‹¤ê³  íŒë‹¨ë˜ë©´ ì‚­ì œ ì§„í–‰)
+	QT_GetAddExpRestExperienceCount,		// 2012-10-07 by hskim, íœ´ì‹ ê²½í—˜ì¹˜
+	QT_SetAddExpRestExperienceCount,		// 2012-10-07 by hskim, íœ´ì‹ ê²½í—˜ì¹˜
 
 	//QT_GetAddKillRestKillCount,				// 2015-06-11 by Future, Kill Count System
 	//QT_SetAddKillrestKillCount,				// 2015-06-11 by Future, Kill Count System
 
-	QT_GetFixedTerm,						// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
-	QT_InsertFixedTerm,						// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
-	QT_DeleteFixedTerm,						// 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	QT_GetFixedTerm,						// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
+	QT_InsertFixedTerm,						// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
+	QT_DeleteFixedTerm,						// 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 
-	// end 2011-08-22 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ±â´É ±¸Çö
+	// end 2011-08-22 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ê¸°ëŠ¥ êµ¬í˜„
 	/////////////////////////////////////////////////////////////
 
 	QT_UpgradePet,							// 2015-06-22 Future, upgrading of Pets with sockets
@@ -385,33 +385,33 @@ enum EnumQueryType
 	QT_FL_LOG_SERVER_INFO_TOTAL,
 	QT_FL_LOG_MONSTER_BOSS,
 	QT_FL_LOG_START_FIELD_SERVER,
-	QT_FL_LOG_MS_WAR,		// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-	QT_FL_LOG_SP_WAR,		// 2008-04-01 by dhjin, ¸ğ¼±Àü, °ÅÁ¡Àü Á¤º¸Ã¢ ±âÈ¹¾È - 
-	QT_FL_LOG_STATISTICS_MONEY,		// 2012-01-16 by hskim, Åë°è - È­ÆĞ
+	QT_FL_LOG_MS_WAR,		// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+	QT_FL_LOG_SP_WAR,		// 2008-04-01 by dhjin, ëª¨ì„ ì „, ê±°ì ì „ ì •ë³´ì°½ ê¸°íšì•ˆ - 
+	QT_FL_LOG_STATISTICS_MONEY,		// 2012-01-16 by hskim, í†µê³„ - í™”íŒ¨
 
 
 	QT_NA,		// 2008-12-01 by cmkwon
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - DQT_ <== Dynamic Query Type
+	// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - DQT_ <== Dynamic Query Type
 
-	DQT_DailyJob,			// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - 
-	DQT_UpdatePCBangList,	// 2008-12-19 by cmkwon, QT_UpdatePCBangList->DQT_UpdatePCBangList º¯°æ - PCBang IP ¸®½ºÆ® ¸®·Îµå
-	DQT_ReloadWRKServiceList,	// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-	DQT_ReloadWRKLevel,			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-	DQT_ReloadWRKFame,			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-	DQT_ReloadWRKPVP,			// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
-	DQT_LoadInfluenceRate,				// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - 
+	DQT_DailyJob,			// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - 
+	DQT_UpdatePCBangList,	// 2008-12-19 by cmkwon, QT_UpdatePCBangList->DQT_UpdatePCBangList ë³€ê²½ - PCBang IP ë¦¬ìŠ¤íŠ¸ ë¦¬ë¡œë“œ
+	DQT_ReloadWRKServiceList,	// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	DQT_ReloadWRKLevel,			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	DQT_ReloadWRKFame,			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	DQT_ReloadWRKPVP,			// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
+	DQT_LoadInfluenceRate,				// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - 
 	DQT_NA,
 
-	// 2010-06-01 by shcho, GLogDB °ü·Ã -
+	// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 	QT_FL_GLOG_BUY_CASH_ITEM = 30000,
 	QT_FL_GLOG_CHARACTER_PLAY_TIME,
 	QT_FL_GLOG_CONNECT_TOTAL_USER_COUNT,
 	QT_FL_GLOG_CONNECT_ZONE_USER_COUNT,
 	QT_FL_GLOG_EVENT_PARTICIPATION_RATE,
 
-	// 2011-12-12 by hskim, GLog 2Â÷
+	// 2011-12-12 by hskim, GLog 2ì°¨
 	QT_FL_GLOG_TB_USER_LocalUserConnectInfo_DelCountInc,	// LogServer
 	QT_FL_GLOG_TB_USER_LocalUserConnectInfo_NewCountInc,	// LogServer
 	QT_FL_GLOG_TB_CONNECT_USER,								// LogServer
@@ -419,18 +419,18 @@ enum EnumQueryType
 	QT_FL_GLOG_TB_CONCURRENT_USER,							// LogServer
 	QT_FL_GLOG_TB_USER_PLAYTIME,							// LogServer
 
-	// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
+	// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
 	QT_AUTH_CONFIRM,
 	QT_AUTH_INSERT_CONFIRM_LOG,
 
-	// 2012-01-13 by hskim, EP4 [µ¿¿µ»ó 1È¸ Àç»ı]
+	// 2012-01-13 by hskim, EP4 [ë™ì˜ìƒ 1íšŒ ì¬ìƒ]
 	QT_UpdateAccountLastGameEndDate,
 
 	//////////////////////////////////////////////////////////////////////////////
-	// 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¾Æ·¹³ª ÇÃ·¹ÀÌ Ä«¿îÆ® È®ÀÎ ¹× Á¤º¸ Ipdata Ãß°¡
+	// 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì•„ë ˆë‚˜ í”Œë ˆì´ ì¹´ìš´íŠ¸ í™•ì¸ ë° ì •ë³´ Ipdata ì¶”ê°€
 	QT_ArenaPlayCount,
 	QT_MF_Updata_CharacterArena,
-	// end 2012-04-12 by jhseol, ¾Æ·¹³ª Ãß°¡°³¹ß - ¾Æ·¹³ª ÇÃ·¹ÀÌ Ä«¿îÆ® È®ÀÎ ¹× Á¤º¸ Ipdata Ãß°¡
+	// end 2012-04-12 by jhseol, ì•„ë ˆë‚˜ ì¶”ê°€ê°œë°œ - ì•„ë ˆë‚˜ í”Œë ˆì´ ì¹´ìš´íŠ¸ í™•ì¸ ë° ì •ë³´ Ipdata ì¶”ê°€
 
 	// start 2012-10-08 by khkim, GLog
 	QT_FL_LOG_ACCOUNTCONNECT,
@@ -439,36 +439,36 @@ enum EnumQueryType
 	QT_FL_LOG_ITEMSTATE,
 	QT_FL_LOG_SERVER,
 	// end 2012-10-08 by khkim, GLog
-	QT_ArenaCharacterReset	// 2012-10-21 by jhseol, ¾Æ·¹³ª ¹ö±×¼öÁ¤ - ¾Æ·¹³ª Á¾·á½Ã ÄÉ¸¯ÅÍ Á¤º¸ ¸®¼Â.
+	QT_ArenaCharacterReset	// 2012-10-21 by jhseol, ì•„ë ˆë‚˜ ë²„ê·¸ìˆ˜ì • - ì•„ë ˆë‚˜ ì¢…ë£Œì‹œ ì¼€ë¦­í„° ì •ë³´ ë¦¬ì…‹.
 
 	//////////////////////////////////////////////////////////////////////////////
-	// 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+	// 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 	, QT_LoadRenewalStrategyPointSummonInfo
 	, QT_UpdateStrategyPointSummonInfo
-	// end 2012-11-13 by jhseol, ÀüÀï ½Ã½ºÅÛ ¸®´º¾ó - °ÅÁ¡Àü
+	// end 2012-11-13 by jhseol, ì „ìŸ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼ - ê±°ì ì „
 
-	, QT_ArenaCharacterReload	// 2012-12-18 by jhseol, ¾Æ·¹³ª Ä³¸¯ÅÍ ¸®¼Â ÈÄ Ä³¸¯ÅÍ Á¤º¸ ´Ù½Ã ·ÎµùÇÏ±â.
-	, QT_InsertStoreItemFromXMLRPC		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
-	, QT_DeleteStoreItemFromXMLRPC		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
-	, QT_GetCharacterInfoFromXMLRPC		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+	, QT_ArenaCharacterReload	// 2012-12-18 by jhseol, ì•„ë ˆë‚˜ ìºë¦­í„° ë¦¬ì…‹ í›„ ìºë¦­í„° ì •ë³´ ë‹¤ì‹œ ë¡œë”©í•˜ê¸°.
+	, QT_InsertStoreItemFromXMLRPC		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
+	, QT_DeleteStoreItemFromXMLRPC		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
+	, QT_GetCharacterInfoFromXMLRPC		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 
-	, QT_LoadCashBuyDate			// 2013-03-29 by jhseol, ¾ÆÀÌÅÛ ÀÌº¥Æ® - ¸Å¿ù Ã¹ °áÀç½Ã ¼±¹°Áö±Ş
-	, QT_InsertCashBuyDate		// 2013-03-29 by jhseol, ¾ÆÀÌÅÛ ÀÌº¥Æ® - ¸Å¿ù Ã¹ °áÀç½Ã ¼±¹°Áö±Ş
+	, QT_LoadCashBuyDate			// 2013-03-29 by jhseol, ì•„ì´í…œ ì´ë²¤íŠ¸ - ë§¤ì›” ì²« ê²°ì¬ì‹œ ì„ ë¬¼ì§€ê¸‰
+	, QT_InsertCashBuyDate		// 2013-03-29 by jhseol, ì•„ì´í…œ ì´ë²¤íŠ¸ - ë§¤ì›” ì²« ê²°ì¬ì‹œ ì„ ë¬¼ì§€ê¸‰
 
-	, QT_GetShapeStatLevel		// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - QT_GetShapeStatLevel Ãß°¡
-	, QT_InsertShapeStatLevel	// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - QT_InsertShapeStatLevel Ãß°¡
+	, QT_GetShapeStatLevel		// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - QT_GetShapeStatLevel ì¶”ê°€
+	, QT_InsertShapeStatLevel	// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - QT_InsertShapeStatLevel ì¶”ê°€
 
-	, QT_LoadMonthlyArmorEvent		// 2013-04-18 by jhseol,bckim ÀÌ´ŞÀÇ ¾Æ¸Ó - ÀÌ´ŞÀÇ ¾Æ¸Ó ÀÌº¥Æ® ·Îµå
-	, QT_UpdateInfluenceConsecutiveVictorites		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	, QT_LoadMonthlyArmorEvent		// 2013-04-18 by jhseol,bckim ì´ë‹¬ì˜ ì•„ë¨¸ - ì´ë‹¬ì˜ ì•„ë¨¸ ì´ë²¤íŠ¸ ë¡œë“œ
+	, QT_UpdateInfluenceConsecutiveVictorites		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
-	, QT_GetTemporarySystemInfomation		// 2013-05-20 by hskim, [º¸¾È ½Ã½ºÅÛ] ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾ÆÀÌÅÛ Ãß°¡ ¹æÁö
-	, QT_GetStoreExtension					// 2013-05-20 by hskim, [º¸¾È ½Ã½ºÅÛ] ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾ÆÀÌÅÛ Ãß°¡ ¹æÁö
-	, QT_InsertStoreExtension				// 2013-05-20 by hskim, [º¸¾È ½Ã½ºÅÛ] ºñÁ¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾ÆÀÌÅÛ Ãß°¡ ¹æÁö
-	, QT_CollectionArmorListLoad				// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ¾Æ¸Ó ÄÃ·º¼Ç ·Îµå
-	, QT_CollectionArmorUpdate				// 2013-05-31 by jhseol,bckim ¾Æ¸Ó ÄÃ·º¼Ç - ¾Æ¸Ó ÄÃ·º¼Ç ÀúÀå
+	, QT_GetTemporarySystemInfomation		// 2013-05-20 by hskim, [ë³´ì•ˆ ì‹œìŠ¤í…œ] ë¹„ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì•„ì´í…œ ì¶”ê°€ ë°©ì§€
+	, QT_GetStoreExtension					// 2013-05-20 by hskim, [ë³´ì•ˆ ì‹œìŠ¤í…œ] ë¹„ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì•„ì´í…œ ì¶”ê°€ ë°©ì§€
+	, QT_InsertStoreExtension				// 2013-05-20 by hskim, [ë³´ì•ˆ ì‹œìŠ¤í…œ] ë¹„ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì•„ì´í…œ ì¶”ê°€ ë°©ì§€
+	, QT_CollectionArmorListLoad				// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - ì•„ë¨¸ ì»¬ë ‰ì…˜ ë¡œë“œ
+	, QT_CollectionArmorUpdate				// 2013-05-31 by jhseol,bckim ì•„ë¨¸ ì»¬ë ‰ì…˜ - ì•„ë¨¸ ì»¬ë ‰ì…˜ ì €ì¥
 
-	, QT_FL_LOG_ITEM_TRY_ENCHANT_INFO		// 2013-07-01 by bckim, 10ÀÎÃ¦Æ® ¹Ì¸¸ ÇÏÀÌÆÛÄ«µåÃ³¸®, ·Î±×Ãß°¡, ¿î¿µÅø º¸¿Ï
-	, QT_AccountInflChange					// 2013-07-26 by jhseol, Å¸ °èÁ¤ ¼¼·Âº¯°æ
+	, QT_FL_LOG_ITEM_TRY_ENCHANT_INFO		// 2013-07-01 by bckim, 10ì¸ì±ˆíŠ¸ ë¯¸ë§Œ í•˜ì´í¼ì¹´ë“œì²˜ë¦¬, ë¡œê·¸ì¶”ê°€, ìš´ì˜íˆ´ ë³´ì™„
+	, QT_AccountInflChange					// 2013-07-26 by jhseol, íƒ€ ê³„ì • ì„¸ë ¥ë³€ê²½
 
 	#ifdef S_IP_UNIQUE_CONNECTION
 	, QT_GetCharacterMultipleIPStatus		// 2015-11-24 Future, Multi IP restriction

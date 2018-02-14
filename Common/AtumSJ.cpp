@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "AtumSJ.h"
 #include "defineglobal.h"
 #include <fstream>
@@ -11,10 +11,10 @@
 
 #include "Random.h"
 
-#define MAX_LEVEL_OR_STAT_VALUE			341		// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - ±âÁ¸(301)
+#define MAX_LEVEL_OR_STAT_VALUE			341		// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - ê¸°ì¡´(301)
 extern const LEVEL_STAT_VALUE g_arrLevelStatValue[];
 extern const LEVEL_EXPERIENCE arrLevelExperienceNew[];
-extern const BURNING_MAP_LEVEL_ADD_EXPERIENCE arrBurningMapLevelAddExperience[]; // 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+extern const BURNING_MAP_LEVEL_ADD_EXPERIENCE arrBurningMapLevelAddExperience[]; // 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 
 
 setString g_setAllLetterList; // 2007-05-04 by cmkwon
@@ -256,12 +256,12 @@ CParamFactor& CParamFactor::operator-=(const CParamFactor& rhs)
 vectorMAP_INFO g_vectorALL_MAP_INFO;
 
 #ifdef _ATUM_SERVER
-// °¢Á¾ ¼öÄ¡ µ¥ÀÌÅÍ ·Îµù
+// ê°ì¢… ìˆ˜ì¹˜ ë°ì´í„° ë¡œë”©
 BOOL CAtumSJ::LoadData(CODBCStatement* i_pOdbcStmt)
 {
 	BOOL bRet = TRUE;
 
-	// LoadAllProject¿¡ ¼±ÇàÇØ¾ß ÇÔ!
+	// LoadAllProjectì— ì„ í–‰í•´ì•¼ í•¨!
 	CAtumDBHelper::LoadMapInfo(i_pOdbcStmt, &g_vectorALL_MAP_INFO);
 	return TRUE;
 }
@@ -290,13 +290,13 @@ const char* CAtumSJ::GetMapName(MapIndex_t i_nMapIndex)
 
 USHORT CAtumSJ::GetTransport(CHARACTER* pCharacter)
 {
-	// 2005-09-27 by cmkwon, ¹«°Ô°ÔÀÌÁî´Â ÀåÂøµÈ ¾ÆÀÌÅÛ¸¸ Àû¿ëÇÏµµ·Ï ¼öÁ¤ÇÔ - ÃÖ´ë¹«°Ô·®¿¡ ·¹º§´ç Ãß°¡·®À» »èÁ¦ÇÑ´Ù.
+	// 2005-09-27 by cmkwon, ë¬´ê²Œê²Œì´ì¦ˆëŠ” ì¥ì°©ëœ ì•„ì´í…œë§Œ ì ìš©í•˜ë„ë¡ ìˆ˜ì •í•¨ - ìµœëŒ€ë¬´ê²ŒëŸ‰ì— ë ˆë²¨ë‹¹ ì¶”ê°€ëŸ‰ì„ ì‚­ì œí•œë‹¤.
 	//	return (pCharacter->TotalGearStat.FuelPart * 60 + pCharacter->Level * 40 + 300);
-	// 2007-05-16 by cmkwon, 300ÃÊ°ú·Î °©À» °¡Áö°í ÀÖ°í Àû¿ë½Ã ÃÖ´ë 300ÀÌ µÇµµ·Ï ¼öÁ¤
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2007-05-16 by cmkwon, 300ì´ˆê³¼ë¡œ ê°‘ì„ ê°€ì§€ê³  ìˆê³  ì ìš©ì‹œ ìµœëŒ€ 300ì´ ë˜ë„ë¡ ìˆ˜ì •
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return (min(COUNT_MAX_STAT_POINT,pCharacter->TotalGearStat.FuelPart) * 60 + 300);
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(pCharacter->Level);
 	return (min(nMaxStatValue, pCharacter->TotalGearStat.FuelPart) * 60 + 300);
 }
@@ -308,10 +308,10 @@ float CAtumSJ::GetSpeed(CHARACTER* pCharacter, ITEM* pItem)
 	return 0;
 }
 
-// 2006-10-13 by cmkwon, ¸®ÅÏ°ª ÀÚ·áÇü º¯°æ(float-->int)
-// 2007-11-02 by cmkwon, Áß·® ±¸ÇÏ´Â ½Ã½ºÅÛ º¯°æ - ¸®ÅÏ°ª ÀÚ·áÇü º¯°æ(<--int)
+// 2006-10-13 by cmkwon, ë¦¬í„´ê°’ ìë£Œí˜• ë³€ê²½(float-->int)
+// 2007-11-02 by cmkwon, ì¤‘ëŸ‰ êµ¬í•˜ëŠ” ì‹œìŠ¤í…œ ë³€ê²½ - ë¦¬í„´ê°’ ìë£Œí˜• ë³€ê²½(<--int)
 float CAtumSJ::GetItemWeight(ITEM* i_pItem, int i_nCountableItemCount
-                             , float i_fDesWeight/*=0.0f*/) // 2006-01-24 by cmkwon, Áß·® ÀÎÃ¦Æ® ¼öÄ¡ ÀÎÀÚ Ãß°¡
+                             , float i_fDesWeight/*=0.0f*/) // 2006-01-24 by cmkwon, ì¤‘ëŸ‰ ì¸ì±ˆíŠ¸ ìˆ˜ì¹˜ ì¸ì ì¶”ê°€
 {
 	float retTotalWeight = 0.0f;
 
@@ -326,7 +326,7 @@ float CAtumSJ::GetItemWeight(ITEM* i_pItem, int i_nCountableItemCount
 
 	return retTotalWeight;
 
-	// 2007-11-02 by cmkwon, Áß·® ±¸ÇÏ´Â ½Ã½ºÅÛ º¯°æ - ¸®ÅÏ°ª ÀÚ·áÇü º¯°æ(<--int), À§¿Í °°ÀÌ ¼öÁ¤
+	// 2007-11-02 by cmkwon, ì¤‘ëŸ‰ êµ¬í•˜ëŠ” ì‹œìŠ¤í…œ ë³€ê²½ - ë¦¬í„´ê°’ ìë£Œí˜• ë³€ê²½(<--int), ìœ„ì™€ ê°™ì´ ìˆ˜ì •
 	//	int retTotalWeight = 0;
 	//
 	//	if (IS_COUNTABLE_ITEM(i_pItem->Kind))
@@ -382,7 +382,7 @@ BYTE CAtumSJ::GetStatusByPropensity(INT i_nPropensity)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			char *  CAtumSJ::GetStatusByLevel(BYTE i_byLevel)
-/// \brief		EP3 À¯ÀúÁ¤º¸¿É¼Ç -
+/// \brief		EP3 ìœ ì €ì •ë³´ì˜µì…˜ -
 /// \author		dhjin
 /// \date		2008-06-24 ~ 2008-06-24
 /// \warning	
@@ -448,56 +448,56 @@ BOOL CAtumSJ::CheckTargetErrorAngle(CHARACTER* i_pAttackCharacter, D3DXVECTOR3& 
 	return util::in_range(0.0f, fErrorDistance, DAMAGE_KIND_ANGLE_DISTANCE);
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
-float CAtumSJ::GetAttackProbabilityC(ITEM* pItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, Stat_t i_nAttackPart, BYTE i_byLevel, enumAttackToTarget eAttackToTarget/*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
+float CAtumSJ::GetAttackProbabilityC(ITEM* pItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, Stat_t i_nAttackPart, BYTE i_byLevel, enumAttackToTarget eAttackToTarget/*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
 	float AttackProb = pItem->HitRate
 		+ (bIsPrimaryAttack ? pParamFactor->pfp_ATTACKPROBABILITY_01 : pParamFactor->pfp_ATTACKPROBABILITY_02)
 		+ CAtumSJ::GetAttackC_IncreaseProbability(i_nAttackPart, i_byLevel);
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	if (IsMonsterTarget(eAttackToTarget))
 	{
 		AttackProb += pParamFactor->pfp_SKILL_BUFF_MON_ATTACK_PROBABILITY;
 	}
-	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë ¸íÁß·ü
+	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© ëª…ì¤‘ë¥ 
 	if (IsCharacterTarget(eAttackToTarget))
 	{
-		AttackProb += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK_PROBABILITY; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		AttackProb += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú
+		AttackProb += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK_PROBABILITY; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		AttackProb += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼
 	}
-	// end 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë ¸íÁß·ü
-	// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// end 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© ëª…ì¤‘ë¥ 
+	// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
 	return AttackProb;
 }
 
-float CAtumSJ::GetDefenseProbabilityC(CHARACTER* pCharacter, ITEM* pDefenseItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget/*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
-{// 2008-11-13 by dhjin, Å¬¶óÀÌ¾ğÆ®¸¸ °è»ê½Ä º¯°æÀ¸·Î Â÷ÈÄ ÇÔ¼ö ¼öÁ¤½Ã ¹İµå½Ã ³íÀÇ µÇ¾î¾ß ÇÔ!!
+float CAtumSJ::GetDefenseProbabilityC(CHARACTER* pCharacter, ITEM* pDefenseItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget/*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
+{// 2008-11-13 by dhjin, í´ë¼ì´ì–¸íŠ¸ë§Œ ê³„ì‚°ì‹ ë³€ê²½ìœ¼ë¡œ ì°¨í›„ í•¨ìˆ˜ ìˆ˜ì •ì‹œ ë°˜ë“œì‹œ ë…¼ì˜ ë˜ì–´ì•¼ í•¨!!
 
-	// 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
-	//	return (GetDefenseProbabilityC_Rate(pCharacter->TotalGearStat.DodgePart, pCharacter->Level)) * PROB256_MAX_VALUE // check: ÃßÈÄ¿¡ ¹æ¾î ¾ÆÀÌÅÛ(1/2Çü ±¸ºĞ Áö¾î¾ß ÇÔ)ÀÌ Ãß°¡µÇ¸é, RAND(DefenseItem.AbilityMin ~ DefenseItem.AbilityMax)·Î °áÁ¤
+	// 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
+	//	return (GetDefenseProbabilityC_Rate(pCharacter->TotalGearStat.DodgePart, pCharacter->Level)) * PROB256_MAX_VALUE // check: ì¶”í›„ì— ë°©ì–´ ì•„ì´í…œ(1/2í˜• êµ¬ë¶„ ì§€ì–´ì•¼ í•¨)ì´ ì¶”ê°€ë˜ë©´, RAND(DefenseItem.AbilityMin ~ DefenseItem.AbilityMax)ë¡œ ê²°ì •
 	//			+ (bIsPrimaryAttack?pParamFactor->pfp_DEFENSEPROBABILITY_01:pParamFactor->pfp_DEFENSEPROBABILITY_02);
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	float DefenseProba = float(GetDefenseProbabilityC_Rate(pCharacter->TotalGearStat.DodgePart, pCharacter->Level)) * 100.0f + (bIsPrimaryAttack ? pParamFactor->pfp_DEFENSEPROBABILITY_01 : pParamFactor->pfp_DEFENSEPROBABILITY_02);
 
 	if (IsMonsterAttacker(eAttackToTarget))
 	{
 		DefenseProba += pParamFactor->pfp_SKILL_BUFF_MON_DEFENCE_AVOID;
 	}
-	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë È¸ÇÇ·ü
+	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© íšŒí”¼ë¥ 
 	if (IsCharacterAttacker(eAttackToTarget))
 	{
-		DefenseProba += pParamFactor->pfp_SKILL_BUFF_PVP_DEFENCE_PROBABILITY; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		DefenseProba += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú
+		DefenseProba += pParamFactor->pfp_SKILL_BUFF_PVP_DEFENCE_PROBABILITY; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		DefenseProba += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼
 	}
-	// end 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë È¸ÇÇ·ü
-	// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// end 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© íšŒí”¼ë¥ 
+	// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
 	return DefenseProba;
 }
@@ -505,11 +505,11 @@ float CAtumSJ::GetDefenseProbabilityC(CHARACTER* pCharacter, ITEM* pDefenseItem,
 
 /*************************************************************************************************************************************************************************************
 **
-**	¸ó½ºÅÍÀÇ °ø°İ È®·ü
+**	ëª¬ìŠ¤í„°ì˜ ê³µê²© í™•ë¥ 
 **
 **	Create Info :	??.??.??
 **
-**	Update Info :	// 2010. 06. 14 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¸ó½ºÅÍ °ø°İ·Â Ãß°¡ ¼öÁ¤, PierceÈ®·ü°ú ÀûÁß·ü Àû¿ë. ) - ¸ó½ºÅÍ ¹ë·±½º °ü·Ã ÀÎÀÚ Ãß°¡, ÀÎÀÚÀÇ const È­.
+**	Update Info :	// 2010. 06. 14 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ëª¬ìŠ¤í„° ê³µê²©ë ¥ ì¶”ê°€ ìˆ˜ì •, Pierceí™•ë¥ ê³¼ ì ì¤‘ë¥  ì ìš©. ) - ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ê´€ë ¨ ì¸ì ì¶”ê°€, ì¸ìì˜ const í™”.
 **
 **					   (const MONSTER_INFO_EXTEND a_pMonInfoExtend = NULL)
 **
@@ -517,8 +517,8 @@ float CAtumSJ::GetDefenseProbabilityC(CHARACTER* pCharacter, ITEM* pDefenseItem,
 //float CAtumSJ::GetAttackProbabilityM(MONSTER_INFO *pMonsterInfo, ITEM *pItem)
 float CAtumSJ::GetAttackProbabilityM(const MONSTER_INFO* a_pMonsterInfo, const ITEM* a_pItem, const MONSTER_INFO_EXTEND* a_pMonInfoExtend /*= NULL*/)
 {
-	// 2010. 06. 14 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¸ó½ºÅÍ °ø°İ·Â Ãß°¡ ¼öÁ¤, PierceÈ®·ü°ú ÀûÁß·ü Àû¿ë. )
-	// 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
+	// 2010. 06. 14 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ëª¬ìŠ¤í„° ê³µê²©ë ¥ ì¶”ê°€ ìˆ˜ì •, Pierceí™•ë¥ ê³¼ ì ì¤‘ë¥  ì ìš©. )
+	// 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
 	//	float fHitRate = (float)a_pItem->HitRate;
 	float fHitRate = a_pItem->HitRate;
 
@@ -536,35 +536,35 @@ float CAtumSJ::GetAttackProbabilityM(const MONSTER_INFO* a_pMonsterInfo, const I
 		fHabitWeight = 1.1f;
 	}
 
-	// 2010. 06. 14 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¸ó½ºÅÍ °ø°İ·Â Ãß°¡ ¼öÁ¤, PierceÈ®·ü°ú ÀûÁß·ü Àû¿ë. )
+	// 2010. 06. 14 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ëª¬ìŠ¤í„° ê³µê²©ë ¥ ì¶”ê°€ ìˆ˜ì •, Pierceí™•ë¥ ê³¼ ì ì¤‘ë¥  ì ìš©. )
 	if (a_pMonInfoExtend)
 		fHitRate *= a_pMonInfoExtend->fAtkDmgRatio;
 
-	// 2011-11-23 shcho, È¸ÇÇÈ®·ü, ½ºÅÈ¿¡ µû¸¥ °ø°İ ¼º°î·ü ¼öÁ¤ (3¹øÂ°Ç×¸ñ, 7¹øÂ°Ç×¸ñ)
+	// 2011-11-23 shcho, íšŒí”¼í™•ë¥ , ìŠ¤íƒ¯ì— ë”°ë¥¸ ê³µê²© ì„±ê³¡ë¥  ìˆ˜ì • (3ë²ˆì§¸í•­ëª©, 7ë²ˆì§¸í•­ëª©)
 	float fRtn_Val = fHitRate * fHabitWeight + (float)a_pMonsterInfo->Level / 2.55f;
-	// end 2011-11-23 shcho, È¸ÇÇÈ®·ü, ½ºÅÈ¿¡ µû¸¥ °ø°İ ¼º°î·ü ¼öÁ¤ (3¹øÂ°Ç×¸ñ, 7¹øÂ°Ç×¸ñ)
+	// end 2011-11-23 shcho, íšŒí”¼í™•ë¥ , ìŠ¤íƒ¯ì— ë”°ë¥¸ ê³µê²© ì„±ê³¡ë¥  ìˆ˜ì • (3ë²ˆì§¸í•­ëª©, 7ë²ˆì§¸í•­ëª©)
 
 	return fRtn_Val;
 	//return pItem->HitRate * fHabitWeight + pMonsterInfo->Level;
-	// 2005-11-08 by cmkwon, Ä³¸¯ÅÍÀÇ ½ºÅ³·¹º§¸µÀ» À§ÇØ¼­ ¸ó½ºÅÍÀÇ °ø°İ È®·ü¿¡ ·¹º§À» ´õÇÑ°ªÀ» ¸®ÅÏÇÑ´Ù.
+	// 2005-11-08 by cmkwon, ìºë¦­í„°ì˜ ìŠ¤í‚¬ë ˆë²¨ë§ì„ ìœ„í•´ì„œ ëª¬ìŠ¤í„°ì˜ ê³µê²© í™•ë¥ ì— ë ˆë²¨ì„ ë”í•œê°’ì„ ë¦¬í„´í•œë‹¤.
 	//	return pItem->HitRate * fHabitWeight;
 }
 
 
-// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 /********************************************************************************************************************************************
 **
-**	¸ó½ºÅÍÀÇ ¹æ¾î È®·ü.
+**	ëª¬ìŠ¤í„°ì˜ ë°©ì–´ í™•ë¥ .
 **
 **	Create Info :	??. ??. ??. 
 **
-**	Update Info :	2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡.
+**	Update Info :	2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€.
 **
 *********************************************************************************************************************************************/
 //float CAtumSJ::GetDefenseProbabilityM(MONSTER_INFO *pMonster)
 float CAtumSJ::GetDefenseProbabilityM(const MONSTER_INFO* a_pMonster, const MONSTER_INFO_EXTEND* a_pMonInfoExtend /*= NULL*/)
 {
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	if (a_pMonInfoExtend)
 		return a_pMonInfoExtend->DefenseProbability;
 
@@ -572,17 +572,17 @@ float CAtumSJ::GetDefenseProbabilityM(const MONSTER_INFO* a_pMonster, const MONS
 	//return pMonster->DefenseProbability;
 }
 
-// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
-float CAtumSJ::GetAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget/*= NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+float CAtumSJ::GetAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget/*= NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 	float fMinAttackFactor = (bIsPrimaryAttack ? pParamFactor->pfm_MINATTACK_01 : pParamFactor->pfm_MINATTACK_02)
 		+ GetAttackC_IncreaseRate(pCharacter->TotalGearStat.AttackPart, pCharacter->Level);
 	float fMaxAttackFactor = (bIsPrimaryAttack ? pParamFactor->pfm_MAXATTACK_01 : pParamFactor->pfm_MAXATTACK_02)
 		+ GetAttackC_IncreaseRate(pCharacter->TotalGearStat.AttackPart, pCharacter->Level);
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	if (IsMonsterTarget(eAttackToTarget))
 	{
 		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_MON_ATTACK_POWER;
@@ -591,12 +591,12 @@ float CAtumSJ::GetAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParam
 
 	if (IsCharacterTarget(eAttackToTarget))
 	{
-		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		fMaxAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		fMinAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - °ø°İ·ÂÀº 1ÀÌ 100%ÀÓÀ¸·Î 100À» ´Ù½Ã ³ª´²Áà¾ß ÇÑ´Ù.
-		fMaxAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - °ø°İ·ÂÀº 1ÀÌ 100%ÀÓÀ¸·Î 100À» ´Ù½Ã ³ª´²Áà¾ß ÇÑ´Ù.
+		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		fMaxAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		fMinAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ê³µê²©ë ¥ì€ 1ì´ 100%ì„ìœ¼ë¡œ 100ì„ ë‹¤ì‹œ ë‚˜ëˆ ì¤˜ì•¼ í•œë‹¤.
+		fMaxAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ê³µê²©ë ¥ì€ 1ì´ 100%ì„ìœ¼ë¡œ 100ì„ ë‹¤ì‹œ ë‚˜ëˆ ì¤˜ì•¼ í•œë‹¤.
 	}
-	// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
 #ifdef _ATUM_SERVER
 	if (0.3f < fMinAttackFactor - fMaxAttackFactor)
@@ -622,11 +622,11 @@ float CAtumSJ::GetAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParam
 	return RANDF(pAttackItem->AbilityMin*(1.0f+fMinAttackFactor), pAttackItem->AbilityMax*(1.0f+fMaxAttackFactor)) ;
 }
 
-float CAtumSJ::GetMinAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+float CAtumSJ::GetMinAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
 	float fMinAttackFactor = (bIsPrimaryAttack ? pParamFactor->pfm_MINATTACK_01 : pParamFactor->pfm_MINATTACK_02);
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	if (IsMonsterTarget(eAttackToTarget))
 	{
 		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_MON_ATTACK_POWER;
@@ -634,12 +634,12 @@ float CAtumSJ::GetMinAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CPa
 
 	if (IsCharacterTarget(eAttackToTarget))
 	{
-		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		fMinAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - °ø°İ·ÂÀº 1ÀÌ 100%ÀÓÀ¸·Î 100À» ´Ù½Ã ³ª´²Áà¾ß ÇÑ´Ù.
+		fMinAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		fMinAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ê³µê²©ë ¥ì€ 1ì´ 100%ì„ìœ¼ë¡œ 100ì„ ë‹¤ì‹œ ë‚˜ëˆ ì¤˜ì•¼ í•œë‹¤.
 	}
-	// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 	return (pAttackItem->AbilityMin * (1.0f + fMinAttackFactor)) * (1.0f + GetAttackC_IncreaseRate(pCharacter->TotalGearStat.AttackPart, pCharacter->Level));
 }
 
@@ -647,7 +647,7 @@ float CAtumSJ::GetMaxAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CPa
 {
 	float fMaxAttackFactor = (bIsPrimaryAttack ? pParamFactor->pfm_MAXATTACK_01 : pParamFactor->pfm_MAXATTACK_02);
 
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	if (IsMonsterTarget(eAttackToTarget))
 	{
 		fMaxAttackFactor += pParamFactor->pfp_SKILL_BUFF_MON_ATTACK_POWER;
@@ -655,12 +655,12 @@ float CAtumSJ::GetMaxAttackC(CHARACTER* pCharacter, ITEM* pAttackItem, const CPa
 
 	if (IsCharacterTarget(eAttackToTarget))
 	{
-		fMaxAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		fMaxAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - °ø°İ·ÂÀº 1ÀÌ 100%ÀÓÀ¸·Î 100À» ´Ù½Ã ³ª´²Áà¾ß ÇÑ´Ù.
+		fMaxAttackFactor += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		fMaxAttackFactor += (TURN_AROUND_BUFF_SKILL_100P_VALUE / 100) * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ê³µê²©ë ¥ì€ 1ì´ 100%ì„ìœ¼ë¡œ 100ì„ ë‹¤ì‹œ ë‚˜ëˆ ì¤˜ì•¼ í•œë‹¤.
 	}
-	// end 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// end 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 	return (pAttackItem->AbilityMax * (1.0f + fMaxAttackFactor)) * (1.0f + GetAttackC_IncreaseRate(pCharacter->TotalGearStat.AttackPart, pCharacter->Level));
 }
 
@@ -683,20 +683,20 @@ float CAtumSJ::GetDefenseC(CHARACTER* pCharacter, const CParamFactor* pParamFact
 }
 
 
-// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 /****************************************************************************************************************************************************************************************
 **
-**	¸ó½ºÅÍÀÇ °ø°İ·Â
+**	ëª¬ìŠ¤í„°ì˜ ê³µê²©ë ¥
 **
 **	Create Info :	??. ??. ??
 **
-**	Update Info :	2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) ) - ¸ó½ºÅÍ È®Àå Á¤º¸ ÀÎÀÚ Ãß°¡ ¹× ±âÁ¸ ÀÎÀÚ Æ÷ÀÎÅÍ ¼º°İ¼öÁ¤. ( const Çü )
+**	Update Info :	2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) ) - ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì¸ì ì¶”ê°€ ë° ê¸°ì¡´ ì¸ì í¬ì¸í„° ì„±ê²©ìˆ˜ì •. ( const í˜• )
 **
 *****************************************************************************************************************************************************************************************/
 //float CAtumSJ::GetAttackM(ITEM *pItem)
 float CAtumSJ::GetAttackM(const ITEM* a_pItem, const MONSTER_INFO_EXTEND* a_pMonInfoExtend /*= NULL*/)
 {
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	//return RANDF2(pItem->AbilityMin, pItem->AbilityMax);
 
 	float fRatio = 1.0f;
@@ -705,27 +705,27 @@ float CAtumSJ::GetAttackM(const ITEM* a_pItem, const MONSTER_INFO_EXTEND* a_pMon
 		fRatio = a_pMonInfoExtend->fAtkDmgRatio;
 
 	return RANDF( a_pItem->AbilityMin * fRatio, a_pItem->AbilityMax * fRatio ) ;
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 }
 
 
 float CAtumSJ::GetMinAttackM(const ITEM* a_pMonsterAttackItem, const MONSTER_INFO_EXTEND* a_pMonInfoExtend /*= NULL*/)
 {
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	//return pMonsterAttackItem->AbilityMin;
 
 	return (a_pMonsterAttackItem->AbilityMin * (a_pMonInfoExtend == NULL ? 1.0f : a_pMonInfoExtend->fAtkDmgRatio));
-	// End. 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// End. 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 }
 
 
 float CAtumSJ::GetMaxAttackM(const ITEM* a_pMonsterAttackItem, const MONSTER_INFO_EXTEND* a_pMonInfoExtend /*= NULL*/)
 {
-	// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	//return pMonsterAttackItem->AbilityMax;
 
 	return (a_pMonsterAttackItem->AbilityMax * (a_pMonInfoExtend == NULL ? 1.0f : a_pMonInfoExtend->fAtkDmgRatio));
-	// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+	// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 }
 
 
@@ -754,9 +754,9 @@ float CAtumSJ::GetPierceAttackProbabilityM(const int i_MonsterLevel, const ITEM*
 
 
 
-float CAtumSJ::GetMinAttackPerSecondC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+float CAtumSJ::GetMinAttackPerSecondC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
-	float fMinAttack = GetMinAttackC(pCharacter, pAttackItem, pParamFactor, bIsPrimaryAttack, eAttackToTarget, i_PvPBuffPercent); // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	float fMinAttack = GetMinAttackC(pCharacter, pAttackItem, pParamFactor, bIsPrimaryAttack, eAttackToTarget, i_PvPBuffPercent); // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	float fSecond = 0.0f;
 	if (bIsPrimaryAttack)
 	{
@@ -777,10 +777,10 @@ float CAtumSJ::GetMinAttackPerSecondC(CHARACTER* pCharacter, ITEM* pAttackItem, 
 	return fMinAttack / fSecond;
 }
 
-// Ä³¸¯ÅÍÀÇ ÃÊ´ç ÃÖ´ë °ø°İ·Â
-float CAtumSJ::GetMaxAttackPerSecondC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+// ìºë¦­í„°ì˜ ì´ˆë‹¹ ìµœëŒ€ ê³µê²©ë ¥
+float CAtumSJ::GetMaxAttackPerSecondC(CHARACTER* pCharacter, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, enumAttackToTarget eAttackToTarget, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
-	float fMaxAttack = GetMaxAttackC(pCharacter, pAttackItem, pParamFactor, bIsPrimaryAttack, eAttackToTarget, i_PvPBuffPercent); // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent Ãß°¡		// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	float fMaxAttack = GetMaxAttackC(pCharacter, pAttackItem, pParamFactor, bIsPrimaryAttack, eAttackToTarget, i_PvPBuffPercent); // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent ì¶”ê°€		// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	float fSecond = 0.0f;
 	if (bIsPrimaryAttack)
 	{
@@ -897,7 +897,7 @@ USHORT CAtumSJ::GetReactionRange(ITEM* i_pItem, const CParamFactor* i_pParamFact
 	return i_pItem->ReactionRange + i_pParamFactor->pfp_REACTION_RANGE;
 }
 
-// ¾ÆÀÌÅÛÀÇ ÃÊ´ç ÃÖ¼Ò °ø°İ·Â
+// ì•„ì´í…œì˜ ì´ˆë‹¹ ìµœì†Œ ê³µê²©ë ¥
 float CAtumSJ::GetMinAttackPerSecond(ITEM* i_pRealItem)
 {
 	float fMinAttack = i_pRealItem->AbilityMin * i_pRealItem->ShotNum * i_pRealItem->MultiNum;
@@ -909,7 +909,7 @@ float CAtumSJ::GetMinAttackPerSecond(ITEM* i_pRealItem)
 	return fMinAttack / fSecond;
 }
 
-// ¾ÆÀÌÅÛÀÇ ÃÊ´ç ÃÖ´ë °ø°İ·Â
+// ì•„ì´í…œì˜ ì´ˆë‹¹ ìµœëŒ€ ê³µê²©ë ¥
 float CAtumSJ::GetMaxAttackPerSecond(ITEM* i_pRealItem)
 {
 	float fMaxAttack = i_pRealItem->AbilityMax * i_pRealItem->ShotNum * i_pRealItem->MultiNum;
@@ -923,7 +923,7 @@ float CAtumSJ::GetMaxAttackPerSecond(ITEM* i_pRealItem)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetPrimaryRadarRange(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		1Çü ·¹ÀÌ´õ »çÁ¤ °Å¸®
+/// \brief		1í˜• ë ˆì´ë” ì‚¬ì • ê±°ë¦¬
 /// \author		cmkwon
 /// \date		2005-11-22 ~ 2005-11-22
 /// \warning	
@@ -938,7 +938,7 @@ float CAtumSJ::GetPrimaryRadarRange(ITEM* i_pItem, const CParamFactor* i_pParamF
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetSecondaryRadarRange(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		2Çü ·¹ÀÌ´õ »çÁ¤ °Å¸®
+/// \brief		2í˜• ë ˆì´ë” ì‚¬ì • ê±°ë¦¬
 /// \author		cmkwon
 /// \date		2005-11-22 ~ 2005-11-22
 /// \warning	
@@ -954,7 +954,7 @@ float CAtumSJ::GetSecondaryRadarRange(ITEM* i_pItem, const CParamFactor* i_pPara
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetCircularAngle(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		±â¾îÀÇ ¼±È¸·Â, 2005-11-28 by cmkwon
+/// \brief		ê¸°ì–´ì˜ ì„ íšŒë ¥, 2005-11-28 by cmkwon
 /// \author		cmkwon
 /// \date		2005-11-28 ~ 2005-11-28
 /// \warning	
@@ -971,7 +971,7 @@ float CAtumSJ::GetCircularAngle(ITEM* i_pItem, const CParamFactor* i_pParamFacto
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetEngineRangeAngle(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		// ÇÏÀÌÆÛ ¹«ºù(¼±È¸°¢), 2005-12-02 by cmkwon
+/// \brief		// í•˜ì´í¼ ë¬´ë¹™(ì„ íšŒê°), 2005-12-02 by cmkwon
 /// \author		cmkwon
 /// \date		2005-12-02 ~ 2005-12-02
 /// \warning	
@@ -981,14 +981,14 @@ float CAtumSJ::GetCircularAngle(ITEM* i_pItem, const CParamFactor* i_pParamFacto
 ///////////////////////////////////////////////////////////////////////////////
 float CAtumSJ::GetEngineRangeAngle(ITEM* i_pItem, const CParamFactor* i_pParamFactor)
 {
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®, ¹Ø°ú °°ÀÌ ¼öÁ¤
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸, ë°‘ê³¼ ê°™ì´ ìˆ˜ì •
 	//	return i_pItem->RangeAngle * (1.0f + i_pParamFactor->pfm_SKILL_ENGINEANGLE);
 	return (i_pItem->RangeAngle * (1.0f + i_pParamFactor->pfm_SKILL_ENGINEANGLE)) + i_pParamFactor->pfm_ENGINE_ANGLE_UP;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetEngineBoosterRangeAngle(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		// ÇÏÀÌÆÛ ¹«ºù(ºÎ½ºÅÍ ¼±È¸°¢), 2005-12-02 by cmkwon
+/// \brief		// í•˜ì´í¼ ë¬´ë¹™(ë¶€ìŠ¤í„° ì„ íšŒê°), 2005-12-02 by cmkwon
 /// \author		cmkwon
 /// \date		2005-12-02 ~ 2005-12-02
 /// \warning	
@@ -998,14 +998,14 @@ float CAtumSJ::GetEngineRangeAngle(ITEM* i_pItem, const CParamFactor* i_pParamFa
 ///////////////////////////////////////////////////////////////////////////////
 float CAtumSJ::GetEngineBoosterRangeAngle(ITEM* i_pItem, const CParamFactor* i_pParamFactor)
 {
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®, ¹Ø°ú °°ÀÌ ¼öÁ¤
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸, ë°‘ê³¼ ê°™ì´ ìˆ˜ì •
 	//	return i_pItem->BoosterAngle * (1.0f + i_pParamFactor->pfm_SKILL_ENGINEBOOSTERANGLE);
 	return (i_pItem->BoosterAngle * (1.0f + i_pParamFactor->pfm_SKILL_ENGINEBOOSTERANGLE)) + i_pParamFactor->pfm_ENGINE_BOOSTERANGLE_UP;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetWarHeadSpeed(ITEM *i_pItem, CParamFactor *i_pParamFactor)
-/// \brief		// 176, 2007-06-11 by cmkwon, ÅºµÎÀÇ ¼Óµµ
+/// \brief		// 176, 2007-06-11 by cmkwon, íƒ„ë‘ì˜ ì†ë„
 /// \author		cmkwon
 /// \date		2007-06-19 ~ 2007-06-19
 /// \warning	
@@ -1016,7 +1016,7 @@ float CAtumSJ::GetEngineBoosterRangeAngle(ITEM* i_pItem, const CParamFactor* i_p
 float CAtumSJ::GetWarHeadSpeed(ITEM* i_pItem, const CParamFactor* i_pParamFactor)
 {
 	if (FALSE == IS_SECONDARY_WEAPON(i_pItem->Kind))
-	{// 2008-05-29 by cmkwon, (¹ö±× ¼öÁ¤)ÅºµÎ ÀÎÃ¦Æ® ¾ÆÀÌÅÛ ¸Ş¸ğ¸®ÇÙ °É¸®´Â ¹ö±× ¼öÁ¤(G0010300) - 2Çü ¹«±â°¡ ¾Æ´Ï¸é ±âº»°ªÀ» ¸®ÅÏÇÑ´Ù.
+	{// 2008-05-29 by cmkwon, (ë²„ê·¸ ìˆ˜ì •)íƒ„ë‘ ì¸ì±ˆíŠ¸ ì•„ì´í…œ ë©”ëª¨ë¦¬í•µ ê±¸ë¦¬ëŠ” ë²„ê·¸ ìˆ˜ì •(G0010300) - 2í˜• ë¬´ê¸°ê°€ ì•„ë‹ˆë©´ ê¸°ë³¸ê°’ì„ ë¦¬í„´í•œë‹¤.
 		return i_pItem->RepeatTime;
 	}
 
@@ -1060,7 +1060,7 @@ float CAtumSJ::GetMonsterDeadExpWeight(int i_nCharacterLevel, int i_nMonsterLeve
 ///////////////////////////////////////////////////////////////////////////////
 float CAtumSJ::GetPartyBonusExpWeight(int nPartyMemberCnts)
 {
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 #if S_BONUSEXPSYSTEM_RENEWAL || S_BONUS_KILL_SYSTEM_RENEWAL
 	if (nPartyMemberCnts > 1) return (float)(nPartyMemberCnts - 1) * 0.1f + 1.2f;
 #else
@@ -1075,7 +1075,7 @@ float CAtumSJ::GetPartyBonusExpWeight(int nPartyMemberCnts)
 #endif // S_BONUSEXPSYSTEM_RENEWAL
 
 	return 1.0f;
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 }
 
 BOOL CAtumSJ::CanPickUpDropMoney(int i_nCharacterLevel, MONSTER_INFO* i_pMonInfo)
@@ -1110,7 +1110,7 @@ BOOL CAtumSJ::CanPickUpDropMoney(int i_nCharacterLevel, MONSTER_INFO* i_pMonInfo
 BOOL CAtumSJ::CanPickUpDropItem(int i_nCharacterLevel, MONSTER_INFO* i_pMonInfo)
 {
 	if (COMPARE_MPOPTION_BIT(i_pMonInfo->MPOption, MPOPTION_BIT_BOSS_MONSTER | MPOPTION_BIT_NAMED_MONSTER))
-	{// 2005-12-16 by cmkwon, º¸½º¸ó½ºÅÍ/³×ÀÓµå¸ó½ºÅÍ ¼Õ½Ç¾øÀ½
+	{// 2005-12-16 by cmkwon, ë³´ìŠ¤ëª¬ìŠ¤í„°/ë„¤ì„ë“œëª¬ìŠ¤í„° ì†ì‹¤ì—†ìŒ
 		return TRUE;
 	}
 	auto nLevelDiff = i_pMonInfo->Level - i_nCharacterLevel;
@@ -1132,7 +1132,7 @@ BOOL CAtumSJ::CanPickUpDropItem(int i_nCharacterLevel, MONSTER_INFO* i_pMonInfo)
 BOOL CAtumSJ::CanPickUpDropRare(int i_nCharacterLevel, MONSTER_INFO* i_pMonInfo)
 {
 	if (COMPARE_MPOPTION_BIT(i_pMonInfo->MPOption, MPOPTION_BIT_BOSS_MONSTER | MPOPTION_BIT_NAMED_MONSTER))
-	{// 2005-12-16 by cmkwon, º¸½º¸ó½ºÅÍ/³×ÀÓµå¸ó½ºÅÍ ¼Õ½Ç¾øÀ½
+	{// 2005-12-16 by cmkwon, ë³´ìŠ¤ëª¬ìŠ¤í„°/ë„¤ì„ë“œëª¬ìŠ¤í„° ì†ì‹¤ì—†ìŒ
 		return TRUE;
 	}
 	int nLevelDiff = i_pMonInfo->Level - i_nCharacterLevel;
@@ -1156,7 +1156,7 @@ const LEVEL_EXPERIENCE* CAtumSJ::GetLevelExperience(int level)
 	return &arrLevelExperienceNew[level];
 }
 
-// start 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// start 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 float CAtumSJ::GetBurningMapAddExperience(int level)
 {
 	level = max(1, level);
@@ -1165,17 +1165,17 @@ float CAtumSJ::GetBurningMapAddExperience(int level)
 	return arrBurningMapLevelAddExperience[level].IncrementPercent;
 }
 
-// end 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// end 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 
 Experience_t CAtumSJ::GetInitialExperienceOfLevel(int level)
 {
-	// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - 
+	// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - 
 	// 	if (level <= 0 || level > 100)
 	// 	{
 	// 		return 1.7E308;
 	// 	}
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - 
+	// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - 
 	level = max(1, level);
 	level = min(CHARACTER_MAX_LEVEL, level);
 
@@ -1184,7 +1184,7 @@ Experience_t CAtumSJ::GetInitialExperienceOfLevel(int level)
 
 float CAtumSJ::GetPercentageOfExperience(Experience_t exp, int level)
 {
-	// 2010-03-11 by cmkwon, Áö¿ø·¹º§ 110 »óÇ× Ã³¸® ºüÁø°Í ¼öÁ¤ - ÃÖ´ëÁö¿ø·¹º§ÀÌ¸é ¹«Á¶°Ç 0%¸¦ ¸®ÅÏ
+	// 2010-03-11 by cmkwon, ì§€ì›ë ˆë²¨ 110 ìƒí•­ ì²˜ë¦¬ ë¹ ì§„ê²ƒ ìˆ˜ì • - ìµœëŒ€ì§€ì›ë ˆë²¨ì´ë©´ ë¬´ì¡°ê±´ 0%ë¥¼ ë¦¬í„´
 	if (CHARACTER_MAX_LEVEL <= level)
 	{
 		return 0.0f;
@@ -1204,9 +1204,9 @@ Experience_t CAtumSJ::GetExperienceFromPercentage(float i_fPercentage, int level
 // struct ITEMKIND_STRING				// 2006-07-28 by cmkwon
 // {
 // 	BYTE		byItemKind0;	
-// 	char		*szItemKindString;		// 2006-07-28 by cmkwon, ITEMKIND_XXX --> "ITEMKIND_XXX"·Î º¯È¯
-// 	char		*szItemKindName;		// 2006-07-28 by cmkwon, À¯Àú¿¡°Ô º¸¿©ÁÖ´Â ItemKindString
-// 	BOOL		bIsBazaarItemKind;		// 2006-07-28 by cmkwon, °³ÀÎ »óÁ¡¿¡¼­ °Å·¡ °¡´É ITEMKIND_XXX
+// 	char		*szItemKindString;		// 2006-07-28 by cmkwon, ITEMKIND_XXX --> "ITEMKIND_XXX"ë¡œ ë³€í™˜
+// 	char		*szItemKindName;		// 2006-07-28 by cmkwon, ìœ ì €ì—ê²Œ ë³´ì—¬ì£¼ëŠ” ItemKindString
+// 	BOOL		bIsBazaarItemKind;		// 2006-07-28 by cmkwon, ê°œì¸ ìƒì ì—ì„œ ê±°ë˜ ê°€ëŠ¥ ITEMKIND_XXX
 // };
 const ITEMKIND_STRING g_arrItemKindString[] =
 {
@@ -1249,7 +1249,7 @@ const ITEMKIND_STRING g_arrItemKindString[] =
 	{ITEMKIND_MARK ,"ITEMKIND_MARK" ,STRCMD_CS_ITEMKIND_MARK ,TRUE},
 	{ITEMKIND_SKILL_SUPPORT_ITEM ,"ITEMKIND_SKILL_SUPPORT_ITEM" ,STRCMD_CS_ITEMKIND_SKILL_SUPPORT_ITEM ,FALSE},
 	{ITEMKIND_PET_ITEM ,"ITEMKIND_PET_ITEM" ,STRCMD_CS_ITEMKIND_PET_ITEM ,FALSE},
-	{ITEMKIND_PET_SOCKET_ITEM ,"ITEMKIND_PET_SOCKET_ITEM" ,STRCMD_CS_ITEMKIND_PET_SOCKET_ITEM ,FALSE}, // 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷
+	{ITEMKIND_PET_SOCKET_ITEM ,"ITEMKIND_PET_SOCKET_ITEM" ,STRCMD_CS_ITEMKIND_PET_SOCKET_ITEM ,FALSE}, // 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨
 
 	{ITEMKIND_ALL_WEAPON ,"ITEMKIND_ALL_WEAPON" ,STRCMD_CS_ITEMKIND_ALL_WEAPON ,FALSE},
 	{ITEMKIND_PRIMARY_WEAPON_ALL ,"ITEMKIND_PRIMARY_WEAPON_ALL" ,STRCMD_CS_ITEMKIND_PRIMARY_WEAPON_ALL ,FALSE},
@@ -1279,12 +1279,12 @@ const ITEMKIND_STRING g_arrItemKindString[] =
 	{ITEMKIND_FOR_MON_FIRE ,"ITEMKIND_FOR_MON_FIRE" ,STRCMD_CS_ITEMKIND_FOR_MON_FIRE ,FALSE},
 	{ITEMKIND_FOR_MON_OBJBEAM ,"ITEMKIND_FOR_MON_OBJBEAM" ,STRCMD_CS_ITEMKIND_FOR_MON_OBJBEAM ,FALSE},
 	{ITEMKIND_FOR_MON_STRAIGHTBOOM ,"ITEMKIND_FOR_MON_STRAIGHTBOOM" ,STRCMD_CS_ITEMKIND_FOR_MON_STRAIGHTBOOM ,FALSE},
-	{ITEMKIND_ALL_ITEM ,"ITEMKIND_ALL_ITEM" ,STRCMD_CS_ITEMKIND_ALL_ITEM ,FALSE}, // 2008-06-03 by cmkwon, AdminTool, DBTool »ç¿ë½Ã ¾ÆÀÌÅÛ °Ë»ö½Ã ÄŞº¸¹Ú½º¿¡¼­ °Ë»ö ±â´É Ãß°¡(K0000143) - 
+	{ITEMKIND_ALL_ITEM ,"ITEMKIND_ALL_ITEM" ,STRCMD_CS_ITEMKIND_ALL_ITEM ,FALSE}, // 2008-06-03 by cmkwon, AdminTool, DBTool ì‚¬ìš©ì‹œ ì•„ì´í…œ ê²€ìƒ‰ì‹œ ì½¤ë³´ë°•ìŠ¤ì—ì„œ ê²€ìƒ‰ ê¸°ëŠ¥ ì¶”ê°€(K0000143) - 
 	{ITEMKIND_UNKNOWN ,"ITEMKIND_UNKNOWN" ,STRCMD_CS_ITEMKIND_UNKNOWN ,FALSE}
 };
 
 
-// 2006-07-28 by cmkwon, ÇÔ¼ö¸í º¯°æ - GetItemKindStringKO --> GetItemKindName
+// 2006-07-28 by cmkwon, í•¨ìˆ˜ëª… ë³€ê²½ - GetItemKindStringKO --> GetItemKindName
 const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 {
 	for (int i = 0; g_arrItemKindString[i].byItemKind0 != ITEMKIND_UNKNOWN; i++)
@@ -1296,12 +1296,12 @@ const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 	}
 	return STRCMD_CS_ITEMKIND_UNKNOWN;
 
-	// 2006-07-28 by cmkwon, À§¿Í °°ÀÌ ¼öÁ¤ÇÔ
+	// 2006-07-28 by cmkwon, ìœ„ì™€ ê°™ì´ ìˆ˜ì •í•¨
 	// 	switch(i_nKind)
 	// 	{
 	// 	case ITEMKIND_AUTOMATIC:				return STRCMD_CS_ITEMKIND_AUTOMATIC;
 	// 	case ITEMKIND_VULCAN:					return STRCMD_CS_ITEMKIND_VULCAN;
-	// 	case ITEMKIND_DUALIST:					return STRCMD_CS_ITEMKIND_DUALIST;		// 2005-08-01 by hblee : GRENADE -> DUALIST À¸·Î º¯°æ.
+	// 	case ITEMKIND_DUALIST:					return STRCMD_CS_ITEMKIND_DUALIST;		// 2005-08-01 by hblee : GRENADE -> DUALIST ìœ¼ë¡œ ë³€ê²½.
 	// 	case ITEMKIND_CANNON:					return STRCMD_CS_ITEMKIND_CANNON;
 	// 	case ITEMKIND_RIFLE:					return STRCMD_CS_ITEMKIND_RIFLE;
 	// 	case ITEMKIND_GATLING:					return STRCMD_CS_ITEMKIND_GATLING;
@@ -1329,12 +1329,12 @@ const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 	// 	case ITEMKIND_COMPUTER:					return STRCMD_CS_ITEMKIND_COMPUTER;
 	// 	case ITEMKIND_GAMBLE:					return STRCMD_CS_ITEMKIND_GAMBLE;
 	// 	case ITEMKIND_PREVENTION_DELETE_ITEM:	return STRCMD_CS_ITEMKIND_PREVENTION_DELETE_ITEM;
-	// 	case ITEMKIND_BLASTER:					return STRCMD_CS_ITEMKIND_BLASTER;	// 2005-08-01 by hblee : ºí·¡½ºÅÍ·ù Ãß°¡.
-	// 	case ITEMKIND_RAILGUN:					return STRCMD_CS_ITEMKIND_RAILGUN;	// 2005-08-01 by hblee : ·¹ÀÏ°Ç·ù Ãß°¡.
-	// 	case ITEMKIND_ACCESSORY_UNLIMITED:		return STRCMD_CS_ITEMKIND_ACCESSORY_UNLIMITED;	// 2006-03-17 by cmkwon, »ç¿ë½Ã°£ÀÌ <¿µ¿ø>ÀÎ ¾×¼¼¼­¸® ¾ÆÀÌÅÛ
-	// 	case ITEMKIND_ACCESSORY_TIMELIMIT:		return STRCMD_CS_ITEMKIND_ACCESSORY_TIMELIMIT;	// 2006-03-17 by cmkwon, »ç¿ë½Ã°£¿¡ ½Ã°£ Á¦ÇÑÀÌ ÀÖ´Â ¾×¼¼¼­¸® ¾ÆÀÌÅÛ
-	// 	case ITEMKIND_INFLUENCE_BUFF:			return STRCMD_CS_ITEMKIND_INFLUENCE_BUFF;		// 2006-04-21 by cmkwon, ¼¼·Â Ä«µå ¾ÆÀÌÅÛ, ÇöÀç´Â ¼¼·Â¹öÇÁ ¾ÆÀÌÅÛ
-	// 	case ITEMKIND_INFLUENCE_GAMEEVENT:		return STRCMD_CS_ITEMKIND_INFLUENCE_GAMEEVENT;	// 2006-04-21 by cmkwon, ¼¼·Â ÀÌº¥Æ® ¾ÆÀÌÅÛ
+	// 	case ITEMKIND_BLASTER:					return STRCMD_CS_ITEMKIND_BLASTER;	// 2005-08-01 by hblee : ë¸”ë˜ìŠ¤í„°ë¥˜ ì¶”ê°€.
+	// 	case ITEMKIND_RAILGUN:					return STRCMD_CS_ITEMKIND_RAILGUN;	// 2005-08-01 by hblee : ë ˆì¼ê±´ë¥˜ ì¶”ê°€.
+	// 	case ITEMKIND_ACCESSORY_UNLIMITED:		return STRCMD_CS_ITEMKIND_ACCESSORY_UNLIMITED;	// 2006-03-17 by cmkwon, ì‚¬ìš©ì‹œê°„ì´ <ì˜ì›>ì¸ ì•¡ì„¸ì„œë¦¬ ì•„ì´í…œ
+	// 	case ITEMKIND_ACCESSORY_TIMELIMIT:		return STRCMD_CS_ITEMKIND_ACCESSORY_TIMELIMIT;	// 2006-03-17 by cmkwon, ì‚¬ìš©ì‹œê°„ì— ì‹œê°„ ì œí•œì´ ìˆëŠ” ì•¡ì„¸ì„œë¦¬ ì•„ì´í…œ
+	// 	case ITEMKIND_INFLUENCE_BUFF:			return STRCMD_CS_ITEMKIND_INFLUENCE_BUFF;		// 2006-04-21 by cmkwon, ì„¸ë ¥ ì¹´ë“œ ì•„ì´í…œ, í˜„ì¬ëŠ” ì„¸ë ¥ë²„í”„ ì•„ì´í…œ
+	// 	case ITEMKIND_INFLUENCE_GAMEEVENT:		return STRCMD_CS_ITEMKIND_INFLUENCE_GAMEEVENT;	// 2006-04-21 by cmkwon, ì„¸ë ¥ ì´ë²¤íŠ¸ ì•„ì´í…œ
 	// 
 	// 	case ITEMKIND_ALL_WEAPON:				return STRCMD_CS_ITEMKIND_ALL_WEAPON;
 	// 	case ITEMKIND_PRIMARY_WEAPON_ALL:		return STRCMD_CS_ITEMKIND_PRIMARY_WEAPON_ALL;
@@ -1370,7 +1370,7 @@ const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 	// 	return STRCMD_CS_ITEMKIND_UNKNOWN;
 }
 
-// 2006-07-28 by cmkwon, ÇÊ¿ä ¾ø´Â ÇÔ¼ö
+// 2006-07-28 by cmkwon, í•„ìš” ì—†ëŠ” í•¨ìˆ˜
 // const char *CAtumSJ::GetItemKindString(BYTE i_nKind)
 // {
 // 	for(int i=0; g_arrItemKindString[i].byItemKind0 != ITEMKIND_UNKNOWN; i++)
@@ -1382,12 +1382,12 @@ const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 // 	}
 // 	return STRCMD_CS_ITEMKIND_UNKNOWN;
 // 
-// // 2006-07-28 by cmkwon, À§¿Í °°ÀÌ ¼öÁ¤ÇÔ
+// // 2006-07-28 by cmkwon, ìœ„ì™€ ê°™ì´ ìˆ˜ì •í•¨
 // // 	switch(i_nKind)
 // // 	{
 // // 	case ITEMKIND_AUTOMATIC:					return "ITEMKIND_AUTOMATIC";
 // // 	case ITEMKIND_VULCAN:						return "ITEMKIND_VULCAN";
-// // 	case ITEMKIND_DUALIST:						return "ITEMKIND_DUALIST";		// 2005-08-01 by hblee : GRENADE -> DUALIST À¸·Î º¯°æ.
+// // 	case ITEMKIND_DUALIST:						return "ITEMKIND_DUALIST";		// 2005-08-01 by hblee : GRENADE -> DUALIST ìœ¼ë¡œ ë³€ê²½.
 // // 	case ITEMKIND_CANNON:						return "ITEMKIND_CANNON";
 // // 	case ITEMKIND_RIFLE:						return "ITEMKIND_RIFLE";
 // // 	case ITEMKIND_GATLING:						return "ITEMKIND_GATLING";
@@ -1414,10 +1414,10 @@ const char* CAtumSJ::GetItemKindName(BYTE i_nKind)
 // // 	case ITEMKIND_COMPUTER:						return "ITEMKIND_COMPUTER";
 // // 	case ITEMKIND_GAMBLE:						return "ITEMKIND_GAMBLE";
 // // 	case ITEMKIND_PREVENTION_DELETE_ITEM:		return "ITEMKIND_PREVENTION_DELETE_ITEM";
-// // 	case ITEMKIND_BLASTER:						return "ITEMKIND_BLASTER";	// 2005-08-01 by hblee : ºí·¡½ºÅÍ·ù Ãß°¡.
-// // 	case ITEMKIND_RAILGUN:						return "ITEMKIND_RAILGUN";	// 2005-08-01 by hblee : ·¹ÀÏ°Ç·ù Ãß°¡.
-// // 	case ITEMKIND_ACCESSORY_UNLIMITED:			return "ITEMKIND_ACCESSORY_UNLIMITED";	// 2006-03-17 by cmkwon, »ç¿ë½Ã°£ÀÌ <¿µ¿ø>ÀÎ ¾×¼¼¼­¸® ¾ÆÀÌÅÛ
-// // 	case ITEMKIND_ACCESSORY_TIMELIMIT:			return "ITEMKIND_ACCESSORY_TIMELIMIT";	// 2006-03-17 by cmkwon, »ç¿ë½Ã°£¿¡ ½Ã°£ Á¦ÇÑÀÌ ÀÖ´Â ¾×¼¼¼­¸® ¾ÆÀÌÅÛ
+// // 	case ITEMKIND_BLASTER:						return "ITEMKIND_BLASTER";	// 2005-08-01 by hblee : ë¸”ë˜ìŠ¤í„°ë¥˜ ì¶”ê°€.
+// // 	case ITEMKIND_RAILGUN:						return "ITEMKIND_RAILGUN";	// 2005-08-01 by hblee : ë ˆì¼ê±´ë¥˜ ì¶”ê°€.
+// // 	case ITEMKIND_ACCESSORY_UNLIMITED:			return "ITEMKIND_ACCESSORY_UNLIMITED";	// 2006-03-17 by cmkwon, ì‚¬ìš©ì‹œê°„ì´ <ì˜ì›>ì¸ ì•¡ì„¸ì„œë¦¬ ì•„ì´í…œ
+// // 	case ITEMKIND_ACCESSORY_TIMELIMIT:			return "ITEMKIND_ACCESSORY_TIMELIMIT";	// 2006-03-17 by cmkwon, ì‚¬ìš©ì‹œê°„ì— ì‹œê°„ ì œí•œì´ ìˆëŠ” ì•¡ì„¸ì„œë¦¬ ì•„ì´í…œ
 // // 	case ITEMKIND_INFLUENCE_BUFF:				return "ITEMKIND_INFLUENCE_BUFF";	// 2006-04-21 by cmkwon
 // // 	case ITEMKIND_INFLUENCE_GAMEEVENT:			return "ITEMKIND_INFLUENCE_GAMEEVENT";	// 2006-04-21 by cmkwon
 // // 
@@ -1501,17 +1501,17 @@ const char* CAtumSJ::GetRaceString(USHORT i_nRace)
 	{// 2006-04-20 by cmkwon
 		return STRCMD_CS_COMMON_RACE_INFLUENCE_LEADER;
 	}
-	// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+	// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 	//	if(COMPARE_RACE(i_nRace, RACE_INFLUENCE_SUBLEADER))
 	//	{// 2006-12-08 by dhjin
 	//		return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER;
 	//	}
 	if (COMPARE_RACE(i_nRace, RACE_INFLUENCE_SUBLEADER_1))
-	{// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+	{// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 		return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_1 ;
 	}
 	if (COMPARE_RACE(i_nRace, RACE_INFLUENCE_SUBLEADER_2))
-	{// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+	{// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 		return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_2 ;
 	}
 
@@ -1521,7 +1521,7 @@ const char* CAtumSJ::GetRaceString(USHORT i_nRace)
 	//		return STRCMD_CS_COMMON_RACE_MONSTER2;
 	//	}
 
-	// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+	// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 	//	if(COMPARE_RACE(i_nRace, RACE_NPC))
 	//	{
 	//		return STRCMD_CS_COMMON_RACE_NPC;
@@ -1565,7 +1565,7 @@ const char* CAtumSJ::GetUnitKindString(USHORT i_nUnitKind)
 	return STRCMD_CS_UNITKIND_UNKNOWN;
 }
 
-const char* CAtumSJ::GetGLOGUnitKindString(USHORT i_nUnitKind) // 2010-06-01 by shcho, GLogDB °ü·Ã -
+const char* CAtumSJ::GetGLOGUnitKindString(USHORT i_nUnitKind) // 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 {
 	switch (i_nUnitKind)
 	{
@@ -1601,8 +1601,8 @@ const char* CAtumSJ::GetGLOGUnitKindString(USHORT i_nUnitKind) // 2010-06-01 by 
 
 const GEAR_STAT_CHANGE_VALUE g_arrGearStatChangeValue[] =
 {
-	//	{UnitKind,			1 °ø°İ, 2 ¹æ¾î,	3 ¿¬·á, 4 Á¤½Å, 5 ½¯µå, 6 È¸ÇÇ
-	// 2006-09-11 by cmkwon, LocalizationDefineCommon.h¿¡ Á¤ÀÇÇÔ ³ª¶óº°·Î ´Ù¸£°Ô ¼³Á¤ °¡´É
+	//	{UnitKind,			1 ê³µê²©, 2 ë°©ì–´,	3 ì—°ë£Œ, 4 ì •ì‹ , 5 ì‰´ë“œ, 6 íšŒí”¼
+	// 2006-09-11 by cmkwon, LocalizationDefineCommon.hì— ì •ì˜í•¨ ë‚˜ë¼ë³„ë¡œ ë‹¤ë¥´ê²Œ ì„¤ì • ê°€ëŠ¥
 	{UNITKIND_BGEAR , STAT_BGEAR_ATTACK_PART, STAT_BGEAR_DEFENSE_PART, STAT_BGEAR_FUEL_PART, STAT_BGEAR_SOUL_PART, STAT_BGEAR_SHIELD_PART, STAT_BGEAR_DODGE_PART}, // 1
 	{UNITKIND_MGEAR , STAT_MGEAR_ATTACK_PART, STAT_MGEAR_DEFENSE_PART, STAT_MGEAR_FUEL_PART, STAT_MGEAR_SOUL_PART, STAT_MGEAR_SHIELD_PART, STAT_MGEAR_DODGE_PART}, // 16
 	{UNITKIND_AGEAR , STAT_AGEAR_ATTACK_PART, STAT_AGEAR_DEFENSE_PART, STAT_AGEAR_FUEL_PART, STAT_AGEAR_SOUL_PART, STAT_AGEAR_SHIELD_PART, STAT_AGEAR_DODGE_PART}, // 256
@@ -1647,7 +1647,7 @@ const char* CAtumSJ::GetTimerTypeString(TimerEventType i_nTimerEventType)
 	case TE_TYPE_GRADUAL_EP_UP: return "TE_TYPE_GRADUAL_EP_UP";
 	case TE_TYPE_REQUEST_TIMEOUT: return "TE_TYPE_REQUEST_TIMEOUT";
 	case TE_TYPE_DECREASE_SP: return "TE_TYPE_DECREASE_SP";
-	case TE_TYPE_FIXED_TERM_SHAPE: return "TE_TYPE_FIXED_TERM_SHAPE"; // 2012-10-10 by hskim, ±â°£Á¦ ¼Ó¼º ±¸Çö (±â°£Á¦ ¿ÜÇü)
+	case TE_TYPE_FIXED_TERM_SHAPE: return "TE_TYPE_FIXED_TERM_SHAPE"; // 2012-10-10 by hskim, ê¸°ê°„ì œ ì†ì„± êµ¬í˜„ (ê¸°ê°„ì œ ì™¸í˜•)
 	}
 
 	return "TE_TYPE_UNKNOWN";
@@ -1737,8 +1737,8 @@ char* CAtumSJ::GetAutoStatTypeString(INT i_autoStatType)
 
 
 /*
-// ½ºÅÈ(Defense)¿¡ µû¸¥ ½¯µå Áõ°¡ºĞ
-// Àû¿ë ¹æ¹ı: OnDefenseStat = stat * Áõ°¡ºĞ
+// ìŠ¤íƒ¯(Defense)ì— ë”°ë¥¸ ì‰´ë“œ ì¦ê°€ë¶„
+// ì ìš© ë°©ë²•: OnDefenseStat = stat * ì¦ê°€ë¶„
 */
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 INT CAtumSJ::GetCharacterHP(BYTE i_nLevel)
@@ -1746,64 +1746,64 @@ INT CAtumSJ::GetCharacterHP(BYTE i_nLevel)
 SHORT CAtumSJ::GetCharacterHP(BYTE i_nLevel)
 #endif
 {
-	// 2005-06-29 by cmkwon, ±â·¹º§´ç HP°¡ ¾Æ´Ï¶ó ±âº»Àº ¸ğµÎ 600ÀÌ´Ù
+	// 2005-06-29 by cmkwon, ê¸°ë ˆë²¨ë‹¹ HPê°€ ì•„ë‹ˆë¼ ê¸°ë³¸ì€ ëª¨ë‘ 600ì´ë‹¤
 	//	return GetLevelStatValue(i_nLevel)->HPOfLevel;
 	return 600;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 #ifdef NEMERIAN_INCREASE_HPDP_LIMIT
 INT CAtumSJ::GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel)
 #else
 SHORT CAtumSJ::GetCharacterDP(Stat_t i_nShieldPart, BYTE i_byLevel)
 #endif
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return GetLevelStatValue(min(COUNT_MAX_STAT_POINT, i_nShieldPart))->ShieldPart_DP;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return GetLevelStatValue(min(nMaxStatValue, i_nShieldPart))->ShieldPart_DP;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 SHORT CAtumSJ::GetCharacterSP(Stat_t i_nSoulPart, BYTE i_byLevel)
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return min(COUNT_MAX_STAT_POINT, i_nSoulPart) * 8;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return min(nMaxStatValue, i_nSoulPart) * 8;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 SHORT CAtumSJ::GetCharacterEP(Stat_t i_nFuelPart, BYTE i_byLevel)
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return min(COUNT_MAX_STAT_POINT, i_nFuelPart) * 10;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return min(nMaxStatValue, i_nFuelPart) * 10;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 float CAtumSJ::GetAttackC_IncreaseRate(Stat_t i_nAttackPart, BYTE i_byLevel)
 {
-	// 2007-05-16 by cmkwon, 300ÃÊ°ú·Î °©À» °¡Áö°í ÀÖ°í Àû¿ë½Ã ÃÖ´ë 300ÀÌ µÇµµ·Ï ¼öÁ¤	
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2007-05-16 by cmkwon, 300ì´ˆê³¼ë¡œ ê°‘ì„ ê°€ì§€ê³  ìˆê³  ì ìš©ì‹œ ìµœëŒ€ 300ì´ ë˜ë„ë¡ ìˆ˜ì •	
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return GetLevelStatValue(min(COUNT_MAX_STAT_POINT, i_nAttackPart))->AttackPart_AttackIncreaseRate;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return GetLevelStatValue(min(nMaxStatValue, i_nAttackPart))->AttackPart_AttackIncreaseRate;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetAttackC_IncreaseProbability(Stat_t i_nAttackPart)
-/// \brief		¸íÁß·ü - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ °ø°İÈ®·ü°ú µ¿ÀÏÇÑ ±â´ÉÀ» °¡Áö´Â Ãß°¡ È®·ü
-///				// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+/// \brief		ëª…ì¤‘ë¥  - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ê³µê²©í™•ë¥ ê³¼ ë™ì¼í•œ ê¸°ëŠ¥ì„ ê°€ì§€ëŠ” ì¶”ê°€ í™•ë¥ 
+///				// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 /// \author		cmkwon
 /// \date		2005-06-29 ~ 2005-06-29
 /// \warning	
@@ -1813,18 +1813,18 @@ float CAtumSJ::GetAttackC_IncreaseRate(Stat_t i_nAttackPart, BYTE i_byLevel)
 ///////////////////////////////////////////////////////////////////////////////
 float CAtumSJ::GetAttackC_IncreaseProbability(Stat_t i_nAttackPart, BYTE i_byLevel)
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return GetLevelStatValue(min(COUNT_MAX_STAT_POINT,i_nAttackPart))->AttackPart_AttackIncreaseProbability;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return GetLevelStatValue(min(nMaxStatValue,i_nAttackPart))->AttackPart_AttackIncreaseProbability;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			float CAtumSJ::GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM *pAttackItem, CParamFactor *pParamFactor, BOOL bIsPrimaryAttack)
-/// \brief		// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®, PierceAttackÀ² - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ ¹æ¾îÀ²°ú »ó¼â°¡ µÇ´Â °ø°İ ¹æ¹ı Áß ÇÏ³ª
-///				// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+/// \brief		// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸, PierceAttackìœ¨ - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ë°©ì–´ìœ¨ê³¼ ìƒì‡„ê°€ ë˜ëŠ” ê³µê²© ë°©ë²• ì¤‘ í•˜ë‚˜
+///				// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 /// \author		cmkwon
 /// \date		2005-06-29 ~ 2005-06-29
 /// \warning	
@@ -1832,17 +1832,17 @@ float CAtumSJ::GetAttackC_IncreaseProbability(Stat_t i_nAttackPart, BYTE i_byLev
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
-float CAtumSJ::GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, BYTE i_byLevel, enumAttackToTarget eAttackToTarget /*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - i_PvPBuffPercent	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+float CAtumSJ::GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM* pAttackItem, const CParamFactor* pParamFactor, BOOL bIsPrimaryAttack, BYTE i_byLevel, enumAttackToTarget eAttackToTarget /*=NULL2NULL*/, float i_PvPBuffPercent) // 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - i_PvPBuffPercent	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 {
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®, ¹Ø°ú °°ÀÌ ¼öÁ¤
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸, ë°‘ê³¼ ê°™ì´ ìˆ˜ì •
 	//	return GetLevelStatValue(min(COUNT_MAX_STAT_POINT,i_nAttackPart))->AttackPart_PierceAttackProbability;
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//float LevelPierce = GetLevelStatValue(min(COUNT_MAX_STAT_POINT,i_nAttackPart))->AttackPart_PierceAttackProbability;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 
 	////////////////////////////////////////////////////////
-	// 2013-05-09 by hskim, ¼¼·Â Æ÷ÀÎÆ® °³¼±
+	// 2013-05-09 by hskim, ì„¸ë ¥ í¬ì¸íŠ¸ ê°œì„ 
 	////////////////////////////////////////////////////////
 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
@@ -1862,18 +1862,18 @@ float CAtumSJ::GetAttackC_PierceAttackProbability(Stat_t i_nAttackPart, ITEM* pA
 	{
 		PierceAttackProba += pParamFactor->pfp_SKILL_BUFF_MON_ATTACK_PIERCE;
 	}
-	// 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë ÇÇ¾î½º
+	// 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© í”¼ì–´ìŠ¤
 	if (IsCharacterTarget(eAttackToTarget))
 	{
-		PierceAttackProba += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK_PIERCE; // ÀÏ¹İÀûÀÎ ¹öÇÁ È¿°ú
-		PierceAttackProba += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ¼¼·ÂÆ÷ÀÎÆ®¿¡ ÀÇÇÑ ¹öÇÁÈ¿°ú
+		PierceAttackProba += pParamFactor->pfp_SKILL_BUFF_PVP_ATTACK_PIERCE; // ì¼ë°˜ì ì¸ ë²„í”„ íš¨ê³¼
+		PierceAttackProba += TURN_AROUND_BUFF_SKILL_100P_VALUE * i_PvPBuffPercent; // ì„¸ë ¥í¬ì¸íŠ¸ì— ì˜í•œ ë²„í”„íš¨ê³¼
 	}
-	// end 2013-08-01 by jhseol, ¿ªÀüÀÇ ¹öÇÁ ¸®´º¾ó - Àû¿ë ÇÇ¾î½º
+	// end 2013-08-01 by jhseol, ì—­ì „ì˜ ë²„í”„ ë¦¬ë‰´ì–¼ - ì ìš© í”¼ì–´ìŠ¤
 
 	return PierceAttackProba;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 double CAtumSJ::GetDefenseC_DecreaseRate(Stat_t i_nDefensePart, BYTE i_byLevel)
 {
 	auto maxstat = GET_MAX_STAT_POINT(i_byLevel);
@@ -1881,13 +1881,13 @@ double CAtumSJ::GetDefenseC_DecreaseRate(Stat_t i_nDefensePart, BYTE i_byLevel)
 	return GetLevelStatValue(min(maxstat, i_nDefensePart))->DefensePart_DefenseDecreaseRate;
 }
 
-// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - ÀÎÀÚÃß°¡(, BYTE i_byLevel)
+// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - ì¸ìì¶”ê°€(, BYTE i_byLevel)
 double CAtumSJ::GetDefenseProbabilityC_Rate(Stat_t i_nDodgePart, BYTE i_byLevel)
 {
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	//return GetLevelStatValue(min(COUNT_MAX_STAT_POINT,i_nDodgePart))->DodgePart_DefenseProbabilityRate;
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-02-19 by cmkwon, 100ÀÌÇÏ ·¹º§ ÃÖ´ë½ºÅÈ ¼öÄ¡ ¹ö±× ¼öÁ¤ - 
+	// 2010-02-19 by cmkwon, 100ì´í•˜ ë ˆë²¨ ìµœëŒ€ìŠ¤íƒ¯ ìˆ˜ì¹˜ ë²„ê·¸ ìˆ˜ì • - 
 	int nMaxStatValue = GET_MAX_STAT_POINT(i_byLevel);
 	return GetLevelStatValue(min(nMaxStatValue,i_nDodgePart))->DodgePart_DefenseProbabilityRate;
 }
@@ -1918,10 +1918,10 @@ BOOL CAtumSJ::GetRepairCost(int* o_pnCost, int* o_pnRealAmountToRepair, int i_nD
 		break;
 	case DES_BULLET_01:
 	case DES_BULLET_02:
-		nBundleCount = i_nRequestAmountToRepair / i_pBulletItem->MinTradeQuantity; // ¹¬À½ Ä«¿îÆ®
+		nBundleCount = i_nRequestAmountToRepair / i_pBulletItem->MinTradeQuantity; // ë¬µìŒ ì¹´ìš´íŠ¸
 		if (0 != i_nRequestAmountToRepair % i_pBulletItem->MinTradeQuantity)
 		{
-			nBundleCount++; // È¸º¹·®ÀÌ MinTradeQuantityÀ¸·Î ³ª¸ÓÁö ¿¬»êÀÌ 0ÀÌ ¾ÆÀÌ¸é 1À» Ãß°¡ÇÑ´Ù.
+			nBundleCount++; // íšŒë³µëŸ‰ì´ MinTradeQuantityìœ¼ë¡œ ë‚˜ë¨¸ì§€ ì—°ì‚°ì´ 0ì´ ì•„ì´ë©´ 1ì„ ì¶”ê°€í•œë‹¤.
 		}
 		*o_pnRealAmountToRepair = nBundleCount * i_pBulletItem->MinTradeQuantity;
 #ifdef SHOP_PRICES_PER_BUILDING_NPC
@@ -1997,7 +1997,7 @@ enumAttackToTarget CAtumSJ::GetAttackToTarget(ClientIndex_t i_AttackIndex, Clien
 			// 2005-04-25 by cmkwon
 			//			ASSERT_NEVER_GET_HERE();
 
-			// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¹Ø°ú °°ÀÌ ¼öÁ¤
+			// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë°‘ê³¼ ê°™ì´ ìˆ˜ì •
 			//			return ERR2ERR;
 			return M2M;
 		}
@@ -2060,12 +2060,12 @@ BOOL CAtumSJ::CheckReqItemKind(BYTE i_nReqItemKind, BYTE i_nTargetItemKind)
 
 void CAtumSJ::GetAtumTime(AtumTime* o_pAtumTime)
 {
-	// ½Ã°£À» Àü¼Û
+	// ì‹œê°„ì„ ì „ì†¡
 	time_t ltime;
 	struct tm* today = NULL;
 	time(&ltime);
 	today = localtime(&ltime);
-	// 4½Ã°£ ±âÁØÀ¸·Î Áö³­ ÃÊ
+	// 4ì‹œê°„ ê¸°ì¤€ìœ¼ë¡œ ì§€ë‚œ ì´ˆ
 	AtumTime rTime(today->tm_hour, today->tm_min);
 	o_pAtumTime->SetTime((rTime * 6).Hour % 24, (rTime * 6).Minute);
 }
@@ -2097,7 +2097,7 @@ float CAtumSJ::GetPenaltyCollisionBYSpeed(INT i_nCurSpeed)
 	return min(max(0.1f, x), 0.5f);
 }
 
-// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - ÀÎÀÚÃß°¡(MapIndex_t i_nStartCityMapIdx)
+// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - ì¸ìì¶”ê°€(MapIndex_t i_nStartCityMapIdx)
 MapIndex_t CAtumSJ::GetCityMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx/*=VCN_CITY_MAP_INDEX*/)
 {
 	if (IS_VCN_INFLUENCE_TYPE(i_byInfluence))
@@ -2122,7 +2122,7 @@ MapIndex_t CAtumSJ::GetCityMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CAtumSJ::GetGargenMapIndexByInfluence# Ãß°¡
+/// \brief		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CAtumSJ::GetGargenMapIndexByInfluence# ì¶”ê°€
 /// \author		cmkwon
 /// \date		2009-10-13 ~ 2009-10-13
 /// \warning	
@@ -2130,7 +2130,7 @@ MapIndex_t CAtumSJ::GetCityMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
-MapIndex_t CAtumSJ::GetGargenMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx/*=VCN_CITY_MAP_INDEX*/, BOOL i_bMotherShipWar/*=FALSE*/) // 2012-07-02 by hskim, ¸ğ¼±Àü °³¼± - ¸ğ¼±Àü ÁøÇà½Ã ½ºÅæÁî ·çÀÎ ÁøÀÔ ºÒ°¡
+MapIndex_t CAtumSJ::GetGargenMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t i_nStartCityMapIdx/*=VCN_CITY_MAP_INDEX*/, BOOL i_bMotherShipWar/*=FALSE*/) // 2012-07-02 by hskim, ëª¨ì„ ì „ ê°œì„  - ëª¨ì„ ì „ ì§„í–‰ì‹œ ìŠ¤í†¤ì¦ˆ ë£¨ì¸ ì§„ì… ë¶ˆê°€
 {
 	if (i_bMotherShipWar && IS_VCN_INFLUENCE_TYPE(i_byInfluence)) return 3003;
 
@@ -2144,7 +2144,7 @@ MapIndex_t CAtumSJ::GetGargenMapIndexByInfluence(BYTE i_byInfluence, MapIndex_t 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CAtumSJ::IsOtherInfluenceMap#, Ãß°¡
+/// \brief		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CAtumSJ::IsOtherInfluenceMap#, ì¶”ê°€
 
 /// \author		cmkwon
 /// \date		2009-10-13 ~ 2009-10-13
@@ -2195,7 +2195,7 @@ BOOL CAtumSJ::IsOtherInfluenceMap(BYTE i_byInfluence, MapIndex_t i_nStartCityMap
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CAtumSJ::IsSameCharacterInfluence8MapInfluence#, Ãß°¡
+/// \brief		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CAtumSJ::IsSameCharacterInfluence8MapInfluence#, ì¶”ê°€
 /// \author		cmkwon
 /// \date		2009-10-13 ~ 2009-10-13
 /// \warning	
@@ -2229,7 +2229,7 @@ BOOL CAtumSJ::IsSameCharacterInfluence8MapInfluence(BYTE i_byInflTy, int i_nMapI
 /// \brief		
 /// \author		cmkwon
 /// \date		2005-07-29 ~ 2005-07-29
-/// \warning	ÃÖ¼Ò°ªÀº 10ÀÌ´Ù
+/// \warning	ìµœì†Œê°’ì€ 10ì´ë‹¤
 ///
 /// \param		
 /// \return		
@@ -2246,7 +2246,7 @@ D3DXVECTOR3 CAtumSJ::GetRandomXZVec3(D3DXVECTOR3* i_pVec3Center, int i_nRandomRa
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumSJ::IsAlphaNum(char i_cParam)
-/// \brief		¾ËÆÄºª È¤Àº ¼ıÀÚ 
+/// \brief		ì•ŒíŒŒë²³ í˜¹ì€ ìˆ«ì 
 /// \author		cmkwon
 /// \date		2005-10-26 ~ 2005-10-26
 /// \warning	
@@ -2280,20 +2280,20 @@ BOOL CAtumSJ::IsValidCharacterName(char* i_szCharName)
 {
 	int nLen = strlen(i_szCharName);
 	if (nLen < SIZE_MIN_CHARACTER_NAME
-		|| nLen >= SIZE_MAXUSE_CHARACTER_NAME // 2008-03-24 by cmkwon, 14 Bytes ±îÁö¸¸ À¯È¿ÇÏ´Ù.
+		|| nLen >= SIZE_MAXUSE_CHARACTER_NAME // 2008-03-24 by cmkwon, 14 Bytes ê¹Œì§€ë§Œ ìœ íš¨í•˜ë‹¤.
 		|| nLen >= SIZE_MAX_CHARACTER_NAME)
 	{
 		return FALSE;
 	}
 
-	if (0 == strnicmp(i_szCharName, "sctest", 6) // 2006-04-06 by cmkwon, 'sctest'·Î ½ÃÀÛÇÏ´Â Ä³¸¯ÅÍ¸íÀº ¸¸µé ¼ö ¾ø´Ù
-		|| 0 == strnicmp(i_szCharName, "gm", 2)) // 2006-04-12 by cmkwon, 'gm'·Î ½ÃÀÛÇÏ´Â Ä³¸¯ÅÍ¸íÀº ¸¸µé ¼ö ¾ø´Ù
-	{// 2006-04-12 by cmkwon - ¸ğµç ¼­¹ö ¹öÀü¿¡ Àû¿ë, SQL Äõ¸® È¤Àº SCAdminTool·Î ¸¸ »ı¼º °¡´ÉÇÔ
+	if (0 == strnicmp(i_szCharName, "sctest", 6) // 2006-04-06 by cmkwon, 'sctest'ë¡œ ì‹œì‘í•˜ëŠ” ìºë¦­í„°ëª…ì€ ë§Œë“¤ ìˆ˜ ì—†ë‹¤
+		|| 0 == strnicmp(i_szCharName, "gm", 2)) // 2006-04-12 by cmkwon, 'gm'ë¡œ ì‹œì‘í•˜ëŠ” ìºë¦­í„°ëª…ì€ ë§Œë“¤ ìˆ˜ ì—†ë‹¤
+	{// 2006-04-12 by cmkwon - ëª¨ë“  ì„œë²„ ë²„ì „ì— ì ìš©, SQL ì¿¼ë¦¬ í˜¹ì€ SCAdminToolë¡œ ë§Œ ìƒì„± ê°€ëŠ¥í•¨
 		return FALSE;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-01-26 by cmkwon, ¾ğ´õ¹Ù('_')¸¸À¸·Î Ä³¸¯ÅÍ¸íÀÌ ÀÌ·ç¾îÁ® ÀÖ´ÂÁö Ã¼Å©
+	// 2007-01-26 by cmkwon, ì–¸ë”ë°”('_')ë§Œìœ¼ë¡œ ìºë¦­í„°ëª…ì´ ì´ë£¨ì–´ì ¸ ìˆëŠ”ì§€ ì²´í¬
 	BOOL bIsValid = FALSE;
 	for (int i = 0; i < nLen; i++)
 	{
@@ -2304,15 +2304,15 @@ BOOL CAtumSJ::IsValidCharacterName(char* i_szCharName)
 		}
 	}
 	if (FALSE == bIsValid)
-	{// 2007-01-26 by cmkwon, Ä³¸¯ÅÍ¸íÀÌ '_'¸¸À¸·Î µÇ¾îÀÖ´Ù
+	{// 2007-01-26 by cmkwon, ìºë¦­í„°ëª…ì´ '_'ë§Œìœ¼ë¡œ ë˜ì–´ìˆë‹¤
 		return FALSE;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-12-05 by cmkwon, Ä³¸¯ÅÍ¸í Ã¼Å©½Ã Æ¯¼ö¹®ÀÚ Ã¼Å© ·çÆ¾ ¼öÁ¤ - CAtumSJ::IsValidOneByteCharacter() ·Î Ã¼Å©
+	// 2007-12-05 by cmkwon, ìºë¦­í„°ëª… ì²´í¬ì‹œ íŠ¹ìˆ˜ë¬¸ì ì²´í¬ ë£¨í‹´ ìˆ˜ì • - CAtumSJ::IsValidOneByteCharacter() ë¡œ ì²´í¬
 	if (FALSE == CAtumSJ::IsValidOneByteCharacter(i_szCharName))
 	{
-		// 2007-12-05 by cmkwon, 1 Byte ¹®ÀÚ°¡ Çã¿ëµÇÁö ¾ÊÀº ¹®ÀÚ°¡ ÀÖ´Ù
+		// 2007-12-05 by cmkwon, 1 Byte ë¬¸ìê°€ í—ˆìš©ë˜ì§€ ì•Šì€ ë¬¸ìê°€ ìˆë‹¤
 		return FALSE;
 	}
 
@@ -2339,19 +2339,19 @@ BOOL CAtumSJ::IsValidGuildName(char* i_szGuildName)
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-10-22 by cmkwon, ¿©´Ü¸í Ã¼Å© - ½ÃÀÛ, ¸¶Áö¸· ¹®ÀÚ·Î »ç¿ë ºÒ°¡´É ¹®Á¦ Ã¼Å©
+	// 2007-10-22 by cmkwon, ì—¬ë‹¨ëª… ì²´í¬ - ì‹œì‘, ë§ˆì§€ë§‰ ë¬¸ìë¡œ ì‚¬ìš© ë¶ˆê°€ëŠ¥ ë¬¸ì œ ì²´í¬
 	if (strchr(STR_INVALID_PRE8SUFFIX_GUILD_NAME, i_szGuildName[0])
 		|| strchr(STR_INVALID_PRE8SUFFIX_GUILD_NAME, i_szGuildName[nLen - 1]))
 	{
 		return FALSE;
 	}
 
-	// 2008-04-25 by cmkwon, Áö¿ø ¾ğ¾î/¼­ºñ½º Ãß°¡½Ã ²À Ãß°¡ µÇ¾î¾ß ÇÏ´Â »çÇ× - [¾ğ¾î-ÇÊ¼ö] Ãß°¡ ¾ğ¾îÀÇ GuildName Ã¼Å© ·çÆ¾¿¡ Ãß°¡
+	// 2008-04-25 by cmkwon, ì§€ì› ì–¸ì–´/ì„œë¹„ìŠ¤ ì¶”ê°€ì‹œ ê¼­ ì¶”ê°€ ë˜ì–´ì•¼ í•˜ëŠ” ì‚¬í•­ - [ì–¸ì–´-í•„ìˆ˜] ì¶”ê°€ ì–¸ì–´ì˜ GuildName ì²´í¬ ë£¨í‹´ì— ì¶”ê°€
 
 	char szSpecialCharacterString[] = "!@#$%^&*()+|~'[];/.,<>?:\"{}\\-`=";
 	for (int i = 0; i < nLen; i++)
 	{
-		if (FALSE == CAtumSJ::IsAlphaNum(i_szGuildName[i]) // ¾ËÆÄºª, ¼ıÀÚ Ã¼Å©
+		if (FALSE == CAtumSJ::IsAlphaNum(i_szGuildName[i]) // ì•ŒíŒŒë²³, ìˆ«ì ì²´í¬
 			&& '_' != i_szGuildName[i])
 		{
 			return FALSE;
@@ -2430,7 +2430,7 @@ BOOL CAtumSJ::LoadAllLetterList(const char* i_szFilePath)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumSJ::IsValidOneByteCharacter(char *i_szSource, int i_nLanguageTy)
-/// \brief		// 2007-12-05 by cmkwon, Ä³¸¯ÅÍ¸í Ã¼Å©½Ã Æ¯¼ö¹®ÀÚ Ã¼Å© ·çÆ¾ ¼öÁ¤ - CAtumSJ::IsValidOneByteCharacter() Ãß°¡
+/// \brief		// 2007-12-05 by cmkwon, ìºë¦­í„°ëª… ì²´í¬ì‹œ íŠ¹ìˆ˜ë¬¸ì ì²´í¬ ë£¨í‹´ ìˆ˜ì • - CAtumSJ::IsValidOneByteCharacter() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-12-05 ~ 2007-12-05
 /// \warning	
@@ -2462,7 +2462,7 @@ BOOL CAtumSJ::IsValidOneByteCharacter(const char* i_szSource)
 ///////////////////////////////////////////////////////////////////////////////
 INT CAtumSJ::GetSPIPenaltyOnDead(int i_nLevel)
 {
-	// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - CAtumSJ::GetSPIPenaltyOnDead#
+	// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - CAtumSJ::GetSPIPenaltyOnDead#
 #ifdef _ATUM_CLIENT
 	if (FALSE == util::in_range(1, i_nLevel, CHARACTER_LEVEL_110_MAX_STAT_POINT))
 	{
@@ -2477,7 +2477,7 @@ INT CAtumSJ::GetSPIPenaltyOnDead(int i_nLevel)
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
 /// \brief		
-///				// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - ÀÎÀÚ º¯°æ
+///				// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì¸ì ë³€ê²½
 /// \author		dhjin
 /// \date		2006-09-14 ~ 2006-09-14
 /// \warning	
@@ -2489,15 +2489,15 @@ INT CAtumSJ::GetMaxInventorySize(BOOL i_IsMembership, int i_nAddedCnt)
 {
 	if (FALSE == i_IsMembership)
 	{
-		return SIZE_MAX_ITEM_GENERAL + i_nAddedCnt; // 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+		return SIZE_MAX_ITEM_GENERAL + i_nAddedCnt; // 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 	}
 
-	return SIZE_MAX_ITEM_GENERAL + COUNT_IN_MEMBERSHIP_ADDED_INVENTORY + i_nAddedCnt; // 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+	return SIZE_MAX_ITEM_GENERAL + COUNT_IN_MEMBERSHIP_ADDED_INVENTORY + i_nAddedCnt; // 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - ÀÎÀÚ º¯°æ
+/// \brief		// 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - ì¸ì ë³€ê²½
 /// \author		dhjin
 /// \date		2006-09-14 ~ 2006-09-14
 /// \warning	
@@ -2509,10 +2509,10 @@ INT CAtumSJ::GetMaxStoreSize(BOOL i_IsMembership, int i_nAddedCnt)
 {
 	if (FALSE == i_IsMembership)
 	{
-		return SIZE_MAX_ITEM_GENERAL_IN_STORE + i_nAddedCnt; // 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+		return SIZE_MAX_ITEM_GENERAL_IN_STORE + i_nAddedCnt; // 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 	}
 
-	return SIZE_MAX_ITEM_GENERAL_IN_STORE + COUNT_IN_MEMBERSHIP_ADDED_STORE + i_nAddedCnt; // 2009-11-02 by cmkwon, Ä³½¬(ÀÎº¥/Ã¢°í È®Àå) ¾ÆÀÌÅÛ Ãß°¡ ±¸Çö - 
+	return SIZE_MAX_ITEM_GENERAL_IN_STORE + COUNT_IN_MEMBERSHIP_ADDED_STORE + i_nAddedCnt; // 2009-11-02 by cmkwon, ìºì‰¬(ì¸ë²¤/ì°½ê³  í™•ì¥) ì•„ì´í…œ ì¶”ê°€ êµ¬í˜„ - 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -2537,7 +2537,7 @@ INT CAtumSJ::GetMaxGuildSize(INT i_nGuildMemberCapacity, BOOL i_IsMembership)
 		return SIZE_MAX_GUILD_CAPACITY ;
 	}
 
-	// 2008-08-12 by dhjin, ¹ö±×·Î i_nGuildMemberCapacity¸¦ ¸®ÅÏÇÑ´Ù. // 2008-05-27 by dhjin, EP3 ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü¿ø Áõ°¡ Ä³½¬ ¾ÆÀÌÅÛ
+	// 2008-08-12 by dhjin, ë²„ê·¸ë¡œ i_nGuildMemberCapacityë¥¼ ë¦¬í„´í•œë‹¤. // 2008-05-27 by dhjin, EP3 ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì› ì¦ê°€ ìºì‰¬ ì•„ì´í…œ
 	//	return SIZE_MAX_INITIAL_GUILD_CAPACITY;
 	//	return SIZE_MAX_GUILD_CAPACITY;
 	return i_nGuildMemberCapacity;
@@ -2584,7 +2584,7 @@ char* CAtumSJ::GetJamboreePreAddCharacterString(int i_nNumber)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CAtumSJ::IsValidPiotFace(BYTE i_byPilotFace)
-/// \brief		// 2007-11-21 by cmkwon, PilotFace º¯°æ Ä«µå ±¸Çö - 
+/// \brief		// 2007-11-21 by cmkwon, PilotFace ë³€ê²½ ì¹´ë“œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2007-11-21 ~ 2007-11-21
 /// \warning	
@@ -2601,8 +2601,8 @@ BOOL CAtumSJ::IsValidPiotFace(BYTE i_byPilotFace)
 	case 2:
 	case 3:
 	case 4:
-	case 5: // 2008-05-30 by dhjin, ½Å±Ô ÄÉ¸¯ÅÍ Ãß°¡
-	case 6: // 2011-12-20 by hskim, EP4 [½Å±Ô Ä³¸¯ÅÍ]
+	case 5: // 2008-05-30 by dhjin, ì‹ ê·œ ì¼€ë¦­í„° ì¶”ê°€
+	case 6: // 2011-12-20 by hskim, EP4 [ì‹ ê·œ ìºë¦­í„°]
 #ifdef EP1_CHARACTER
 	case 7:
 #endif
@@ -2611,8 +2611,8 @@ BOOL CAtumSJ::IsValidPiotFace(BYTE i_byPilotFace)
 	case 102:
 	case 103:
 	case 104:
-	case 105: // 2008-05-30 by dhjin, ½Å±Ô ÄÉ¸¯ÅÍ Ãß°¡
-	case 106: // 2011-12-20 by hskim, EP4 [½Å±Ô Ä³¸¯ÅÍ]
+	case 105: // 2008-05-30 by dhjin, ì‹ ê·œ ì¼€ë¦­í„° ì¶”ê°€
+	case 106: // 2011-12-20 by hskim, EP4 [ì‹ ê·œ ìºë¦­í„°]
 #ifdef EP1_CHARACTER
 	case 107:
 #endif
@@ -2627,8 +2627,8 @@ BOOL CAtumSJ::IsValidPiotFace(BYTE i_byPilotFace)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM *i_pItemInfo)
-/// \brief		// 2008-11-26 by cmkwon, »ç¿ë ÈÄ ½Ã°£(Àı´ë½Ã°£) Á¦ÇÑ ¾ÆÀÌÅÛ ±¸Çö - 
-///				// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - CAtumSJ::GetTimeSecondByItemKind8ItemAttribute#, ¼öÁ¤
+/// \brief		// 2008-11-26 by cmkwon, ì‚¬ìš© í›„ ì‹œê°„(ì ˆëŒ€ì‹œê°„) ì œí•œ ì•„ì´í…œ êµ¬í˜„ - 
+///				// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - CAtumSJ::GetTimeSecondByItemKind8ItemAttribute#, ìˆ˜ì •
 /// \author		cmkwon
 /// \date		2008-11-26 ~ 2008-11-26
 /// \warning	
@@ -2638,7 +2638,7 @@ BOOL CAtumSJ::IsValidPiotFace(BYTE i_byPilotFace)
 ///////////////////////////////////////////////////////////////////////////////
 INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_t i_enTimeTermTy/*=TIME_TERM_USING_ITEM*/)
 {
-	// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+	// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 	// 	switch(i_pItemInfo->Kind)
 	// 	{
 	// 	case ITEMKIND_AUTOMATIC:
@@ -2667,21 +2667,21 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 	// 		{
 	// 			if(COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_DELETED_TIME_LIMITE_AFTER_USED))
 	// 			{
-	// 				return i_pItemInfo->Time;	// Second(ÃÊ) ´ÜÀ§·Î ¼³Á¤µÇ¾î ÀÖÀ½
+	// 				return i_pItemInfo->Time;	// Second(ì´ˆ) ë‹¨ìœ„ë¡œ ì„¤ì •ë˜ì–´ ìˆìŒ
 	// 			}
 	// 
 	// 			if(COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_CASH_ITEM_PREMIUM_CARD))
 	// 			{
-	// 				return i_pItemInfo->Time * 24 * 60 * 60;	// ÀÏ(Day) ´ÜÀ§·Î ¼³Á¤µÇ¾î ÀÖÀ½
+	// 				return i_pItemInfo->Time * 24 * 60 * 60;	// ì¼(Day) ë‹¨ìœ„ë¡œ ì„¤ì •ë˜ì–´ ìˆìŒ
 	// 			}
 	// 
-	// 			return i_pItemInfo->Time/1000;	// ³ª¸ÓÁö´Â ¹Ğ¸®¼¼ÄÁµå(ms) ´ÜÀ§·Î ¼³Á¤
+	// 			return i_pItemInfo->Time/1000;	// ë‚˜ë¨¸ì§€ëŠ” ë°€ë¦¬ì„¸ì»¨ë“œ(ms) ë‹¨ìœ„ë¡œ ì„¤ì •
 	// 		}
 	// 		break;
 	// 	}
 	// 
 	// 	return i_pItemInfo->Time;
-	// 2010-11-09 by dhjin - º£Æ®³² Á×´Â ¹ö±× ¿äÃ» Ã£±â À§ÇØ ÀÏ´Ü ·Î±× ³²±â±â.
+	// 2010-11-09 by dhjin - ë² íŠ¸ë‚¨ ì£½ëŠ” ë²„ê·¸ ìš”ì²­ ì°¾ê¸° ìœ„í•´ ì¼ë‹¨ ë¡œê·¸ ë‚¨ê¸°ê¸°.
 	if (NULL == i_pItemInfo)
 	{
 		return 0;
@@ -2690,7 +2690,7 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 #ifdef _ATUM_CLIENT
 
 #else
-	// 2012-08-28 by jhseol, ½Ã°£Á¦ ¾ÆÀÌÅÛ °ü·Ã ·Î±× »èÁ¦ ¿äÃ»
+	// 2012-08-28 by jhseol, ì‹œê°„ì œ ì•„ì´í…œ ê´€ë ¨ ë¡œê·¸ ì‚­ì œ ìš”ì²­
 #ifndef S_TIMEITEM_LOG_HIDE_JHSEOL
 	char szSysLog[1024];
 	sprintf(szSysLog,"  [Notify] CAtumSJ::GetTimeSecondByItemKind8ItemAttribute,IN \r\n");
@@ -2700,26 +2700,26 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 	g_pGlobal->WriteSystemLogEX(TRUE, szSysLog1);
 #endif // #ifndef S_TIMEITEM_LOG_HIDE_JHSEOL
 
-	// end 2012-08-28 by jhseol, ½Ã°£Á¦ ¾ÆÀÌÅÛ °ü·Ã ·Î±× »èÁ¦ ¿äÃ»
+	// end 2012-08-28 by jhseol, ì‹œê°„ì œ ì•„ì´í…œ ê´€ë ¨ ë¡œê·¸ ì‚­ì œ ìš”ì²­
 #endif
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - 
+	// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - 
 	switch (i_enTimeTermTy)
 	{
 	case TIME_TERM_USING_ITEM:
 		{
 			if (ITEMKIND_ACCESSORY_TIMELIMIT == i_pItemInfo->Kind)
 				
-				return i_pItemInfo->Time / 1000; // ¹Ğ¸®¼¼ÄÁµå(ms) ´ÜÀ§
+				return i_pItemInfo->Time / 1000; // ë°€ë¦¬ì„¸ì»¨ë“œ(ms) ë‹¨ìœ„
 
 			if (COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_TIME_LIMITE))
 				
-				return i_pItemInfo->Time / 1000; // ¹Ğ¸®¼¼ÄÁµå(ms) ´ÜÀ§
+				return i_pItemInfo->Time / 1000; // ë°€ë¦¬ì„¸ì»¨ë“œ(ms) ë‹¨ìœ„
 
 			if (COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_DELETED_TIME_LIMITE_AFTER_USED))
 				
-				return i_pItemInfo->Time; // ¼¼ÄÁµå(s) ´ÜÀ§
+				return i_pItemInfo->Time; // ì„¸ì»¨ë“œ(s) ë‹¨ìœ„
 	
 			return i_pItemInfo->Time;
 		}
@@ -2727,7 +2727,7 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 		{
 			if (COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_DELETED_TIME_LIMITE))
 			{
-				return i_pItemInfo->Endurance * 3600; // ½Ã°£À¸·Î ¼³Á¤µÇ¾î ÀÖÀ½
+				return i_pItemInfo->Endurance * 3600; // ì‹œê°„ìœ¼ë¡œ ì„¤ì •ë˜ì–´ ìˆìŒ
 			}
 		}
 		break;
@@ -2735,7 +2735,7 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 		{
 			if (COMPARE_BIT_FLAG(i_pItemInfo->ItemAttribute, ITEM_ATTR_CASH_ITEM_PREMIUM_CARD))
 			{
-				return i_pItemInfo->Time * 86400; // Day·Î ¼³Á¤µÇ¾î ÀÖÀ½
+				return i_pItemInfo->Time * 86400; // Dayë¡œ ì„¤ì •ë˜ì–´ ìˆìŒ
 			}
 		}
 		break;
@@ -2753,7 +2753,7 @@ INT CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - CAtumSJ::GetTimeMinuteByItemKind8ItemAttribute#, Ãß°¡
+/// \brief		// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - CAtumSJ::GetTimeMinuteByItemKind8ItemAttribute#, ì¶”ê°€
 /// \author		cmkwon
 /// \date		2009-10-22 ~ 2009-10-22
 /// \warning	
@@ -2774,7 +2774,7 @@ INT CAtumSJ::GetTimeMinuteByItemKind8ItemAttribute(ITEM* i_pItemInfo, TIME_TERM_
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+/// \brief		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-02-24 ~ 2009-02-24
 /// \warning	
@@ -2797,7 +2797,7 @@ BOOL CAtumSJ::IsAlphaNum(char* i_szString)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+/// \brief		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-02-19 ~ 2009-02-19
 /// \warning	
@@ -2819,8 +2819,8 @@ BOOL CAtumSJ::IsValidNickName(char* i_szNickName)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-08-03 by cmkwon, EP3-4 Æí´ë ´ëÇü ½ºÅ³ ±¸Çö - ÇØ´ç Æí´ë ´ëÇüº° Àû¿ë µÉ ½ºÅ³¾ÆÀÌÅÛ¹øÈ£¸¦ ¸®ÅÏÇÑ´Ù.
-///				// 2009-09-30 by cmkwon, Æí´ë ´ëÇüº° ½ºÅ³ ItemNum º¯°æ - 
+/// \brief		// 2009-08-03 by cmkwon, EP3-4 í¸ëŒ€ ëŒ€í˜• ìŠ¤í‚¬ êµ¬í˜„ - í•´ë‹¹ í¸ëŒ€ ëŒ€í˜•ë³„ ì ìš© ë  ìŠ¤í‚¬ì•„ì´í…œë²ˆí˜¸ë¥¼ ë¦¬í„´í•œë‹¤.
+///				// 2009-09-30 by cmkwon, í¸ëŒ€ ëŒ€í˜•ë³„ ìŠ¤í‚¬ ItemNum ë³€ê²½ - 
 /// \author		cmkwon
 /// \date		2009-08-17 ~ 2009-08-17
 /// \warning	
@@ -2832,14 +2832,14 @@ INT CAtumSJ::FindPartyFormationSkillNum(BYTE i_byFormationTy)
 {
 	switch (i_byFormationTy)
 	{
-	case FLIGHT_FORM_2_COLUMN: return 7813151; // ÀÌ·Ä Á¾´ë
-	case FLIGHT_FORM_2_LINE: return 7813091; // ÀÌ·Ä È¾´ë
-	case FLIGHT_FORM_TRIANGLE: return 7813101; // »ï°¢ Æí´ë
-	case FLIGHT_FORM_INVERTED_TRIANGLE: return 7813161; // ¿ª»ï°¢ Æí´ë
-	case FLIGHT_FORM_BELL: return 7813111; // Á¾ ÇüÅÂ
-	case FLIGHT_FORM_INVERTED_BELL: return 7813131; // ¿ªÁ¾ ÇüÅÂ
-	case FLIGHT_FORM_X: return 7813171; // XÀÚ ÇüÅÂ
-	case FLIGHT_FORM_STAR: return 7813141; // º° ÇüÅÂ
+	case FLIGHT_FORM_2_COLUMN: return 7813151; // ì´ë ¬ ì¢…ëŒ€
+	case FLIGHT_FORM_2_LINE: return 7813091; // ì´ë ¬ íš¡ëŒ€
+	case FLIGHT_FORM_TRIANGLE: return 7813101; // ì‚¼ê° í¸ëŒ€
+	case FLIGHT_FORM_INVERTED_TRIANGLE: return 7813161; // ì—­ì‚¼ê° í¸ëŒ€
+	case FLIGHT_FORM_BELL: return 7813111; // ì¢… í˜•íƒœ
+	case FLIGHT_FORM_INVERTED_BELL: return 7813131; // ì—­ì¢… í˜•íƒœ
+	case FLIGHT_FORM_X: return 7813171; // Xì í˜•íƒœ
+	case FLIGHT_FORM_STAR: return 7813141; // ë³„ í˜•íƒœ
 	}
 
 	return 0;
@@ -2847,7 +2847,7 @@ INT CAtumSJ::FindPartyFormationSkillNum(BYTE i_byFormationTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-01-14 by cmkwon, ¿ùµå·©Å·½Ã½ºÅÛ ¹ö±× ¼öÁ¤(¼­ºñ½º»èÁ¦,¼­¹ö±×·ì»èÁ¦) - 
+/// \brief		// 2010-01-14 by cmkwon, ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •(ì„œë¹„ìŠ¤ì‚­ì œ,ì„œë²„ê·¸ë£¹ì‚­ì œ) - 
 /// \author		cmkwon
 /// \date		2010-01-14 ~ 2010-01-14
 /// \warning	
@@ -2877,7 +2877,7 @@ BOOL CAtumSJ::IsValidWRankingServiceName(char* i_szServiceName)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
+/// \brief		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2010-04-21 ~ 2010-04-21
 /// \warning	
@@ -2895,13 +2895,13 @@ int CAtumSJ::GetLuckyMachineSlotCount(int i_machineKind)
 	case LUCKY_MACHINE_KIND_ARMOR_MACHINE: return 3;
 	}
 
-	return MaxPayLuckyMachineItem ; // ÃÖ´ë ÇÊ¿ä °³¼ö ¸®ÅÏ
+	return MaxPayLuckyMachineItem ; // ìµœëŒ€ í•„ìš” ê°œìˆ˜ ë¦¬í„´
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - 
-///				// 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
+/// \brief		// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - 
+///				// 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
 /// \author		cmkwon
 /// \date		2010-04-21 ~ 2010-04-21
 /// \warning	
@@ -2927,7 +2927,7 @@ int CAtumSJ::GetRareItemInfoList(vectRARE_ITEM_INFOPtrList* o_pValidRareList, BO
 			|| (FALSE == i_bIsPrefix && FALSE == IS_RARE_SUFFIX(pRareItemInfo->CodeNum))
 			|| FALSE == util::in_range(pRareItemInfo->ReqMinLevel, nReqMinLevel, pRareItemInfo->ReqMaxLevel)
 			|| FALSE == COMPARE_ITEMKIND(pRareItemInfo->ReqItemKind, i_pTargetItemInfo->Kind)
-			|| FALSE == COMPARE_BIT_FLAG(pRareItemInfo->ReqUseType, nReqUseTypeMask)) // 2010-04-20 by cmkwon, ½Å±Ô ·¯Å° ¸Ó½Å ±¸Çö - (ºüÁøºÎºĞÃß°¡) - 
+			|| FALSE == COMPARE_BIT_FLAG(pRareItemInfo->ReqUseType, nReqUseTypeMask)) // 2010-04-20 by cmkwon, ì‹ ê·œ ëŸ¬í‚¤ ë¨¸ì‹  êµ¬í˜„ - (ë¹ ì§„ë¶€ë¶„ì¶”ê°€) - 
 		{
 			continue;
 		}
@@ -2953,25 +2953,25 @@ const char* CAtumSJ::GetInfluenceTypeString(BYTE i_byInfluenceTy)
 	return "Unknown Influence";
 }
 
-// 2010-06-01 by shcho, GLogDB °ü·Ã -
+// 2010-06-01 by shcho, GLogDB ê´€ë ¨ -
 const char* CAtumSJ::GetInfluenceTypeGLogString(BYTE i_byInfluenceTy)
 {
 	if (INFLUENCE_TYPE_ALL_MASK == i_byInfluenceTy)
-	{// ¸ğµç ¼¼·Â
-		// 2007-10-30 by cmkwon, ¼¼·Âº° ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ±¸Çö - Á¤ÀÇ ÇÔ
+	{// ëª¨ë“  ì„¸ë ¥
+		// 2007-10-30 by cmkwon, ì„¸ë ¥ë³„ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ êµ¬í˜„ - ì •ì˜ í•¨
 		//return "All Influence User";
 		return INFLUENCE_TYPE_ENG_ALL_MASK;
 	}
 	if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL))
-	{// ¹ÙÀÌÁ¦´ÏÀ¯  ½ÃÆ¼ ÀÏ¹İ±º
+	{// ë°”ì´ì œë‹ˆìœ   ì‹œí‹° ì¼ë°˜êµ°
 		return INFLUENCE_TYPE_ENG_NORMAL;
 	}
 	if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_VCN))
-	{// ¹ÙÀÌÁ¦´ÏÀ¯  ½ÃÆ¼ Á¤±Ô±º
+	{// ë°”ì´ì œë‹ˆìœ   ì‹œí‹° ì •ê·œêµ°
 		return INFLUENCE_TYPE_ENG_VCN;
 	}
 	if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_ANI))
-	{// ¾Ë¸µÅÏ ½ÃÆ¼ ¹İ¶õ±º
+	{// ì•Œë§í„´ ì‹œí‹° ë°˜ë€êµ°
 		return INFLUENCE_TYPE_ENG_ANI;
 	}
 	return "Unknown Influence";
@@ -2980,7 +2980,7 @@ const char* CAtumSJ::GetInfluenceTypeGLogString(BYTE i_byInfluenceTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¾ÆÀÌÅÛ Åø¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö
+/// \brief		ì•„ì´í…œ íˆ´ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
 /// \author		cmkwon
 /// \date		2005-07-08 ~ 2005-07-08
 /// \warning	
@@ -2995,33 +2995,33 @@ const char* CAtumSJ::GetPositionString(BYTE i_byPosition)
 	case POS_PROW: return STRCMD_CS_POS_PROW;
 	case POS_PROWIN: return STRCMD_CS_POS_PROWIN;
 	case POS_PROWOUT: return STRCMD_CS_POS_PROWOUT;
-	case POS_WINGIN: return STRCMD_CS_POS_WINGIN; // 2006-07-20 by cmkwon, ÀÌÆåÆ® ¾ÆÀÌÅÛ (Áß¾Ó À§ÂÊ)
+	case POS_WINGIN: return STRCMD_CS_POS_WINGIN; // 2006-07-20 by cmkwon, ì´í™íŠ¸ ì•„ì´í…œ (ì¤‘ì•™ ìœ„ìª½)
 	case POS_WINGOUT: return STRCMD_CS_POS_WINGOUT;
 	case POS_CENTER: return STRCMD_CS_POS_CENTER;
 	case POS_REAR: return STRCMD_CS_POS_REAR;
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¼±¾ğ º¯°æ.
-		//case POS_ATTACHMENT:		return STRCMD_CS_POS_ATTACHMENT;		// 2006-03-30 by cmkwon, ¹«Á¦ÇÑ ¾Ç¼¼»ç¸® - ºÎÂø¹°
-	case POS_ACCESSORY_UNLIMITED: return STRCMD_CS_POS_ACCESSORY_UNLIMITED; // 2006-03-30 by cmkwon, ¹«Á¦ÇÑ ¾Ç¼¼»ç¸® - ºÎÂø¹°
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì„ ì–¸ ë³€ê²½.
+		//case POS_ATTACHMENT:		return STRCMD_CS_POS_ATTACHMENT;		// 2006-03-30 by cmkwon, ë¬´ì œí•œ ì•…ì„¸ì‚¬ë¦¬ - ë¶€ì°©ë¬¼
+	case POS_ACCESSORY_UNLIMITED: return STRCMD_CS_POS_ACCESSORY_UNLIMITED; // 2006-03-30 by cmkwon, ë¬´ì œí•œ ì•…ì„¸ì‚¬ë¦¬ - ë¶€ì°©ë¬¼
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¼±¾ğ º¯°æ.
-		//case POS_PET:				return STRCMD_CS_POS_PET;				// 2006-03-30 by cmkwon, ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸®
-	case POS_ACCESSORY_TIME_LIMIT: return STRCMD_CS_POS_ACCESSORY_TIME_LIMIT; // 2006-03-30 by cmkwon, ½Ã°£Á¦ÇÑ ¾Ç¼¼»ç¸®
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ì„ ì–¸ ë³€ê²½.
+		//case POS_PET:				return STRCMD_CS_POS_PET;				// 2006-03-30 by cmkwon, ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬
+	case POS_ACCESSORY_TIME_LIMIT: return STRCMD_CS_POS_ACCESSORY_TIME_LIMIT; // 2006-03-30 by cmkwon, ì‹œê°„ì œí•œ ì•…ì„¸ì‚¬ë¦¬
 
-		// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ
+		// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ
 	case POS_PET: return STRCMD_CS_POS_PET;
 
-	case POS_HIDDEN_ITEM: return STRCMD_CS_HIDDEN_ITEM ; // 2011-09-20 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ¼û°ÜÁø ¾ÆÀÌÅÛ
+	case POS_HIDDEN_ITEM: return STRCMD_CS_HIDDEN_ITEM ; // 2011-09-20 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìˆ¨ê²¨ì§„ ì•„ì´í…œ
 	case POS_INVALID_POSITION: return STRCMD_CS_POS_INVALID_POSITION;
 	}
 
-	return STRCMD_CS_POS_ITEMWINDOW_OFFSET; // POS_ITEMWINDOW_OFFSET ÀÌ¹øÈ£ ºÎÅÍ´Â ÀÎº¥Åä¸®¿¡ À§Ä¡
+	return STRCMD_CS_POS_ITEMWINDOW_OFFSET; // POS_ITEMWINDOW_OFFSET ì´ë²ˆí˜¸ ë¶€í„°ëŠ” ì¸ë²¤í† ë¦¬ì— ìœ„ì¹˜
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¾ÆÀÌÅÛ Åø¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö
+/// \brief		ì•„ì´í…œ íˆ´ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
 /// \author		cmkwon
 /// \date		2005-07-08 ~ 2005-07-08
 /// \warning	
@@ -3038,7 +3038,7 @@ const char* CAtumSJ::GetReqUnitKindString(USHORT i_usUnitKindMask)
 	case UNITKIND_AGEAR_MASK: return STRCMD_CS_UNITKIND_AGEAR_ALL; // 2007-03-29 by cmkwon
 	case UNITKIND_IGEAR_MASK: return STRCMD_CS_UNITKIND_IGEAR_ALL; // 2007-03-29 by cmkwon
 	case UNITKIND_ALL_MASK: return STRCMD_CS_UNITKIND_GEAR_ALL; // 2007-03-29 by cmkwon
-		// 2005-07-08 by cmkwon, Áö±İÀº ÇÊ¿ä ¾øÀ½
+		// 2005-07-08 by cmkwon, ì§€ê¸ˆì€ í•„ìš” ì—†ìŒ
 		//	case UNITKIND_BGEAR:				return "B-Gear";
 		//	case UNITKIND_MGEAR:				return "M-Gear";
 		//	case UNITKIND_AGEAR:				return "A-Gear";
@@ -3062,19 +3062,19 @@ const char* CAtumSJ::GetGuildRankString(BYTE i_byGuildRank)
 {
 	switch (i_byGuildRank)
 	{
-	case GUILD_RANK_PRIVATE_NULL: return STRCMD_CS_GUILD_RANK_PRIVATE_NULL; // ¹«¼Ò¼Ó ´ë´ë¿ø
-	case GUILD_RANK_COMMANDER: return STRCMD_CS_GUILD_RANK_COMMANDER; // ºñÇà¿©´ÜÀå, ±æµåÀå
-	case GUILD_RANK_SUBCOMMANDER: return STRCMD_CS_GUILD_RANK_SUBCOMMANDER ; // ºÎ¿©´ÜÀå				// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	case GUILD_RANK_SQUAD_LEADER_1: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_1; // Á¦ 1 ºñÇà´ë´ëÀå
-	case GUILD_RANK_PRIVATE_1: return STRCMD_CS_GUILD_RANK_PRIVATE_1; // Á¦ 1 ºñÇà´ë´ë¿ø
-	case GUILD_RANK_SQUAD_LEADER_2: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_2; // Á¦ 2 ºñÇà´ë´ëÀå
-	case GUILD_RANK_PRIVATE_2: return STRCMD_CS_GUILD_RANK_PRIVATE_2; // Á¦ 2 ºñÇà´ë´ë¿ø
-	case GUILD_RANK_SQUAD_LEADER_3: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_3; // Á¦ 3 ºñÇà´ë´ëÀå
-	case GUILD_RANK_PRIVATE_3: return STRCMD_CS_GUILD_RANK_PRIVATE_3; // Á¦ 3 ºñÇà´ë´ë¿ø
-	case GUILD_RANK_SQUAD_LEADER_4: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_4; // Á¦ 4 ºñÇà´ë´ëÀå
-	case GUILD_RANK_PRIVATE_4: return STRCMD_CS_GUILD_RANK_PRIVATE_4; // Á¦ 4 ºñÇà´ë´ë¿ø
-	case GUILD_RANK_SQUAD_LEADER_5: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_5; // Á¦ 5 ºñÇà´ë´ëÀå
-	case GUILD_RANK_PRIVATE_5: return STRCMD_CS_GUILD_RANK_PRIVATE_5; // Á¦ 5 ºñÇà´ë´ë¿ø
+	case GUILD_RANK_PRIVATE_NULL: return STRCMD_CS_GUILD_RANK_PRIVATE_NULL; // ë¬´ì†Œì† ëŒ€ëŒ€ì›
+	case GUILD_RANK_COMMANDER: return STRCMD_CS_GUILD_RANK_COMMANDER; // ë¹„í–‰ì—¬ë‹¨ì¥, ê¸¸ë“œì¥
+	case GUILD_RANK_SUBCOMMANDER: return STRCMD_CS_GUILD_RANK_SUBCOMMANDER ; // ë¶€ì—¬ë‹¨ì¥				// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	case GUILD_RANK_SQUAD_LEADER_1: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_1; // ì œ 1 ë¹„í–‰ëŒ€ëŒ€ì¥
+	case GUILD_RANK_PRIVATE_1: return STRCMD_CS_GUILD_RANK_PRIVATE_1; // ì œ 1 ë¹„í–‰ëŒ€ëŒ€ì›
+	case GUILD_RANK_SQUAD_LEADER_2: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_2; // ì œ 2 ë¹„í–‰ëŒ€ëŒ€ì¥
+	case GUILD_RANK_PRIVATE_2: return STRCMD_CS_GUILD_RANK_PRIVATE_2; // ì œ 2 ë¹„í–‰ëŒ€ëŒ€ì›
+	case GUILD_RANK_SQUAD_LEADER_3: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_3; // ì œ 3 ë¹„í–‰ëŒ€ëŒ€ì¥
+	case GUILD_RANK_PRIVATE_3: return STRCMD_CS_GUILD_RANK_PRIVATE_3; // ì œ 3 ë¹„í–‰ëŒ€ëŒ€ì›
+	case GUILD_RANK_SQUAD_LEADER_4: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_4; // ì œ 4 ë¹„í–‰ëŒ€ëŒ€ì¥
+	case GUILD_RANK_PRIVATE_4: return STRCMD_CS_GUILD_RANK_PRIVATE_4; // ì œ 4 ë¹„í–‰ëŒ€ëŒ€ì›
+	case GUILD_RANK_SQUAD_LEADER_5: return STRCMD_CS_GUILD_RANK_SQUAD_LEADER_5; // ì œ 5 ë¹„í–‰ëŒ€ëŒ€ì¥
+	case GUILD_RANK_PRIVATE_5: return STRCMD_CS_GUILD_RANK_PRIVATE_5; // ì œ 5 ë¹„í–‰ëŒ€ëŒ€ì›
 	}
 	return "Unknown Guild Rank";
 }
@@ -3101,15 +3101,15 @@ BYTE CAtumSJ::GetOppositeNation(BYTE byInflType)
 	return INFLUENCE_TYPE_UNKNOWN ;
 }
 
-// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - 110·¹º§±îÁö °ª ¼³Á¤
-// ·¹º§ & °æÇèÄ¡ °ü·Ã
-//		// 2006-02-28 by cmkwon, ExprerienceLossOnDeath ¼öÄ¡ º¯°æ
+// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - 110ë ˆë²¨ê¹Œì§€ ê°’ ì„¤ì •
+// ë ˆë²¨ & ê²½í—˜ì¹˜ ê´€ë ¨
+//		// 2006-02-28 by cmkwon, ExprerienceLossOnDeath ìˆ˜ì¹˜ ë³€ê²½
 // struct LEVEL_EXPERIENCE {
-// 	INT				Level;						// ·¹º§
-// 	Experience_t	ExperienceIncreament;		// (ÇØ´ç ·¹º§ÀÇ ÃÖ°í °æÇèÄ¡) - (ÇØ´ç ·¹º§-1ÀÇ ÃÖ°í °æÇèÄ¡), Á¤È®ÇÏÁö ¾ÊÀ¸¹Ç·Î »ç¿ë ºÒ°¡!
-// 	Experience_t	Experience;					// (ÇØ´ç ·¹º§-1)ÀÇ ÃÊ±â °æÇèÄ¡
-// 	Experience_t	ExperienceLossOnDeath;		// Á×¾úÀ» ¶§ °æÇèÄ¡ °¨¼Ò·®
-//	INT				PenaltySPIOnDead;			// 2006-09-05 by cmkwon, Ä³¸¯ÅÍ°¡ Á×À» ¶§ ¶³¾îÁö´Â ·¹º§º° SPI Count
+// 	INT				Level;						// ë ˆë²¨
+// 	Experience_t	ExperienceIncreament;		// (í•´ë‹¹ ë ˆë²¨ì˜ ìµœê³  ê²½í—˜ì¹˜) - (í•´ë‹¹ ë ˆë²¨-1ì˜ ìµœê³  ê²½í—˜ì¹˜), ì •í™•í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ ì‚¬ìš© ë¶ˆê°€!
+// 	Experience_t	Experience;					// (í•´ë‹¹ ë ˆë²¨-1)ì˜ ì´ˆê¸° ê²½í—˜ì¹˜
+// 	Experience_t	ExperienceLossOnDeath;		// ì£½ì—ˆì„ ë•Œ ê²½í—˜ì¹˜ ê°ì†ŒëŸ‰
+//	INT				PenaltySPIOnDead;			// 2006-09-05 by cmkwon, ìºë¦­í„°ê°€ ì£½ì„ ë•Œ ë–¨ì–´ì§€ëŠ” ë ˆë²¨ë³„ SPI Count
 // };
 const LEVEL_EXPERIENCE arrLevelExperienceNew[] = {
 	{0 ,0 ,0 ,0 ,0},
@@ -3240,7 +3240,7 @@ const LEVEL_EXPERIENCE arrLevelExperienceNew[] = {
 	{125 ,6974027849 ,192136606741 ,79740278 ,2992304}
 };
 
-// start 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// start 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 const BURNING_MAP_LEVEL_ADD_EXPERIENCE arrBurningMapLevelAddExperience[] =
 {
 	{0, 100.0f},
@@ -3355,26 +3355,26 @@ const BURNING_MAP_LEVEL_ADD_EXPERIENCE arrBurningMapLevelAddExperience[] =
 	{109, 100.0f},
 	{110, 100.0f}
 };
-// end 2011-11-15 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - ¹ö´×¸Ê °æÇèÄ¡ Ãß°¡
+// end 2011-11-15 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - ë²„ë‹ë§µ ê²½í—˜ì¹˜ ì¶”ê°€
 
-// 2009-12-29 by cmkwon, Ä³¸¯ÅÍ ÃÖ´ë ·¹º§ »óÇâ(110À¸·Î) - ½ºÅÈ 341±îÁö °ª¼³Á¤, ¸ó½ºÅÍ ÇÃ·¯½º ÇÇ¾î½º 110·¹º§±îÁö ¼³Á¤
-// Level È¤Àº Stat¿¡ ´ëÇÑ °¢Á¾ °ª
+// 2009-12-29 by cmkwon, ìºë¦­í„° ìµœëŒ€ ë ˆë²¨ ìƒí–¥(110ìœ¼ë¡œ) - ìŠ¤íƒ¯ 341ê¹Œì§€ ê°’ì„¤ì •, ëª¬ìŠ¤í„° í”ŒëŸ¬ìŠ¤ í”¼ì–´ìŠ¤ 110ë ˆë²¨ê¹Œì§€ ì„¤ì •
+// Level í˜¹ì€ Statì— ëŒ€í•œ ê°ì¢… ê°’
 //struct LEVEL_STAT_VALUE
 //{
 //	INT		LevelOrStat;
-//	double	AttackPart_AttackIncreaseRate;			// °ø°İ ½ºÅÈ¿¡ ÀÇÇÑ attack Áõ°¡À², @GetAttackC()
-//	double	AttackPart_AttackIncreaseProbability;	// ¸íÁß·ü - °ø°İ½ºÅÈ¿¡ ÀÇÇÑ °ø°İÈ®·ü°ú µ¿ÀÏÇÑ ±â´ÉÀ» °¡Áö´Â Ãß°¡ È®·ü
-//	INT		AttackPart_PierceAttackProbability;		// ÇÇ¾î½ºÀ²(256È®·ü) - »ó´ë¹æ ¹æ¾îÀ²¿¡¼­ ÀÌ °ªÀ» Â÷°¨ÇÑ°ÍÀÌ ½ÇÁ¦ »ó´ë¹æ ¹æ¾îÀ²ÀÌ µÈ´Ù.
-//	double	DefensePart_DefenseDecreaseRate;		// ¹æ¾î ½ºÅÈ¿¡ ÀÇÇÑ defense °¨¼ÒºĞ, @GetDefenseC()
-//	double	ShieldPart_DP;							// ShieldPart¿¡ ´ëÇÑ Shield(DP)°ª
-//	double	DodgePart_DefenseProbabilityRate;		// È¸ÇÇ ½ºÅÈ¿¡ ÀÇÇÑ ¹æ¾îÈ®·üÀÇ ºñÀ², @GetDefenseProbabilityC()
-//	INT		HPOfLevel;								// Level¿¡ ´ëÇÑ HP
-//	INT		Level_MonsertPierceAttackProbability;	// MonsterLevel¿¡ ´ëÇÑ ¸ó½ºÅÍ PierceAttackÈ®·ü
+//	double	AttackPart_AttackIncreaseRate;			// ê³µê²© ìŠ¤íƒ¯ì— ì˜í•œ attack ì¦ê°€ìœ¨, @GetAttackC()
+//	double	AttackPart_AttackIncreaseProbability;	// ëª…ì¤‘ë¥  - ê³µê²©ìŠ¤íƒ¯ì— ì˜í•œ ê³µê²©í™•ë¥ ê³¼ ë™ì¼í•œ ê¸°ëŠ¥ì„ ê°€ì§€ëŠ” ì¶”ê°€ í™•ë¥ 
+//	INT		AttackPart_PierceAttackProbability;		// í”¼ì–´ìŠ¤ìœ¨(256í™•ë¥ ) - ìƒëŒ€ë°© ë°©ì–´ìœ¨ì—ì„œ ì´ ê°’ì„ ì°¨ê°í•œê²ƒì´ ì‹¤ì œ ìƒëŒ€ë°© ë°©ì–´ìœ¨ì´ ëœë‹¤.
+//	double	DefensePart_DefenseDecreaseRate;		// ë°©ì–´ ìŠ¤íƒ¯ì— ì˜í•œ defense ê°ì†Œë¶„, @GetDefenseC()
+//	double	ShieldPart_DP;							// ShieldPartì— ëŒ€í•œ Shield(DP)ê°’
+//	double	DodgePart_DefenseProbabilityRate;		// íšŒí”¼ ìŠ¤íƒ¯ì— ì˜í•œ ë°©ì–´í™•ë¥ ì˜ ë¹„ìœ¨, @GetDefenseProbabilityC()
+//	INT		HPOfLevel;								// Levelì— ëŒ€í•œ HP
+//	INT		Level_MonsertPierceAttackProbability;	// MonsterLevelì— ëŒ€í•œ ëª¬ìŠ¤í„° PierceAttackí™•ë¥ 
 //};
-// 2007-05-21 by cmkwon, ShieldPart¿¡ ÇØ´çÇÏ´Â Shield·® ¼öÄ¡ ±âÁ¸º¸´Ù 3¹è Å©°ÔÇÔ
+// 2007-05-21 by cmkwon, ShieldPartì— í•´ë‹¹í•˜ëŠ” ShieldëŸ‰ ìˆ˜ì¹˜ ê¸°ì¡´ë³´ë‹¤ 3ë°° í¬ê²Œí•¨
 
-// È®·ü ¼ö½Ä º¯°æ °ü·Ã - ÇÇ¾î½ºÈ®·ü °ª ¼öÁ¤. (4¹øÂ° Ç×¸ñ.)	2010. 10. 06. by hsLee.
-// 2011-11-23 shcho, È¸ÇÇÈ®·ü, ½ºÅÈ¿¡ µû¸¥ °ø°İ ¼º°î·ü ¼öÁ¤ (3¹øÂ°Ç×¸ñ, 7¹øÂ°Ç×¸ñ)
+// í™•ë¥  ìˆ˜ì‹ ë³€ê²½ ê´€ë ¨ - í”¼ì–´ìŠ¤í™•ë¥  ê°’ ìˆ˜ì •. (4ë²ˆì§¸ í•­ëª©.)	2010. 10. 06. by hsLee.
+// 2011-11-23 shcho, íšŒí”¼í™•ë¥ , ìŠ¤íƒ¯ì— ë”°ë¥¸ ê³µê²© ì„±ê³¡ë¥  ìˆ˜ì • (3ë²ˆì§¸í•­ëª©, 7ë²ˆì§¸í•­ëª©)
 const LEVEL_STAT_VALUE g_arrLevelStatValue[] = {
 	{0 ,0.0000 ,0.0000 ,0 ,0.0000 ,0.0000 ,0.0000 ,0 ,0},
 	{1 ,0.0227500 ,0.1471 ,1.57 ,0.0098 ,60.0000 ,0.0050 ,10 ,0.39},

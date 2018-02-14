@@ -1,4 +1,4 @@
-#ifndef _ATUM_GUILD_H_
+ï»¿#ifndef _ATUM_GUILD_H_
 #define _ATUM_GUILD_H_
 
 #include "AtumParam.h"
@@ -22,14 +22,14 @@ public:
 	}
 
 	CGuildMember(char *i_CharacterName, UID32_t i_CharacterUniqueNumber, CIMIOCPSocket *i_pSocket, UID32_t i_uidGuild, BYTE i_GuildRank, BOOL i_bIsOnline
-				, INT i_UnitKind, BYTE i_MemberLevel,EN_CHECK_TYPE i_VoipType)		// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+				, INT i_UnitKind, BYTE i_MemberLevel,EN_CHECK_TYPE i_VoipType)		// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 		: m_CharacterUniqueNumber(i_CharacterUniqueNumber)
 		, m_Rank(i_GuildRank)
 		, m_uidGuild(i_uidGuild)
 		, m_bIsOnline(i_bIsOnline)
-		, m_UnitKind(i_UnitKind)				// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-		, m_MemberLevel(i_MemberLevel)			// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-		//, m_VoipType(i_VoipType)				// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸	
+		, m_UnitKind(i_UnitKind)				// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+		, m_MemberLevel(i_MemberLevel)			// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+		//, m_VoipType(i_VoipType)				// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´	
 	{
 		m_pIMIOCPSocket = i_pSocket;
 		util::strncpy(m_CharacterName, i_CharacterName, SIZE_MAX_CHARACTER_NAME);
@@ -41,11 +41,11 @@ public:
 public:
 	char				m_CharacterName[SIZE_MAX_CHARACTER_NAME];
 	UID32_t				m_CharacterUniqueNumber;
-	BYTE				m_Rank;						// °è±Ş: GUILD_RANK_XXX
-	BOOL				m_bIsOnline;				// °ÔÀÓ ÁßÀÌ¸é TRUE
-	INT					m_UnitKind;				// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	BYTE				m_MemberLevel;			// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×	
-	//EN_CHECK_TYPE		m_VoipType;				// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸	
+	BYTE				m_Rank;						// ê³„ê¸‰: GUILD_RANK_XXX
+	BOOL				m_bIsOnline;				// ê²Œì„ ì¤‘ì´ë©´ TRUE
+	INT					m_UnitKind;				// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	BYTE				m_MemberLevel;			// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­	
+	//EN_CHECK_TYPE		m_VoipType;				// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´	
 
 	UID32_t				m_uidGuild;
 	CIMIOCPSocket		*m_pIMIOCPSocket;
@@ -62,7 +62,7 @@ struct GUILD_MARK
 	INT		nGuildMarkVersion;
 	INT		nGuildMarkSize;
 	char	GuildMarkImage[SIZE_MAX_GUILD_MARK_IMAGE];
-	BYTE	byGuildMarkState;	// 2007-08-02 by cmkwon, ¿©´Ü ¸¶Å© ½É»ç ½Ã½ºÅÛ ±¸Çö - ¸â¹öº¯¼ö Ãß°¡(GUILD_MARK_STATE_XXX)
+	BYTE	byGuildMarkState;	// 2007-08-02 by cmkwon, ì—¬ë‹¨ ë§ˆí¬ ì‹¬ì‚¬ ì‹œìŠ¤í…œ êµ¬í˜„ - ë©¤ë²„ë³€ìˆ˜ ì¶”ê°€(GUILD_MARK_STATE_XXX)
 };
 
 typedef list<CGuildMember>		listGuildMember;
@@ -82,15 +82,15 @@ public:
 	BOOL AddGuildMember(CGuildMember& i_GuildMember);
 	BOOL DeleteGuildMember(UID32_t i_CharacterUniqueNumber);
 	BOOL GetGuildMember(UID32_t i_CharacterUniqueNumber, CGuildMember*& o_pGuildMember);	
-	BOOL GetGuildMemberByRank(BYTE i_byRank, CGuildMember*& o_pGuildMember);			// 2008-07-01 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× 
+	BOOL GetGuildMemberByRank(BYTE i_byRank, CGuildMember*& o_pGuildMember);			// 2008-07-01 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ 
 
 	BOOL SendMsgToGuildMembers(BYTE *buffer, int size, UID32_t CharacterUniqueNumberToExclude = INVALID_UNIQUE_NUMBER, MSG_IC_COUNTDOWN_START *i_pCountdownStart=NULL);
 //	BOOL SendChatMsgToGuildMembers(BYTE *buffer, int size, BitFlag8_t i_chatFlag8);
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	BOOL SendGuildBonusExp();
 	BOOL SendFieldToGuildMembers(BYTE *buffer, int size, UID32_t CharacterUniqueNumberToExclude = INVALID_UNIQUE_NUMBER, MSG_IC_COUNTDOWN_START *i_pCountdownStart=NULL);
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
-	BOOL SendChatMsgToGuildMembers(BYTE *buffer, int size, BitFlag16_t i_chatFlag8);		// 2008-05-15 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
+	BOOL SendChatMsgToGuildMembers(BYTE *buffer, int size, BitFlag16_t i_chatFlag8);		// 2008-05-15 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½
 	int Send_MSG_IC_GUILD_GET_GUILD_INFO_OK(CIMIOCPSocket *i_pIISock);
 
 	void SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG=TRUE);
@@ -108,34 +108,34 @@ public:
 
 	void AddGuildFame(int i_nAddValues);
 
-// 2007-01-31 by cmkwon, ¾Æ·¡ÀÇ ÇÔ¼ö·Î ´ëÃ¼(int GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr))
+// 2007-01-31 by cmkwon, ì•„ë˜ì˜ í•¨ìˆ˜ë¡œ ëŒ€ì²´(int GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr))
 //	int GetGuildMemberIISocket(CIMIOCPSocket **pArrIISockPtr);
 	int GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr);
 
-	BOOL SetMemberLevel(UID32_t i_CharacterUniqueNumber, BYTE i_byLevel);		// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ·¹º§ º¯°æ ½Ã Á¤º¸ º¯°æ
+	BOOL SetMemberLevel(UID32_t i_CharacterUniqueNumber, BYTE i_byLevel);		// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ë ˆë²¨ ë³€ê²½ ì‹œ ì •ë³´ ë³€ê²½
 
-	void InitGuildIntroduction();									// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ ÃÊ±âÈ­ 
-	void SetGuildIntroduction(SGUILD_INTRODUCTION * i_pGuildIntroduction);	// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ ÀúÀå 
-	char * GetGuildIntroduction();									// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³ °¡Á®¿À±â	
-	void CheckOldIntroductionContent();								// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿À·¡µÈ ¿©´Ü ¼Ò°³ Ã¤Å© 
+	void InitGuildIntroduction();									// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ì´ˆê¸°í™” 
+	void SetGuildIntroduction(SGUILD_INTRODUCTION * i_pGuildIntroduction);	// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ì €ì¥ 
+	char * GetGuildIntroduction();									// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ ê°€ì ¸ì˜¤ê¸°	
+	void CheckOldIntroductionContent();								// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì˜¤ë˜ëœ ì—¬ë‹¨ ì†Œê°œ ì±„í¬ 
 	
-	void SetGuildMemberShip(BOOL i_bMemberShip, ATUM_DATE_TIME * i_pMemberShipExpireTime = NULL);	// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´ÜÀå¿¡ ¸É¹ö½± Á¤º¸	
+	void SetGuildMemberShip(BOOL i_bMemberShip, ATUM_DATE_TIME * i_pMemberShipExpireTime = NULL);	// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì¥ì— ë§´ë²„ì‰½ ì •ë³´	
 
-	//BOOL SetMemberVoipType(UID32_t i_CharacterUniqueNumber, EN_CHECK_TYPE i_VoipType);	// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸
+	//BOOL SetMemberVoipType(UID32_t i_CharacterUniqueNumber, EN_CHECK_TYPE i_VoipType);	// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	void	CalGuildExpBonusRate();
 	INT		GetGuildExpBonusRate();
 	void	RefreshGuildOnlineMember();
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 public:
 	listGuildMember		m_ListGuildMember;
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	INT					m_nOnlineGuildMember;
 	INT					m_nBonusExpRate;
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 	char				m_GuildName[SIZE_MAX_GUILD_NAME];
 	UID32_t				m_GuildUniqueNumber;
@@ -155,17 +155,17 @@ public:
 	DWORD				m_WarTimerUniqueNumber;
 	INT					m_WarKillCounts;
 
-	INT					m_nTotalFame;				// 2005-12-27 by cmkwon, ¿©´Ü ÃÑ ´©Àû ¸í¼º
-	INT					m_nMonthlyFame;				// 2005-12-27 by cmkwon, ¿©´Ü ÇÑ´Ş ´©Àû ¸í¼º
+	INT					m_nTotalFame;				// 2005-12-27 by cmkwon, ì—¬ë‹¨ ì´ ëˆ„ì  ëª…ì„±
+	INT					m_nMonthlyFame;				// 2005-12-27 by cmkwon, ì—¬ë‹¨ í•œë‹¬ ëˆ„ì  ëª…ì„±
 
-	char				m_Notice[SIZE_MAX_NOTICE];		// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	MapIndex_t			m_OutPostCityMapIndex;			// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ÀüÁø±âÁö °ü·Ã
-	SGUILD_INTRODUCTION	m_GuildIntroduction;			// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³
+	char				m_Notice[SIZE_MAX_NOTICE];		// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	MapIndex_t			m_OutPostCityMapIndex;			// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì „ì§„ê¸°ì§€ ê´€ë ¨
+	SGUILD_INTRODUCTION	m_GuildIntroduction;			// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ
 
-	INT					m_nTotalFameRank;				// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	INT					m_nMonthlyFameRank;				// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	BOOL				m_bMemberShip;					// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	ATUM_DATE_TIME		m_MemberShipExpireTime;			// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×	
+	INT					m_nTotalFameRank;				// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	INT					m_nMonthlyFameRank;				// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	BOOL				m_bMemberShip;					// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	ATUM_DATE_TIME		m_MemberShipExpireTime;			// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­	
 
 public:
 	static DWORD		ms_dwGuildWarUniqueNumber;
@@ -178,9 +178,9 @@ inline MEX_GUILD_MEMBER_INFO& MEX_GUILD_MEMBER_INFO::operator=(const CGuildMembe
 	this->MemberUniqueNumber = rhs.m_CharacterUniqueNumber;
 	this->GuildRank = rhs.m_Rank;
 	this->IsOnline = rhs.m_bIsOnline;
-	this->UnitKind = rhs.m_UnitKind;		// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	this->MemberLevel = rhs.m_MemberLevel;	// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	//this->VoipType	= rhs.m_VoipType;		// 2008-07-16 by dhjin, EP3 - Voip Á¤º¸
+	this->UnitKind = rhs.m_UnitKind;		// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	this->MemberLevel = rhs.m_MemberLevel;	// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	//this->VoipType	= rhs.m_VoipType;		// 2008-07-16 by dhjin, EP3 - Voip ì •ë³´
 
 	return *this;
 }

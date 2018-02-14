@@ -1,4 +1,4 @@
-
+ï»¿
 #if !defined(AFX_CLISTBOXEBX_)
 #define AFX_CLISTBOXEBX_
 
@@ -54,8 +54,8 @@ protected:
 		CString		strText;
 		int			nCrowdedness;
 		bool		bSelect;
-		int			nNetworkState;			// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - Ãß°¡
-		BOOL		bViewNetworkState;		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - Ãß°¡
+		int			nNetworkState;			// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¶”ê°€
+		BOOL		bViewNetworkState;		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¶”ê°€
 	};
 
 	CListBox*	m_pSuper;
@@ -72,12 +72,12 @@ protected:
 
 
 
-	// 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 	COLORREF	m_dwColorKey;
 	static bool ColorKeyBlt(HDC dcDest, int x, int y, int cx, int cy,
 						  HDC dcSrc, int sx, int sy, int scx, int scy,
 						  int r, int g, int b);
-	// end 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// end 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 
 
 
@@ -89,10 +89,10 @@ public:
 
 
 	// Adds an item at specified index.
-	// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - ÀÎÀÚÃß°¡(int i_nNetworkState=0, BOOL i_bViewNetworkState=FALSE)
+	// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¸ìì¶”ê°€(int i_nNetworkState=0, BOOL i_bViewNetworkState=FALSE)
 	int InsertItem(int nIndex, LPCTSTR lpszItem, int i_nCrowdedness, COLORREF bg, COLORREF fg, int hal, int i_nNetworkState=0, BOOL i_bViewNetworkState=FALSE);
-	void GetNetworkStateText(CString *o_pcstr, COLORREF *i_pcolorFont, int i_nNetworkState);		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
-	void UpdateNetworkState(int i_nNetworkState);		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
+	void GetNetworkStateText(CString *o_pcstr, COLORREF *i_pcolorFont, int i_nNetworkState);		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
+	void UpdateNetworkState(int i_nNetworkState);		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
 
 	// Removes an item
 	BOOL RemoveAt(int ix);
@@ -120,8 +120,8 @@ public:
 	int GetCrowdedness(int nIndex);
 	BOOL GetServerCheck(int nIndex);
 
-	int			m_nItemBGWidth;				// 2007-09-11 by cmkwon, º£Æ®³² ·±Ã³ ¼öÁ¤½Ã Ãß°¡ÇÔ
-	int			m_nItemBGHeight;			// 2007-09-11 by cmkwon, º£Æ®³² ·±Ã³ ¼öÁ¤½Ã Ãß°¡ÇÔ
+	int			m_nItemBGWidth;				// 2007-09-11 by cmkwon, ë² íŠ¸ë‚¨ ëŸ°ì²˜ ìˆ˜ì •ì‹œ ì¶”ê°€í•¨
+	int			m_nItemBGHeight;			// 2007-09-11 by cmkwon, ë² íŠ¸ë‚¨ ëŸ°ì²˜ ìˆ˜ì •ì‹œ ì¶”ê°€í•¨
 	void SetItemBGImageSize(int i_nItemBGWidth, int i_nItemBGHeight);
 
 	int			m_nItemIconPosX;
@@ -132,9 +132,9 @@ public:
 
 
 
-	// 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 	void SetColorKey(const COLORREF dwColorKey) { m_dwColorKey = dwColorKey; }
-	// end 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// end 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 
 
 

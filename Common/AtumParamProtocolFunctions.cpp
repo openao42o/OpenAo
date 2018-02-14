@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "atumparam.h"
 #include "atumprotocol.h"
 #include "AtumError.h"				// 2006-10-02 by cmkwon
@@ -60,7 +60,7 @@ const char *GetCharacterString(const CHARACTER *pCharac, string &str)
 	char buffer[512];
 	sprintf(buffer, "[A(%s:%d) C(%s:%d) CI(%d)]",
 		pCharac->AccountName, pCharac->AccountUniqueNumber, pCharac->CharacterName, pCharac->CharacterUniqueNumber, pCharac->ClientIndex);
-// 2007-07-18 by cmkwon, Á¤º¸ ¼öÁ¤ - À§¿Í °°ÀÌ ¼öÁ¤
+// 2007-07-18 by cmkwon, ì •ë³´ ìˆ˜ì • - ìœ„ì™€ ê°™ì´ ìˆ˜ì •
 //	sprintf(buffer, "[A: %s, CH: %s, CI: %d, UN: %d]",
 //		pCharac->AccountName, pCharac->CharacterName, pCharac->ClientIndex, pCharac->CharacterUniqueNumber);
 	str += buffer;
@@ -125,7 +125,7 @@ const char *GetItemGeneralString(const ITEM_GENERAL *pItem, string &str)
 	}
 
 	char buffer[512];
-	// 2008-02-14 by cmkwon, ¼ø¼­ º¯°æ ÇÔ
+	// 2008-02-14 by cmkwon, ìˆœì„œ ë³€ê²½ í•¨
 	sprintf(buffer, "[IN:%d N:%10s UN:%I64d C:%d]",
 		pItem->ItemNum, pItem->ItemInfo->ItemName, pItem->UniqueNumber, pItem->CurrentCount);
 	str += buffer;
@@ -174,7 +174,7 @@ const char *GetItemSkillString(const ITEM_SKILL *pItem, string &str)
 	}
 
 	char buffer[512];
-	// 2008-02-14 by cmkwon, ¼ø¼­ º¯°æ ÇÔ
+	// 2008-02-14 by cmkwon, ìˆœì„œ ë³€ê²½ í•¨
 	sprintf(buffer, "[IN:%d N:%10s UN:%I64d]",
 		pItem->ItemNum, pItem->ItemInfo->ItemName, pItem->UniqueNumber);
 	str += buffer;
@@ -203,11 +203,11 @@ const char *GetRaceString(USHORT race)
 	case RACE_INFLUENCE_LEADER:	return STRCMD_CS_COMMON_RACE_INFLUENCE_LEADER;			// 2006-04-20 by cmkwon
 // 2006-12-08 by dhjin	case RACE_MONSTER2:			return STRCMD_CS_COMMON_RACE_MONSTER2;
 
-// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 //	case RACE_INFLUENCE_SUBLEADER: return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER;	// 2006-12-08 by dhjin
 //	case RACE_NPC:				return STRCMD_CS_COMMON_RACE_NPC;
-	case RACE_INFLUENCE_SUBLEADER_1:	return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_1;	// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
-	case RACE_INFLUENCE_SUBLEADER_2:	return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_2;	// 2007-10-06 by cmkwon, ºÎÁöµµÀÚ 2¸íÀÇ È£ÄªÀ» ´Ù¸£°Ô ¼³Á¤ -
+	case RACE_INFLUENCE_SUBLEADER_1:	return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_1;	// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
+	case RACE_INFLUENCE_SUBLEADER_2:	return STRCMD_CS_COMMON_RACE_INFLUENCE_SUBLEADER_2;	// 2007-10-06 by cmkwon, ë¶€ì§€ë„ì 2ëª…ì˜ í˜¸ì¹­ì„ ë‹¤ë¥´ê²Œ ì„¤ì • -
 	case RACE_OPERATION:		return STRCMD_CS_COMMON_RACE_OPERATION;
 	case RACE_GAMEMASTER:		return STRCMD_CS_COMMON_RACE_GAMEMASTER;
 	case RACE_MONITOR:			return STRCMD_CS_COMMON_RACE_MONITOR;
@@ -271,7 +271,7 @@ void PrintExchangeMsg(BYTE SendOrRecv, MessageType_t nType, char *peerIP, ENServ
 
 /*	if (HIBYTE(nType) == T0_FC_BATTLE)
 	{
-		// ¹«Á¶°Ç Âï±â!
+		// ë¬´ì¡°ê±´ ì°ê¸°!
 		bPrint = TRUE;
 	} else*/
 	if (printLevel == PRINTLEVEL_NO_MSG)
@@ -317,14 +317,14 @@ void PrintExchangeMsg(BYTE SendOrRecv, MessageType_t nType, char *peerIP, ENServ
 //*/
 	)
 	{
-		// PARTY °ü·Ã¸¸ Âï±â
+		// PARTY ê´€ë ¨ë§Œ ì°ê¸°
 		bPrint = TRUE;
 	}
 	else if (printLevel == PRINTLEVEL_FEW &&
 		HIBYTE(nType) == T0_FI_ADMIN
 	)
 	{
-		// ADMIN ¸¸ Âï±â
+		// ADMIN ë§Œ ì°ê¸°
 		bPrint = TRUE;
 	}
 	else
@@ -332,7 +332,7 @@ void PrintExchangeMsg(BYTE SendOrRecv, MessageType_t nType, char *peerIP, ENServ
 		return;
 	}
 
-	// bPrint È®ÀÎÇÏ±â
+	// bPrint í™•ì¸í•˜ê¸°
 	if (!bPrint) return;
 
 	char szTime[128];
@@ -428,7 +428,7 @@ char *GetMonsterBellString(BYTE i_byMonBell)
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
-const char *GetItemDesParameter(DestParam_t i_byDesParameter)		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
+const char *GetItemDesParameter(DestParam_t i_byDesParameter)		// 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
 {
 	switch(i_byDesParameter)
 	{
@@ -587,7 +587,7 @@ const char *GetItemDesParameter(DestParam_t i_byDesParameter)		// 2011-08-01 by 
 	GET_CASERETURN_STRING_BY_TYPE(DES_DROP_EXP);
 	GET_CASERETURN_STRING_BY_TYPE(DES_DROP_SPI);
 	GET_CASERETURN_STRING_BY_TYPE(DES_DROP_ITEM);
-	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_DROP_RATE);	// 238,2010-11-30 by shcho, ·¹¾î¾ÆÀÌÅÛ µå¶ø È®·ü Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
+	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_DROP_RATE);	// 238,2010-11-30 by shcho, ë ˆì–´ì•„ì´í…œ ë“œë í™•ë¥  ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
 	GET_CASERETURN_STRING_BY_TYPE(DES_HP_REPAIR_RATE_FLIGHTING);
 	GET_CASERETURN_STRING_BY_TYPE(DES_DP_REPAIR_RATE);
 	GET_CASERETURN_STRING_BY_TYPE(DES_SP_REPAIR_RATE);
@@ -604,45 +604,45 @@ const char *GetItemDesParameter(DestParam_t i_byDesParameter)		// 2011-08-01 by 
 	GET_CASERETURN_STRING_BY_TYPE(DES_SKILL_BARRIER);
 	GET_CASERETURN_STRING_BY_TYPE(DES_SKILL_HYPERSHOT);
 	GET_CASERETURN_STRING_BY_TYPE(DES_SKILL_SHIELD_PARALYZE);
-	GET_CASERETURN_STRING_BY_TYPE(DES_WARHEAD_SPEED);			// 176, 2007-06-11 by cmkwon, ÅºµÎÀÇ ¼Óµµ
-	GET_CASERETURN_STRING_BY_TYPE(DES_CHAT_ALL_INFLUENCE);		// 177		// 2007-08-09 by cmkwon, ¸ğµç ¼¼·Â¿¡ Ã¤ÆÃ Àü¼ÛÇÏ±â - desparam Ãß°¡, À¯·á¾ÆÀÌÅÛ
-	// 2008-09-22 by dhjin, ½Å±Ô ÀÎÃ¾Æ®
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTER_TIME_UP);		// 178		// 2008-09-22 by dhjin, ºÎ½ºÅÍ ½Ã°£ Áõ°¡
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_MAX_SPEED_UP);			// 179		// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ´ë) Áõ°¡
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_MIN_SPEED_UP);			// 180		// 2008-09-22 by dhjin, ¿£Áø ÀÏ¹İ¼Óµµ(ÃÖ¼Ò) Áõ°¡
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTER_SPEED_UP);		// 181		// 2008-09-22 by dhjin, ¿£Áø ºÎ½ºÅÍ¼Óµµ Áõ°¡
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_GROUND_SPEED_UP);		// 182		// 2008-09-22 by dhjin, ¿£Áø Áö»ó¼Óµµ Áõ°¡
-	GET_CASERETURN_STRING_BY_TYPE(DES_RADAR_OBJECT_DETECT_RANGE);	// 183		// 2008-09-22 by dhjin, ·¹ÀÌ´õ ¹°Ã¼ °¨Áö ¹İ°æ
-	GET_CASERETURN_STRING_BY_TYPE(DES_PIERCE_UP_01);				// 184		// 2008-09-22 by dhjin, ±âº»¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	GET_CASERETURN_STRING_BY_TYPE(DES_PIERCE_UP_02);				// 185		// 2008-09-22 by dhjin, °í±Ş¹«±â ÇÇ¾î½ºÀ² Áõ°¡ Ä«µå
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_ANGLE_UP);				// 186		// 2008-09-30 by dhjin, ¿£Áø È¸Àü°¢ Áõ°¡ Ä«µå
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTERANGLE_UP);		// 187		// 2008-09-30 by dhjin, ¿£Áø ºÎ½ºÅÍ È¸Àü°¢ Áõ°¡ Ä«µå
-	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_PARTNER_SPEED);		// 239,		// 2010-12-21 by jskim, ¸¶À» ÀÌµ¿ ¼Óµµ Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_PARTNER_DAMAGE);	// 240,		// 2010-12-21 by jskim, ÆÄÆ®³Ê µ¥¹ÌÁö Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_HPDP);				// 241,		// 2010-12-21 by jskim, HP, DP Å°Æ® Àû¿ë·® Áõ°¡ ¾ÆÀÌÅÛ ±¸Çö
-	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_X);			// 242,		// 2011-05-02 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
-	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_Y);			// 243,		// 2011-05-02 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
-	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_Z);			// 244,		// 2011-05-02 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¼ÒÈ¯½Ã À§Ä¡ º¯°æ (»ó´ë°ª)
+	GET_CASERETURN_STRING_BY_TYPE(DES_WARHEAD_SPEED);			// 176, 2007-06-11 by cmkwon, íƒ„ë‘ì˜ ì†ë„
+	GET_CASERETURN_STRING_BY_TYPE(DES_CHAT_ALL_INFLUENCE);		// 177		// 2007-08-09 by cmkwon, ëª¨ë“  ì„¸ë ¥ì— ì±„íŒ… ì „ì†¡í•˜ê¸° - desparam ì¶”ê°€, ìœ ë£Œì•„ì´í…œ
+	// 2008-09-22 by dhjin, ì‹ ê·œ ì¸ì²¸íŠ¸
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTER_TIME_UP);		// 178		// 2008-09-22 by dhjin, ë¶€ìŠ¤í„° ì‹œê°„ ì¦ê°€
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_MAX_SPEED_UP);			// 179		// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœëŒ€) ì¦ê°€
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_MIN_SPEED_UP);			// 180		// 2008-09-22 by dhjin, ì—”ì§„ ì¼ë°˜ì†ë„(ìµœì†Œ) ì¦ê°€
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTER_SPEED_UP);		// 181		// 2008-09-22 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„°ì†ë„ ì¦ê°€
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_GROUND_SPEED_UP);		// 182		// 2008-09-22 by dhjin, ì—”ì§„ ì§€ìƒì†ë„ ì¦ê°€
+	GET_CASERETURN_STRING_BY_TYPE(DES_RADAR_OBJECT_DETECT_RANGE);	// 183		// 2008-09-22 by dhjin, ë ˆì´ë” ë¬¼ì²´ ê°ì§€ ë°˜ê²½
+	GET_CASERETURN_STRING_BY_TYPE(DES_PIERCE_UP_01);				// 184		// 2008-09-22 by dhjin, ê¸°ë³¸ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	GET_CASERETURN_STRING_BY_TYPE(DES_PIERCE_UP_02);				// 185		// 2008-09-22 by dhjin, ê³ ê¸‰ë¬´ê¸° í”¼ì–´ìŠ¤ìœ¨ ì¦ê°€ ì¹´ë“œ
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_ANGLE_UP);				// 186		// 2008-09-30 by dhjin, ì—”ì§„ íšŒì „ê° ì¦ê°€ ì¹´ë“œ
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENGINE_BOOSTERANGLE_UP);		// 187		// 2008-09-30 by dhjin, ì—”ì§„ ë¶€ìŠ¤í„° íšŒì „ê° ì¦ê°€ ì¹´ë“œ
+	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_PARTNER_SPEED);		// 239,		// 2010-12-21 by jskim, ë§ˆì„ ì´ë™ ì†ë„ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_PARTNER_DAMAGE);	// 240,		// 2010-12-21 by jskim, íŒŒíŠ¸ë„ˆ ë°ë¯¸ì§€ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	GET_CASERETURN_STRING_BY_TYPE(DES_RARE_ITEM_HPDP);				// 241,		// 2010-12-21 by jskim, HP, DP í‚¤íŠ¸ ì ìš©ëŸ‰ ì¦ê°€ ì•„ì´í…œ êµ¬í˜„
+	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_X);			// 242,		// 2011-05-02 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
+	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_Y);			// 243,		// 2011-05-02 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
+	GET_CASERETURN_STRING_BY_TYPE(DES_SUMMON_POSITION_Z);			// 244,		// 2011-05-02 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ì†Œí™˜ì‹œ ìœ„ì¹˜ ë³€ê²½ (ìƒëŒ€ê°’)
 
-	GET_CASERETURN_STRING_BY_TYPE(DES_MAPBUFF_RANDOM_ADD_REATTACKTIME);		// 245,		// 2011-09-01 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³ - ¸Ê¹öÇÁ Ãß°¡ ½Ã°£ Àû¿ë
-	GET_CASERETURN_STRING_BY_TYPE(DES_MAPBUFF_RANDOM_ADD_TIME);				// 246,		// 2011-09-01 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - È­»êÀç / ¸ğ·¡ ÆøÇ³ - ¸Ê¹öÇÁ Ãß°¡ ½Ã°£ Àû¿ë
-	GET_CASERETURN_STRING_BY_TYPE(DES_ENCHANT_ONCE_APPLY);					// 247,		// 2011-09-01 by hskim, EP4 [Free to play] - 10È¸ ÀÎÃ¾Æ® ¾ÆÀÌÅÛ ±â´É ±¸Çö
-	GET_CASERETURN_STRING_BY_TYPE(DES_GAMBLE_RARE_ITEM_FIX);				// 248,		// 2011-09-01 by hskim, EP4 [Free to play] - Á¢µÎ/Á¢¹Ì °íÁ¤ ¿É¼Ç
+	GET_CASERETURN_STRING_BY_TYPE(DES_MAPBUFF_RANDOM_ADD_REATTACKTIME);		// 245,		// 2011-09-01 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’ - ë§µë²„í”„ ì¶”ê°€ ì‹œê°„ ì ìš©
+	GET_CASERETURN_STRING_BY_TYPE(DES_MAPBUFF_RANDOM_ADD_TIME);				// 246,		// 2011-09-01 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - í™”ì‚°ì¬ / ëª¨ë˜ í­í’ - ë§µë²„í”„ ì¶”ê°€ ì‹œê°„ ì ìš©
+	GET_CASERETURN_STRING_BY_TYPE(DES_ENCHANT_ONCE_APPLY);					// 247,		// 2011-09-01 by hskim, EP4 [Free to play] - 10íšŒ ì¸ì²¸íŠ¸ ì•„ì´í…œ ê¸°ëŠ¥ êµ¬í˜„
+	GET_CASERETURN_STRING_BY_TYPE(DES_GAMBLE_RARE_ITEM_FIX);				// 248,		// 2011-09-01 by hskim, EP4 [Free to play] - ì ‘ë‘/ì ‘ë¯¸ ê³ ì • ì˜µì…˜
 
 	GET_CASERETURN_STRING_BY_TYPE(DES_GAMBLE_RARE_ITEM_FIX_STD);
 	GET_CASERETURN_STRING_BY_TYPE(DES_GAMBLE_RARE_ITEM_FIX_ADV);
 	
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SOCKET_ITEM_AUTOKIT);		// 23000,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ½Ã½ºÅÛ ¼ÒÄÏ·ù - ÀÚµ¿ Å°Æ®
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SOCKET_ITEM_AUTOSKILL);	// 23001,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÆÄÆ®³Ê ½Ã½ºÅÛ ¼ÒÄÏ·ù - ÀÚµ¿ ½ºÅ³
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SOCKET_ITEM_AUTOKIT);		// 23000,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ ì†Œì¼“ë¥˜ - ìë™ í‚¤íŠ¸
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SOCKET_ITEM_AUTOSKILL);	// 23001,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ ì†Œì¼“ë¥˜ - ìë™ ìŠ¤í‚¬
 
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_HP);			// 239000,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ Å°Æ® HP
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_SHIELD);		// 239001,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ Å°Æ® Shield
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_SP);			// 239002,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ Å°Æ® SP
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_HP);			// 239000,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ í‚¤íŠ¸ HP
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_SHIELD);		// 239001,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ í‚¤íŠ¸ Shield
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOKIT_SP);			// 239002,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ í‚¤íŠ¸ SP
 
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_AGEAR);		// 239010,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ ½ºÅ³ A ±â¾î
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_BGEAR);		// 239011,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ ½ºÅ³ B ±â¾î
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_IGEAR);		// 239012,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ ½ºÅ³ I ±â¾î
-	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_MGEAR);		// 239013,	// 2011-09-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚµ¿ ½ºÅ³ M ±â¾î
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_AGEAR);		// 239010,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ ìŠ¤í‚¬ A ê¸°ì–´
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_BGEAR);		// 239011,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ ìŠ¤í‚¬ B ê¸°ì–´
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_IGEAR);		// 239012,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ ìŠ¤í‚¬ I ê¸°ì–´
+	GET_CASERETURN_STRING_BY_TYPE(DES_PET_SLOT_ITEM_AUTOSKILL_MGEAR);		// 239013,	// 2011-09-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìë™ ìŠ¤í‚¬ M ê¸°ì–´
 
 	GET_CASERETURN_STRING_BY_TYPE(DES_CASH_CHANGE_NATION);					// 505 - 2015-12-17 Future, Nation Change Card
 	}
@@ -787,7 +787,7 @@ Err_t GCheckExcuteParameterList(SEXCUTE_PARAMETER *io_pExeParam)
 	{
 		///////////////////////////////////////////////////////////////////////////////
 		// 2006-10-02 by cmkwon
-		// argv[0]: char[??]	½ÇÇà ÆÄÀÏ ÀÌ¸§
+		// argv[0]: char[??]	ì‹¤í–‰ íŒŒì¼ ì´ë¦„
 		// argv[1]:	char[16]	2007-05-15 by cmkwon, PreServer IP
 		///////////////////////////////////////////////////////////////////////////////			
 		if (1 != g_nargvCount && 2 != g_nargvCount)
@@ -796,7 +796,7 @@ Err_t GCheckExcuteParameterList(SEXCUTE_PARAMETER *io_pExeParam)
 		}
 
 		if (2 == g_nargvCount)
-		{// 2007-05-15 by cmkwon, PreServer IP°¡ ÀÎÀÚ¸®½ºÆ®¿¡ ÀÖ´Ù
+		{// 2007-05-15 by cmkwon, PreServer IPê°€ ì¸ìë¦¬ìŠ¤íŠ¸ì— ìˆë‹¤
 			util::strncpy(io_pExeParam->o_szPreServerIP0, g_szArrargv[1], SIZE_MAX_IPADDRESS);
 		}
 }
@@ -887,12 +887,12 @@ Err_t GReadVersionInfoFile(VersionInfo *o_pLauncherVerInfo, SREG_DATA_EXE_2 *o_p
 			if (token)
 			{
 				// 2015-12-17 Future, default Vsync -> ON
-				vsyncSet = true;
+				vsyncSet = false;
 
 				int nMode = atoi(token);
 				if (0 != nMode)
 				{
-					o_pRegDataExe2->VSync = TRUE;
+					o_pRegDataExe2->VSync = false;
 				}
 			}
 		}
@@ -907,7 +907,7 @@ Err_t GReadVersionInfoFile(VersionInfo *o_pLauncherVerInfo, SREG_DATA_EXE_2 *o_p
 
 	// 2015-12-17 Future, default Vsync -> ON
 	if (!vsyncSet)
-		o_pRegDataExe2->VSync = TRUE;
+		o_pRegDataExe2->VSync = false;
 
 	return ERR_NO_ERROR;
 }
@@ -1093,7 +1093,7 @@ GAME_SERVER_INFO_FOR_ADMIN g_arrGameServers[] =
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void GDecryptGameServerInfoByXOR(void)
-/// \brief		// 2007-10-24 by cmkwon, ¼­¹ö Á¤º¸ ¾ÏÈ£È­ -
+/// \brief		// 2007-10-24 by cmkwon, ì„œë²„ ì •ë³´ ì•”í˜¸í™” -
 /// \author		cmkwon
 /// \date		2007-10-24 ~ 2007-10-24
 /// \warning	
@@ -1134,13 +1134,13 @@ void GDecryptGameServerInfoByXOR(void)
 		}
 		
 		///////////////////////////////////////////////////////////////////////////////		
-		// 2007-11-07 by cmkwon, ·Î±× DB ¼­¹ö µû·Î ±¸ÃàÇÏ±â - GAME_SERVER_INFO_FOR_ADMIN ±¸ÃÊÁ¦¿¡ 4°³ ÇÊµå Ãß°¡
-		// 2007-11-07 by cmkwon, LogDBIP, LogDBUID, LogDBPWD ÀÇ ÇÊµå´Â ÀÎÄÚµù µÇ¾î ÀÖÀ¸¹Ç·Î ¾Æ·¡¿Í °°ÀÌ º¹È£È­ ÇØ¾ß ÇÔ
+		// 2007-11-07 by cmkwon, ë¡œê·¸ DB ì„œë²„ ë”°ë¡œ êµ¬ì¶•í•˜ê¸° - GAME_SERVER_INFO_FOR_ADMIN êµ¬ì´ˆì œì— 4ê°œ í•„ë“œ ì¶”ê°€
+		// 2007-11-07 by cmkwon, LogDBIP, LogDBUID, LogDBPWD ì˜ í•„ë“œëŠ” ì¸ì½”ë”© ë˜ì–´ ìˆìœ¼ë¯€ë¡œ ì•„ë˜ì™€ ê°™ì´ ë³µí˜¸í™” í•´ì•¼ í•¨
 		char szEncryptData[1024];
 
 		memset(szEncryptData, 0x00, 1024);
-		strncpy(szEncryptData, g_arrGameServers[i].LogDBIP, 2*SIZE_MAX_ADDRESS - 1);		// 2009-01-15 by cmkwon, PreServer, DBServer Á¤º¸ DNS·Î ¼³Á¤ °¡´ÉÇÏ°Ô ¼öÁ¤ - ±âÁ¸(SIZE_MAX_IPADDRESS)
-		memset(g_arrGameServers[i].LogDBIP, 0x00, 2*SIZE_MAX_ADDRESS);						// 2009-01-15 by cmkwon, PreServer, DBServer Á¤º¸ DNS·Î ¼³Á¤ °¡´ÉÇÏ°Ô ¼öÁ¤ - ±âÁ¸(SIZE_MAX_IPADDRESS)
+		strncpy(szEncryptData, g_arrGameServers[i].LogDBIP, 2*SIZE_MAX_ADDRESS - 1);		// 2009-01-15 by cmkwon, PreServer, DBServer ì •ë³´ DNSë¡œ ì„¤ì • ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì • - ê¸°ì¡´(SIZE_MAX_IPADDRESS)
+		memset(g_arrGameServers[i].LogDBIP, 0x00, 2*SIZE_MAX_ADDRESS);						// 2009-01-15 by cmkwon, PreServer, DBServer ì •ë³´ DNSë¡œ ì„¤ì • ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì • - ê¸°ì¡´(SIZE_MAX_IPADDRESS)
 		memset(byEncodedBinary, 0x00, 1024);
 		if(XOR::XORString2Binary(byEncodedBinary, szEncryptData))
 		{
@@ -1171,7 +1171,7 @@ void GDecryptGameServerInfoByXOR(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			char *GetDayOfWeekString(int i_nDayOfWeek)
-/// \brief		// 2007-10-30 by cmkwon, ¼¼·Âº° ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ±¸Çö -
+/// \brief		// 2007-10-30 by cmkwon, ì„¸ë ¥ë³„ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ êµ¬í˜„ -
 /// \author		cmkwon
 /// \date		2007-10-30 ~ 2007-10-30
 /// \warning	
@@ -1199,7 +1199,7 @@ char *GetDayOfWeekString(int i_nDayOfWeek)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			char *GetWPUTString(BYTE i_byWPUT)
-/// \brief		// 2009-01-22 by cmkwon, ÀüÀï °ü·Ã °ÔÀÓ ·Î±× ¼öÁ¤ - 
+/// \brief		// 2009-01-22 by cmkwon, ì „ìŸ ê´€ë ¨ ê²Œì„ ë¡œê·¸ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2009-01-22 ~ 2009-01-22
 /// \warning	
@@ -1218,7 +1218,7 @@ char *GetWPUTString(BYTE i_byWPUT)
 	case WPUT_OUTPOSTWAR:			return "WPUT_OUTPOSTWAR";
 	case WPUT_SHOP:					return "WPUT_SHOP";
 	case WPUT_ADMIN_COMMAND:		return "WPUT_ADMIN_COMMAND";
-	case WPUT_TRIGGER:				return "WPUT_TRIGGER";			// 2011-11-07 by hskim, EP4 [Æ®¸®°Å ½Ã½ºÅÛ] - NCG °ÅÁ¡Àü ½Ã½ºÅÛ
+	case WPUT_TRIGGER:				return "WPUT_TRIGGER";			// 2011-11-07 by hskim, EP4 [íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ] - NCG ê±°ì ì „ ì‹œìŠ¤í…œ
 	case WPUT_KILL:					return "WPUT_KILL";
 	}
 
@@ -1227,7 +1227,7 @@ char *GetWPUTString(BYTE i_byWPUT)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int GetArrIdxByUnitMaskforWRK(INT i_unitMask)
-/// \brief		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+/// \brief		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-02-18 ~ 2009-02-18
 /// \warning	
@@ -1264,7 +1264,7 @@ int GetArrIdxByUnitMaskforWRK(INT i_unitMask)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int GetUnitMaskByArrIdxforWRK(INT i_arrIdx)
-/// \brief		// 2009-02-12 by cmkwon, EP3-3 ¿ùµå·©Å·½Ã½ºÅÛ ±¸Çö - 
+/// \brief		// 2009-02-12 by cmkwon, EP3-3 ì›”ë“œë­í‚¹ì‹œìŠ¤í…œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-02-18 ~ 2009-02-18
 /// \warning	
@@ -1288,7 +1288,7 @@ int GetUnitMaskByArrIdxforWRK(INT i_arrIdx)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int GetArrayIndexByInfluenceType(BYTE i_byInflTy)
-/// \brief		// 2007-10-30 by cmkwon, ¼¼·Âº° ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ±¸Çö - GetArrayIndexByInfluenceType() ÇÔ¼ö Ãß°¡
+/// \brief		// 2007-10-30 by cmkwon, ì„¸ë ¥ë³„ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ êµ¬í˜„ - GetArrayIndexByInfluenceType() í•¨ìˆ˜ ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-11-01 ~ 2007-11-01
 /// \warning	
@@ -1311,7 +1311,7 @@ int GetArrayIndexByInfluenceType(BYTE i_byInflTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BYTE GetInfluenceTypeByArrayIndex(int i_nArrIdx)
-/// \brief		// 2007-10-30 by cmkwon, ¼¼·Âº° ÇØÇÇ¾Æ¿ö ÀÌº¥Æ® ±¸Çö - GetInfluenceTypeByArrayIndex() ÇÔ¼ö Ãß°¡
+/// \brief		// 2007-10-30 by cmkwon, ì„¸ë ¥ë³„ í•´í”¼ì•„ì›Œ ì´ë²¤íŠ¸ êµ¬í˜„ - GetInfluenceTypeByArrayIndex() í•¨ìˆ˜ ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-11-01 ~ 2007-11-01
 /// \warning	
@@ -1334,7 +1334,7 @@ BYTE GetInfluenceTypeByArrayIndex(int i_nArrIdx)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2008-06-03 by cmkwon, AdminTool, DBTool »ç¿ë½Ã ¾ÆÀÌÅÛ °Ë»ö½Ã ÄŞº¸¹Ú½º¿¡¼­ °Ë»ö ±â´É Ãß°¡(K0000143) - 
+/// \brief		// 2008-06-03 by cmkwon, AdminTool, DBTool ì‚¬ìš©ì‹œ ì•„ì´í…œ ê²€ìƒ‰ì‹œ ì½¤ë³´ë°•ìŠ¤ì—ì„œ ê²€ìƒ‰ ê¸°ëŠ¥ ì¶”ê°€(K0000143) - 
 /// \author		cmkwon
 /// \date		2008-06-03 ~ 2008-06-03
 /// \warning	
@@ -1385,7 +1385,7 @@ MEX_ITEM_INFO& MEX_ITEM_INFO::operator=(const ITEM& rhs)
 	this->Price				= rhs.Price;
 	this->CashPrice			= rhs.CashPrice;
 #endif
-// 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+// 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 // 	this->DestParameter1	= rhs.DestParameter1;	
 // 	this->ParameterValue1	= rhs.ParameterValue1;
 // 	this->DestParameter2	= rhs.DestParameter2;	
@@ -1399,7 +1399,7 @@ MEX_ITEM_INFO& MEX_ITEM_INFO::operator=(const ITEM& rhs)
 
 	this->ReAttacktime		= rhs.ReAttacktime;	
 	this->Time				= rhs.Time;			
-	this->RepeatTime		= rhs.RepeatTime;			// 2006-12-08 by cmkwon, Ãß°¡ÇÔ
+	this->RepeatTime		= rhs.RepeatTime;			// 2006-12-08 by cmkwon, ì¶”ê°€í•¨
 	this->RangeAngle		= rhs.RangeAngle;		
 	this->MultiTarget		= rhs.MultiTarget;	
 	this->ExplosionRange	= rhs.ExplosionRange;	
@@ -1434,7 +1434,7 @@ ITEM& ITEM::operator=(const MEX_ITEM_INFO& rhs)
 	this->Price				= rhs.Price;
 	this->CashPrice			= rhs.CashPrice;
 #endif
-// 2009-04-21 by cmkwon, ITEM¿¡ DesParam ÇÊµå °³¼ö 8°³·Î ´Ã¸®±â - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+// 2009-04-21 by cmkwon, ITEMì— DesParam í•„ë“œ ê°œìˆ˜ 8ê°œë¡œ ëŠ˜ë¦¬ê¸° - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 // 	this->DestParameter1	= rhs.DestParameter1;	
 // 	this->ParameterValue1	= rhs.ParameterValue1;
 // 	this->DestParameter2	= rhs.DestParameter2;	
@@ -1448,7 +1448,7 @@ ITEM& ITEM::operator=(const MEX_ITEM_INFO& rhs)
 
 	this->ReAttacktime		= rhs.ReAttacktime;	
 	this->Time				= rhs.Time;			
-	this->RepeatTime		= rhs.RepeatTime;			// 2006-12-08 by cmkwon, Ãß°¡ÇÔ
+	this->RepeatTime		= rhs.RepeatTime;			// 2006-12-08 by cmkwon, ì¶”ê°€í•¨
 	this->RangeAngle		= rhs.RangeAngle;		
 	this->MultiTarget		= rhs.MultiTarget;	
 	this->ExplosionRange	= rhs.ExplosionRange;	
@@ -1493,10 +1493,10 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
 		}
 		break;
 //	case CHECK_TYPE_GUILD_CREATE:
-//	case CHECK_TYPE_CHAT_SELL_ALL:		// 2008-05-19 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, ÀüÀï Ã¤ÆÃ
+//	case CHECK_TYPE_CHAT_SELL_ALL:		// 2008-05-19 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì „ìŸ ì±„íŒ…
 	case CHECK_TYPE_GUILD_CREATE:
 		{
-			if(i_nLevel >= GuildCommanderMinLevel)		// 2008-10-13 by dhjin, ¿©´ÜÀå À§ÀÓ °¡´É ·¹º§ Ã¼Å© Ãß°¡.
+			if(i_nLevel >= GuildCommanderMinLevel)		// 2008-10-13 by dhjin, ì—¬ë‹¨ì¥ ìœ„ì„ ê°€ëŠ¥ ë ˆë²¨ ì²´í¬ ì¶”ê°€.
 			{
 				return TRUE;
 			}
@@ -1518,7 +1518,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
 			}
 		}
 		break;
-	case CHECK_TYPE_CHAT_WAR:			// 2008-05-19 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, ÀüÀï Ã¤ÆÃ
+	case CHECK_TYPE_CHAT_WAR:			// 2008-05-19 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì „ìŸ ì±„íŒ…
 		{
 			if(i_nLevel >= 20)
 			{
@@ -1547,7 +1547,7 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 {
 	switch(i_checkType)
 	{
-	case CHECK_TYPE_TRADE:		// °ü¸®ÀÚ °ü·Ã ¿¹¿Ü Ã³¸® ÇÊ¿ä, 2005-12-06 by cmkwon
+	case CHECK_TYPE_TRADE:		// ê´€ë¦¬ì ê´€ë ¨ ì˜ˆì™¸ ì²˜ë¦¬ í•„ìš”, 2005-12-06 by cmkwon
 		{
 			if ( COMPARE_RACE(i_usRace, RACE_DEMO|RACE_GUEST|RACE_MONITOR|RACE_GAMEMASTER)
 				|| COMPARE_RACE(i_usPeerRace, RACE_DEMO|RACE_GUEST|RACE_MONITOR|RACE_GAMEMASTER) )
@@ -1556,14 +1556,14 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 			}
 
 			if(COMPARE_RACE(i_usRace, RACE_OPERATION))
-			{// 2005-12-06 by cmkwon, °ü¸®ÀÚµµ °ü¸®ÀÚ ³¢¸®¸¸ °Å·¡ °¡´É, ³»°¡ °ü¸®ÀÚ ÀÏ¶§
+			{// 2005-12-06 by cmkwon, ê´€ë¦¬ìë„ ê´€ë¦¬ì ë¼ë¦¬ë§Œ ê±°ë˜ ê°€ëŠ¥, ë‚´ê°€ ê´€ë¦¬ì ì¼ë•Œ
 				if(FALSE == COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
 				{
 					return FALSE;
 				}
 			}
 			else if(COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
-			{// 2005-12-06 by cmkwon, °ü¸®ÀÚµµ °ü¸®ÀÚ ³¢¸®¸¸ °Å·¡ °¡´É, »ó´ë¹æÀÌ °ü¸®ÀÚ ÀÏ¶§
+			{// 2005-12-06 by cmkwon, ê´€ë¦¬ìë„ ê´€ë¦¬ì ë¼ë¦¬ë§Œ ê±°ë˜ ê°€ëŠ¥, ìƒëŒ€ë°©ì´ ê´€ë¦¬ì ì¼ë•Œ
 				if(FALSE == COMPARE_RACE(i_usRace, RACE_OPERATION))
 				{
 					return FALSE;
@@ -1571,34 +1571,34 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 			}
 			else
 			{
-// 2006-05-18 by cmkwon, ¾Æ·¡¿Í °°ÀÌ °°Àº ¼¼·ÂÀÌ ¾Æ´Ï¸é °Å·¡ ºÒ°¡
+// 2006-05-18 by cmkwon, ì•„ë˜ì™€ ê°™ì´ ê°™ì€ ì„¸ë ¥ì´ ì•„ë‹ˆë©´ ê±°ë˜ ë¶ˆê°€
 // 				if(COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_ANI))
-// 				{// ¹İ¶õ¼¼·Â
+// 				{// ë°˜ë€ì„¸ë ¥
 // 					if(i_byInfluenceTy != i_byPeerInfluenceTy)
-// 					{// ´Ù¸¥ ¼¼·ÂÇÏ°í´Â °Å·¡ ºÒ°¡
+// 					{// ë‹¤ë¥¸ ì„¸ë ¥í•˜ê³ ëŠ” ê±°ë˜ ë¶ˆê°€
 // 						return FALSE;
 // 					}
 // 				}
 // 				else
-// 				{// ÀÏ¹İ¼¼·Â, Á¤±Ô¼¼·Â
+// 				{// ì¼ë°˜ì„¸ë ¥, ì •ê·œì„¸ë ¥
 // 					if(FALSE == COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
-// 					{// ´Ù¸¥ ¼¼·ÂÇÏ°í´Â °Å·¡ ºÒ°¡
+// 					{// ë‹¤ë¥¸ ì„¸ë ¥í•˜ê³ ëŠ” ê±°ë˜ ë¶ˆê°€
 // 						return FALSE;
 // 					}
 // 				}
 
 				if(COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL))
-				{// ÀÏ¹İ¼¼·ÂÀº °Å·¡ ºÒ°¡
+				{// ì¼ë°˜ì„¸ë ¥ì€ ê±°ë˜ ë¶ˆê°€
 					return FALSE;
 				}
 
 				if(COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
-				{// ÀÏ¹İ¼¼·ÂÀº °Å·¡ ºÒ°¡
+				{// ì¼ë°˜ì„¸ë ¥ì€ ê±°ë˜ ë¶ˆê°€
 					return FALSE;
 				}
 				
 				if(i_byInfluenceTy != i_byPeerInfluenceTy)
-				{// 2006-05-18 by cmkwon, ´Ù¸¥ ¼¼·ÂÀÓ
+				{// 2006-05-18 by cmkwon, ë‹¤ë¥¸ ì„¸ë ¥ì„
 					return FALSE;
 				}
 			}
@@ -1614,20 +1614,20 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 
 			if (COMPARE_RACE(i_usRace, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR)
 				^ COMPARE_RACE(i_usPeerRace, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
-			{// 2006-08-07 by cmkwon, ÀÚ½Å°ú »ó´ë¹æ Áß¿¡ ÇÑ¸í¸¸ °ü¸®ÀÚ È¤Àº ¿î¿µÀÚ ÀÏ¶§
+			{// 2006-08-07 by cmkwon, ìì‹ ê³¼ ìƒëŒ€ë°© ì¤‘ì— í•œëª…ë§Œ ê´€ë¦¬ì í˜¹ì€ ìš´ì˜ì ì¼ë•Œ
 				return FALSE;
 			}			
 		}
 		break;
 
-	case CHECK_TYPE_GUILD_JOIN:		// °ü¸®ÀÚ Ã³¸® ÇÊ¿ä ¾øÀ½, 2005-12-07 by cmkwon
+	case CHECK_TYPE_GUILD_JOIN:		// ê´€ë¦¬ì ì²˜ë¦¬ í•„ìš” ì—†ìŒ, 2005-12-07 by cmkwon
 		{
 			if(COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
-			{// ÀÏ¹İ¼¼·ÂÀº ¿©´Ü Âü¿© ºÒ°¡
+			{// ì¼ë°˜ì„¸ë ¥ì€ ì—¬ë‹¨ ì°¸ì—¬ ë¶ˆê°€
 				return FALSE;
 			}
 			if(i_byInfluenceTy != i_byPeerInfluenceTy)
-			{// ¼¼·ÂÀÌ ´Ù¸£¸é ¿©´Ü Âü¿© ºÒ°¡
+			{// ì„¸ë ¥ì´ ë‹¤ë¥´ë©´ ì—¬ë‹¨ ì°¸ì—¬ ë¶ˆê°€
 				return FALSE;
 			}
 		}
@@ -1638,12 +1638,12 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 	case CHECK_TYPE_CHAT_CASH_ALL:		// 2005-12-07 by cmkwon
 	case CHECK_TYPE_BATTLE_PARTY_WAR:		// 2006-01-05 by cmkwon
 	case CHECK_TYPE_BATTLE_GUILD_WAR:		// 2006-01-05 by cmkwon
-	case CHECK_TYPE_CHAT_WAR:			// 2008-05-19 by dhjin, EP3 - Ã¤ÆÃ ½Ã½ºÅÛ º¯°æ, ÀüÀï Ã¤ÆÃ
-		{// °°Àº ¼¼·Â¸¸ °¡´ÉÇÏ´Ù
+	case CHECK_TYPE_CHAT_WAR:			// 2008-05-19 by dhjin, EP3 - ì±„íŒ… ì‹œìŠ¤í…œ ë³€ê²½, ì „ìŸ ì±„íŒ…
+		{// ê°™ì€ ì„¸ë ¥ë§Œ ê°€ëŠ¥í•˜ë‹¤
 			if(i_byInfluenceTy != i_byPeerInfluenceTy)
 			{
 				//////////////////////////////////////////////////////////////////////////
-				// 2006-10-12 by dhjin, ´Ù¸¥ ¼¼·ÂÀº ºÒ°¡
+				// 2006-10-12 by dhjin, ë‹¤ë¥¸ ì„¸ë ¥ì€ ë¶ˆê°€
 				//if(FALSE == COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN)
 				//	|| FALSE == COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
 				//{
@@ -1656,8 +1656,8 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 	case CHECK_TYPE_VOIP_1to1:		// 2005-12-07 by cmkwon
 		{
 			///////////////////////////////////////////////////////////////////////////////
-			// 1. ÇÑ¸íÀÌ¶óµµ °ü¸®ÀÚ, °ÔÀÓ¸¶½ºÅÍ´Â ¹«Á¶°Ç °¡´É
-			// 2. ¼¼·ÂÀÌ ´Ù¸£¸é ºÒ°¡
+			// 1. í•œëª…ì´ë¼ë„ ê´€ë¦¬ì, ê²Œì„ë§ˆìŠ¤í„°ëŠ” ë¬´ì¡°ê±´ ê°€ëŠ¥
+			// 2. ì„¸ë ¥ì´ ë‹¤ë¥´ë©´ ë¶ˆê°€
 			if (COMPARE_RACE(i_usRace, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR)
 				|| COMPARE_RACE(i_usPeerRace, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
 			{
@@ -1742,7 +1742,7 @@ char *GetLeader8SubLeaderString(BYTE i_byInflTy, USHORT i_usRace)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			INT CalcGradeByRate(float i_nMaxValue, float i_nValue, INT i_nRate)
-/// \brief		¸ğ¼±Àü Á¤º¸ Ç¥½Ã ±âÈ¹¾È - ºñÀ²¿¡ µû¸¥ µî±ŞÀ» °è»êÇÑ´Ù.
+/// \brief		ëª¨ì„ ì „ ì •ë³´ í‘œì‹œ ê¸°íšì•ˆ - ë¹„ìœ¨ì— ë”°ë¥¸ ë“±ê¸‰ì„ ê³„ì‚°í•œë‹¤.
 /// \author		dhjin
 /// \date		2008-03-24 ~ 2008-03-24
 /// \warning	
@@ -1766,7 +1766,7 @@ INT CalcGradeByRate(float i_nMaxValue, float i_nValue, INT i_nRate)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-10-22 by cmkwon, ½Ã°£ Á¦ÇÑÇü·ù ¾ÆÀÌÅÛ ½Ã½ºÅÛ Á¤¸® - 
+/// \brief		// 2009-10-22 by cmkwon, ì‹œê°„ ì œí•œí˜•ë¥˜ ì•„ì´í…œ ì‹œìŠ¤í…œ ì •ë¦¬ - 
 /// \author		cmkwon
 /// \date		2009-10-22 ~ 2009-10-22
 /// \warning	
@@ -1824,7 +1824,7 @@ BOOL CHARACTER::SetAddedPermanentInventoryCount(BYTE i_byAddCount, BYTE i_enStor
 	return TRUE;
 }
 
-struct find_if_INT		// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
+struct find_if_INT		// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 {
 	find_if_INT(INT i_findValue): m_findValue(i_findValue){};
 	bool operator()(const INT i_nValue)
@@ -1836,7 +1836,7 @@ struct find_if_INT		// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-01-18 by cmkwon, ¾ÆÀÌÅÛ »ç¿ë½Ã Parameter Áßº¹ Ã¼Å© ½Ã½ºÅÛ ±¸Çö - 
+/// \brief		// 2010-01-18 by cmkwon, ì•„ì´í…œ ì‚¬ìš©ì‹œ Parameter ì¤‘ë³µ ì²´í¬ ì‹œìŠ¤í…œ êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2010-01-18 ~ 2010-01-18
 /// \warning	
@@ -1911,7 +1911,7 @@ void ITEM_SKILL::operator delete(void* p)
 }
 
 
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - ¸Ş¸ğ¸® Ç® »ç¿ë.
+// 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - ë©”ëª¨ë¦¬ í’€ ì‚¬ìš©.
 void * tPET_CURRENTINFO :: operator new(size_t size)
 {
 	return VMemPool::vmObjectNew(size);
@@ -1930,7 +1930,7 @@ BOOL CheckAdminCommand(char *token)
 #endif
 
 	if(
-	// ¿©±â ÀÖ´Â ¸í·É¾î´Â ´Ù ºÒ°¡·Î Ã³¸®ÇÑ´Ù.
+	// ì—¬ê¸° ìˆëŠ” ëª…ë ¹ì–´ëŠ” ë‹¤ ë¶ˆê°€ë¡œ ì²˜ë¦¬í•œë‹¤.
 	0 == stricmp(token, STRCMD_CS_COMMAND_ITEMINSERTbyKIND)
 	|| 0 == stricmp(token, STRCMD_CS_COMMAND_ITEMINSERTbyKIND_1)
 	|| 0 == stricmp(token, STRCMD_CS_COMMAND_ITEMINSERTbyKIND_HELP)
@@ -2024,7 +2024,7 @@ BOOL CheckAdminCommand(char *token)
 	return FALSE;
 }
 
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 char *StrCaseStr(const char *s, const char *find)
 {
 	char c, sc;
@@ -2063,7 +2063,7 @@ char *StrRCaseStr(const char *s, const char *find)
 
 	return ((char *)s + len + 1);
 }
-// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 //void * ENCHANT::operator new(size_t size)
 //{

@@ -1,4 +1,4 @@
-#if !defined(ATUMDEFINE_H__7699F556_5313_4782_B433_068C5F32BBC0__INCLUDED_)
+ï»¿#if !defined(ATUMDEFINE_H__7699F556_5313_4782_B433_068C5F32BBC0__INCLUDED_)
 #define ATUMDEFINE_H__7699F556_5313_4782_B433_068C5F32BBC0__INCLUDED_
 
 
@@ -6,22 +6,22 @@
 #include "Contents.h"
 
 
-#define OPTION_DEFAULT_SOUNDVOLUME			-2000	// ¼Ò¸® 
-#define OPTION_DEFAULT_STAGE_EFFECT_SOUNDVOLUME	-1000	// ¼Ò¸® 
-#define OPTION_DEFAULT_MUSICVOLUME			8//-2000	// À½¾Ç
-#define OPTION_DEFAULT_GAMMA				0		// °¨¸¶
-#define OPTION_DEFAULT_LOWQUALITY			0		// ÃÖ¼Ò»çÇâ
-#define OPTION_DEFAULT_HELPDESK				1		// µµ¿ò¸»
-#define OPTION_DEFAULT_REVERSE_LEFT			0		// ÁÂ¿ì ¹ÝÀü
-#define OPTION_DEFAULT_REVERSE_UP			0		// »óÇÏ ¹ÝÀü
-#define OPTION_DEFAULT_AUTO_BALACE			1		// ÀÚµ¿ ¼öÆò Á¶Á¤
-#define OPTION_DEFAULT_PET_OP				1		// ¸Þ´º »ç¿ë½Ã ÀÚµ¿ ¼öÆòÀ¯Áö
-#define OPTION_DEFAULT_MENU_USE				1		// 2010. 10. 26 by jskim Æê ¿ÀÆÛ·¹ÀÌÅÍ ¿É¼Ç Ã³¸®
+#define OPTION_DEFAULT_SOUNDVOLUME			-2000	// ì†Œë¦¬ 
+#define OPTION_DEFAULT_STAGE_EFFECT_SOUNDVOLUME	-1000	// ì†Œë¦¬ 
+#define OPTION_DEFAULT_MUSICVOLUME			8//-2000	// ìŒì•…
+#define OPTION_DEFAULT_GAMMA				0		// ê°ë§ˆ
+#define OPTION_DEFAULT_LOWQUALITY			0		// ìµœì†Œì‚¬í–¥
+#define OPTION_DEFAULT_HELPDESK				1		// ë„ì›€ë§
+#define OPTION_DEFAULT_REVERSE_LEFT			0		// ì¢Œìš° ë°˜ì „
+#define OPTION_DEFAULT_REVERSE_UP			0		// ìƒí•˜ ë°˜ì „
+#define OPTION_DEFAULT_AUTO_BALACE			1		// ìžë™ ìˆ˜í‰ ì¡°ì •
+#define OPTION_DEFAULT_PET_OP				1		// ë©”ë‰´ ì‚¬ìš©ì‹œ ìžë™ ìˆ˜í‰ìœ ì§€
+#define OPTION_DEFAULT_MENU_USE				1		// 2010. 10. 26 by jskim íŽ« ì˜¤í¼ë ˆì´í„° ì˜µì…˜ ì²˜ë¦¬
 #ifdef _SHOW_GUILD_NAME
 #define OPTION_DEFAULT_SHOW_GUILDNAME		1
 #endif
 
-#define OPTION_DEFAULT_MP3_USE				1		// ¹ÂÁ÷ ÇÃ·¹ÀÌ¾î
+#define OPTION_DEFAULT_MP3_USE				1		// ë®¤ì§ í”Œë ˆì´ì–´
 
 
 
@@ -40,22 +40,22 @@
 
 
 
-#define HELPDESK_STATE_DEFAULT					0			// ·»´õ¸µÇÏÁö¾Ê´Â´Ù
-#define HELPDESK_STATE_NEW						1			// »õ·Î¿î Ä³¸¯ÅÍ¸¦ ¸¸µé¾úÀ»¶§ µµ¿ò¸»
-#define HELPDESK_STATE_CITY						2			// µµ½Ã ³»¿¡¼­ µµ¿ò¸»
-#define HELPDESK_STATE_MISSION					3			// ¹Ì¼Ç ÁøÇà½Ã µµ¿ò¸»
-#define HELPDESK_STATE_FIELD					4			// ÇÊµå ³»¿¡¼­ µµ¿ò¸»
+#define HELPDESK_STATE_DEFAULT					0			// ë Œë”ë§í•˜ì§€ì•ŠëŠ”ë‹¤
+#define HELPDESK_STATE_NEW						1			// ìƒˆë¡œìš´ ìºë¦­í„°ë¥¼ ë§Œë“¤ì—ˆì„ë•Œ ë„ì›€ë§
+#define HELPDESK_STATE_CITY						2			// ë„ì‹œ ë‚´ì—ì„œ ë„ì›€ë§
+#define HELPDESK_STATE_MISSION					3			// ë¯¸ì…˜ ì§„í–‰ì‹œ ë„ì›€ë§
+#define HELPDESK_STATE_FIELD					4			// í•„ë“œ ë‚´ì—ì„œ ë„ì›€ë§
 
 
 
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UI½Ã½ºÅÛ º¯°æ
-// Ä³½¬»óÁ¡°ü·Ã ·»´õ¸µ À§Ä¡
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIì‹œìŠ¤í…œ ë³€ê²½
+// ìºì‰¬ìƒì ê´€ë ¨ ë Œë”ë§ ìœ„ì¹˜
 #define CHAT_MENU_CASH_START_W		75 
 #define CHAT_MENU_CASH_START_H		57
 #define CHAT_MENU_CASH_START_X		(g_pD3dApp->GetBackBufferDesc().Width-CHAT_MENU_CASH_START_W)
 #define CHAT_MENU_CASH_START_Y		(g_pD3dApp->GetBackBufferDesc().Height-CHAT_MENU_CASH_START_H-84)
 #else
-// Ä³½¬»óÁ¡°ü·Ã ·»´õ¸µ À§Ä¡
+// ìºì‰¬ìƒì ê´€ë ¨ ë Œë”ë§ ìœ„ì¹˜
 #define CHAT_MENU_CASH_START_W		65
 #define CHAT_MENU_CASH_START_H		19
 #define CHAT_MENU_CASH_START_X		(g_pD3dApp->GetBackBufferDesc().Width-CHAT_MENU_CASH_START_W)
@@ -64,14 +64,14 @@
 
 
 
-// a±â¾î 1Çü ¹«±â È¸Àü Áß½ÉÁÂÇ¥
+// aê¸°ì–´ 1í˜• ë¬´ê¸° íšŒì „ ì¤‘ì‹¬ì¢Œí‘œ
 //#define A_GEAR_PRIMARY_PORT_POSITION		D3DXVECTOR3(0.0f,0.662f,5.765f)
 #define A_GEAR_PRIMARY_PORT_POSITION		D3DXVECTOR3(0.0f,0.0f,2.843f)
 
 
-// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+// 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 #define A_GEAR_ROBOT_PRIMARY_WEAPON_ITEM_NUM	7023980
-// end 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+// end 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 
 
 
@@ -113,11 +113,11 @@
 #define SOUND_CLOSE_MESSAGE_BOX				89
 #define SOUND_GROUND_MOVING_A_GEAR			91
 #define SOUND_LANDING_DONE					96
-#define SOUND_MISSILE_WARNNING				97			// 2005-07-08 by ispark // ¹Ì»çÀÏ °æ°í
+#define SOUND_MISSILE_WARNNING				97			// 2005-07-08 by ispark // ë¯¸ì‚¬ì¼ ê²½ê³ 
 #define SOUND_LUCKY_COIN					98
 #define SOUND_LUCKY_SLOT					99
-#define SOUND_WARP_2						2006023		// 2008-06-24 by dgwoo #define SOUND_WARP	82  ¿öÇÁ »ç¿îµå Ãß°¡.
-#define	SOUND_DISSOLUTION					400031      // 2011-03-08 by jhahn ¿ëÇØ »ç¿îµå
+#define SOUND_WARP_2						2006023		// 2008-06-24 by dgwoo #define SOUND_WARP	82  ì›Œí”„ ì‚¬ìš´ë“œ ì¶”ê°€.
+#define	SOUND_DISSOLUTION					400031      // 2011-03-08 by jhahn ìš©í•´ ì‚¬ìš´ë“œ
 
 #define SOUND_HIGH_BOOSTER					361//1033
 #define SOUND_HIGH_BOOSTER_END				363//2033
@@ -128,7 +128,7 @@
 #define SOUND_PVP_COUNT						300000
 #define SOUND_PVP_START						300002
 
-// 2006-10-11 by ispark, Ä¸½¶ »ç¿îµå
+// 2006-10-11 by ispark, ìº¡ìŠ ì‚¬ìš´ë“œ
 #define SOUND_POWER_ENERGY_CAPSULE			400001
 #define SOUND_POWER_SHIELD_CAPSULE			400500
 #define SOUND_POWER_SP_CAPSULE				22
@@ -160,13 +160,13 @@
 
 
 
-// °ø°Ý °¡´É Enemy Flag Á¤ÀÇ
+// ê³µê²© ê°€ëŠ¥ Enemy Flag ì •ì˜
 #define PK_NONE		0x00000000
 #define PK_PVP		0x00000001
 #define PK_FVF		0x00000002
 #define PK_GVG		0x00000004
 #define PK_WAR		0x00000008
-#define PK_NORMAL	0x00000010	// °­Á¦ PK
+#define PK_NORMAL	0x00000010	// ê°•ì œ PK
 #define PK_ALL		0xFFFFFFFF
 
 
@@ -186,12 +186,12 @@
 
 
 
-#define BOOSTER_OVERHEAT_REPAIR_TIME			10.0f	// 10ÃÊ
+#define BOOSTER_OVERHEAT_REPAIR_TIME			10.0f	// 10ì´ˆ
 
 
 
 
-// ¸¶ÀÎ ÃÖ´ë °³¼ö
+// ë§ˆì¸ ìµœëŒ€ ê°œìˆ˜
 #define MAX_MINE_NUM				100
 
 
@@ -205,7 +205,7 @@
 
 
 // 2004-10-13 by jschoi
-// ½ºÅ³ »óÅÂ 
+// ìŠ¤í‚¬ ìƒíƒœ 
 #define SKILL_STATE_READY			0
 #define SKILL_STATE_WAITING_PREPARE	1
 #define SKILL_STATE_PREPARE			2
@@ -216,8 +216,8 @@
 
 
 
-// 2005-11-22 by ispark, ¼­¹ö¿¡¼­ Á¤ÀÇ
-//// ½ºÅ³ °ü·Ã Á¤ÀÇ
+// 2005-11-22 by ispark, ì„œë²„ì—ì„œ ì •ì˜
+//// ìŠ¤í‚¬ ê´€ë ¨ ì •ì˜
 //#define	SIEGE_MODE			7820050	// 2005-11-18 by ispark 7820040 -> 7820050
 //#define SIEGE_DEFENSE_MODE	7821040	// 2005-11-18 by ispark 7821030 -> 7821040
 //#define GROUND_ATTACK_MODE	7800040
@@ -226,7 +226,7 @@
 //#define FLASH_ACCELERATOR	7822030
 
 
-// ÀÏÁ¤ °íµµ ÀÌ»ó »ó½Â½Ã »ó¼ö
+// ì¼ì • ê³ ë„ ì´ìƒ ìƒìŠ¹ì‹œ ìƒìˆ˜
 #define ALTITUDE_APPLY_MIN			600.0f
 #define ALTITUDE_APPLY_MAX			1600.0f
 #define ALTITUDE_DEST_RATE			0.8f
@@ -237,7 +237,7 @@
 
 
 
-// 1Çü ¹«±â, ÀüÃ¼ °ø°Ý ¼Óµµ
+// 1í˜• ë¬´ê¸°, ì „ì²´ ê³µê²© ì†ë„
 #define MAX_WEAPON_SPEED	3000.0f
 
 
@@ -251,17 +251,17 @@
 
 
 // Object Type
-#define OBJECT_NORMAL			0		// °Å¸® ·»´õÄÃ¸µ°Ë»ç,ÀýµÎÃ¼ ÄÃ¸µ°Ë»ç, EX:ÀÏ¹Ý ¿ÀºêÁ§Æ®(³ª¹«)
-#define OBJECT_BIG				1		// °Å¸®¿¡ »ó°ü¾øÀÌ ¹«Á¶°Ç ·»´õ¸µ,ÀýµÎÃ¼ ÄÃ¸µ¸¸ °Ë»ç, EX:¿öÇÁ°ÔÀÌÆ®,Âø·úÀå
-#define OBJECT_BIG_CULLED		2		// ·»´õÄÃ¸µ*(·»´õ¸µ ¿µ¿ª¿¡¼­ ¹ÝÁö¸§ °Ë»ç), EX:½Ä»§
-#define OBJECT_BIG_NO_COLLISION	3		// ·»´õÄÃ¸µ*(·»´õ¸µ ¿µ¿ª¿¡¼­ ¹ÝÁö¸§ °Ë»ç), Ãæµ¹°Ë»ç ¾ÈÇÔ, EX:¹Ì¿ª
-#define OBJECT_BIG_EFFECT		4		// °Å¸® ·»´õÄÃ¸µ¸¸ °Ë»ç.( ÀÌÆåÆ®¸¦ À§ÇÑ ¿ÀºêÁ§Æ® ), EX:ÆøÆ÷ÀÌÆåÆ®,È­»êÀÌÆåÆ®
-#define OBJECT_MONSTER			7		// ·»´õ¸µ ¾ÈÇÏ°í, Ãæµ¹°Ë»ç ¾ÈÇÏ´Â ¿ÀºêÁ§Æ®, EX:¸ó½ºÅÍ ¿ÀºêÁ§Æ®
-#define OBJECT_MONSTER_OBJECT	8		// ¿ÀºêÁ§Æ® ¸ó½ºÅÍ »ç¸Á½Ã ´ëÃ¼µÇ´Â ¿ÀºêÁ§Æ® Å¸ÀÔ , EX:ÄÚ¾î ¿ÀºêÁ§Æ®
-#define OBJECT_WATER			9		// ¹° Å¸ÀÏ ¿ÀºêÁ§Æ®(Âø·úºÒ°¡,¹Ì´Ï¸Ê ·»´õ¸µ ºÒ°¡,¹°À§¸¦ Áö³¯¶§ ¹°¹æ¿ï ¿ÀºêÁ§Æ® ¹ß»ý,±íÀÌ ¹öÆÛ ±â·Ï¾ÈÇÔ)
-// Object Type¿¡ Ãß°¡
-#define OBJECT_BIG_CONTOUR		10		// ·»´õÄÃ¸µ*(·»´õ¸µ ¿µ¿ª¿¡¼­ ¹ÝÁö¸§ °Ë»ç), ¹Ì´Ï¸Ê¿¡¼­ ·»´õ¸µÇÏÁö ¾ÊÀ½, Ãæµ¹ °Ë»ç ÇÏÁö ¾ÊÀ½, EX:¸Ê ¿Ü°û ¿ÀºêÁ§Æ®
-#define OBJECT_SHOP_NPC			11		// »óÁ¡ NPC Ä³¸¯ÅÍ (»óÁ¡ °Ë»ö ¹æ½ÄÀÌ ¿µ¿ªÀ¸·Î ¼³Á¤(NO Picking))
+#define OBJECT_NORMAL			0		// ê±°ë¦¬ ë Œë”ì»¬ë§ê²€ì‚¬,ì ˆë‘ì²´ ì»¬ë§ê²€ì‚¬, EX:ì¼ë°˜ ì˜¤ë¸Œì íŠ¸(ë‚˜ë¬´)
+#define OBJECT_BIG				1		// ê±°ë¦¬ì— ìƒê´€ì—†ì´ ë¬´ì¡°ê±´ ë Œë”ë§,ì ˆë‘ì²´ ì»¬ë§ë§Œ ê²€ì‚¬, EX:ì›Œí”„ê²Œì´íŠ¸,ì°©ë¥™ìž¥
+#define OBJECT_BIG_CULLED		2		// ë Œë”ì»¬ë§*(ë Œë”ë§ ì˜ì—­ì—ì„œ ë°˜ì§€ë¦„ ê²€ì‚¬), EX:ì‹ë¹µ
+#define OBJECT_BIG_NO_COLLISION	3		// ë Œë”ì»¬ë§*(ë Œë”ë§ ì˜ì—­ì—ì„œ ë°˜ì§€ë¦„ ê²€ì‚¬), ì¶©ëŒê²€ì‚¬ ì•ˆí•¨, EX:ë¯¸ì—­
+#define OBJECT_BIG_EFFECT		4		// ê±°ë¦¬ ë Œë”ì»¬ë§ë§Œ ê²€ì‚¬.( ì´íŽ™íŠ¸ë¥¼ ìœ„í•œ ì˜¤ë¸Œì íŠ¸ ), EX:í­í¬ì´íŽ™íŠ¸,í™”ì‚°ì´íŽ™íŠ¸
+#define OBJECT_MONSTER			7		// ë Œë”ë§ ì•ˆí•˜ê³ , ì¶©ëŒê²€ì‚¬ ì•ˆí•˜ëŠ” ì˜¤ë¸Œì íŠ¸, EX:ëª¬ìŠ¤í„° ì˜¤ë¸Œì íŠ¸
+#define OBJECT_MONSTER_OBJECT	8		// ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ì‚¬ë§ì‹œ ëŒ€ì²´ë˜ëŠ” ì˜¤ë¸Œì íŠ¸ íƒ€ìž… , EX:ì½”ì–´ ì˜¤ë¸Œì íŠ¸
+#define OBJECT_WATER			9		// ë¬¼ íƒ€ì¼ ì˜¤ë¸Œì íŠ¸(ì°©ë¥™ë¶ˆê°€,ë¯¸ë‹ˆë§µ ë Œë”ë§ ë¶ˆê°€,ë¬¼ìœ„ë¥¼ ì§€ë‚ ë•Œ ë¬¼ë°©ìš¸ ì˜¤ë¸Œì íŠ¸ ë°œìƒ,ê¹Šì´ ë²„í¼ ê¸°ë¡ì•ˆí•¨)
+// Object Typeì— ì¶”ê°€
+#define OBJECT_BIG_CONTOUR		10		// ë Œë”ì»¬ë§*(ë Œë”ë§ ì˜ì—­ì—ì„œ ë°˜ì§€ë¦„ ê²€ì‚¬), ë¯¸ë‹ˆë§µì—ì„œ ë Œë”ë§í•˜ì§€ ì•ŠìŒ, ì¶©ëŒ ê²€ì‚¬ í•˜ì§€ ì•ŠìŒ, EX:ë§µ ì™¸ê³½ ì˜¤ë¸Œì íŠ¸
+#define OBJECT_SHOP_NPC			11		// ìƒì  NPC ìºë¦­í„° (ìƒì  ê²€ìƒ‰ ë°©ì‹ì´ ì˜ì—­ìœ¼ë¡œ ì„¤ì •(NO Picking))
 
 
 
@@ -324,7 +324,7 @@
 
 
 
-// ½Ã³×¸¶ ÆÐÅÏ Å¸ÀÔ
+// ì‹œë„¤ë§ˆ íŒ¨í„´ íƒ€ìž…
 #define PATTERN_SOUND					0
 #define PATTERN_UNIT					1
 #define PATTERN_MONSTER					2
@@ -337,23 +337,23 @@
 
 #define PATTERN_DEFAULT					"99999999"
 
-#define PATTERN_CAMERA_DEFAULT			8000000		// µðÆúÆ® Ä«¸Þ¶ó
-#define PATTERN_CAMERA_COBRA			8000001		// À¯´Ö ÄÚºê¶ó ½ºÅ³ Ä«¸Þ¶ó
+#define PATTERN_CAMERA_DEFAULT			8000000		// ë””í´íŠ¸ ì¹´ë©”ë¼
+#define PATTERN_CAMERA_COBRA			8000001		// ìœ ë‹› ì½”ë¸Œë¼ ìŠ¤í‚¬ ì¹´ë©”ë¼
 #define PATTERN_CAMERA_FALLING			8000002
-#define PATTERN_CAMERA_WARP_OUT			8000003		// ¿öÇÁ ³ª¿Ã¶§
-#define PATTERN_CAMERA_WARP_IN			8000004		// ¿öÇÁ µé¾î°¥¶§
-#define PATTERN_CAMERA_CITY_OUT			8000005		// »ç¿ë ¾ÈÇÔ
-#define PATTERN_CAMERA_CITY_IN			8000006		// »ç¿ë ¾ÈÇÔ
+#define PATTERN_CAMERA_WARP_OUT			8000003		// ì›Œí”„ ë‚˜ì˜¬ë•Œ
+#define PATTERN_CAMERA_WARP_IN			8000004		// ì›Œí”„ ë“¤ì–´ê°ˆë•Œ
+#define PATTERN_CAMERA_CITY_OUT			8000005		// ì‚¬ìš© ì•ˆí•¨
+#define PATTERN_CAMERA_CITY_IN			8000006		// ì‚¬ìš© ì•ˆí•¨
 #define PATTERN_CAMERA_GAME_START		8000007
 #define PATTERN_CAMERA_GAME_END			8000008
 #define PATTERN_CAMERA_LANDING			8000009
 #define PATTERN_CAMERA_AIRPORT_IN		8700000
 #define PATTERN_CAMERA_AIRPORT_OUT		5020001		// 2006-11-01 by dgwoo //8800000
-#define PATTERN_CAMERA_AIRPORT_NORMALCITY_OUT		5020002		// 2007-06-13 by bhsohn ¾ÆÄ«µ¥¹Ì¸Ê ½Ã³×¸¶ Ãß°¡
-#define PATTERN_CAMERA_FAIL_INFINITY	5020004		// ÀÎÇÇ´ÏÆ¼ ½ÇÆÐ Ä«¸Å¶ó ÆÐÅÏ
-#define PATTERN_CAMERA_SUCCESS_INFINITY	5020005		// ÀÎÇÇ´ÏÆ¼ ¼º°ø Ä«¸Å¶ó ÆÐÅÏ
-#define PATTERN_CAMERA_FAIL_INFINITYTHIRD		5020006			// 2011-06-23 by jhahn ÀÎÇÇ3Â÷ ½Ã³×¸¶ Àû¿ë Ä«¸Þ¶ó ±¸Çö
-#define PATTERN_CAMERA_SUCCESS_INFINITYTHIRD	5020007			// 2011-06-23 by jhahn ÀÎÇÇ3Â÷ ½Ã³×¸¶ Àû¿ë Ä«¸Þ¶ó ±¸Çö
+#define PATTERN_CAMERA_AIRPORT_NORMALCITY_OUT		5020002		// 2007-06-13 by bhsohn ì•„ì¹´ë°ë¯¸ë§µ ì‹œë„¤ë§ˆ ì¶”ê°€
+#define PATTERN_CAMERA_FAIL_INFINITY	5020004		// ì¸í”¼ë‹ˆí‹° ì‹¤íŒ¨ ì¹´ë§¤ë¼ íŒ¨í„´
+#define PATTERN_CAMERA_SUCCESS_INFINITY	5020005		// ì¸í”¼ë‹ˆí‹° ì„±ê³µ ì¹´ë§¤ë¼ íŒ¨í„´
+#define PATTERN_CAMERA_FAIL_INFINITYTHIRD		5020006			// 2011-06-23 by jhahn ì¸í”¼3ì°¨ ì‹œë„¤ë§ˆ ì ìš© ì¹´ë©”ë¼ êµ¬í˜„
+#define PATTERN_CAMERA_SUCCESS_INFINITYTHIRD	5020007			// 2011-06-23 by jhahn ì¸í”¼3ì°¨ ì‹œë„¤ë§ˆ ì ìš© ì¹´ë©”ë¼ êµ¬í˜„
 
 
 #define PATTERN_UNIT_FALLING			1000001
@@ -361,14 +361,14 @@
 #define PATTERN_UNIT_WARP_IN			1000003
 #define PATTERN_UNIT_CITY_OUT			1000004
 #define PATTERN_UNIT_CITY_IN			1000005
-#define PATTERN_UNIT_GAME_START			1000006		// »ç¿ë ¾ÈÇÔ
-#define PATTERN_UNIT_GAME_END			1000007		// »ç¿ë ¾ÈÇÔ
+#define PATTERN_UNIT_GAME_START			1000006		// ì‚¬ìš© ì•ˆí•¨
+#define PATTERN_UNIT_GAME_END			1000007		// ì‚¬ìš© ì•ˆí•¨
 #define PATTERN_UNIT_AIRPORT_IN			1700000
 #define PATTERN_UNIT_AIRPORT_OUT		1800000
 
 
 
-// Ãæµ¹ Å¸ÀÔ
+// ì¶©ëŒ íƒ€ìž…
 #define COLL_NONE		-1
 #define COLL_FRONT		0
 #define	COLL_BACK		1
@@ -384,7 +384,7 @@
 
 
 
-// ¸ó½ºÅÍ ½ºÅ³ »óÅÂ
+// ëª¬ìŠ¤í„° ìŠ¤í‚¬ ìƒíƒœ
 #define MONSTER_SKILL_ON				1
 #define MONSTER_SKILL_OFF				2
 #define MONSTER_WAIT_END_SKILL			3
@@ -396,7 +396,7 @@
 
 
 
-// ´õ¹Ì µ¥ÀÌÅ¸ ÁÂÇ¥
+// ë”ë¯¸ ë°ì´íƒ€ ì¢Œí‘œ
 #define DUMMY_POSITION_1			D3DXVECTOR3( 0.0f, -3.75f, -19.31f )
 #define DUMMY_POSITION_2			D3DXVECTOR3( 19.31f, -3.75f, 11.80f )
 #define DUMMY_POSITION_3			D3DXVECTOR3( -19.31f, -3.75f, 11.80f )
@@ -415,48 +415,48 @@
 
 
 
-// µðÆúÆ® °î·ü(½Ã³×¸¶ ¿¡µðÅÍ)
+// ë””í´íŠ¸ ê³¡ë¥ (ì‹œë„¤ë§ˆ ì—ë””í„°)
 #define DEFAULT_CURVATURE					1.0f
 
 
 
 
-// ºò ¿ÀºêÁ§Æ® ºÐ·ù ±âÁØ Å©±â
+// ë¹… ì˜¤ë¸Œì íŠ¸ ë¶„ë¥˜ ê¸°ì¤€ í¬ê¸°
 #define BIG_OBJECT_SIZE		100
 
 
-// ºò ¸ó½ºÅÍ ºÐ·ù ±âÁØ Å©±â
+// ë¹… ëª¬ìŠ¤í„° ë¶„ë¥˜ ê¸°ì¤€ í¬ê¸°
 #define BIG_MONSTER_SIZE	150.0f
 
 
-#define GUI_FONT_COLOR						RGB(222, 222, 222)		// ±âº» »ö»ó(Èò»ö)
+#define GUI_FONT_COLOR						RGB(222, 222, 222)		// ê¸°ë³¸ ìƒ‰ìƒ(í°ìƒ‰)
 #ifdef C_EPSODE4_UI_CHANGE_JSKIM
-#define GUI_SELECT_FONT_COLOR				RGB(161, 220, 252)			// ¼±ÅÃ »ö»ó(°ËÀº»ö)
+#define GUI_SELECT_FONT_COLOR				RGB(161, 220, 252)			// ì„ íƒ ìƒ‰ìƒ(ê²€ì€ìƒ‰)
 #else
-#define GUI_SELECT_FONT_COLOR				RGB(1, 1, 1)			// ¼±ÅÃ »ö»ó(°ËÀº»ö)
+#define GUI_SELECT_FONT_COLOR				RGB(1, 1, 1)			// ì„ íƒ ìƒ‰ìƒ(ê²€ì€ìƒ‰)
 #endif
-#define GUI_FONT_COLOR_YM					RGB(255, 168, 0)		// ±âº» »ö»ó(ÁÖÈ²»ö)
-#define GUI_FONT_COLOR_BM					RGB(178, 190, 255)		// ±âº» »ö»ó(¿¬ÇÑÇÏ´Ã»ö)
-#define GUI_FONT_COLOR_Y					RGB(255, 255, 0)		// ±âº» »ö»ó(³ë¶õ»ö)
-#define GUI_FONT_COLOR_R					RGB(255, 0, 0)			// ±âº» »ö»ó(»¡°£»ö)
-#define GUI_FONT_COLOR_G					RGB(128, 128, 128)		// ±âº» »ö»ó(È¸»ö»ö)
-#define GUI_FONT_COLOR_B					RGB(0, 0, 255)			// ±âº» »ö»ó(ÆÄ¶õ»ö)
-#define GUI_FONT_COLOR_W					RGB(255, 255, 255)		// ±âº» »ö»ó(Èò»ö)
-#define GUI_FONT_COLOR_GR					RGB(211, 211, 211)		// ±âº» »ö»ó(È¸»ö)
+#define GUI_FONT_COLOR_YM					RGB(255, 168, 0)		// ê¸°ë³¸ ìƒ‰ìƒ(ì£¼í™©ìƒ‰)
+#define GUI_FONT_COLOR_BM					RGB(178, 190, 255)		// ê¸°ë³¸ ìƒ‰ìƒ(ì—°í•œí•˜ëŠ˜ìƒ‰)
+#define GUI_FONT_COLOR_Y					RGB(255, 255, 0)		// ê¸°ë³¸ ìƒ‰ìƒ(ë…¸ëž€ìƒ‰)
+#define GUI_FONT_COLOR_R					RGB(255, 0, 0)			// ê¸°ë³¸ ìƒ‰ìƒ(ë¹¨ê°„ìƒ‰)
+#define GUI_FONT_COLOR_G					RGB(128, 128, 128)		// ê¸°ë³¸ ìƒ‰ìƒ(íšŒìƒ‰ìƒ‰)
+#define GUI_FONT_COLOR_B					RGB(0, 0, 255)			// ê¸°ë³¸ ìƒ‰ìƒ(íŒŒëž€ìƒ‰)
+#define GUI_FONT_COLOR_W					RGB(255, 255, 255)		// ê¸°ë³¸ ìƒ‰ìƒ(í°ìƒ‰)
+#define GUI_FONT_COLOR_GR					RGB(211, 211, 211)		// ê¸°ë³¸ ìƒ‰ìƒ(íšŒìƒ‰)
 #define GUI_FONT_COLOR_C					RGB(0, 255, 255)		// Cyan
 
 
 
-#define NAME_COLOR_NORMAL					RGB(222, 222, 222)		// ±âº» ÀÌ¸§ »ö»ó
-#define NAME_COLOR_ATTACKER					RGB(255, 50, 50)		// µµ½ÃÁ¡·ÉÀü °ø°ÝÃø ÀÌ¸§ »ö»ó
-#define NAME_COLOR_DEFENSER					RGB(50, 50, 255)		// µµ½ÃÁ¡·ÉÀü ¹æ¾îÃø ÀÌ¸§ »ö»ó
-#define NAME_COLOR_SAFEJONE					RGB(255, 255, 0)			// 2011-11-03 by jhahn EP4 Áß¸³Áö¿ª ¾ÆÀÌµð »ö º¯°æ
+#define NAME_COLOR_NORMAL					RGB(222, 222, 222)		// ê¸°ë³¸ ì´ë¦„ ìƒ‰ìƒ
+#define NAME_COLOR_ATTACKER					RGB(255, 50, 50)		// ë„ì‹œì ë ¹ì „ ê³µê²©ì¸¡ ì´ë¦„ ìƒ‰ìƒ
+#define NAME_COLOR_DEFENSER					RGB(50, 50, 255)		// ë„ì‹œì ë ¹ì „ ë°©ì–´ì¸¡ ì´ë¦„ ìƒ‰ìƒ
+#define NAME_COLOR_SAFEJONE					RGB(255, 255, 0)			// 2011-11-03 by jhahn EP4 ì¤‘ë¦½ì§€ì—­ ì•„ì´ë”” ìƒ‰ ë³€ê²½
 
 
 
 
 
-// À¯´ÖÀÇ »óÅÂ
+// ìœ ë‹›ì˜ ìƒíƒœ
 #define ATTACK_AVAILABLE_STATE(X)	(X == _NORMAL || X == _LANDING || X == _TAKINGOFF || X == _LANDED) 
 #define MOVE_AVAILABLE_STATE(X)		(X == _NORMAL || X == _LANDING || X == _TAKINGOFF || X == _LANDED) 
 
@@ -473,24 +473,22 @@
 
 typedef DWORD InfUnitState_t;
 // Inf Unit Warning
-#define INF_UW_DANGER_MASK			(InfUnitState_t)0x00000001		// ±âÃ¼ ¼Õ»ó À§Çè
-#define INF_UW_OVERHEAT_MASK		(InfUnitState_t)0x00000002		// ºÎ½ºÅÍ °ú¿­
-#define INF_UW_LOWFUEL_MASK			(InfUnitState_t)0x00000004		// ¿¬·á ºÎÁ·
-#define INF_UW_FULLITEM_MASK		(InfUnitState_t)0x00000008		// ¾ÆÀÌÅÛ ÃÊ°ú(¿¹ºñ)
-#define INF_UW_TOOHIGH_MASK			(InfUnitState_t)0x00000010		// °íµµ Á¦ÇÑ
-#define INF_UW_LOWSHIELD_MASK		(InfUnitState_t)0x00000020		// ½¯µå ºÎÁ·
-#define INF_UW_FULLITEM1_MASK		(InfUnitState_t)0x00000040		// ¾ÆÀÌÅÛ ÃÊ°ú(70%)
-#define INF_UW_FULLITEM2_MASK		(InfUnitState_t)0x00000080		// ¾ÆÀÌÅÛ ÃÊ°ú(80%)
-#define INF_UW_FULLITEM3_MASK		(InfUnitState_t)0x00000100		// ¾ÆÀÌÅÛ ÃÊ°ú(90%)
+#define INF_UW_DANGER_MASK			(InfUnitState_t)0x00000001		// ê¸°ì²´ ì†ìƒ ìœ„í—˜
+#define INF_UW_OVERHEAT_MASK		(InfUnitState_t)0x00000002		// ë¶€ìŠ¤í„° ê³¼ì—´
+#define INF_UW_LOWFUEL_MASK			(InfUnitState_t)0x00000004		// ì—°ë£Œ ë¶€ì¡±
+#define INF_UW_FULLITEM_MASK		(InfUnitState_t)0x00000008		// ì•„ì´í…œ ì´ˆê³¼(ì˜ˆë¹„)
+#define INF_UW_TOOHIGH_MASK			(InfUnitState_t)0x00000010		// ê³ ë„ ì œí•œ
+#define INF_UW_LOWSHIELD_MASK		(InfUnitState_t)0x00000020		// ì‰´ë“œ ë¶€ì¡±
+#define INF_UW_FULLITEM1_MASK		(InfUnitState_t)0x00000040		// ì•„ì´í…œ ì´ˆê³¼(70%)
+#define INF_UW_FULLITEM2_MASK		(InfUnitState_t)0x00000080		// ì•„ì´í…œ ì´ˆê³¼(80%)
+#define INF_UW_FULLITEM3_MASK		(InfUnitState_t)0x00000100		// ì•„ì´í…œ ì´ˆê³¼(90%)
 
-// Inf(ÀÎÅÍÆäÀÌ½º) Unit State
-#define INF_US_TAKEOFF_MASK			(InfUnitState_t)0x00010000		// ÀÌ·úµÈ »óÅÂ(Take Off ) - ´Ù½ÃÂø·ú-0(ins)
-#define INF_US_STOP_MASK			(InfUnitState_t)0x00020000		// À¯´Ö °øÁß¿¡ Á¤ÁöµÊ - ÇØÁ¦ -ÀüÁøÅ° W
-#define INF_US_LOCK_MASK			(InfUnitState_t)0x00040000		// ¿òÁ÷ÀÏ¼ö ¾ø´Â »óÅÂ(Unit Lock) - R
-#define INF_US_FORM_MASK			(InfUnitState_t)0x00080000		// formation Æí´ëºñÇàÁß( ÇÕ·ùÅ° f2)
-#define INF_US_LAND_MASK			(InfUnitState_t)0x00100000		// À¯´Ö Landing, Âø·úÁß - ´Ù½Ã ÀÌ·ú W
-
-
+// Inf(ì¸í„°íŽ˜ì´ìŠ¤) Unit State
+#define INF_US_TAKEOFF_MASK			(InfUnitState_t)0x00010000		// ì´ë¥™ëœ ìƒíƒœ(Take Off ) - ë‹¤ì‹œì°©ë¥™-0(ins)
+#define INF_US_STOP_MASK			(InfUnitState_t)0x00020000		// ìœ ë‹› ê³µì¤‘ì— ì •ì§€ë¨ - í•´ì œ -ì „ì§„í‚¤ W
+#define INF_US_LOCK_MASK			(InfUnitState_t)0x00040000		// ì›€ì§ì¼ìˆ˜ ì—†ëŠ” ìƒíƒœ(Unit Lock) - R
+#define INF_US_FORM_MASK			(InfUnitState_t)0x00080000		// formation íŽ¸ëŒ€ë¹„í–‰ì¤‘( í•©ë¥˜í‚¤ f2)
+#define INF_US_LAND_MASK			(InfUnitState_t)0x00100000		// ìœ ë‹› Landing, ì°©ë¥™ì¤‘ - ë‹¤ì‹œ ì´ë¥™ W
 
 
 
@@ -504,12 +502,14 @@ typedef DWORD InfUnitState_t;
 
 
 
-// ¹öÆ°Áß ¾ç¸éÀ» ¶Ù´Â ¹öÆ°ÀÏ °æ¿ì.[2][2]
+
+
+// ë²„íŠ¼ì¤‘ ì–‘ë©´ì„ ë›°ëŠ” ë²„íŠ¼ì¼ ê²½ìš°.[2][2]
 #define BUTTON_BOTH_STATE_NORMAL		0
 #define BUTTON_BOTH_STATE_UP			1
 #define BUTTON_BOTH_STATE_NUMBER		2
 
-// ÀÎÅÍÆäÀÌ½º ¹öÆ° »óÅÂ
+// ì¸í„°íŽ˜ì´ìŠ¤ ë²„íŠ¼ ìƒíƒœ
 #define BUTTON_STATE_UP			0
 #define BUTTON_STATE_DOWN		1
 #define BUTTON_STATE_DISABLE	2
@@ -517,21 +517,21 @@ typedef DWORD InfUnitState_t;
 
 #define BUTTON_STATE_NUMBER		4
 
-// ·¡µð¿À ¹öÆ°.
+// ëž˜ë””ì˜¤ ë²„íŠ¼.
 #define	RADIOBUTTON_STATE_NORMAL	0
 #define RADIOBUTTON_STATE_SELECT	1
 #define RADIOBUTTON_STATE_NUMBER	2
 
-// °ÔÀÓÁß ÀÌ¹ÌÁö Å¸ÀÙ¿¡ µû¸¥ define
+// ê²Œìž„ì¤‘ ì´ë¯¸ì§€ íƒ€ìžŽì— ë”°ë¥¸ define
 #define TOOLTIP_IMGTYPE_NORMAL					0
-#define TOOLTIP_IMGTYPE_TELEPORT_SUC			1			// ÅÚ·¹Æ÷Æ®°¡ ¼³Ä¡ µÇ¾ú½À´Ï´Ù.
-#define TOOLTIP_IMGTYPE_TELEPORT_DESTROY		2			// ÅÚ·¹Æ÷Æ®°¡ ÆÄ±« µÇ¾ú½À´Ï´Ù.
+#define TOOLTIP_IMGTYPE_TELEPORT_SUC			1			// í…”ë ˆí¬íŠ¸ê°€ ì„¤ì¹˜ ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define TOOLTIP_IMGTYPE_TELEPORT_DESTROY		2			// í…”ë ˆí¬íŠ¸ê°€ íŒŒê´´ ë˜ì—ˆìŠµë‹ˆë‹¤.
 
 
 
 
 
-// µ¥¹ÌÁö¸¦ ¸¹ÀÌ ÀÔ¾úÀ» °æ¿ì ¹ÙµðÄÁµð¼Ç ¼¼ÆÃÀ» À§ÇØ »ç¿ë(À¯´Ö, ¸ó½ºÅÍ)
+// ë°ë¯¸ì§€ë¥¼ ë§Žì´ ìž…ì—ˆì„ ê²½ìš° ë°”ë””ì»¨ë””ì…˜ ì„¸íŒ…ì„ ìœ„í•´ ì‚¬ìš©(ìœ ë‹›, ëª¬ìŠ¤í„°)
 #define CHARACTER_DAMAGE_STATE_05		0.25f
 #define CHARACTER_DAMAGE_STATE_10		0.35f
 #define CHARACTER_DAMAGE_STATE_15		0.40f
@@ -540,16 +540,16 @@ typedef DWORD InfUnitState_t;
 
 
 
-// UNIT_STATE : ¿¬·á ºÎÁ·
+// UNIT_STATE : ì—°ë£Œ ë¶€ì¡±
 #define CHARACTER_LOWFUEL_STATE			0.1f
 
 
 
 
 
-// ½¯µå Å¸°Ý ÀÌÆåÆ® ¹ßµ¿½Ã ¹«±â¿Í À¯´Ö°úÀÇ °Å¸®
+// ì‰´ë“œ íƒ€ê²© ì´íŽ™íŠ¸ ë°œë™ì‹œ ë¬´ê¸°ì™€ ìœ ë‹›ê³¼ì˜ ê±°ë¦¬
 #define SIZE_OF_SHIELD_EFFECT						15.0f
-// 1Çü ¹«±â °ø°Ý½Ã À¯´Ö¿¡¼­ ·£´ýÇÏ°Ô Æø¹ßÇÏ´Â °Å¸®
+// 1í˜• ë¬´ê¸° ê³µê²©ì‹œ ìœ ë‹›ì—ì„œ ëžœë¤í•˜ê²Œ í­ë°œí•˜ëŠ” ê±°ë¦¬
 #define SIZE_OF_PRIMARY_ATTACK_RANDOM_DISTANCE		10
 
 
@@ -565,8 +565,8 @@ typedef DWORD InfUnitState_t;
 #define BODYCON_SHIELD_ING_MASK			BODYCON_BULLET_MASK
 // charging shot bodycondition
 #define BODYCON_CHARGING_MASK			BODYCON_LANDED_MASK		// 2
-#define BODYCON_USE_SKILL_MASK			BODYCON_FLY_MASK		// 1 , USE_SKILL°ú °°ÀÌ »ç¿ëÇÑ´Ù.
-#define BODYCON_TARGET_USE_SKILL_MASK	BODYCON_DEAD_MASK		// 3 , ½ºÅ³À» ¸ÂÀº ÀÌÆåÆ® ¹ÙµðÄÁµð¼Ç
+#define BODYCON_USE_SKILL_MASK			BODYCON_FLY_MASK		// 1 , USE_SKILLê³¼ ê°™ì´ ì‚¬ìš©í•œë‹¤.
+#define BODYCON_TARGET_USE_SKILL_MASK	BODYCON_DEAD_MASK		// 3 , ìŠ¤í‚¬ì„ ë§žì€ ì´íŽ™íŠ¸ ë°”ë””ì»¨ë””ì…˜
 
 
 
@@ -575,9 +575,9 @@ typedef DWORD InfUnitState_t;
 
 
 
-//Ä«¸Þ¶ó Å¸ÀÔ
-#define CAMERA_TYPE_NORMAL			0//3ÀÎÄª
-#define CAMERA_TYPE_FPS				1//1ÀÎÄª
+//ì¹´ë©”ë¼ íƒ€ìž…
+#define CAMERA_TYPE_NORMAL			0//3ì¸ì¹­
+#define CAMERA_TYPE_FPS				1//1ì¸ì¹­
 
 
 
@@ -586,7 +586,7 @@ typedef DWORD InfUnitState_t;
 
 
 
-// ³¯¾¾¿¡ µû¸¥ Æ÷±× °Å¸®
+// ë‚ ì”¨ì— ë”°ë¥¸ í¬ê·¸ ê±°ë¦¬
 #define WEATHER_DEFAULT_FOG_START	50.0f
 #define WEATHER_DEFAULT_FOG_END		640.0f
 #define WEATHER_SUNNY_FOG_START		1900.0f//4000.0f
@@ -603,7 +603,7 @@ typedef DWORD InfUnitState_t;
 
 
 
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UI½Ã½ºÅÛ º¯°æ
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIì‹œìŠ¤í…œ ë³€ê²½
 #define SHOP_ITEM_SLOT_NUMBER		8															  
 #else 
 #define SHOP_ITEM_SLOT_NUMBER		5
@@ -626,73 +626,73 @@ typedef DWORD InfUnitState_t;
 									x == BUILDINGKIND_GEARSHOP	||		\
 									x == BUILDINGKIND_CARDSHOP	||		\
 									x == BUILDINGKIND_TRIGGER_CRYSTAL)
-									// 2012-02-29 by mspark, »óÁ¡ Å¸ÀÌÆ² ³Ö±â - ÆÄÃ÷»óÁ¡, ±â¾î»óÁ¡, Ä«µå»óÁ¡ Ãß°¡
+									// 2012-02-29 by mspark, ìƒì  íƒ€ì´í‹€ ë„£ê¸° - íŒŒì¸ ìƒì , ê¸°ì–´ìƒì , ì¹´ë“œìƒì  ì¶”ê°€
 									
-#define IS_STORE_SHOP_TYPE(x)		(x == BUILDINGKIND_STORE)					// Ã¢°í
-#define IS_WARP_SHOP_TYPE(x)		(x == BUILDINGKIND_CITYWARP)					// °³ÀÎ °Ý³³°í, ¿öÇÁ
+#define IS_STORE_SHOP_TYPE(x)		(x == BUILDINGKIND_STORE)					// ì°½ê³ 
+#define IS_WARP_SHOP_TYPE(x)		(x == BUILDINGKIND_CITYWARP)					// ê°œì¸ ê²©ë‚©ê³ , ì›Œí”„
 #define IS_MISSION_SHOP_TYPE(x)		(x == BUILDINGKIND_PUBLICOFFICE ||		\
-									x == BUILDINGKIND_MILITARYACADEMY)			// »ç°üÇÐ±³ÆÄÆ®
-#define IS_RACING_SHOP_TYPE(x)		(x == BUILDINGKIND_RACETRACK)				// ·¹ÀÌ½ÌÆÄÆ®
-#define IS_ACTIONHOUSE_SHOP_TYPE(x)	(x == BUILDINGKIND_ACTIONHOUSE)				// °æ¸ÅÆÄÆ®
-#define IS_LABORATORY_SHOP_TYPE(x)	(x == BUILDINGKIND_LABORATORY)				// ¿¬±¸¼Ò(ÀÎÃ¦Æ®)
-#define IS_FACTORY_SHOP_TYPE(x)		(x == BUILDINGKIND_FACTORY)					// ÆÑÅä¸®(Á¶ÇÕ)
-#define IS_SKILL_SHOP_TYPE(x)		(x == BUILDINGKIND_SKILL_SHOP)				// ½ºÅ³»óÁ¡
-#define IS_AUCTION_SHOP_TYPE(x)		(x == BUILDINGKIND_AUCTION)					// °æ¸Å
-#define IS_CITY_OCCUPY_INFO_TYPE(x)	(x == BUILDINGKIND_CITY_OCCUPY_INFO)		// µµ½Ã °ü¸®
-#define IS_TUNING_COLOR_SHOP(x)		(x == BUILDINGKIND_TUNING_COLOR)			// Ä®¶ó »óÁ¡
-#define IS_CASH_SHOP_TYPE(x)		(x == BUILDINGKIND_CASH_SHOP)				// Ä³½¬ »óÁ¡
-#define IS_WARPOINT_SHOP_TYPE(x)	(x == BUILDINGKIND_WARPOINT_SHOP)			// ¾Æ·¹³ª 
+									x == BUILDINGKIND_MILITARYACADEMY)			// ì‚¬ê´€í•™êµíŒŒíŠ¸
+#define IS_RACING_SHOP_TYPE(x)		(x == BUILDINGKIND_RACETRACK)				// ë ˆì´ì‹±íŒŒíŠ¸
+#define IS_ACTIONHOUSE_SHOP_TYPE(x)	(x == BUILDINGKIND_ACTIONHOUSE)				// ê²½ë§¤íŒŒíŠ¸
+#define IS_LABORATORY_SHOP_TYPE(x)	(x == BUILDINGKIND_LABORATORY)				// ì—°êµ¬ì†Œ(ì¸ì±ˆíŠ¸)
+#define IS_FACTORY_SHOP_TYPE(x)		(x == BUILDINGKIND_FACTORY)					// íŒ©í† ë¦¬(ì¡°í•©)
+#define IS_SKILL_SHOP_TYPE(x)		(x == BUILDINGKIND_SKILL_SHOP)				// ìŠ¤í‚¬ìƒì 
+#define IS_AUCTION_SHOP_TYPE(x)		(x == BUILDINGKIND_AUCTION)					// ê²½ë§¤
+#define IS_CITY_OCCUPY_INFO_TYPE(x)	(x == BUILDINGKIND_CITY_OCCUPY_INFO)		// ë„ì‹œ ê´€ë¦¬
+#define IS_TUNING_COLOR_SHOP(x)		(x == BUILDINGKIND_TUNING_COLOR)			// ì¹¼ë¼ ìƒì 
+#define IS_CASH_SHOP_TYPE(x)		(x == BUILDINGKIND_CASH_SHOP)				// ìºì‰¬ ìƒì 
+#define IS_WARPOINT_SHOP_TYPE(x)	(x == BUILDINGKIND_WARPOINT_SHOP)			// ì•„ë ˆë‚˜ 
 #define IS_OUTPOST_SHOP_TYPE(x)		(x == BUILDINGKIND_CITYLEADER_LEADER ||	\
-									 x == BUILDINGKIND_CITYLEADER_OUTPOST)			// ¾Æ·¹³ª 
+									 x == BUILDINGKIND_CITYLEADER_OUTPOST)			// ì•„ë ˆë‚˜ 
 
 
-// »óÁ¡ ¹öÆ° Á¾·ù Ãß°¡(¼­¹ö¿¡¼­ ¾²ÀÌÁö ¾ÊÀ½)
-#define BUILDINGKIND_OUTDOOR					99	//³ª°¡±â
+// ìƒì  ë²„íŠ¼ ì¢…ë¥˜ ì¶”ê°€(ì„œë²„ì—ì„œ ì“°ì´ì§€ ì•ŠìŒ)
+#define BUILDINGKIND_OUTDOOR					99	//ë‚˜ê°€ê¸°
 
 
 
-// HELP µ¥ÀÌÅ¸ º¸¿©ÁÖ´Â ·¹º§
+// HELP ë°ì´íƒ€ ë³´ì—¬ì£¼ëŠ” ë ˆë²¨
 #define SHOW_TEXT_HELP_LEVEL		6
 
 
 
-// ¿öÇÁ °ÔÀÌÆ® ¹Ùµð ÄÁµð¼Ç
+// ì›Œí”„ ê²Œì´íŠ¸ ë°”ë”” ì»¨ë””ì…˜
 #define BODYCON_WARP_MASK					BODYCON_DEAD_MASK
 
-// 2007-04-18 by dgwoo ¾Æ·¹³ª ¸Ê¿¡¼­ ¹® »óÅÂ.
-#define BODYCON_DOOR_CLOSE_MASK				BODYCON_DEAD_MASK			// ¹®ÀÌ ´ÝÇôÀÖ´Â »óÅÂ.
-#define BODYCON_DOOR_OPENING_MASK			BODYCON_LANDING_MASK		// ¹®ÀÌ ¿­¸®°í ÀÖ´Â »óÅÂ.
-#define BODYCON_DOOR_OPEN_MASK				BODYCON_LANDED_MASK			// ¹®ÀÌ ¿­·ÁÁø »óÅÂ.
-#define BODYCON_DOOR_CLOSING_MASK			BODYCON_NOT_USED1_MASK		// ¹®ÀÌ ´ÝÈ÷°í ÀÖ´Â »óÅÂ.
+// 2007-04-18 by dgwoo ì•„ë ˆë‚˜ ë§µì—ì„œ ë¬¸ ìƒíƒœ.
+#define BODYCON_DOOR_CLOSE_MASK				BODYCON_DEAD_MASK			// ë¬¸ì´ ë‹«í˜€ìžˆëŠ” ìƒíƒœ.
+#define BODYCON_DOOR_OPENING_MASK			BODYCON_LANDING_MASK		// ë¬¸ì´ ì—´ë¦¬ê³  ìžˆëŠ” ìƒíƒœ.
+#define BODYCON_DOOR_OPEN_MASK				BODYCON_LANDED_MASK			// ë¬¸ì´ ì—´ë ¤ì§„ ìƒíƒœ.
+#define BODYCON_DOOR_CLOSING_MASK			BODYCON_NOT_USED1_MASK		// ë¬¸ì´ ë‹«ížˆê³  ìžˆëŠ” ìƒíƒœ.
 
 
-// ÀåÂø ¹«±â ¹Ùµð ÄÁµð¼Ç, UnitData.cpp
-#define	WEAPON_BODYCON_LOADING				BODYCON_FLY_MASK		// ¹«±â ÀåÂø½Ã(¿¹ºñµ¿ÀÛ)
-#define WEAPON_BODYCON_FIRE_1				BODYCON_LANDED_MASK		// À¯´Ö¿¡¼­ ¹«±â°¡ ¹ß»çµÇ´Â »óÅÂ(1¹ø)
-#define WEAPON_BODYCON_FIRE_2				BODYCON_DEAD_MASK		// ¹«±â¹ß»ç»óÅÂ(2¹ø), Áö±×Àç±×½Ã »ç¿ë
-#define WEAPON_BODYCON_RELOAD				BODYCON_NOT_USED1_MASK	// ÀçÀåÀü
-
-
-
+// ìž¥ì°© ë¬´ê¸° ë°”ë”” ì»¨ë””ì…˜, UnitData.cpp
+#define	WEAPON_BODYCON_LOADING				BODYCON_FLY_MASK		// ë¬´ê¸° ìž¥ì°©ì‹œ(ì˜ˆë¹„ë™ìž‘)
+#define WEAPON_BODYCON_FIRE_1				BODYCON_LANDED_MASK		// ìœ ë‹›ì—ì„œ ë¬´ê¸°ê°€ ë°œì‚¬ë˜ëŠ” ìƒíƒœ(1ë²ˆ)
+#define WEAPON_BODYCON_FIRE_2				BODYCON_DEAD_MASK		// ë¬´ê¸°ë°œì‚¬ìƒíƒœ(2ë²ˆ), ì§€ê·¸ìž¬ê·¸ì‹œ ì‚¬ìš©
+#define WEAPON_BODYCON_RELOAD				BODYCON_NOT_USED1_MASK	// ìž¬ìž¥ì „
 
 
 
-// ÀåÂøµÈ ½¯µå,µðÄÚÀÌ·ù ¾ÆÀÌÅÛ ¹Ùµð ÄÁµð¼Ç
+
+
+
+// ìž¥ì°©ëœ ì‰´ë“œ,ë””ì½”ì´ë¥˜ ì•„ì´í…œ ë°”ë”” ì»¨ë””ì…˜
 /*
-#define	WEAPON_BODYCON_NORMAL				BODYCON_FLY_MASK		// Æò»ó½Ã(½¯µå ¹ßµ¿ÇÏ±â Àü)
-#define WEAPON_BODYCON_START				BODYCON_LANDED_MASK		// ½ÃÀü-->ÀÚµ¿À¸·Î »ç¿ë »óÅÂ·Î ³Ñ¾î°¨
-//#define WEAPON_BODYCON_ING				BODYCON_DEAD_MASK		// »ç¿ë »óÅÂ(½¯µå ¹ßµ¿)ÇÊ¿ä¾øÀ½
-#define WEAPON_BODYCON_END					BODYCON_NOT_USED1_MASK	// ½ÃÀü Á¾·á(½¯µå ¹ßµ¿ Á¾·á-->ÀÚµ¿À¸·Î NORMAL·Î ³Ñ¾î°¨)
+#define	WEAPON_BODYCON_NORMAL				BODYCON_FLY_MASK		// í‰ìƒì‹œ(ì‰´ë“œ ë°œë™í•˜ê¸° ì „)
+#define WEAPON_BODYCON_START				BODYCON_LANDED_MASK		// ì‹œì „-->ìžë™ìœ¼ë¡œ ì‚¬ìš© ìƒíƒœë¡œ ë„˜ì–´ê°
+//#define WEAPON_BODYCON_ING				BODYCON_DEAD_MASK		// ì‚¬ìš© ìƒíƒœ(ì‰´ë“œ ë°œë™)í•„ìš”ì—†ìŒ
+#define WEAPON_BODYCON_END					BODYCON_NOT_USED1_MASK	// ì‹œì „ ì¢…ë£Œ(ì‰´ë“œ ë°œë™ ì¢…ë£Œ-->ìžë™ìœ¼ë¡œ NORMALë¡œ ë„˜ì–´ê°)
 */
-#define TOGGLE_WEAPON_BODYCON_NORMAL		(BodyCond_t)0x0000000000000002	// Æò»ó½Ã
-#define TOGGLE_WEAPON_BODYCON_USE			(BodyCond_t)0x0000000000000004	// ½ÃÀü-->USING°ú µ¿½Ã¿¡ »ç¿ë
-#define TOGGLE_WEAPON_BODYCON_USING			(BodyCond_t)0x0000000000000008	// »ç¿ë »óÅÂ
-#define TOGGLE_WEAPON_BODYCON_END			(BodyCond_t)0x0000000000000010	// »ç¿ë Á¾·á-->NORMAL°ú µ¿½Ã¿¡ »ç¿ë
-#define TOGGLE_WEAPON_BODYCON_RELOAD		(BodyCond_t)0x0000000000000020	// ÀçÀåÀü
+#define TOGGLE_WEAPON_BODYCON_NORMAL		(BodyCond_t)0x0000000000000002	// í‰ìƒì‹œ
+#define TOGGLE_WEAPON_BODYCON_USE			(BodyCond_t)0x0000000000000004	// ì‹œì „-->USINGê³¼ ë™ì‹œì— ì‚¬ìš©
+#define TOGGLE_WEAPON_BODYCON_USING			(BodyCond_t)0x0000000000000008	// ì‚¬ìš© ìƒíƒœ
+#define TOGGLE_WEAPON_BODYCON_END			(BodyCond_t)0x0000000000000010	// ì‚¬ìš© ì¢…ë£Œ-->NORMALê³¼ ë™ì‹œì— ì‚¬ìš©
+#define TOGGLE_WEAPON_BODYCON_RELOAD		(BodyCond_t)0x0000000000000020	// ìž¬ìž¥ì „
 
 
 
-// ÀåÂø ÀÏ¹Ý ¾ÆÀÌÅÛ ¹Ùµð ÄÁµð¼Ç(ÀÌÆåÆ® Ãß°¡ ¿¹Á¤, 2004-03-23 by dhkwon)
+// ìž¥ì°© ì¼ë°˜ ì•„ì´í…œ ë°”ë”” ì»¨ë””ì…˜(ì´íŽ™íŠ¸ ì¶”ê°€ ì˜ˆì •, 2004-03-23 by dhkwon)
 #define WEAR_ITEM_BODYCON_NORMAL			BODYCON_FLY_MASK
 
 
@@ -702,12 +702,12 @@ typedef DWORD InfUnitState_t;
 
 
 
-// ¹«±âÀÇ ¹ÙµðÄÁµð¼ÇÀÌ À¯´ÖÄ«ÀÎµåº°·Î SHIFTµÊ¿¡ µû¶ó ¼³Á¤
-#define UNIT_KIND_SHIFT_DEFAULT				0	// ±âº»(¸ó½ºÅÍ¿¡ »ç¿ë)
-#define UNIT_KIND_SHIFT_B_GEAR				0	// B±â¾î
-#define UNIT_KIND_SHIFT_M_GEAR				10	// M±â¾î
-#define UNIT_KIND_SHIFT_A_GEAR				20	// A±â¾î
-#define UNIT_KIND_SHIFT_I_GEAR				30	// I±â¾î
+// ë¬´ê¸°ì˜ ë°”ë””ì»¨ë””ì…˜ì´ ìœ ë‹›ì¹´ì¸ë“œë³„ë¡œ SHIFTë¨ì— ë”°ë¼ ì„¤ì •
+#define UNIT_KIND_SHIFT_DEFAULT				0	// ê¸°ë³¸(ëª¬ìŠ¤í„°ì— ì‚¬ìš©)
+#define UNIT_KIND_SHIFT_B_GEAR				0	// Bê¸°ì–´
+#define UNIT_KIND_SHIFT_M_GEAR				10	// Mê¸°ì–´
+#define UNIT_KIND_SHIFT_A_GEAR				20	// Aê¸°ì–´
+#define UNIT_KIND_SHIFT_I_GEAR				30	// Iê¸°ì–´
 
 
 
@@ -715,17 +715,17 @@ typedef DWORD InfUnitState_t;
 
 
 
-// °Å¸® °ü·Ã »ó¼ö
-#define RANGE_OF_VISION						1000.0f//750.0f	// È­¸é¿¡ º¸ÀÌ´Â ½Ã¾ß
-#define GET_INFO_DISTANCE_OF_2D				30.0f	// È­¸é»ó¿¡¼­ Å¬¸¯ÇßÀ» °æ¿ì Á¤º¸¸¦ °¡Á®¿À´Â °Å¸®
-#define GET_ITEM_FROM_FIELD_DISTANCE		200.0f	// ÇÊµå ¾ÆÀÌÅÛÀ» ½ÀµæÇÏ´Â °Å¸®
-#define GET_ITEM_NUMBER_IN_TICK				2		// ÇÑ¹ø¿¡ ½ÀµæÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛ ¼ö
-#define GET_ITEM_IN_TIME					1.0f	// 2006-07-18 by ispark, ÇÑ¹ø¿¡ ½ÀµæÇÒ ¼ö ÀÖ´Â Å° µô·¹ÀÌ Å¸ÀÓ
-#define DETETE_FIELD_ITEM_DISTANCE			750.0f	// ÇÊµå ¾ÆÀÌÅÛÀÌ Áö¿öÁö´Â °Å¸®
-#define SUN_DISTANCE						8000.0f	// ÅÂ¾ç, ´ÞÀÇ °Å¸®
-#define DEFAULT_COLLISION_DISTANCE			10000.0f // Ãæµ¹ °Ë»ç °¡´ÉÇÑ ÃÖ´ë°Å¸®
-#define SEND_FC_TARGET_DISTANCE				400.0f	// MSG_FC_MOVE_TARGET º¸³»´Â µÎ¹øÂ° °Å¸®
-#define REMOVE_ENEMY_DISTANCE				1000.0f//700.0f	// Enemy¸¦ Áö¿ì´Â °Å¸®
+// ê±°ë¦¬ ê´€ë ¨ ìƒìˆ˜
+#define RANGE_OF_VISION						1000.0f//750.0f	// í™”ë©´ì— ë³´ì´ëŠ” ì‹œì•¼
+#define GET_INFO_DISTANCE_OF_2D				30.0f	// í™”ë©´ìƒì—ì„œ í´ë¦­í–ˆì„ ê²½ìš° ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ê±°ë¦¬
+#define GET_ITEM_FROM_FIELD_DISTANCE		200.0f	// í•„ë“œ ì•„ì´í…œì„ ìŠµë“í•˜ëŠ” ê±°ë¦¬
+#define GET_ITEM_NUMBER_IN_TICK				2		// í•œë²ˆì— ìŠµë“í•  ìˆ˜ ìžˆëŠ” ì•„ì´í…œ ìˆ˜
+#define GET_ITEM_IN_TIME					1.0f	// 2006-07-18 by ispark, í•œë²ˆì— ìŠµë“í•  ìˆ˜ ìžˆëŠ” í‚¤ ë”œë ˆì´ íƒ€ìž„
+#define DETETE_FIELD_ITEM_DISTANCE			750.0f	// í•„ë“œ ì•„ì´í…œì´ ì§€ì›Œì§€ëŠ” ê±°ë¦¬
+#define SUN_DISTANCE						8000.0f	// íƒœì–‘, ë‹¬ì˜ ê±°ë¦¬
+#define DEFAULT_COLLISION_DISTANCE			10000.0f // ì¶©ëŒ ê²€ì‚¬ ê°€ëŠ¥í•œ ìµœëŒ€ê±°ë¦¬
+#define SEND_FC_TARGET_DISTANCE				400.0f	// MSG_FC_MOVE_TARGET ë³´ë‚´ëŠ” ë‘ë²ˆì§¸ ê±°ë¦¬
+#define REMOVE_ENEMY_DISTANCE				1000.0f//700.0f	// Enemyë¥¼ ì§€ìš°ëŠ” ê±°ë¦¬
 
 
 // marked as todo so that i can find it more easily
@@ -748,8 +748,8 @@ enum
 
 enum
 {
-	EFFECT_WEAR_WEAPON_1 = 100000,		// ¾ÆÀÌÅÛ ¹øÈ£¿¡¼­ ÀÌ°ªÀ» ´õÇÏ¸é ÀÌÆåÆ® ¹øÈ£°¡ µÈ´Ù.
-	EFFECT_WEAR_WEAPON_2 = 700000,		// ¾ÆÀÌÅÛ ¹øÈ£¿¡¼­ ÀÌ°ªÀ» »©¸é ÀÌÆåÆ® ¹øÈ£°¡ µÈ´Ù.
+	EFFECT_WEAR_WEAPON_1 = 100000,		// ì•„ì´í…œ ë²ˆí˜¸ì—ì„œ ì´ê°’ì„ ë”í•˜ë©´ ì´íŽ™íŠ¸ ë²ˆí˜¸ê°€ ëœë‹¤.
+	EFFECT_WEAR_WEAPON_2 = 700000,		// ì•„ì´í…œ ë²ˆí˜¸ì—ì„œ ì´ê°’ì„ ë¹¼ë©´ ì´íŽ™íŠ¸ ë²ˆí˜¸ê°€ ëœë‹¤.
 	EFFECT_WEAR_WEPAON_11_DEFAULT = 12100000,
 	EFFECT_WEAR_WEPAON_12_DEFAULT = 12200000,
 	EFFECT_WEAR_WEPAON_21_DEFAULT = 12300000,
@@ -799,7 +799,7 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_12(int x) { return EFFECT_WEAR_WEP
 constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_21(int x) { return EFFECT_WEAR_WEPAON_21_DEFAULT + x * 100; }
 constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEPAON_22_DEFAULT + x * 100; }
 
-// ¿£ÁøÀº À¯´ÖÄ«ÀÎµåº° SHIFT ±ÔÄ¢À» µû¸£Áö ¾Ê´Â´Ù.
+// ì—”ì§„ì€ ìœ ë‹›ì¹´ì¸ë“œë³„ SHIFT ê·œì¹™ì„ ë”°ë¥´ì§€ ì•ŠëŠ”ë‹¤.
 // why ????
 #define GET_SHIFT_BODYCON_OF_UNITKIND_EXCEPT_ENGINE		(nWearItemKind == WEAR_ITEM_KIND_ENGINE || nWearItemKind == WEAR_ITEM_KIND_PET ) ? UNIT_KIND_SHIFT_DEFAULT : GetShiftWeaponBodyconditionByUnitKind()
 
@@ -811,7 +811,7 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEP
 
 
 
-// IM ¼­¹ö ÁøÇà »óÈ², CINFMapLoad, AtumApplication
+// IM ì„œë²„ ì§„í–‰ ìƒí™©, CINFMapLoad, AtumApplication
 #define IM_SERVER_STATE_NOT_LOGIN			0
 #define IM_SERVER_STATE_TRY_LOGIN			1
 #define IM_SERVER_STATE_SUCCESS_LOGIN		2
@@ -824,21 +824,21 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEP
 
 
 
-// ±â¾î ÀÌ¸§ Áþ´Â ±ÔÄ¢
-// 1Â° Â¥¸® : 1
-// 2Â° ÀÚ¸® : Æú¸®°ï ´Ü°è(low:0, middle:1, high:2)
-// 5Â° ÀÚ¸® ±â¾î ±¸ºÐ( B:0, M:1, A:2, I:3 )
-// 6Â° ÀÚ¸® ¾÷±×·¹ÀÌµå ( 1Çü : 1 , 2Çü : 2, 3Çü : 3, 4Çü : 4 )
-#define UNIT_EFFECT_INDEX(x,y,z)		(10000000+1000000*x+1000*y+100*z)// x : Æú¸®°ï ´Ü°è, y : ±â¾î, z : ¾÷±×·¹ÀÌµå
+// ê¸°ì–´ ì´ë¦„ ì§“ëŠ” ê·œì¹™
+// 1ì§¸ ì§œë¦¬ : 1
+// 2ì§¸ ìžë¦¬ : í´ë¦¬ê³¤ ë‹¨ê³„(low:0, middle:1, high:2)
+// 5ì§¸ ìžë¦¬ ê¸°ì–´ êµ¬ë¶„( B:0, M:1, A:2, I:3 )
+// 6ì§¸ ìžë¦¬ ì—…ê·¸ë ˆì´ë“œ ( 1í˜• : 1 , 2í˜• : 2, 3í˜• : 3, 4í˜• : 4 )
+#define UNIT_EFFECT_INDEX(x,y,z)		(10000000+1000000*x+1000*y+100*z)// x : í´ë¦¬ê³¤ ë‹¨ê³„, y : ê¸°ì–´, z : ì—…ê·¸ë ˆì´ë“œ
 
-// À¯´ÖÀÇ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» °áÁ¤ÇÏ´Â ¹ÙµðÄÁµð¼Ç
+// ìœ ë‹›ì˜ ì• ë‹ˆë©”ì´ì…˜ì„ ê²°ì •í•˜ëŠ” ë°”ë””ì»¨ë””ì…˜
 //#define BODYCON_BOOSTER_EX_STATE_CLEAR_MASK	(BodyCond_t)(BODYCON_BOOSTER1_MASK | BODYCON_BOOSTER2_MASK | BODYCON_BOOSTER3_MASK | BODYCON_BOOSTER4_MASK | BODYCON_BOOSTER5_MASK)
 
-// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
-// BODYCON_ROLLING_MASK ·Ñ¸µ½Ã ¾Ö´Ï¸ÞÀÌ¼Ç Ãß°¡
+// 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
+// BODYCON_ROLLING_MASK ë¡¤ë§ì‹œ ì• ë‹ˆë©”ì´ì…˜ ì¶”ê°€
 
-// 2009. 11. 02 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ÀÎ½ºÅÏ½º ´øÁ¯ ½Ã½ºÅÛ
-// BODYCON_CREATION_MASK Ãß°¡
+// 2009. 11. 02 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ì¸ìŠ¤í„´ìŠ¤ ë˜ì ¼ ì‹œìŠ¤í…œ
+// BODYCON_CREATION_MASK ì¶”ê°€
 #define BODYCON_CHARACTER_ANIMATION_TIME	(BodyCond_t)(BODYCON_BOOSTER_EX_STATE_CLEAR_MASK |	\
 											 BODYCON_LANDING_MASK |								\
 											 BODYCON_LANDED_MASK |								\
@@ -854,13 +854,13 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEP
 											 BODYCON_MON_BUILD_MASK|							\
 											 BODYCON_CREATION_MASK)
 //											 BODYCON_NOT_USED1_MASK)
-// ºÎ½ºÅÍ ²°À»¶§ »ç¿ëÇÏ´Â ¹ÙµðÄÁµð¼Ç(SetFlyBodyCondition)
+// ë¶€ìŠ¤í„° ê»ì„ë•Œ ì‚¬ìš©í•˜ëŠ” ë°”ë””ì»¨ë””ì…˜(SetFlyBodyCondition)
 #define BODYCON_BOOSTER_OFF_MASK			0
 
 
-// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
-// BODYCON_ROLLING_MASK ·Ñ¸µ½Ã ¾Ö´Ï¸ÞÀÌ¼Ç Ãß°¡
-// ¿£Áø ¹ÙµðÄÁµð¼Ç ¸¶½ºÅ©(CUnitData: ChangeBodyCondition,ResetBodyCondition)
+// 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
+// BODYCON_ROLLING_MASK ë¡¤ë§ì‹œ ì• ë‹ˆë©”ì´ì…˜ ì¶”ê°€
+// ì—”ì§„ ë°”ë””ì»¨ë””ì…˜ ë§ˆìŠ¤í¬(CUnitData: ChangeBodyCondition,ResetBodyCondition)
 #define BODYCON_ENGINE_STATE_MASK			(BODYCON_BOOSTER_EX_STATE_CLEAR_MASK |				\
 											BODYCON_LANDING_MASK |								\
 											BODYCON_LANDED_MASK	|								\
@@ -868,17 +868,17 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEP
 											BODYCON_SIEGE_OFF_MASK |							\
 											BODYCON_SIEGE_ON_MASK |								\
 											BODYCON_ROLLING_MASK)
-// À¯´Ö ¹ÙµðÄÁµð¼Ç Áß ¿£ÁøÀ¸·Î °¥¶§ BODYCON_LANDED_MASK ·Î ¹Ù²î´Â °Í
+// ìœ ë‹› ë°”ë””ì»¨ë””ì…˜ ì¤‘ ì—”ì§„ìœ¼ë¡œ ê°ˆë•Œ BODYCON_LANDED_MASK ë¡œ ë°”ë€ŒëŠ” ê²ƒ
 #define BODYCON_UNIT_TO_ENGINE_LANDED		(BODYCON_EXPLOSION_MASK	| BODYCON_DEAD_MASK)
 
-// Å¬¶óÀÌ¾ðÆ®´Â ´ÙÀ½ÀÇ ¹ÙµðÄÁµð¼ÇÀº ÇÏ³ª¾¿¸¸ »ç¿ëÇÑ´Ù.
+// í´ë¼ì´ì–¸íŠ¸ëŠ” ë‹¤ìŒì˜ ë°”ë””ì»¨ë””ì…˜ì€ í•˜ë‚˜ì”©ë§Œ ì‚¬ìš©í•œë‹¤.
 #define BODYCON_CLIENT_SINGLE				(BODYCON_EX_STATE_CLEAR_MASK|						\
 											BODYCON_BOOSTER_EX_STATE_CLEAR_MASK|				\
 											BODYCON_EXPLOSION_MASK|								\
 											BODYCON_TAKEOFF_MASK|								\
 											BODYCON_SIEGE_ON_MASK|								\
 											BODYCON_SIEGE_OFF_MASK)
-// ¸ó½ºÅÍ´Â ´ÙÀ½ÀÇ ¹ÙµðÄÁµð¼ÇÀº ÇÏ³ª¾¿¸¸ »ç¿ëÇÑ´Ù.
+// ëª¬ìŠ¤í„°ëŠ” ë‹¤ìŒì˜ ë°”ë””ì»¨ë””ì…˜ì€ í•˜ë‚˜ì”©ë§Œ ì‚¬ìš©í•œë‹¤.
 #define BODYCON_MONSTER_SINGLE				(BODYCON_EX_STATE_CLEAR_MASK|						\
 											BODYCON_BOOSTER_EX_STATE_CLEAR_MASK|				\
 											BODYCON_EXPLOSION_MASK|								\
@@ -886,13 +886,13 @@ constexpr int SELECT_MENU_DEFAULT_WEAR_WEAPON_22(int x) { return EFFECT_WEAR_WEP
 											BODYCON_LANDING_MASK|								\
 											BODYCON_LANDED_MASK|								\
 											BODYCON_MON_AUTODESTROYED_MASK)
-// ¾Æ·¹³ª ¹®.
+// ì•„ë ˆë‚˜ ë¬¸.
 #define BODYCON_ARENA_DOOR_STATE			(BODYCON_DOOR_CLOSE_MASK|							\
 											BODYCON_DOOR_OPEN_MASK|								\
 											BODYCON_DOOR_CLOSING_MASK|							\
 											BODYCON_DOOR_OPENING_MASK)
 
-// ¿öÇÁ ¹Ùµð.
+// ì›Œí”„ ë°”ë””.
 #define BODYCON_WARP_STATE					(BODYCON_LANDED_MASK|BODYCON_DEAD_MASK)
 
 template<typename var_t, typename mask_t>
@@ -902,22 +902,22 @@ void SET_CLIENT_BODYCON_BIT(var_t VAR, mask_t MASK)
 	VAR |= MASK;
 }
 
-// IME °ü·Ã ¼³Á¤ (ÈÄº¸¸®½ºÆ® º¸ÀÌ´Â À§Ä¡)
-#define SET_MAIN_CHAT_CANDIDATE				0			// Ã¤ÆÃ ºÎºÐ 
-#define SET_WHISPER_CHAT_CANDIDATE			1			// ±Ó¸»Ã¢ ºÎºÐ 
-#define SET_MESSAGEBOX_CANDIDATE			2			// ¸Þ¼¼Áö ¹Ú½º ºÎºÐ
-#define SET_FAQ_CANDIDATE					3			// FAQ ºÎºÐ
-#define SET_CREATEMENU_CANDIDATE			4			// »ý¼ºÃ¢ ºÎºÐ
-#define SET_DELETEMENU_CANDIDATE			5			// Ä³¸¯ÅÍ Áö¿ì±â
+// IME ê´€ë ¨ ì„¤ì • (í›„ë³´ë¦¬ìŠ¤íŠ¸ ë³´ì´ëŠ” ìœ„ì¹˜)
+#define SET_MAIN_CHAT_CANDIDATE				0			// ì±„íŒ… ë¶€ë¶„ 
+#define SET_WHISPER_CHAT_CANDIDATE			1			// ê·“ë§ì°½ ë¶€ë¶„ 
+#define SET_MESSAGEBOX_CANDIDATE			2			// ë©”ì„¸ì§€ ë°•ìŠ¤ ë¶€ë¶„
+#define SET_FAQ_CANDIDATE					3			// FAQ ë¶€ë¶„
+#define SET_CREATEMENU_CANDIDATE			4			// ìƒì„±ì°½ ë¶€ë¶„
+#define SET_DELETEMENU_CANDIDATE			5			// ìºë¦­í„° ì§€ìš°ê¸°
 
-#define CHAR_INF_CANDIDATE					10			// ÈÄº¸Ã¢ ¸®½ºÆ®´Â ÃÖ´ë 10°³·Î ÇÑ´Ù
-
-
+#define CHAR_INF_CANDIDATE					10			// í›„ë³´ì°½ ë¦¬ìŠ¤íŠ¸ëŠ” ìµœëŒ€ 10ê°œë¡œ í•œë‹¤
 
 
 
 
-// ¸Ê Å¸ÀÔ ³Ñ¹ö
+
+
+// ë§µ íƒ€ìž… ë„˜ë²„
 #define MAP_TYPE_TUTORIAL		0
 #define MAP_TYPE_CITY			1		// 1000 ~
 //
@@ -931,30 +931,30 @@ void SET_CLIENT_BODYCON_BIT(var_t VAR, mask_t MASK)
 
 
 
-#define BOOSTER_TYPE_BACK		-2//ÈÄÁø ºÎ½ºÅÍ
-#define BOOSTER_TYPE_AIRBREAK	-1//°øÁß ºÎ¾ç
-#define BOOSTER_TYPE_STOP		0//Á¤Áö
-#define BOOSTER_TYPE_MIN		1//±âº» ºÎ½ºÅÍ
-#define BOOSTER_TYPE_MAX		2//°¡¼Ó ºÎ½ºÅÍ
+#define BOOSTER_TYPE_BACK		-2//í›„ì§„ ë¶€ìŠ¤í„°
+#define BOOSTER_TYPE_AIRBREAK	-1//ê³µì¤‘ ë¶€ì–‘
+#define BOOSTER_TYPE_STOP		0//ì •ì§€
+#define BOOSTER_TYPE_MIN		1//ê¸°ë³¸ ë¶€ìŠ¤í„°
+#define BOOSTER_TYPE_MAX		2//ê°€ì† ë¶€ìŠ¤í„°
 
-#define HYPER_BOOSTER_NORMAL	-1// ÇÏÀÌÆÛ ºÎ½ºÅÍ »ç¿ë ¾ÈÇÔ
-#define HYPER_BOOSTER_MAX		1 // ÇÏÀÌÆÛ ºÎ½ºÅÍ »ç¿ë
+#define HYPER_BOOSTER_NORMAL	-1// í•˜ì´í¼ ë¶€ìŠ¤í„° ì‚¬ìš© ì•ˆí•¨
+#define HYPER_BOOSTER_MAX		1 // í•˜ì´í¼ ë¶€ìŠ¤í„° ì‚¬ìš©
 
 
-// 2005-02-21 by jschoi - À¥ °ü·Ã
-// 2009-02-24 by bhsohn Ä³½¬¼¥ ÃæÀü À¥ÆäÀÌÁö Ãß°¡
+// 2005-02-21 by jschoi - ì›¹ ê´€ë ¨
+// 2009-02-24 by bhsohn ìºì‰¬ìƒµ ì¶©ì „ ì›¹íŽ˜ì´ì§€ ì¶”ê°€
 // #define WEB_WIDTH		742		// 720
 // #define WEB_HEIGHT		344		// 338
 #define WEB_WIDTH		660		// 720
-#define WEB_HEIGHT		550		// 338// 2009-03-03 by bhsohn ÀÏº»À¥ÆäÀÌÁö Å©±â º¯°æ
-// end 2009-02-24 by bhsohn Ä³½¬¼¥ ÃæÀü À¥ÆäÀÌÁö Ãß°¡
+#define WEB_HEIGHT		550		// 338// 2009-03-03 by bhsohn ì¼ë³¸ì›¹íŽ˜ì´ì§€ í¬ê¸° ë³€ê²½
+// end 2009-02-24 by bhsohn ìºì‰¬ìƒµ ì¶©ì „ ì›¹íŽ˜ì´ì§€ ì¶”ê°€
 #define WEB_START_X		((g_pD3dApp->GetBackBufferDesc().Width-WEB_WIDTH)/2)
 #define WEB_START_Y		((g_pD3dApp->GetBackBufferDesc().Height-WEB_HEIGHT)/2)
 
 
 
 // 2005-03-03 by jschoi - RequestEnable
-#define REQUEST_ENABLE_INIT_TIME	-4.0f//-1.0f	// 2006-09-22 by ispark, ÀÀ´äÀ» ±â´Ù¸®´Â Å¸ÀÓ(È­¸é¿¡ ÂïÀ» ÁØºñ Å¸ÀÓ)
+#define REQUEST_ENABLE_INIT_TIME	-4.0f//-1.0f	// 2006-09-22 by ispark, ì‘ë‹µì„ ê¸°ë‹¤ë¦¬ëŠ” íƒ€ìž„(í™”ë©´ì— ì°ì„ ì¤€ë¹„ íƒ€ìž„)
 #define REQUEST_ENABLE_TIME			1.0f			// 2006-08-11 by ispark
 #define REQUEST_ENABLE_BOX_WIDTH	255
 #define REQUEST_ENABLE_BOX_HEIGHT	35
@@ -964,7 +964,7 @@ void SET_CLIENT_BODYCON_BIT(var_t VAR, mask_t MASK)
 #define CHECK_WARP_GATE_DISTANCE	500.0f
 
 
-// 2005-03-25 by jschoi - Å¸°ÙÆÃ DEFINE
+// 2005-03-25 by jschoi - íƒ€ê²ŸíŒ… DEFINE
 #define OLD_TARGETTING	0
 #define NEW_TARGETTING	1
 #define OLD2_TARGETTING	2
@@ -973,136 +973,136 @@ void SET_CLIENT_BODYCON_BIT(var_t VAR, mask_t MASK)
 enum{NONEBOX,SKIPBOX,IMAGEBOX,IMAGEVIEW};
 enum{ALPHA_WAVE,ALPHA_DELAY_WAVE,ALPHA_FADE_IN,ALPHA_FADE_OUT};
 
-// 2005-07-07 by ydkim Mission °ü·Ã
-#define MISSION_RUN_SUCCESS		0	// ¹Ì¼Ç ¸í·É ½ÇÇà ¼º°ø
-#define MISSION_RUN_RENDER_ERR	1	// ¹Ì¼ÇÃ¢ ½ÇÇà »óÅÂ°¡ ¾Æ´Ï´Ù
-#define MISSION_RUN_ERROR		2	// ±âÅ¸ ¿¡·¯ °ü·Ã
+// 2005-07-07 by ydkim Mission ê´€ë ¨
+#define MISSION_RUN_SUCCESS		0	// ë¯¸ì…˜ ëª…ë ¹ ì‹¤í–‰ ì„±ê³µ
+#define MISSION_RUN_RENDER_ERR	1	// ë¯¸ì…˜ì°½ ì‹¤í–‰ ìƒíƒœê°€ ì•„ë‹ˆë‹¤
+#define MISSION_RUN_ERROR		2	// ê¸°íƒ€ ì—ëŸ¬ ê´€ë ¨
 
 // 2005-07-07 by ispark
-// ·Ñ¸µ °ü·Ã Á¤ÀÇ¹®
+// ë¡¤ë§ ê´€ë ¨ ì •ì˜ë¬¸
 #define ROLLING_USE_TIME	2.0f
 
-// ¹Ì¼Ç ¸Þ¼¼Áö º¸³»±â( ÀÌ¹ÌÁö ·»´õ¸µ ÈÄ )
+// ë¯¸ì…˜ ë©”ì„¸ì§€ ë³´ë‚´ê¸°( ì´ë¯¸ì§€ ë Œë”ë§ í›„ )
 #define SENDMESSAGE_MISSION_COMPLETE		1
 #define SENDMESSAGE_MISSION_CANCER			2
 #define SET_MISSION_RESAULT_IMG_X			((g_pD3dApp->GetBackBufferDesc().Width/2)-142)
 #define SET_MISSION_RESAULT_IMG_Y			((g_pD3dApp->GetBackBufferDesc().Height/3)-24)
 
 // 2005-07-27 by ispark
-// Picking ¿ÀºêÁ§Æ®
+// Picking ì˜¤ë¸Œì íŠ¸
 #define PICKING_OBJECT_NUMBER		1100015
 
-// Ä³¸¯ÅÍ ¹Ùµð ÄÁµð¼Ç
+// ìºë¦­í„° ë°”ë”” ì»¨ë””ì…˜
 #define BODYCON_HUMAN_ANIMATION_TIME	(BODYCON_CHARACTER_MODE_STOP|BODYCON_CHARACTER_MODE_WALK|BODYCON_CHARACTER_MODE_RUN)
 
-// Ä³¸¯ÅÍ °ü·Ã Á¤ÀÇ¹®
-#define CHARACTER_SCALE				1.5f			// Ä³¸¯ÅÍ ½ºÄÉÀÏ
-#define CHARACTER_SHADOW_SCALE		6.0f			// Ä³¸¯ÅÍ ±×¸²ÀÚ ½ºÄÉÀÏ(´ë°¢¼± ¹ÝÁö¸§ Å©±âÀÌ´Ù.
+// ìºë¦­í„° ê´€ë ¨ ì •ì˜ë¬¸
+#define CHARACTER_SCALE				1.5f			// ìºë¦­í„° ìŠ¤ì¼€ì¼
+#define CHARACTER_SHADOW_SCALE		6.0f			// ìºë¦­í„° ê·¸ë¦¼ìž ìŠ¤ì¼€ì¼(ëŒ€ê°ì„  ë°˜ì§€ë¦„ í¬ê¸°ì´ë‹¤.
 
-// 2005-08-08 by ydkim ±Û·¯¹ú ÀÌ¹ÌÁö °ü·Ã Á¤ÀÇ
+// 2005-08-08 by ydkim ê¸€ëŸ¬ë²Œ ì´ë¯¸ì§€ ê´€ë ¨ ì •ì˜
 typedef enum 
 {
-	MISSION_SUC				=					0,		// ¹Ì¼Ç ¼º°ø
-	MISSION_FAI				=					1,		// ¹Ì¼Ç ½ÇÆÐ
+	MISSION_SUC				=					0,		// ë¯¸ì…˜ ì„±ê³µ
+	MISSION_FAI				=					1,		// ë¯¸ì…˜ ì‹¤íŒ¨
 	MISSION_OUT				=					2,
 	OUT_ZONE				=					3,
 
-	GLOBAL_IMAGE_MAX_COUNT	=					4		// ÃÖ´ë ÀÌ¹ÌÁö ¼ö
+	GLOBAL_IMAGE_MAX_COUNT	=					4		// ìµœëŒ€ ì´ë¯¸ì§€ ìˆ˜
 } IMAGE_LIST;
 
-#define ICON_EXP_ITEMNUM						 7011210	//       39     ¾ÆÀÌÄÜ_°æÇèÄ¡
-#define ICON_LEV_ITEMNUM						 7011220	//       39     ¾ÆÀÌÄÜ_·¹º§
-#define ICON_BUN_ITEMNUM						 7011230	//       39     ¾ÆÀÌÄÜ_º¸³Ê½º½ºÅÝ
-#define ICON_PRO_ITEMNUM						 7011240	//       39     ¾ÆÀÌÄÜ_¸í¼º
+#define ICON_EXP_ITEMNUM						 7011210	//       39     ì•„ì´ì½˜_ê²½í—˜ì¹˜
+#define ICON_LEV_ITEMNUM						 7011220	//       39     ì•„ì´ì½˜_ë ˆë²¨
+#define ICON_BUN_ITEMNUM						 7011230	//       39     ì•„ì´ì½˜_ë³´ë„ˆìŠ¤ìŠ¤í…Ÿ
+#define ICON_PRO_ITEMNUM						 7011240	//       39     ì•„ì´ì½˜_ëª…ì„±
 
-#define CHARACTER_CAMERA_DISTANCE_MIN	10.0f	// ÃÖ¼Ò °Å¸®
-#define CHARACTER_CAMERA_DISTANCE_MAX	100.0f	// ÃÖ´ë °Å¸®
+#define CHARACTER_CAMERA_DISTANCE_MIN	10.0f	// ìµœì†Œ ê±°ë¦¬
+#define CHARACTER_CAMERA_DISTANCE_MAX	100.0f	// ìµœëŒ€ ê±°ë¦¬
 
-//enum{ VOICE_NONE,VOICE_ONE, VOICE_PARTY, VOICE_GUILD };			// À½¼º Ã¤ÆÃ Á¾·ù
+//enum{ VOICE_NONE,VOICE_ONE, VOICE_PARTY, VOICE_GUILD };			// ìŒì„± ì±„íŒ… ì¢…ë¥˜
 
 // 2005-10-07 by ispark
-// Æ©Åä¸®¾ó ¸®½ºÆ®
+// íŠœí† ë¦¬ì–¼ ë¦¬ìŠ¤íŠ¸
 enum { L0, L1,L2, L3, L4, L5, L6, L7, L8, L9,L10};
 
 
-// 2005-10-27 ydkim À©µµ¿ì Ã¢ ¿ì¼±¼øÀ§°ü·Ã Ã³¸®
-// ¸íÄª ÁöÁ¤Àº ÇÔ¼ö ¸íÄª ÀÌ¸§¾Õ¿¡ WND¸¦ ºÙÀÌ´Â °ÍÀ¸·Î ÇÑ´Ù
+// 2005-10-27 ydkim ìœˆë„ìš° ì°½ ìš°ì„ ìˆœìœ„ê´€ë ¨ ì²˜ë¦¬
+// ëª…ì¹­ ì§€ì •ì€ í•¨ìˆ˜ ëª…ì¹­ ì´ë¦„ì•žì— WNDë¥¼ ë¶™ì´ëŠ” ê²ƒìœ¼ë¡œ í•œë‹¤
 // ex)WND********
 enum WNDWINDOWSINDEX
 {
-	WNDGameGlobalImage,		// ±Û·Î¹ú ÀÌ¹ÌÁö
+	WNDGameGlobalImage,		// ê¸€ë¡œë²Œ ì´ë¯¸ì§€
 	WNDInfWindow,			// Infwindow
 	WNDGameMain,			// GameMain
-	WNDSysWnd,				// ½Ã½ºÅÛ Ã¢
-	WNDBazaarShop,			// °³ÀÎ»óÁ¡
-	WNDCityBase,			// µµ½Ã
-	WNDMissionInfo,			// ¹Ì¼Ç Ã³¸®
-	WNDMiniMap,				// ¹Ì´Ï¸Ê Ã³¸®
-	WNDMp3Player,			// MP3 ÇÃ·¹ÀÌ¾î
-	WNDInfSkill,			// ½ºÅ³ ÀÎÆ÷
+	WNDSysWnd,				// ì‹œìŠ¤í…œ ì°½
+	WNDBazaarShop,			// ê°œì¸ìƒì 
+	WNDCityBase,			// ë„ì‹œ
+	WNDMissionInfo,			// ë¯¸ì…˜ ì²˜ë¦¬
+	WNDMiniMap,				// ë¯¸ë‹ˆë§µ ì²˜ë¦¬
+	WNDMp3Player,			// MP3 í”Œë ˆì´ì–´
+	WNDInfSkill,			// ìŠ¤í‚¬ ì¸í¬
 	WNDRenderHelp,			// Help
 	WNDGameMainFaq,			// FAQ
 	//WNDCommunityVOIP,		// VOIP
 	WNDQSlotIconFlag,		// QSlot
-	WNDItemInfo,			// ¾ÆÀÌÅÛ ÀÎÆ÷
-	WNDMenuList,			// ¸Þ´º¸®½ºÆ®
-	WNDMainChatStartMenu,	// ¸ÞÀÎÃª ¸Þ´º¸®½ºÆ®
-	WNDLeftRightWindow,		// ÀÎº¥, Ä³¸¯, ÆÄÆ¼ µî
-	WNDOpJoystick,				// Á¶ÀÌ½ºÆ½ ¿É¼ÇÃ¢ // 2008-11-13 by bhsohn Á¶ÀÌ½ºÆ½ ÀÛ¾÷
-	WNDCommunityWnd,				// Ä¿¹Â´ÏÅÍ Ã¢	// 2008-04-04 by bhsohn Ep3 Ä¿¹Â´ÏÆ¼ Ã¢
-	WNDInvenWnd,				// ÀÎº¥ Ã¢	// 2008-08-22 by bhsohn EP3 ÀÎº¥Åä¸® Ã³¸®
-	WNDCharacterWnd,			// Ä³¸¯ÅÍ Ã¢	// 2008-09-22 by bhsohn EP3 Ä³¸¯ÅÍ Ã¢
-	//WNDVoiceWnd,				// À½¼º
-	WNDMacroWnd,				// ¸ÅÅ©·Î Ã¢	
-	// 2009. 01. 12 by ckPark ¼±Àü Æ÷°í ½Ã½ºÅÛ
-	WNDWarDecalre,				// ¼±ÀüÆ÷°í Æ÷±âÃ¢
-	// end 2009. 01. 12 by ckPark ¼±Àü Æ÷°í ½Ã½ºÅÛ
-	WNDWorldRank,				// ¿ùµå ·©Å· Ã¢ // 2009-02-13 by bhsohn ¿ùµå ·©Å· ½Ã½ºÅÛ
-	WNDItemMix,				// ÀÎ°ÔÀÓÁ¶ÇÕ½Ä	// // 2013-02-20 by bhsohn ÀÎ°ÔÀÓ Á¶ÇÕÃ¢ Ã³¸®
-	WNDChangeCharacter,		// ÄÉ¸¯ÅÍ º¯°æÄ«µå // 2013-04-05 by bhsohn ÄÉ¸¯ÅÍ º¯°æ Ã¢ À©µµ¿ì ¼ø¼­ Á¤·Ä Ã³¸®
-	WNDArmorCollection,				// ¾Æ¸Ó ÄÃ·º¼Ç	// 2013-05-28 by bhsohn ¾Æ¸Ó ÄÃ·º¼Ç ½Ã½ºÅÛ
-	WNDIndexEnd				// Çà¿­ÀÇ ¸¶Áö¸·
+	WNDItemInfo,			// ì•„ì´í…œ ì¸í¬
+	WNDMenuList,			// ë©”ë‰´ë¦¬ìŠ¤íŠ¸
+	WNDMainChatStartMenu,	// ë©”ì¸ì±— ë©”ë‰´ë¦¬ìŠ¤íŠ¸
+	WNDLeftRightWindow,		// ì¸ë²¤, ìºë¦­, íŒŒí‹° ë“±
+	WNDOpJoystick,				// ì¡°ì´ìŠ¤í‹± ì˜µì…˜ì°½ // 2008-11-13 by bhsohn ì¡°ì´ìŠ¤í‹± ìž‘ì—…
+	WNDCommunityWnd,				// ì»¤ë®¤ë‹ˆí„° ì°½	// 2008-04-04 by bhsohn Ep3 ì»¤ë®¤ë‹ˆí‹° ì°½
+	WNDInvenWnd,				// ì¸ë²¤ ì°½	// 2008-08-22 by bhsohn EP3 ì¸ë²¤í† ë¦¬ ì²˜ë¦¬
+	WNDCharacterWnd,			// ìºë¦­í„° ì°½	// 2008-09-22 by bhsohn EP3 ìºë¦­í„° ì°½
+	//WNDVoiceWnd,				// ìŒì„±
+	WNDMacroWnd,				// ë§¤í¬ë¡œ ì°½	
+	// 2009. 01. 12 by ckPark ì„ ì „ í¬ê³  ì‹œìŠ¤í…œ
+	WNDWarDecalre,				// ì„ ì „í¬ê³  í¬ê¸°ì°½
+	// end 2009. 01. 12 by ckPark ì„ ì „ í¬ê³  ì‹œìŠ¤í…œ
+	WNDWorldRank,				// ì›”ë“œ ëž­í‚¹ ì°½ // 2009-02-13 by bhsohn ì›”ë“œ ëž­í‚¹ ì‹œìŠ¤í…œ
+	WNDItemMix,				// ì¸ê²Œìž„ì¡°í•©ì‹	// // 2013-02-20 by bhsohn ì¸ê²Œìž„ ì¡°í•©ì°½ ì²˜ë¦¬
+	WNDChangeCharacter,		// ì¼€ë¦­í„° ë³€ê²½ì¹´ë“œ // 2013-04-05 by bhsohn ì¼€ë¦­í„° ë³€ê²½ ì°½ ìœˆë„ìš° ìˆœì„œ ì •ë ¬ ì²˜ë¦¬
+	WNDArmorCollection,				// ì•„ë¨¸ ì»¬ë ‰ì…˜	// 2013-05-28 by bhsohn ì•„ë¨¸ ì»¬ë ‰ì…˜ ì‹œìŠ¤í…œ
+	WNDIndexEnd				// í–‰ì—´ì˜ ë§ˆì§€ë§‰
 };
 
-#define DOUBLEKEY_TIME			0.24f		// ´õºíÅ° Ã¼Å©¿ë ½Ã°£
-#define SHUTTLE_ROTATION_DEFAULT_X		-0.65f	// ÀÎº¥Åä¸® ¼ÅÆ²ÀÇ ±âº» ¹æÇâ
-#define SHUTTLE_ROTATION_DEFAULT_Z		-0.55f	// ÀÎº¥Åä¸® ¼ÅÆ²ÀÇ ±âº» ¹æÇâ
+#define DOUBLEKEY_TIME			0.24f		// ë”ë¸”í‚¤ ì²´í¬ìš© ì‹œê°„
+#define SHUTTLE_ROTATION_DEFAULT_X		-0.65f	// ì¸ë²¤í† ë¦¬ ì…”í‹€ì˜ ê¸°ë³¸ ë°©í–¥
+#define SHUTTLE_ROTATION_DEFAULT_Z		-0.55f	// ì¸ë²¤í† ë¦¬ ì…”í‹€ì˜ ê¸°ë³¸ ë°©í–¥
 
-#define ENEMY_WEAPON_INDEX_DUMMY		10	// 2012-06-25 by isshin ¾ÆÅÛ¹Ì¸®º¸±â - ÀÚ½ÅÀÇ ¿þÆù ÀÎµ¦½º¿Í ±¸ºÐ Áþ±â À§ÇÑ ´õ¹Ì°ª
+#define ENEMY_WEAPON_INDEX_DUMMY		10	// 2012-06-25 by isshin ì•„í…œë¯¸ë¦¬ë³´ê¸° - ìžì‹ ì˜ ì›¨í° ì¸ë±ìŠ¤ì™€ êµ¬ë¶„ ì§“ê¸° ìœ„í•œ ë”ë¯¸ê°’
 
 //////////////////////////////////////////////////////////////////////////
 
 #define INVEN_RESOLUTION_1				800
 #define INVEN_RESOLUTION_2				1024
 #define INVEN_RESOLUTION_3				1280
-#define INVEN_RESOLUTION_3_1			1440			// 2008-02-11 by dgwoo ÇØ»óµµ Ãß°¡.(1440 * 900)
+#define INVEN_RESOLUTION_3_1			1440			// 2008-02-11 by dgwoo í•´ìƒë„ ì¶”ê°€.(1440 * 900)
 #define INVEN_RESOLUTION_4				1600
-// 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+// 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 #define INVEN_RESOLUTION_5				1680
 #define	INVEN_RESOLUTION_6				1920
-// end 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+// end 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 #define INVEN_RESOLUTION_W				792
 #define INVEN_RESOLUTION_WINDOW_1024	1018			// 2007-07-14 by dgwoo
 #define INVEN_RESOLUTION_WINDOW_1280	1274			// 2007-07-14 by dgwoo
 #define INVEN_RESOLUTION_WINDOW_1600	1594			// 2007-07-14 by dgwoo
 
-// 2007-12-26 by dgwoo ÇØ»óµµÀÇ Height°ª.
+// 2007-12-26 by dgwoo í•´ìƒë„ì˜ Heightê°’.
 #define RESOLUTION_FULL_H_720				720
 #define RESOLUTION_FULL_H_768				768
 #define RESOLUTION_FULL_H_800				800
 #define RESOLUTION_FULL_H_900				900
 #define RESOLUTION_FULL_H_960				960
-// 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+// 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 #define RESOLUTION_FULL_H_1050				1050
 #define	RESOLUTION_FULL_H_1080				1080
-// end 2009. 10. 19 by ckPark ÇØ»óµµ Ãß°¡(1680x1050, 1920x1080, 1920x1200)
+// end 2009. 10. 19 by ckPark í•´ìƒë„ ì¶”ê°€(1680x1050, 1920x1080, 1920x1200)
 #define RESOLUTION_FULL_H_1024				1024
 #define RESOLUTION_FULL_H_1200				1200
 
 
 
 // 2006-01-16 by ispark
-// ¹«±â Æ÷Áö¼Ç ÀÎµ¦½º
+// ë¬´ê¸° í¬ì§€ì…˜ ì¸ë±ìŠ¤
 #define WEAPON_POSITION_1_1_1			1
 #define WEAPON_POSITION_1_1_2			2
 #define WEAPON_POSITION_2_1_1			3
@@ -1111,7 +1111,7 @@ enum WNDWINDOWSINDEX
 
 
 // 2006-03-16 by ispark
-// ÀÔ·Â ¾ð¾î
+// ìž…ë ¥ ì–¸ì–´
 enum
 {
 	INPUT_LANGUAGE_KOR = 1,
@@ -1149,26 +1149,26 @@ constexpr D3DCOLOR HFONT_ARGB(BYTE a, BYTE r, BYTE g, BYTE b)
     
 enum { SPECIAL_STRING = 1 };
 
-// 2006-07-26 by ispark, ¾ÆÀÌÅÛ À§Ä¡
-// 2013-04-08 by bhsohn ÀÎ°ÔÀÓ Á¶ÇÕÃ¢ Ãß°¡ ±¸Çö
+// 2006-07-26 by ispark, ì•„ì´í…œ ìœ„ì¹˜
+// 2013-04-08 by bhsohn ì¸ê²Œìž„ ì¡°í•©ì°½ ì¶”ê°€ êµ¬í˜„
 //enum {ITEM_NOT_POS, ITEM_INVEN_POS, ITEM_SKILL_POS, ITEM_QSLOT_POS, ITEM_STORE_POS, ITEM_LAB_POS, ITEM_BAZAAR_POS};
 enum { ITEM_NOT_POS, ITEM_INVEN_POS, ITEM_SKILL_POS, ITEM_QSLOT_POS, ITEM_STORE_POS, ITEM_LAB_POS, ITEM_BAZAAR_POS, ITEM_MIXWND_POS };
 
 #define GAME_SHUTDOWN_TIME					30.0f
 #define SIZE_MAX_BAZAAR_FULL_NAME			42
 
-// 2006-08-22 by ispark, Àú·¹º§ µµ¿ò¸» ¹Ú½º 
+// 2006-08-22 by ispark, ì €ë ˆë²¨ ë„ì›€ë§ ë°•ìŠ¤ 
 enum { LOW_LEVEL_STAT_HELP, LOW_LEVEL_MISSION_HELP };
 #define HELP_SPECIAL_COUNT			2
 
-// 2006-09-07 by ispark, ½ºÅ×ÀÌÁö ÀÌÆåÆ® ³¡³ª°í Ã³¸® ÀÎµ¦½º
-// 2007-10-01 by bhsohn Ã³À½ Æ©Åä¸®¾ó Á¾·á½Ã ÇÁ·Ñ·Î±× ¾È³ª¿À´Â Çö»ó Ã³¸®
+// 2006-09-07 by ispark, ìŠ¤í…Œì´ì§€ ì´íŽ™íŠ¸ ëë‚˜ê³  ì²˜ë¦¬ ì¸ë±ìŠ¤
+// 2007-10-01 by bhsohn ì²˜ìŒ íŠœí† ë¦¬ì–¼ ì¢…ë£Œì‹œ í”„ë¡¤ë¡œê·¸ ì•ˆë‚˜ì˜¤ëŠ” í˜„ìƒ ì²˜ë¦¬
 enum { NOT_ACTION, TUTORIAL_SKIP, TUTORIAL_COMPLETE, MISSION_PRE, TUTORIAL_CHART_END };
 
-// 2006-09-19 by ispark, ±â¾î »óÅÂ ¸®½ºÆ®
+// 2006-09-19 by ispark, ê¸°ì–´ ìƒíƒœ ë¦¬ìŠ¤íŠ¸
 enum { DONOTKNOW = -1, FLIGHT, BREAKDOWN };
 
-// 2006-11-21 by ispark, ½ºÅ³ Ã³¸®¿¡ µû¸¥ ÀÎµ¦½º
+// 2006-11-21 by ispark, ìŠ¤í‚¬ ì²˜ë¦¬ì— ë”°ë¥¸ ì¸ë±ìŠ¤
 enum { CL_SKILL_NONE, CL_SKILL_INVISIBLE, CL_SKILL_CAMOUFLAGE };
 #ifdef EP1_CHARACTER
 #define CHARACTER_MALE_COUNT		8
@@ -1178,15 +1178,15 @@ enum { CL_SKILL_NONE, CL_SKILL_INVISIBLE, CL_SKILL_CAMOUFLAGE };
 #define CHARACTER_FEMALE_COUNT		7
 #endif
 
-// 2009. 11. 23 by jskim ¸®¼Ò½º ·Îµù ±¸Á¶ º¯°æ
+// 2009. 11. 23 by jskim ë¦¬ì†ŒìŠ¤ ë¡œë”© êµ¬ì¡° ë³€ê²½
 enum
 {
 	_MOST_SIGNIFICANT_PRIORITY,
 	_MY_CHARACTER_PRIORITY,
 	_MESH_PRIORITY,
 	_BULLET_PRIORITY,
-	_NOTHING_PRIORITY,		// ´Ü°èº° ½Ã½ºÅÛ »ç¿ë 
-	_NOTHING_STEP   // ±âÁ¸ ½Ã½ºÅÛ »ç¿ë
+	_NOTHING_PRIORITY,		// ë‹¨ê³„ë³„ ì‹œìŠ¤í…œ ì‚¬ìš© 
+	_NOTHING_STEP   // ê¸°ì¡´ ì‹œìŠ¤í…œ ì‚¬ìš©
 };
 
 enum
@@ -1209,18 +1209,18 @@ enum
 	_MONSTER_TYPE,
 	_UNIT_TYPE,
 };
-//end 2009. 11. 23 by jskim ¸®¼Ò½º ·Îµù ±¸Á¶ º¯°æ
+//end 2009. 11. 23 by jskim ë¦¬ì†ŒìŠ¤ ë¡œë”© êµ¬ì¡° ë³€ê²½
 
-// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ±âº» ÁÂÇ¥
+// 2010-06-15 by shcho&hslee íŽ«ì‹œìŠ¤í…œ - íŽ« ê¸°ë³¸ ì¢Œí‘œ
 #define PET_DEFULT_POS_X 18
 #define PET_DEFULT_POS_Y 1.5
 #define PET_DEFULT_POS_Z 8
 
-// 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ý¼º
+// 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 #define MARK_DEFULT_POS_X 0
 #define MARK_DEFULT_POS_Y 0
 #define MARK_DEFULT_POS_Z 0
-// end 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ý¼º
+// end 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 
 #define PET_CITY_DEFULT_POS_X 6
 #define PET_CITY_DEFULT_POS_Y 15
@@ -1234,7 +1234,7 @@ enum
 	OP_PET = 1,		
 };
 
-// 2010. 10. 05 by jskim ¸Ê·Îµù ±¸Á¶ º¯°æ
+// 2010. 10. 05 by jskim ë§µë¡œë”© êµ¬ì¡° ë³€ê²½
 enum
 {
 	_MAP_LOADING_START,
@@ -1245,7 +1245,7 @@ enum
 	_MAP_LOADING_STEP5,
 	_MAP_LOADING_END
 };
-// end 2010. 10. 05 by jskim ¸Ê·Îµù ±¸Á¶ º¯°æ
+// end 2010. 10. 05 by jskim ë§µë¡œë”© êµ¬ì¡° ë³€ê²½
 enum
 {
 	GROUP_TYPE,

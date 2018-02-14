@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "SocketHeader.h"
 #include "IOCP.h"
 #include "GlobalGameServer.h"
@@ -159,7 +159,7 @@ CIOCPSocket* CIOCP::FindEmptyIOCPSocket(DWORD dwIdx)
 
 	CIOCPSocket *pRetSocket;
 
-	if (dwIdx < m_dwArrayClientSize) pRetSocket = getSocket(dwIdx); // UDP Åë½Å¿¡ »ç¿ë
+	if (dwIdx < m_dwArrayClientSize) pRetSocket = getSocket(dwIdx); // UDP í†µì‹ ì— ì‚¬ìš©
 
 	else
 	{
@@ -261,12 +261,12 @@ void CIOCP::CalcTotalTrafficInfo()
 	this->UnlockTotalTrafficInfo();
 
 	///////////////////////////////////////////////////////////////////////////
-	// TimeÀÌ 1º¸´Ù ÀÛÀ»°æ¿ì 1·Î Ã³¸®ÇÑ´Ù.
+	// Timeì´ 1ë³´ë‹¤ ì‘ì„ê²½ìš° 1ë¡œ ì²˜ë¦¬í•œë‹¤.
 	m_TCPTrafficInfo[1].dwTimeGapSecond = max(1, (dwCurTick - m_TCPTrafficInfo[1].dwTimeGapSecond) / 1000);
 	m_UDPTrafficInfo[1].dwTimeGapSecond = max(1, (dwCurTick - m_UDPTrafficInfo[1].dwTimeGapSecond) / 1000);
 
 	///////////////////////////////////////////////////////////////////////////
-	// ÇöÀç »ç¿ëµÇ°í ÀÖ´Â IOCPSocket¿¡¼­ °è»êÀ» À§ÇØ Bandwidth Á¤º¸¸¦ °¡Á®¿Â´Ù
+	// í˜„ì¬ ì‚¬ìš©ë˜ê³  ìˆëŠ” IOCPSocketì—ì„œ ê³„ì‚°ì„ ìœ„í•´ Bandwidth ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤
 	int i = 0;
 	while (GetListeningFlag()  && i < m_dwArrayClientSize && m_pArrayIOCPSocket)
 	{
@@ -292,7 +292,7 @@ void CIOCP::CalcTotalTrafficInfo()
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	// TCP LanHeader ¿Í UDP LanHeader¸¦ ´õÇÏ¿© ÁØ´Ù
+	// TCP LanHeader ì™€ UDP LanHeaderë¥¼ ë”í•˜ì—¬ ì¤€ë‹¤
 	m_TCPTrafficInfo[1].dwBytesSend += m_TCPTrafficInfo[1].dwCountSendPacket * SIZE_TCP_LAN_HEADER;
 	m_TCPTrafficInfo[1].dwBytesRecv += m_TCPTrafficInfo[1].dwCountRecvPacket * SIZE_TCP_LAN_HEADER;
 	m_UDPTrafficInfo[1].dwBytesSend += m_UDPTrafficInfo[1].dwCountSendPacket * SIZE_UDP_LAN_HEADER;
@@ -333,7 +333,7 @@ void CIOCP::CalcTotalTrafficInfo()
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	// Bandwidth¸¦ System Log·Î ³²±ä´Ù.
+	// Bandwidthë¥¼ System Logë¡œ ë‚¨ê¸´ë‹¤.
 	if (GetFlagCalcTrafficInfo())
 	{
 		STrafficInfo *pTCP = GetPTCPTrafficInfo();
@@ -392,7 +392,7 @@ BOOL CIOCP::Writer()
 			getSocket(idx)->Write(false);
 		}
 		pstInfo->bThreadUseFlag = false;
-		this_thread::sleep_for(30ms);	// check: ¿øÈ°ÇÑ µğ¹ö±ë À§ÇØ¼­, 20031014, kelovon, ¿ø·¡°ª 30ms
+		this_thread::sleep_for(30ms);	// check: ì›í™œí•œ ë””ë²„ê¹… ìœ„í•´ì„œ, 20031014, kelovon, ì›ë˜ê°’ 30ms
 	}
 
 	return 4;
@@ -407,7 +407,7 @@ BOOL CIOCP::IOCPInit()
 	SYSTEM_INFO SystemInfo;
 	GetSystemInfo(&SystemInfo);
 
-	m_dwWorkerCount = SystemInfo.dwNumberOfProcessors + 2;				// ½Ã½ºÅÛÀÇ CPU °³¼ö + 2
+	m_dwWorkerCount = SystemInfo.dwNumberOfProcessors + 2;				// ì‹œìŠ¤í…œì˜ CPU ê°œìˆ˜ + 2
 
 	m_hCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, SystemInfo.dwNumberOfProcessors);
 	
@@ -460,7 +460,7 @@ BOOL CIOCP::IOCPInit()
 		return false;
 	}
 
-	m_bServiceStartFlag = true;		// 2008-09-08 by cmkwon, À§¿¡¼­ ¼³Á¤ÇÏ´ø°ÍÀ¸·Î ¸ğµç°ÍÀ» Ã³¸®ÈÄ¿¡ ¿©±â¿¡¼­ ¼³Á¤ÇÏ´Ù·Ï ÇÑ´Ù.
+	m_bServiceStartFlag = true;		// 2008-09-08 by cmkwon, ìœ„ì—ì„œ ì„¤ì •í•˜ë˜ê²ƒìœ¼ë¡œ ëª¨ë“ ê²ƒì„ ì²˜ë¦¬í›„ì— ì—¬ê¸°ì—ì„œ ì„¤ì •í•˜ë‹¤ë¡ í•œë‹¤.
 	
 	return true;
 }
@@ -562,7 +562,7 @@ BOOL CIOCP::Listen()
 				continue;
 			}
 
-			pIOCPSock->SetSocket(soc);					// ¼ÒÄÏÀ» ÇÒ´çÇÑ´Ù
+			pIOCPSock->SetSocket(soc);					// ì†Œì¼“ì„ í• ë‹¹í•œë‹¤
 
 			
 
@@ -639,7 +639,7 @@ DWORD CIOCP::Worker()
 	}
 
 	// todo : remove srand call
-	srand(timeGetTime());			// Random Number¸¦ À§ÇØ¼­
+	srand(timeGetTime());			// Random Numberë¥¼ ìœ„í•´ì„œ
 	random::init();
 	
 	while (true)
@@ -703,7 +703,7 @@ DWORD CIOCP::Worker()
 		{
 			if (dwRead < pOverlapped->GetWSABUFPtr()->len)
 			{
-				g_pGlobal->WriteSystemLogEX(true, "CIOCP::Worker ÆĞÅ¶ÀÌ Àü¼ÛÀÌ ¸ğµÎ ¾ÈµÊ, wsaBuf.len[%d] dwRead[%d]\r\n",
+				g_pGlobal->WriteSystemLogEX(true, "CIOCP::Worker íŒ¨í‚·ì´ ì „ì†¡ì´ ëª¨ë‘ ì•ˆë¨, wsaBuf.len[%d] dwRead[%d]\r\n",
 					pOverlapped->GetWSABUFPtr()->len, dwRead);
 
 				util::del(pOverlapped);
@@ -711,13 +711,13 @@ DWORD CIOCP::Worker()
 			}
 			else
 			{
-				// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+				// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 				if (TRUE == pOverlapped->GetSessionEnd())
 				{
 					util::del(pOverlapped);
 					pIOCPSocket->Close(0x10010);
 				}
-				// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+				// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 				else
 				{
 					pIOCPSocket->OnWrite(pOverlapped, dwRead);

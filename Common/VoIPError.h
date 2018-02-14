@@ -1,4 +1,4 @@
-#ifndef _VOIP_ERROR_H_
+ï»¿#ifndef _VOIP_ERROR_H_
 #define _VOIP_ERROR_H_
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -6,23 +6,23 @@
 	#define VOIPERR_PROTOCOL_INVAILD_LENGTH					0x0001		// 
 
 ///////////////////////////////////////////////////////////////////////////////
-// 1:1 ÅëÈ­½Ã ¿À·ù
+// 1:1 í†µí™”ì‹œ ì˜¤ë¥˜
 	#define VOIPERR_1to1_NO_SUCH_CHARACTER					0x1001		// 
 	#define VOIPERR_1to1_NO_SUCH_ACCOUNTUNIQUENUMBER		0x1002
 	#define VOIPERR_1to1_CANNOT_CALL						0x1003
 	#define VOIPERR_1to1_REJECT								0x1004
 
 ///////////////////////////////////////////////////////////////////////////////
-// N:N ÅëÈ­½Ã ¿À·ù
-	#define VOIPERR_NtoN_NO_SUCH_WELLSUITED_VCSERVER		0x2001		// Àû´çÇÑ VCServer°¡ ¾ø´Ù, µî·ÏµÈ VCServer°¡ ¾ø°Å³ª Á¢¼Ó°¡´ÉÇÑ VCServer°¡ ¾ø´Ù
-	#define VOIPERR_NtoN_ALREADY_REGISTER_VCSERVER			0x2002		// ÀÌ¹Ì VCServer°¡ µî·ÏµÇ¾úÀ½
-	#define VOIPERR_NtoN_ALREADY_EXISTS_ROOMID				0x2003		// ÀÌ¹Ì µî·ÏµÈ RoomIDÀÓ
-	#define VOIPERR_NtoN_NO_SUCH_ROOMID						0x2004		// RoomID¸¦ °¡Áø RoomÀÌ ¾øÀ½
-	#define VOIPERR_NtoN_NO_SUCH_ROOM						0x2005		// RoomÀÌ ¾øÀ½
-	#define VOIPERR_NtoN_ALREADY_EXISTS_ROOM				0x2006		// ÀÌ¹Ì RoomÀÌ ÀÖÀ½
-	#define VOIPERR_NtoN_FAIL_REQUEST_TOKEN					0x2007		// ¸»ÇÏ±â ±ÇÇÑ ¿äÃ» ½ÇÆÐ
-	#define VOIPERR_NtoN_LOST_TOKEN							0x2008		// ¸»ÇÏ±â ±ÇÇÑ »¯±è
-	#define VOIPERR_NtoN_CANNOT_TALKING						0x2009		// ¸»ÇÏ±â ±ÇÇÑ »¯±è
+// N:N í†µí™”ì‹œ ì˜¤ë¥˜
+	#define VOIPERR_NtoN_NO_SUCH_WELLSUITED_VCSERVER		0x2001		// ì ë‹¹í•œ VCServerê°€ ì—†ë‹¤, ë“±ë¡ëœ VCServerê°€ ì—†ê±°ë‚˜ ì ‘ì†ê°€ëŠ¥í•œ VCServerê°€ ì—†ë‹¤
+	#define VOIPERR_NtoN_ALREADY_REGISTER_VCSERVER			0x2002		// ì´ë¯¸ VCServerê°€ ë“±ë¡ë˜ì—ˆìŒ
+	#define VOIPERR_NtoN_ALREADY_EXISTS_ROOMID				0x2003		// ì´ë¯¸ ë“±ë¡ëœ RoomIDìž„
+	#define VOIPERR_NtoN_NO_SUCH_ROOMID						0x2004		// RoomIDë¥¼ ê°€ì§„ Roomì´ ì—†ìŒ
+	#define VOIPERR_NtoN_NO_SUCH_ROOM						0x2005		// Roomì´ ì—†ìŒ
+	#define VOIPERR_NtoN_ALREADY_EXISTS_ROOM				0x2006		// ì´ë¯¸ Roomì´ ìžˆìŒ
+	#define VOIPERR_NtoN_FAIL_REQUEST_TOKEN					0x2007		// ë§í•˜ê¸° ê¶Œí•œ ìš”ì²­ ì‹¤íŒ¨
+	#define VOIPERR_NtoN_LOST_TOKEN							0x2008		// ë§í•˜ê¸° ê¶Œí•œ ëºê¹€
+	#define VOIPERR_NtoN_CANNOT_TALKING						0x2009		// ë§í•˜ê¸° ê¶Œí•œ ëºê¹€
 
 	
 

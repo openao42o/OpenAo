@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "CompileUtils.h"
 
@@ -20,33 +20,33 @@ constexpr auto SIZE_UDP_LAN_HEADER = 46;	// 46 Bytes = 18(Datalink) + 20(IP) + 8
 
 static_assert(sizeof(unsigned short) == 2, "The following code assumes unsigned short is 2 bytes long.");
 
-// Packet Header °ü·Ã define
+// Packet Header ê´€ë ¨ define
 
-using MessageType_t = unsigned short;		// ÆĞÅ¶ Å¸ÀÔÀ» À§ÇØ
-using Err_t = unsigned short;				// ¿¡·¯ Å¸ÀÔÀ» À§ÇØ
+using MessageType_t = unsigned short;		// íŒ¨í‚· íƒ€ì…ì„ ìœ„í•´
+using Err_t = unsigned short;				// ì—ëŸ¬ íƒ€ì…ì„ ìœ„í•´
 
-constexpr auto SIZE_PACKET_HEADER = 4;		// °¢ ÆĞÅ¶°£ »çÀÌÁî Çì´õ »çÀÌÁî
-constexpr auto SIZE_BODY_LENGTH = 2;		// °¢ ÆĞÅ¶°£ »çÀÌÁî Çì´õ »çÀÌÁî
-constexpr auto SIZE_ENCODE_FLAG = 1;		// ¾ÏÈ£È­ Á¤º¸ flag »çÀÌÁî
-constexpr auto SIZE_CHECKSUM = 1;			// checksumÀÇ byte ¼ö
-constexpr auto SIZE_SEQ_NUM = 1;			// sequence numberÀÇ byte ¼ö
-constexpr auto SIZE_MAX_DUMMY_DATA = 3;		// dummy dataÀÇ ÃÖ´ë ±æÀÌ
-constexpr auto SIZE_FIELD_TYPE_HEADER = sizeof(MessageType_t);		// ÇÏ³ªÀÇ ÆĞÅ¶Àº ¿©·¯°³ÀÇ ÇÊµå·Î ±¸¼ºµÈ´Ù. °¢ ÇÊµåÀÇ Å¸ÀÔ Çì´õ »çÀÌÁî
-constexpr auto SIZE_MAX_PACKET = 1492;		// ÆĞÅ¶ ÃÖ´ë »çÀÌÁî(¿©·¯°³ÀÇ ¸Ş¼¼Áö°¡ ÇÏ³ªÀÇ ÆĞÅ¶À¸·Î Àü¼ÛµÉ¼ö ÀÖÀ½)
-constexpr auto SIZE_MAX_SOCKET_BUFFER = 1500;	// Receve Buffer ÃÖ´ë »çÀÌÁî
+constexpr auto SIZE_PACKET_HEADER = 4;		// ê° íŒ¨í‚·ê°„ ì‚¬ì´ì¦ˆ í—¤ë” ì‚¬ì´ì¦ˆ
+constexpr auto SIZE_BODY_LENGTH = 2;		// ê° íŒ¨í‚·ê°„ ì‚¬ì´ì¦ˆ í—¤ë” ì‚¬ì´ì¦ˆ
+constexpr auto SIZE_ENCODE_FLAG = 1;		// ì•”í˜¸í™” ì •ë³´ flag ì‚¬ì´ì¦ˆ
+constexpr auto SIZE_CHECKSUM = 1;			// checksumì˜ byte ìˆ˜
+constexpr auto SIZE_SEQ_NUM = 1;			// sequence numberì˜ byte ìˆ˜
+constexpr auto SIZE_MAX_DUMMY_DATA = 3;		// dummy dataì˜ ìµœëŒ€ ê¸¸ì´
+constexpr auto SIZE_FIELD_TYPE_HEADER = sizeof(MessageType_t);		// í•˜ë‚˜ì˜ íŒ¨í‚·ì€ ì—¬ëŸ¬ê°œì˜ í•„ë“œë¡œ êµ¬ì„±ëœë‹¤. ê° í•„ë“œì˜ íƒ€ì… í—¤ë” ì‚¬ì´ì¦ˆ
+constexpr auto SIZE_MAX_PACKET = 1492;		// íŒ¨í‚· ìµœëŒ€ ì‚¬ì´ì¦ˆ(ì—¬ëŸ¬ê°œì˜ ë©”ì„¸ì§€ê°€ í•˜ë‚˜ì˜ íŒ¨í‚·ìœ¼ë¡œ ì „ì†¡ë ìˆ˜ ìˆìŒ)
+constexpr auto SIZE_MAX_SOCKET_BUFFER = 1500;	// Receve Buffer ìµœëŒ€ ì‚¬ì´ì¦ˆ
 
-constexpr auto COUNT_MAX_SOCKET_SESSION = 1600;			// ¼­¹ö¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö
-constexpr auto SIZE_MAX_PRESERVER_SESSION = 1500;		// Pre Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
-constexpr auto SIZE_MAX_FIELDSERVER_SESSION = 1500;		// Field Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
-constexpr auto SIZE_MAX_IMSERVER_SESSION = 1500;		// IM Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
-constexpr auto SIZE_MAX_AUTHSERVER_SESSION = 200;		// Authentication Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ // 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
-														// 2010-12-03 by jskim º¯°æ UDP Ã¤³Î¼ö 170 -> 200À¸·Î º¯°æ
+constexpr auto COUNT_MAX_SOCKET_SESSION = 1600;			// ì„œë²„ì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜
+constexpr auto SIZE_MAX_PRESERVER_SESSION = 1500;		// Pre Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
+constexpr auto SIZE_MAX_FIELDSERVER_SESSION = 1500;		// Field Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
+constexpr auto SIZE_MAX_IMSERVER_SESSION = 1500;		// IM Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
+constexpr auto SIZE_MAX_AUTHSERVER_SESSION = 200;		// Authentication Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜ // 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
+														// 2010-12-03 by jskim ë³€ê²½ UDP ì±„ë„ìˆ˜ 170 -> 200ìœ¼ë¡œ ë³€ê²½
 
-constexpr auto SIZE_MAX_FIELDWEBSERVER_SESSION = 400;	// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - Field Web Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó Å¬¶óÀÌ¾ğÆ®¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
+constexpr auto SIZE_MAX_FIELDWEBSERVER_SESSION = 400;	// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - Field Web Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† í´ë¼ì´ì–¸íŠ¸ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
 
-constexpr auto SIZE_MAX_UDP_CHANNEL_SESSION = 200;									// 2008-08-29 by cmkwon, FieldServ<->NPCServ °¡ UDP Åë½Å ÇÒ Ã¤³Î¼ö - ¼­ºñ½º¸Êº¸´Ù ¸¹¾Æ¾ß ÇÑ´Ù.													
-constexpr auto SIZE_MAX_NPCSERVER_SESSION = SIZE_MAX_UDP_CHANNEL_SESSION + 10;		// NPC Server¿¡¼­ Áö¿øÇÒ ÃÖ´ë¸ÊÀÇ ¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
-constexpr auto SIZE_MAX_LOGSERVER_SESSION = 100;									// Log ¼­¹ö¿¡¼­ Áö¿øÇÒ ÃÖ´ë Á¢¼Ó ¼­¹ö¼ö, COUNT_MAX_SOCKET_SESSION ÀÌÇÏ
+constexpr auto SIZE_MAX_UDP_CHANNEL_SESSION = 200;									// 2008-08-29 by cmkwon, FieldServ<->NPCServ ê°€ UDP í†µì‹  í•  ì±„ë„ìˆ˜ - ì„œë¹„ìŠ¤ë§µë³´ë‹¤ ë§ì•„ì•¼ í•œë‹¤.													
+constexpr auto SIZE_MAX_NPCSERVER_SESSION = SIZE_MAX_UDP_CHANNEL_SESSION + 10;		// NPC Serverì—ì„œ ì§€ì›í•  ìµœëŒ€ë§µì˜ ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
+constexpr auto SIZE_MAX_LOGSERVER_SESSION = 100;									// Log ì„œë²„ì—ì„œ ì§€ì›í•  ìµœëŒ€ ì ‘ì† ì„œë²„ìˆ˜, COUNT_MAX_SOCKET_SESSION ì´í•˜
 
 template<typename _MSG_STRUCT> constexpr auto _msg_size() { return SIZE_FIELD_TYPE_HEADER + sizeof(_MSG_STRUCT); }
 
@@ -69,10 +69,10 @@ template<typename _MSG_STRUCT, MessageType_t _MSG_TYPE, typename buffer_t> auto 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Declare Variable, Set Message Buffer & Type
-//		_MSG_STRUCT	: ¸Ş¼¼Áö ±¸Á¶Ã¼ Å¸ÀÔ
-//		_VAR_NAME	: º¯¼ö ÀÌ¸§
-//		_BUFFER		: ¹öÆÛ
-//		_MSG_TYPE	: ¸Ş¼¼Áö Å¸ÀÔ
+//		_MSG_STRUCT	: ë©”ì„¸ì§€ êµ¬ì¡°ì²´ íƒ€ì…
+//		_VAR_NAME	: ë³€ìˆ˜ ì´ë¦„
+//		_BUFFER		: ë²„í¼
+//		_MSG_TYPE	: ë©”ì„¸ì§€ íƒ€ì…
 ///////////////////////////////////////////////////////////////////////////////
 #define INIT_MSG(_MSG_STRUCT, _MSG_TYPE, _VAR_NAME, _BUFFER)				\
 	auto _VAR_NAME = _init_msg<_MSG_STRUCT, _MSG_TYPE>(_BUFFER);
@@ -97,9 +97,9 @@ template<typename _MSG_STRUCT, MessageType_t _MSG_TYPE, typename buffer_t> auto 
 <- XOR -><------- XOR --------->
 
 * encoding rule 1
-- Sequence Number »ı¼º
+- Sequence Number ìƒì„±
 (1)
-Ã¹ SeqNumber := Random ÇÔ¼ö·Î »ı¼ºµÈ Number (0~127)
+ì²« SeqNumber := Random í•¨ìˆ˜ë¡œ ìƒì„±ëœ Number (0~127)
 
 (2)
 NewSeqNumber := ( SeqNumber + A ) * B
@@ -110,24 +110,24 @@ NextSeqNumber := SeqNumber
 }
 
 * encoding rule 2
-- Dummy Data »ı¼º ¹× packet µÚºÎºĞ¿¡ Ãß°¡
-Dummy DataÀÇ ±æÀÌ´Â 0~3B = (seq. #) % 4, ³»¿ëÀº ÀÓÀÇ·Î °áÁ¤
+- Dummy Data ìƒì„± ë° packet ë’¤ë¶€ë¶„ì— ì¶”ê°€
+Dummy Dataì˜ ê¸¸ì´ëŠ” 0~3B = (seq. #) % 4, ë‚´ìš©ì€ ì„ì˜ë¡œ ê²°ì •
 
 * encoding rule 3
-- checksum »ı¼º ¹× Ãß°¡
+- checksum ìƒì„± ë° ì¶”ê°€
 
 * encoding rule 4
-- XOR_DATA[128]À» ¹Ì¸® »ı¼ºÇØµÒ.
-- (seq. #)´Â XOR_DATA[N-1]°ú xor ¿¬»êÀ» ÇÔ
-- (MSGs + checksum)´Â XOR_DATA[N]ºÎÅÍ XOR_DATA[127]±îÁö¿Í xor ¿¬»êÀ» ÇÔ
-XOR_DATA[127] ´ÙÀ½¿¡´Â XOR_DATA[0]ºÎÅÍ ´Ù½Ã ½ÃÀÛÇÔ
-- N °ªÀº È¿À²¼ºÀ» À§ÇØ Ç×»ó 4ÀÇ ¹è¼ö, N°ªÀÇ ¹üÀ§´Â 4, 8, ... , 124
+- XOR_DATA[128]ì„ ë¯¸ë¦¬ ìƒì„±í•´ë‘ .
+- (seq. #)ëŠ” XOR_DATA[N-1]ê³¼ xor ì—°ì‚°ì„ í•¨
+- (MSGs + checksum)ëŠ” XOR_DATA[N]ë¶€í„° XOR_DATA[127]ê¹Œì§€ì™€ xor ì—°ì‚°ì„ í•¨
+XOR_DATA[127] ë‹¤ìŒì—ëŠ” XOR_DATA[0]ë¶€í„° ë‹¤ì‹œ ì‹œì‘í•¨
+- N ê°’ì€ íš¨ìœ¨ì„±ì„ ìœ„í•´ í•­ìƒ 4ì˜ ë°°ìˆ˜, Nê°’ì˜ ë²”ìœ„ëŠ” 4, 8, ... , 124
 
-* invalid packetÀÇ Á¶°Çµé
-- sequence number°¡ ¸ÂÁö ¾ÊÀ½
-- checksumÀÌ ¸ÂÁö ¾ÊÀ½
-- dummy dataÀÇ ±æÀÌ°¡ ¸ÂÁö ¾ÊÀ¸¸é, checksumÀÌ Æ²¸®°Å³ª, MSG°¡ ¸ÂÁö ¾Ê°Ô µÊ
-- XOR_DATA¿Í ¿¬»êÀ» ÇÑ ÈÄÀÇ MSGs°¡ protocol°ú ¸ÂÁö ¾ÊÀ½
+* invalid packetì˜ ì¡°ê±´ë“¤
+- sequence numberê°€ ë§ì§€ ì•ŠìŒ
+- checksumì´ ë§ì§€ ì•ŠìŒ
+- dummy dataì˜ ê¸¸ì´ê°€ ë§ì§€ ì•Šìœ¼ë©´, checksumì´ í‹€ë¦¬ê±°ë‚˜, MSGê°€ ë§ì§€ ì•Šê²Œ ë¨
+- XOR_DATAì™€ ì—°ì‚°ì„ í•œ í›„ì˜ MSGsê°€ protocolê³¼ ë§ì§€ ì•ŠìŒ
 
 /////////////////////////////////////////////////////////////////////////////*/
 
@@ -141,7 +141,7 @@ constexpr auto SEQNO_VAR_C = 119;	// MAX Sequence Number
 constexpr char XOR_ENCODE_BYTES[] = "fewoiroqbfweotui29854f09qwe0213hrf0a89wq0re902149dujaosdjfapwetu2fadq1234fsacdfzdxczfsdgbhtrytrgw563fwsjkpqertgvxhteertw3512ga\0";
 constexpr auto SIZE_XOR_ENCODE_BYTES = carrlen(XOR_ENCODE_BYTES);
 
-// sequence number´Â connection´ç ÇÏ³ª¸¦ °ü¸®ÇØ¾ß ÇÏ±â ¶§¹®¿¡, IOCPSocket¿¡¼­ °ü¸®ÇÑ´Ù.
+// sequence numberëŠ” connectionë‹¹ í•˜ë‚˜ë¥¼ ê´€ë¦¬í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì—, IOCPSocketì—ì„œ ê´€ë¦¬í•œë‹¤.
 struct DECODING_INFO
 {
 	BYTE nSeqNumber;
@@ -163,21 +163,21 @@ enum ENServerType : DWORD
 	ST_CLIENT_TYPE = 7,
 	ST_ADMIN_TOOL = 8,
 	ST_INVALID_TYPE = 9,
-	//ST_AUTHENTICATION_SERVER = 10,		// 2011-01-26 by hskim, ÀÎÁõ ¼­¹ö ±¸Çö
-	//ST_FIELD_WEB_SERVER = 11				// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+	//ST_AUTHENTICATION_SERVER = 10,		// 2011-01-26 by hskim, ì¸ì¦ ì„œë²„ êµ¬í˜„
+	//ST_FIELD_WEB_SERVER = 11				// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 };
 
 enum ProcessResult
 {
-	RES_BREAK = 0,	// °æ¹ÌÇÑ ¿¡·¯µé. ¿¬°áÀ» ²÷Áö ¾Ê´Â´Ù.
-	RES_PACKET_ERROR = 1,	// ÆĞÅ¶ÀÌ ¼Õ»óµÈ °æ¿ì. ³²Àº packetÀ» Ã³¸®ÇÏÁö ¾Ê°í ¹Ù·Î ¸®ÅÏÇÑ´Ù. ¼­¹ö°£ ¿¬°á¿¡¸¸ »ç¿ë.
-	RES_RETURN_TRUE = 2,	// Á¤»ó
-	RES_RETURN_FALSE = 3,		// ¿¬°áÀ» ²÷¾î¾ßÇÏ´Â °æ¿ì. ÇÁ·ÎÅäÄİ ¿¡·¯ µî
+	RES_BREAK = 0,	// ê²½ë¯¸í•œ ì—ëŸ¬ë“¤. ì—°ê²°ì„ ëŠì§€ ì•ŠëŠ”ë‹¤.
+	RES_PACKET_ERROR = 1,	// íŒ¨í‚·ì´ ì†ìƒëœ ê²½ìš°. ë‚¨ì€ packetì„ ì²˜ë¦¬í•˜ì§€ ì•Šê³  ë°”ë¡œ ë¦¬í„´í•œë‹¤. ì„œë²„ê°„ ì—°ê²°ì—ë§Œ ì‚¬ìš©.
+	RES_RETURN_TRUE = 2,	// ì •ìƒ
+	RES_RETURN_FALSE = 3,		// ì—°ê²°ì„ ëŠì–´ì•¼í•˜ëŠ” ê²½ìš°. í”„ë¡œí† ì½œ ì—ëŸ¬ ë“±
 	RES_PACKET_NA = 4,
 	RES_ACCESS_DENIED = 5
 };
 
-// µğ¹ö±×¿ë - For PrintExchangeMsg()
+// ë””ë²„ê·¸ìš© - For PrintExchangeMsg()
 enum
 {
 	RECV_TYPE = 0,
@@ -194,10 +194,10 @@ enum : BYTE
 	PRINTLEVEL_NO_MSG = 5
 };
 
-// Socket °ü·Ã Global Variable
-extern BYTE g_exchangeMsgPrintLevel;	// check: MSG¸¦ printÇÏ´Â levelÀ» Á¶Á¤ÇÏ±â À§ÇØ(AtumMonitor·Î Á¶Àı °¡´É), by kelovon
+// Socket ê´€ë ¨ Global Variable
+extern BYTE g_exchangeMsgPrintLevel;	// check: MSGë¥¼ printí•˜ëŠ” levelì„ ì¡°ì •í•˜ê¸° ìœ„í•´(AtumMonitorë¡œ ì¡°ì ˆ ê°€ëŠ¥), by kelovon
 
-// Socket °ü·Ã Global Function
+// Socket ê´€ë ¨ Global Function
 const char *GGetENServerTypeString(ENServerType st);
 
 void GSetexchangeMsgPrintLevel(BYTE i_byPrintLevel);

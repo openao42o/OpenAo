@@ -1,34 +1,34 @@
-#ifndef _LOCALIZE_SETTING_H_
+ï»¿#ifndef _LOCALIZE_SETTING_H_
 #define _LOCALIZE_SETTING_H_
 
 
 
-// °øÁö»çÇ× Æ¯¼ö ¹®ÀÚ
+// ê³µì§€ì‚¬í•­ íŠ¹ìˆ˜ ë¬¸ì
 #if defined( LANGUAGE_ITALIA )
-	#define	CHAT_ALL			'<'		// °øÁöÃ¤ÆÃ
-	#define	CHAT_GUILD			'@'		// ±æµåÃ¤ÆÃ
-	#define	CHAT_ARENA			'%'		// ¾Æ·¹³ªÃ¤ÆÃ
-	#define	CHAT_WAR			'^'		// ÀüÀïÃ¤ÆÃ
-	#define	CHAT_PARTY			'#'		// Æí´ëÃ¤ÆÃ
-	#define	CHAT_MAP			'!'		// ¸ÊÀüÃ¼Ã¤ÆÃ
-	#define	CHAT_SELL_ALL		'$'		// ¸Å¸ÅÃ¤ÆÃ
-	#define	CHAT_CHATROOM		'&'		// À¯·á¸ÊÀüÃ¼Ã¤ÆÃ
-	#define	CHAT_PTOP			'"'		// ±Ó¼Ó¸»
-	#define	CHAT_INFLUENCE_ALL	'*'		// ÁöµµÀÚ°øÁö
-	#define	CHAT_COMMAND		'/'		// °ÔÀÓ¸í·É¾î
+	#define	CHAT_ALL			'<'		// ê³µì§€ì±„íŒ…
+	#define	CHAT_GUILD			'@'		// ê¸¸ë“œì±„íŒ…
+	#define	CHAT_ARENA			'%'		// ì•„ë ˆë‚˜ì±„íŒ…
+	#define	CHAT_WAR			'^'		// ì „ìŸì±„íŒ…
+	#define	CHAT_PARTY			'#'		// í¸ëŒ€ì±„íŒ…
+	#define	CHAT_MAP			'!'		// ë§µì „ì²´ì±„íŒ…
+	#define	CHAT_SELL_ALL		'$'		// ë§¤ë§¤ì±„íŒ…
+	#define	CHAT_CHATROOM		'&'		// ìœ ë£Œë§µì „ì²´ì±„íŒ…
+	#define	CHAT_PTOP			'"'		// ê·“ì†ë§
+	#define	CHAT_INFLUENCE_ALL	'*'		// ì§€ë„ìê³µì§€
+	#define	CHAT_COMMAND		'/'		// ê²Œì„ëª…ë ¹ì–´
 	#define CHAT_CNC			'<'
 #else
-	#define	CHAT_ALL			'~'		// °øÁöÃ¤ÆÃ
-	#define	CHAT_GUILD			'@'		// ±æµåÃ¤ÆÃ
-	#define	CHAT_ARENA			'%'		// ¾Æ·¹³ªÃ¤ÆÃ
-	#define	CHAT_WAR			'^'		// ÀüÀïÃ¤ÆÃ
-	#define	CHAT_PARTY			'#'		// Æí´ëÃ¤ÆÃ
-	#define	CHAT_MAP			'!'		// ¸ÊÀüÃ¼Ã¤ÆÃ
-	#define	CHAT_SELL_ALL		'$'		// ¸Å¸ÅÃ¤ÆÃ
-	#define	CHAT_CHATROOM		'&'		// À¯·á¸ÊÀüÃ¼Ã¤ÆÃ
-	#define	CHAT_PTOP			'"'		// ±Ó¼Ó¸»
-	#define	CHAT_INFLUENCE_ALL	'*'		// ÁöµµÀÚ°øÁö
-	#define	CHAT_COMMAND		'/'		// °ÔÀÓ¸í·É¾î
+	#define	CHAT_ALL			'~'		// ê³µì§€ì±„íŒ…
+	#define	CHAT_GUILD			'@'		// ê¸¸ë“œì±„íŒ…
+	#define	CHAT_ARENA			'%'		// ì•„ë ˆë‚˜ì±„íŒ…
+	#define	CHAT_WAR			'^'		// ì „ìŸì±„íŒ…
+	#define	CHAT_PARTY			'#'		// í¸ëŒ€ì±„íŒ…
+	#define	CHAT_MAP			'!'		// ë§µì „ì²´ì±„íŒ…
+	#define	CHAT_SELL_ALL		'$'		// ë§¤ë§¤ì±„íŒ…
+	#define	CHAT_CHATROOM		'&'		// ìœ ë£Œë§µì „ì²´ì±„íŒ…
+	#define	CHAT_PTOP			'"'		// ê·“ì†ë§
+	#define	CHAT_INFLUENCE_ALL	'*'		// ì§€ë„ìê³µì§€
+	#define	CHAT_COMMAND		'/'		// ê²Œì„ëª…ë ¹ì–´
 	#define CHAT_CNC			'<'
 #endif
 

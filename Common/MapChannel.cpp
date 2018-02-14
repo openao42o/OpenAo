@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "MapChannel.h"
 #include <TIME.H>
 
@@ -64,10 +64,10 @@ CMapChannel::~CMapChannel()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CMapChannel::InitMapChannel(void)
-/// \brief		µ¥ÀÌÅ¸ °ü¸®¸¦ À§ÇÑ MapBlockÀÇ array¸¦ »ı¼º
+/// \brief		ë°ì´íƒ€ ê´€ë¦¬ë¥¼ ìœ„í•œ MapBlockì˜ arrayë¥¼ ìƒì„±
 /// \author		kelovon
 /// \date		2004-03-24 ~ 2004-03-24
-/// \warning	CMapChannelÀÇ Init() ÀÌÈÄ¿¡ È£ÃâµÇ¾î¾ß ÇÑ´Ù
+/// \warning	CMapChannelì˜ Init() ì´í›„ì— í˜¸ì¶œë˜ì–´ì•¼ í•œë‹¤
 ///
 /// \return		BOOL
 ///////////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ void CMapChannel::ResetMapChannel(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CMapChannel::ResetUserMapChannel(void)
-/// \brief		¾Æ·¹³ª ÅëÇÕ - ¸Ê Ã¤³Î¿¡ À¯Àú Á¤º¸ ÃÊ±âÈ­
+/// \brief		ì•„ë ˆë‚˜ í†µí•© - ë§µ ì±„ë„ì— ìœ ì € ì •ë³´ ì´ˆê¸°í™”
 /// \author		dhjin
 /// \date		2008-02-20 ~ 2008-02-20
 /// \warning	
@@ -170,7 +170,7 @@ void CMapChannel::ResetUserMapChannel(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CMapChannel::ResetDropItemMapChannel(void)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - ¸Ê Ã¤³Î¿¡ µå¶ø ¾ÆÀÌÅÛ Á¤º¸ ÃÊ±âÈ­ 
+/// \brief		ì¸í”¼ë‹ˆí‹° - ë§µ ì±„ë„ì— ë“œë ì•„ì´í…œ ì •ë³´ ì´ˆê¸°í™” 
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -267,7 +267,7 @@ BOOL CMapChannel::SetChannelState(BOOL i_bEnableChannel)
 {
 	if(0 == m_MapChannelIndex.ChannelIndex
 		&& FALSE == i_bEnableChannel)
-	{// 2006-06-02 by cmkwon, 0¹ø Ã¤³ÎÀ» ºñÈ°¼ºÈ­ ½ÃÅ³¼ö ¾ø´Ù.
+	{// 2006-06-02 by cmkwon, 0ë²ˆ ì±„ë„ì„ ë¹„í™œì„±í™” ì‹œí‚¬ìˆ˜ ì—†ë‹¤.
 		return FALSE;
 	}
 
@@ -325,13 +325,13 @@ float CMapChannel::GetMapHeightIncludeWaterW(D3DXVECTOR3 *i_pVec3Pos)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::SetInitialPosition
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : float x
-// ÇÔ ¼ö ÀÎ ÀÚ  : float z
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : °³Ã¼ÀÇ ÃÊ±â À§Ä¡¸¦ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-//					ÁÂÇ¥¿¡ ÇØ´çÇÏ´Â MapBlockÀÇ ÀÎµ¦½º ¸®½ºÆ®¿¡ °³Ã¼ÀÇ ÀÎµ¦½º(clientIndex)¸¦ Ãß°¡ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::SetInitialPosition
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : float x
+// í•¨ ìˆ˜ ì¸ ì  : float z
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : ê°œì²´ì˜ ì´ˆê¸° ìœ„ì¹˜ë¥¼ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜
+//					ì¢Œí‘œì— í•´ë‹¹í•˜ëŠ” MapBlockì˜ ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì— ê°œì²´ì˜ ì¸ë±ìŠ¤(clientIndex)ë¥¼ ì¶”ê°€í•œë‹¤.
 BOOL CMapChannel::SetInitialPosition(float x, float z, ClientIndex_t clientIndex)
 {
 	if (FALSE == m_pMapProject->IsValidPosition(x, z)
@@ -343,7 +343,7 @@ BOOL CMapChannel::SetInitialPosition(float x, float z, ClientIndex_t clientIndex
 	BLOCK_INDEX	idx		= CMapWorkspace::SelectBlockIndexWithPosition(x, z);
 	BOOL		bRet	= m_arrMapBlock[idx.sX][idx.sZ].InsertUnit(clientIndex);
 
-	// ÇöÀç ¸Ê¿¡ ¼ÓÇÑ clientµéÀ» °ü¸®ÇÏ±â À§ÇØ Ãß°¡ÇÔ
+	// í˜„ì¬ ë§µì— ì†í•œ clientë“¤ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•´ ì¶”ê°€í•¨
 	if (clientIndex < MONSTER_CLIENT_INDEX_START_NUM)
 	{
 		m_mtClientIndexList.pushBackLock(clientIndex);
@@ -370,13 +370,13 @@ BOOL CMapChannel::SetInitialPosition(float x, float z, ClientIndex_t clientIndex
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::DeleteBlockPosition
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : float x
-// ÇÔ ¼ö ÀÎ ÀÚ  : float z
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : ¸ó½ºÅÍ°¡ Æø¹ßÇÏ°Å³ª Ä³¸¯ÅÍ°¡ °ÔÀÓÀ» Á¾·áÇÒ¶§ ÇØ´ç ÀÎÀÚ·Î ¹ŞÀº ÁÂÇ¥¿¡ ÇØ´çÇÏ´Â MapBlockÀÇ
-//					ÀÎµ¦½º ¸®½ºÆ®¿¡¼­ °³Ã¼ÀÇ clientIndex¸¦ »èÁ¦ÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::DeleteBlockPosition
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : float x
+// í•¨ ìˆ˜ ì¸ ì  : float z
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : ëª¬ìŠ¤í„°ê°€ í­ë°œí•˜ê±°ë‚˜ ìºë¦­í„°ê°€ ê²Œì„ì„ ì¢…ë£Œí• ë•Œ í•´ë‹¹ ì¸ìë¡œ ë°›ì€ ì¢Œí‘œì— í•´ë‹¹í•˜ëŠ” MapBlockì˜
+//					ì¸ë±ìŠ¤ ë¦¬ìŠ¤íŠ¸ì—ì„œ ê°œì²´ì˜ clientIndexë¥¼ ì‚­ì œí•˜ëŠ” í•¨ìˆ˜
 BOOL CMapChannel::DeleteBlockPosition(float x, float z, ClientIndex_t clientIndex)
 {
 	if (FALSE == m_pMapProject->IsValidPosition(x, z)
@@ -388,7 +388,7 @@ BOOL CMapChannel::DeleteBlockPosition(float x, float z, ClientIndex_t clientInde
 	BLOCK_INDEX	idx		= CMapWorkspace::SelectBlockIndexWithPosition(x, z);
 	BOOL		bRet	= m_arrMapBlock[idx.sX][idx.sZ].DeleteUnit(clientIndex);
 	
-	// ÇöÀç ¸Ê¿¡ ¼ÓÇÑ clientµéÀ» °ü¸®ÇÏ±â À§ÇØ Ãß°¡ÇÔ
+	// í˜„ì¬ ë§µì— ì†í•œ clientë“¤ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•´ ì¶”ê°€í•¨
 	if (clientIndex < MONSTER_CLIENT_INDEX_START_NUM)
 	{
 		m_mtClientIndexList.lock();
@@ -417,15 +417,15 @@ BOOL CMapChannel::UpdateBlockPosition(D3DXVECTOR3 oldPosition, D3DXVECTOR3 newPo
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::UpdateBlockPosition
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : float oldX
-// ÇÔ ¼ö ÀÎ ÀÚ  : float oldZ
-// ÇÔ ¼ö ÀÎ ÀÚ  : float newX
-// ÇÔ ¼ö ÀÎ ÀÚ  : float newZ
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t clientIndex
-// ÇÔ ¼ö ¼³ ¸í  : Ä³¸¯ÅÍ È¤Àº ¸ó½ºÅÍÀÇ PositionÀÌ º¯°æµÇ¸é È£ÃâµÇ´Â ÇÔ¼ö, MapBlockÀÌ º¯°æµÉ °æ¿ì¿¡¸¸
-//					Àü MapBlock¿¡¼­ °³Ã¼ÀÇ clientIndex¸¦ »èÁ¦ÇÏ°í ´ÙÀ½ MapBlock¿¡ clientIndex¸¦ Ãß°¡ÇÑ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::UpdateBlockPosition
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : float oldX
+// í•¨ ìˆ˜ ì¸ ì  : float oldZ
+// í•¨ ìˆ˜ ì¸ ì  : float newX
+// í•¨ ìˆ˜ ì¸ ì  : float newZ
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t clientIndex
+// í•¨ ìˆ˜ ì„¤ ëª…  : ìºë¦­í„° í˜¹ì€ ëª¬ìŠ¤í„°ì˜ Positionì´ ë³€ê²½ë˜ë©´ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜, MapBlockì´ ë³€ê²½ë  ê²½ìš°ì—ë§Œ
+//					ì „ MapBlockì—ì„œ ê°œì²´ì˜ clientIndexë¥¼ ì‚­ì œí•˜ê³  ë‹¤ìŒ MapBlockì— clientIndexë¥¼ ì¶”ê°€í•œëŠ” í•¨ìˆ˜
 BOOL CMapChannel::UpdateBlockPosition(float oldX, float oldZ, float newX, float newZ, ClientIndex_t clientIndex)
 {
 	if (FALSE == m_pMapProject->IsValidPosition(oldX, oldZ)
@@ -476,13 +476,13 @@ int CMapChannel::GetAdjacentMonsterIndexes(D3DXVECTOR3 *i_pPosition, float fDist
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::GetAdjacentCharacterIndexes
-// ¹İÈ¯µÇ´Â Çü  : int ==> ¿µ¿ª¾ÈÀÇ Ä³¸¯ÅÍ ÀÎµ¦½º Ä«¿îÆ®
-// ÇÔ ¼ö ÀÎ ÀÚ  : float x
-// ÇÔ ¼ö ÀÎ ÀÚ  : float z
-// ÇÔ ¼ö ÀÎ ÀÚ  : float fDistance ==> ÁÂÇ¥·Î ºÎÅÍÀÇ °Å¸®·Î 2·Î ³ª´©¾î¼­ °è»êµÊ
-// ÇÔ ¼ö ÀÎ ÀÚ  : vector<ClientIndex_t> *pClientIndexVector
-// ÇÔ ¼ö ¼³ ¸í  : ÀÎÀÚÀÇ ÁÂÇ¥¸¦ Áß½ÉÀ¸·Î fDistance/2 °Å¸®¾ÈÀÇ Block ¿µ¿ª¾È¿¡ÀÖ´Â Ä³¸¯ÅÍ ÀÎµ¦½º¸¦ ±¸ÇÑ´Ù
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::GetAdjacentCharacterIndexes
+// ë°˜í™˜ë˜ëŠ” í˜•  : int ==> ì˜ì—­ì•ˆì˜ ìºë¦­í„° ì¸ë±ìŠ¤ ì¹´ìš´íŠ¸
+// í•¨ ìˆ˜ ì¸ ì  : float x
+// í•¨ ìˆ˜ ì¸ ì  : float z
+// í•¨ ìˆ˜ ì¸ ì  : float fDistance ==> ì¢Œí‘œë¡œ ë¶€í„°ì˜ ê±°ë¦¬ë¡œ 2ë¡œ ë‚˜ëˆ„ì–´ì„œ ê³„ì‚°ë¨
+// í•¨ ìˆ˜ ì¸ ì  : vector<ClientIndex_t> *pClientIndexVector
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì¸ìì˜ ì¢Œí‘œë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ fDistance/2 ê±°ë¦¬ì•ˆì˜ Block ì˜ì—­ì•ˆì—ìˆëŠ” ìºë¦­í„° ì¸ë±ìŠ¤ë¥¼ êµ¬í•œë‹¤
 //
 int CMapChannel::GetAdjacentCharacterIndexes(float x, float z, float fDistance, vector<ClientIndex_t> *pClientIndexVector, ClientIndex_t nClientIndexToExclude)
 {
@@ -510,12 +510,12 @@ int CMapChannel::GetAdjacentCharacterIndexes(float x, float z, float fDistance, 
 				j++; continue;
 			}
 
-// 2005-12-13 by cmkwon, ºí·° Å©±â°¡ Ä¿Á®¼­ Áß½ÉÀ» °¡Áö°í °è»êÇÏ¸é ¿ÀÂ÷°¡ ¸¹´Ù. ±×·¡¼­ Á¦°ÅÇÔ
+// 2005-12-13 by cmkwon, ë¸”ëŸ­ í¬ê¸°ê°€ ì»¤ì ¸ì„œ ì¤‘ì‹¬ì„ ê°€ì§€ê³  ê³„ì‚°í•˜ë©´ ì˜¤ì°¨ê°€ ë§ë‹¤. ê·¸ë˜ì„œ ì œê±°í•¨
 ////#ifdef _DEBUG
 //			int llen = GGetLength(pMapBlock->m_CenterPositionX - x,
 //					pMapBlock->m_CenterPositionZ - z);
 //#endif
-//			// MapBlock °Å¸® È®ÀÎÇÏ±â
+//			// MapBlock ê±°ë¦¬ í™•ì¸í•˜ê¸°
 //			if ( GGetLength(pMapBlock->m_CenterPositionX - x,
 //					pMapBlock->m_CenterPositionZ - z) > fDistance/2 )
 //			{
@@ -523,7 +523,7 @@ int CMapChannel::GetAdjacentCharacterIndexes(float x, float z, float fDistance, 
 //				continue;
 //			}
 
-			// character°¡ ¾øÀ¸¸é ³Ñ¾î°¨
+			// characterê°€ ì—†ìœ¼ë©´ ë„˜ì–´ê°
 			if (!pMapBlock->m_CharacterIndexMtlist.empty())
 			{
 				pMapBlock->m_CharacterIndexMtlist.lock();
@@ -542,14 +542,14 @@ int CMapChannel::GetAdjacentCharacterIndexes(float x, float z, float fDistance, 
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::GetAdjacentCharacterIndexes
-// ¹İÈ¯µÇ´Â Çü  : int ==> ¿µ¿ª¾ÈÀÇ Ä³¸¯ÅÍ ÀÎµ¦½º Ä«¿îÆ®
-// ÇÔ ¼ö ÀÎ ÀÚ  : float xStart
-// ÇÔ ¼ö ÀÎ ÀÚ  : float zStart
-// ÇÔ ¼ö ÀÎ ÀÚ  : float xEnd
-// ÇÔ ¼ö ÀÎ ÀÚ  : float zEnd
-// ÇÔ ¼ö ÀÎ ÀÚ  : vector<ClientIndex_t> *pClientIndexVector
-// ÇÔ ¼ö ¼³ ¸í  : ½ÃÀÛ ÁÂÇ¥¿Í Á¾·á ÁÂÇ¥°¡ Æ÷ÇÔµÇ´Â Block ¿µ¿ª¾ÈÀÇ Ä³¸¯ÅÍ ÀÎµ¦½º¸¦ ±¸ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::GetAdjacentCharacterIndexes
+// ë°˜í™˜ë˜ëŠ” í˜•  : int ==> ì˜ì—­ì•ˆì˜ ìºë¦­í„° ì¸ë±ìŠ¤ ì¹´ìš´íŠ¸
+// í•¨ ìˆ˜ ì¸ ì  : float xStart
+// í•¨ ìˆ˜ ì¸ ì  : float zStart
+// í•¨ ìˆ˜ ì¸ ì  : float xEnd
+// í•¨ ìˆ˜ ì¸ ì  : float zEnd
+// í•¨ ìˆ˜ ì¸ ì  : vector<ClientIndex_t> *pClientIndexVector
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì‹œì‘ ì¢Œí‘œì™€ ì¢…ë£Œ ì¢Œí‘œê°€ í¬í•¨ë˜ëŠ” Block ì˜ì—­ì•ˆì˜ ìºë¦­í„° ì¸ë±ìŠ¤ë¥¼ êµ¬í•œë‹¤.
 //
 int CMapChannel::GetAdjacentCharacterIndexes(float xStart, float zStart, float xEnd, float zEnd, vector<ClientIndex_t> *pClientIndexVector, ClientIndex_t nClientIndexToExclude)
 {
@@ -589,7 +589,7 @@ int CMapChannel::GetAdjacentCharacterIndexes(float xStart, float zStart, float x
 		while(j <= blockIdx.sMaxZ)
 		{
 			CMapBlock *pMapBlock = &(m_arrMapBlock[i][j]);
-			// character°¡ ¾øÀ¸¸é ³Ñ¾î°¨
+			// characterê°€ ì—†ìœ¼ë©´ ë„˜ì–´ê°
 
 			if (!pMapBlock->m_CharacterIndexMtlist.empty())
 			{
@@ -608,13 +608,13 @@ int CMapChannel::GetAdjacentCharacterIndexes(float xStart, float zStart, float x
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::GetAdjacentMonsterIndexes
-// ¹İÈ¯µÇ´Â Çü  : int ==> ¿µ¿ª¾ÈÀÇ ¸ó½ºÅÍ ÀÎµ¦½º Ä«¿îÆ®
-// ÇÔ ¼ö ÀÎ ÀÚ  : float x
-// ÇÔ ¼ö ÀÎ ÀÚ  : float z
-// ÇÔ ¼ö ÀÎ ÀÚ  : float fDistance
-// ÇÔ ¼ö ÀÎ ÀÚ  : vector<ClientIndex_t> *pClientIndexVector
-// ÇÔ ¼ö ¼³ ¸í  : ÀÎÀÚÀÇ ÁÂÇ¥¸¦ Áß½ÉÀ¸·Î fDistance/2 °Å¸®¾ÈÀÇ Block ¿µ¿ª¾È¿¡ÀÖ´Â ¸ó½ºÅÍ ÀÎµ¦½º¸¦ ±¸ÇÑ´Ù
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::GetAdjacentMonsterIndexes
+// ë°˜í™˜ë˜ëŠ” í˜•  : int ==> ì˜ì—­ì•ˆì˜ ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ ì¹´ìš´íŠ¸
+// í•¨ ìˆ˜ ì¸ ì  : float x
+// í•¨ ìˆ˜ ì¸ ì  : float z
+// í•¨ ìˆ˜ ì¸ ì  : float fDistance
+// í•¨ ìˆ˜ ì¸ ì  : vector<ClientIndex_t> *pClientIndexVector
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì¸ìì˜ ì¢Œí‘œë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ fDistance/2 ê±°ë¦¬ì•ˆì˜ Block ì˜ì—­ì•ˆì—ìˆëŠ” ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ë¥¼ êµ¬í•œë‹¤
 //
 int CMapChannel::GetAdjacentMonsterIndexes(float x, float z, float fDistance, vector<ClientIndex_t> *pClientIndexVector)
 {
@@ -632,8 +632,8 @@ int CMapChannel::GetAdjacentMonsterIndexes(float x, float z, float fDistance, ve
 		{
 			CMapBlock *pMapBlock = &(m_arrMapBlock[i][j]);
 
-// 2005-12-13 by cmkwon, ºí·° Å©±â°¡ Ä¿Á®¼­ Áß½ÉÀ» °¡Áö°í °è»êÇÏ¸é ¿ÀÂ÷°¡ ¸¹´Ù. ±×·¡¼­ Á¦°ÅÇÔ
-//			// MapBlock °Å¸® È®ÀÎÇÏ±â
+// 2005-12-13 by cmkwon, ë¸”ëŸ­ í¬ê¸°ê°€ ì»¤ì ¸ì„œ ì¤‘ì‹¬ì„ ê°€ì§€ê³  ê³„ì‚°í•˜ë©´ ì˜¤ì°¨ê°€ ë§ë‹¤. ê·¸ë˜ì„œ ì œê±°í•¨
+//			// MapBlock ê±°ë¦¬ í™•ì¸í•˜ê¸°
 //			if ( GGetLength(pMapBlock->m_CenterPositionX - x,
 //					pMapBlock->m_CenterPositionZ - z) > fDistance/2 )
 //			{
@@ -641,7 +641,7 @@ int CMapChannel::GetAdjacentMonsterIndexes(float x, float z, float fDistance, ve
 //				continue;
 //			}
 
-			// ¸ó½ºÅÍ°¡ ¾øÀ¸¸é ³Ñ¾î°¨
+			// ëª¬ìŠ¤í„°ê°€ ì—†ìœ¼ë©´ ë„˜ì–´ê°
 			if (!pMapBlock->m_MonsterIndexMtlist.empty())
 			{
 				pMapBlock->m_MonsterIndexMtlist.lock();
@@ -659,14 +659,14 @@ int CMapChannel::GetAdjacentMonsterIndexes(float x, float z, float fDistance, ve
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapChannel::GetAdjacentMonsterIndexes
-// ¹İÈ¯µÇ´Â Çü  : int ==> ¿µ¿ª¾ÈÀÇ ¸ó½ºÅÍ ÀÎµ¦½º Ä«¿îÆ®
-// ÇÔ ¼ö ÀÎ ÀÚ  : float xStart
-// ÇÔ ¼ö ÀÎ ÀÚ  : float zStart
-// ÇÔ ¼ö ÀÎ ÀÚ  : float xEnd
-// ÇÔ ¼ö ÀÎ ÀÚ  : float zEnd
-// ÇÔ ¼ö ÀÎ ÀÚ  : vector<ClientIndex_t> *pClientIndexVector
-// ÇÔ ¼ö ¼³ ¸í  : ½ÃÀÛ ÁÂÇ¥¿Í Á¾·á ÁÂÇ¥°¡ Æ÷ÇÔµÇ´Â Block ¿µ¿ª¾ÈÀÇ ¸ó½ºÅÍ ÀÎµ¦½º¸¦ ±¸ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapChannel::GetAdjacentMonsterIndexes
+// ë°˜í™˜ë˜ëŠ” í˜•  : int ==> ì˜ì—­ì•ˆì˜ ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ ì¹´ìš´íŠ¸
+// í•¨ ìˆ˜ ì¸ ì  : float xStart
+// í•¨ ìˆ˜ ì¸ ì  : float zStart
+// í•¨ ìˆ˜ ì¸ ì  : float xEnd
+// í•¨ ìˆ˜ ì¸ ì  : float zEnd
+// í•¨ ìˆ˜ ì¸ ì  : vector<ClientIndex_t> *pClientIndexVector
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì‹œì‘ ì¢Œí‘œì™€ ì¢…ë£Œ ì¢Œí‘œê°€ í¬í•¨ë˜ëŠ” Block ì˜ì—­ì•ˆì˜ ëª¬ìŠ¤í„° ì¸ë±ìŠ¤ë¥¼ êµ¬í•œë‹¤.
 //
 int CMapChannel::GetAdjacentMonsterIndexes(float xStart, float zStart, float xEnd, float zEnd, vector<ClientIndex_t> *pClientIndexVector)
 {
@@ -707,7 +707,7 @@ int CMapChannel::GetAdjacentMonsterIndexes(float xStart, float zStart, float xEn
 		{
 			CMapBlock *pMapBlock = &(m_arrMapBlock[i][j]);
 	
-			// Monster°¡ ¾øÀ¸¸é ³Ñ¾î°¨
+			// Monsterê°€ ì—†ìœ¼ë©´ ë„˜ì–´ê°
 			if (!pMapBlock->m_MonsterIndexMtlist.empty())
 			{
 				pMapBlock->m_MonsterIndexMtlist.lock();
@@ -893,7 +893,7 @@ INT CMapChannel::GetWarpObjectIndexW(BYTE i_byCharInflTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			INT CMapChannel::GetTeleportWarpObjectIndexW()
-/// \brief		ÅÚ·¹Æ÷Æ® ¿öÇÁ ¿ÀºêÁ§Æ®°ª ¾ò¾î¿À±â
+/// \brief		í…”ë ˆí¬íŠ¸ ì›Œí”„ ì˜¤ë¸Œì íŠ¸ê°’ ì–»ì–´ì˜¤ê¸°
 /// \author		dhjin
 /// \date		2007-09-15 ~ 2007-09-15
 /// \warning	
@@ -908,7 +908,7 @@ INT CMapChannel::GetTeleportWarpObjectIndexW()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -923,7 +923,7 @@ TILEINFO* CMapChannel::GetTileInfoW(float x, float z)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -938,7 +938,7 @@ TILEINFO* CMapChannel::GetTileInfoW(const D3DXVECTOR3 *pPosVector3)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -953,7 +953,7 @@ TILEINFO* CMapChannel::GetTileInfoByTileIndexW(int TileX, int TileZ)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -968,7 +968,7 @@ EVENTINFO* CMapChannel::GetTileEventInfoW(float x, float z)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -983,7 +983,7 @@ EVENTINFO* CMapChannel::GetTileEventInfoW(const D3DXVECTOR3 *pPosVector3)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+/// \brief		// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 /// \author		cmkwon
 /// \date		2010-04-15 ~ 2010-04-15
 /// \warning	
@@ -1018,7 +1018,7 @@ void CMapChannel::printUnitCountsPerBlock(void)
 			memset(szSystemLog, 0x00, sizeof(szSystemLog));
 			pMapBlock = &m_arrMapBlock[i][j];
 
-			// BlockÀ» list·Î ±¸Çö
+			// Blockì„ listë¡œ êµ¬í˜„
 			if(pMapBlock->GetNumCharachter() != 0
 				|| pMapBlock->GetNumMonster() != 0)
 			{

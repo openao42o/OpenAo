@@ -1,4 +1,4 @@
-// HPAction.cpp: implementation of the CHPAction class.
+ï»¿// HPAction.cpp: implementation of the CHPAction class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -29,8 +29,8 @@ void CHPAction::Init() {
 	m_vectHPActionTalkDamagedRandom.clear();
 	m_vectHPActionTalkAttack.clear();
 	util::zero(&m_TargetChangeTalk, sizeof(SIZE_MAX_HPTALK_DESCRIPTION));
-	m_HPActionAttackUID = 0;			// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
-	m_HPActionAttackTalkUID = 0;			// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+	m_HPActionAttackUID = 0;			// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
+	m_HPActionAttackTalkUID = 0;			// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 }
 
 void CHPAction::InitHPActionListByDB(vectHPAction * i_pvectHPActionDBValue) {
@@ -64,7 +64,7 @@ void CHPAction::InitHPActionListByDB(vectHPAction * i_pvectHPActionDBValue) {
 void CHPAction::InitHPActionAttackHPRateList(HPACTION * i_pHPAction) {
 	HPACTION_ATTACK_HPRATE	HPActionAttackHPRate;
 	util::zero(&HPActionAttackHPRate, sizeof(HPACTION_ATTACK_HPRATE));
-	HPActionAttackHPRate.HPActionUID	= i_pHPAction->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+	HPActionAttackHPRate.HPActionUID	= i_pHPAction->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 	HPActionAttackHPRate.HPMaxValueRate = i_pHPAction->HPMaxValueRate;
 	HPActionAttackHPRate.HPMinValueRate = i_pHPAction->HPMinValueRate;
 	HPActionAttackHPRate.HitRate		= i_pHPAction->HitRate;
@@ -75,7 +75,7 @@ void CHPAction::InitHPActionAttackHPRateList(HPACTION * i_pHPAction) {
 	if(HPACTION_TALK_CONDITION_ATTACK == i_pHPAction->HPTalkCondition) {
 		HPACTION_TALK_ATTACK	HPActionTalkAttack;
 		util::zero(&HPActionTalkAttack, sizeof(HPACTION_TALK_ATTACK));
-		HPActionTalkAttack.HPActionUID		= i_pHPAction->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+		HPActionTalkAttack.HPActionUID		= i_pHPAction->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 		HPActionTalkAttack.UseItemArrayIdx	= i_pHPAction->UseItemArrayIdx;
 		HPActionTalkAttack.PreHPCameraTremble = i_pHPAction->PreHPCameraTremble;
 		util::strncpy(HPActionTalkAttack.PreHPTalk, i_pHPAction->PreHPTalk, SIZE_MAX_HPTALK_DESCRIPTION);
@@ -170,28 +170,28 @@ BOOL CHPAction::CheckValidSizeTalkTargetChange() {
 BOOL CHPAction::GetAttackItemIdxHPRate(MonHP_t i_CurrentMonHP, ItemIdx_t * o_pAttackItemIdx, INT * o_pSelectVectIdx) {
 	if(NULL == o_pAttackItemIdx 
 		|| NULL == o_pSelectVectIdx) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
 	vectHPActionAttackHPRate::iterator itr = m_vectHPActionAttackHPRate.begin();
 	while (itr != m_vectHPActionAttackHPRate.end()) {
 		if(0 >= itr->UseCount || itr->HPMinValueRate > i_CurrentMonHP) {
-			// ¼±ÅÃ µÉ ¼ö ¾ø´Â Áö³ª°£ °ø°İ ¼ö´ÜÀÌ¸é °ú°¨È÷ »èÁ¦!
+			// ì„ íƒ ë  ìˆ˜ ì—†ëŠ” ì§€ë‚˜ê°„ ê³µê²© ìˆ˜ë‹¨ì´ë©´ ê³¼ê°íˆ ì‚­ì œ!
 			itr = m_vectHPActionAttackHPRate.erase(itr);
 			continue;
 		}
 		
-		// 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
+		// 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
 //		Prob100_t Random = RANDI(1, PROB100_MAX_VALUE+1);		
 		Prob100_t Random = RAND100();
 		if(itr->HPMaxValueRate >= i_CurrentMonHP && itr->HPMinValueRate < i_CurrentMonHP 
 			&& Random <= itr->HitRate && 0 < itr->UseCount) {
-			// Á¶°ÇÀ» ¸¸Á·ÇÏ´Â °ø°İ ¼ö´ÜÀÌ ÀÖ´Ù¸é ¹İÈ¯
+			// ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ê³µê²© ìˆ˜ë‹¨ì´ ìˆë‹¤ë©´ ë°˜í™˜
 			*o_pAttackItemIdx = itr->UseItemArrayIdx;
-			itr->HPMaxValueRate = 100;	// ÇÑ ¹ø °ø°İ ½ÃÀÛµÈ °ÍÀº ÇÇ°¡ ³ô¾ÆÁ®µµ °è¼Ó °ø°İ µÇ¾î¾ßÇÑ´Ù. 
-			m_HPActionAttackUID = itr->HPActionUID;			// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
-			m_HPActionAttackTalkUID = itr->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+			itr->HPMaxValueRate = 100;	// í•œ ë²ˆ ê³µê²© ì‹œì‘ëœ ê²ƒì€ í”¼ê°€ ë†’ì•„ì ¸ë„ ê³„ì† ê³µê²© ë˜ì–´ì•¼í•œë‹¤. 
+			m_HPActionAttackUID = itr->HPActionUID;			// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
+			m_HPActionAttackTalkUID = itr->HPActionUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 			return TRUE;
 		}
 		(*o_pSelectVectIdx)++;
@@ -203,12 +203,12 @@ BOOL CHPAction::GetAttackItemIdxHPRate(MonHP_t i_CurrentMonHP, ItemIdx_t * o_pAt
 
 BOOL CHPAction::GetNextAttackItem(ItemIdx_t * o_pAttackItemIdx) {
 	if(NULL == o_pAttackItemIdx) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
 	if(m_NextAttackItemIdx) {
-		// ¿¬¼Ó °ø°İ °ªÀÌ ÀÖ´Ù¸é ¿¬¼Ó °ø°İÀ» ¹İÈ¯ÇÏ°í ÃÊ±âÈ­ ÇÑ´Ù.
+		// ì—°ì† ê³µê²© ê°’ì´ ìˆë‹¤ë©´ ì—°ì† ê³µê²©ì„ ë°˜í™˜í•˜ê³  ì´ˆê¸°í™” í•œë‹¤.
 		*o_pAttackItemIdx = m_NextAttackItemIdx;
 		m_NextAttackItemIdx = 0;
 		return TRUE;
@@ -217,7 +217,7 @@ BOOL CHPAction::GetNextAttackItem(ItemIdx_t * o_pAttackItemIdx) {
 	return FALSE;
 }
 
-// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤, ¹Ø°ú °°ÀÌ ¼öÁ¤ HPActionItem »ç¿ë½Ã »ç¿ë Ä«¿îÆ®¸¦ ÁÙÀÎ´Ù.
+// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •, ë°‘ê³¼ ê°™ì´ ìˆ˜ì • HPActionItem ì‚¬ìš©ì‹œ ì‚¬ìš© ì¹´ìš´íŠ¸ë¥¼ ì¤„ì¸ë‹¤.
 //void CHPAction::SetSuccessAttackItemIdxHPRate(INT i_SelectVectIdx) {
 //	m_vectHPActionAttackHPRate[i_SelectVectIdx].UseCount--;
 //	m_NextAttackItemIdx = m_vectHPActionAttackHPRate[i_SelectVectIdx].NextUseItemArrayIdx;
@@ -235,7 +235,7 @@ void CHPAction::SetSuccessAttackItemIdxHPRate() {
 
 BOOL CHPAction::GetTalkCreate(HPACTION_TALK_HPRATE * o_pTalkHPRate) {
 	if(NULL == o_pTalkHPRate) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
@@ -251,7 +251,7 @@ BOOL CHPAction::GetTalkCreate(HPACTION_TALK_HPRATE * o_pTalkHPRate) {
 
 BOOL CHPAction::GetTalkDead(HPACTION_TALK_HPRATE * o_pTalkHPRate) {
 	if(NULL == o_pTalkHPRate) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
@@ -287,7 +287,7 @@ BOOL CHPAction::GetTalkHPRate(MonHP_t i_CurrentMonHP, HPACTION_TALK_HPRATE * o_p
 
 BOOL CHPAction::GetTalkDamagedRandom(HPTalk_t * o_pTalk) {
 	if(NULL == o_pTalk) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
@@ -297,7 +297,7 @@ BOOL CHPAction::GetTalkDamagedRandom(HPTalk_t * o_pTalk) {
 		return FALSE;
 	}
 	else {
-		// 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
+		// 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
 //		Prob100_t TalkAllRandom = RANDI(1, PROB100_MAX_VALUE+1);
 		Prob100_t TalkAllRandom = RAND100();
 		if(HPTALK_DAMAGED_RANDOM_RATE < TalkAllRandom) {
@@ -314,7 +314,7 @@ BOOL CHPAction::GetTalkDamagedRandom(HPTalk_t * o_pTalk) {
 
 BOOL CHPAction::GetTalkTargetChange(HPTalk_t * o_pTalk) {
 	if(NULL == o_pTalk) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
@@ -339,7 +339,7 @@ void CHPAction::EraseHPActionByUseItemArrayIdx(ItemIdx_t i_UseItemArrayIdx) {
 
 void CHPAction::SetHPTalkAttack(ItemIdx_t i_ItemArrayIdx, INT i_ItemNum) {
 	vectHPActionTalkAttack::iterator itr = m_vectHPActionTalkAttack.begin();
-	// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+	// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 	for(; itr != m_vectHPActionTalkAttack.end(); itr++) {
 		if(itr->UseItemArrayIdx == i_ItemArrayIdx) {
 			itr->ItemNum = i_ItemNum;
@@ -350,15 +350,15 @@ void CHPAction::SetHPTalkAttack(ItemIdx_t i_ItemArrayIdx, INT i_ItemNum) {
 BOOL CHPAction::GetPreHPTalkAttack(ItemIdx_t i_AttackItemNum, HPTalk_t * o_pPreTalk, MSec_t * o_pPreHPCameraTremble) {
 	if(NULL == o_pPreTalk
 		|| NULL == o_pPreHPCameraTremble) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
-	// ÁØºñ °ø°İ½Ã ´ëÈ­ ¹× Ä«¸Ş¶ó ¶³¸² °¡Á®¿À±â
+	// ì¤€ë¹„ ê³µê²©ì‹œ ëŒ€í™” ë° ì¹´ë©”ë¼ ë–¨ë¦¼ ê°€ì ¸ì˜¤ê¸°
 	vectHPActionTalkAttack::iterator itr = m_vectHPActionTalkAttack.begin();
 	while (itr != m_vectHPActionTalkAttack.end()) {
 		if(itr->ItemNum == i_AttackItemNum
-			&& m_HPActionAttackTalkUID == itr->HPActionUID		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+			&& m_HPActionAttackTalkUID == itr->HPActionUID		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 			&& ( (0 < itr->PreHPCameraTremble) || (1 < strlen(itr->PreHPTalk) ) ) ) {
 			*o_pPreHPCameraTremble = itr->PreHPCameraTremble;
 			util::strncpy(o_pPreTalk, itr->PreHPTalk, SIZE_MAX_HPTALK_DESCRIPTION);
@@ -373,15 +373,15 @@ BOOL CHPAction::GetPreHPTalkAttack(ItemIdx_t i_AttackItemNum, HPTalk_t * o_pPreT
 BOOL CHPAction::GetHPTalkAttack(ItemIdx_t i_AttackItemNum, HPTalk_t * o_pTalk, MSec_t * o_pHPCameraTremble) {
 	if(NULL == o_pTalk
 		|| NULL == o_pHPCameraTremble) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+		// 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 		return FALSE;
 	}
 
-	// °ø°İ½Ã ´ëÈ­ ¹× Ä«¸Ş¶ó ¶³¸² °¡Á®¿À±â
+	// ê³µê²©ì‹œ ëŒ€í™” ë° ì¹´ë©”ë¼ ë–¨ë¦¼ ê°€ì ¸ì˜¤ê¸°
 	vectHPActionTalkAttack::iterator itr = m_vectHPActionTalkAttack.begin();
 	while (itr != m_vectHPActionTalkAttack.end()) {
 		if(itr->ItemNum == i_AttackItemNum
-			&& m_HPActionAttackTalkUID == itr->HPActionUID		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+			&& m_HPActionAttackTalkUID == itr->HPActionUID		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 			&& ( (0 < itr->HPCameraTremble) || (1 < strlen(itr->HPTalk) ) ) ) {
 			*o_pHPCameraTremble = itr->HPCameraTremble;
 			util::strncpy(o_pTalk, itr->HPTalk, SIZE_MAX_HPTALK_DESCRIPTION);

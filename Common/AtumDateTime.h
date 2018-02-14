@@ -1,5 +1,5 @@
-#pragma once
-
+ï»¿#pragma once
+//Copyright [2002] MasangSoft
 #ifdef _ATUM_SERVER
 #include <SQLTYPES.H>
 #endif
@@ -11,152 +11,152 @@
 //
 //
 //#if defined(_ATUM_SERVER)
-//#include "StringDefineQuery.h"			// 2008-07-30 by cmkwon
-//#include "StringDefineProcedure.h"	// 2008-08-22 by cmkwon, MySQL ÅëÇÕ(Procedure »Ì¾Æ³»±â) - 
+//#include "StringDefineQuery.h"            // 2008-07-30 by cmkwon
+//#include "StringDefineProcedure.h"    // 2008-08-22 by cmkwon, MySQL í†µí•©(Procedure ë½‘ì•„ë‚´ê¸°) - 
 //#endif
 
 using namespace std;
 
-// 2008-01-04 by cmkwon, ¾ğ¾î¿Í »ó°ü¾øÀÌ ÇÏ·Á¸é ¾Æ·¡¿Í °°Àº Çü½Ä ÀÌ¾î¾ß ÇÔ
-//#define SQL_DATETIME_STRING_FORMAT					"%04d-%02d-%02d %02d:%02d:%02d.000"
+// 2008-01-04 by cmkwon, ì–¸ì–´ì™€ ìƒê´€ì—†ì´ í•˜ë ¤ë©´ ì•„ë˜ì™€ ê°™ì€ í˜•ì‹ ì´ì–´ì•¼ í•¨
+//#define SQL_DATETIME_STRING_FORMAT                    "%04d-%02d-%02d %02d:%02d:%02d.000"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-07-08 by cmkwon, MySQL Áö¿ø ±¸Çö - 
+// 2008-07-08 by cmkwon, MySQL ì§€ì› êµ¬í˜„ - 
 #ifdef DB_SERVER_MYSQL
-#define SQL_DATETIME_STRING_FORMAT					"%04d-%02d-%02d %02d:%02d:%02d.000"
+#define SQL_DATETIME_STRING_FORMAT                    "%04d-%02d-%02d %02d:%02d:%02d.000"
 #else
-#define SQL_DATETIME_STRING_FORMAT					"%04d%02d%02d %02d:%02d:%02d.000"
+#define SQL_DATETIME_STRING_FORMAT                    "%04d%02d%02d %02d:%02d:%02d.000"
 #endif
 
-#define ATUM_DATE_TIME_STRING_FORMAT				"%04d-%02d-%02d %02d:%02d:%02d"
-#define ATUM_DATE_TIME_STRING_FORMAT_EXCLUDE_SECOND	"%04d-%02d-%02d %02d:%02d"
+#define ATUM_DATE_TIME_STRING_FORMAT                "%04d-%02d-%02d %02d:%02d:%02d"
+#define ATUM_DATE_TIME_STRING_FORMAT_EXCLUDE_SECOND    "%04d-%02d-%02d %02d:%02d"
 
-#define FILE_DATETIME_STRING_FORMAT					"%04d%02d%02d_%02d%02d%02d"		// 2013-05-28 by hskim, ¹Ì´Ï ´ıÇÁ ÆÄÀÏ ÀÌ¸§¿¡ ½Ã°£ Ãß°¡
+#define FILE_DATETIME_STRING_FORMAT                    "%04d%02d%02d_%02d%02d%02d"        // 2013-05-28 by hskim, ë¯¸ë‹ˆ ë¤í”„ íŒŒì¼ ì´ë¦„ì— ì‹œê°„ ì¶”ê°€
 
-#define SIZE_MAX_SQL_DATETIME_STRING	30
-#define SIZE_MAX_ATUM_DATE_TIME_STRING	25
+#define SIZE_MAX_SQL_DATETIME_STRING    30
+#define SIZE_MAX_ATUM_DATE_TIME_STRING    25
 
-#define GET_CURRENT_DATE_TIME_STRING()	ATUM_DATE_TIME::GetCurrentDateTimeString().GetBuffer()
+#define GET_CURRENT_DATE_TIME_STRING()    ATUM_DATE_TIME::GetCurrentDateTimeString().GetBuffer()
 
 struct STRNBUF;
 
 struct ATUM_DATE_TIME
 {
-	static_assert(sizeof(time_t) == 8, "The struct ATUM_DATE_TIME may be affected by the Year 2038 problem.");
+    static_assert(sizeof(time_t) == 8, "The struct ATUM_DATE_TIME may be affected by the Year 2038 problem.");
 
-	USHORT		Year;
-	BYTE		Month;
-	BYTE		Day;
-	BYTE		Hour;
-	BYTE		Minute;
-	BYTE		Second;
+    USHORT        Year;
+    BYTE        Month;
+    BYTE        Day;
+    BYTE        Hour;
+    BYTE        Minute;
+    BYTE        Second;
 
-	ATUM_DATE_TIME() : Year { 0 }, Month { 0 }, Day { 0 }, Hour { 0 }, Minute { 0 }, Second { 0 } { CheckSettm_isdst(); }
-	explicit ATUM_DATE_TIME(bool i_bSetCurrentTime) : ATUM_DATE_TIME { } { if (i_bSetCurrentTime) SetCurrentDateTime(); }
-	explicit ATUM_DATE_TIME(const char *i_szDateTimeString) : ATUM_DATE_TIME { } { SetDateTime(i_szDateTimeString); }
-	explicit ATUM_DATE_TIME(time_t rvalue);
+    ATUM_DATE_TIME() : Year { 0 }, Month { 0 }, Day { 0 }, Hour { 0 }, Minute { 0 }, Second { 0 } { CheckSettm_isdst(); }
+    explicit ATUM_DATE_TIME(bool i_bSetCurrentTime) : ATUM_DATE_TIME { } { if (i_bSetCurrentTime) SetCurrentDateTime(); }
+    explicit ATUM_DATE_TIME(const char *i_szDateTimeString) : ATUM_DATE_TIME { } { SetDateTime(i_szDateTimeString); }
+    explicit ATUM_DATE_TIME(time_t rvalue);
 
-	void Reset() { Year = Month = Day = Hour = Minute = Second = 0; }
+    void Reset() { Year = Month = Day = Hour = Minute = Second = 0; }
 
-	void SetCurrentDateTime(BOOL i_bSetSecondZero = FALSE);
-	void SetDateTime(const char *i_szDateTimeString);
-	void SetDateTime(USHORT i_usYear, BYTE i_byMonth, BYTE i_byDay, BYTE i_byHour, BYTE i_byMinute, BYTE i_bySecond);
+    void SetCurrentDateTime(BOOL i_bSetSecondZero = FALSE);
+    void SetDateTime(const char *i_szDateTimeString);
+    void SetDateTime(USHORT i_usYear, BYTE i_byMonth, BYTE i_byDay, BYTE i_byHour, BYTE i_byMinute, BYTE i_bySecond);
 
-	void AddDateTime(INT i_nYear, INT i_nMonth, INT i_nDay, INT i_nHour = 0, INT i_nMinute = 0, INT i_nSecond = 0);
+    void AddDateTime(INT i_nYear, INT i_nMonth, INT i_nDay, INT i_nHour = 0, INT i_nMinute = 0, INT i_nSecond = 0);
 
-	const char* GetDateTimeString(char *i_szBuffer, int i_nLen, BOOL i_bExcludeSecond = FALSE) const;
-	const char* GetSQLDateTimeString(char *i_szBuffer, int i_nLen) const;
-	//const char* GetDateTimeString(const STRNBUF &i_strnbuf, BOOL i_bExcludeSecond = FALSE) const;
-	STRNBUF GetDateTimeString(bool i_bExcludeSecond = false) const;
-	const char* GetSQLDateTimeString(STRNBUF &i_strnbuf) const;
-	const char* GetFileDateTimeString(STRNBUF &i_strnbuf) const;
+    const char* GetDateTimeString(char *i_szBuffer, int i_nLen, BOOL i_bExcludeSecond = FALSE) const;
+    const char* GetSQLDateTimeString(char *i_szBuffer, int i_nLen) const;
+    //const char* GetDateTimeString(const STRNBUF &i_strnbuf, BOOL i_bExcludeSecond = FALSE) const;
+    STRNBUF GetDateTimeString(bool i_bExcludeSecond = false) const;
+    const char* GetSQLDateTimeString(STRNBUF &i_strnbuf) const;
+    const char* GetFileDateTimeString(STRNBUF &i_strnbuf) const;
 
-	int GetTimeInSeconds() const;
-	int GetTimeDiffToCurrentTimeInSeconds() const;
-	int GetTimeDiffTimeInSeconds(ATUM_DATE_TIME i_atOP2) const;
-	int GetTimeDiffTimeInSeconds(int i_atOP2) const;
-	int GetTimeDiffTimeInMinutes(ATUM_DATE_TIME i_atOP2) const;
-	int GetTimeDiffTimeInHours(ATUM_DATE_TIME i_atOP2) const;
+    int GetTimeInSeconds() const;
+    int GetTimeDiffToCurrentTimeInSeconds() const;
+    int GetTimeDiffTimeInSeconds(ATUM_DATE_TIME i_atOP2) const;
+    int GetTimeDiffTimeInSeconds(int i_atOP2) const;
+    int GetTimeDiffTimeInMinutes(ATUM_DATE_TIME i_atOP2) const;
+    int GetTimeDiffTimeInHours(ATUM_DATE_TIME i_atOP2) const;
 
-	bool IsValid() const { return Year != 0 && Month != 0 && Day != 0; }
+    bool IsValid() const { return Year != 0 && Month != 0 && Day != 0; }
 
-	const char* GetLocalDateTimeString(string &o_szStrBuf, BOOL i_bExcludeSecond = FALSE) const;		// 2008-03-18 by cmkwon, ³ª¶óº° ³¯Â¥ Çü½Ä ¼öÁ¤ - 
+    const char* GetLocalDateTimeString(string &o_szStrBuf, BOOL i_bExcludeSecond = FALSE) const;        // 2008-03-18 by cmkwon, ë‚˜ë¼ë³„ ë‚ ì§œ í˜•ì‹ ìˆ˜ì • - 
 
-	// Static members
+    // Static members
 
-	static ATUM_DATE_TIME GetCurrentDateTime();
-	static STRNBUF GetCurrentDateTimeString();
-	static const char* GetDateTimeStringFromSeconds(int i_nSeconds, string &i_szStrBuf);
-	static const char* GetLocalString_YYYYMMDD(int i_Year, int i_Month, int i_Day, string &io_szStrBuf);	// 2007-10-05 by cmkwon, ¿¬¿ùÀÏÀ» ³ª¶óº°·Î ´Ù¸£°ÔÇÏ±â À§ÇØ
-	static const char* GetLocalString_YYYYMM(int i_Year, int i_Month, string &io_szStrBuf);					// 2007-10-05 by cmkwon, ¿¬¿ùÀÏÀ» ³ª¶óº°·Î ´Ù¸£°ÔÇÏ±â À§ÇØ
-	static const char* GetLocalString_MMDD(int i_Month, int i_Day, string &io_szStrBuf);					// 2007-10-05 by cmkwon, ¿¬¿ùÀÏÀ» ³ª¶óº°·Î ´Ù¸£°ÔÇÏ±â À§ÇØ
-	static void CheckSettm_isdst();
+    static ATUM_DATE_TIME GetCurrentDateTime();
+    static STRNBUF GetCurrentDateTimeString();
+    static const char* GetDateTimeStringFromSeconds(int i_nSeconds, string &i_szStrBuf);
+    static const char* GetLocalString_YYYYMMDD(int i_Year, int i_Month, int i_Day, string &io_szStrBuf);    // 2007-10-05 by cmkwon, ì—°ì›”ì¼ì„ ë‚˜ë¼ë³„ë¡œ ë‹¤ë¥´ê²Œí•˜ê¸° ìœ„í•´
+    static const char* GetLocalString_YYYYMM(int i_Year, int i_Month, string &io_szStrBuf);                    // 2007-10-05 by cmkwon, ì—°ì›”ì¼ì„ ë‚˜ë¼ë³„ë¡œ ë‹¤ë¥´ê²Œí•˜ê¸° ìœ„í•´
+    static const char* GetLocalString_MMDD(int i_Month, int i_Day, string &io_szStrBuf);                    // 2007-10-05 by cmkwon, ì—°ì›”ì¼ì„ ë‚˜ë¼ë³„ë¡œ ë‹¤ë¥´ê²Œí•˜ê¸° ìœ„í•´
+    static void CheckSettm_isdst();
 
-	// 2008-04-02 by cmkwon, ½æ¸ÓÅ¸ÀÓ °ü·Ã ¹ö±× ¼öÁ¤ - 
-	static bool ms_bSettm_isdst;		// ¾Æ·¡ÀÇ ½æ¸ÓÅ¸ÀÓ °ü·Ã º¯¼ö ¼³Á¤ Çß´ÂÁö ¿©ºÎ ÇÃ·¡±×
-	static int ms_tm_isdst;			// ½æ¸ÓÅ¸ÀÓ °ü·Ã º¯¼ö -  0ÀÌ¸é Ç¥ÁØ½Ã¸¦ »ç¿ëÇÏ´Â °ÍÀÌ°í, ¾ç¼ö¶ó¸é ½ÃÇà ÁßÀÎ °ÍÀÌ°í, À½¼ö¶ó¸é TZ(time zone) È¯°æ º¯¼ö¿¡ µû¶ó Ç¥ÁØ½Ã¸¦ »ç¿ëÇÏ°Å³ª ÀÏ±¤ Àı¾à ½Ã°£À» »ç¿ëÇÕ´Ï´Ù
+    // 2008-04-02 by cmkwon, ì¸ë¨¸íƒ€ì„ ê´€ë ¨ ë²„ê·¸ ìˆ˜ì • - 
+    static bool ms_bSettm_isdst;        // ì•„ë˜ì˜ ì¸ë¨¸íƒ€ì„ ê´€ë ¨ ë³€ìˆ˜ ì„¤ì • í–ˆëŠ”ì§€ ì—¬ë¶€ í”Œë˜ê·¸
+    static int ms_tm_isdst;            // ì¸ë¨¸íƒ€ì„ ê´€ë ¨ ë³€ìˆ˜ -  0ì´ë©´ í‘œì¤€ì‹œë¥¼ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ê³ , ì–‘ìˆ˜ë¼ë©´ ì‹œí–‰ ì¤‘ì¸ ê²ƒì´ê³ , ìŒìˆ˜ë¼ë©´ TZ(time zone) í™˜ê²½ ë³€ìˆ˜ì— ë”°ë¼ í‘œì¤€ì‹œë¥¼ ì‚¬ìš©í•˜ê±°ë‚˜ ì¼ê´‘ ì ˆì•½ ì‹œê°„ì„ ì‚¬ìš©í•©ë‹ˆë‹¤
 
 #ifdef _ATUM_SERVER
-	ATUM_DATE_TIME& operator=(const SQL_TIMESTAMP_STRUCT& rhs);
-	void Convert(SQL_TIMESTAMP_STRUCT& o_SQL_TIMESTAMP_STRUCT) const;
+    ATUM_DATE_TIME& operator=(const SQL_TIMESTAMP_STRUCT& rhs);
+    void Convert(SQL_TIMESTAMP_STRUCT& o_SQL_TIMESTAMP_STRUCT) const;
 #endif
 
-	bool operator==(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year == dt.Year && Month == dt.Month && Day == dt.Day && Hour == dt.Hour && Minute == dt.Minute && Second == dt.Second) return true;
+    bool operator==(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year == dt.Year && Month == dt.Month && Day == dt.Day && Hour == dt.Hour && Minute == dt.Minute && Second == dt.Second) return true;
 
-		return false;
-	}
-	bool operator!=(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year == dt.Year && Month == dt.Month && Day == dt.Day && Hour == dt.Hour && Minute == dt.Minute && Second == dt.Second) return false;
+        return false;
+    }
+    bool operator!=(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year == dt.Year && Month == dt.Month && Day == dt.Day && Hour == dt.Hour && Minute == dt.Minute && Second == dt.Second) return false;
 
-		return true;
-	}
-	bool operator<(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year != dt.Year) return Year < dt.Year;
-		if (Month != dt.Month) return Month < dt.Month;
-		if (Day != dt.Day) return Day < dt.Day;
-		if (Hour != dt.Hour) return Hour < dt.Hour;
-		if (Minute != dt.Minute) return Minute < dt.Minute;
-		if (Second != dt.Second) return Second < dt.Second;
+        return true;
+    }
+    bool operator<(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year != dt.Year) return Year < dt.Year;
+        if (Month != dt.Month) return Month < dt.Month;
+        if (Day != dt.Day) return Day < dt.Day;
+        if (Hour != dt.Hour) return Hour < dt.Hour;
+        if (Minute != dt.Minute) return Minute < dt.Minute;
+        if (Second != dt.Second) return Second < dt.Second;
 
-		return false;
-	}
-	bool operator>(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year != dt.Year) return Year > dt.Year;
-		if (Month != dt.Month) return Month > dt.Month;
-		if (Day != dt.Day) return Day > dt.Day;
-		if (Hour != dt.Hour) return Hour > dt.Hour;
-		if (Minute != dt.Minute) return Minute > dt.Minute;
-		if (Second != dt.Second) return Second > dt.Second;
+        return false;
+    }
+    bool operator>(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year != dt.Year) return Year > dt.Year;
+        if (Month != dt.Month) return Month > dt.Month;
+        if (Day != dt.Day) return Day > dt.Day;
+        if (Hour != dt.Hour) return Hour > dt.Hour;
+        if (Minute != dt.Minute) return Minute > dt.Minute;
+        if (Second != dt.Second) return Second > dt.Second;
 
-		return false;
-	}
-	bool operator<=(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year != dt.Year) return Year < dt.Year;
-		if (Month != dt.Month) return Month < dt.Month;
-		if (Day != dt.Day) return Day < dt.Day;
-		if (Hour != dt.Hour) return Hour < dt.Hour;
-		if (Minute != dt.Minute) return Minute < dt.Minute;
-		if (Second != dt.Second) return Second < dt.Second;
+        return false;
+    }
+    bool operator<=(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year != dt.Year) return Year < dt.Year;
+        if (Month != dt.Month) return Month < dt.Month;
+        if (Day != dt.Day) return Day < dt.Day;
+        if (Hour != dt.Hour) return Hour < dt.Hour;
+        if (Minute != dt.Minute) return Minute < dt.Minute;
+        if (Second != dt.Second) return Second < dt.Second;
 
-		return true;
-	}
-	bool operator>=(const ATUM_DATE_TIME& dt) const
-	{
-		if (Year != dt.Year) return Year > dt.Year;
-		if (Month != dt.Month) return Month > dt.Month;
-		if (Day != dt.Day) return Day > dt.Day;
-		if (Hour != dt.Hour) return Hour > dt.Hour;
-		if (Minute != dt.Minute) return Minute > dt.Minute;
-		if (Second != dt.Second) return Second > dt.Second;
+        return true;
+    }
+    bool operator>=(const ATUM_DATE_TIME& dt) const
+    {
+        if (Year != dt.Year) return Year > dt.Year;
+        if (Month != dt.Month) return Month > dt.Month;
+        if (Day != dt.Day) return Day > dt.Day;
+        if (Hour != dt.Hour) return Hour > dt.Hour;
+        if (Minute != dt.Minute) return Minute > dt.Minute;
+        if (Second != dt.Second) return Second > dt.Second;
 
-		return true;
-	}
+        return true;
+    }
 
-	explicit operator tm() const;
+    explicit operator tm() const;
 };

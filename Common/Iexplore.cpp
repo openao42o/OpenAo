@@ -1,4 +1,4 @@
-/*****************************************************************************\
+ï»¿/*****************************************************************************\
 IExplore.cpp
 Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
 You may use this code in your applications at no cost, so long as credit
@@ -29,7 +29,7 @@ is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// 2007-09-03 by cmkwon, ÀÎÀÚ Ãß°¡ÇÔ(, RECT *i_prtHostrWindowPos/*=NULL*/) - ÃÊ±â »ý¼º À©µµ¿ì ¼³Á¤
+// 2007-09-03 by cmkwon, ì¸ìž ì¶”ê°€í•¨(, RECT *i_prtHostrWindowPos/*=NULL*/) - ì´ˆê¸° ìƒì„± ìœˆë„ìš° ì„¤ì •
 Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostData2, LPSTR szHeaders, RECT *i_prtHostrWindowPos/*=NULL*/)
 {
     #define Assert(x) if(!x) MessageBox(NULL, "IE ERROR!", "Error", MB_ICONSTOP)
@@ -54,7 +54,7 @@ Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostDa
     m_pClientSite = new ClientSite(this);
     m_pInPlaceSite = new InPlaceSite(this);
     m_pWebBrowserEvents2 = new WebBrowserEvents2(this);
-	m_pWebBrowser			= NULL;				// 2007-09-06 by cmkwon, ÃÊ±âÈ­
+	m_pWebBrowser			= NULL;				// 2007-09-06 by cmkwon, ì´ˆê¸°í™”
 
     // Instantiate Web Browser control
     hret = CoCreateInstance(CLSID_WebBrowser, NULL, CLSCTX_ALL, IID_IUnknown, (void**)(&m_pUnknown));
@@ -148,9 +148,9 @@ Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostDa
 		m_pWebBrowser->Release();
 	}
 	
-// 2007-09-06 by cmkwon, Á¤»ó µ¿ÀÛ ÇÏÁö ¾ÊÀ½
+// 2007-09-06 by cmkwon, ì •ìƒ ë™ìž‘ í•˜ì§€ ì•ŠìŒ
 //	///////////////////////////////////////////////////////////////////////////////	
-//	// 2007-09-06 by cmkwon, ½ºÅ©·Ñ »èÁ¦ÇÏ±â
+//	// 2007-09-06 by cmkwon, ìŠ¤í¬ë¡¤ ì‚­ì œí•˜ê¸°
 //	hr = m_pWebBrowser->QueryInterface(IID_IWebBrowser2, reinterpret_cast<void**>(&pWB));
 //	IDispatch *pDocDisp		= NULL;
 //	hret = m_pWebBrowser->get_Document(&pDocDisp);

@@ -1,12 +1,12 @@
-#if 0 // ndef _ATUM_PROTOCOL_VOIP_H_
+ï»¿#if 0 // ndef _ATUM_PROTOCOL_VOIP_H_
 #define _ATUM_PROTOCOL_VOIP_H_
 
 #include "AtumProtocol.h"
 #include "VoIPError.h"
 
 
-// AtumProtocol.h¿¡ Á¤ÀÇ µÇ¾îÀÖÀ½
-//#define T0_ATUMVOIP						0x60				// À½¼º ÅëÈ­¸¦ À§ÇØ
+// AtumProtocol.hì— ì •ì˜ ë˜ì–´ìžˆìŒ
+//#define T0_ATUMVOIP						0x60				// ìŒì„± í†µí™”ë¥¼ ìœ„í•´
 	#define T1_IC_VOIP_GET_ACCOUNTUNIQUENUMBER				0x00
 	#define T1_IC_VOIP_GET_ACCOUNTUNIQUENUMBER_OK			0x01
 	#define T1_IC_VOIP_1to1_DIAL							0x10
@@ -71,24 +71,24 @@
 
 	typedef struct
 	{
-		BYTE			byIsPartyCall;					// TRUEÀÌ¸é Æí´ëÅëÈ­, FALSEÀÌ¸é ±æµå ÅëÈ­
+		BYTE			byIsPartyCall;					// TRUEì´ë©´ íŽ¸ëŒ€í†µí™”, FALSEì´ë©´ ê¸¸ë“œ í†µí™”
 	} MSG_IC_VOIP_NtoN_CREATEROOM_REQUEST;
 	typedef struct
 	{
-		BYTE			byIsPartyCall;					// TRUEÀÌ¸é Æí´ëÅëÈ­, FALSEÀÌ¸é ±æµå ÅëÈ­
+		BYTE			byIsPartyCall;					// TRUEì´ë©´ íŽ¸ëŒ€í†µí™”, FALSEì´ë©´ ê¸¸ë“œ í†µí™”
 	} MSG_IC_VOIP_NtoN_CREATEROOM_REQUEST_OK;
 	typedef struct
 	{
-		BYTE			byIsPartyCall;					// TRUEÀÌ¸é Æí´ëÅëÈ­, FALSEÀÌ¸é ±æµå ÅëÈ­
+		BYTE			byIsPartyCall;					// TRUEì´ë©´ íŽ¸ëŒ€í†µí™”, FALSEì´ë©´ ê¸¸ë“œ í†µí™”
 	} MSG_IC_VOIP_NtoN_INVITE_ALL;
 	typedef struct
 	{
-		BYTE			byIsPartyCall;					// TRUEÀÌ¸é Æí´ëÅëÈ­, FALSEÀÌ¸é ±æµå ÅëÈ­
+		BYTE			byIsPartyCall;					// TRUEì´ë©´ íŽ¸ëŒ€í†µí™”, FALSEì´ë©´ ê¸¸ë“œ í†µí™”
 		UID32_t			nCharacterUniqueNumber;
 	} MSG_IC_VOIP_NtoN_INVITE_USER;
 	typedef struct
 	{
-		BYTE			byIsPartyCall;					// TRUEÀÌ¸é Æí´ëÅëÈ­, FALSEÀÌ¸é ±æµå ÅëÈ­
+		BYTE			byIsPartyCall;					// TRUEì´ë©´ íŽ¸ëŒ€í†µí™”, FALSEì´ë©´ ê¸¸ë“œ í†µí™”
 	} MSG_IC_VOIP_NtoN_INVITE_YOU;
 	typedef struct
 	{

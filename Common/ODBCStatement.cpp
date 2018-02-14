@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ODBCStatement.h"
 #include "DBGOUT_c.h"
 #define UNICODE
@@ -184,7 +184,7 @@ BOOL CODBCStatement::ExecuteQuery(const char *pSQLQueryString, BOOL i_bAutoClean
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CODBCStatement::ExecuteQuery(const UCHAR *pSQLQueryString, BOOL i_bAutoClean/*=FALSE*/)
-/// \brief		// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - 
+/// \brief		// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - 
 /// \author		cmkwon
 /// \date		2008-12-01 ~ 2008-12-01
 /// \warning	

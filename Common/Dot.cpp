@@ -1,4 +1,4 @@
-// Dot.cpp: implementation of the CDot class.
+Ôªø// Dot.cpp: implementation of the CDot class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,7 @@
 
 CDot::CDot()
 {
-	this->InitDot();	// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+	this->InitDot();	// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 }
 
 CDot::~CDot()
@@ -27,18 +27,18 @@ void CDot::InitDot() {
 
 /*******************************************************************************************************
 **
-**	µµ∆Æ ¡§∫∏ µÓ∑œ.
+**	ÎèÑÌä∏ Ï†ïÎ≥¥ Îì±Î°ù.
 **
 **	Create Info : ??. ??. ??
 **
-**	Update Info : 2010. 06. 08 by hsLee. - πÎ∑±Ω∫ ¿Œ¿⁄ √ﬂ∞°. (i_fIncreasePowerRatio)
+**	Update Info : 2010. 06. 08 by hsLee. - Î∞∏Îü∞Ïä§ Ïù∏Ïûê Ï∂îÍ∞Ä. (i_fIncreasePowerRatio)
 **
 ********************************************************************************************************/
 void CDot::SetDot ( ITEM * i_pSkill , INT i_nDesParamIdx , ClientIndex_t i_nClientIndex , UID32_t i_nTimerUID , float i_fIncreasePowerRatio /*= 1.0f*/ ) 
 {
 	if ( NULL == i_pSkill ) 
 	{	
-		// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+		// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 		return;
 	}
 
@@ -51,16 +51,16 @@ void CDot::SetDot ( ITEM * i_pSkill , INT i_nDesParamIdx , ClientIndex_t i_nClie
 	DotInfo.Kind			= i_pSkill->Kind;
 	DotInfo.DesParam		= i_pSkill->ArrDestParameter[i_nDesParamIdx];
 
-	// 2010. 06. 08 by hsLee ¿Œ««¥œ∆º « µÂ 2¬˜ ≥≠¿Ãµµ ¡∂¿˝. (æ∆±∫ µø¿œ πÎ∑±Ω∫ ¿˚øÎ.) - Ω∫≈≥ πÎ∑±Ω∫ ¿˚øÎ.
+	// 2010. 06. 08 by hsLee Ïù∏ÌîºÎãàÌã∞ ÌïÑÎìú 2Ï∞® ÎÇúÏù¥ÎèÑ Ï°∞Ï†à. (ÏïÑÍµ∞ ÎèôÏùº Î∞∏Îü∞Ïä§ Ï†ÅÏö©.) - Ïä§ÌÇ¨ Î∞∏Îü∞Ïä§ Ï†ÅÏö©.
 	//DotInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx];
 	DotInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx] * i_fIncreasePowerRatio;
 
 	DotInfo.Time			= i_pSkill->Time;
 
-	m_mtvectDotInfo.pushBackLock(DotInfo);			// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+	m_mtvectDotInfo.pushBackLock(DotInfo);			// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 }
 
-BOOL CDot::CheckApplyingDot(UID32_t i_nTimerUID, DestParam_t i_byDesParam)		// 2011-08-01 by hskim, ∆ƒ∆Æ≥  Ω√Ω∫≈€ 2¬˜ - ¿⁄∑·«¸ ∫Ø∞Ê (DestParameter - 255 -> 32767 ¡ˆø¯)
+BOOL CDot::CheckApplyingDot(UID32_t i_nTimerUID, DestParam_t i_byDesParam)		// 2011-08-01 by hskim, ÌååÌä∏ÎÑà ÏãúÏä§ÌÖú 2Ï∞® - ÏûêÎ£åÌòï Î≥ÄÍ≤Ω (DestParameter - 255 -> 32767 ÏßÄÏõê)
 {
 	mt_auto_lock mta(&m_mtvectDotInfo);
 
@@ -78,7 +78,7 @@ BOOL CDot::CheckApplyingDot(UID32_t i_nTimerUID, DestParam_t i_byDesParam)		// 2
 	return FALSE;
 }
 
-BOOL CDot::DecreaseApplyingDotTime(UID32_t i_nTimerUID, DestParam_t i_byDesParam)		// 2011-08-01 by hskim, ∆ƒ∆Æ≥  Ω√Ω∫≈€ 2¬˜ - ¿⁄∑·«¸ ∫Ø∞Ê (DestParameter - 255 -> 32767 ¡ˆø¯)
+BOOL CDot::DecreaseApplyingDotTime(UID32_t i_nTimerUID, DestParam_t i_byDesParam)		// 2011-08-01 by hskim, ÌååÌä∏ÎÑà ÏãúÏä§ÌÖú 2Ï∞® - ÏûêÎ£åÌòï Î≥ÄÍ≤Ω (DestParameter - 255 -> 32767 ÏßÄÏõê)
 {
 	mt_auto_lock mta(&m_mtvectDotInfo);
 
@@ -121,9 +121,9 @@ BOOL CDot::ReleaseDot(UID32_t i_nTimerUID) {
 	return FALSE;
 }
 
-BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {		// 2011-08-01 by hskim, ∆ƒ∆Æ≥  Ω√Ω∫≈€ 2¬˜ - ¿⁄∑·«¸ ∫Ø∞Ê (DestParameter - 255 -> 32767 ¡ˆø¯)
+BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {		// 2011-08-01 by hskim, ÌååÌä∏ÎÑà ÏãúÏä§ÌÖú 2Ï∞® - ÏûêÎ£åÌòï Î≥ÄÍ≤Ω (DestParameter - 255 -> 32767 ÏßÄÏõê)
 	if(NULL == i_pSkill) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+		// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 		return FALSE;
 	}
 
@@ -131,7 +131,7 @@ BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {
 	
 	mtvectorDotInfo::iterator	itr = m_mtvectDotInfo.begin();
 	while(itr != m_mtvectDotInfo.end()) {
-		if(i_pSkill->ItemNum == itr->ItemNum		// 2009-09-09 ~ 2010-01-20 by dhjin, ¿Œ««¥œ∆º - ∞°≤˚ ∏ÛΩ∫≈Õ Ω∫≈≥ ªÁøÎ æ»µ«¥¬ πˆ±◊ ºˆ¡§
+		if(i_pSkill->ItemNum == itr->ItemNum		// 2009-09-09 ~ 2010-01-20 by dhjin, Ïù∏ÌîºÎãàÌã∞ - Í∞ÄÎÅî Î™¨Ïä§ÌÑ∞ Ïä§ÌÇ¨ ÏÇ¨Ïö© ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
 			&&i_byDestParam  == itr->DesParam) {
 			itr = m_mtvectDotInfo.erase(itr);
 			return TRUE;
@@ -157,7 +157,7 @@ ClientIndex_t CDot::GetClientIdx(UID32_t i_nTimerUID) {
 
 void CDot::CopyDotInfo(UID32_t i_nTimerUID, DOTINFO * o_pDotInfo) {
 	if(NULL == o_pDotInfo) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+		// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 		return;
 	}
 
@@ -180,7 +180,7 @@ void CDot::CopyDotInfo(UID32_t i_nTimerUID, DOTINFO * o_pDotInfo) {
 
 INT CDot::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DOT_INFO *o_pDotInfo) {
 	if(NULL == o_pDotInfo) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ¿Œ««¥œ∆º - º“Ω∫ √º≈©
+		// 2009-09-09 ~ 2010-01 by dhjin, Ïù∏ÌîºÎãàÌã∞ - ÏÜåÏä§ Ï≤¥ÌÅ¨
 		return FALSE;
 	}
 

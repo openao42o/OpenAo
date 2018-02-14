@@ -1,4 +1,4 @@
-// Guild.cpp: implementation of the CGuild class.
+ï»¿// Guild.cpp: implementation of the CGuild class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -8,11 +8,11 @@
 #include "IMIOCPSocket.h"
 #include "AtumIMDBManager.h"
 
-// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
-#define BONUS_EXP_RATE_DEFAULT		10	// ±æµå °æÇèÄ¡ º¸³Ê½º ±âº»Ä¡ Ãß°¡ ÆÛ¼¾Æ®
-#define BONUS_EXP_RATE_MEMBERCOUNT	4	// ±æµå °æÇèÄ¡ º¸³Ê½º ¿Â¶óÀÎ ¸É¹ö´ç »ó½Â ÆÛ¼¾Æ®
-#define BONUS_EXP_RATE_MAX			70	// ±æµå °æÇèÄ¡ º¸³Ê½º ÃÖ´ëÄ¡ ÆÛ¼¾Æ®
-// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
+#define BONUS_EXP_RATE_DEFAULT		10	// ê¸¸ë“œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ê¸°ë³¸ì¹˜ ì¶”ê°€ í¼ì„¼íŠ¸
+#define BONUS_EXP_RATE_MEMBERCOUNT	4	// ê¸¸ë“œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì˜¨ë¼ì¸ ë§´ë²„ë‹¹ ìƒìŠ¹ í¼ì„¼íŠ¸
+#define BONUS_EXP_RATE_MAX			70	// ê¸¸ë“œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ìµœëŒ€ì¹˜ í¼ì„¼íŠ¸
+// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 DWORD		CGuild::ms_dwGuildWarUniqueNumber	= 0;
 CIMIOCP		*CGuild::ms_pIMIOCP3				= NULL;
@@ -62,19 +62,19 @@ CGuild::CGuild(CGuild *i_pGuild)
 	this->m_nTotalFame						= i_pGuild->m_nTotalFame;
 	this->m_nMonthlyFame					= i_pGuild->m_nMonthlyFame;
 
-	// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+	// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 	util::strncpy(this->m_Notice, i_pGuild->m_Notice, SIZE_MAX_NOTICE);
-	util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));		// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³	
+	util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));		// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ	
 	m_OutPostCityMapIndex		= i_pGuild->m_OutPostCityMapIndex;
 	m_nTotalFameRank			= i_pGuild->m_nTotalFameRank;
 	m_nMonthlyFameRank			= i_pGuild->m_nMonthlyFameRank;
-	m_bMemberShip				= i_pGuild->m_bMemberShip;					// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	m_MemberShipExpireTime		= i_pGuild->m_MemberShipExpireTime;							// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+	m_bMemberShip				= i_pGuild->m_bMemberShip;					// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	m_MemberShipExpireTime		= i_pGuild->m_MemberShipExpireTime;							// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	m_nOnlineGuildMember = i_pGuild->m_nOnlineGuildMember;
 	m_nBonusExpRate = i_pGuild->m_nBonusExpRate;
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 }
 
@@ -89,7 +89,7 @@ void CGuild::ResetGuild(void)
 	m_GuildState				= GUILD_STATE_NORMAL;		// GUILD_STATE_XXX
 	
 	util::zero(&m_GuildMark, sizeof(GUILD_MARK));
-	m_GuildMark.byGuildMarkState	= GUILD_MARK_STATE_NONE;	// 2007-08-02 by cmkwon, ¿©´Ü ¸¶Å© ½É»ç ½Ã½ºÅÛ ±¸Çö - ÃÊ±â°ª ¼³Á¤
+	m_GuildMark.byGuildMarkState	= GUILD_MARK_STATE_NONE;	// 2007-08-02 by cmkwon, ì—¬ë‹¨ ë§ˆí¬ ì‹¬ì‚¬ ì‹œìŠ¤í…œ êµ¬í˜„ - ì´ˆê¸°ê°’ ì„¤ì •
 
 	m_nWarWinPoint				= 0;
 	m_nWarLossPoint				= 0;
@@ -100,19 +100,19 @@ void CGuild::ResetGuild(void)
 	m_nTotalFame				= 0;
 	m_nMonthlyFame				= 0;
 
-	// 2008-05-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+	// 2008-05-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 	util::zero(&m_Notice, SIZE_MAX_NOTICE);
-	util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));		// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´Ü ¼Ò°³
+	util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));		// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ ì†Œê°œ
 	m_OutPostCityMapIndex		= 0;
 	m_nTotalFameRank			= 0;
 	m_nMonthlyFameRank			= 0;
-	m_bMemberShip				= FALSE;					// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	m_MemberShipExpireTime.Reset();							// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+	m_bMemberShip				= FALSE;					// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	m_MemberShipExpireTime.Reset();							// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	m_nOnlineGuildMember = 0; 
 	m_nBonusExpRate = 0;
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 }
 
 BOOL CGuild::IsGuildCommander(UID32_t i_CharacterUniqueNumber)
@@ -133,10 +133,10 @@ BOOL CGuild::AddGuildMember(CGuildMember& i_GuildMember)
 	}
 	m_ListGuildMember.push_back(i_GuildMember);
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	RefreshGuildOnlineMember();
 	SendGuildBonusExp();
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	return TRUE;
 }
 
@@ -153,10 +153,10 @@ BOOL CGuild::DeleteGuildMember(UID32_t i_CharacterUniqueNumber)
 		itr++;
 	}
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	RefreshGuildOnlineMember();
 	SendGuildBonusExp();
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 	return FALSE;
 }
@@ -180,7 +180,7 @@ BOOL CGuild::GetGuildMember(UID32_t i_CharacterUniqueNumber, CGuildMember*& o_pG
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CGuild::GetGuildMemberByRank(BYTE i_byRank, CGuildMember*& o_pGuildMember)
-/// \brief		EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
+/// \brief		EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
 /// \author		dhjin
 /// \date		2008-07-01 ~ 2008-07-01
 /// \warning	
@@ -205,13 +205,13 @@ BOOL CGuild::GetGuildMemberByRank(BYTE i_byRank, CGuildMember*& o_pGuildMember)
 	return FALSE;
 }
 
-// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
-void CGuild::RefreshGuildOnlineMember() //¿©´Ü ¿Â¶óÀÎ ¸É¹ö¿¡ º¯µ¿ÀÌ ÀÖÀ»¶§¸¶´Ù Àç°è»êÈÄ Àü¼Û
+// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
+void CGuild::RefreshGuildOnlineMember() //ì—¬ë‹¨ ì˜¨ë¼ì¸ ë§´ë²„ì— ë³€ë™ì´ ìˆì„ë•Œë§ˆë‹¤ ì¬ê³„ì‚°í›„ ì „ì†¡
 {
 	m_nOnlineGuildMember = GetOnlineMemberCount(0);
 	CalGuildExpBonusRate();
 }
-void CGuild::CalGuildExpBonusRate() // ¿©´Ü °æÇèÄ¡ º¸³Ê½º ºñÀ² °è»ê
+void CGuild::CalGuildExpBonusRate() // ì—¬ë‹¨ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ë¹„ìœ¨ ê³„ì‚°
 {
 	m_nBonusExpRate = min((BONUS_EXP_RATE_DEFAULT + (m_nOnlineGuildMember-1)*BONUS_EXP_RATE_MEMBERCOUNT),BONUS_EXP_RATE_MAX);
 }
@@ -220,7 +220,7 @@ BOOL CGuild::SendGuildBonusExp()
 #if S_BONUSEXPSYSTEM_RENEWAL || S_BONUS_KILL_SYSTEM_RENEWAL
 	INIT_MSG_WITH_BUFFER(MSG_FI_GUILD_BONUS_EXP_RATE, T_FI_GUILD_BONUS_EXP_RATE, msgBonusExpRate, msgBonusExpRateBuf);
 	msgBonusExpRate->nBonusExpRate	= m_nBonusExpRate;
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 	listGuildMember::iterator itr = m_ListGuildMember.begin();
 	for(; itr != m_ListGuildMember.end(); itr++)
 	{		
@@ -238,7 +238,7 @@ BOOL CGuild::SendGuildBonusExp()
 		}
 	}
 	return TRUE;
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 #endif //S_BONUSEXPSYSTEM_RENEWAL
 	return FALSE;
@@ -246,7 +246,7 @@ BOOL CGuild::SendGuildBonusExp()
 BOOL CGuild::SendFieldToGuildMembers(BYTE *buffer
 								   , int size
 								   , UID32_t CharacterUniqueNumberToExclude
-								   , MSG_IC_COUNTDOWN_START *i_pCountdownStart/*=NULL*/) //ÇÊµå ¼­¹öÀÇ ±æµå ¸É¹ö¿¡°Ô Àü¼Û
+								   , MSG_IC_COUNTDOWN_START *i_pCountdownStart/*=NULL*/) //í•„ë“œ ì„œë²„ì˜ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ì „ì†¡
 {
 	listGuildMember::iterator itr = m_ListGuildMember.begin();
 	for(; itr != m_ListGuildMember.end(); itr++)
@@ -268,7 +268,7 @@ BOOL CGuild::SendFieldToGuildMembers(BYTE *buffer
 	}
 	return TRUE;
 }
-// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 
 void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TRUE*/)
@@ -288,11 +288,11 @@ void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TR
 		return;
 	}
 
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
-	// ¿©´Ü °æÇèÄ¡ º¸³Ê½º °ü·Ã Ãß°¡
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
+	// ì—¬ë‹¨ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ê´€ë ¨ ì¶”ê°€
 	RefreshGuildOnlineMember();
 	SendGuildBonusExp();
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 	if(i_bSendMSG)
 	{
@@ -316,11 +316,11 @@ void CGuild::SetOfflineGuildMember(UID32_t i_uidCharacter, BOOL i_bSendMSG/*=TRU
 	}
 
 	pMember->SetOffline(i_uidCharacter);
-	// 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
-	// ¿©´Ü °æÇèÄ¡ º¸³Ê½º °ü·Ã Ãß°¡
+	// 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
+	// ì—¬ë‹¨ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ê´€ë ¨ ì¶”ê°€
 	RefreshGuildOnlineMember();
 	SendGuildBonusExp();
-	// end 2012-10-12 by jhjang ÇØÇÇ ¾Æ¿ö °æÇèÄ¡ º¸³Ê½º ½Ã½ºÅÛ ¸®´º¾ó
+	// end 2012-10-12 by jhjang í•´í”¼ ì•„ì›Œ ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤ ì‹œìŠ¤í…œ ë¦¬ë‰´ì–¼
 
 	if (i_bSendMSG)
 	{
@@ -436,19 +436,19 @@ int CGuild::Send_MSG_IC_GUILD_GET_GUILD_INFO_OK(CIMIOCPSocket *i_pIISock)
 	msgGetGuildInfoOK->GuildCommanderUniqueNumber	= m_CommanderUniqueNumber;
 	util::strncpy(msgGetGuildInfoOK->GuildName, m_GuildName, SIZE_MAX_GUILD_NAME);
 	msgGetGuildInfoOK->GuildMemberCapacity			= m_nGuildMemberCapacity;
-	msgGetGuildInfoOK->NumOfGuildMemberInfo			= 0;					// for¹® ¾È¿¡¼­ Áõ°¡µÈ´Ù
+	msgGetGuildInfoOK->NumOfGuildMemberInfo			= 0;					// forë¬¸ ì•ˆì—ì„œ ì¦ê°€ëœë‹¤
 	msgGetGuildInfoOK->GuildState					= m_GuildState;
 	msgGetGuildInfoOK->GuildMarkVersion				= m_GuildMark.nGuildMarkVersion;
 	msgGetGuildInfoOK->WarWinPoint					= this->m_nWarWinPoint;
 	msgGetGuildInfoOK->WarLossPoint					= this->m_nWarLossPoint;
-	util::strncpy(msgGetGuildInfoOK->Notice, this->m_Notice, SIZE_MAX_NOTICE);		// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildOutPostCityMapIndex		= this->m_OutPostCityMapIndex;	// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildTotalFame				= this->m_nTotalFame;		// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildMonthlyFame				= this->m_nMonthlyFame;		// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildTotalFameRank			= this->m_nTotalFameRank;	// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildMonthlyFameRank			= this->m_nMonthlyFameRank;	// 2008-06-05 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildMemberShip				= this->m_bMemberShip;		// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×
-	msgGetGuildInfoOK->GuildMemberShipExpireTime	= this->m_MemberShipExpireTime;	// 2008-06-20 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ×	
+	util::strncpy(msgGetGuildInfoOK->Notice, this->m_Notice, SIZE_MAX_NOTICE);		// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildOutPostCityMapIndex		= this->m_OutPostCityMapIndex;	// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildTotalFame				= this->m_nTotalFame;		// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildMonthlyFame				= this->m_nMonthlyFame;		// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildTotalFameRank			= this->m_nTotalFameRank;	// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildMonthlyFameRank			= this->m_nMonthlyFameRank;	// 2008-06-05 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildMemberShip				= this->m_bMemberShip;		// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­
+	msgGetGuildInfoOK->GuildMemberShipExpireTime	= this->m_MemberShipExpireTime;	// 2008-06-20 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­	
 
 	BYTE *pNumOfGuildMemberInfo = &msgGetGuildInfoOK->NumOfGuildMemberInfo;
 	BOOL bUseGetMemberListOK = FALSE;
@@ -520,7 +520,7 @@ void CGuild::AddGuildFame(int i_nAddValues)
 	this->m_nMonthlyFame	+= i_nAddValues;
 }
 
-// 2007-01-31 by cmkwon, ¾Æ·¡ÀÇ ÇÔ¼ö·Î ´ëÃ¼(int GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr))
+// 2007-01-31 by cmkwon, ì•„ë˜ì˜ í•¨ìˆ˜ë¡œ ëŒ€ì²´(int GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr))
 /////////////////////////////////////////////////////////////////////////////////
 ///// \fn			int CGuild::GetGuildMemberIISocket(CIMIOCPSocket **pArrIISockPtr)
 ///// \brief		
@@ -582,7 +582,7 @@ int CGuild::GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CGuild::SetMemberLevel(UID32_t i_CharacterUniqueNumber, BYTE i_byLevel)
-/// \brief		EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ·¹º§ º¯°æ ½Ã Á¤º¸ º¯°æ
+/// \brief		EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ë ˆë²¨ ë³€ê²½ ì‹œ ì •ë³´ ë³€ê²½
 /// \author		dhjin
 /// \date		2008-05-20 ~ 2008-05-20
 /// \warning	
@@ -608,7 +608,7 @@ BOOL CGuild::SetMemberLevel(UID32_t i_CharacterUniqueNumber, BYTE i_byLevel)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CGuild::SetMemberVoipType(UID32_t i_CharacterUniqueNumber, EN_CHECK_TYPE i_VoipType)
-/// \brief		EP3 - Voip Á¤º¸
+/// \brief		EP3 - Voip ì •ë³´
 /// \author		dhjin
 /// \date		2008-07-16 ~ 2008-07-16
 /// \warning	
@@ -632,7 +632,7 @@ BOOL CGuild::SetMemberLevel(UID32_t i_CharacterUniqueNumber, BYTE i_byLevel)
 //	return FALSE;
 //}
 
-// °è±Ş ÀÓ¸íÀÌ °¡´ÉÇÑÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+// ê³„ê¸‰ ì„ëª…ì´ ê°€ëŠ¥í•œì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
 BOOL CGuild::CheckRank(UID32_t i_CharacterUniqueNumber, BYTE i_nNewRank)
 {
 	if (i_nNewRank == GUILD_RANK_PRIVATE_1
@@ -665,7 +665,7 @@ void CGuild::WarResultWin(void)
 	this->m_nWarWinPoint++;
 	
 	///////////////////////////////////////////////////////////////////////////////
-	// DB¿¡ ±æµåÀü Á¤º¸¸¦ ÀúÀåÇÑ´Ù
+	// DBì— ê¸¸ë“œì „ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤
 	ms_pIMIOCP3->m_pAtumIMDBManager->MakeAndEnqueueQuery(QT_GuildSaveGuildWarPoint, NULL
 		, NULL, (void*)m_GuildUniqueNumber, m_nWarWinPoint, m_nWarLossPoint);
 }
@@ -674,13 +674,13 @@ void CGuild::WarResultLose(void)
 {
 	this->m_nWarLossPoint++;
 	///////////////////////////////////////////////////////////////////////////////
-	// DB¿¡ ±æµåÀü Á¤º¸¸¦ ÀúÀåÇÑ´Ù
+	// DBì— ê¸¸ë“œì „ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤
 	ms_pIMIOCP3->m_pAtumIMDBManager->MakeAndEnqueueQuery(QT_GuildSaveGuildWarPoint, NULL
 		, NULL, (void*)m_GuildUniqueNumber, m_nWarWinPoint, m_nWarLossPoint);
 }
 
 //////////////////////////////////////////////////////////////////////////
-// 2008-05-27 by dhjin, EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - 
+// 2008-05-27 by dhjin, EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - 
 void CGuild::InitGuildIntroduction()
 {
 	util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));
@@ -699,7 +699,7 @@ char * CGuild::GetGuildIntroduction()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CGuild::CheckOldIntroductionContent()
-/// \brief		EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿À·¡µÈ ¿©´Ü ¼Ò°³ Ã¤Å© 
+/// \brief		EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì˜¤ë˜ëœ ì—¬ë‹¨ ì†Œê°œ ì±„í¬ 
 /// \author		dhjin
 /// \date		2008-05-27 ~ 2008-05-27
 /// \warning	
@@ -722,7 +722,7 @@ void CGuild::CheckOldIntroductionContent()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CGuild::SetGuildMemberShip(BOOL i_bMemberShip, ATUM_DATE_TIME * i_pMemberShipExpireTime /*= NULL*/)
-/// \brief		EP3 - ¿©´Ü ¼öÁ¤ »çÇ× - ¿©´ÜÀå¿¡ ¸É¹ö½± Á¤º¸	
+/// \brief		EP3 - ì—¬ë‹¨ ìˆ˜ì • ì‚¬í•­ - ì—¬ë‹¨ì¥ì— ë§´ë²„ì‰½ ì •ë³´	
 /// \author		dhjin
 /// \date		2008-06-20 ~ 2008-06-20
 /// \warning	

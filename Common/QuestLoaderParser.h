@@ -1,4 +1,4 @@
-#ifndef __QuestLoader_PARSER__
+ï»¿#ifndef __QuestLoader_PARSER__
 #define __QuestLoader_PARSER__
 
 #include "mt_stl.h"
@@ -6,19 +6,19 @@
 int QuestLoaderparse();
 
 class CQuest;
-typedef vector<CQuest*>		vectCQuestPtr;		// 2007-07-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ®¸¦ Á¤º¸¸¦ vector·Î ¹Ş±â À§ÇØ - 
+typedef vector<CQuest*>		vectCQuestPtr;		// 2007-07-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì •ë³´ë¥¼ vectorë¡œ ë°›ê¸° ìœ„í•´ - 
 
 class QuestLoaderParser
 {
 public:
 	// load from file(s)
-	// 2007-07-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ®¸¦ Á¤º¸¸¦ vector·Î ¹Ş±â À§ÇØ - ÀÎÀÚÃß°¡(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
+	// 2007-07-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì •ë³´ë¥¼ vectorë¡œ ë°›ê¸° ìœ„í•´ - ì¸ìì¶”ê°€(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
 	static BOOL ParseFile(const char *i_szFileName, ez_map<INT, CQuest*> *i_pQuestInfoMap, vectCQuestPtr *o_pvectCQuestInfoList=NULL);
-	// 2007-07-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ®¸¦ Á¤º¸¸¦ vector·Î ¹Ş±â À§ÇØ - ÀÎÀÚÃß°¡(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
+	// 2007-07-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì •ë³´ë¥¼ vectorë¡œ ë°›ê¸° ìœ„í•´ - ì¸ìì¶”ê°€(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
 	static BOOL ParseFiles(const char *i_szUserDefFileName, vector<string> *i_szFileNames, ez_map<INT, CQuest*> *i_pQuestInfoMap, vectCQuestPtr *o_pvectCQuestInfoList=NULL);
 	
 	// load from memory
-	// 2007-07-09 by cmkwon, Äù½ºÆ® ½ºÅ©¸³Æ®¸¦ Á¤º¸¸¦ vector·Î ¹Ş±â À§ÇØ - ÀÎÀÚÃß°¡(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
+	// 2007-07-09 by cmkwon, í€˜ìŠ¤íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì •ë³´ë¥¼ vectorë¡œ ë°›ê¸° ìœ„í•´ - ì¸ìì¶”ê°€(, vectCQuestPtr *o_pvectCQuestInfoList=NULL)
 	static BOOL ParseString(const char *i_szUserDefinedVarString, int i_nVarLen, const char *i_szQuestString, int i_nQuestLen, ez_map<INT, CQuest*> *i_pQuestInfoMap, vectCQuestPtr *o_pvectCQuestInfoList=NULL);
 
 	// helper functions

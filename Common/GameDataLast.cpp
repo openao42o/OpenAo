@@ -1,4 +1,4 @@
-// GameDataLast.cpp: implementation of the CGameDataLast class.
+ï»¿// GameDataLast.cpp: implementation of the CGameDataLast class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -13,7 +13,7 @@
 //#include <sys/stat.h>
 //#include <sys/stat.h>
 #include <stdio.h>
-#include "sha256.h"		// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+#include "sha256.h"		// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 
 #include "CipherRA.h"
 
@@ -33,9 +33,9 @@ bool CGameData::SetFile(char *filename, bool encode, char* encodeString, int enc
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		Ã¼Å©¼¶ Ã³¸®
-/// \author		// 2007-04-05 by bhsohn ¸Ê·Îµå½Ã, Ã¼Å©¼¶ Ãß°¡
-///				// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - ÇÔ¼ö ¼öÁ¤
+/// \brief		ì²´í¬ì„¬ ì²˜ë¦¬
+/// \author		// 2007-04-05 by bhsohn ë§µë¡œë“œì‹œ, ì²´í¬ì„¬ ì¶”ê°€
+///				// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - í•¨ìˆ˜ ìˆ˜ì •
 /// \date		2007-04-06 ~ 2007-04-06
 /// \warning	
 /// \param		
@@ -43,9 +43,9 @@ bool CGameData::SetFile(char *filename, bool encode, char* encodeString, int enc
 ///////////////////////////////////////////////////////////////////////////////
 bool CGameData::GetCheckSum(BYTE o_byObjCheckSum[32], int *o_pnFileSize, char* pFilePath)
 {
-	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 	//*o_puiCheckSum	= 0;			// 2007-05-28 by cmkwon
-	memset(o_byObjCheckSum, 0x00, 32);	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	memset(o_byObjCheckSum, 0x00, 32);	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 	*o_pnFileSize	= 0;			// 2007-05-28 by cmkwon
 	
 	UINT uiCheckSum = 0;
@@ -53,7 +53,7 @@ bool CGameData::GetCheckSum(BYTE o_byObjCheckSum[32], int *o_pnFileSize, char* p
 	if (strlen(pFilePath) <=0) return FALSE;
 	
 	FILE *fp;
-    fp = fopen(pFilePath, "rb");		// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - binary·Î ÀĞµµ·Ï ¼öÁ¤
+    fp = fopen(pFilePath, "rb");		// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - binaryë¡œ ì½ë„ë¡ ìˆ˜ì •
 	
 	if (NULL == fp) return FALSE;
 
@@ -65,30 +65,30 @@ bool CGameData::GetCheckSum(BYTE o_byObjCheckSum[32], int *o_pnFileSize, char* p
 	BYTE *pFileData = new BYTE [lFileSize];
 	memset(pFileData, 0x00, lFileSize);
 	fread(pFileData, lFileSize, 1, fp);
-// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 //	for(int i=0; i < lFileSize/sizeof(UINT); i++)
 //	{
 //		uiCheckSum ^= ((UINT*)pFileData)[i];
 //	}
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 	sha256_encode(pFileData, lFileSize, o_byObjCheckSum);
 	
 	fclose(fp);
 	delete[] pFileData;
 
-	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - ±âÁ¸ ¼Ò½º
+	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - ê¸°ì¡´ ì†ŒìŠ¤
 	//*o_puiCheckSum	= uiCheckSum;			// 2007-05-28 by cmkwon
 	return TRUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			DataHeader* CGameData::FindFromFile(char* strName)
-/// \brief		ÆÄÀÏ¿¡¼­ ¿øÇÏ´Â µ¥ÀÌÅ¸¸¦ Ã£¾Æ¼­ ·ÎµùÇÑ´Ù.
+/// \brief		íŒŒì¼ì—ì„œ ì›í•˜ëŠ” ë°ì´íƒ€ë¥¼ ì°¾ì•„ì„œ ë¡œë”©í•œë‹¤.
 /// \author		dhkwon
 /// \date		2004-06-03 ~ 2004-06-03
-/// \warning	m_bEncode°¡ TRUEÀÌ¸é ½ÇÆĞÇÑ´Ù.
-///				¸®ÅÏµÈ pDataHeader´Â ¿ÜºÎ¿¡¼­ Áö¿öÁà¾ß ÇÑ´Ù.
+/// \warning	m_bEncodeê°€ TRUEì´ë©´ ì‹¤íŒ¨í•œë‹¤.
+///				ë¦¬í„´ëœ pDataHeaderëŠ” ì™¸ë¶€ì—ì„œ ì§€ì›Œì¤˜ì•¼ í•œë‹¤.
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////

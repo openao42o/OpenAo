@@ -1,11 +1,11 @@
- #ifndef _ATUM_MAP_CHANNEL_H_
+ï»¿ #ifndef _ATUM_MAP_CHANNEL_H_
 #define _ATUM_MAP_CHANNEL_H_
 
 #include "mt_stl.h"
 #include "MapProject.h"
 #include "IOCPSocket.h"
 
-#define MAX_MONSTER_COUNT_SPARE			200			// MaxMonsterCounts º¸´Ù ÀÌ°ª¸¸Å­ ¿©À¯¸¦ µÎ°í ¸ó½ºÅÍ º¤ÅÍ¸¦ »ı¼ºÇÑ´Ù.
+#define MAX_MONSTER_COUNT_SPARE			200			// MaxMonsterCounts ë³´ë‹¤ ì´ê°’ë§Œí¼ ì—¬ìœ ë¥¼ ë‘ê³  ëª¬ìŠ¤í„° ë²¡í„°ë¥¼ ìƒì„±í•œë‹¤.
 
 typedef list<ClientIndex_t>		listClientIndex;
 typedef mt_set<ClientIndex_t>	mtsetClientIndex;
@@ -13,7 +13,7 @@ typedef mt_set<ClientIndex_t>	mtsetClientIndex;
 ///////////////////////////////////////////////////////////////////////////////
 /// \class		CMapChannel
 ///
-/// \brief		MapÀÇ ½ÇÁ¦ µ¥ÀÌÅ¸ °ü¸®
+/// \brief		Mapì˜ ì‹¤ì œ ë°ì´íƒ€ ê´€ë¦¬
 /// \author		kelovon
 /// \version
 /// \date		2004-03-24 ~ 2004-03-24
@@ -29,11 +29,11 @@ public:
 	CMapChannel(CMapWorkspace *i_pWorkspace, CMapProject *i_pProject, ChannelIndex_t i_nChannelIndex);
 	virtual ~CMapChannel();
 
-	// ÃÊ±âÈ­ ÇÔ¼ö
+	// ì´ˆê¸°í™” í•¨ìˆ˜
 	virtual BOOL InitMapChannel(void);
 	void ResetMapChannel(void);
-	void ResetUserMapChannel(void);				// 2008-02-20 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ¸Ê Ã¤³Î¿¡ À¯Àú Á¤º¸ ÃÊ±âÈ­
-	void ResetDropItemMapChannel(void);				// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¸Ê Ã¤³Î¿¡ µå¶ø ¾ÆÀÌÅÛ Á¤º¸ ÃÊ±âÈ­
+	void ResetUserMapChannel(void);				// 2008-02-20 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ë§µ ì±„ë„ì— ìœ ì € ì •ë³´ ì´ˆê¸°í™”
+	void ResetDropItemMapChannel(void);				// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë§µ ì±„ë„ì— ë“œë ì•„ì´í…œ ì •ë³´ ì´ˆê¸°í™”
 
 	MAP_CHANNEL_INDEX GetMapChannelIndex(void) { return m_MapChannelIndex; }
 	int GetUserVisibleDiameterW(void);
@@ -42,27 +42,27 @@ public:
 	D3DXVECTOR3 GetCityWarpTargetPositionW(void);
 	int GetMapInfluenceTypeW(void);
 
-	// Ã¤³Î È°¼ºÈ­/ºñÈ°¼ºÈ­ °ü·Ã
+	// ì±„ë„ í™œì„±í™”/ë¹„í™œì„±í™” ê´€ë ¨
 	BOOL IsEnabled();
 	BOOL SetChannelState(BOOL i_bEnableChannel);
 
-	// Map Block °ü·Ã ÇÔ¼ö
+	// Map Block ê´€ë ¨ í•¨ìˆ˜
 	inline CMapBlock* GetBlock(float x, float z);
 	inline CMapBlock* GetBlockByIndex(short xIdx, short zIdx);
 	float GetSizeMapXW(void);
 	float GetSizeMapZW(void);
 	float GetMapHeightIncludeWaterW(D3DXVECTOR3 *i_pVec3Pos);
 
-	// Map Block À§Ä¡ °ü·Ã ÇÔ¼ö
+	// Map Block ìœ„ì¹˜ ê´€ë ¨ í•¨ìˆ˜
 	BOOL SetInitialPosition(float x, float z, ClientIndex_t clientIndex);
 	BOOL UpdateBlockPosition(float oldX, float oldZ, float newX, float newZ, ClientIndex_t clientIndex);
 	BOOL UpdateBlockPosition(D3DXVECTOR3 oldPosition, D3DXVECTOR3 newPosition, ClientIndex_t clientIndex);
 	BOOL DeleteBlockPosition(float x, float z, ClientIndex_t clientIndex);
 
-	// Æ¯Á¤ °Å¸® ¾ÈÀÇ Map Block Index¸¦ °¡Á®¿Â´Ù
+	// íŠ¹ì • ê±°ë¦¬ ì•ˆì˜ Map Block Indexë¥¼ ê°€ì ¸ì˜¨ë‹¤
 	inline void GetAdjacentBlocksInCircle(D3DXVECTOR3 &i_refPosition, float i_fDistance, vector<CMapBlock*> *o_pVectorMapBlock);
 
-	// Æ¯Á¤ °Å¸® ¾ÈÀÇ Character³ª Monster °Ë»ö °ü·Ã ÇÔ¼ö
+	// íŠ¹ì • ê±°ë¦¬ ì•ˆì˜ Characterë‚˜ Monster ê²€ìƒ‰ ê´€ë ¨ í•¨ìˆ˜
 	int GetAdjacentCharacterIndexes(D3DXVECTOR3 *i_pPosition, float fDistance, vector<ClientIndex_t> *pClientIndexVector, ClientIndex_t nClientIndexToExclude = INVALID_CLIENT_INDEX);
 	int GetAdjacentCharacterIndexes(float x, float z, float fDistance, vector<ClientIndex_t> *pClientIndexVector, ClientIndex_t nClientIndexToExclude = INVALID_CLIENT_INDEX);
 	int GetAdjacentCharacterIndexes(float xStart, float zStart, float xEnd, float zEnd, vector<ClientIndex_t> *pClientIndexVector, ClientIndex_t nClientIndexToExclude = INVALID_CLIENT_INDEX);
@@ -70,12 +70,12 @@ public:
 	int GetAdjacentMonsterIndexes(float x, float z, float fDistance, vector<ClientIndex_t> *pClientIndexVector);
 	int GetAdjacentMonsterIndexes(float xStart, float zStart, float xEnd, float zEnd, vector<ClientIndex_t> *pClientIndexVector);
 	
-	// ¸Ê Á¤º¸ °ü·Ã ÇÔ¼ö
+	// ë§µ ì •ë³´ ê´€ë ¨ í•¨ìˆ˜
 	inline int GetNumClients();
 	inline int GetNumMonsters();
 	inline int UpdateMaxUserCounts(int nCurUserCounts);
 
-	// ¸ó½ºÅÍ °ü·Ã
+	// ëª¬ìŠ¤í„° ê´€ë ¨
 	inline CMonster* GetMonster(ClientIndex_t i_Monsteridx);
 	inline CMonster* GetMonsterByMonsterUnitKind(INT i_MonsterUnitKind);
 
@@ -86,7 +86,7 @@ public:
 	INT GetTeleportWarpObjectIndexW();					// 2007-09-15 by dhjin
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+	// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 	TILEINFO* GetTileInfoW(float x, float z);
 	TILEINFO* GetTileInfoW(const D3DXVECTOR3 *pPosVector3);
 	TILEINFO* GetTileInfoByTileIndexW(int TileX, int TileZ);
@@ -99,37 +99,37 @@ public:
 	void printUnitCountsPerBlock(void);
 #endif // _DEBUG_endif
 protected:
-	CMapBlock				**m_arrMapBlock;					// ½ÇÁ¦ µ¥ÀÌÅ¸°¡ ÀúÀåµÇ´Â MapBlocks
-	mtlistUnitIndex_t		m_mtClientIndexList;				// ÇöÀç ¸Ê¿¡ ¼ÓÇÑ characterµéÀÇ client indexes
+	CMapBlock				**m_arrMapBlock;					// ì‹¤ì œ ë°ì´íƒ€ê°€ ì €ì¥ë˜ëŠ” MapBlocks
+	mtlistUnitIndex_t		m_mtClientIndexList;				// í˜„ì¬ ë§µì— ì†í•œ characterë“¤ì˜ client indexes
 
-	int						m_nSizemtvectorMonsterPtr;			// CMonster Pointer¸¦ ÀúÀåÇÒ¼ö ÀÖ´Â mt_vector Size
-	mtvectorMonsterPtr		m_mtvectorMonsterPtr;				// CMonster Pointer¸¦ ÀúÀåÇÒ¼ö ÀÖ´Â mt_vector
+	int						m_nSizemtvectorMonsterPtr;			// CMonster Pointerë¥¼ ì €ì¥í• ìˆ˜ ìˆëŠ” mt_vector Size
+	mtvectorMonsterPtr		m_mtvectorMonsterPtr;				// CMonster Pointerë¥¼ ì €ì¥í• ìˆ˜ ìˆëŠ” mt_vector
 	listClientIndex			m_vectorUsableMonsterIndex;			// MonsterIndex List
 
 	int						m_uiLimitMonsterCountsInChannel;
-	int						m_nMaxMonsterCountInChannel;		// Ã¤³Î¿¡ ÀÚµ¿ »ı¼º °¡´ÉÇÑ ÃÖ´ë ¸ó½ºÅÍ °³Ã¼¼ö(ÃÑÇÕ)
-	int						m_nCurMonsterCountInChannel;		// Ã¤³Î¿¡ »ı¼ºµÇ¾îÀÖ´Â ÇöÀç ¸ó½ºÅÍÀÇ ¼ö
-	int						m_nTotalMonsterCountInChannel;		// Ã¤³Î¿¡ »ı¼ºµÈ ¸ğµç ¸ó½ºÅÍÀÇ ¼ö
+	int						m_nMaxMonsterCountInChannel;		// ì±„ë„ì— ìë™ ìƒì„± ê°€ëŠ¥í•œ ìµœëŒ€ ëª¬ìŠ¤í„° ê°œì²´ìˆ˜(ì´í•©)
+	int						m_nCurMonsterCountInChannel;		// ì±„ë„ì— ìƒì„±ë˜ì–´ìˆëŠ” í˜„ì¬ ëª¬ìŠ¤í„°ì˜ ìˆ˜
+	int						m_nTotalMonsterCountInChannel;		// ì±„ë„ì— ìƒì„±ëœ ëª¨ë“  ëª¬ìŠ¤í„°ì˜ ìˆ˜
 
-	UINT					m_uiAccumulatedUserCountsInChannel;	// Ã¤³Î¿¡ Á¢¼ÓÇÑ ´©Àû Ä³¸¯ÅÍ ¼ö
-	UINT					m_uiMaxUserCountsInChannel;			// Ã¤³Î¿¡ Á¢¼ÓÇÑ ÃÖ´ë Á¢¼ÓÀÚ¼ö
-	UINT					m_uiAccumulatedMonsterCountsInChannel;	// Ã¤³Î¿¡ »ı¼ºµÈ ´©Àû ¸ó½ºÅÍ¼ö
+	UINT					m_uiAccumulatedUserCountsInChannel;	// ì±„ë„ì— ì ‘ì†í•œ ëˆ„ì  ìºë¦­í„° ìˆ˜
+	UINT					m_uiMaxUserCountsInChannel;			// ì±„ë„ì— ì ‘ì†í•œ ìµœëŒ€ ì ‘ì†ììˆ˜
+	UINT					m_uiAccumulatedMonsterCountsInChannel;	// ì±„ë„ì— ìƒì„±ëœ ëˆ„ì  ëª¬ìŠ¤í„°ìˆ˜
 
 	CMapWorkspace			*m_pMapWorkspace;
 	CMapProject				*m_pMapProject;
 
-	MAP_CHANNEL_INDEX		m_MapChannelIndex;					// ÀÚ½ÅÀÇ MAP_CHANNEL_INDEX
+	MAP_CHANNEL_INDEX		m_MapChannelIndex;					// ìì‹ ì˜ MAP_CHANNEL_INDEX
 
-	BOOL					m_bIsEnabled;						// ÇöÀç Ã¤³ÎÀÌ È°¼ºÈ­µÇ¾îÀÖ´ÂÁö ¿©ºÎ
+	BOOL					m_bIsEnabled;						// í˜„ì¬ ì±„ë„ì´ í™œì„±í™”ë˜ì–´ìˆëŠ”ì§€ ì—¬ë¶€
 
 public:
-	// CityWar °ü·Ã
+	// CityWar ê´€ë ¨
 	BOOL					m_bCityWarStarted;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			CMapBlock* CMapChannel::GetBlock(float x, float z)
-/// \brief		ÀÎÀÚÀÇ ÁÂÇ¥°¡ ¼ÓÇÏ´Â CMapBlockÀÇ Æ÷ÀÎÅÍ¸¦ ¸®ÅÏÇÑ´Ù.
+/// \brief		ì¸ìì˜ ì¢Œí‘œê°€ ì†í•˜ëŠ” CMapBlockì˜ í¬ì¸í„°ë¥¼ ë¦¬í„´í•œë‹¤.
 /// \author		kelovon
 /// \date		2004-03-24 ~ 2004-03-24
 /// \warning
@@ -146,13 +146,13 @@ CMapBlock* CMapChannel::GetBlock(float x, float z)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			CMapBlock* CMapChannel::GetBlockByIndex(short xIdx, short zIdx)
-/// \brief		ÀÎÀÚÀÇ block index¿¡ ÇØ´çÇÏ´Â CMapBlockÀÇ Æ÷ÀÎÅÍ¸¦ ¸®ÅÏÇÑ´Ù.
+/// \brief		ì¸ìì˜ block indexì— í•´ë‹¹í•˜ëŠ” CMapBlockì˜ í¬ì¸í„°ë¥¼ ë¦¬í„´í•œë‹¤.
 /// \author		kelovon
 /// \date		2004-03-24 ~ 2004-03-24
 /// \warning
 ///
-/// \param		xIdx [in] MapBlockÀÇ x index
-/// \param		zIdx [in] MapBlockÀÇ z index
+/// \param		xIdx [in] MapBlockì˜ x index
+/// \param		zIdx [in] MapBlockì˜ z index
 /// \return		CMapBlock*
 ///////////////////////////////////////////////////////////////////////////////
 CMapBlock* CMapChannel::GetBlockByIndex(short xIdx, short zIdx)
@@ -170,16 +170,16 @@ CMapBlock* CMapChannel::GetBlockByIndex(short xIdx, short zIdx)
 /// \fn			void CMapProject::GetAdjacentBlocksInCircle(D3DXVECTOR3 &i_refPosition,
 ///									float i_fDistance,
 ///									vector<CMapBlock> *o_pVectorMapBlock);
-/// \brief		ÁÖ¾îÁø ÁÂÇ¥(x, z)¸¦ Áß½ÉÀ¸·Î ÀÏÁ¤ °Å¸®(i_fDistance) ³»¿¡ ÀÖ´Â
-///				block indexÀÇ vector¸¦ ¹İÈ¯ÇÔ
+/// \brief		ì£¼ì–´ì§„ ì¢Œí‘œ(x, z)ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ì¼ì • ê±°ë¦¬(i_fDistance) ë‚´ì— ìˆëŠ”
+///				block indexì˜ vectorë¥¼ ë°˜í™˜í•¨
 /// \author		kelovon
 /// \date		2004-03-15 ~ 2004-03-15
-/// \warning	³ôÀÌ¸¦ °í·ÁÇÏÁö ÇÑ°í 2Â÷¿ø block¿¡ ´ëÇØ¼­¸¸ Ã³¸®µÊ
+/// \warning	ë†’ì´ë¥¼ ê³ ë ¤í•˜ì§€ í•œê³  2ì°¨ì› blockì— ëŒ€í•´ì„œë§Œ ì²˜ë¦¬ë¨
 ///
-/// \param		i_refPosition [in] ±âÁØ ÁÂÇ¥, x, z¸¸ »ç¿ëÇÔ
-/// \param		i_fDistance [in] ±âÁØ °Å¸®
-/// \param		o_pVectorMapBlock [out] ¹üÀ§¿¡ ¼ÓÇÏ´Â blockÀÇ vector, TLSData¸¦ »ç¿ëÇØ¾ß ÇÔ!
-/// \return		¾øÀ½
+/// \param		i_refPosition [in] ê¸°ì¤€ ì¢Œí‘œ, x, zë§Œ ì‚¬ìš©í•¨
+/// \param		i_fDistance [in] ê¸°ì¤€ ê±°ë¦¬
+/// \param		o_pVectorMapBlock [out] ë²”ìœ„ì— ì†í•˜ëŠ” blockì˜ vector, TLSDataë¥¼ ì‚¬ìš©í•´ì•¼ í•¨!
+/// \return		ì—†ìŒ
 ///////////////////////////////////////////////////////////////////////////////
 void CMapChannel::GetAdjacentBlocksInCircle(D3DXVECTOR3 &i_refPosition,
 									float i_fDistance,
@@ -200,7 +200,7 @@ void CMapChannel::GetAdjacentBlocksInCircle(D3DXVECTOR3 &i_refPosition,
 		while(j <= blockIdx.sMaxZ)
 		{
 			CMapBlock *pBlock = GetBlockByIndex(i,j);
-			// MapBlock °Å¸® È®ÀÎÇÏ±â
+			// MapBlock ê±°ë¦¬ í™•ì¸í•˜ê¸°
 			if ( GGetLength(pBlock->m_CenterPositionX-i_refPosition.x,
 					pBlock->m_CenterPositionZ-i_refPosition.z) < i_fDistance)
 			{
@@ -217,7 +217,7 @@ void CMapChannel::GetAdjacentBlocksInCircle(D3DXVECTOR3 &i_refPosition,
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int CMapChannel::GetNumClients()
-/// \brief		ÇöÀç ¸Ê Ã¤³Î¿¡ Á¸ÀçÇÏ´Â Ä³¸¯ÅÍÀÇ °³¼ö¸¦ ¹İÈ¯
+/// \brief		í˜„ì¬ ë§µ ì±„ë„ì— ì¡´ì¬í•˜ëŠ” ìºë¦­í„°ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜
 /// \author		kelovon
 /// \date		2004-03-24 ~ 2004-03-24
 /// \warning
@@ -281,11 +281,11 @@ int CMapChannel::UpdateMaxUserCounts(int nCurUserCounts)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::GetMonster
-// ¹İÈ¯µÇ´Â Çü  : CMonster*
-// ÇÔ ¼ö ÀÎ ÀÚ  : ClientIndex_t idx
-// ÇÔ ¼ö ¼³ ¸í  : idx¿¡¼­ MONSTER_CLIENT_INDEX_START_NUM¸¦ »« ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â
-//					CMonsterÀÇ Æ÷ÀÎÅÍ¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::GetMonster
+// ë°˜í™˜ë˜ëŠ” í˜•  : CMonster*
+// í•¨ ìˆ˜ ì¸ ì  : ClientIndex_t idx
+// í•¨ ìˆ˜ ì„¤ ëª…  : idxì—ì„œ MONSTER_CLIENT_INDEX_START_NUMë¥¼ ëº€ ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ”
+//					CMonsterì˜ í¬ì¸í„°ë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
 CMonster* CMapChannel::GetMonster(ClientIndex_t i_Monsteridx)
 {
 	int mIdx = i_Monsteridx - MONSTER_CLIENT_INDEX_START_NUM;

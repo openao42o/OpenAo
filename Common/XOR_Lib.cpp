@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 #include "XOR_Lib.h"
 
@@ -14,7 +14,7 @@ XOR::~XOR()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL XOR::XOREncode(BYTE *o_pbyEncoded, BYTE *i_pbySource, int i_nSourceSize, char *i_szKeyString)
-/// \brief		// 2007-10-24 by cmkwon, ¼­¹ö Á¤º¸ ¾ÏÈ£È­
+/// \brief		// 2007-10-24 by cmkwon, ì„œë²„ ì •ë³´ ì•”í˜¸í™”
 /// \author		cmkwon
 /// \date		2007-10-24 ~ 2007-10-24
 /// \warning	
@@ -52,8 +52,8 @@ BOOL XOR::XOREncode(BYTE *o_pbyEncoded, BYTE *i_pbySource, int i_nSourceSize, ch
 	else
 	{
 		int nEndOffset;
-		nEndOffset	= i_nSourceSize - i_nSourceSize%4;	// 2007-10-24 by cmkwon, 4ÀÇ ¹è¼ö ´ÜÀ§±îÁö¸¸ while()¹®À¸·Î Ã³¸®
-		nKeyLen		= nKeyLen - nKeyLen%4;				// 2007-10-24 by cmkwon, 4ÀÇ ¹è¼ö ´ÜÀ§±îÁö¸¸ »ç¿ëÇÑ´Ù.
+		nEndOffset	= i_nSourceSize - i_nSourceSize%4;	// 2007-10-24 by cmkwon, 4ì˜ ë°°ìˆ˜ ë‹¨ìœ„ê¹Œì§€ë§Œ while()ë¬¸ìœ¼ë¡œ ì²˜ë¦¬
+		nKeyLen		= nKeyLen - nKeyLen%4;				// 2007-10-24 by cmkwon, 4ì˜ ë°°ìˆ˜ ë‹¨ìœ„ê¹Œì§€ë§Œ ì‚¬ìš©í•œë‹¤.
 		while(nROffset < nEndOffset)
 		{
 			*(DWORD*)(o_pbyEncoded+nWOffset) = *(DWORD*)(i_pbySource+nROffset) ^ *(DWORD*)(i_szKeyString+nKeyOffset);
@@ -78,7 +78,7 @@ BOOL XOR::XOREncode(BYTE *o_pbyEncoded, BYTE *i_pbySource, int i_nSourceSize, ch
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL XOR::XOREncode(BYTE *o_pbyEncoded, char *i_szSource, char *i_szKeyString)
-/// \brief		// 2007-10-24 by cmkwon, ¼­¹ö Á¤º¸ ¾ÏÈ£È­ - 
+/// \brief		// 2007-10-24 by cmkwon, ì„œë²„ ì •ë³´ ì•”í˜¸í™” - 
 /// \author		cmkwon
 /// \date		2007-10-24 ~ 2007-10-24
 /// \warning	
@@ -93,7 +93,7 @@ BOOL XOR::XOREncode(BYTE *o_pbyEncoded, char *i_szSource, char *i_szKeyString)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL XOR::XORBinary2String(char *o_szEncodedString, BYTE *i_byBinaryData, int i_nDataSize)
-/// \brief		// 2007-10-24 by cmkwon, ¼­¹ö Á¤º¸ ¾ÏÈ£È­
+/// \brief		// 2007-10-24 by cmkwon, ì„œë²„ ì •ë³´ ì•”í˜¸í™”
 /// \author		cmkwon
 /// \date		2007-10-24 ~ 2007-10-24
 /// \warning	
@@ -108,7 +108,7 @@ BOOL XOR::XORBinary2String(char *o_szEncodedString, BYTE *i_byBinaryData, int i_
 		return FALSE;
 	}
 	
-	memset(o_szEncodedString, 0x00, 2*i_nDataSize); // 2007-10-24 by cmkwon, Output ¹öÆÛ ÃÊ±âÈ­
+	memset(o_szEncodedString, 0x00, 2*i_nDataSize); // 2007-10-24 by cmkwon, Output ë²„í¼ ì´ˆê¸°í™”
 	for(int i=0; i < i_nDataSize; i++)
 	{
 		char szTemp[512];
@@ -120,7 +120,7 @@ BOOL XOR::XORBinary2String(char *o_szEncodedString, BYTE *i_byBinaryData, int i_
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL XOR::XORString2Binary(BYTE *o_byBinaryData, char *o_szEncodedString)
-/// \brief		// 2007-10-24 by cmkwon, ¼­¹ö Á¤º¸ ¾ÏÈ£È­
+/// \brief		// 2007-10-24 by cmkwon, ì„œë²„ ì •ë³´ ì•”í˜¸í™”
 /// \author		cmkwon
 /// \date		2007-10-24 ~ 2007-10-24
 /// \warning	
@@ -136,7 +136,7 @@ BOOL XOR::XORString2Binary(BYTE *o_byBinaryData, char *o_szEncodedString)
 		return FALSE;
 	}
 
-	memset(o_byBinaryData, 0x00, nStringLen/2);	// 2007-10-24 by cmkwon, Output ¹öÆÛ ÃÊ±âÈ­
+	memset(o_byBinaryData, 0x00, nStringLen/2);	// 2007-10-24 by cmkwon, Output ë²„í¼ ì´ˆê¸°í™”
 	for(int i=0; i < nStringLen/2; i++)
 	{
 		char szTemp[512];
@@ -150,7 +150,7 @@ BOOL XOR::XORString2Binary(BYTE *o_byBinaryData, char *o_szEncodedString)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL XOR::XORDecrypt(char *o_pszOutputString, char *i_pszInputString, char *i_pKeyString)
-/// \brief		// 2008-04-23 by cmkwon, PreServer ÁÖ¼Ò¸¦ IP¿Í µµ¸ŞÀÎ µÑ´Ù Áö¿ø - XOR::XORDecrypt() Ãß°¡
+/// \brief		// 2008-04-23 by cmkwon, PreServer ì£¼ì†Œë¥¼ IPì™€ ë„ë©”ì¸ ë‘˜ë‹¤ ì§€ì› - XOR::XORDecrypt() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2008-04-23 ~ 2008-04-23
 /// \warning	

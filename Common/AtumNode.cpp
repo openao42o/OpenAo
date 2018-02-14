@@ -1,4 +1,4 @@
-// AtumNode.cpp: implementation of the CAtumNode class.
+ï»¿// AtumNode.cpp: implementation of the CAtumNode class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -20,7 +20,7 @@ CAtumNode::CAtumNode(CAtumNode* pParent)
 }
 
 //
-// ~CCAtumNode - ¼Ò¸êÀÚ
+// ~CCAtumNode - ì†Œë©¸ìž
 //
 CAtumNode::~CAtumNode()
 {
@@ -34,11 +34,11 @@ CAtumNode::~CAtumNode()
 }
 
 //
-//  InitDeviceObjects - µð¹ÙÀÌ½º°´Ã¼ ÃÊ±âÈ­
+//  InitDeviceObjects - ë””ë°”ì´ìŠ¤ê°ì²´ ì´ˆê¸°í™”
 //
 HRESULT CAtumNode::InitDeviceObjects()
 {
-	// Â÷ÀÏµåÀÇ °ÍÀ» È£Ãâ
+	// ì°¨ì¼ë“œì˜ ê²ƒì„ í˜¸ì¶œ
 	if ( m_pChild ) 
 		for( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
 			pAtumNode->InitDeviceObjects();
@@ -48,11 +48,11 @@ HRESULT CAtumNode::InitDeviceObjects()
 
 
 //
-//  RestoreDeviceObjects - µð¹ÙÀÌ½º °´Ã¼ Àç»ý
+//  RestoreDeviceObjects - ë””ë°”ì´ìŠ¤ ê°ì²´ ìž¬ìƒ
 //
 HRESULT CAtumNode::RestoreDeviceObjects()
 {
-	// Â÷ÀÏµåÀÇ °ÍÀ» È£Ãâ
+	// ì°¨ì¼ë“œì˜ ê²ƒì„ í˜¸ì¶œ
 	if ( m_pChild ) 
 		for( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
 			pAtumNode->RestoreDeviceObjects();
@@ -61,11 +61,11 @@ HRESULT CAtumNode::RestoreDeviceObjects()
 }
 
 //
-//  InvalidateDeviceObjects - µð¹ÙÀÌ½º ¹«È¿È­
+//  InvalidateDeviceObjects - ë””ë°”ì´ìŠ¤ ë¬´íš¨í™”
 //
 HRESULT CAtumNode::InvalidateDeviceObjects()
 {
-	// Â÷ÀÏµåÀÇ °ÍÀ» È£Ãâ
+	// ì°¨ì¼ë“œì˜ ê²ƒì„ í˜¸ì¶œ
 	if ( m_pChild ) 
 		for( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
 			pAtumNode->InvalidateDeviceObjects(); // 2016-01-08 exception at this point
@@ -74,11 +74,11 @@ HRESULT CAtumNode::InvalidateDeviceObjects()
 }
 
 //
-//  DeleteDeviceObjects - µð¹ÙÀÌ½º°´Ã¼ Áö¿ò
+//  DeleteDeviceObjects - ë””ë°”ì´ìŠ¤ê°ì²´ ì§€ì›€
 //
 HRESULT CAtumNode::DeleteDeviceObjects()
 {
-	// Â÷ÀÏµåÀÇ °ÍÀ» È£Ãâ
+	// ì°¨ì¼ë“œì˜ ê²ƒì„ í˜¸ì¶œ
 	if ( m_pChild ) 
 		for( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
 			pAtumNode->DeleteDeviceObjects();
@@ -87,7 +87,7 @@ HRESULT CAtumNode::DeleteDeviceObjects()
 }
 
 //
-//  Tick - ÁøÇà
+//  Tick - ì§„í–‰
 //
 void CAtumNode::Tick()
 {
@@ -159,23 +159,23 @@ void CAtumNode::TickParallel()
 }
 
 //
-//  Render - ·»´õ¸µ
+//  Render - ë Œë”ë§
 //
 void CAtumNode::Render()
 {
-	// Â÷ÀÏµåÀÇ °ÍÀ» È£Ãâ
+	// ì°¨ì¼ë“œì˜ ê²ƒì„ í˜¸ì¶œ
 	if (m_pChild)
 		for (auto pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext)
 			pAtumNode->Render();
 }
 
 //
-//  AddChild - Â÷ÀÏµå¸¦ Ãß°¡
+//  AddChild - ì°¨ì¼ë“œë¥¼ ì¶”ê°€
 //
 
 CAtumNode* CAtumNode::AddChild( CAtumNode* pAtumNode )
 {
-  // Â÷ÀÏµå°¡ ÀÖÀ¸¸é ±×°ÍÀÇ ¾Õ¿¡´Ù ³¢¿ö³Ö´Â´Ù.
+  // ì°¨ì¼ë“œê°€ ìžˆìœ¼ë©´ ê·¸ê²ƒì˜ ì•žì—ë‹¤ ë¼ì›Œë„£ëŠ”ë‹¤.
 	if(pAtumNode->m_bUsing)
 	{
 		CAtumNode * pNode = m_pChild;
