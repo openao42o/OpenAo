@@ -5,7 +5,7 @@
 
 const char* GetProtocolTypeString(MessageType_t msgType)
 {
-	switch(msgType)
+	switch (msgType)
 	{
 	case T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION:			return "T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION";
 	case T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO:		return "T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO";
@@ -1730,7 +1730,7 @@ const char* GetProtocolTypeString(MessageType_t msgType)
 const char* GetGameLogTypeString(T1<T0::FL_LOG> logType)
 {
 
-	switch(logType)
+	switch (logType)
 	{
 
 	// DEVX NOT IMPLEMENTED YET
@@ -1895,7 +1895,7 @@ const char* GetGameLogTypeString(T1<T0::FL_LOG> logType)
 ///////////////////////////////////////////////////////////////////////////////
 const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy)
 {
-	switch(i_byItemUpdateTy)
+	switch (i_byItemUpdateTy)
 	{
 	case IUT_GENERAL:						return "IUT_GENERAL";
 	case IUT_DROP_ITEM:						return "IUT_DROP_ITEM";
@@ -1950,7 +1950,7 @@ const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy)
 ///////////////////////////////////////////////////////////////////////////////
 const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy)
 {
-	switch(i_byItemDeleteTy)
+	switch (i_byItemDeleteTy)
 	{
 	case IDT_GENERAL:						return "IDT_GENERAL";
 	case IDT_EXPIRE_TIME:					return "IDT_EXPIRE_TIME";
@@ -1963,7 +1963,7 @@ const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy)
 
 const char* GetErrorString(Err_t err)
 {
-	switch(err)
+	switch (err)
 	{
 	case ERR_NO_ERROR:									return "ERR_NO_ERROR";
 	case ERR_COMMON_UNKNOWN_ERROR:						return "ERR_COMMON_UNKNOWN_ERROR";
@@ -2590,7 +2590,7 @@ const char* GetErrorString(Err_t err)
 
 char *Get_EVENT_TYPE_String(EventType_t i_evType)
 {
-	switch(i_evType)
+	switch (i_evType)
 	{
 		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_NOEVENT);
 		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_WARP);
@@ -2614,7 +2614,7 @@ char *Get_EVENT_TYPE_String(EventType_t i_evType)
 
 char * GetStringBLOCKED_TYPE(int i_blocktype)
 {
-	switch(i_blocktype)
+	switch (i_blocktype)
 	{
 	case T_BLOCKEDACCOUNT_UNKNOWN:				return "Unknown";				// 알수 없음
 	case T_BLOCKEDACCOUNT_NORMAL:				return "Normal";				// 특별한 사유 없음, 임시로
@@ -2641,43 +2641,43 @@ char * GetStringBLOCKED_TYPE(int i_blocktype)
 ///////////////////////////////////////////////////////////////////////////////
 int GetBlockTypeBYBlockTypeString(char *i_szTyString)
 {
-	if(0 == stricmp(i_szTyString, "Unknown"))
+	if (0 == stricmp(i_szTyString, "Unknown"))
 	{
 		return T_BLOCKEDACCOUNT_UNKNOWN;
 	}
 
-	if(0 == stricmp(i_szTyString, "Normal"))
+	if (0 == stricmp(i_szTyString, "Normal"))
 	{
 		return T_BLOCKEDACCOUNT_NORMAL;
 	}
-	if(0 == stricmp(i_szTyString, "Related Money"))
+	if (0 == stricmp(i_szTyString, "Related Money"))
 	{
 		return T_BLOCKEDACCOUNT_MONEY_RELATED;
 	}
-	if(0 == stricmp(i_szTyString, "Related Item"))
+	if (0 == stricmp(i_szTyString, "Related Item"))
 	{
 		return T_BLOCKEDACCOUNT_ITEM_RELATED;
 	}
-	if(0 == stricmp(i_szTyString, "Related SpeedHack"))
+	if (0 == stricmp(i_szTyString, "Related SpeedHack"))
 	{
 		return T_BLOCKEDACCOUNT_SPEEDHACK_RELATED;
 	}
-	if(0 == stricmp(i_szTyString, "Related Chatting"))
+	if (0 == stricmp(i_szTyString, "Related Chatting"))
 	{
 		return T_BLOCKEDACCOUNT_CHAT_RELATED;
 	}
-	if(0 == stricmp(i_szTyString, "Related GameBug"))
+	if (0 == stricmp(i_szTyString, "Related GameBug"))
 	{
 		return T_BLOCKEDACCOUNT_CHAT_GAMEBUG;
 	}
 	// 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
-	if(0 == stricmp(i_szTyString, "Related AutoBlock - MemHack"))
+	if (0 == stricmp(i_szTyString, "Related AutoBlock - MemHack"))
 	{
 		return T_BLOCKEDACCOUNT_MEMORYHACK_AUTOBLOCK;
 	}
 	// end 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
 	// 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
-	if(0 == stricmp(i_szTyString, "Related AutoBlock - SpdHack"))
+	if (0 == stricmp(i_szTyString, "Related AutoBlock - SpdHack"))
 	{
 		return T_BLOCKEDACCOUNT_SPEEDHACK_AUTOBLOCK;
 	}
@@ -2699,7 +2699,7 @@ const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=F
 {
 	if (!i_bForUser)
 	{
-		switch(i_byGuildMarkState)
+		switch (i_byGuildMarkState)
 		{
 		case GUILD_MARK_STATE_NONE:					return "GUILD_MARK_STATE_NONE";
 		case GUILD_MARK_STATE_WAITING_PERMISSION:	return "GUILD_MARK_STATE_WAITING_PERMISSION";
@@ -2708,7 +2708,7 @@ const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=F
 		}
 	}
 
-	switch(i_byGuildMarkState)
+	switch (i_byGuildMarkState)
 	{
 	case GUILD_MARK_STATE_NONE:					return STRMSG_070802_0004;
 	case GUILD_MARK_STATE_WAITING_PERMISSION:	return STRMSG_070802_0005;
@@ -2730,7 +2730,7 @@ const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=F
 ///////////////////////////////////////////////////////////////////////////////
 char *GetEnchatLogTypeString(int i_nEnchantLogTy)
 {
-	switch(i_nEnchantLogTy)
+	switch (i_nEnchantLogTy)
 	{
 	case ENCHANT_LOGTYPE_ENCHANT_FAIL				:				return "ENCHANT_LOGTYPE_ENCHANT_FAIL";
 	case ENCHANT_LOGTYPE_ENCHANT_SUCCESS			:				return "ENCHANT_LOGTYPE_ENCHANT_SUCCESS";
@@ -2752,7 +2752,7 @@ char *GetEnchatLogTypeString(int i_nEnchantLogTy)
 // 2013-07-01 by bckim, 10인챈트 미만 하이퍼카드처리, 로그추가, 운영툴 보완
 char *GetTryEnchantSuccessTypeString(int i_nSuccessType)
 {
-	switch(i_nSuccessType)
+	switch (i_nSuccessType)
 	{
 		case TRY_ENCHANT_FAIL				:				return "FAIL";
 		case TRY_ENCHANT_SUCCESS			:				return "SUCCESS";
@@ -2766,29 +2766,29 @@ char *GetTryEnchantSuccessTypeString(int i_nSuccessType)
 
 int GetEnchantLogType(ITEM *i_pEnchantItemInfo, bool i_bSuccessFlag)
 {
-	if(ITEMKIND_ENCHANT == i_pEnchantItemInfo->Kind)
+	if (ITEMKIND_ENCHANT == i_pEnchantItemInfo->Kind)
 	{
-		if(i_pEnchantItemInfo->IsExistDesParam(DES_ENCHANT_INITIALIZE))
+		if (i_pEnchantItemInfo->IsExistDesParam(DES_ENCHANT_INITIALIZE))
 		{
 			return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL : ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS;
 		}
 		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_FAIL : ENCHANT_LOGTYPE_ENCHANT_SUCCESS;
 	}
 
-	if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX_INITIALIZE))
+	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX_INITIALIZE))
 	{
 		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS;
 	}
-	if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX_INITIALIZE))
+	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX_INITIALIZE))
 	{
 		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS;
 	}
 
-	if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX))
+	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX))
 	{
 		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS;
 	}
-	if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX))
+	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX))
 	{
 		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS;
 	}
@@ -2801,7 +2801,7 @@ char* GetErrorXMLRPCString(int err)
 {
 	// 아래 부분 구현이 마무리되면 영어로 번역 할 예정
 
-	switch(err)
+	switch (err)
 	{
 	/*
 	case XMLRPC_ERROR_INTERNAL_SERVER				:				return "서버 내부 에러";
