@@ -1,4 +1,6 @@
 ﻿//Copyright [2002] MasangSoft
+#ifndef COMMON_ACEONLINESQL_H_
+#define COMMON_ACEONLINESQL_H_
 #if !defined(_ACEONLINE_SQL_H_)
 #define _ACEONLINE_SQL_H_
 
@@ -58,4 +60,5 @@ struct SBILLING_RET_DATA
 
 
 
+#endif
 #endif
