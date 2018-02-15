@@ -67,7 +67,7 @@ BOOL CDot::CheckApplyingDot(UID32_t i_nTimerUID, DestParam_t i_byDesParam)      
 
     mtvectorDotInfo::iterator    itr = m_mtvectDotInfo.begin();
 
-    while(itr != m_mtvectDotInfo.end()) 
+    while (itr != m_mtvectDotInfo.end()) 
     {
         if ( i_nTimerUID == itr->FirstTimerUID && i_byDesParam == itr->DesParam ) 
         {
@@ -111,8 +111,8 @@ BOOL CDot::ReleaseDot(UID32_t i_nTimerUID) {
     mt_auto_lock mta(&m_mtvectDotInfo);
 
     mtvectorDotInfo::iterator    itr = m_mtvectDotInfo.begin();
-    while(itr != m_mtvectDotInfo.end()) {
-        if(i_nTimerUID == itr->FirstTimerUID) {
+    while (itr != m_mtvectDotInfo.end()) {
+        if (i_nTimerUID == itr->FirstTimerUID) {
             itr = m_mtvectDotInfo.erase(itr);
             return TRUE;
         }
@@ -123,7 +123,7 @@ BOOL CDot::ReleaseDot(UID32_t i_nTimerUID) {
 }
 
 BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {        // 2011-08-01 by hskim, 파트너 시스템 2차 - 자료형 변경 (DestParameter - 255 -> 32767 지원)
-    if(NULL == i_pSkill) {
+    if (NULL == i_pSkill) {
         // 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크
         return FALSE;
     }
@@ -131,8 +131,8 @@ BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {
     mt_auto_lock mta(&m_mtvectDotInfo);
     
     mtvectorDotInfo::iterator    itr = m_mtvectDotInfo.begin();
-    while(itr != m_mtvectDotInfo.end()) {
-        if(i_pSkill->ItemNum == itr->ItemNum        // 2009-09-09 ~ 2010-01-20 by dhjin, 인피니티 - 가끔 몬스터 스킬 사용 안되는 버그 수정
+    while (itr != m_mtvectDotInfo.end()) {
+        if (i_pSkill->ItemNum == itr->ItemNum        // 2009-09-09 ~ 2010-01-20 by dhjin, 인피니티 - 가끔 몬스터 스킬 사용 안되는 버그 수정
             &&i_byDestParam  == itr->DesParam) {
             itr = m_mtvectDotInfo.erase(itr);
             return TRUE;
@@ -146,8 +146,8 @@ BOOL CDot::ReleaseDotByCancelSkill(ITEM * i_pSkill, DestParam_t i_byDestParam) {
 ClientIndex_t CDot::GetClientIdx(UID32_t i_nTimerUID) {
     mt_auto_lock mta(&m_mtvectDotInfo);
     mtvectorDotInfo::iterator    itr = m_mtvectDotInfo.begin();
-    while(itr != m_mtvectDotInfo.end()) {
-        if(i_nTimerUID == itr->FirstTimerUID) {
+    while (itr != m_mtvectDotInfo.end()) {
+        if (i_nTimerUID == itr->FirstTimerUID) {
             return itr->ClientIndex;
         }
         itr++;
@@ -157,15 +157,15 @@ ClientIndex_t CDot::GetClientIdx(UID32_t i_nTimerUID) {
 }
 
 void CDot::CopyDotInfo(UID32_t i_nTimerUID, DOTINFO * o_pDotInfo) {
-    if(NULL == o_pDotInfo) {
+    if (NULL == o_pDotInfo) {
         // 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크
         return;
     }
 
     mt_auto_lock mta(&m_mtvectDotInfo);
     mtvectorDotInfo::iterator    itr = m_mtvectDotInfo.begin();
-    while(itr != m_mtvectDotInfo.end()) {
-        if(i_nTimerUID == itr->FirstTimerUID) {
+    while (itr != m_mtvectDotInfo.end()) {
+        if (i_nTimerUID == itr->FirstTimerUID) {
             o_pDotInfo->FirstTimerUID    = itr->FirstTimerUID;
             o_pDotInfo->ClientIndex        = itr->ClientIndex;
             o_pDotInfo->ItemNum            = itr->ItemNum;
@@ -180,7 +180,7 @@ void CDot::CopyDotInfo(UID32_t i_nTimerUID, DOTINFO * o_pDotInfo) {
 }
 
 INT CDot::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DOT_INFO *o_pDotInfo) {
-    if(NULL == o_pDotInfo) {
+    if (NULL == o_pDotInfo) {
         // 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크
         return FALSE;
     }

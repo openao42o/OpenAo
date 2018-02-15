@@ -1,6 +1,7 @@
+ï»¿//Copyright[2002] MasangSoft
 #include "stdafx.h"
 #include "FTPManager.h"
-#include "AtumError.h"		// 2007-01-05 by cmkwon
+#include "AtumError.h"        // 2007-01-05 by cmkwon
 
 DWORD WINAPI DownloadThread(LPVOID lpParam);
 
@@ -9,321 +10,321 @@ DWORD WINAPI DownloadThread(LPVOID lpParam);
 //////////////////////////////////////////////////////////////////////
 
 #ifndef DBGOUT
-#define DBGOUT	((void)0)
+#define DBGOUT    ((void)0)
 #endif
 
 BOOL CFTPManager::ConnectToServer(const char *i_pServerName, int i_nServerPort, const char *i_pUserName, const char *i_pPassword)
 {
-	m_hInternet = InternetOpen("Atum Pre Server", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
-	if (m_hInternet == NULL)
-	{
-		DbgOut("InternetOpen ERROR: %d\r\n", GetLastError());
-		return FALSE;
-	}
+    m_hInternet = InternetOpen("Atum Pre Server", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+    if (m_hInternet == NULL)
+    {
+        DbgOut("InternetOpen ERROR: %d\r\n", GetLastError());
+        return FALSE;
+    }
 
-	m_hFtpConnect = InternetConnect(m_hInternet, i_pServerName, i_nServerPort, i_pUserName, i_pPassword, INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
-	if (m_hFtpConnect == NULL)
-	{
-		DbgOut("InternetConnect ERROR: %d\r\n", GetLastError());
-		return FALSE;
-	}
+    m_hFtpConnect = InternetConnect(m_hInternet, i_pServerName, i_nServerPort, i_pUserName, i_pPassword, INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
+    if (m_hFtpConnect == NULL)
+    {
+        DbgOut("InternetConnect ERROR: %d\r\n", GetLastError());
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL CFTPManager::ChangeCurrentDirectory(const char *i_pDirName)
 {
-	// change directory
-	if ( FtpSetCurrentDirectory(m_hFtpConnect, i_pDirName) == FALSE )
-	{
-		// check: error
-		DbgOut("Changer Dir ERROR: %d\r\n", GetLastError());
-		return FALSE;
-	}
+    // change directory
+    if ( FtpSetCurrentDirectory(m_hFtpConnect, i_pDirName) == FALSE )
+    {
+        // check: error
+        DbgOut("Changer Dir ERROR: %d\r\n", GetLastError());
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 char* CFTPManager::GetCurrentDirectory()
 {
-	return NULL;
+    return NULL;
 }
 
 HINTERNET CFTPManager::GetFileInfo(const char *i_pRemoteFileName, WIN32_FIND_DATA *o_pRemoteFileInfo)
 {
-	HINTERNET hFile = NULL;
-	memset(o_pRemoteFileInfo, 0, sizeof(WIN32_FIND_DATA));
+    HINTERNET hFile = NULL;
+    memset(o_pRemoteFileInfo, 0, sizeof(WIN32_FIND_DATA));
 
-	if ( !(hFile = FtpFindFirstFile (m_hFtpConnect, i_pRemoteFileName, o_pRemoteFileInfo, 0, 0) ) )
-	{
-		if (GetLastError()  == ERROR_NO_MORE_FILES)
-		{
-			// ÇØ´ç ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ½
-			return NULL;
-		}
-		else
-		{
-			DbgOut("Get File Info ERROR: %d\n", GetLastError());
-			return NULL;
-		}
-	}
+    if ( !(hFile = FtpFindFirstFile (m_hFtpConnect, i_pRemoteFileName, o_pRemoteFileInfo, 0, 0) ) )
+    {
+        if (GetLastError()  == ERROR_NO_MORE_FILES)
+        {
+            // í•´ë‹¹ íŒŒì¼ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
+            return NULL;
+        }
+        else
+        {
+            DbgOut("Get File Info ERROR: %d\n", GetLastError());
+            return NULL;
+        }
+    }
 
-	// close handle
-	InternetCloseHandle(hFile);
+    // close handle
+    InternetCloseHandle(hFile);
 
-	return hFile;
+    return hFile;
 }
 
 BOOL CFTPManager::DownloadFile(const char *i_pRemoteFileName, const char *i_pLocalFileName /*= NULL*/, CProgressCtrl *i_pProgressControl /*=NULL*/, HWND i_hWnd /*=NULL*/)
 {
-	if (i_hWnd)
-	{
-		if (m_threadDownload || i_hWnd == NULL || i_pRemoteFileName == NULL) return false;
+    if (i_hWnd)
+    {
+        if (m_threadDownload || i_hWnd == NULL || i_pRemoteFileName == NULL) return false;
 
-		m_hUpdateWindow = i_hWnd;
-		
-		strcpy(m_szRemoteFileName, i_pRemoteFileName);
-		
-		if (i_pLocalFileName) strcpy(m_szLocalFileName, i_pLocalFileName);
+        m_hUpdateWindow = i_hWnd;
+        
+        strcpy(m_szRemoteFileName, i_pRemoteFileName);
+        
+        if (i_pLocalFileName) strcpy(m_szLocalFileName, i_pLocalFileName);
 
-		try
-		{
-			//unsigned thrdaddr;
-			m_threadDownload = new thread { DownloadThread, LPVOID(this) }; // ch BEGINTHREADEX (NULL, 0, DownloadThread, LPVOID(this), 0, &thrdaddr);
-		}
-		catch (const system_error& error)
-		{
-			return false;
-		}
-		
-		return true;
-	}
+        try
+        {
+            //unsigned thrdaddr;
+            m_threadDownload = new thread { DownloadThread, LPVOID(this) }; // ch BEGINTHREADEX (NULL, 0, DownloadThread, LPVOID(this), 0, &thrdaddr);
+        }
+        catch (const system_error& error)
+        {
+            return false;
+        }
+        
+        return true;
+    }
 
-	////////////////////////////
-	// open remote file
-	HINTERNET hRemoteFile = FtpOpenFile(m_hFtpConnect, i_pRemoteFileName, GENERIC_READ, FTP_TRANSFER_TYPE_BINARY, NULL);
-	if (hRemoteFile == NULL)
-	{
-		return FALSE;
-	}
+    ////////////////////////////
+    // open remote file
+    HINTERNET hRemoteFile = FtpOpenFile(m_hFtpConnect, i_pRemoteFileName, GENERIC_READ, FTP_TRANSFER_TYPE_BINARY, NULL);
+    if (hRemoteFile == NULL)
+    {
+        return FALSE;
+    }
 
-	////////////////////////////
-	// open local file
-	CFile fileObject;
-	CFileException ex;
-	CString szLocalFileName;
-	if (i_pLocalFileName == NULL)
-	{
-		szLocalFileName = i_pRemoteFileName;
-		if (szLocalFileName.ReverseFind('\\') != -1)
-		{
-			szLocalFileName = szLocalFileName.Right(szLocalFileName.ReverseFind('\\'));
-		}
-		else if (szLocalFileName.ReverseFind('/') != -1)
-		{
-			szLocalFileName = szLocalFileName.Right(szLocalFileName.GetLength() - szLocalFileName.ReverseFind('/') - 1);
-		}
-	}
-	else
-	{
-		szLocalFileName = i_pLocalFileName;
-	}
+    ////////////////////////////
+    // open local file
+    CFile fileObject;
+    CFileException ex;
+    CString szLocalFileName;
+    if (i_pLocalFileName == NULL)
+    {
+        szLocalFileName = i_pRemoteFileName;
+        if (szLocalFileName.ReverseFind('\\') != -1)
+        {
+            szLocalFileName = szLocalFileName.Right(szLocalFileName.ReverseFind('\\'));
+        }
+        else if (szLocalFileName.ReverseFind('/') != -1)
+        {
+            szLocalFileName = szLocalFileName.Right(szLocalFileName.GetLength() - szLocalFileName.ReverseFind('/') - 1);
+        }
+    }
+    else
+    {
+        szLocalFileName = i_pLocalFileName;
+    }
 
-	if (fileObject.Open(szLocalFileName, CFile::modeCreate | CFile::modeWrite, &ex) == FALSE)
-	{
-		TCHAR szError[1024];
-		ex.GetErrorMessage(szError, 1024);
-		DbgOut("Unable to create file: %s\r\n", szError);
-		return FALSE;
-	}
+    if (fileObject.Open(szLocalFileName, CFile::modeCreate | CFile::modeWrite, &ex) == FALSE)
+    {
+        TCHAR szError[1024];
+        ex.GetErrorMessage(szError, 1024);
+        DbgOut("Unable to create file: %s\r\n", szError);
+        return FALSE;
+    }
 
-	// download file
-	DWORD nDownloadBufferSize = 4096;
-	char *buffer = new char[nDownloadBufferSize];
-	DWORD amount_read = nDownloadBufferSize;
-	UINT total_read = 0;
+    // download file
+    DWORD nDownloadBufferSize = 4096;
+    char *buffer = new char[nDownloadBufferSize];
+    DWORD amount_read = nDownloadBufferSize;
+    UINT total_read = 0;
 
-	while (TRUE)
-	{
-		if (!InternetReadFile(hRemoteFile, buffer, nDownloadBufferSize, &amount_read))
-		{
-			// error
-			DbgOut("InternetReadFile ERROR: %d\n", GetLastError());
-			return FALSE;
-		}
+    while (TRUE)
+    {
+        if (!InternetReadFile(hRemoteFile, buffer, nDownloadBufferSize, &amount_read))
+        {
+            // error
+            DbgOut("InternetReadFile ERROR: %d\n", GetLastError());
+            return FALSE;
+        }
 
-		if(0 == amount_read)
-		{// 2006-06-30 by cmkwon, ¿Ï·á½Ã 0 Bytes¸¦ ¸®ÅÏÇÑ´Ù.
+        if(0 == amount_read)
+        {// 2006-06-30 by cmkwon, ì™„ë£Œì‹œ 0 Bytesë¥¼ ë¦¬í„´í•œë‹¤.
 
-			break;
-		}
+            break;
+        }
 
-		fileObject.Write(buffer, amount_read);	// Write this to our data file
-		total_read += amount_read;
+        fileObject.Write(buffer, amount_read);    // Write this to our data file
+        total_read += amount_read;
 
-		// progress control Ã³¸®
-		if (i_pProgressControl != NULL)
-		{
-			i_pProgressControl->SetPos(total_read);
-		}
+        // progress control ì²˜ë¦¬
+        if (i_pProgressControl != NULL)
+        {
+            i_pProgressControl->SetPos(total_read);
+        }
 
-		// 2009-01-21 by cmkwon, ÀÚµ¿ ¾÷µ¥ÀÌÆ® ´Ù¿î·Îµå ¼Óµµ °³¼± - FTP, Sleep(10)À» ÁÖ¼® Ã³¸®ÇÔ.
-		//Sleep(10);
-	}
-	if (i_pProgressControl != NULL)
-	{// 2006-06-30 by cmkwon, ÇÁ·Î±×·¹½º¹Ù¸¦ 100%·Î ¼³Á¤
-		int nLower, nUpper;
-		i_pProgressControl->GetRange(nLower, nUpper);
-		i_pProgressControl->SetPos(nUpper);
-	}
+        // 2009-01-21 by cmkwon, ìžë™ ì—…ë°ì´íŠ¸ ë‹¤ìš´ë¡œë“œ ì†ë„ ê°œì„  - FTP, Sleep(10)ì„ ì£¼ì„ ì²˜ë¦¬í•¨.
+        //Sleep(10);
+    }
+    if (i_pProgressControl != NULL)
+    {// 2006-06-30 by cmkwon, í”„ë¡œê·¸ë ˆìŠ¤ë°”ë¥¼ 100%ë¡œ ì„¤ì •
+        int nLower, nUpper;
+        i_pProgressControl->GetRange(nLower, nUpper);
+        i_pProgressControl->SetPos(nUpper);
+    }
 
-	delete buffer;				// delete buffer
-	fileObject.Close();			// close resources
+    delete buffer;                // delete buffer
+    fileObject.Close();            // close resources
 // 2006-07-03 by cmkwon
-//	InternetCloseHandle(hRemoteFile);
-	return TRUE;
+//    InternetCloseHandle(hRemoteFile);
+    return TRUE;
 }
 
 BOOL CFTPManager::DownloadFileByThread(const char *i_pRemoteFileName, const char *i_pLocalFileName, HWND i_hWnd)
 {
-	if(NULL == i_hWnd
-		|| 0 == strcmp(i_pRemoteFileName, ""))
-	{
-		return FALSE;
-	}
+    if(NULL == i_hWnd
+        || 0 == strcmp(i_pRemoteFileName, ""))
+    {
+        return FALSE;
+    }
 
-	////////////////////////////
-	// open remote file
-	HINTERNET hRemoteFile = FtpOpenFile(m_hFtpConnect, i_pRemoteFileName, GENERIC_READ, FTP_TRANSFER_TYPE_BINARY, NULL);
-	if (hRemoteFile == NULL)
-	{
-		::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_UPDATE_FILE_NOT_FOUND, 0);
-		return FALSE;
-	}
+    ////////////////////////////
+    // open remote file
+    HINTERNET hRemoteFile = FtpOpenFile(m_hFtpConnect, i_pRemoteFileName, GENERIC_READ, FTP_TRANSFER_TYPE_BINARY, NULL);
+    if (hRemoteFile == NULL)
+    {
+        ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_UPDATE_FILE_NOT_FOUND, 0);
+        return FALSE;
+    }
 
-	////////////////////////////
-	// open local file
-	CFile fileObject;
-	CFileException ex;
-	CString szLocalFileName;
-	if (i_pLocalFileName == NULL)
-	{
-		szLocalFileName = i_pRemoteFileName;
-		if (szLocalFileName.ReverseFind('\\') != -1)
-		{
-			szLocalFileName = szLocalFileName.Right(szLocalFileName.ReverseFind('\\'));
-		}
-		else if (szLocalFileName.ReverseFind('/') != -1)
-		{
-			szLocalFileName = szLocalFileName.Right(szLocalFileName.GetLength() - szLocalFileName.ReverseFind('/') - 1);
-		}
-	}
-	else
-	{
-		szLocalFileName = i_pLocalFileName;
-	}
+    ////////////////////////////
+    // open local file
+    CFile fileObject;
+    CFileException ex;
+    CString szLocalFileName;
+    if (i_pLocalFileName == NULL)
+    {
+        szLocalFileName = i_pRemoteFileName;
+        if (szLocalFileName.ReverseFind('\\') != -1)
+        {
+            szLocalFileName = szLocalFileName.Right(szLocalFileName.ReverseFind('\\'));
+        }
+        else if (szLocalFileName.ReverseFind('/') != -1)
+        {
+            szLocalFileName = szLocalFileName.Right(szLocalFileName.GetLength() - szLocalFileName.ReverseFind('/') - 1);
+        }
+    }
+    else
+    {
+        szLocalFileName = i_pLocalFileName;
+    }
 
-	if (fileObject.Open(szLocalFileName, CFile::modeCreate | CFile::modeWrite, &ex) == FALSE)
-	{
-		TCHAR szError[1024];
-		ex.GetErrorMessage(szError, 1024);
-		DbgOut("Unable to create file: %s\r\n", szError);
-		::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_LOCAL_FILE_CREATE_FAIL, 0);
-		return FALSE;
-	}
+    if (fileObject.Open(szLocalFileName, CFile::modeCreate | CFile::modeWrite, &ex) == FALSE)
+    {
+        TCHAR szError[1024];
+        ex.GetErrorMessage(szError, 1024);
+        DbgOut("Unable to create file: %s\r\n", szError);
+        ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_LOCAL_FILE_CREATE_FAIL, 0);
+        return FALSE;
+    }
 
-	// download file
-	DWORD nDownloadBufferSize = 4096;
-	char *buffer = new char[nDownloadBufferSize];
-	DWORD amount_read = nDownloadBufferSize;
-	UINT total_read = 0;
+    // download file
+    DWORD nDownloadBufferSize = 4096;
+    char *buffer = new char[nDownloadBufferSize];
+    DWORD amount_read = nDownloadBufferSize;
+    UINT total_read = 0;
 
-	while (amount_read == nDownloadBufferSize)
-	{
-		if (!InternetReadFile(hRemoteFile, buffer, nDownloadBufferSize, &amount_read))
-		{
-			// error
-			DbgOut("InternetReadFile ERROR: %d\n", GetLastError());
-			::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_UPDATE_FILE_DOWNLOADING_FAIL, 0);
-			return FALSE;
-		}
-		if(0 == amount_read)
-		{// 2006-06-30 by cmkwon
-			break;
-		}
+    while (amount_read == nDownloadBufferSize)
+    {
+        if (!InternetReadFile(hRemoteFile, buffer, nDownloadBufferSize, &amount_read))
+        {
+            // error
+            DbgOut("InternetReadFile ERROR: %d\n", GetLastError());
+            ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_UPDATE_FILE_DOWNLOADING_FAIL, 0);
+            return FALSE;
+        }
+        if(0 == amount_read)
+        {// 2006-06-30 by cmkwon
+            break;
+        }
 
-		fileObject.Write(buffer, amount_read);	// Write this to our data file
+        fileObject.Write(buffer, amount_read);    // Write this to our data file
 
-		total_read += amount_read;
+        total_read += amount_read;
 
-		::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_PROGRESS, total_read, 0);
-		if(m_bDownloadThreadCancelFlag)
-		{		
-			delete buffer;			// delete buffer
-			fileObject.Close();		// close resources
-			// 2006-07-03 by cmkwon
-			//InternetCloseHandle(hRemoteFile);
-			return FALSE;
-		}
-	}
+        ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_PROGRESS, total_read, 0);
+        if(m_bDownloadThreadCancelFlag)
+        {        
+            delete buffer;            // delete buffer
+            fileObject.Close();        // close resources
+            // 2006-07-03 by cmkwon
+            //InternetCloseHandle(hRemoteFile);
+            return FALSE;
+        }
+    }
 
-	delete buffer;				// delete buffer
-	fileObject.Close();			// close resources
+    delete buffer;                // delete buffer
+    fileObject.Close();            // close resources
 // 2006-07-03 by cmkwon
-//	InternetCloseHandle(hRemoteFile);
-	::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_OK, 0, 0);
-	return TRUE;
+//    InternetCloseHandle(hRemoteFile);
+    ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_OK, 0, 0);
+    return TRUE;
 }
 
 DWORD WINAPI DownloadThread(LPVOID lpParam)
 {
-	auto pFTP = reinterpret_cast<CFTPManager*>(lpParam);
-	
-	if (pFTP->m_szLocalFileName[0] == '\0')
-		
-		pFTP->DownloadFileByThread(pFTP->m_szRemoteFileName, nullptr, pFTP->m_hUpdateWindow);
+    auto pFTP = reinterpret_cast<CFTPManager*>(lpParam);
+    
+    if (pFTP->m_szLocalFileName[0] == '\0')
+        
+        pFTP->DownloadFileByThread(pFTP->m_szRemoteFileName, nullptr, pFTP->m_hUpdateWindow);
 
-	else pFTP->DownloadFileByThread(pFTP->m_szRemoteFileName, pFTP->m_szLocalFileName, pFTP->m_hUpdateWindow);
+    else pFTP->DownloadFileByThread(pFTP->m_szRemoteFileName, pFTP->m_szLocalFileName, pFTP->m_hUpdateWindow);
 
-	
-	pFTP->CloseConnection();
+    
+    pFTP->CloseConnection();
 
-	return 0x20;
+    return 0x20;
 }
 
 int CFTPManager::GetFileSize(const char *i_pRemoteFileName, HINTERNET &i_hFile)
 {
-	// Find file info
-	WIN32_FIND_DATA fileInfo;
-	i_hFile = GetFileInfo(i_pRemoteFileName, &fileInfo);
-	if (i_hFile == NULL)
-	{
-		return -1;
-	}
+    // Find file info
+    WIN32_FIND_DATA fileInfo;
+    i_hFile = GetFileInfo(i_pRemoteFileName, &fileInfo);
+    if (i_hFile == NULL)
+    {
+        return -1;
+    }
 
-	// close handle
-	InternetCloseHandle(i_hFile);
+    // close handle
+    InternetCloseHandle(i_hFile);
 
-	// set file length
-	return fileInfo.nFileSizeLow;
+    // set file length
+    return fileInfo.nFileSizeLow;
 }
 
 bool CFTPManager::CloseConnection()
 {
-	if (m_hFtpConnect)
-	{
+    if (m_hFtpConnect)
+    {
 // 2006-07-31 by cmkwon
-//		InternetCloseHandle(m_hFtpConnect);
-		m_hFtpConnect		= NULL;
-	}
+//        InternetCloseHandle(m_hFtpConnect);
+        m_hFtpConnect        = NULL;
+    }
 
-	if (m_hInternet)
-	{
+    if (m_hInternet)
+    {
 // 2006-07-31 by cmkwon
-//		InternetCloseHandle(m_hInternet);
-		m_hInternet			= NULL;
-	}
+//        InternetCloseHandle(m_hInternet);
+        m_hInternet            = NULL;
+    }
 
-	return true;
+    return true;
 }
 
