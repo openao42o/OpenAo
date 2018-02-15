@@ -37,7 +37,7 @@ void CChatBlockManager::InsertChatBlockList(char *i_szCharacterName, int i_nBloc
         DWORD            dwCurTick = timeGetTime();
         DWORD            dwExpireTick = dwCurTick + i_nBlockTermMinutes*60*1000;
         SChatBlockInfo    *pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);    // 2008-12-30 by cmkwon, 채금 영문 대소문자 버그 수정 - 
-        if(NULL == pBlockInfo)
+        if (NULL == pBlockInfo)
         {
             pBlockInfo = new SChatBlockInfo;
             strncpy(pBlockInfo->szBlockedCharacterName, szCapitalCharName, SIZE_MAX_CHARACTER_NAME);    // 2008-12-30 by cmkwon, 채금 영문 대소문자 버그 수정 - 
@@ -79,10 +79,10 @@ BOOL CChatBlockManager::IsExistChatBlockList(int *o_pRemainMinute, char *i_szCha
     m_mtmapChatBlockInfoPtr.lock();
     {
         SChatBlockInfo    *pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);    // 2008-12-30 by cmkwon, 채금 영문 대소문자 버그 수정 - 
-        if(pBlockInfo)
+        if (pBlockInfo)
         {
             DWORD dwCurTick = timeGetTime();
-            if(dwCurTick < pBlockInfo->dwExpireTick)
+            if (dwCurTick < pBlockInfo->dwExpireTick)
             {// 채금 시간이 지나지 않음
 
                 *o_pRemainMinute = ((pBlockInfo->dwExpireTick-dwCurTick)/1000)/60;        // 남은시간(분으로 변경)
@@ -110,12 +110,12 @@ void CChatBlockManager::CheckChatBlockList(vectChatBlockInfoPtr *o_pvectReleased
         while (itr != m_mtmapChatBlockInfoPtr.end())
         {
             SChatBlockInfo *pBlockInfo = itr->second;
-            if(pBlockInfo->dwExpireTick < dwCurTick)
+            if (pBlockInfo->dwExpireTick < dwCurTick)
             {// 채금 시간이 지났음
                 
                 // 2008-12-30 by cmkwon, 지도자 채팅 제한 카드 구현 - 아래와 같이 수정
                 //util::del(pBlockInfo);
-                if(NULL == o_pvectReleasedBlockInfoPtr)
+                if (NULL == o_pvectReleasedBlockInfoPtr)
                 {
                     util::del(pBlockInfo);
                 }

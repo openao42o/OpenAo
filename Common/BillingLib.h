@@ -1,7 +1,6 @@
 ﻿//Copyright[2002] MasangSoft
-#ifndef COMMON_BILLINGNETPOWERTPE_H_
-#define COMMON_BILLINGNETPOWERTPE_H_
-
+#ifndef COMMON_BILLINGLIB_H_
+#define COMMON_BILLINGLIB_H_
 
 // 2008-09-18 by cmkwon, 태국 WinnerOnline_Tha, 한국 Masang140_Kor 빌링 DBServer 접근을 Direct 로 수정 - dll 제거 함.
 //#ifdef BILLINGDLL_EXPORTS
@@ -88,4 +87,4 @@ struct SMasangBILL_RET_DATA
 
 
 
-#endif // #ifndef COMMON_BILLINGNETPOWERTPE_H_
+#endif // COMMON_BILLINGLIB_H_

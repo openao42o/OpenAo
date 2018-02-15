@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #ifndef COMMON_DEBUGCHECKTIME_H_
 #define COMMON_DEBUGCHECKTIME_H_
 

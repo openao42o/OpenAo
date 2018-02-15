@@ -365,7 +365,7 @@ BOOL CAtumLogSender::SendLogMessageSpeedHack(CFieldIOCPSocket *pCharacterSocket
 BOOL CAtumLogSender::SendLogMessageMemoryHack(CFieldIOCPSocket *pCharacterSocket, INT i_itemKind, INT i_itemNum, UID64_t i_itemUID
                                               , INT i_MemHackCheckTy, float i_fValidValue, float i_fCurrentValue, int i_nParam1/*=0*/)
 {
-    if (pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE)){             return FALSE;}
+    if (pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE)) {return FALSE;}
 
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_MEMORY_HACK, T_FL_LOG_MEMORY_HACK, pSMemoryHack, SendBuf);
     pSMemoryHack->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
@@ -477,11 +477,7 @@ BOOL CAtumLogSender::SendLogMessageITEMCharacterITEM(CFieldIOCPSocket *pCharacte
 // 2008-02-15 by cmkwon, 인벤<->창고 이동 로그 수정 - 로그 전송하기 추가
 //    msgCharItem->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 //    msgCharItem->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-<<<<<<< HEAD
     if (FALSE == pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgCharItem->CharacterUniqueNumber = pItem->Possess;
     }
@@ -502,11 +498,7 @@ BOOL CAtumLogSender::SendLogMessageITEMCharacterToFromGuildstoreResult(CFieldIOC
 {
     if (pCharacterSocket == NULL || pItem == NULL) return FALSE;    
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT, T_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT, msgCharItem, msgCharItemBuf);
-<<<<<<< HEAD
     if (FALSE == pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgCharItem->CharacterUniqueNumber = pItem->Possess;
     }
@@ -536,11 +528,7 @@ BOOL CAtumLogSender::SendLogMessageITEMGetITEM(CFieldIOCPSocket *pCharacterSocke
     // 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() 에서 호출하는 함수는 pCharacterSocket 체크를 해야한다. - 아래와 같이 수정
     //msgItemGet->CurrentMapIndex = (pCharacterSocket!=NULL?pCharacterSocket->m_character.MapChannelIndex.MapIndex:0);
     msgItemGet->CurrentMapIndex = 0;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemGet->CurrentMapIndex    = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
     }
@@ -563,11 +551,7 @@ BOOL CAtumLogSender::SendLogMessageITEMDissolutionITEM(CFieldIOCPSocket *pCharac
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_DISSOLUTION_ITEM, T_FL_LOG_ITEM_DISSOLUTION_ITEM, msgItemGet, msgItemGetBuf);
     msgItemGet->CharacterUniqueNumber = pItem->Possess;
     msgItemGet->CurrentMapIndex = 0;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemGet->CurrentMapIndex    = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
     }
@@ -707,11 +691,7 @@ BOOL CAtumLogSender::SendLogMessageITEMTradeRecv(CFieldIOCPSocket *pCharacterSoc
     // 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() 에서 호출하는 함수는 pCharacterSocket 체크를 해야한다. - 아래와 같이 수정
     //msgItemTradeRecv->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
     //msgItemTradeRecv->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemTradeRecv->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         msgItemTradeRecv->CurrentMapIndex        = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -749,7 +729,6 @@ BOOL CAtumLogSender::SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacte
 
     ///////////////////////////////////////////////////////////////////////////////
     // 2007-07-20 by cmkwon, 삭제 아이템 로그 소스 수정
-<<<<<<< HEAD
     if (i_pVectEnchantList)
     {
         msgItemThowaway->EnchatItemNumCount    = i_pVectEnchantList->size();    // 2007-06-05 by cmkwon
@@ -757,15 +736,6 @@ BOOL CAtumLogSender::SendLogMessageITEMThrowAwayITEM(CFieldIOCPSocket *pCharacte
         for (int i=0; i < msgItemThowaway->EnchatItemNumCount; i++)
         {
             if (SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_THROWAWAY_ITEM) + sizeof(INT)*(i+1))
-=======
-    if(i_pVectEnchantList)
-    {
-        msgItemThowaway->EnchatItemNumCount    = i_pVectEnchantList->size();    // 2007-06-05 by cmkwon
-        INT *pEnchantItemNum                = (INT*)(msgItemThowawayBuf+MSG_SIZE(MSG_FL_LOG_ITEM_THROWAWAY_ITEM));
-        for(int i=0; i < msgItemThowaway->EnchatItemNumCount; i++)
-        {
-            if(SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_THROWAWAY_ITEM) + sizeof(INT)*(i+1))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
             {
                 msgItemThowaway->EnchatItemNumCount = i;
                 break;
@@ -793,7 +763,6 @@ BOOL CAtumLogSender::SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharact
     msgItemTryEnchant->SuffixCodeNum        = pItem->SuffixCodeNum;    
     msgItemTryEnchant->EnchantCount    = 0;    
     
-<<<<<<< HEAD
     if (i_pVectEnchantList)
     {
         msgItemTryEnchant->EnchantCount    = i_pVectEnchantList->size();
@@ -801,15 +770,6 @@ BOOL CAtumLogSender::SendLogMessageITEMTryEnchantInfo(CFieldIOCPSocket *pCharact
         for (int i=0; i < msgItemTryEnchant->EnchantCount; i++)
         {
             if (SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO) + sizeof(INT)*(i+1))
-=======
-    if(i_pVectEnchantList)
-    {
-        msgItemTryEnchant->EnchantCount    = i_pVectEnchantList->size();
-        INT *pEnchantItemNum                = (INT*)(msgItemTryEnchantBuf+MSG_SIZE(MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO));
-        for(int i=0; i < msgItemTryEnchant->EnchantCount; i++)
-        {
-            if(SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_TRY_ENCHANT_INFO) + sizeof(INT)*(i+1))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
             {
                 msgItemTryEnchant->EnchantCount = i;
                 break;
@@ -835,11 +795,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocke
     // 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() 에서 호출하는 함수는 pCharacterSocket 체크를 해야한다. - 아래와 같이 수정
     //msgItemBuy->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
     //msgItemBuy->CurrentMapIndex            = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemBuy->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         msgItemBuy->CurrentMapIndex            = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -853,11 +809,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyITEM(CFieldIOCPSocket *pCharacterSocke
     msgItemBuy->Item4Log                = *pItem;
     msgItemBuy->ChangeCount                = nChangeCount;
     msgItemBuy->RemainedMoney            = RemainedMoney;
-<<<<<<< HEAD
     if (bWarPoint)
-=======
-    if(bWarPoint)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemBuy->IsCashItem            = 2;        // 2007-06-13 by dhjin, 2번이면 WarPoint item이다 
     }
@@ -892,11 +844,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacter
     if (pCharacterSocket == NULL || pItem == NULL) return FALSE;    
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_BUY_CASH_PRICE, T_FL_LOG_ITEM_BUY_CASH_PRICE, msgItemBuy, msgItemBuyBuf);
     
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemBuy->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         msgItemBuy->CurrentMapIndex            = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -914,11 +862,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacter
     msgItemBuy->AccountUniqueNumber            = pCharacterSocket->m_character.AccountUniqueNumber;
 
     //enum ITEM_BUY_CASH_PRICE_TYPE{BUY_TYPE_SPI=1,BUY_TYPE_WARPOINT,BUY_TYPE_CASH,BUY_TYPE_INFINITY};
-<<<<<<< HEAD
     switch (ntype)
-=======
-    switch(ntype)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
     case BUY_TYPE_SPI:
         {
@@ -937,11 +881,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBuyCashPrice(CFieldIOCPSocket *pCharacter
         break;
     case BUY_TYPE_INFINITY:
         {
-<<<<<<< HEAD
             if ( pBuyInfinityItemInfo != NULL)
-=======
-            if( pBuyInfinityItemInfo != NULL)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
             {
                 msgItemBuy->nInfinity1            = pBuyInfinityItemInfo->TradeItemCount1 * nAmount;
                 msgItemBuy->nInfinity2            = pBuyInfinityItemInfo->TradeItemCount2 * nAmount;
@@ -980,7 +920,6 @@ BOOL CAtumLogSender::SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSock
     msgItemSell->SuffixCodeNum        = pItem->SuffixCodeNum;            // 2007-07-20 by cmkwon, 판매아이템 로그 추가 - 접미
     msgItemSell->EnchatItemNumCount    = 0;                            // 2007-07-20 by cmkwon, 판매아이템 로그 추가 - 인챈트 개수
     
-<<<<<<< HEAD
     if (i_pVectEnchantList)
     {// 2007-07-20 by cmkwon, 판매아이템 로그 추가 - 인챈트 리스트 정보 만들기
         msgItemSell->EnchatItemNumCount    = i_pVectEnchantList->size();
@@ -988,15 +927,6 @@ BOOL CAtumLogSender::SendLogMessageITEMSellITEM(CFieldIOCPSocket *pCharacterSock
         for (int i=0; i < msgItemSell->EnchatItemNumCount; i++)
         {
             if (SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM) + sizeof(INT)*(i+1))
-=======
-    if(i_pVectEnchantList)
-    {// 2007-07-20 by cmkwon, 판매아이템 로그 추가 - 인챈트 리스트 정보 만들기
-        msgItemSell->EnchatItemNumCount    = i_pVectEnchantList->size();
-        INT *pEnchantItemNum            = (INT*)(msgItemSellBuf+MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM));
-        for(int i=0; i < msgItemSell->EnchatItemNumCount; i++)
-        {
-            if(SIZE_MAX_PACKET < MSG_SIZE(MSG_FL_LOG_ITEM_SELL_ITEM) + sizeof(INT)*(i+1))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
             {
                 msgItemSell->EnchatItemNumCount = i;
                 break;
@@ -1060,21 +990,13 @@ BOOL CAtumLogSender::SendLogMessageITEMUseENCHANT(CFieldIOCPSocket *pCharacterSo
     msgItemEnchant->nEnchantItemKind            = i_pEnchantItemG->Kind;            // 2010-04-20 by cmkwon, 신규 러키 머신 구현 - 
     msgItemEnchant->nEnchantItemNum                = i_pEnchantItemG->ItemNum;            // 2010-04-20 by cmkwon, 신규 러키 머신 구현 - 
     msgItemEnchant->bSuccessFlag                = i_bSuccessFlag;                    // 2010-04-20 by cmkwon, 신규 러키 머신 구현 - 
-<<<<<<< HEAD
     if (i_pAddedItemG_1)
-=======
-    if(i_pAddedItemG_1)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         // 2010-04-20 by cmkwon, 신규 러키 머신 구현 - (추가 수정) - 
         msgItemEnchant->arrAddedItemUID[0]            = i_pAddedItemG_1->UniqueNumber;
         msgItemEnchant->arrAddedItemNum[0]            = i_pAddedItemG_1->ItemNum;
     }
-<<<<<<< HEAD
     if (i_pAddedItemG_2)
-=======
-    if(i_pAddedItemG_2)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         // 2010-04-20 by cmkwon, 신규 러키 머신 구현 - (추가 수정) - 
         msgItemEnchant->arrAddedItemUID[1]            = i_pAddedItemG_2->UniqueNumber;
@@ -1095,11 +1017,7 @@ BOOL CAtumLogSender::SendLogMessageITEMStoreITEM(CFieldIOCPSocket *pCharacterSoc
 // 2008-02-15 by cmkwon, 인벤<->창고 이동 로그 수정 - 로그 전송하기 추가
 //    msgItemStoreItem->CharacterUniqueNumber = pCharacterSocket->m_character.CharacterUniqueNumber;
 //    msgItemStoreItem->CurrentMapIndex = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
-<<<<<<< HEAD
     if (FALSE == pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemStoreItem->CharacterUniqueNumber    = pItem->Possess;
     }
@@ -1174,11 +1092,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBazaarSend(CFieldIOCPSocket *pCharacterSo
 
     // 2008-09-08 by cmkwon, 개인상점 로그 버그 수정 및 로그 추가 - 기존 아이템이 없을 경우도 로그 남긴다.
     msgItemTradeSend->CharacterUniqueNumber        = pItem->Possess;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemTradeSend->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         msgItemTradeSend->CurrentMapIndex        = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -1303,11 +1217,7 @@ BOOL CAtumLogSender::SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCha
     // 2008-01-10 by cmkwon, CAtumFieldDBManager::QP_InsertStoreItem() 에서 호출하는 함수는 pCharacterSocket 체크를 해야한다. - 아래와 같이 수정
     //pSMsg->CurrentMapIndex            = (pCharacterSocket!=NULL?pCharacterSocket->m_character.MapChannelIndex.MapIndex:0);
     pSMsg->CurrentMapIndex            = 0;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->CurrentMapIndex        = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
     }
@@ -1448,11 +1358,7 @@ BOOL CAtumLogSender::SendLogMessageITEMAttachItem(CFieldIOCPSocket *pCharacterSo
 BOOL CAtumLogSender::SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *i_pItemG, BYTE i_byItemDeleteTy, INT i_nUsedTime/*=0*/)
 {
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_DELETE, T_FL_LOG_ITEM_DELETE, pSMsg, SendBuf);
-<<<<<<< HEAD
     if (FALSE == pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(FALSE == pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->CharacterUniqueNumber        = i_pItemG->Possess;
     }
@@ -1485,11 +1391,7 @@ BOOL CAtumLogSender::SendLogMessageITEMDelete(CFieldIOCPSocket *pCharacterSocket
 BOOL CAtumLogSender::SendLogMessageUseCoupon(CFieldIOCPSocket *pCharacterSocket, char *i_szAccName, char *i_szCouponNumber)
 {
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_USE_COUPON, T_FL_LOG_USE_COUPON, pSMsg, SendBuf);
-<<<<<<< HEAD
     if (pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         pSMsg->CurrentMapIndex            = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -1533,11 +1435,7 @@ BOOL CAtumLogSender::SendLogMessageITEMDetachItem(CFieldIOCPSocket *pCharacterSo
 //     }
     ///////////////////////////////////////////////////////////////////////////////
     // 2008-11-26 by cmkwon, 사용 후 시간(절대시간) 제한 아이템 구현 - 아래와 같이 수정 함.
-<<<<<<< HEAD
     if (COMPARE_BIT_FLAG(i_pItemG->ItemInfo->ItemAttribute, ITEM_ATTR_TIME_LIMITE))
-=======
-    if(COMPARE_BIT_FLAG(i_pItemG->ItemInfo->ItemAttribute, ITEM_ATTR_TIME_LIMITE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->ReaminTimeSec        = CAtumSJ::GetTimeSecondByItemKind8ItemAttribute(i_pItemG->ItemInfo) - i_pItemG->UsingTimeStamp;
     }
@@ -1722,11 +1620,7 @@ BOOL CAtumLogSender::SendLogMessageOutPostProtectorDestroy(MapIndex_t i_nOutPost
     pSMsg->GuildUID4Reset            = i_guildUID4Reset;
 
     int nCnts = min(SIZE_MAX_OUTPOSTWAR_DAMAGELIST, i_pvectDamageList->size());
-<<<<<<< HEAD
     for (int i=0; i < nCnts; i++)
-=======
-    for(int i=0; i < nCnts; i++)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->ArrGuildUID[i]    = (*i_pvectDamageList)[i].GuildUID;
         pSMsg->ArrDamage[i]        = (*i_pvectDamageList)[i].Damage;
@@ -1780,11 +1674,7 @@ BOOL CAtumLogSender::SendLogMessageExpediencyFund(CFieldIOCPSocket *i_pCharFISoc
     pSMsg->ExpediencyFundVRate    = i_nExpediencyFundRate;    // 2007-10-16 by cmkwon, 로그 추가 -
     pSMsg->TotalCount            = i_nTotalCount;
     // 2007-10-16 by cmkwon, 로그 추가 -
-<<<<<<< HEAD
     if (i_pCharFISoc && i_pCharFISoc->IsValidCharacter(FALSE))
-=======
-    if(i_pCharFISoc && i_pCharFISoc->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         pSMsg->CharacterUID    = i_pCharFISoc->GetCharacter()->CharacterUniqueNumber;
         pSMsg->GuildUID        = i_pCharFISoc->GetCharacter()->GuildUniqueNumber;
@@ -1815,11 +1705,7 @@ BOOL CAtumLogSender::SendLogMessageITEMBazaarRecv(CFieldIOCPSocket *pCharacterSo
     
     // 2008-09-08 by cmkwon, 개인상점 로그 버그 수정 및 로그 추가 - 기존 아이템이 없을 경우도 로그 남긴다.
     msgItemTradeRecv->CharacterUniqueNumber        = pItem->Possess;
-<<<<<<< HEAD
     if (pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
-=======
-    if(pCharacterSocket && pCharacterSocket->IsValidCharacter(FALSE))
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {
         msgItemTradeRecv->CharacterUniqueNumber    = pCharacterSocket->m_character.CharacterUniqueNumber;
         msgItemTradeRecv->CurrentMapIndex        = pCharacterSocket->m_character.MapChannelIndex.MapIndex;
@@ -1878,11 +1764,7 @@ BOOL CAtumLogSender::SendLogMessageHackingLog(CFieldIOCPSocket *pCharFISock, lon
     pSHacking->CurrentMapIndex            = pCharFISock->m_character.MapChannelIndex.MapIndex;
     pSHacking->CurrentPosition            = pCharFISock->m_character.PositionVector;
     pSHacking->hackingCode                = i_hackingCode;
-<<<<<<< HEAD
     if (i_szErrString)
-=======
-    if(i_szErrString)
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     {// 2006-10-20 by cmkwon, 필드 추가됨
         util::strncpy(pSHacking->szErrString, i_szErrString, SIZE_STRING_128);
     }
@@ -2465,11 +2347,7 @@ BOOL CAtumLogSender::SendLogMessageStatisticsMeney(MSG_FL_LOG_STATISTICS_MONEY *
 // 2012-10-10 by hskim, 기간제 속성 구현 (기간제 외형)
 BOOL CAtumLogSender::SendLogMessageFixedTermShapeStart(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, ItemNum_t ShapeItemNum)
 {
-<<<<<<< HEAD
     if ( pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE) || pItem == NULL ) return FALSE;
-=======
-    if( pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE) || pItem == NULL ) return FALSE;
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_FIXED_TERM_SHAPE_START, T_FL_LOG_FIXED_TERM_SHAPE_START, pFTShape, SendBuf);
     pFTShape->CharacterUniqueNumber        = pCharacterSocket->m_character.CharacterUniqueNumber;
@@ -2487,11 +2365,7 @@ BOOL CAtumLogSender::SendLogMessageFixedTermShapeStart(CFieldIOCPSocket *pCharac
 
 BOOL CAtumLogSender::SendLogMessageFixedTermShapeEnd(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nShapeItemNum, FIXED_TERM_INFO FixedTermShape)
 {
-<<<<<<< HEAD
     if ( pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE) || pItem == NULL ) return FALSE;
-=======
-    if( pCharacterSocket == NULL || FALSE == pCharacterSocket->IsValidCharacter(FALSE) || pItem == NULL ) return FALSE;
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
     
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_FIXED_TERM_SHAPE_END, T_FL_LOG_FIXED_TERM_SHAPE_END, pFTShape, SendBuf);
     pFTShape->CharacterUniqueNumber        = pCharacterSocket->m_character.CharacterUniqueNumber;

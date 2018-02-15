@@ -1065,7 +1065,7 @@ float CAtumSJ::GetPartyBonusExpWeight(int nPartyMemberCnts)
 #if S_BONUSEXPSYSTEM_RENEWAL || S_BONUS_KILL_SYSTEM_RENEWAL
     if (nPartyMemberCnts > 1) return (float)(nPartyMemberCnts - 1) * 0.1f + 1.2f;
 #else
-    switch(nPartyMemberCnts)
+    switch (nPartyMemberCnts)
     {
     case 2:        return 1.03f;
     case 3:        return 1.06f;

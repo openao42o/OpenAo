@@ -48,6 +48,4 @@ struct SARABILL_RET_DATA
 	int  nBonusPoint;				// 이벤트 혹은 다른 사유로 인해 소유한 Point
 };
 
-
-#endif // #ifndef _BILLING_ARARIO_H_
 #endif // COMMON_BILLINGARARIO_H_

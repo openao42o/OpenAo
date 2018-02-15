@@ -48,7 +48,7 @@ BOOL CCommandHistory::LoadHistory()
         return FALSE;
     }
 
-    while(TRUE)
+    while (TRUE)
     {
         memset(buff, 0x00, COMMAND_LINE_BUFF);
         BOOL bFlagFileEnd = fin.getline(buff, COMMAND_LINE_BUFF).eof();
@@ -92,7 +92,7 @@ BOOL CCommandHistory::WriteHistory()
 
     // 파일 쓰기
     list<string>::iterator itr = m_listHistory.begin();
-    while(m_listHistory.end() != itr)
+    while (m_listHistory.end() != itr)
     {
         DWORD nWritten;
         WriteFile(hFile, (*itr).c_str(), strlen((*itr).c_str()), &nWritten, NULL);
@@ -229,7 +229,7 @@ BOOL CCommandHistory::AddCommand(const char* szCmd)
     if (m_bDuplicate == FALSE)
     {
         list<string>::iterator itr = m_listHistory.begin();
-        while(itr != m_listHistory.end())
+        while (itr != m_listHistory.end())
         {
             string &str = *itr;
             if (strcmp(str.c_str(), szCmd) == 0)

@@ -69,7 +69,7 @@ inline void DbgOut (LPCTSTR pFormat, ...)
     va_list args;
     va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
     vsprintf(buffer, pFormat, args);
 
     #ifdef UNICODE
@@ -98,7 +98,7 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
     va_list args;
     va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
     vsprintf(buffer, pFormat, args);
 
     LPVOID pMessage;

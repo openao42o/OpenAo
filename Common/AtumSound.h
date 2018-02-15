@@ -90,7 +90,4 @@ protected:
 	BOOL						m_bNotDevice;
 };
 
-
-
-#endif
 #endif // COMMON_ATUMSOUND_H_

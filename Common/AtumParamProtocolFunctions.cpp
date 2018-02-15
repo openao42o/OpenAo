@@ -194,7 +194,7 @@ const char *Int2String(int n, string &str)
 
 const char *GetRaceString(USHORT race)
 {
-    switch(race)
+    switch (race)
     {
     case RACE_BATTALUS:            return STRCMD_CS_COMMON_RACE_BATTALUS;
     case RACE_DECA:                return STRCMD_CS_COMMON_RACE_DECA;
@@ -395,7 +395,7 @@ const char *GetIPAddressString(BYTE *i_pIPArray, STRNBUF &i_strnbuf)
 ///////////////////////////////////////////////////////////////////////////////
 char *GetMonsterBellString(BYTE i_byMonBell)
 {
-    switch(i_byMonBell)
+    switch (i_byMonBell)
     {
     case BELL_ATATTACK:                        return "BELL_ATATTACK";
     case BELL_DEFENSE:                        return "BELL_DEFENSE";
@@ -431,7 +431,7 @@ char *GetMonsterBellString(BYTE i_byMonBell)
 ///////////////////////////////////////////////////////////////////////////////
 const char *GetItemDesParameter(DestParam_t i_byDesParameter)        // 2011-08-01 by hskim, 파트너 시스템 2차 - 자료형 변경 (DestParameter - 255 -> 32767 지원)
 {
-    switch(i_byDesParameter)
+    switch (i_byDesParameter)
     {
     GET_CASERETURN_STRING_BY_TYPE(DES_NULL);
     GET_CASERETURN_STRING_BY_TYPE(DES_ATTACK_PART);
@@ -664,7 +664,7 @@ const char *GetItemDesParameter(DestParam_t i_byDesParameter)        // 2011-08-
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GIsValidInfuenceType(BYTE i_byInfluenceTy)
 {
-    switch(i_byInfluenceTy)
+    switch (i_byInfluenceTy)
     {
     case INFLUENCE_TYPE_NORMAL:
     case INFLUENCE_TYPE_VCN:
@@ -709,19 +709,19 @@ char *GGetLowerCase(char *o_szLowercaseSting, char *i_szString, int nMaxStringSi
 ///////////////////////////////////////////////////////////////////////////////
 int GDelimiterIndex(char *i_szStr, int i_nMaxCount)
 {
-    if(i_nMaxCount >= strlen(i_szStr))
+    if (i_nMaxCount >= strlen(i_szStr))
     {
         return strlen(i_szStr);
     }
 
     char *pBeforeStr = i_szStr;
     char *pCurStr = CharNext(pBeforeStr);
-    while(pCurStr)
+    while (pCurStr)
     {
         pBeforeStr    = pCurStr;
         pCurStr        = CharNext(pCurStr);
         int nCurCount = pCurStr - i_szStr;
-        if(nCurCount == i_nMaxCount)
+        if (nCurCount == i_nMaxCount)
         {
             return nCurCount;
         }
@@ -753,13 +753,13 @@ char    g_szArrargv[SIZE_MAX_ARGV_COUNT][SIZE_MAX_ARGV_PARAM_STRING_SIZE];
 ///////////////////////////////////////////////////////////////////////////////
 Err_t GSetExcuteParameterList(int i_nParamCount, char ** i_ppszParamString)
 {
-    if(SIZE_MAX_ARGV_COUNT < i_nParamCount)
+    if (SIZE_MAX_ARGV_COUNT < i_nParamCount)
     {
         return ERR_INVALID_EXCUTE_PARAMETER_COUNT;
     }
 
     g_nargvCount            = i_nParamCount;
-    for(int i=0; i < g_nargvCount; i++)
+    for (int i=0; i < g_nargvCount; i++)
     {
         util::strncpy(g_szArrargv[i], i_ppszParamString[i], SIZE_MAX_ARGV_PARAM_STRING_SIZE);
     }
@@ -779,7 +779,7 @@ Err_t GSetExcuteParameterList(int i_nParamCount, char ** i_ppszParamString)
 ///////////////////////////////////////////////////////////////////////////////
 Err_t GCheckExcuteParameterList(SEXCUTE_PARAMETER *io_pExeParam)
 {
-    switch(io_pExeParam->i_nExcuteFileType)
+    switch (io_pExeParam->i_nExcuteFileType)
     {
     case EXCUTE_FILE_TYPE_SC_EXE:
     case EXCUTE_FILE_TYPE_SC_ATM:
@@ -824,7 +824,7 @@ Err_t GReadVersionInfoFile(VersionInfo *o_pLauncherVerInfo, SREG_DATA_EXE_2 *o_p
         return ERR_VERSIONINFO_FILE_NOT_FOUND;
     }
 
-    while(1)
+    while (1)
     {
         memset(buff, 0x00, BUFF_SIZE);
         if (fin.getline(buff, BUFF_SIZE).eof())
@@ -866,7 +866,7 @@ Err_t GReadVersionInfoFile(VersionInfo *o_pLauncherVerInfo, SREG_DATA_EXE_2 *o_p
             {
                 int nMode = atoi(token);
 
-                if(0 != nMode) o_pRegDataExe2->IsWindowMode    = TRUE;
+                if (0 != nMode) o_pRegDataExe2->IsWindowMode    = TRUE;
             }
         }
         else if (0 == stricmp(token, STRMSG_REG_KEY_NAME_ACCOUNT_NAME))
@@ -919,7 +919,7 @@ Err_t GLoadExe1VersionInfo(VersionInfo *o_pLauncherVerInfo, char *i_szVersionInf
     SREG_DATA_EXE_2 regDataExe2;
     regDataExe2.resetREG_DATA_EXE_2();
     Err_t errCode = GReadVersionInfoFile(&lver, &regDataExe2, i_szVersionInfoFileName);
-    if(errCode != ERR_NO_ERROR)
+    if (errCode != ERR_NO_ERROR)
     {
         return errCode;
     }
@@ -934,7 +934,7 @@ Err_t GLoadExe2VersionInfo(SREG_DATA_EXE_2 *o_pRegDataEXE2, char *i_szVersionInf
     SREG_DATA_EXE_2 regDataExe2;
     regDataExe2.resetREG_DATA_EXE_2();
     Err_t errCode = GReadVersionInfoFile(&lver, &regDataExe2, i_szVersionInfoFileName);
-    if(errCode != ERR_NO_ERROR)
+    if (errCode != ERR_NO_ERROR)
     {
         return errCode;
     }
@@ -1106,30 +1106,30 @@ void GDecryptGameServerInfoByXOR(void)
 {
 #ifndef _ATUM_CLIENT
 
-    for(int i = 0; g_arrGameServers[i].ServerName != NULL; i++)
+    for (int i = 0; g_arrGameServers[i].ServerName != NULL; i++)
     {
         BYTE byEncodedBinary[1024];
 
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedServerIP))
+        if (XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedServerIP))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].ServerIP, byEncodedBinary, strlen(g_arrGameServers[i].XOREncodedServerIP)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
 
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBIP))
+        if (XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBIP))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].DBIP, byEncodedBinary, strlen(g_arrGameServers[i].XOREncodedDBIP)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
 
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBUID))
+        if (XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBUID))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].DBUID, byEncodedBinary, strlen(g_arrGameServers[i].XOREncodedDBUID)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
 
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBPWD))
+        if (XOR::XORString2Binary(byEncodedBinary, g_arrGameServers[i].XOREncodedDBPWD))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].DBPWD, byEncodedBinary, strlen(g_arrGameServers[i].XOREncodedDBPWD)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
@@ -1143,7 +1143,7 @@ void GDecryptGameServerInfoByXOR(void)
         strncpy(szEncryptData, g_arrGameServers[i].LogDBIP, 2*SIZE_MAX_ADDRESS - 1);        // 2009-01-15 by cmkwon, PreServer, DBServer 정보 DNS로 설정 가능하게 수정 - 기존(SIZE_MAX_IPADDRESS)
         memset(g_arrGameServers[i].LogDBIP, 0x00, 2*SIZE_MAX_ADDRESS);                        // 2009-01-15 by cmkwon, PreServer, DBServer 정보 DNS로 설정 가능하게 수정 - 기존(SIZE_MAX_IPADDRESS)
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, szEncryptData))
+        if (XOR::XORString2Binary(byEncodedBinary, szEncryptData))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].LogDBIP, byEncodedBinary, strlen(szEncryptData)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
@@ -1152,7 +1152,7 @@ void GDecryptGameServerInfoByXOR(void)
         strncpy(szEncryptData, g_arrGameServers[i].LogDBUID, 2*SIZE_MAX_DB_USER_ID - 1);
         memset(g_arrGameServers[i].LogDBUID, 0x00, 2*SIZE_MAX_DB_USER_ID);
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, szEncryptData))
+        if (XOR::XORString2Binary(byEncodedBinary, szEncryptData))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].LogDBUID, byEncodedBinary, strlen(szEncryptData)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
@@ -1161,7 +1161,7 @@ void GDecryptGameServerInfoByXOR(void)
         strncpy(szEncryptData, g_arrGameServers[i].LogDBPWD, 2*SIZE_MAX_DB_USER_PWD - 1);
         memset(g_arrGameServers[i].LogDBPWD, 0x00, 2*SIZE_MAX_DB_USER_PWD);
         memset(byEncodedBinary, 0x00, 1024);
-        if(XOR::XORString2Binary(byEncodedBinary, szEncryptData))
+        if (XOR::XORString2Binary(byEncodedBinary, szEncryptData))
         {
             XOR::XOREncode((BYTE*)g_arrGameServers[i].LogDBPWD, byEncodedBinary, strlen(szEncryptData)/2, STR_XOR_KEY_STRING_SERVER_INFO);
         }
@@ -1182,7 +1182,7 @@ void GDecryptGameServerInfoByXOR(void)
 ///////////////////////////////////////////////////////////////////////////////
 char *GetDayOfWeekString(int i_nDayOfWeek)
 {
-    switch(i_nDayOfWeek)
+    switch (i_nDayOfWeek)
     {
     case DAY_OF_WEEK_SUMDAY:                return "Sunday";
     case DAY_OF_WEEK_MONDAY:                return "Monday";
@@ -1210,7 +1210,7 @@ char *GetDayOfWeekString(int i_nDayOfWeek)
 ///////////////////////////////////////////////////////////////////////////////
 char *GetWPUTString(BYTE i_byWPUT)
 {
-    switch(i_byWPUT)
+    switch (i_byWPUT)
     {
     case WPUT_GENERAL:                return "WPUT_GENERAL";
     case WPUT_ARENA:                return "WPUT_ARENA";
@@ -1238,24 +1238,24 @@ char *GetWPUTString(BYTE i_byWPUT)
 ///////////////////////////////////////////////////////////////////////////////
 int GetArrIdxByUnitMaskforWRK(INT i_unitMask)
 {
-    if(UNITKIND_ALL_MASK == i_unitMask)
+    if (UNITKIND_ALL_MASK == i_unitMask)
     {
         return 0;
     }
 
-    if(COMPARE_BIT_FLAG(i_unitMask, UNITKIND_BGEAR))
+    if (COMPARE_BIT_FLAG(i_unitMask, UNITKIND_BGEAR))
     {
         return 1;
     }
-    if(COMPARE_BIT_FLAG(i_unitMask, UNITKIND_MGEAR))
+    if (COMPARE_BIT_FLAG(i_unitMask, UNITKIND_MGEAR))
     {
         return 2;
     }
-    if(COMPARE_BIT_FLAG(i_unitMask, UNITKIND_AGEAR))
+    if (COMPARE_BIT_FLAG(i_unitMask, UNITKIND_AGEAR))
     {
         return 3;
     }
-    if(COMPARE_BIT_FLAG(i_unitMask, UNITKIND_IGEAR))
+    if (COMPARE_BIT_FLAG(i_unitMask, UNITKIND_IGEAR))
     {
         return 4;
     }
@@ -1275,7 +1275,7 @@ int GetArrIdxByUnitMaskforWRK(INT i_unitMask)
 ///////////////////////////////////////////////////////////////////////////////
 int GetUnitMaskByArrIdxforWRK(INT i_arrIdx)
 {
-    switch(i_arrIdx)
+    switch (i_arrIdx)
     {
     case 0:            return UNITKIND_ALL_MASK;
     case 1:            return UNITKIND_BGEAR;
@@ -1299,7 +1299,7 @@ int GetUnitMaskByArrIdxforWRK(INT i_arrIdx)
 ///////////////////////////////////////////////////////////////////////////////
 int GetArrayIndexByInfluenceType(BYTE i_byInflTy)
 {
-    switch(i_byInflTy)
+    switch (i_byInflTy)
     {
     case INFLUENCE_TYPE_NORMAL:                return 0;
     case INFLUENCE_TYPE_VCN:                return 1;
@@ -1322,7 +1322,7 @@ int GetArrayIndexByInfluenceType(BYTE i_byInflTy)
 ///////////////////////////////////////////////////////////////////////////////
 BYTE GetInfluenceTypeByArrayIndex(int i_nArrIdx)
 {
-    switch(i_nArrIdx)
+    switch (i_nArrIdx)
     {
     case 0:            return INFLUENCE_TYPE_NORMAL;
     case 1:            return INFLUENCE_TYPE_VCN;
@@ -1347,11 +1347,11 @@ char *StringCullingForValidChar(char *i_szSource, int i_nCullingSize)
 {
     char *pCur    = i_szSource;
     char *pPrev = i_szSource;
-    while('\0' != *pCur)
+    while ('\0' != *pCur)
     {
         pCur = CharNext(pCur);
         int nGap = pCur - i_szSource;
-        if(nGap == i_nCullingSize)
+        if (nGap == i_nCullingSize)
         {
             return pCur;
         }
@@ -1467,11 +1467,11 @@ ITEM& ITEM::operator=(const MEX_ITEM_INFO& rhs)
 
 BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
 {
-    switch(i_checkType)
+    switch (i_checkType)
     {
     case CHECK_TYPE_BATTLE_P2P_PK:
         {
-            if(i_nLevel >= 10)
+            if (i_nLevel >= 10)
             {
                 return TRUE;
             }
@@ -1479,7 +1479,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
         break;
     case CHECK_TYPE_BATTLE_PARTY_WAR:
         {
-            if(i_nLevel >= 10)
+            if (i_nLevel >= 10)
             {
                 return TRUE;
             }
@@ -1487,7 +1487,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
         break;
     case CHECK_TYPE_CHARACTER_MENT:
         {
-            if(i_nLevel >= 30)
+            if (i_nLevel >= 30)
             {
                 return TRUE;
             }
@@ -1497,7 +1497,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
 //    case CHECK_TYPE_CHAT_SELL_ALL:        // 2008-05-19 by dhjin, EP3 - 채팅 시스템 변경, 전쟁 채팅
     case CHECK_TYPE_GUILD_CREATE:
         {
-            if(i_nLevel >= GuildCommanderMinLevel)        // 2008-10-13 by dhjin, 여단장 위임 가능 레벨 체크 추가.
+            if (i_nLevel >= GuildCommanderMinLevel)        // 2008-10-13 by dhjin, 여단장 위임 가능 레벨 체크 추가.
             {
                 return TRUE;
             }
@@ -1505,7 +1505,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
         break;
     case CHECK_TYPE_PENALTY_ON_DEAD:
         {
-            if(i_nLevel > 15)
+            if (i_nLevel > 15)
             {
                 return TRUE;
             }
@@ -1513,7 +1513,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
         break;
     case CHECK_TYPE_LOWLEVEL_ADVANTAGE:            // 2006-03-15 by cmkwon
         {
-            if(i_nLevel <= 5)
+            if (i_nLevel <= 5)
             {
                 return TRUE;
             }
@@ -1521,7 +1521,7 @@ BOOL GCheckLimitLevel(EN_CHECK_TYPE i_checkType, int i_nLevel)
         break;
     case CHECK_TYPE_CHAT_WAR:            // 2008-05-19 by dhjin, EP3 - 채팅 시스템 변경, 전쟁 채팅
         {
-            if(i_nLevel >= 20)
+            if (i_nLevel >= 20)
             {
                 return TRUE;
             }
@@ -1546,7 +1546,7 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
                                 , USHORT i_usRace, BYTE i_byInfluenceTy
                                 , USHORT i_usPeerRace, BYTE i_byPeerInfluenceTy)
 {
-    switch(i_checkType)
+    switch (i_checkType)
     {
     case CHECK_TYPE_TRADE:        // 관리자 관련 예외 처리 필요, 2005-12-06 by cmkwon
         {
@@ -1556,16 +1556,16 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
                 return FALSE;
             }
 
-            if(COMPARE_RACE(i_usRace, RACE_OPERATION))
+            if (COMPARE_RACE(i_usRace, RACE_OPERATION))
             {// 2005-12-06 by cmkwon, 관리자도 관리자 끼리만 거래 가능, 내가 관리자 일때
-                if(FALSE == COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
+                if (FALSE == COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
                 {
                     return FALSE;
                 }
             }
             else if (COMPARE_RACE(i_usPeerRace, RACE_OPERATION))
             {// 2005-12-06 by cmkwon, 관리자도 관리자 끼리만 거래 가능, 상대방이 관리자 일때
-                if(FALSE == COMPARE_RACE(i_usRace, RACE_OPERATION))
+                if (FALSE == COMPARE_RACE(i_usRace, RACE_OPERATION))
                 {
                     return FALSE;
                 }
@@ -1573,32 +1573,32 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
             else
             {
 // 2006-05-18 by cmkwon, 아래와 같이 같은 세력이 아니면 거래 불가
-//                 if(COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_ANI))
+//                 if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_ANI))
 //                 {// 반란세력
-//                     if(i_byInfluenceTy != i_byPeerInfluenceTy)
+//                     if (i_byInfluenceTy != i_byPeerInfluenceTy)
 //                     {// 다른 세력하고는 거래 불가
 //                         return FALSE;
 //                     }
 //                 }
 //                 else
 //                 {// 일반세력, 정규세력
-//                     if(FALSE == COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
+//                     if (FALSE == COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
 //                     {// 다른 세력하고는 거래 불가
 //                         return FALSE;
 //                     }
 //                 }
 
-                if(COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL))
+                if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL))
                 {// 일반세력은 거래 불가
                     return FALSE;
                 }
 
-                if(COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
+                if (COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
                 {// 일반세력은 거래 불가
                     return FALSE;
                 }
                 
-                if(i_byInfluenceTy != i_byPeerInfluenceTy)
+                if (i_byInfluenceTy != i_byPeerInfluenceTy)
                 {// 2006-05-18 by cmkwon, 다른 세력임
                     return FALSE;
                 }
@@ -1623,11 +1623,11 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 
     case CHECK_TYPE_GUILD_JOIN:        // 관리자 처리 필요 없음, 2005-12-07 by cmkwon
         {
-            if(COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
+            if (COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL))
             {// 일반세력은 여단 참여 불가
                 return FALSE;
             }
-            if(i_byInfluenceTy != i_byPeerInfluenceTy)
+            if (i_byInfluenceTy != i_byPeerInfluenceTy)
             {// 세력이 다르면 여단 참여 불가
                 return FALSE;
             }
@@ -1641,11 +1641,11 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
     case CHECK_TYPE_BATTLE_GUILD_WAR:        // 2006-01-05 by cmkwon
     case CHECK_TYPE_CHAT_WAR:            // 2008-05-19 by dhjin, EP3 - 채팅 시스템 변경, 전쟁 채팅
         {// 같은 세력만 가능하다
-            if(i_byInfluenceTy != i_byPeerInfluenceTy)
+            if (i_byInfluenceTy != i_byPeerInfluenceTy)
             {
                 //////////////////////////////////////////////////////////////////////////
                 // 2006-10-12 by dhjin, 다른 세력은 불가
-                //if(FALSE == COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN)
+                //if (FALSE == COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN)
                 //    || FALSE == COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
                 //{
                 return FALSE;
@@ -1664,9 +1664,9 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
             {
                 return TRUE;
             }
-            if(i_byInfluenceTy != i_byPeerInfluenceTy)
+            if (i_byInfluenceTy != i_byPeerInfluenceTy)
             {
-                if(COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN)
+                if (COMPARE_INFLUENCE(i_byInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN)
                     && COMPARE_INFLUENCE(i_byPeerInfluenceTy, INFLUENCE_TYPE_NORMAL|INFLUENCE_TYPE_VCN))
                 {
                     return TRUE;
@@ -1686,7 +1686,7 @@ BOOL GCheckRaceAndInfluenceType(EN_CHECK_TYPE i_checkType
 
 const char * GET_ARENA_STATE_STRING(BYTE i_byAState)
 {
-    switch(i_byAState)
+    switch (i_byAState)
     {
     case ARENA_STATE_NONE:                    return "ARENA_STATE_NONE";
     case ARENA_STATE_JOINING:                return "ARENA_STATE_JOINING";
@@ -1702,19 +1702,19 @@ const char * GET_ARENA_STATE_STRING(BYTE i_byAState)
 
 char *GetLeader8SubLeaderString(BYTE i_byInflTy, USHORT i_usRace)
 {
-    switch(i_byInflTy)
+    switch (i_byInflTy)
     {
     case INFLUENCE_TYPE_VCN:
         {
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_LEADER))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_LEADER))
             {
                 return STRCMD_VCN_INFLUENCE_LEADER;
             }
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_1))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_1))
             {
                 return STRCMD_VCN_INFLUENCE_SUBLEADER_1;
             }
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_2))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_2))
             {
                 return STRCMD_VCN_INFLUENCE_SUBLEADER_2;
             }
@@ -1722,15 +1722,15 @@ char *GetLeader8SubLeaderString(BYTE i_byInflTy, USHORT i_usRace)
         break;
     case INFLUENCE_TYPE_ANI:
         {
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_LEADER))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_LEADER))
             {
                 return STRCMD_ANI_INFLUENCE_LEADER;
             }
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_1))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_1))
             {
                 return STRCMD_ANI_INFLUENCE_SUBLEADER_1;
             }
-            if(COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_2))
+            if (COMPARE_RACE(i_usRace, RACE_INFLUENCE_SUBLEADER_2))
             {
                 return STRCMD_ANI_INFLUENCE_SUBLEADER_2;
             }
@@ -1788,7 +1788,7 @@ inline int GetNumberOfBits(INT64 i_n64Mask)
 
 BYTE CHARACTER::GetAddedPermanentInventoryCount(INT RacingPoint, BYTE i_enStorage)
 {
-    switch(i_enStorage)
+    switch (i_enStorage)
     {
     case ITEM_IN_CHARACTER:
         RacingPoint &= 0xFF;
@@ -1810,7 +1810,7 @@ BYTE CHARACTER::GetAddedPermanentInventoryCount(BYTE i_enStorage/*=ITEM_IN_CHARA
 
 BOOL CHARACTER::SetAddedPermanentInventoryCount(BYTE i_byAddCount, BYTE i_enStorage/*=ITEM_IN_CHARACTER*/)
 {    
-    switch(i_enStorage)
+    switch (i_enStorage)
     {
     case ITEM_IN_CHARACTER:
             RacingPoint &= ~0xFF;
@@ -1847,26 +1847,26 @@ struct find_if_INT        // 2010-01-18 by cmkwon, 아이템 사용시 Parameter
 ///////////////////////////////////////////////////////////////////////////////
 BOOL ITEM::CheckParamOverlap(ITEM *i_pUsingItemInfo)
 {
-    if(NULL == this->pParamOverlapIdxList || NULL == i_pUsingItemInfo->pParamOverlapIdxList)
+    if (NULL == this->pParamOverlapIdxList || NULL == i_pUsingItemInfo->pParamOverlapIdxList)
     {
         return TRUE;
     }
     
     vectINT *pMainVec    = this->pParamOverlapIdxList;
     vectINT *pSubVec    = i_pUsingItemInfo->pParamOverlapIdxList;
-    if(this->pParamOverlapIdxList->size() > i_pUsingItemInfo->pParamOverlapIdxList->size())
+    if (this->pParamOverlapIdxList->size() > i_pUsingItemInfo->pParamOverlapIdxList->size())
     {
         pMainVec    = i_pUsingItemInfo->pParamOverlapIdxList;
         pSubVec        = this->pParamOverlapIdxList;
     }
     
     vectINT::iterator MItr(pMainVec->begin());
-    for(; MItr != pMainVec->end(); MItr++)
+    for (; MItr != pMainVec->end(); MItr++)
     {
         INT OverlapIdx = *MItr;
         
-        vectINT::iterator SItr = find_if(pSubVec->begin(), pSubVec->end(), find_if_INT(OverlapIdx));
-        if(SItr != pSubVec->end())
+        vectINT::iterator SItr = find_if (pSubVec->begin(), pSubVec->end(), find_if_INT(OverlapIdx));
+        if (SItr != pSubVec->end())
         {
             return FALSE;
         }
@@ -1930,7 +1930,7 @@ BOOL CheckAdminCommand(char *token)
     return FALSE;
 #endif
 
-    if(
+    if (
     // 여기 있는 명령어는 다 불가로 처리한다.
     0 == stricmp(token, STRCMD_CS_COMMAND_ITEMINSERTbyKIND)
     || 0 == stricmp(token, STRCMD_CS_COMMAND_ITEMINSERTbyKIND_1)

@@ -84,12 +84,12 @@ HRESULT    CAtumSound::InitDeviceObjects()
         // format to stereo, 22kHz and 16-bit output.
         m_p3DSoundManager = new CSoundManager;
         HRESULT hr = m_p3DSoundManager->Initialize(g_pD3dApp->GetHwnd(), DSSCL_PRIORITY, 2, 2250, 16);
-        if(SUCCEEDED(hr))
+        if (SUCCEEDED(hr))
         {
             hr = m_p3DSoundManager->SetPrimaryBufferFormat(2,2250,16);
         }
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             MessageBox(g_pD3dApp->GetHwnd(), STRERR_C_SOUND_0001, 
                 STRMSG_WINDOW_TEXT, MB_OK | MB_ICONERROR );
@@ -100,7 +100,7 @@ HRESULT    CAtumSound::InitDeviceObjects()
         // Get the 3D listener, so we can control its params
         hr |= m_p3DSoundManager->Get3DListenerInterface( &m_pDSListener);
 
-        if(FAILED(hr))
+        if (FAILED(hr))
         {
             MessageBox(g_pD3dApp->GetHwnd(), STRERR_C_SOUND_0002, 
                 STRMSG_WINDOW_TEXT, MB_OK | MB_ICONERROR );
@@ -117,7 +117,7 @@ HRESULT    CAtumSound::InitDeviceObjects()
     {
         m_pSoundManager = new CSoundManager;
         HRESULT hr = m_pSoundManager->Initialize(g_pD3dApp->GetHwnd(), DSSCL_PRIORITY, 2, 2250, 16);        
-        if(SUCCEEDED(hr))
+        if (SUCCEEDED(hr))
         {
             hr = m_pSoundManager->SetPrimaryBufferFormat(2,2250,16);
         }
@@ -137,16 +137,16 @@ HRESULT    CAtumSound::InitDeviceObjects()
 void CAtumSound::Tick()
 {
 // 2005-01-03 by jschoi  주석 - 사용안함
-//    for(int i=0; i < m_vectorSoundPtr.size(); i++)
+//    for (int i=0; i < m_vectorSoundPtr.size(); i++)
 //    {
 //        m_vectorSoundPtr[i]->SetAllParameter();
 //    }
     // 현재 쓰이지 않음
-//    if(m_fSetSoundGroundCheckTime > 0.0f)
+//    if (m_fSetSoundGroundCheckTime > 0.0f)
 //    {
 //        m_fSetSoundGroundCheckTime -= g_pD3dApp->GetElapsedTime();
 //    }
-//    if(m_fSetSoundGroundCheckTime <= 0.0f)
+//    if (m_fSetSoundGroundCheckTime <= 0.0f)
 //    {
 //        m_fSetSoundGroundCheckTime = 5.0f;
 //        CheckD3DSoundGround();
@@ -156,7 +156,7 @@ HRESULT    CAtumSound::DeleteDeviceObjects()
 {
     SAFE_RELEASE(m_pDSListener);
     vectorSoundPtr::iterator itSound = m_vectorSoundPtr.begin();
-    for(; itSound != m_vectorSoundPtr.end(); itSound++)
+    for (; itSound != m_vectorSoundPtr.end(); itSound++)
     {
         util::del(*itSound);
     }
@@ -164,14 +164,14 @@ HRESULT    CAtumSound::DeleteDeviceObjects()
     util::del(m_pSoundManager);
     util::del(m_p3DSoundManager);
 
-    if(m_pMusic)
+    if (m_pMusic)
     {
         m_pMusic->Atum_MusicStop();
         util::del(m_pMusic);
         m_bPlayMusic = FALSE;
     }
     // 2007-07-24 by bhsohn 나레이션 mp3추가
-    if(m_pNarrationMusic)
+    if (m_pNarrationMusic)
     {
         m_pNarrationMusic->Atum_MusicStop();
         util::del(m_pNarrationMusic);        
@@ -336,9 +336,9 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
     //pTmSound->Stop();
     //end 2010. 07. 07 by jskim 모선전시 사운드 버그 수정
     D3DXVECTOR3 tmVec3SoundPos = vPos;
-    if(i_b3DSound)
+    if (i_b3DSound)
     {
-        if(D3DXVec3Length(&(vPos - g_pShuttleChild->m_vPos)) >= 1500.0f)
+        if (D3DXVec3Length(&(vPos - g_pShuttleChild->m_vPos)) >= 1500.0f)
         {
             return;
         }
@@ -357,14 +357,14 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
         //end 2010. 07. 07 by jskim 모선전시 사운드 버그 수정
     }    
     
-    if(nType == SOUND_FLYING_M_A_GEAR 
+    if (nType == SOUND_FLYING_M_A_GEAR 
         || nType == SOUND_FLYING_B_I_GEAR 
         || nType == SOUND_HIGH_BOOSTER 
         || nType == SOUND_LOW_BOOSTER
         || nType == SOUND_GROUND_MOVING_A_GEAR)
 //        || nType == SOUND_MOVING_ON_WATER)
     {
-        if(FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
+        if (FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
         {
             DBGOUT(STRERR_C_SOUND_0003, nType);
             return;
@@ -377,14 +377,14 @@ void CAtumSound::PlayD3DSound(int nType,D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TRUE
             return;
         }
 
-        if(FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
+        if (FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
         {
             return;
         }
     }
     else
     {
-        if(FAILED(pTmSound->Play(0, 0, g_pSOption->sSoundVolume)))
+        if (FAILED(pTmSound->Play(0, 0, g_pSOption->sSoundVolume)))
         {
             return;
         }
@@ -418,11 +418,11 @@ BYTE * CAtumSound::SetWaveFormatEx(BYTE* pData, DWORD& dwWaveFormLen, WAVEFORMAT
     pData += chHdr.len;
     
     chunk_hdr    chDataHdr;    
-    for(int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         memcpy(&chDataHdr, pData, sizeof(chunk_hdr));
         pData += sizeof(chunk_hdr);
-        if(chDataHdr.id[0] == 'd' && chDataHdr.id[1] == 'a' 
+        if (chDataHdr.id[0] == 'd' && chDataHdr.id[1] == 'a' 
             && chDataHdr.id[2] == 't' && chDataHdr.id[3] == 'a')
         {
             dwWaveFormLen = chDataHdr.len;
@@ -457,7 +457,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
         DataHeader* pHeader = NULL;
         pHeader = m_pGameData->FindFromFile(strWave);
 
-        if(pHeader == NULL) // by dhkwon 2005-11-23, NULL체크
+        if (pHeader == NULL) // by dhkwon 2005-11-23, NULL체크
         {
             DBGOUT("Sound File Error(%s)\n", strWave);
             return;
@@ -469,7 +469,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 
         BYTE * pWaveRaw = SetWaveFormatEx((BYTE*)pHeader->m_pData, dwWaveFormLen, &wfx );
 
-        if(NULL == pWaveRaw)
+        if (NULL == pWaveRaw)
         {
             util::del(pHeader);// 2005-02-04 by jschoi
             return;
@@ -478,7 +478,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
         DWORD            dwCreationFlag = DSBCAPS_CTRLVOLUME;
         GUID            guid = GUID_NULL;
         CSoundManager    *pSoundManager = NULL;
-        if(i_b3DSound
+        if (i_b3DSound
             && wfx.nChannels == 1)
         {
             dwCreationFlag |= DSBCAPS_CTRL3D;
@@ -491,7 +491,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
             pSoundManager = m_pSoundManager;
         }
 
-        if(FAILED(pSoundManager->CreateFromMemory( (CSound**)&pTmSound, 
+        if (FAILED(pSoundManager->CreateFromMemory( (CSound**)&pTmSound, 
                           pWaveRaw,
                           dwWaveFormLen,
                           &wfx,
@@ -513,9 +513,9 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 //    pTmSound->Stop();
     //end 2010. 07. 07 by jskim 모선전시 사운드 버그 수정
     D3DXVECTOR3 tmVec3SoundPos = vPos;
-    if(i_b3DSound)
+    if (i_b3DSound)
     {
-        if(D3DXVec3Length(&(vPos - g_pShuttleChild->m_vPos)) >= 1500.0f)
+        if (D3DXVec3Length(&(vPos - g_pShuttleChild->m_vPos)) >= 1500.0f)
         {
             return;
         }
@@ -534,14 +534,14 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
     }
     //pTmSound->Set3DSoundPosition(&tmVec3SoundPos);
     
-    if(nSType == SOUND_FLYING_M_A_GEAR 
+    if (nSType == SOUND_FLYING_M_A_GEAR 
         || nSType == SOUND_FLYING_B_I_GEAR 
         || nSType == SOUND_HIGH_BOOSTER 
         || nSType == SOUND_LOW_BOOSTER
         || nSType == SOUND_GROUND_MOVING_A_GEAR)
 //        || nSType == SOUND_MOVING_ON_WATER)
     {
-        if(FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
+        if (FAILED(pTmSound->Play(0, DSBPLAY_LOOPING, g_pSOption->sSoundVolume)))
         {
             DBGOUT(STRERR_C_SOUND_0003, nSType);
             return;
@@ -549,7 +549,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
     }
     else
     {
-        if(FAILED(pTmSound->Play(0, 0, g_pSOption->sSoundVolume)))
+        if (FAILED(pTmSound->Play(0, 0, g_pSOption->sSoundVolume)))
         {
             return;
         }
@@ -559,7 +559,7 @@ VOID CAtumSound::PlayD3DSound(char * str, D3DXVECTOR3 vPos, BOOL i_b3DSound/*=TR
 VOID CAtumSound::StopD3DSound(int nType)
 {
     // 2013-02-05 by bhsohn Sound 없는 장비에서 Exception오류 나는 현상 수정
-    if(!m_bNotDevice)
+    if (!m_bNotDevice)
     {
         return;
     }
@@ -567,7 +567,7 @@ VOID CAtumSound::StopD3DSound(int nType)
 
     FLOG("CAtumSound::StopD3DSound(int nType)");
     CSound *pTmSound = FindSCSoundWithSoundType(nType);
-    if(pTmSound)
+    if (pTmSound)
     {
         pTmSound->Stop(); // 2016-01-08 exception at this point (2)
     }    
@@ -576,7 +576,7 @@ VOID CAtumSound::StopD3DSound(int nType)
 VOID CAtumSound::StopD3DSound(char * str)
 {
     // 2013-02-05 by bhsohn Sound 없는 장비에서 Exception오류 나는 현상 수정
-    if(!m_bNotDevice)
+    if (!m_bNotDevice)
     {
         return;
     }
@@ -587,7 +587,7 @@ VOID CAtumSound::StopD3DSound(char * str)
     nType = atoi(str);
 
     CSound *pTmSound = FindSCSoundWithSoundType(nType);
-    if(pTmSound)
+    if (pTmSound)
     {
         pTmSound->Stop();
     }
@@ -606,14 +606,14 @@ VOID CAtumSound::StopD3DSound(char * str)
 void CAtumSound::DelD3DSound(int nType)
 {
     // 2013-02-05 by bhsohn Sound 없는 장비에서 Exception오류 나는 현상 수정
-    if(!m_bNotDevice)
+    if (!m_bNotDevice)
     {
         return;
     }
 // END 2013-02-05 by bhsohn Sound 없는 장비에서 Exception오류 나는 현상 수정
 
     CSound *pTmSound = FindSCSoundWithSoundType(nType);
-    if(pTmSound)
+    if (pTmSound)
     {
         pTmSound->Stop();
     }
@@ -624,7 +624,7 @@ void CAtumSound::DelD3DSound(int nType)
 VOID CAtumSound::CheckD3DSoundGround()
 {
     // 2013-02-05 by bhsohn Sound 없는 장비에서 Exception오류 나는 현상 수정
-    if(!m_bNotDevice)
+    if (!m_bNotDevice)
     {
         return;
     }
@@ -633,7 +633,7 @@ VOID CAtumSound::CheckD3DSoundGround()
     FLOG("CAtumSound::CheckD3DSoundGround()");
     int type,type2;
     type = RANDI(0, 4);
-    switch(type)
+    switch (type)
     {
     case 0:
         {
@@ -690,16 +690,16 @@ VOID CAtumSound::PlayBackSound()
 {
     FLOG("CAtumSound::PlayBackSound()");
     // 2006-09-15 by ispark, 장치 활성 유무
-    if(m_bNotDevice == FALSE)
+    if (m_bNotDevice == FALSE)
     {
         return;
     }
 
     // 2006-04-20 by ispark, 시간제 배경음악
-    if(m_bOnlyBackMusic == TRUE)
+    if (m_bOnlyBackMusic == TRUE)
     {
         m_fSetSoundGroundCheckTime -= g_pD3dApp->GetElapsedTime();
-        if(m_fSetSoundGroundCheckTime <= 0.0f)
+        if (m_fSetSoundGroundCheckTime <= 0.0f)
         {
             m_bOnlyBackMusic = FALSE;
             m_nOnlyBackMusicState = -1;
@@ -707,23 +707,23 @@ VOID CAtumSound::PlayBackSound()
         }
     }
     
-    if(!m_bPlayMusic)
+    if (!m_bPlayMusic)
     {
-        if(m_pMusic)
+        if (m_pMusic)
             m_pMusic->Atum_MusicStop();
-        if(strlen(m_strBackMusic))
+        if (strlen(m_strBackMusic))
         {
             char buf[128];
             wsprintf(buf,".\\Res-Snd\\%s",m_strBackMusic);
             m_pMusic->Atum_MusicInit(buf);
             int nVolume = -10000;
-            if(m_nMusicVolume > 0)
+            if (m_nMusicVolume > 0)
             {
                 nVolume = GetMusicVolume(m_nMusicVolume);
             }
             m_pMusic->Atum_PlayMP3(nVolume);
 //            m_bPlayMusic = TRUE;
-//            if(!FAILED(m_pMusic->Atum_MusicInit(buf)))
+//            if (!FAILED(m_pMusic->Atum_MusicInit(buf)))
 //            {
 //                m_pMusic->Atum_PlayMP3(g_pSOption->sMusicVolume);
 //                m_bPlayMusic = TRUE;
@@ -731,7 +731,7 @@ VOID CAtumSound::PlayBackSound()
         }
     }
     // Sound
-    if(m_bPlayMusic && m_pMusic)
+    if (m_bPlayMusic && m_pMusic)
         m_pMusic->Atum_LoopMusic();
     m_bPlayMusic = TRUE;
 
@@ -753,34 +753,34 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
     BOOL bSucSound = TRUE;
     // end 2009. 01. 22 by ckPark 각 세력별 오퍼레이터 MP3 분리
     FLOG("CAtumSound::PlayBackSound()");
-    if(strlen(pNarration) <= 0)
+    if (strlen(pNarration) <= 0)
     {
         // 2009. 01. 22 by ckPark 각 세력별 오퍼레이터 MP3 분리
         return bSucSound;
     }
     // 장치 활성 유무
-    if(m_bNotDevice == FALSE)
+    if (m_bNotDevice == FALSE)
     {
         // 2009. 01. 22 by ckPark 각 세력별 오퍼레이터 MP3 분리
         return bSucSound;
     }
-    if(0 != strncmp(m_strNarrationMusic, pNarration, strlen(pNarration)+1))
+    if (0 != strncmp(m_strNarrationMusic, pNarration, strlen(pNarration)+1))
     {
         m_bPlayNarrationMusic = FALSE;
         strncpy(m_strNarrationMusic, pNarration, strlen(pNarration)+1);
     }
     
-    if(!m_bPlayNarrationMusic)
+    if (!m_bPlayNarrationMusic)
     {
-        if(m_pNarrationMusic)
+        if (m_pNarrationMusic)
             m_pNarrationMusic->Atum_MusicStop();
-        if(strlen(pNarration))
+        if (strlen(pNarration))
         {
             char buf[128];
             wsprintf(buf,".\\Res-Snd\\%s.mp3", pNarration);
             // 2009. 01. 22 by ckPark 각 세력별 오퍼레이터 MP3 분리
             //m_pNarrationMusic->Atum_MusicInit(buf);
-            if(FAILED(m_pNarrationMusic->Atum_MusicInit(buf)))
+            if (FAILED(m_pNarrationMusic->Atum_MusicInit(buf)))
             {
                 bSucSound = FALSE;
             }
@@ -789,7 +789,7 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
             // 2010. 07. 07 by jskim 모선전시 사운드 버그 수정 - 나레이션 볼륨을 옵션 볼륨으로 변경 
             int nVolume = -10000;
              int nMusicVolume = NARRATION_VOLUME; // 나레이션 볼륨은 50으로 지정 
-             if(nMusicVolume > 0 && g_pSOption->sSoundVolume != -10000)
+             if (nMusicVolume > 0 && g_pSOption->sSoundVolume != -10000)
              {
                  nVolume = GetMusicVolume(nMusicVolume);
              }
@@ -799,13 +799,13 @@ BOOL CAtumSound::PlayNarrationSound(char* pNarration)
         }
     }
     // Sound
-    if(m_bPlayNarrationMusic && m_pNarrationMusic)
+    if (m_bPlayNarrationMusic && m_pNarrationMusic)
     {
         m_pNarrationMusic->Atum_LoopMusic();
     }    
 
     // 파일이 끝났다. 
-    if(m_bPlayNarrationMusic && (FALSE == m_pNarrationMusic->IsNowPlay()))
+    if (m_bPlayNarrationMusic && (FALSE == m_pNarrationMusic->IsNowPlay()))
     {        
         g_pD3dApp->EndNarrationSound();        
     }
@@ -845,7 +845,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
     
     FLOG("CAtumSound::SetBackMusic(DWORD dwType)");
 
-    switch(dwType)
+    switch (dwType)
     {
         // 1. LOGO & INIT
         // 2. SELECT & CREATE
@@ -908,7 +908,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
     case _CITY:
 
         // todo : review this part
-        if((g_pD3dApp->m_dwGameState != _GAME &&
+        if ((g_pD3dApp->m_dwGameState != _GAME &&
             g_pD3dApp->m_dwGameState != _SHOP &&
             g_pD3dApp->m_dwGameState != _CITY &&
             m_nOnlyBackMusicState != _BOSSMONSTERSUMMONREADY &&
@@ -916,21 +916,21 @@ void CAtumSound::SetBackMusic(DWORD dwType)
             m_nOnlyBackMusicState != _SERVER_DOWN ) || // 2013-07-05 by bhsohn 서버종료시, 경고음 시스템
             m_nOnlyBackMusicState == -1)
         {
-            if(g_pD3dApp->m_pShuttleChild)
+            if (g_pD3dApp->m_pShuttleChild)
             {
                 char buf[64];
                 // 2007-08-02 by dgwoo 음악 파일은 맵번호가아닌 bgm을 읽어서 로딩한다.
                 //wsprintf( buf, "BGM_%d.mp3", g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex);
                 wsprintf( buf, "BGM_%d.mp3", GetMapIndexBGM(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex));
-                if(strcmp(m_strBackMusic,buf))
+                if (strcmp(m_strBackMusic,buf))
                 {
-//                        if(g_pGameMain->m_pMp3Player->m_vecMp3FileNames.size())
+//                        if (g_pGameMain->m_pMp3Player->m_vecMp3FileNames.size())
 //                        {// mp3 파일이 있을경우엔 기존의 배경음악을 그대로 유지한다.
 //                                
 //                        }
 //                        else
                     {// mp3 파일이 없을경우 진입한 배경음악으로 변경.
-                        if(g_pGameMain != NULL && g_pGameMain->m_pMp3Player != NULL &&
+                        if (g_pGameMain != NULL && g_pGameMain->m_pMp3Player != NULL &&
                             !g_pGameMain->m_pMp3Player->GetStopButton())
                         {// 정지 버튼을 누른 상태라면 다른 맵에서도 배경음악을 켜지지 않는다.
                             m_bPlayMusic = FALSE;
@@ -946,7 +946,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
                 }
 
                 // 2007-08-01 by bhsohn 튜토리얼 맵에서 음성 플레이 시도할려는 버그 처리
-                if(IS_TUTORIAL_MAP_INDEX(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex))
+                if (IS_TUTORIAL_MAP_INDEX(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex))
                 {
                     m_bPlayMusic = FALSE;
                     memset(m_strBackMusic,0x00,sizeof(m_strBackMusic));
@@ -985,7 +985,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
 
         if (g_pD3dApp->m_bClientQuit)
         {
-            if(strcmp(m_strBackMusic,"BGM_ENDGAME.mp3"))
+            if (strcmp(m_strBackMusic,"BGM_ENDGAME.mp3"))
             {
                 m_bPlayMusic = false;
                 strcpy(m_strBackMusic,"BGM_ENDGAME.mp3");
@@ -1044,7 +1044,7 @@ void CAtumSound::SetBackMusic(DWORD dwType)
         // 2006-04-20 ispark
     case _BOSSMONSTERSUMMON:
 
-        if(g_pD3dApp->m_pShuttleChild)
+        if (g_pD3dApp->m_pShuttleChild)
         {
             auto buf = "BGM_WARNING.mp3";
 
@@ -1091,7 +1091,7 @@ void CAtumSound::SetAtumMusicVolume(int nVolume) const
 
 CSound* CAtumSound::FindSCSoundWithSoundType(int nType) const
 {
-    auto r = find_if(m_vectorSoundPtr.cbegin() , m_vectorSoundPtr.cend(),
+    auto r = find_if (m_vectorSoundPtr.cbegin() , m_vectorSoundPtr.cend(),
 
         [nType](CSound* snd) { return snd->m_nSoundType == nType; });
 
@@ -1100,7 +1100,7 @@ CSound* CAtumSound::FindSCSoundWithSoundType(int nType) const
 
 void CAtumSound::DelSCSoundWithSoundType(int nType)
 {
-    auto r = find_if(m_vectorSoundPtr.begin(), m_vectorSoundPtr.end(),
+    auto r = find_if (m_vectorSoundPtr.begin(), m_vectorSoundPtr.end(),
 
         [nType](CSound* snd) { return snd->m_nSoundType == nType; });
 

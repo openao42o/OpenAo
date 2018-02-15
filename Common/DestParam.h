@@ -1,6 +1,7 @@
 ﻿//Copyright[2002] MasangSoft
 ///////////////////////////////////
 // 아이템의 캐릭터 파라이터 - DES_XXX
+#pragma once
 enum : DestParam_t
 {
 	DES_NULL = 0,		// 대상 파라미터가 없는 경우 사용

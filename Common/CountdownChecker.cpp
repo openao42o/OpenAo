@@ -22,7 +22,7 @@ CCountdownChecker::~CCountdownChecker()
 
 BOOL CCountdownChecker::IsValidCountType(BYTE i_byCountType)
 {
-    if(i_byCountType >= COUNT_MAX_COUNTDOWN_COUNT)
+    if (i_byCountType >= COUNT_MAX_COUNTDOWN_COUNT)
     {
         return FALSE;
     }
@@ -38,7 +38,7 @@ void CCountdownChecker::ResetCountdownChecker(void)
 
 BOOL CCountdownChecker::StartCountDown(BYTE i_byCountType, DWORD i_dwMSTimeGap, DWORD i_dwCurTick)
 {
-    if(FALSE == IsValidCountType(i_byCountType))
+    if (FALSE == IsValidCountType(i_byCountType))
     {
         return FALSE;
     }
@@ -52,12 +52,12 @@ BOOL CCountdownChecker::StartCountDown(BYTE i_byCountType, DWORD i_dwMSTimeGap, 
 
 BOOL CCountdownChecker::IsEndedCountDown(BYTE i_byCountType, DWORD i_dwCurTick)
 {
-    if(FALSE == IsValidCountType(i_byCountType))
+    if (FALSE == IsValidCountType(i_byCountType))
     {
         return FALSE;
     }
 
-    if(FALSE == m_arrCountdownCheck[i_byCountType].bStartedFlag
+    if (FALSE == m_arrCountdownCheck[i_byCountType].bStartedFlag
         || i_dwCurTick - m_arrCountdownCheck[i_byCountType].dwStartedTick < m_arrCountdownCheck[i_byCountType].dwMSCountdownTimeGap-500)
     {
         DBGOUT("CCountdownChecker::IsEndedCountDown Countdown Error, CountType(%d) StartFlag(%2d) TimeGap(%5d)\n"

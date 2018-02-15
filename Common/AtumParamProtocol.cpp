@@ -6,153 +6,7 @@
 
 const char* GetProtocolTypeString(MessageType_t msgType)
 {
-<<<<<<< HEAD
-	switch (msgType)
-	{
-	case T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION:			return "T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION";
-	case T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO:		return "T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO";
-	case T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION_OK:		return "T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION_OK";
-	case T_PC_DEFAULT_NEW_UPDATE_LAUNCHER_VERSION:		return "T_PC_DEFAULT_NEW_UPDATE_LAUNCHER_VERSION";		// 2007-01-08 by cmkwon
-	case T_PC_DEFAULT_NEW_UPDATE_LAUNCHER_UPDATE_INFO:	return "T_PC_DEFAULT_NEW_UPDATE_LAUNCHER_UPDATE_INFO";	// 2007-01-08 by cmkwon
-
-	case T_PC_CONNECT_CLOSE:							return "T_PC_CONNECT_CLOSE";
-	case T_PC_CONNECT_ALIVE:							return "T_PC_CONNECT_ALIVE";
-	case T_PC_CONNECT_VERSION:							return "T_PC_CONNECT_VERSION";
-	case T_PC_CONNECT_UPDATE_INFO:						return "T_PC_CONNECT_UPDATE_INFO";
-	case T_PC_CONNECT_VERSION_OK:						return "T_PC_CONNECT_VERSION_OK";
-	case T_PC_CONNECT_REINSTALL_CLIENT:					return "T_PC_CONNECT_REINSTALL_CLIENT";
-	case T_PC_CONNECT_LOGIN:							return "T_PC_CONNECT_LOGIN";
-	case T_PC_CONNECT_LOGIN_OK:							return "T_PC_CONNECT_LOGIN_OK";
-	case T_PC_CONNECT_SINGLE_FILE_VERSION_CHECK:		return "T_PC_CONNECT_SINGLE_FILE_VERSION_CHECK";
-	case T_PC_CONNECT_SINGLE_FILE_VERSION_CHECK_OK:		return "T_PC_CONNECT_SINGLE_FILE_VERSION_CHECK_OK";
-	case T_PC_CONNECT_SINGLE_FILE_UPDATE_INFO:			return "T_PC_CONNECT_SINGLE_FILE_UPDATE_INFO";
-	case T_PC_CONNECT_GET_SERVER_GROUP_LIST:			return "T_PC_CONNECT_GET_SERVER_GROUP_LIST";
-	case T_PC_CONNECT_GET_SERVER_GROUP_LIST_OK:			return "T_PC_CONNECT_GET_SERVER_GROUP_LIST_OK";
-	case T_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST:		return "T_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST";		// 2007-05-02 by cmkwon
-	case T_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST_OK:	return "T_PC_CONNECT_GET_GAME_SERVER_GROUP_LIST_OK";	// 2007-05-02 by cmkwon
-	case T_PC_CONNECT_NETWORK_CHECK:					return "T_PC_CONNECT_NETWORK_CHECK";	// 2007-06-18 by cmkwon, 네트워크 상태 체크
-	case T_PC_CONNECT_NETWORK_CHECK_OK:					return "T_PC_CONNECT_NETWORK_CHECK_OK";	// 2007-06-18 by cmkwon, 네트워크 상태 체크
-	case T_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST:		return "T_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST";		// 2007-09-05 by cmkwon, EXE_1에 로그인 서버 선택 인터페이스 수정 -
-	case T_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST_OK:	return "T_PC_CONNECT_GET_NEW_GAME_SERVER_GROUP_LIST_OK";	// 2007-09-05 by cmkwon, EXE_1에 로그인 서버 선택 인터페이스 수정 -
-
-	case T_PC_CONNECT_LOGIN_BLOCKED:					return "T_PC_CONNECT_LOGIN_BLOCKED";
-	case T_PC_CONNECT_MAC_BLOCKED:						return "T_PC_CONNECT_MAC_BLOCKED";
-
-	case T_FC_CONNECT_CLOSE:							return "T_FC_CONNECT_CLOSE";
-	case T_FC_CONNECT_ALIVE:							return "T_FC_CONNECT_ALIVE";
-	case T_FC_CONNECT_LOGIN:							return "T_FC_CONNECT_LOGIN";
-	case T_FC_CONNECT_LOGIN_OK:							return "T_FC_CONNECT_LOGIN_OK";
-	case T_FC_CONNECT_SYNC_TIME:						return "T_FC_CONNECT_SYNC_TIME";
-	case T_FC_CONNECT_NOTIFY_SERVER_SHUTDOWN:			return "T_FC_CONNECT_NOTIFY_SERVER_SHUTDOWN";
-
-	case T_FC_CONNECT_NETWORK_CHECK:					return "T_FC_CONNECT_NETWORK_CHECK";		// 2008-02-15 by cmkwon, Client<->FieldServer 간 네트워크 상태 체크 - 
-	case T_FC_CONNECT_NETWORK_CHECK_OK:					return "T_FC_CONNECT_NETWORK_CHECK_OK";		// 2008-02-15 by cmkwon, Client<->FieldServer 간 네트워크 상태 체크 - 
-
-
-
-	case T_FC_CONNECT_ARENASERVER_INFO:					return "T_FC_CONNECT_ARENASERVER_INFO";			// 2007-12-28 by dhjin, 아레나 통합 - 
-	case T_FC_CONNECT_ARENASERVER_LOGIN:				return "T_FC_CONNECT_ARENASERVER_LOGIN";			// 2007-12-28 by dhjin, 아레나 통합 - 
-	case T_FC_CONNECT_ARENASERVER_LOGIN_OK:				return "T_FC_CONNECT_ARENASERVER_LOGIN_OK";			// 2007-12-28 by dhjin, 아레나 통합 - 
-	case T_FC_CONNECT_ARENASERVER_SSERVER_GROUP_FOR_CLIENT:				return "T_FC_CONNECT_ARENASERVER_SSERVER_GROUP_FOR_CLIENT";			// 2008-02-25 by dhjin, 아레나 통합 - 
-	case T_FC_CONNECT_ARENASERVER_TO_IMSERVER:				return "T_FC_CONNECT_ARENASERVER_TO_IMSERVER";			// 2008-03-03 by dhjin, 아레나 통합 - 
-	// start 2011-11-03 by shcho, yedang 셧다운제 구현 - 
-	case T_FC_SHUTDOWNMINS_USER_ALTER:					return "T_FC_SHUTDOWNMINS_USER_ALTER";		// 10분 마다 알림
-	case T_FC_SHUTDOWNMINS_USER_ENDGAME:				return "T_FC_SHUTDOWNMINS_USER_ENDGAME";	// 종료 전송
-	case ERR_SHUTDOWNMINORS_USER:						return "ERR_SHUTDOWNMINORS_USER";			// 16세 이하 런처에서 막음 에러처리
-	// end 2011-11-03 by shcho, yedang 셧다운제 구현 - 
-
-	case T_FP_CONNECT_CLOSE:							return "T_FP_CONNECT_CLOSE";
-	case T_FP_CONNECT_ALIVE:							return "T_FP_CONNECT_ALIVE";
-	case T_FP_CONNECT_AUTH_USER:						return "T_FP_CONNECT_AUTH_USER";
-	case T_FP_CONNECT_AUTH_USER_OK:						return "T_FP_CONNECT_AUTH_USER_OK";
-	case T_FP_CONNECT_FIELD_CONNECT:					return "T_FP_CONNECT_FIELD_CONNECT";
-	case T_FP_CONNECT_FIELD_CONNECT_OK:					return "T_FP_CONNECT_FIELD_CONNECT_OK";
-	case T_FP_CONNECT_NOTIFY_CLOSE:						return "T_FP_CONNECT_NOTIFY_CLOSE";
-	case T_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE:		return "T_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE";
-	case T_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE_OK:		return "T_FP_CONNECT_NOTIFY_FIELDSERVER_CHANGE_OK";
-	case T_FP_CONNECT_PREPARE_SHUTDOWN:					return "T_FP_CONNECT_PREPARE_SHUTDOWN";
-	case T_FP_CONNECT_UPDATE_DBSERVER_GROUP:			return "T_FP_CONNECT_UPDATE_DBSERVER_GROUP";		// 2008-04-29 by cmkwon, 서버군 정보 DB에 추가(신규 계정 캐릭터 생성 제한 시스템추가) - 
-	case T_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT:		return "T_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT";		// 2008-04-29 by cmkwon, 서버군 정보 DB에 추가(신규 계정 캐릭터 생성 제한 시스템추가) - 
-	case T_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT_OK:		return "T_FP_CONNECT_CHECK_CONNECTABLE_ACCOUNT_OK";	// 2008-04-29 by cmkwon, 서버군 정보 DB에 추가(신규 계정 캐릭터 생성 제한 시스템추가) - 
-	case T_FP_ADMIN_RELOAD_WORLDRANKING:				return "T_FP_ADMIN_RELOAD_WORLDRANKING";		// 2009-02-12 by cmkwon, EP3-3 월드랭킹시스템 구현 - 
-	case T_FP_ADMIN_RELOAD_INFLUENCERATE:				return "T_FP_ADMIN_RELOAD_INFLUENCERATE";		// 2009-09-16 by cmkwon, 세력 초기화시 어뷰징 방지 구현 - 
-
-	case T_IP_CONNECT_CLOSE:							return "T_IP_CONNECT_CLOSE";
-	case T_IP_CONNECT_ALIVE:							return "T_IP_CONNECT_ALIVE";
-	case T_IP_CONNECT_IM_CONNECT:						return "T_IP_CONNECT_IM_CONNECT";
-	case T_IP_CONNECT_IM_CONNECT_OK:					return "T_IP_CONNECT_IM_CONNECT_OK";
-	case T_IP_GET_SERVER_GROUP_INFO:					return "T_IP_GET_SERVER_GROUP_INFO";
-	case T_IP_GET_SERVER_GROUP_INFO_ACK:				return "T_IP_GET_SERVER_GROUP_INFO_ACK";
-	case T_IP_ADMIN_PETITION_SET_PERIOD:				return "T_IP_ADMIN_PETITION_SET_PERIOD";		// 2007-11-19 by cmkwon, 진정시스템 업데이트 - 
-	case T_IP_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM:			return "T_IP_ADMIN_RELOAD_ADMIN_NOTICE_SYSTEM";		// 2009-01-14 by cmkwon, 운영자 자동 공지 시스템 구현 - 
-		
-	case T_IC_CONNECT_CLOSE:							return "T_IC_CONNECT_CLOSE";
-	case T_IC_CONNECT_ALIVE:							return "T_IC_CONNECT_ALIVE";
-	case T_IC_CONNECT_LOGIN:							return "T_IC_CONNECT_LOGIN";
-	case T_IC_CONNECT_LOGIN_OK:							return "T_IC_CONNECT_LOGIN_OK";
-	case T_IC_CONNECT_FM_TO_IM_OK:						return "T_IC_CONNECT_FM_TO_IM_OK";		// 2008-03-03 by dhjin, 아레나 통합 - 
-
-	case T_FI_CONNECT:									return "T_FI_CONNECT";
-	case T_FI_CONNECT_OK:								return "T_FI_CONNECT_OK";
-	case T_FI_CONNECT_CLOSE:							return "T_FI_CONNECT_CLOSE";
-	case T_FI_CONNECT_ALIVE:							return "T_FI_CONNECT_ALIVE";
-	case T_FI_CONNECT_NOTIFY_FIELDSERVER_IP:			return "T_FI_CONNECT_NOTIFY_FIELDSERVER_IP";
-	case T_FI_CONNECT_NOTIFY_GAMEEND:					return "T_FI_CONNECT_NOTIFY_GAMEEND";
-	case T_FI_CONNECT_NOTIFY_DEAD:						return "T_FI_CONNECT_NOTIFY_DEAD";
-	case T_FI_GET_FIELD_USER_COUNTS:					return "T_FI_GET_FIELD_USER_COUNTS";
-	case T_FI_GET_FIELD_USER_COUNTS_ACK:				return "T_FI_GET_FIELD_USER_COUNTS_ACK";
-	case T_FI_CONNECT_NOTIFY_GAMESTART:					return "T_FI_CONNECT_NOTIFY_GAMESTART";
-	case T_FI_CONNECT_NOTIFY_DEAD_GAMESTART:			return "T_FI_CONNECT_NOTIFY_DEAD_GAMESTART";
-	case T_FI_CONNECT_PREPARE_SHUTDOWN:					return "T_FI_CONNECT_PREPARE_SHUTDOWN";
-
-	case T_PM_CONNECT:									return "T_PM_CONNECT";
-	case T_PM_CONNECT_OK:								return "T_PM_CONNECT_OK";
-	case T_PM_CONNECT_CLOSE:							return "T_PM_CONNECT_CLOSE";
-	case T_PM_CONNECT_ALIVE:							return "T_PM_CONNECT_ALIVE";
-	case T_FM_CONNECT:									return "T_FM_CONNECT";
-	case T_FM_CONNECT_OK:								return "T_FM_CONNECT_OK";
-	case T_FM_CONNECT_CLOSE:							return "T_FM_CONNECT_CLOSE";
-	case T_FM_CONNECT_ALIVE:							return "T_FM_CONNECT_ALIVE";
-	case T_FN_CONNECT_CLOSE:							return "T_FN_CONNECT_CLOSE";
-	case T_FN_CONNECT_ALIVE:							return "T_FN_CONNECT_ALIVE";
-	case T_FN_CONNECT_INCREASE_CHANNEL:					return "T_FN_CONNECT_INCREASE_CHANNEL";
-	case T_FN_CONNECT_SET_CHANNEL_STATE:				return "T_FN_CONNECT_SET_CHANNEL_STATE";
-	case T_LM_CONNECT:									return "T_LM_CONNECT";
-	case T_LM_CONNECT_OK:								return "T_LM_CONNECT_OK";
-	case T_LM_CONNECT_CLOSE:							return "T_LM_CONNECT_CLOSE";
-	case T_LM_CONNECT_ALIVE:							return "T_LM_CONNECT_ALIVE";
-	case T_IM_CONNECT:									return "T_IM_CONNECT";
-	case T_IM_CONNECT_OK:								return "T_IM_CONNECT_OK";
-	case T_IM_CONNECT_CLOSE:							return "T_IM_CONNECT_CLOSE";
-	case T_IM_CONNECT_ALIVE:							return "T_IM_CONNECT_ALIVE";
-	case T_NM_CONNECT:									return "T_NM_CONNECT";
-	case T_NM_CONNECT_OK:								return "T_NM_CONNECT_OK";
-	case T_NM_CONNECT_CLOSE:							return "T_NM_CONNECT_CLOSE";
-	case T_NM_CONNECT_ALIVE:							return "T_NM_CONNECT_ALIVE";
-	case T_PL_CONNECT:									return "T_PL_CONNECT";
-	case T_PL_CONNECT_OK:								return "T_PL_CONNECT_OK";
-	case T_PL_CONNECT_CLOSE:							return "T_PL_CONNECT_CLOSE";
-	case T_PL_CONNECT_ALIVE:							return "T_PL_CONNECT_ALIVE";
-	case T_IL_CONNECT:									return "T_IL_CONNECT";
-	case T_IL_CONNECT_OK:								return "T_IL_CONNECT_OK";
-	case T_IL_CONNECT_CLOSE:							return "T_IL_CONNECT_CLOSE";
-	case T_IL_CONNECT_ALIVE:							return "T_IL_CONNECT_ALIVE";
-	case T_FL_CONNECT:									return "T_FL_CONNECT";
-	case T_FL_CONNECT_OK:								return "T_FL_CONNECT_OK";
-	case T_FL_CONNECT_CLOSE:							return "T_FL_CONNECT_CLOSE";
-	case T_FL_CONNECT_ALIVE:							return "T_FL_CONNECT_ALIVE";
-	case T_NL_CONNECT:									return "T_NL_CONNECT";
-	case T_NL_CONNECT_OK:								return "T_NL_CONNECT_OK";
-	case T_NL_CONNECT_CLOSE:							return "T_NL_CONNECT_CLOSE";
-	case T_NL_CONNECT_ALIVE:							return "T_NL_CONNECT_ALIVE";
-
-	case T_PP_CONNECT:									return "T_PP_CONNECT";			// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer 로 서비스 정보 전송 시스템 추가 - 
-	case T_PP_CONNECT_OK:								return "T_PP_CONNECT_OK";		// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer 로 서비스 정보 전송 시스템 추가 - 
-	case T_PP_CONNECT_DO_CLOSE:							return "T_PP_CONNECT_DO_CLOSE";	// 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer 로 서비스 정보 전송 시스템 추가 - 
-
-	case T_FI_EVENT_NOTIFY_WARP:						return "T_FI_EVENT_NOTIFY_WARP";
-=======
-    switch(msgType)
+    switch (msgType)
     {
     case T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION:            return "T_PC_DEFAULT_UPDATE_LAUNCHER_VERSION";
     case T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO:        return "T_PC_DEFAULT_UPDATE_LAUNCHER_UPDATE_INFO";
@@ -296,7 +150,6 @@ const char* GetProtocolTypeString(MessageType_t msgType)
     case T_PP_CONNECT_DO_CLOSE:                            return "T_PP_CONNECT_DO_CLOSE";    // 2008-02-22 by cmkwon, ServerPreServer->MasangPreServer 로 서비스 정보 전송 시스템 추가 - 
 
     case T_FI_EVENT_NOTIFY_WARP:                        return "T_FI_EVENT_NOTIFY_WARP";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 // 2005-07-27 by cmkwon, 다른 필드서버로의 워프는 없으므로 삭제함
 //    case T_FI_EVENT_NOTIFY_WARP_OK:                        return "T_FI_EVENT_NOTIFY_WARP_OK";
     case T_FI_EVENT_CHAT_BLOCK:                            return "T_FI_EVENT_CHAT_BLOCK";        // 2008-12-30 by cmkwon, 지도자 채팅 제한 카드 구현 - 
@@ -1879,156 +1732,156 @@ const char* GetGameLogTypeString(T1<T0::FL_LOG> logType)
 {
 
 <<<<<<< HEAD
-	switch (logType)
-	{
+    switch (logType)
+    {
 
-	// DEVX NOT IMPLEMENTED YET
-	//case T_FA_ADMIN_CHANGE_SERVER_STATE:				return "T_FA_ADMIN_CHANGE_SERVER_STATE";
+    // DEVX NOT IMPLEMENTED YET
+    //case T_FA_ADMIN_CHANGE_SERVER_STATE:                return "T_FA_ADMIN_CHANGE_SERVER_STATE";
 
-	case T1_FL_LOG_LOGIN:								return "T1_FL_LOG_LOGIN";
-	case T1_FL_LOG_LOGOUT:								return "T1_FL_LOG_LOGOUT";
-	case T1_FL_LOG_LEVEL:								return "T1_FL_LOG_LEVEL";
-	case T1_FL_LOG_EXP:									return "T1_FL_LOG_EXP";
-	case T1_FL_LOG_STAT:								return "T1_FL_LOG_STAT";
-	case T1_FL_LOG_GAME_START:							return "T1_FL_LOG_GAME_START";
-	case T1_FL_LOG_GAME_END:							return "T1_FL_LOG_GAME_END";
-	case T1_FL_LOG_QUEST_COMPLETION:					return "T1_FL_LOG_QUEST_COMPLETION";
-	case T1_FL_LOG_QUEST_COMPENSATION:					return "T1_FL_LOG_QUEST_COMPENSATION";
+    case T1_FL_LOG_LOGIN:                                return "T1_FL_LOG_LOGIN";
+    case T1_FL_LOG_LOGOUT:                                return "T1_FL_LOG_LOGOUT";
+    case T1_FL_LOG_LEVEL:                                return "T1_FL_LOG_LEVEL";
+    case T1_FL_LOG_EXP:                                    return "T1_FL_LOG_EXP";
+    case T1_FL_LOG_STAT:                                return "T1_FL_LOG_STAT";
+    case T1_FL_LOG_GAME_START:                            return "T1_FL_LOG_GAME_START";
+    case T1_FL_LOG_GAME_END:                            return "T1_FL_LOG_GAME_END";
+    case T1_FL_LOG_QUEST_COMPLETION:                    return "T1_FL_LOG_QUEST_COMPLETION";
+    case T1_FL_LOG_QUEST_COMPENSATION:                    return "T1_FL_LOG_QUEST_COMPENSATION";
 
-	case T1_FL_LOG_PKWIN:								return "T1_FL_LOG_PKWIN";
-	case T1_FL_LOG_PKLOSS:								return "T1_FL_LOG_PKLOSS";
-	case T1_FL_LOG_DEAD:								return "T1_FL_LOG_DEAD";
-	case T1_FL_LOG_WARP:								return "T1_FL_LOG_WARP";
-	case T1_FL_LOG_SPEED_HACK:							return "T1_FL_LOG_SPEED_HACK";
-	case T1_FL_LOG_CREATE_CHARACTER:					return "T1_FL_LOG_CREATE_CHARACTER";
-	case T1_FL_LOG_DELETE_CHARACTER:					return "T1_FL_LOG_DELETE_CHARACTER";
-	case T1_FL_LOG_MEMORY_HACK:							return "T1_FL_LOG_MEMORY_HACK";
-	case T1_FL_LOG_PvEWIN:								return "T1_FL_LOG_PvEWIN";
-	case T1_FL_LOG_PvELOSS:								return "T1_FL_LOG_PvELOSS";
-	case T1_FL_LOG_ITEM_CHARACTER_ITEM:					return "T1_FL_LOG_ITEM_CHARACTER_ITEM";
-	case T1_FL_LOG_ITEM_GET_ITEM:						return "T1_FL_LOG_ITEM_GET_ITEM";
-	case T1_FL_LOG_ITEM_TRADE_SEND:						return "T1_FL_LOG_ITEM_TRADE_SEND";
-	case T1_FL_LOG_ITEM_TRADE_RECV:						return "T1_FL_LOG_ITEM_TRADE_RECV";
-	case T1_FL_LOG_ITEM_THROWAWAY_ITEM:					return "T1_FL_LOG_ITEM_THROWAWAY_ITEM";
-	case T1_FL_LOG_ITEM_BUY_ITEM:						return "T1_FL_LOG_ITEM_BUY_ITEM";
+    case T1_FL_LOG_PKWIN:                                return "T1_FL_LOG_PKWIN";
+    case T1_FL_LOG_PKLOSS:                                return "T1_FL_LOG_PKLOSS";
+    case T1_FL_LOG_DEAD:                                return "T1_FL_LOG_DEAD";
+    case T1_FL_LOG_WARP:                                return "T1_FL_LOG_WARP";
+    case T1_FL_LOG_SPEED_HACK:                            return "T1_FL_LOG_SPEED_HACK";
+    case T1_FL_LOG_CREATE_CHARACTER:                    return "T1_FL_LOG_CREATE_CHARACTER";
+    case T1_FL_LOG_DELETE_CHARACTER:                    return "T1_FL_LOG_DELETE_CHARACTER";
+    case T1_FL_LOG_MEMORY_HACK:                            return "T1_FL_LOG_MEMORY_HACK";
+    case T1_FL_LOG_PvEWIN:                                return "T1_FL_LOG_PvEWIN";
+    case T1_FL_LOG_PvELOSS:                                return "T1_FL_LOG_PvELOSS";
+    case T1_FL_LOG_ITEM_CHARACTER_ITEM:                    return "T1_FL_LOG_ITEM_CHARACTER_ITEM";
+    case T1_FL_LOG_ITEM_GET_ITEM:                        return "T1_FL_LOG_ITEM_GET_ITEM";
+    case T1_FL_LOG_ITEM_TRADE_SEND:                        return "T1_FL_LOG_ITEM_TRADE_SEND";
+    case T1_FL_LOG_ITEM_TRADE_RECV:                        return "T1_FL_LOG_ITEM_TRADE_RECV";
+    case T1_FL_LOG_ITEM_THROWAWAY_ITEM:                    return "T1_FL_LOG_ITEM_THROWAWAY_ITEM";
+    case T1_FL_LOG_ITEM_BUY_ITEM:                        return "T1_FL_LOG_ITEM_BUY_ITEM";
 
-	
-	case T1_FL_LOG_ITEM_BUY_CASH_PRICE:						return "T1_FL_LOG_ITEM_BUY_CASH_PRICE";	
-	case T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT:	return "T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT";	
-	case T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE:			return "T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE";	
-	case T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT:				return "T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT";	
-	
-	case T1_FL_LOG_ITEM_SELL_ITEM:							return "T1_FL_LOG_ITEM_SELL_ITEM";
-	case T1_FL_LOG_ITEM_USE_ITEM:							return "T1_FL_LOG_ITEM_USE_ITEM";
-	case T1_FL_LOG_ITEM_USE_ENERGY:							return "T1_FL_LOG_ITEM_USE_ENERGY";
-	case T1_FL_LOG_ITEM_USE_ENCHANT:						return "T1_FL_LOG_ITEM_USE_ENCHANT";
-	case T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN:					return "T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN";
-	case T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN:					return "T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN";
-	case T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND:				return "T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND";
-	case T1_FL_LOG_ITEM_INSERT_TO_STORE:					return "T1_FL_LOG_ITEM_INSERT_TO_STORE";
-	case T1_FL_LOG_ITEM_DRAW_FROM_STORE:					return "T1_FL_LOG_ITEM_DRAW_FROM_STORE";
-	case T1_FL_LOG_ITEM_STORE_ITEM:							return "T1_FL_LOG_ITEM_STORE_ITEM";
-	case T1_FL_LOG_ITEM_USE_MIX:							return "T1_FL_LOG_ITEM_USE_MIX";
-	case T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN:	return "T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN";
-	case T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW:		return "T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW";
-	case T1_FL_LOG_ITEM_BAZAAR_SEND:						return "T1_FL_LOG_ITEM_BAZAAR_SEND";
-	case T1_FL_LOG_ITEM_BAZAAR_RECV:						return "T1_FL_LOG_ITEM_BAZAAR_RECV";
-	case T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE:				return "T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE";		
-	case T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE:				return "T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE";		
-	case T1_FL_LOG_ITEM_SPI:								return "T1_FL_LOG_ITEM_SPI";						
-	case T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT:				return "T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT";		
-	case T1_FL_LOG_WARPOINT:								return "T1_FL_LOG_WARPOINT";						
+    
+    case T1_FL_LOG_ITEM_BUY_CASH_PRICE:                        return "T1_FL_LOG_ITEM_BUY_CASH_PRICE";    
+    case T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT:    return "T1_FL_LOG_ITEM_CHARACTER_ITEM_GUILDSTORE_RESULT";    
+    case T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE:            return "T1_FL_LOG_ITEM_INITIALIZED_GUILD_STORE";    
+    case T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT:                return "T1_FL_LOG_ITEM_GET_WITH_SAME_ACCOUNT";    
+    
+    case T1_FL_LOG_ITEM_SELL_ITEM:                            return "T1_FL_LOG_ITEM_SELL_ITEM";
+    case T1_FL_LOG_ITEM_USE_ITEM:                            return "T1_FL_LOG_ITEM_USE_ITEM";
+    case T1_FL_LOG_ITEM_USE_ENERGY:                            return "T1_FL_LOG_ITEM_USE_ENERGY";
+    case T1_FL_LOG_ITEM_USE_ENCHANT:                        return "T1_FL_LOG_ITEM_USE_ENCHANT";
+    case T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN:                    return "T1_FL_LOG_ITEM_ADD_ITEM_BY_ADMIN";
+    case T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN:                    return "T1_FL_LOG_ITEM_DEL_ITEM_BY_ADMIN";
+    case T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND:                return "T1_FL_LOG_ITEM_ADD_ITEM_BY_COMMAND";
+    case T1_FL_LOG_ITEM_INSERT_TO_STORE:                    return "T1_FL_LOG_ITEM_INSERT_TO_STORE";
+    case T1_FL_LOG_ITEM_DRAW_FROM_STORE:                    return "T1_FL_LOG_ITEM_DRAW_FROM_STORE";
+    case T1_FL_LOG_ITEM_STORE_ITEM:                            return "T1_FL_LOG_ITEM_STORE_ITEM";
+    case T1_FL_LOG_ITEM_USE_MIX:                            return "T1_FL_LOG_ITEM_USE_MIX";
+    case T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN:    return "T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_ORIGIN";
+    case T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW:        return "T1_FL_LOG_ITEM_USE_CHANGE_CHARACTER_NAME_NEW";
+    case T1_FL_LOG_ITEM_BAZAAR_SEND:                        return "T1_FL_LOG_ITEM_BAZAAR_SEND";
+    case T1_FL_LOG_ITEM_BAZAAR_RECV:                        return "T1_FL_LOG_ITEM_BAZAAR_RECV";
+    case T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE:                return "T1_FL_LOG_ITEM_INSERT_TO_GUILDSTORE";        
+    case T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE:                return "T1_FL_LOG_ITEM_DRAW_FROM_GUILDSTORE";        
+    case T1_FL_LOG_ITEM_SPI:                                return "T1_FL_LOG_ITEM_SPI";                        
+    case T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT:                return "T1_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT";        
+    case T1_FL_LOG_WARPOINT:                                return "T1_FL_LOG_WARPOINT";                        
 
-	case T1_FL_LOG_ARENA_TEAM_MATCH:						return "T1_FL_LOG_ARENA_TEAM_MATCH";				
-	case T1_FL_LOG_TUTORIAL_COMPLETION:						return "T1_FL_LOG_TUTORIAL_COMPLETION";				
+    case T1_FL_LOG_ARENA_TEAM_MATCH:                        return "T1_FL_LOG_ARENA_TEAM_MATCH";                
+    case T1_FL_LOG_TUTORIAL_COMPLETION:                        return "T1_FL_LOG_TUTORIAL_COMPLETION";                
 
-	case T1_FL_LOG_OUTPOST_START:							return "T1_FL_LOG_OUTPOST_START";					
-	case T1_FL_LOG_OUTPOST_END:								return "T1_FL_LOG_OUTPOST_END";						
-	case T1_FL_LOG_EXPEDIENCYFUND:							return "T1_FL_LOG_EXPEDIENCYFUND";					
+    case T1_FL_LOG_OUTPOST_START:                            return "T1_FL_LOG_OUTPOST_START";                    
+    case T1_FL_LOG_OUTPOST_END:                                return "T1_FL_LOG_OUTPOST_END";                        
+    case T1_FL_LOG_EXPEDIENCYFUND:                            return "T1_FL_LOG_EXPEDIENCYFUND";                    
 
-	case T1_FL_LOG_SERVER_INFO_MAP:							return "T1_FL_LOG_SERVER_INFO_MAP";
-	case T1_FL_LOG_SERVER_INFO_TOTAL:						return "T1_FL_LOG_SERVER_INFO_TOTAL";
-	case T1_FL_LOG_HACKING_LOG:								return "T1_FL_LOG_HACKING_LOG";
+    case T1_FL_LOG_SERVER_INFO_MAP:                            return "T1_FL_LOG_SERVER_INFO_MAP";
+    case T1_FL_LOG_SERVER_INFO_TOTAL:                        return "T1_FL_LOG_SERVER_INFO_TOTAL";
+    case T1_FL_LOG_HACKING_LOG:                                return "T1_FL_LOG_HACKING_LOG";
 
-	case T1_FL_LOG_MONSTER_BOSS:							return "T1_FL_LOG_MONSTER_BOSS";
-	case T1_FL_LOG_START_FIELD_SERVER:						return "T1_FL_LOG_START_FIELD_SERVER";
+    case T1_FL_LOG_MONSTER_BOSS:                            return "T1_FL_LOG_MONSTER_BOSS";
+    case T1_FL_LOG_START_FIELD_SERVER:                        return "T1_FL_LOG_START_FIELD_SERVER";
 
-	case T1_FL_LOG_SERVER_INTEGRAION:						return "T1_FL_LOG_SERVER_INTEGRAION";			
-	case T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS:		return "T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS";	
-	case T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS:	return "T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS";	
+    case T1_FL_LOG_SERVER_INTEGRAION:                        return "T1_FL_LOG_SERVER_INTEGRAION";            
+    case T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS:        return "T1_FL_LOG_SERVER_INTEGRAION_GUILD_STORE_ITEMS";    
+    case T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS:    return "T1_FL_LOG_SERVER_INTEGRAION_ONLY_CASH_STORE_ITEMS";    
 
-	case T1_FL_LOG_INFLWAR_START:						return "T1_FL_LOG_INFLWAR_START";					
-	case T1_FL_LOG_INFLWAR_END:							return "T1_FL_LOG_INFLWAR_END";						
-	case T1_FL_LOG_OUTPOSTWAR_RESET_START:				return "T1_FL_LOG_OUTPOSTWAR_RESET_START";			
-	case T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY:			return "T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY";		
-	case T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE:			return "T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE";		
-	case T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY:		return "T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY";	
-	case T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME:				return "T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME";			
+    case T1_FL_LOG_INFLWAR_START:                        return "T1_FL_LOG_INFLWAR_START";                    
+    case T1_FL_LOG_INFLWAR_END:                            return "T1_FL_LOG_INFLWAR_END";                        
+    case T1_FL_LOG_OUTPOSTWAR_RESET_START:                return "T1_FL_LOG_OUTPOSTWAR_RESET_START";            
+    case T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY:            return "T1_FL_LOG_OUTPOSTWAR_RESET_DESTROY";        
+    case T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE:            return "T1_FL_LOG_OUTPOSTWAR_RESET_COMPLETE";        
+    case T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY:        return "T1_FL_LOG_OUTPOSTWAR_PROTECTOR_DESTROY";    
+    case T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME:                return "T1_FL_LOG_OUTPOSTWAR_SET_NEXTTIME";            
 
 
-	case T1_FL_LOG_POLL_VOTE:							return "T1_FL_LOG_POLL_VOTE";
-	case T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE:			return "T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE";
+    case T1_FL_LOG_POLL_VOTE:                            return "T1_FL_LOG_POLL_VOTE";
+    case T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE:            return "T1_FL_LOG_POLL_DELETE_LEADERCANDIDATE";
 
-	case T1_FL_LOG_DISMEMBER_GUILD:						return "T1_FL_LOG_DISMEMBER_GUILD";
-	case T1_FL_LOG_NOTIFY_MSG_DELETE:					return "T1_FL_LOG_NOTIFY_MSG_DELETE";		
-	case T1_FL_LOG_USE_COUPON:							return "T1_FL_LOG_USE_COUPON";				
-		
-	case T1_FL_LOG_ITEM_GIFT_SEND:						return "T1_FL_LOG_ITEM_GIFT_SEND";			
-	case T1_FL_LOG_ITEM_GIFT_RECV:						return "T1_FL_LOG_ITEM_GIFT_RECV";			
-	case T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM:			return "T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM";	
-	case T1_FL_LOG_ITEM_REARRANGE_ITEM:					return "T1_FL_LOG_ITEM_REARRANGE_ITEM";			
-	case T1_FL_LOG_ITEM_ATTACH_ITEM:					return "T1_FL_LOG_ITEM_ATTACH_ITEM";			
-	case T1_FL_LOG_ITEM_DETACH_ITEM:					return "T1_FL_LOG_ITEM_DETACH_ITEM";			
-	case T1_FL_LOG_ITEM_DELETE:							return "T1_FL_LOG_ITEM_DELETE";					
+    case T1_FL_LOG_DISMEMBER_GUILD:                        return "T1_FL_LOG_DISMEMBER_GUILD";
+    case T1_FL_LOG_NOTIFY_MSG_DELETE:                    return "T1_FL_LOG_NOTIFY_MSG_DELETE";        
+    case T1_FL_LOG_USE_COUPON:                            return "T1_FL_LOG_USE_COUPON";                
+        
+    case T1_FL_LOG_ITEM_GIFT_SEND:                        return "T1_FL_LOG_ITEM_GIFT_SEND";            
+    case T1_FL_LOG_ITEM_GIFT_RECV:                        return "T1_FL_LOG_ITEM_GIFT_RECV";            
+    case T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM:            return "T1_FL_LOG_ITEM_REARRANGE_DELETE_ITEM";    
+    case T1_FL_LOG_ITEM_REARRANGE_ITEM:                    return "T1_FL_LOG_ITEM_REARRANGE_ITEM";            
+    case T1_FL_LOG_ITEM_ATTACH_ITEM:                    return "T1_FL_LOG_ITEM_ATTACH_ITEM";            
+    case T1_FL_LOG_ITEM_DETACH_ITEM:                    return "T1_FL_LOG_ITEM_DETACH_ITEM";            
+    case T1_FL_LOG_ITEM_DELETE:                            return "T1_FL_LOG_ITEM_DELETE";                    
 
-	case T1_FL_LOG_LUCKY_DROP:							return "T1_FL_LOG_LUCKY_DROP";					
+    case T1_FL_LOG_LUCKY_DROP:                            return "T1_FL_LOG_LUCKY_DROP";                    
 
-	case T1_FL_LOG_BLOCK_ACCOUNT:						return "T1_FL_LOG_BLOCK_ACCOUNT";				
-	case T1_FL_LOG_UNBLOCK_ACCOUNT:						return "T1_FL_LOG_UNBLOCK_ACCOUNT";				
+    case T1_FL_LOG_BLOCK_ACCOUNT:                        return "T1_FL_LOG_BLOCK_ACCOUNT";                
+    case T1_FL_LOG_UNBLOCK_ACCOUNT:                        return "T1_FL_LOG_UNBLOCK_ACCOUNT";                
 
-	case T1_FL_LOG_WAR_CONTRIBUTION:					return "T1_FL_LOG_WAR_CONTRIBUTION";			
-	case T1_FL_LOG_WAR_CONTRIBUTION_GEAR:				return "T1_FL_LOG_WAR_CONTRIBUTION_GEAR";		
-	
-	case T1_FL_LOG_INFINITY_START:						return "T1_FL_LOG_INFINITY_START";	
-	case T1_FL_LOG_INFINITY_START_ITEM:					return "T1_FL_LOG_INFINITY_START_ITEM";	
-	case T1_FL_LOG_INFINITY_CINEMA:						return "T1_FL_LOG_INFINITY_CINEMA";	
-	case T1_FL_LOG_MONSTER_SKILL:						return "T1_FL_LOG_MONSTER_SKILL";	
-	case T1_FL_LOG_HPACTION_TALK:						return "T1_FL_LOG_HPACTION_TALK";	
-	case T1_FL_LOG_INFINITY_FIN:						return "T1_FL_LOG_INFINITY_FIN";	
-	case T1_FL_LOG_INFINITY_FIN_ITEM:					return "T1_FL_LOG_INFINITY_FIN_ITEM";	
-	case T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER:		return "T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER";	
-	case T1_FL_LOG_INFINITY_LEAVE_ITEM:					return "T1_FL_LOG_INFINITY_LEAVE_ITEM";	
-	case T1_FL_LOG_PET_LEVEL:							return "T1_FL_LOG_PET_LEVEL"; 
-	case T1_FL_LOG_CONNECT_USER_NEW:					return "T1_FL_LOG_CONNECT_USER_NEW";	
-	case T1_FL_LOG_CONNECT_USER_LOGIN:					return "T1_FL_LOG_CONNECT_USER_LOGIN";	
+    case T1_FL_LOG_WAR_CONTRIBUTION:                    return "T1_FL_LOG_WAR_CONTRIBUTION";            
+    case T1_FL_LOG_WAR_CONTRIBUTION_GEAR:                return "T1_FL_LOG_WAR_CONTRIBUTION_GEAR";        
+    
+    case T1_FL_LOG_INFINITY_START:                        return "T1_FL_LOG_INFINITY_START";    
+    case T1_FL_LOG_INFINITY_START_ITEM:                    return "T1_FL_LOG_INFINITY_START_ITEM";    
+    case T1_FL_LOG_INFINITY_CINEMA:                        return "T1_FL_LOG_INFINITY_CINEMA";    
+    case T1_FL_LOG_MONSTER_SKILL:                        return "T1_FL_LOG_MONSTER_SKILL";    
+    case T1_FL_LOG_HPACTION_TALK:                        return "T1_FL_LOG_HPACTION_TALK";    
+    case T1_FL_LOG_INFINITY_FIN:                        return "T1_FL_LOG_INFINITY_FIN";    
+    case T1_FL_LOG_INFINITY_FIN_ITEM:                    return "T1_FL_LOG_INFINITY_FIN_ITEM";    
+    case T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER:        return "T1_FL_LOG_INFINITY_FIN_ALIVE_KEY_MONSTER";    
+    case T1_FL_LOG_INFINITY_LEAVE_ITEM:                    return "T1_FL_LOG_INFINITY_LEAVE_ITEM";    
+    case T1_FL_LOG_PET_LEVEL:                            return "T1_FL_LOG_PET_LEVEL"; 
+    case T1_FL_LOG_CONNECT_USER_NEW:                    return "T1_FL_LOG_CONNECT_USER_NEW";    
+    case T1_FL_LOG_CONNECT_USER_LOGIN:                    return "T1_FL_LOG_CONNECT_USER_LOGIN";    
 
-	case T1_FL_LOG_STATISTICS_MONEY:					return "T1_FL_LOG_STATISTICS_MONEY";		
+    case T1_FL_LOG_STATISTICS_MONEY:                    return "T1_FL_LOG_STATISTICS_MONEY";        
 
-	case T1_FL_LOG_FIXED_TERM_SHAPE_START:				return "T1_FL_LOG_FIXED_TERM_SHAPE_START";	
-	case T1_FL_LOG_FIXED_TERM_SHAPE_END:				return "T1_FL_LOG_FIXED_TERM_SHAPE_END";		
+    case T1_FL_LOG_FIXED_TERM_SHAPE_START:                return "T1_FL_LOG_FIXED_TERM_SHAPE_START";    
+    case T1_FL_LOG_FIXED_TERM_SHAPE_END:                return "T1_FL_LOG_FIXED_TERM_SHAPE_END";        
 
-	case T1_FL_LOG_COLLECTION_STATE:					return "T1_FL_LOG_COLLECTION_STATE";			
-	case T1_FL_LOG_COLLECTION_SHAPE_CHANGE:				return "T1_FL_LOG_COLLECTION_SHAPE_CHANGE";		
-	case T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN:		return "T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN";
-	case T1_FL_LOG_ITEM_TRY_ENCHANT_INFO:				return "T1_FL_LOG_ITEM_TRY_ENCHANT_INFO";		
+    case T1_FL_LOG_COLLECTION_STATE:                    return "T1_FL_LOG_COLLECTION_STATE";            
+    case T1_FL_LOG_COLLECTION_SHAPE_CHANGE:                return "T1_FL_LOG_COLLECTION_SHAPE_CHANGE";        
+    case T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN:        return "T1_FL_LOG_ACCOUNT_INFL_CHANGE_BY_ADMIN";
+    case T1_FL_LOG_ITEM_TRY_ENCHANT_INFO:                return "T1_FL_LOG_ITEM_TRY_ENCHANT_INFO";        
 
-	case T1_FL_LOG_ITEM_DISSOLUTION_ITEM:				return "T1_FL_LOG_ITEM_DISSOLUTION_ITEM";
-	
-	
-	case T1_FL_LOG_LIVE_DELETED_CHARACTER:				return "T1_FL_LOG_LIVE_DELETED_CHARACTER";
-	case T1_FL_LOG_EVENT_PARTICIPATION_RATE:			return "T1_FL_LOG_EVENT_PARTICIPATION_RATE";
-	case T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN:				return "T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN";
-	case T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN:			return "T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN";
-	case T1_FL_LOG_MS_WAR:								return "T1_FL_LOG_MS_WAR";
-	case T1_FL_LOG_SP_WAR:								return "T1_FL_LOG_SP_WAR";
-	case T1_FL_LOG_ACCOUNTCONNECT:						return "T1_FL_LOG_ACCOUNTCONNECT";
-	case T1_FL_LOG_CHARDATA:							return "T1_FL_LOG_CHARDATA";
-	case T1_FL_LOG_ITEM:								return "T1_FL_LOG_ITEM";
-	case T1_FL_LOG_ITEMSTATE:							return "T1_FL_LOG_ITEMSTATE";
-	case T1_FL_LOG_SERVER:								return "T1_FL_LOG_SERVER";
+    case T1_FL_LOG_ITEM_DISSOLUTION_ITEM:                return "T1_FL_LOG_ITEM_DISSOLUTION_ITEM";
+    
+    
+    case T1_FL_LOG_LIVE_DELETED_CHARACTER:                return "T1_FL_LOG_LIVE_DELETED_CHARACTER";
+    case T1_FL_LOG_EVENT_PARTICIPATION_RATE:            return "T1_FL_LOG_EVENT_PARTICIPATION_RATE";
+    case T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN:                return "T1_FL_LOG_ITEM_ENCHANT_BY_ADMIN";
+    case T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN:            return "T1_FL_LOG_ITEM_DISENCHANT_BY_ADMIN";
+    case T1_FL_LOG_MS_WAR:                                return "T1_FL_LOG_MS_WAR";
+    case T1_FL_LOG_SP_WAR:                                return "T1_FL_LOG_SP_WAR";
+    case T1_FL_LOG_ACCOUNTCONNECT:                        return "T1_FL_LOG_ACCOUNTCONNECT";
+    case T1_FL_LOG_CHARDATA:                            return "T1_FL_LOG_CHARDATA";
+    case T1_FL_LOG_ITEM:                                return "T1_FL_LOG_ITEM";
+    case T1_FL_LOG_ITEMSTATE:                            return "T1_FL_LOG_ITEMSTATE";
+    case T1_FL_LOG_SERVER:                                return "T1_FL_LOG_SERVER";
 
-	default:											return "UNKNOWN_GAME_LOG_TYPE";
-	}
+    default:                                            return "UNKNOWN_GAME_LOG_TYPE";
+    }
 =======
     switch(logType)
     {
@@ -2196,49 +2049,7 @@ const char* GetGameLogTypeString(T1<T0::FL_LOG> logType)
 ///////////////////////////////////////////////////////////////////////////////
 const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy)
 {
-<<<<<<< HEAD
-	switch (i_byItemUpdateTy)
-	{
-	case IUT_GENERAL:						return "IUT_GENERAL";
-	case IUT_DROP_ITEM:						return "IUT_DROP_ITEM";
-	case IUT_MIXING:						return "IUT_MIXING";
-	case IUT_TRADE:							return "IUT_TRADE";
-	case IUT_SHOP:							return "IUT_SHOP";
-	case IUT_QUEST:							return "IUT_QUEST";
-	case IUT_ADMIN:							return "IUT_ADMIN";
-	case IUT_BULLET:						return "IUT_BULLET";
-	case IUT_SKILL:							return "IUT_SKILL";
-	case IUT_LOADING:						return "IUT_LOADING";
-	case IUT_AUCTION:						return "IUT_AUCTION";
-	case IUT_ENCHANT:						return "IUT_ENCHANT";
-	case IUT_USE_ITEM:						return "IUT_USE_ITEM";
-	case IUT_MGAME_EVENT:					return "IUT_MGAME_EVENT";
-	case IUT_USE_ENERGY:					return "IUT_USE_ENERGY";
-	case IUT_EXPIRE_CARD_ITEM:				return "IUT_EXPIRE_CARD_ITEM";
-	case IUT_PENALTY_ON_DEAD:				return "IUT_PENALTY_ON_DEAD";
-	case IUT_PENALTY_AGEAR_FUEL_ALLIN:		return "IUT_PENALTY_AGEAR_FUEL_ALLIN";
-	case IUT_INFLUENCEWAR_KILLER_BONUS:		return "IUT_INFLUENCEWAR_KILLER_BONUS";
-	case IUT_BONUS_ITEM:					return "IUT_BONUS_ITEM";
-	case IUT_BAZAAR_SELL:					return "IUT_BAZAAR_SELL";
-	case IUT_BAZAAR_BUY:					return "IUT_BAZAAR_BUY";
-	case IUT_RANDOMBOX:						return "IUT_RANDOMBOX";
-	case IUT_GIVEEVENTITEM:					return "IUT_GIVEEVENTITEM";
-	case IUT_GUILD_STORE:					return "IUT_GUILD_STORE";
-	case IUT_EXPIRE_ITEM:					return "IUT_EXPIRE_ITEM";
-	case IUT_STORE:							return "IUT_STORE";
-	case IUT_STORE_FEE:						return "IUT_STORE_FEE";
-	case IUT_ARENA_ITEM:					return "IUT_ARENA_ITEM";
-	case IUT_TUTORIAL_PAY_ITEM:				return "IUT_TUTORIAL_PAY_ITEM";
-	case IUT_EXPEDIENCYFUND_PAYBACK:		return "IUT_EXPEDIENCYFUND_PAYBACK";
-	case IUT_GIVEEVENTITEM_COUPONEVENT:		return "IUT_GIVEEVENTITEM_COUPONEVENT";		// 2008-01-10 by cmkwon, 아이템 이벤트 시스템에 신 쿠폰 시스템 추가 - 
-	case IUT_DEPENDENCY_ITEM:				return "IUT_DEPENDENCY_ITEM";		// 2011-09-20 by hskim, 파트너 시스템 2차
-	case IUT_WARP:							return "IUT_WARP";							// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 워프 입장 조건에 의한 아이템 삭제
-	case IUT_DISSOLUTION_ITEM:				return "IUT_DISSOLUTION_ITEM";		// 2013-08-05 by bckim, 용해 대상아이템 로그 추가
-	}
-
-	return "UNKNOWN_ITEM_UPDATE_TYPE";
-=======
-    switch(i_byItemUpdateTy)
+    switch (i_byItemUpdateTy)
     {
     case IUT_GENERAL:                        return "IUT_GENERAL";
     case IUT_DROP_ITEM:                        return "IUT_DROP_ITEM";
@@ -2278,7 +2089,6 @@ const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy)
     }
 
     return "UNKNOWN_ITEM_UPDATE_TYPE";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 
@@ -2294,18 +2104,7 @@ const char* GetItemUpdateTypeString(BYTE i_byItemUpdateTy)
 ///////////////////////////////////////////////////////////////////////////////
 const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy)
 {
-<<<<<<< HEAD
-	switch (i_byItemDeleteTy)
-	{
-	case IDT_GENERAL:						return "IDT_GENERAL";
-	case IDT_EXPIRE_TIME:					return "IDT_EXPIRE_TIME";
-	case IDT_INVALID_ITEMNUM:				return "IDT_INVALID_ITEMNUM";		// 2009-11-20 by cmkwon, 소유 아이템 로딩시 유효하지 않은 아이템 처리 수정 - 
-	case IDT_COUNTABLEITEM_ZERO:			return "IDT_COUNTABLEITEM_ZERO";	// 2009-11-20 by cmkwon, 소유 아이템 로딩시 유효하지 않은 아이템 처리 수정 - 
-	}
-
-	return "UNKNOWN_ITEM_DELETE_TYPE";
-=======
-    switch(i_byItemDeleteTy)
+    switch (i_byItemDeleteTy)
     {
     case IDT_GENERAL:                        return "IDT_GENERAL";
     case IDT_EXPIRE_TIME:                    return "IDT_EXPIRE_TIME";
@@ -2314,613 +2113,11 @@ const char* GetItemDeleteTypeString(BYTE i_byItemDeleteTy)
     }
 
     return "UNKNOWN_ITEM_DELETE_TYPE";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 const char* GetErrorString(Err_t err)
 {
-<<<<<<< HEAD
-	switch (err)
-	{
-	case ERR_NO_ERROR:									return "ERR_NO_ERROR";
-	case ERR_COMMON_UNKNOWN_ERROR:						return "ERR_COMMON_UNKNOWN_ERROR";
-	case ERR_COMMON_LOGIN_FAILED:						return "ERR_COMMON_LOGIN_FAILED";
-	case ERR_COMMON_NO_SUCH_CHARACTER:					return "ERR_COMMON_NO_SUCH_CHARACTER";
-	case ERR_COMMON_CHARACTER_ALREADY_EXISTS:			return "ERR_COMMON_CHARACTER_ALREADY_EXISTS";
-	case ERR_COMMON_TOO_LONG_PACKET:					return "ERR_COMMON_TOO_LONG_PACKET";
-	case ERR_COMMON_SERVICE_TEMPORARILY_PAUSED:			return "ERR_COMMON_SERVICE_TEMPORARILY_PAUSED";
-	case ERR_COMMON_INVALID_CLIENT_VERSION:				return "ERR_COMMON_INVALID_CLIENT_VERSION";
-	case ERR_COMMON_NOT_ALLOWED_TO_MYSELF:				return "ERR_COMMON_NOT_ALLOWED_TO_MYSELF";
-	case ERR_COMMON_INVALID_BUILDINGKIND:				return "ERR_COMMON_INVALID_BUILDINGKIND";
-	case ERR_COMMON_NO_SUCH_BUILDINGKIND:				return "ERR_COMMON_NO_SUCH_BUILDINGKIND";
-	case ERR_COMMON_BAD_NETWORK:						return "ERR_COMMON_BAD_NETWORK";
-	case ERR_COMMON_CONNECTING_GAME:					return "ERR_COMMON_CONNECTING_GAME";		// 2008-11-26 by cmkwon, 대만 Netpower_Tpe 웹에서 아이템 추가 프로시저 추가 - 
-	case ERR_COMMON_DISABLE_CONTENT:					return "ERR_COMMON_DISABLE_CONTENT";		// 2011-10-05 by hskim, 파트너 시스템 2차 - 컨텐츠 OFF 에러 메시지 용
-
-	case ERR_DB_ACCOUNT_ALREAY_EXISTS:					return "ERR_DB_ACCOUNT_ALREAY_EXISTS";
-	case ERR_DB_ACCOUNT_CHARACTER_NO_MATCH:				return "ERR_DB_ACCOUNT_CHARACTER_NO_MATCH";
-	case ERR_DB_INTEGRITY_CONSTRAINT_VIOLATION:			return "ERR_DB_INTEGRITY_CONSTRAINT_VIOLATION";
-	case ERR_DB_INVALID_PARAMETER:						return "ERR_DB_INVALID_PARAMETER";
-	case ERR_DB_INVALID_UNIQUE_NUMBER:					return "ERR_DB_INVALID_UNIQUE_NUMBER";
-	case ERR_DB_NO_SUCH_ACCOUNT:						return "ERR_DB_NO_SUCH_ACCOUNT";
-	case ERR_DB_NUMERIC_VALUE_OUT_OF_RANGE:				return "ERR_DB_NUMERIC_VALUE_OUT_OF_RANGE";
-	case ERR_DB_STRING_TOO_LONG:						return "ERR_DB_STRING_TOO_LONG";
-	case ERR_DB_NO_SUCH_STORE_ITEM:						return "ERR_DB_NO_SUCH_STORE_ITEM";
-	case ERR_DB_CANNOT_INSERT_DEFAULT_ITEMS:			return "ERR_DB_CANNOT_INSERT_DEFAULT_ITEMS";
-	case ERR_DB_CONNECTION_ERROR:						return "ERR_DB_CONNECTION_ERROR";
-	case ERR_DB_EXECUTION_FAILED:						return "ERR_DB_EXECUTION_FAILED";
-	case ERR_DB_NO_SUCH_DATA:							return "ERR_DB_NO_SUCH_DATA";		// 2008-06-12 by dhjin, EP3 데이타 값 없을 경우 에러 추가
-	case ERR_DB_INSERT_QUERY_ERROR:						return "ERR_DB_INSERT_QUERY_ERROR";		// 2008-11-26 by cmkwon, 대만 Netpower_Tpe 웹에서 아이템 추가 프로시저 추가 - 
-
-	case ERR_PROTOCOL_INVALID_PROTOCOL_TYPE:			return "ERR_PROTOCOL_INVALID_PROTOCOL_TYPE";
-	case ERR_PROTOCOL_INVALID_FIELD_DATA:				return "ERR_PROTOCOL_INVALID_FIELD_DATA";
-	case ERR_PROTOCOL_INVALID_ACCOUNT_UNIQUENUMBER:		return "ERR_PROTOCOL_INVALID_ACCOUNT_UNIQUENUMBER";
-	case ERR_PROTOCOL_INVALID_CHARACTER_UNIQUENUMBER:	return "ERR_PROTOCOL_INVALID_CHARACTER_UNIQUENUMBER";
-	case ERR_PROTOCOL_INVALID_UNITKIND:					return "ERR_PROTOCOL_INVALID_UNITKIND";
-	case ERR_PROTOCOL_INVALID_CLIENTINDEX:				return "ERR_PROTOCOL_INVALID_CLIENTINDEX";
-	case ERR_PROTOCOL_INVALID_PACKET:					return "ERR_PROTOCOL_INVALID_PACKET";
-	case ERR_PROTOCOL_INVALID_PACKET_SIZE:				return "ERR_PROTOCOL_INVALID_PACKET_SIZE";
-	case ERR_PROTOCOL_INVALID_SEQUENCE_NUMBER:			return "ERR_PROTOCOL_INVALID_SEQUENCE_NUMBER";
-	case ERR_PROTOCOL_INVALID_PEER:						return "ERR_PROTOCOL_INVALID_PEER";
-	case ERR_PROTOCOL_INVALID_STAT_VALUE_OR_KIND:		return "ERR_PROTOCOL_INVALID_STAT_VALUE_OR_KIND";
-	case ERR_PROTOCOL_EMPTY_ACCOUNTNAME:				return "ERR_PROTOCOL_EMPTY_ACCOUNTNAME";
-	case ERR_PROTOCOL_DUPLICATE_LOGIN:					return "ERR_PROTOCOL_DUPLICATE_LOGIN";
-	case ERR_PROTOCOL_NOT_LOGINED:						return "ERR_PROTOCOL_NOT_LOGINED";
-	case ERR_PROTOCOL_INVALID_SERVER_GROUP_NAME:		return "ERR_PROTOCOL_INVALID_SERVER_GROUP_NAME";
-	case ERR_PROTOCOL_LIMIT_GROUP_USER_COUNT:			return "ERR_PROTOCOL_LIMIT_GROUP_USER_COUNT";
-	case ERR_PROTOCOL_ACCOUNT_BLOCKED:					return "ERR_PROTOCOL_ACCOUNT_BLOCKED";
-	case ERR_PROTOCOL_INVALID_TARGET_INDEX:				return "ERR_PROTOCOL_INVALID_TARGET_INDEX";
-	case ERR_PROTOCOL_INVALID_GETCHARACTER:				return "ERR_PROTOCOL_INVALID_GETCHARACTER";
-	case ERR_PROTOCOL_INVALID_CHARACTER_STATE:				return "ERR_PROTOCOL_INVALID_CHARACTER_STATE";
-
-	case ERR_PROTOCOL_ALREADY_MAX_CHARACTER:			return "ERR_PROTOCOL_ALREADY_MAX_CHARACTER";
-	case ERR_PROTOCOL_EMPTY_CHARACTERNAME:				return "ERR_PROTOCOL_EMPTY_CHARACTERNAME";
-	case ERR_PROTOCOL_STATE_MINUSVALUE:					return "ERR_PROTOCOL_STATE_MINUSVALUE";
-	case ERR_PROTOCOL_STATE_SUMISNOTBONUS:				return "ERR_PROTOCOL_STATE_SUMISNOTBONUS";
-	case ERR_PROTOCOL_INVALID_GAMESTART:				return "ERR_PROTOCOL_INVALID_GAMESTART";
-	case ERR_PROTOCOL_INVALID_SOCKET_FORNPC:			return "ERR_PROTOCOL_INVALID_SOCKET_FORNPC";
-	case ERR_PROTOCOL_INVALID_CONNECT_GAMESTART:		return "ERR_PROTOCOL_INVALID_CONNECT_GAMESTART";
-	case ERR_PROTOCOL_INVALID_CONNECT_WARP:				return "ERR_PROTOCOL_INVALID_CONNECT_WARP";
-	case ERR_PROTOCOL_INVALID_POSITION:					return "ERR_PROTOCOL_INVALID_POSITION";
-	case ERR_PROTOCOL_INVALID_GAMEEND:					return "ERR_PROTOCOL_INVALID_GAMEEND";
-	case ERR_PROTOCOL_GAMESTARTROUTINE_FAILED:			return "ERR_PROTOCOL_GAMESTARTROUTINE_FAILED";
-	case ERR_PROTOCOL_INVALID_CHARACTER_NAME:			return "ERR_PROTOCOL_INVALID_CHARACTER_NAME";
-	case ERR_PROTOCOL_INVALID_PEER_CHARACTER:			return "ERR_PROTOCOL_INVALID_PEER_CHARACTER";
-	case ERR_PROTOCOL_INVALID_AUTOSTAT_TYPE:			return "ERR_PROTOCOL_INVALID_AUTOSTAT_TYPE";
-	case ERR_PROTOCOL_NOT_TUTORIAL_MAP:					return "ERR_PROTOCOL_NOT_TUTORIAL_MAP";
-	case ERR_PROTOCOL_RACE_PERMISSION_DENIED:			return "ERR_PROTOCOL_RACE_PERMISSION_DENIED";
-	case ERR_PROTOCOL_NOT_ENOUGH_ELAPSE_TIME:			return "ERR_PROTOCOL_NOT_ENOUGH_ELAPSE_TIME";
-	case ERR_PROTOCOL_INVALID_CHARACTERNAME:			return "ERR_PROTOCOL_INVALID_CHARACTERNAME";
-	case ERR_PROTOCOL_CHARACTER_MODE_NOT_MATCHED:		return "ERR_PROTOCOL_CHARACTER_MODE_NOT_MATCHED";
-	case ERR_PROTOCOL_UNKNOWN_CHARACTER_ACTION_TYPE:	return "ERR_PROTOCOL_UNKNOWN_CHARACTER_ACTION_TYPE";
-	case ERR_PROTOCOL_BUILDING_KIND_NOT_MATCHED:		return "ERR_PROTOCOL_BUILDING_KIND_NOT_MATCHED";
-
-	case ERR_PROTOCOL_INVALID_BODYCONDITION:			return "ERR_PROTOCOL_INVALID_BODYCONDITION";
-	case ERR_PROTOCOL_INVALID_MAP_EVENT_INFO:			return "ERR_PROTOCOL_INVALID_MAP_EVENT_INFO";
-	case ERR_PROTOCOL_MAP_ALREADY_SERVED_BY_FEILD_SERVER:		return "ERR_PROTOCOL_MAP_ALREADY_SERVED_BY_FEILD_SERVER";
-	case ERR_PROTOCOL_NO_SUCH_FIELD_SERVER:				return "ERR_PROTOCOL_NO_SUCH_FIELD_SERVER";
-	case ERR_PROTOCOL_NO_SUCH_MAP_SERVED:				return "ERR_PROTOCOL_NO_SUCH_MAP_SERVED";
-	case ERR_PROTOCOL_NO_SUCH_CHANNEL:					return "ERR_PROTOCOL_NO_SUCH_CHANNEL";
-	case ERR_PROTOCOL_MAP_CHANNEL_NOT_MATCHED:			return "ERR_PROTOCOL_MAP_CHANNEL_NOT_MATCHED";
-	case ERR_PROTOCOL_CANNOT_WARP:						return "ERR_PROTOCOL_CANNOT_WARP";
-	case ERR_PROTOCOL_CANNOT_WARP_INVALID_STATE:		return "ERR_PROTOCOL_CANNOT_WARP_INVALID_STATE";
-	case ERR_PROTOCOL_DOING_WARP:		return "ERR_PROTOCOL_DOING_WARP";
-
-	case ERR_PROTOCOL_INVALID_FIELDSERVER_CLIENT_STATE:		return "ERR_PROTOCOL_INVALID_FIELDSERVER_CLIENT_STATE";
-	case ERR_PROTOCOL_INVALID_PRESERVER_CLIENT_STATE:	return "ERR_PROTOCOL_INVALID_PRESERVER_CLIENT_STATE";
-	case ERR_PROTOCOL_NO_SUCH_SERVER_GROUP:				return "ERR_PROTOCOL_NO_SUCH_SERVER_GROUP";
-	case ERR_PROTOCOL_FIELD_SERVER_ALREADY_REGISTERD:	return "ERR_PROTOCOL_FIELD_SERVER_ALREADY_REGISTERD";
-	case ERR_PROTOCOL_FIELD_SERVER_ID_NOT_MATCHED:		return "ERR_PROTOCOL_FIELD_SERVER_ID_NOT_MATCHED";
-	case ERR_PROTOCOL_ALL_FIELD_SERVER_NOT_ALIVE:		return "ERR_PROTOCOL_ALL_FIELD_SERVER_NOT_ALIVE";
-	case ERR_PROTOCOL_NO_SUCH_SHOP:						return "ERR_PROTOCOL_NO_SUCH_SHOP";
-	case ERR_PROTOCOL_NO_SUCH_SHOP_ITEM:				return "ERR_PROTOCOL_NO_SUCH_SHOP_ITEM";
-	case ERR_PROTOCOL_NOT_ENOUGH_MONEY:					return "ERR_PROTOCOL_NOT_ENOUGH_MONEY";
-	case ERR_PROTOCOL_ITEM_KIND_NOT_MATCHED:			return "ERR_PROTOCOL_ITEM_KIND_NOT_MATCHED";
-	case ERR_PROTOCOL_NO_SUCH_ITEM:						return "ERR_PROTOCOL_NO_SUCH_ITEM";
-	case ERR_PROTOCOL_ITEM_AMOUNT_EXCEED:				return "ERR_PROTOCOL_ITEM_AMOUNT_EXCEED";
-	case ERR_PROTOCOL_CLIENT_IP_NOT_MATCHED:			return "ERR_PROTOCOL_CLIENT_IP_NOT_MATCHED";
-	case ERR_PROTOCOL_IMSERVER_ALREADY_CONNECTED:		return "ERR_PROTOCOL_IMSERVER_ALREADY_CONNECTED";
-	case ERR_PROTOCOL_GENERAL_ITEM_ERROR:				return "ERR_PROTOCOL_GENERAL_ITEM_ERROR";
-	case ERR_PROTOCOL_IM_SERVER_NOT_ALIVE:				return "ERR_PROTOCOL_IM_SERVER_NOT_ALIVE";
-	case ERR_PROTOCOL_PARTY_MASTER_NOT_MATCHED:			return "ERR_PROTOCOL_PARTY_MASTER_NOT_MATCHED";
-	case ERR_PROTOCOL_NO_SUCH_PARTY_MEMBER:				return "ERR_PROTOCOL_NO_SUCH_PARTY_MEMBER";
-	case ERR_PROTOCOL_PARTY_PERMISSION_DENIED:			return "ERR_PROTOCOL_PARTY_PERMISSION_DENIED";
-	case ERR_PROTOCOL_PARTY_MEMBER_ALREADY_EXISTS:		return "ERR_PROTOCOL_PARTY_MEMBER_ALREADY_EXISTS";
-	case ERR_PROTOCOL_NO_SUCH_PARTY:					return "ERR_PROTOCOL_NO_SUCH_PARTY";
-	case ERR_PROTOCOL_CANNOT_INVITE_USER:				return "ERR_PROTOCOL_CANNOT_INVITE_USER";
-	case ERR_PROTOCOL_GET_MEMBER_FAIL:					return "ERR_PROTOCOL_GET_MEMBER_FAIL";
-	case ERR_PROTOCOL_PARTY_ID_NOT_MATCHED:				return "ERR_PROTOCOL_PARTY_ID_NOT_MATCHED";
-	case ERR_PROTOCOL_ALREADY_MAX_PARTY_MEMBER:			return "ERR_PROTOCOL_ALREADY_MAX_PARTY_MEMBER";
-	case ERR_PROTOCOL_ALREADY_PARTY_BATTLE:				return "ERR_PROTOCOL_ALREADY_PARTY_BATTLE";
-	case ERR_PROTOCOL_ALREADY_REQUESTING_PARTY_BATTLE:	return "ERR_PROTOCOL_ALREADY_REQUESTING_PARTY_BATTLE";
-	case ERR_PROTOCOL_DOING_PARTY_BATTLE:				return "ERR_PROTOCOL_DOING_PARTY_BATTLE";
-	case ERR_PROTOCOL_IMPOSSIBLE_IN_PARTY:				return "ERR_PROTOCOL_IMPOSSIBLE_IN_PARTY";
-
-	case ERR_PROTOCOL_NOT_ENOUGH_PARTY_MEMBER:			return "ERR_PROTOCOL_NOT_ENOUGH_PARTY_MEMBER";
-	case ERR_PROTOCOL_GUILD_NAME_ALREADY_EXISTS:		return "ERR_PROTOCOL_GUILD_NAME_ALREADY_EXISTS";
-	case ERR_PROTOCOL_GUILD_MEMBER_ALREADY_EXISTS:		return "ERR_PROTOCOL_GUILD_MEMBER_ALREADY_EXISTS";
-	case ERR_PROTOCOL_GUILD_PERMISSION_DENIED:			return "ERR_PROTOCOL_GUILD_PERMISSION_DENIED";
-	case ERR_PROTOCOL_NOT_HAVE_GUILD:					return "ERR_PROTOCOL_NOT_HAVE_GUILD";
-	case ERR_PROTOCOL_GUILD_NOT_MATCHED:				return "ERR_PROTOCOL_GUILD_NOT_MATCHED";
-	case ERR_PROTOCOL_NO_SUCH_GUILD_MEMBER:				return "ERR_PROTOCOL_NO_SUCH_GUILD_MEMBER";
-	case ERR_PROTOCOL_NOT_HAVE_PARTY:					return "ERR_PROTOCOL_NOT_HAVE_PARTY";
-	case ERR_PROTOCOL_NO_SUCH_GUILD:					return "ERR_PROTOCOL_NO_SUCH_GUILD";
-	case ERR_PROTOCOL_NOT_GUILD_MASTER:					return "ERR_PROTOCOL_NOT_GUILD_MASTER";
-	case ERR_PROTOCOL_GUILD_CARD_ALREADY_USING:			return "ERR_PROTOCOL_GUILD_CARD_ALREADY_USING";
-	case ERR_PROTOCOL_INVLID_GUILDNAME:					return "ERR_PROTOCOL_INVLID_GUILDNAME";
-	case ERR_PROTOCOL_NOT_GET_GUILDSTORE_MEMBER:		return "ERR_PROTOCOL_NOT_GET_GUILDSTORE_MEMBER";
-	case ERR_PROTOCOL_DOING_GUILDWAR_BATTLE:			return "ERR_PROTOCOL_DOING_GUILDWAR_BATTLE";
-	case ERR_PROTOCOL_INVLID_GuildMarkSize:				return "ERR_PROTOCOL_INVLID_GuildMarkSize";			// 2007-08-02 by cmkwon, 여단 마크 심사 시스템 구현 - 여단마크 사이즈 오류
-	case ERR_PROTOCOL_OVER_MEMBERCOUNT:					return "ERR_PROTOCOL_OVER_MEMBERCOUNT";		// 2008-05-27 by dhjin, EP3 여단 수정 사항 - 여단원 증가 캐쉬 아이템, 최대 여단원 수 넘김
-
-	case ERR_PROTOCOL_TOO_FAR_TO_TRADE:					return "ERR_PROTOCOL_TOO_FAR_TO_TRADE";
-	case ERR_PROTOCOL_ALREADY_TRADING:					return "ERR_PROTOCOL_ALREADY_TRADING";
-	case ERR_PROTOCOL_PEER_TRADER_NOT_MATCHED:			return "ERR_PROTOCOL_PEER_TRADER_NOT_MATCHED";
-	case ERR_PROTOCOL_TRADE_NOT_STARTED:				return "ERR_PROTOCOL_TRADE_NOT_STARTED";
-	case ERR_PROTOCOL_INVALID_ITEMNUM:					return "ERR_PROTOCOL_INVALID_ITEMNUM";
-	case ERR_PROTOCOL_INVALID_ITEM_COUNT:				return "ERR_PROTOCOL_INVALID_ITEM_COUNT";
-	case ERR_PROTOCOL_TRADE_ERROR:						return "ERR_PROTOCOL_TRADE_ERROR";
-	case ERR_PROTOCOL_INVALID_ITEM_KIND:				return "ERR_PROTOCOL_INVALID_ITEM_KIND";
-	case ERR_PROTOCOL_MIN_TRADE_QUANTITY_ERROR:			return "ERR_PROTOCOL_MIN_TRADE_QUANTITY_ERROR";
-	case ERR_PROTOCOL_ALREADY_TRADE_ITEM:				return "ERR_PROTOCOL_ALREADY_TRADE_ITEM";
-	case ERR_PROTOCOL_NO_SUCH_SKILL:					return "ERR_PROTOCOL_NO_SUCH_SKILL";
-	case ERR_PROTOCOL_CANNOT_USE_SKILL:					return "ERR_PROTOCOL_CANNOT_USE_SKILL";
-	case ERR_PROTOCOL_INVALID_SKILLTYPE:				return "ERR_PROTOCOL_INVALID_SKILLTYPE";
-	case ERR_PROTOCOL_NOT_ENOUGH_SP:					return "ERR_PROTOCOL_NOT_ENOUGH_SP";
-	case ERR_PROTOCOL_NO_SUCH_TIME_LIMIT_EVENT_IN_BUCKET:		return "ERR_PROTOCOL_NO_SUCH_TIME_LIMIT_EVENT_IN_BUCKET";
-	case ERR_PROTOCOL_NO_SUCH_TIMER_EVENT_TYPE:			return "ERR_PROTOCOL_NO_SUCH_TIMER_EVENT_TYPE";
-	case ERR_PROTOCOL_ALREADY_MAX_ENCHANT_PER_ITEM:		return "ERR_PROTOCOL_ALREADY_MAX_ENCHANT_PER_ITEM";
-	case ERR_PROTOCOL_ALREADY_HAVE_RARE_FIX:			return "ERR_PROTOCOL_ALREADY_HAVE_RARE_FIX";
-	case ERR_PROTOCOL_ALREADY_INITIALIZE_RARE_FIX:		return "ERR_PROTOCOL_ALREADY_INITIALIZE_RARE_FIX";
-	case ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM:	return "ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM";
-	case ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM_BY_STARTCOUNT:	return "ERR_PROTOCOL_CANNOT_USE_ITEMKIND_PREVENTION_DELETE_ITEM_BY_STARTCOUNT";	// 2009-01-19 by dhjin, 인첸트 확률 증가, 10인첸 파방 카드
-
-	case ERR_PROTOCOL_NOT_ENOUGH_EP:					return "ERR_PROTOCOL_NOT_ENOUGH_EP";
-	case ERR_PROTOCOL_TOO_LONG_DISTANCE:				return "ERR_PROTOCOL_TOO_LONG_DISTANCE";
-	case ERR_PROTOCOL_ALREADY_P2P_PK:					return "ERR_PROTOCOL_ALREADY_P2P_PK";
-	case ERR_PROTOCOL_TOO_FAR_TO_P2P_PK:				return "ERR_PROTOCOL_TOO_FAR_TO_P2P_PK";
-	case ERR_PROTOCOL_HIGH_LEVEL_GAP_TO_P2P_PK:			return "ERR_PROTOCOL_HIGH_LEVEL_GAP_TO_P2P_PK";
-	case ERR_PROTOCOL_NOT_DOING_P2P_PK:					return "ERR_PROTOCOL_NOT_DOING_P2P_PK";
-	case ERR_PROTOCOL_NOT_ALLOWED_ATTACK:				return "ERR_PROTOCOL_NOT_ALLOWED_ATTACK";
-	case ERR_PROTOCOL_CANNOT_USE_ITEM:					return "ERR_PROTOCOL_CANNOT_USE_ITEM";
-	case ERR_PROTOCOL_ALREADY_HAVE_ITEM:				return "ERR_PROTOCOL_ALREADY_HAVE_ITEM";
-	case ERR_PROTOCOL_ALREADY_HAVE_SKILL:				return "ERR_PROTOCOL_ALREADY_HAVE_SKILL";
-	case ERR_PROTOCOL_INVALID_ITEM_WINDOW_POSITION:		return "ERR_PROTOCOL_INVALID_ITEM_WINDOW_POSITION";
-	case ERR_PROTOCOL_ALREADY_ITEM_ACTIVATED:			return "ERR_PROTOCOL_ALREADY_ITEM_ACTIVATED";
-	case ERR_PROTOCOL_NO_SUCH_DES_PARAM:				return "ERR_PROTOCOL_NO_SUCH_DES_PARAM";
-	case ERR_PROTOCOL_NOT_ENOUGH_BULLET:				return "ERR_PROTOCOL_NOT_ENOUGH_BULLET";
-	case ERR_PROTOCOL_ITEM_CANNOT_TRANSFER:				return "ERR_PROTOCOL_ITEM_CANNOT_TRANSFER";
-	case ERR_PROTOCOL_NO_SUCH_MIXING_INFO:				return "ERR_PROTOCOL_NO_SUCH_MIXING_INFO";
-	case ERR_PROTOCOL_ITEM_OVER_WEIGHT:					return "ERR_PROTOCOL_ITEM_OVER_WEIGHT";
-	case ERR_PROTOCOL_DO_NOT_HAVE_LINK_ITEM:			return "ERR_PROTOCOL_DO_NOT_HAVE_LINK_ITEM";
-	case ERR_PROTOCOL_INVENTORY_FULL_ITEM:				return "ERR_PROTOCOL_INVENTORY_FULL_ITEM";
-	case ERR_PROTOCOL_STORE_FULL_ITEM:					return "ERR_PROTOCOL_STORE_FULL_ITEM";
-	case ERR_PROTOCOL_ALREADY_USE_ITEM:					return "ERR_PROTOCOL_ALREADY_USE_ITEM";
-	case ERR_PROTOCOL_ALREADY_USE_OTHER_ITEM:			return "ERR_PROTOCOL_ALREADY_USE_OTHER_ITEM";
-	case ERR_PROTOCOL_STAT_ERROR_STATE:					return "ERR_PROTOCOL_STAT_ERROR_STATE";
-	case ERR_PROTOCOL_STAT_INITIALIZE_STATE:			return "ERR_PROTOCOL_STAT_INITIALIZE_STATE";
-	case ERR_PROTOCOL_AREADY_USING_HP_UP_ITEM:			return "ERR_PROTOCOL_AREADY_USING_HP_UP_ITEM";
-	case ERR_PROTOCOL_AREADY_USING_DP_UP_ITEM:			return "ERR_PROTOCOL_AREADY_USING_DP_UP_ITEM";
-	case ERR_PROTOCOL_AREADY_USING_SP_UP_ITEM:			return "ERR_PROTOCOL_AREADY_USING_SP_UP_ITEM";
-	case ERR_PROTOCOL_AREADY_USING_EP_UP_ITEM:			return "ERR_PROTOCOL_AREADY_USING_EP_UP_ITEM";
-	case ERR_PROTOCOL_AREADY_FULL_HP:					return "ERR_PROTOCOL_AREADY_FULL_HP";
-	case ERR_PROTOCOL_AREADY_FULL_DP:					return "ERR_PROTOCOL_AREADY_FULL_DP";
-	case ERR_PROTOCOL_AREADY_FULL_SP:					return "ERR_PROTOCOL_AREADY_FULL_SP";
-	case ERR_PROTOCOL_AREADY_FULL_EP:					return "ERR_PROTOCOL_AREADY_FULL_EP";
-	case ERR_PROTOCOL_CANNOT_USEITEM_IN_PARTY:			return "ERR_PROTOCOL_CANNOT_USEITEM_IN_PARTY";
-	case ERR_PROTOCOL_CANNOT_IN_CITY_MAP_CHANNEL:		return "ERR_PROTOCOL_CANNOT_IN_CITY_MAP_CHANNEL";
-	case ERR_PROTOCOL_CHANNEL_USER_OVERFLOW:			return "ERR_PROTOCOL_CHANNEL_USER_OVERFLOW";
-	case ERR_PROTOCOL_NO_SUCH_EVENT_AREA_INDEX:			return "ERR_PROTOCOL_NO_SUCH_EVENT_AREA_INDEX";
-	case ERR_PROTOCOL_MAX_ITEM_COUNTS_OVER:				return "ERR_PROTOCOL_MAX_ITEM_COUNTS_OVER";
-	case ERR_PROTOCOL_NOTIFY_MAX_ITEM_COUNTS_OVER:		return "ERR_PROTOCOL_NOTIFY_MAX_ITEM_COUNTS_OVER";
-	case ERR_PROTOCOL_CANNOT_UNWEAR_ARMOR:				return "ERR_PROTOCOL_CANNOT_UNWEAR_ARMOR";
-	case ERR_PROTOCOL_NO_SUCH_BULLET_ITEM:				return "ERR_PROTOCOL_NO_SUCH_BULLET_ITEM";
-	case ERR_PROTOCOL_CANNOT_ENCHANT_ITEM:				return "ERR_PROTOCOL_CANNOT_ENCHANT_ITEM";
-	case ERR_PROTOCOL_BAZAAR_NO_SUCH_ITEM:				return "ERR_PROTOCOL_BAZAAR_NO_SUCH_ITEM";
-	case ERR_PROTOCOL_GUILD_STORE_FULL_ITEM:			return "ERR_PROTOCOL_GUILD_STORE_FULL_ITEM";
-	case ERR_PROTOCOL_CANNOT_USE_ITEM_IN_ARENA:			return "ERR_PROTOCOL_CANNOT_USE_ITEM_IN_ARENA";
-	case ERR_PROTOCOL_INVALID_MIXING_INFO:				return "ERR_PROTOCOL_INVALID_MIXING_INFO";		// 2009-10-01 by cmkwon, 그래픽 리소스 변경 관련 초기화 기능 구현 - 
-	case ERR_PROTOCOL_NOT_WEARING_STATE:				return "ERR_PROTOCOL_NOT_WEARING_STATE";			// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 장착 상태가 아니다. 
-	case ERR_PROTOCOL_INVALID_INVOKING_TYPE:			return "ERR_PROTOCOL_INVALID_INVOKING_TYPE";		// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 발동 타잎 오류
-	case ERR_PROTOCOL_FAIL_INVOKING_BY_RATE:			return "ERR_PROTOCOL_FAIL_INVOKING_BY_RATE";		// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 발동 미스
-	case ERR_PROTOCOL_FAIL_INVOKING_BY_REQITEMNUM:		return "ERR_PROTOCOL_FAIL_INVOKING_BY_REQITEMNUM";	// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 발동 조건 값 오류
-	case ERR_PROTOCOL_COOLING_TIME_INVOKING_ITEM:		return "ERR_PROTOCOL_COOLING_TIME_INVOKING_ITEM";	// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 발동류 아이템 쿨타임중
-	case ERR_PROTOCOL_CANNOT_RARE_ITEM:					return "ERR_PROTOCOL_CANNOT_RARE_ITEM";	// 2009-09-09 ~ 2010-02-10 by dhjin, 인피니티 - 발동류장착아이템, 발동류 아이템 쿨타임중
-	case ERR_PROTOCOL_NOT_ACTIVATED_ITEM:				return "ERR_PROTOCOL_NOT_ACTIVATED_ITEM";			// 2011-09-20 by hskim, 파트너 시스템 2차 - 활성화 되지 않은 아이템
-	case ERR_PROTOCOL_CANNOT_ATTACHED_ITEM:				return "ERR_PROTOCOL_CANNOT_ATTACHED_ITEM";			// 2011-09-20 by hskim, 파트너 시스템 2차 - 장착되지 않은 아이템
-	case ERR_PROTOCOL_CANNOT_ENCHANT_MORE_THEN_10:			return "ERR_PROTOCOL_CANNOT_ENCHANT_MORE_THEN_10";		// 2011-10-19 by hskim, EP4 [Free to play] - 10 회 인첸트 아이템 기능 구현 - 10 인챈트 이상 아이템은 강화할 수 없음
-	case ERR_PROTOCOL_CANNOT_ENCHANT_DIFFERENCE_ATTRIBUTE:	return "ERR_PROTOCOL_CANNOT_ENCHANT_DIFFERENCE_ATTRIBUTE";		// 2011-10-19 by hskim, EP4 [Free to play] - 10 회 인첸트 아이템 기능 구현 - 인챈트 속성이 틀려 인챈트 할 수 없음
-	case ERR_PROTOCOL_CANNOT_ENCHANT_LACK_REQUIREMENT:		return "ERR_PROTOCOL_CANNOT_ENCHANT_LACK_REQUIREMENT";			// 2011-10-19 by hskim, EP4 [Free to play] - 접두/접미 고정 옵션 - 요구조건에 부적함
-	case ERR_PROTOCOL_REQ_EXPERIENCE_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_EXPERIENCE_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_RACE_NOT_MATCHED:				return "ERR_PROTOCOL_REQ_RACE_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_ATTACK_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_ATTACK_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_DEFENSE_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_DEFENSE_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_FUEL_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_FUEL_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_SOUL_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_SOUL_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_SHIELD_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_SHIELD_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_DODGE_PART_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_DODGE_PART_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_UNITKIND_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_UNITKIND_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_LEVEL_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_LEVEL_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_MINLEVEL_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_MINLEVEL_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_MAXLEVEL_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_MAXLEVEL_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_ITEM_NOT_MATCHED:				return "ERR_PROTOCOL_REQ_ITEM_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_QUEST_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_QUEST_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_NUM_OF_CHARACTER_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_NUM_OF_CHARACTER_NOT_MATCHED";
-	case ERR_PROTOCOL_TOO_FAR_TO_DO:					return "ERR_PROTOCOL_TOO_FAR_TO_DO";
-	case ERR_PROTOCOL_NO_SUCH_REQUEST_TYPE:				return "ERR_PROTOCOL_NO_SUCH_REQUEST_TYPE";
-	case ERR_PROTOCOL_LOW_PROBABILITY:					return "ERR_PROTOCOL_LOW_PROBABILITY";
-	case ERR_PROTOCOL_REQ_NOT_CITY_MAP_CHANNEL:			return "ERR_PROTOCOL_REQ_NOT_CITY_MAP_CHANNEL";
-	case ERR_PROTOCOL_REQ_MUST_RELEASE_ALL_ITEM:		return "ERR_PROTOCOL_REQ_MUST_RELEASE_ALL_ITEM";
-	case ERR_PROTOCOL_REQ_WARP_REQUIREMENTS_NOT_MATCHED:	return "ERR_PROTOCOL_REQ_WARP_REQUIREMENTS_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_INFLUENCE_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_INFLUENCE_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_MAP_OBJECT_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_MAP_WARP_TARGET_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_MAP_AREA_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_MAP_AREA_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_MONSTER_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_MONSTER_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_PARTYMEMBERS_NOT_MATCHED:		return "ERR_PROTOCOL_REQ_PARTYMEMBERS_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_PARTYMEMBERS_LEVEL_NOT_MATCHED:	return "ERR_PROTOCOL_REQ_PARTYMEMBERS_LEVEL_NOT_MATCHED";
-	case ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_CANNOT_WARP:	return "ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_CANNOT_WARP";
-	case ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_NOT_COMPLETION:	return "ERR_PROTOCOL_REQ_PARTYMEMBERS_SOMEONE_NOT_COMPLETION";
-	case ERR_PROTOCOL_REQ_MIX_ITEM_NOT_MATCHED:			return "ERR_PROTOCOL_REQ_MIX_ITEM_NOT_MATCHED";		// 2007-04-02 by cmkwon
-	case ERR_PROTOCOL_REQ_PW_NOT_MATCHED:				return "ERR_PROTOCOL_REQ_PW_NOT_MATCHED";		// 2008-06-03 by dhjin, EP3 편대 수정 - PW오류
-	case ERR_PROTOCOL_NOT_WARP_BURNING_MAP:				return "ERR_PROTOCOL_NOT_WARP_BURNING_MAP";		// 2010-11-24 by shcho, 콜오브 히어로 사용시 버닝타임 맵이면 소환불가 처리
-
-	case ERR_PROTOCOL_NO_SUCH_CHARACTER_QUEST:			return "ERR_PROTOCOL_NO_SUCH_CHARACTER_QUEST";
-	case ERR_PROTOCOL_QUEST_ALREADY_COMPLETED:			return "ERR_PROTOCOL_QUEST_ALREADY_COMPLETED";
-	case ERR_PROTOCOL_QUEST_NOT_IN_PROGRESS:			return "ERR_PROTOCOL_QUEST_NOT_IN_PROGRESS";
-	case ERR_PROTOCOL_QUEST_RESULT_PROCESS_FAILED:		return "ERR_PROTOCOL_QUEST_RESULT_PROCESS_FAILED";
-	case ERR_PROTOCOL_QUEST_GENERAL_ERROR:				return "ERR_PROTOCOL_QUEST_GENERAL_ERROR";
-	case ERR_PROTOCOL_TIME_LIMIT_ERROR:					return "ERR_PROTOCOL_TIME_LIMIT_ERROR";
-	case ERR_PROTOCOL_REQ_NOT_GUILD_MASTER:				return "ERR_PROTOCOL_REQ_NOT_GUILD_MASTER";
-	case ERR_PROTOCOL_QUEST_ALREADY_EXIST_CITYWAR:		return "ERR_PROTOCOL_QUEST_ALREADY_EXIST_CITYWAR";
-	case ERR_PROTOCOL_QUEST_NEVER_COMPLITION_BY_USER:	return "ERR_PROTOCOL_QUEST_NEVER_COMPLITION_BY_USER";
-	case ERR_PROTOCOL_QUEST_INVALID_CITYWAR_QUEST_INDEX:	return "ERR_PROTOCOL_QUEST_INVALID_CITYWAR_QUEST_INDEX";
-	case ERR_PROTOCOL_QUEST_CANNOT_CITYWAR_QUEST:		return "ERR_PROTOCOL_QUEST_CANNOT_CITYWAR_QUEST";
-	case ERR_PROTOCOL_QUEST_CITYWAR_MGAMESERVERID_NOT_MATCHED:		return "ERR_PROTOCOL_QUEST_CITYWAR_MGAMESERVERID_NOT_MATCHED";
-	case ERR_PROTOCOL_QUEST_COUPON_INVALID_NUMBER:		return "ERR_PROTOCOL_QUEST_COUPON_INVALID_NUMBER";
-	case ERR_PROTOCOL_QUEST_COUPON_ALREADY_USED:		return "ERR_PROTOCOL_QUEST_COUPON_ALREADY_USED";
-	case ERR_PROTOCOL_QUEST_COUPON_EXPIRED:				return "ERR_PROTOCOL_QUEST_COUPON_EXPIRED";
-	case ERR_PROTOCOL_QUEST_COUPON_USE_ERROR:			return "ERR_PROTOCOL_QUEST_COUPON_USE_ERROR";
-	case ERR_PROTOCOL_QUEST_NO_LEVEL_UP:				return "ERR_PROTOCOL_QUEST_NO_LEVEL_UP";
-	case ERR_PROTOCOL_QUEST_IS_IN_PROGRESS:				return "ERR_PROTOCOL_QUEST_IS_IN_PROGRESS";
-
-	case ERR_PROTOCOL_QUEST_SERVICE_PAUSED:				return "ERR_PROTOCOL_QUEST_SERVICE_PAUSED";
-
-	case ERR_PROTOCOL_NO_SUCH_MONSTER_INFO:				return "ERR_PROTOCOL_NO_SUCH_MONSTER_INFO";
-	case ERR_PROTOCOL_NO_SUCH_MAPOBJECT_INFO:			return "ERR_PROTOCOL_NO_SUCH_MAPOBJECT_INFO";
-	case ERR_PROTOCOL_NO_SUCH_QUEST_INFO:				return "ERR_PROTOCOL_NO_SUCH_QUEST_INFO";
-	case ERR_PROTOCOL_NO_SUCH_ITEM_INFO:				return "ERR_PROTOCOL_NO_SUCH_ITEM_INFO";
-
-	case ERR_PROTOCOL_SELECTIVE_SHUTDOWN_NOT_ALLOWED_TIME:		return "ERR_PROTOCOL_SELECTIVE_SHUTDOWN_NOT_ALLOWED_TIME";		// 2012-07-11 by hskim, 선택적 셧다운 - 현재 시간에는 게임을 플레이 할수 없음
-	case ERR_PROTOCOL_SELECTIVE_SHUTDOWN_APPLY_LOGOUT:			return "ERR_PROTOCOL_SELECTIVE_SHUTDOWN_APPLY_LOGOUT";			// 2012-07-11 by hskim, 선택적 셧다운 - 선택적 셧다운 적용
-
-	case ERR_CHAT_CHARACTER_NAME_NOT_MATCHED:			return "ERR_CHAT_CHARACTER_NAME_NOT_MATCHED";
-	case ERR_CHAT_NOT_ALLOWED_STRING:					return "ERR_CHAT_NOT_ALLOWED_STRING";
-	case ERR_CHAT_PERMISSION_DENIED:					return "ERR_CHAT_PERMISSION_DENIED";
-	case ERR_CHAT_INVALID_COMMAND:						return "ERR_CHAT_INVALID_COMMAND";
-	case ERR_CHAT_CHAT_NOT_TRANSFERED:					return "ERR_CHAT_CHAT_NOT_TRANSFERED";
-	case ERR_CHAT_CHAT_BLOCKED:							return "ERR_CHAT_CHAT_BLOCKED";
-	case ERR_FRIEND_INVALID_CHARACTER_NAME:				return "ERR_FRIEND_INVALID_CHARACTER_NAME";
-	case ERR_FRIEND_REGISTERED_PEER_REJECTLIST:			return "ERR_FRIEND_REGISTERED_PEER_REJECTLIST";
-	case ERR_FRIEND_ALREADY_REGISTERED:					return "ERR_FRIEND_ALREADY_REGISTERED";
-	case ERR_FRIEND_ALREADY_MAX_LIST:					return "ERR_FRIEND_ALREADY_MAX_LIST";
-	case ERR_FRIEND_NO_SUCH_CHARACTER_IN_LIST:			return "ERR_FRIEND_NO_SUCH_CHARACTER_IN_LIST";
-	case ERR_COUNTDOWN_INVALID_COUNTDOWN_TYPE:			return "ERR_COUNTDOWN_INVALID_COUNTDOWN_TYPE";
-	case ERR_COUNTDOWN_NOT_ENOUGH_TIME:					return "ERR_COUNTDOWN_NOT_ENOUGH_TIME";
-	case ERR_INTERVAL_SYSTEM_SECOND:					return "ERR_INTERVAL_SYSTEM_SECOND";			// 2008-08-18 by dhjin, 1초 텀 시스템 기획안
-
-	case ERR_CITYWAR_NO_SUCH_CITYWAR_INFO:				return "ERR_CITYWAR_NO_SUCH_CITYWAR_INFO";
-	case ERR_CITYWAR_NOT_MATCHED_CITY_MAP_INDEX:		return "ERR_CITYWAR_NOT_MATCHED_CITY_MAP_INDEX";
-	case ERR_CITYWAR_SETOCCUPYINFO_PERMISSION_DENIED:	return "ERR_CITYWAR_SETOCCUPYINFO_PERMISSION_DENIED";
-	case ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_STATE:	return "ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_STATE";
-	case ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_TIME:		return "ERR_CITYWAR_SETOCCUPYINFO_IMPOSSIBLE_TIME";
-	case ERR_CITYWAR_SETOCCUPYINFO_INVALID_WARTIME:		return "ERR_CITYWAR_SETOCCUPYINFO_INVALID_WARTIME";
-
-	case ERR_CASH_mgQueryMall_ERROR:					return "ERR_CASH_mgQueryMall_ERROR";
-	case ERR_CASH_mgQueryMall_RESULT_CANNOT_PAYMENT:	return "ERR_CASH_mgQueryMall_RESULT_CANNOT_PAYMENT";
-	case ERR_CASH_mgQueryMall_RESULT_NO_ACCOUNT:		return "ERR_CASH_mgQueryMall_RESULT_NO_ACCOUNT";
-	case ERR_CASH_NOT_CHARGE_USER:						return "ERR_CASH_NOT_CHARGE_USER";
-	case ERR_CASH_INVALID_EXT_ACCOUNTID_NUM:			return "ERR_CASH_INVALID_EXT_ACCOUNTID_NUM";
-	case ERR_CASH_INVALID_ITEM_INFORMATION:				return "ERR_CASH_INVALID_ITEM_INFORMATION";
-	case ERR_CASH_NORMAL_ERROR:							return "ERR_CASH_NORMAL_ERROR";
-	case ERR_CASH_CASH_SHOP_NO_SERVICE:					return "ERR_CASH_CASH_SHOP_NO_SERVICE";
-	case ERR_CASH_LIBRARY_INIT_ERROR:					return "ERR_CASH_LIBRARY_INIT_ERROR";		// 2007-08-22 by cmkwon, 중국 Yetime 빌링 라이브러리 적용 -
-	case ERR_CASH_INVALID_GIVE_TARGET_ACCOUNT:			return "ERR_CASH_INVALID_GIVE_TARGET_ACCOUNT";		// 2009-08-18 by cmkwon, 예당 캐쉬?블럭 계정 체크 추가 - 
-
-	case ERR_INVALID_CHARACTER:							return "ERR_INVALID_CHARACTER";
-	case ERR_INVALID_PEER_CHARACTER:					return "ERR_INVALID_PEER_CHARACTER";
-	case ERR_WARPING:									return "ERR_WARPING";
-	case ERR_IN_PARTY_BATTLE:							return "ERR_IN_PARTY_BATTLE";
-	case ERR_REQ_WARP_COMPLETIONQUEST_NOT_MATCHED:		return "ERR_REQ_WARP_COMPLETIONQUEST_NOT_MATCHED";
-	case ERR_REQ_CHOOSE_INFLUENCE_TYPE:					return "ERR_REQ_CHOOSE_INFLUENCE_TYPE";
-	case ERR_CANNOT_WARP_CONNFLICT_AREA:				return "ERR_CANNOT_WARP_INFLICT_AREA";
-	case ERR_CANNOT_WARP_POSSESSED_CONNFLICT_AREA:		return "ERR_CANNOT_WARP_POSSESSED_CONNFLICT_AREA";
-	case ERR_CANNOT_WARP_BY_TRADING:					return "ERR_CANNOT_WARP_BY_TRADING";
-	case ERR_CANNOT_WARP_BY_SHOPPING:					return "ERR_CANNOT_WARP_BY_SHOPPING";
-	case ERR_CANNOT_ATTACHED_USING_PREMIUM_CARD:		return "ERR_CANNOT_ATTACHED_USING_PREMIUM_CARD";
-	case ERR_CANNOT_BUY_PREMIUM_CARD_USING_SPEC_ITEM:	return "ERR_CANNOT_BUY_PREMIUM_CARD_USING_SPEC_ITEM";
-	case ERR_EXPIRED_ITEM:								return "ERR_EXPIRED_ITEM";
-	case ERR_FAILURE_USE_RESTORE_ITEM:					return "ERR_FAILURE_USE_RESTORE_ITEM";
-	case ERR_DOING_GAMEEVENT:							return "ERR_DOING_GAMEEVENT";
-	case ERR_INVALID_GAMEUSER:							return "ERR_INVALID_GAMEUSER";
-	case ERR_INVALID_CALL_WARP_EVENT_ID:				return "ERR_INVALID_CALL_WARP_EVENT_ID";
-	case ERR_TIMEOVER_CALL_WARP_EVENT:					return "ERR_TIMEOVER_CALL_WARP_EVENT";
-	case ERR_CANNOT_PUT_ITEM:							return "ERR_CANNOT_PUT_ITEM";
-	case ERR_OVER_COUNT:								return "ERR_OVER_COUNT";
-	case ERR_INVALID_BAZAAR:							return "ERR_INVALID_BAZAAR";
-	case ERR_USING_BAZAAR:								return "ERR_USING_BAZAAR";
-	case ERR_INVISIBLE_STATE:							return "ERR_INVISIBLE_STATE";
-	case ERR_DOING_SERVER_SHUTDOWN:						return "ERR_DOING_SERVER_SHUTDOWN";
-	case ERR_NO_SEARCH_CHARACTER:						return "ERR_NO_SEARCH_CHARACTER";
-	case ERR_NO_MEMBERSHIP_USER:						return "ERR_NO_MEMBERSHIP_USER";
-	case ERR_ALREADY_OPEN_OTHER_STORE:					return "ERR_ALREADY_OPEN_OTHER_STORE";		// 2006-09-24 by cmkwon
-	case ERR_ALREADY_LOADING_GUILD_STORE:				return "ERR_ALREADY_LOADING_GUILD_STORE";	// 2006-09-25 by cmkwon
-	case ERR_NO_SUCH_GUILD_STORE:						return "ERR_NO_SUCH_GUILD_STORE";			// 2006-09-25 by cmkwon
-	case ERR_PERMISSION_DENIED:							return "ERR_PERMISSION_DENIED";				// 2006-09-27 by cmkwon
-	case ERR_INVALID_EXCUTE_PARAMETER_COUNT:			return "ERR_INVALID_EXCUTE_PARAMETER_COUNT";		// 2006-10-02 by cmkwon
-	case ERR_INVALID_EXCUTE_PARAMETER:					return "ERR_INVALID_EXCUTE_PARAMETER";				// 2006-10-02 by cmkwon
-	case ERR_NOT_RANK_DRAW_GUILD_STORE:					return "ERR_NOT_RANK_DRAW_GUILD_STORE";				// 2006-10-09 by dhjin
-	case ERR_CANNOT_BOOSTER:							return "ERR_CANNOT_BOOSTER";				// 2006-10-09 by dhjin
-	case ERR_NOT_INVISIBLE_STATE:						return "ERR_NOT_INVISIBLE_STATE";			// 2007-04-02 by cmkwon
-	case ERR_JAMBOREE_NO_SUCH_CHARACTER:				return "ERR_JAMBOREE_NO_SUCH_CHARACTER";		// 2007-04-09 by cmkwon
-	case ERR_JAMBOREE_FAIL_CREATE_CHARACTER:			return "ERR_JAMBOREE_FAIL_CREATE_CHARACTER";	// 2007-04-09 by cmkwon
-	case ERR_BOSS_STRATEGYPOINT_STATE_SUMMON:			return "ERR_BOSS_STRATEGYPOINT_STATE_SUMMON";	// 2007-04-26 by dhjin
-	case ERR_CANNOT_WARP_TO_CITY:						return "ERR_CANNOT_WARP_TO_CITY";				// 2007-05-22 by cmkwon
-	case ERR_INVALID_WEAPON_INDEX:						return "ERR_INVALID_WEAPON_INDEX";				// 2007-06-08 by cmkwon
-	case ERR_INVALID_TUTORIAL:							return "ERR_INVALID_TUTORIAL";
-	case ERR_CANNOT_USE_SPEAKER_ITEM:					return "ERR_CANNOT_USE_SPEAKER_ITEM";			// 2007-08-24 by cmkwon, 스피커아이템 사용 가능/금지 설정 기능 추가
-	case ERR_CONFERENCEROOM_PERMISSION_DENIED:			return "ERR_CONFERENCEROOM_PERMISSION_DENIED";	// 2007-08-30 by cmkwon, 회의룸 시스템 구현 - 워프 불가 에러 추가
-	case ERR_CANNOT_WARP_TO_OUTPOST:					return "ERR_CANNOT_WARP_TO_OUTPOST";			// 2007-08-28 by dhjin, 전진기지 맵으로 워프 불가
-
-	case ERR_CANNOT_WARP_TO_OUTPOST_CITY_MAP:			return "ERR_CANNOT_WARP_TO_OUTPOST_CITY_MAP";			// 2007-08-28 by dhjin, 전진기지 맵으로 워프 불가
-	case ERR_CANNOT_SEARCH_OUTPOST:						return "ERR_CANNOT_SEARCH_OUTPOST";			// 2007-08-28 by dhjin, 전진기지 맵으로 워프 불가
-	case ERR_ALREADY_SET_OUTPOST_NEXTWARTIME:			return "ERR_ALREADY_SET_OUTPOST_NEXTWARTIME";			// 2007-08-28 by dhjin, 전진기지 맵으로 워프 불가
-	case ERR_CANNOT_SEARCH_OUTPOST_NEXTWARTIME:			return "ERR_CANNOT_SEARCH_OUTPOST_NEXTWARTIME";			// 2007-08-28 by dhjin, 전진기지 맵으로 워프 불가
-
-	
-	case ERR_ARENA_NO_SUCH_TEAM:						return "ERR_ARENA_NO_SUCH_TEAM";				// 2007-04-23 by dhjin
-	case ERR_ARENA_CREATE_TEAM:							return "ERR_ARENA_CREATE_TEAM";					// 2007-04-23 by dhjin, 
-	case ERR_ARENA_NOT_MATCH_MODE:						return "ERR_ARENA_NOT_MATCH_MODE";				// 2007-04-23 by dhjin, 
-	case ERR_ARENA_NOT_MATCH_LEVEL:						return "ERR_ARENA_NOT_MATCH_LEVEL";				// 2007-04-23 by dhjin, 
-	case ERR_ARENA_NOT_MATCH_PW:						return "ERR_ARENA_NOT_MATCH_PW";				// 2007-04-23 by dhjin, 
-	case ERR_ARENA_FULL_TEAMLIST:						return "ERR_ARENA_FULL_TEAMLIST";				// 2007-04-23 by dhjin, 
-	case ERR_ARENA_STATE:								return "ERR_ARENA_STATE";						// 2007-04-23 by dhjin, 
-	case ERR_ARENA_STATE_TEAM_READY:					return "ERR_ARENA_STATE_TEAM_READY";			// 2007-06-05 by dhjin
-	case ERR_ARENA_STATE_TEAM_WARING:					return "ERR_ARENA_STATE_TEAM_WARING";			// 2007-06-05 by dhjin
-	case ERR_ARENA_BLOCKED:								return "ERR_ARENA_BLOCKED";						// 2007-07-11 by cmkwon, 아레나블럭 시스템 구현
-
-	case ERR_NO_SEARCH_CITYLEADER_INFO:					return "ERR_NO_SEARCH_CITYLEADER_INFO";			// 2007-09-13 by cmkwon
-	case ERR_REQ_NOT_LEADER_CANDIDATE:					return "ERR_REQ_NOT_LEADER_CANDIDATE";			// 2007-10-30 by dhjin
-	case ERR_REQ_NOT_POLLDATE_APPLICATION:				return "ERR_REQ_NOT_POLLDATE_APPLICATION";		// 2007-10-30 by dhjin
-	case ERR_FAIL_REG_LEADER_CANDIDATE_BY_DB:			return "ERR_FAIL_REG_LEADER_CANDIDATE_BY_DB";	// 2007-10-30 by dhjin
-	case ERR_FAIL_REG_LEADER_CANDIDATE_BY_REQ:			return "ERR_FAIL_REG_LEADER_CANDIDATE_BY_REQ";	// 2007-10-30 by dhjin
-	case ERR_REQ_NOT_POLLDATE_VOTE:						return "ERR_REQ_NOT_POLLDATE_VOTE";				// 2007-10-30 by dhjin
-	case ERR_REQ_NOT_VOTE:								return "ERR_REQ_NOT_VOTE";						// 2007-10-31 by dhjin
-	case ERR_ALREADY_VOTE:								return "ERR_ALREADY_VOTE";						// 2007-10-31 by dhjin
-	case ERR_INVALID_LEADER_CANDIDATE:					return "ERR_INVALID_LEADER_CANDIDATE";			// 2007-10-31 by dhjin
-	case ERR_ALREADY_LEADER_CANDIDATE:					return "ERR_ALREADY_LEADER_CANDIDATE";			// 2007-11-01 by dhjin
-
-	case ERR_ALREADY_DELETE_LEADER_CANDIDATE:			return "ERR_ALREADY_DELETE_LEADER_CANDIDATE";	// 2007-11-01 by dhjin
-	case ERR_REQ_NOT_POLLDATE_ALL_RANGE:				return "ERR_REQ_NOT_POLLDATE_ALL_RANGE";		// 2007-11-20 by dhjin
-	case ERR_REQ_REG_LEADER_CANDIDATE:					return "ERR_REQ_REG_LEADER_CANDIDATE";		// 2007-11-20 by dhjin
-
-	case ERR_CANNOT_WARP_DURING_MSWAR:					return "ERR_CANNOT_WARP_DURING_MSWAR";			// 2012-07-02 by hskim, 모선전 개선 - 모선전 진행시 스톤즈 루인 진입 불가
-
-	case ERR_WARING_OUTPOST_TO_OWNMAP:					return "ERR_WARING_OUTPOST_TO_OWNMAP";			// 2007-11-01 by dhjin
-	case ERR_DELETE_CHARACTER_GUILDCOMMANDER:			return "ERR_DELETE_CHARACTER_GUILDCOMMANDER";	// 2008-10-20 by dhjin, 여단장은 케릭터 삭제 불가로 변경
-
-	case ERR_SECPASS_NOT_USE_SYSTEM:					return "ERR_SECPASS_NOT_USE_SYSTEM";			// 2007-09-13 by cmkwon
-	case ERR_SECPASS_PASSWORD_NOT_SETTING:				return "ERR_SECPASS_PASSWORD_NOT_SETTING";		// 2007-09-13 by cmkwon
-	case ERR_SECPASS_ALREADY_LOCK:						return "ERR_SECPASS_ALREADY_LOCK";				// 2007-09-13 by cmkwon
-	case ERR_SECPASS_ALREADY_UNLOCK:					return "ERR_SECPASS_ALREADY_UNLOCK";			// 2007-09-13 by cmkwon
-	case ERR_SECPASS_PASSWORD_NOT_MATCHED:				return "ERR_SECPASS_PASSWORD_NOT_MATCHED";		// 2007-09-13 by cmkwon
-	case ERR_SECPASS_NEW_PASSWORD_NOT_SETTING:			return "ERR_SECPASS_NEW_PASSWORD_NOT_SETTING";	// 2007-09-13 by cmkwon
-	case ERR_SECPASS_LOCKED:							return "ERR_SECPASS_LOCKED";					// 2007-09-13 by cmkwon
-
-	case ERR_LUCKYITEM_INSERT_BUT_COINITEM_DELETE:		return "ERR_LUCKYITEM_INSERT_BUT_COINITEM_DELETE";				// 2008-11-10 by dhjin, 럭키머신 아이템이 하나라도 지급되었지만 시스템에 오류가 있어 정상지급이 되지는 않았을 경우
-		
-	case ERR_INVALID_ARMOR_ITEM:						return "ERR_INVALID_ARMOR_ITEM";
-	case ERR_ITEM_TRADING:								return "ERR_ITEM_TRADING";
-	case ERR_USING_SHOP:								return "ERR_USING_SHOP";
-	case ERR_NO_SUCH_WEAPON_ITEM:						return "ERR_NO_SUCH_WEAPON_ITEM";				// 2007-08-07 by cmkwon, 1형/2형 무기 총알 충전 아이템 구현 - 에러코드 추가
-	case ERR_ALREADY_FULL_BULLET:						return "ERR_ALREADY_FULL_BULLET";				// 2007-08-07 by cmkwon, 1형/2형 무기 총알 충전 아이템 구현 - 에러코드 추가
-	case ERR_INVALID_ITEMEVENT_UID:						return "ERR_INVALID_ITEMEVENT_UID";				// 2008-01-10 by cmkwon, 아이템 이벤트 시스템에 신 쿠폰 시스템 추가 - 
-	case ERR_NOT_ACCOUNT_BLOCKED:						return "ERR_NOT_ACCOUNT_BLOCKED";
-	case ERR_SOLD_OUT_SHOP_ITEM:						return "ERR_SOLD_OUT_SHOP_ITEM";				// 2010-01-26 by cmkwon, 캐쉬 아이템 한정판매 시스템 구현 - 
-	case ERR_NO_SUCH_ENCHANT_INFO:						return "ERR_NO_SUCH_ENCHANT_INFO";				// 2010-04-20 by cmkwon, 신규 러키 머신 구현 - 
-
-	case ERR_PROTOCOL_SUBLEADER_SET_FAIL:				return "ERR_PROTOCOL_SUBLEADER_SET_FAIL";
-	case ERR_PROTOCOL_SUBLEADER_SET_ALEADY:				return "ERR_PROTOCOL_SUBLEADER_SET_ALEADY";
-
-	case ERR_CANNOT_USE_GUILD_STORE:					return "ERR_CANNOT_USE_GUILD_STORE";			// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_CANNOT_USE_STORE:							return "ERR_CANNOT_USE_STORE";					// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_CANNOT_USE_FIELD_STORE:					return "ERR_CANNOT_USE_FIELD_STORE";			// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_ALREADY_USING_BUILDING:					return "ERR_ALREADY_USING_BUILDING";			// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_NO_SUCH_BUILDINGINDEX:						return "ERR_NO_SUCH_BUILDINGINDEX";				// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_CANNOT_BUY_ITEM:							return "ERR_CANNOT_BUY_ITEM";					// 2009-09-23 by cmkwon, 필드창고 캐쉬 아이템 구현 - 
-	case ERR_ALREADY_USE_ITEMPARAM:						return "ERR_ALREADY_USE_ITEMPARAM";				// 2010-01-18 by cmkwon, 아이템 사용시 Parameter 중복 체크 시스템 구현 - 
-	case ERR_INSUFFICIENT_NUMBER_SHOP_ITEM:				return "ERR_INSUFFICIENT_NUMBER_SHOP_ITEM";		// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 구매할수 있는 수량이 부족함
-	case ERR_NOT_OWNER_SHOP:							return "ERR_NOT_OWNER_SHOP";					// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 소유 상점이 아님
-
-	case ERR_MAP_CHECKSUM_NOT_MATCHED:					return "ERR_MAP_CHECKSUM_NOT_MATCHED";		// 2007-04-06 by cmkwon
-	case ERR_REQ_WARP_ONE_TIME_LIMITED:					return "ERR_REQ_WARP_ONE_TIME_LIMITED";			// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 1번만 입장 할 수있음
-	case ERR_REQ_WARP_GUILD_NOT_MATCHED:				return "ERR_REQ_WARP_GUILD_NOT_MATCHED";		// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 현재 입장할 수 있는 길드가 아님
-	case ERR_REQ_WARP_MAXIMUM_USER_LIMITED:				return "ERR_REQ_WARP_MAXIMUM_USER_LIMITED";		// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 최대 접속할 수 있는 인원을 넘었음
-	case ERR_REQ_WARP_NO_QUEST_ITEM:					return "ERR_REQ_WARP_NO_QUEST_ITEM";			// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 입장에 필요한 퀘스트 아이템이 없음
-	case ERR_REQ_WARP_GAME_START_NOT_ALLOWED_USER:		return "ERR_REQ_WARP_GAME_START_NOT_ALLOWED_USER";		// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 게임 시작시에 맵에 입장이 허용된 유저가 아님
-	case ERR_REQ_WARP_INFLUENCE_NOT_MATCHED:			return "ERR_REQ_WARP_INFLUENCE_NOT_MATCHED";		// 2011-10-28 by hskim, EP4 [트리거 시스템] - 크리스탈 시스템 - 현재 입장할 수 있는 세력이 아님
-
-	case ERR_REQ_CHOOSE_START_CIIY_MAP_INDEX:			return "ERR_REQ_CHOOSE_START_CIIY_MAP_INDEX";	// 2009-10-12 by cmkwon, 프리스카 제거 방안 적용 - 
-
-	case ERR_INVALID_ARENASERVER:						return "ERR_INVALID_ARENASERVER";			// 2008-03-07 by dhjin, 아레나 통합 - 
-	case ERR_NO_SUCH_FIELDSERVER:						return "ERR_NO_SUCH_FIELDSERVER";			// 2008-03-07 by dhjin, 아레나 통합 - 
-	case ERR_INVALID_MAINSERVER_CHARACTER:				return "ERR_INVALID_MAINSERVER_CHARACTER";	// 2008-03-07 by dhjin, 아레나 통합 - 
-	case ERR_INVALID_ARENASERVER_CHARACTER:				return "ERR_INVALID_ARENASERVER_CHARACTER";	// 2008-03-07 by dhjin, 아레나 통합 - 	
-	case ERR_CANNOT_USE_ARENASERVER:					return "ERR_CANNOT_USE_ARENASERVER";		// 2008-03-07 by dhjin, 아레나 통합 - 
-	case ERR_NOT_CONNECT_TO_ARENASERVER:				return "ERR_NOT_CONNECT_TO_ARENASERVER";	// 2008-03-07 by dhjin, 아레나 통합 - 
-
-	case ERR_NO_SUCH_LETTER:							return "ERR_NO_SUCH_LETTER";				// 2008-04-30 by dhjin, EP3 편지 시스템 - 편지를 찾지 못하였다.
-
-	case ERR_ALREADY_REG:								return "ERR_ALREADY_REG";					// 2008-04-30 by dhjin, EP3 - 여단 수정 사항 - 자기 소개가 등록이 되어있다.
-	case ERR_CANNOT_USE_NEW_COMMANDER_BY_CITYLEADER:    return "ERR_CANNOT_USE_NEW_COMMANDER_BY_CITYLEADER";		// 2008-06-19 by dhjin, EP3 - 여단 수정 사항 - 지도자나 전진기지 여단장은 여단장 위임 불가 
-	case ERR_CANNOT_USE_NEW_COMMANDER_BY_POLL:		    return "ERR_CANNOT_USE_NEW_COMMANDER_BY_POLL";				// 2008-06-19 by dhjin, EP3 - 여단 수정 사항 - 선거에 출마한 사람은 여단장 위임 불가
-	case ERR_POSSESS_OUTPOST:						    return "ERR_POSSESS_OUTPOST";							// 2009-06-30 by cmkwon, 여단 해체시 체크 수정 - 
-
-	case ERR_INVALID_DATA_FROM_CLIENT:					return "ERR_INVALID_DATA_FROM_CLIENT";			// 2008-06-17 by dhjin, EP3 채팅방 - 클라이언트로부터 받은 잘못된 데이타
-	case ERR_CHATROOM_NO_SUCH_CREATE_NUM:				return"ERR_CHATROOM_NO_SUCH_CREATE_NUM";		// 2008-06-17 by dhjin, EP3 채팅방 - 생성 방 번호가 없다
-	case ERR_CHATROOM_NO_SUCH:							return"ERR_CHATROOM_NO_SUCH";					// 2008-06-17 by dhjin, EP3 채팅방 - 채팅방이 없다.
-	case ERR_CHATROOM_ALREADY_USING:					return"ERR_CHATROOM_ALREADY_USING";				// 2008-06-17 by dhjin, EP3 채팅방 - 이미 채팅방 이용중이다.
-	case ERR_CHATROOM_PERMISSION_DENIED:				return"ERR_CHATROOM_PERMISSION_DENIED";			// 2008-06-17 by dhjin, EP3 채팅방 - 권한이 없다.
-	case ERR_CHATROOM_FULL_MEMBER:						return"ERR_CHATROOM_FULL_MEMBER";				// 2008-06-17 by dhjin, EP3 채팅방 - 채팅방 인원이 만땅이다.
-	case ERR_CHATROOM_NO_SUCH_NEW_MASTER:				return"ERR_CHATROOM_NO_SUCH_NEW_MASTER";		// 2008-06-17 by dhjin, EP3 채팅방 - 새로운 방장을 찾지 못했다.
-	case ERR_NOT_MATCH_PW:								return"ERR_NOT_MATCH_PW";						// 2008-07-15 by dhjin, EP3 채팅방 - 암호 불일치.
-	case ERR_NO_SUCH_DECLARATION_MSWAR_INFO:			return"ERR_NO_SUCH_DECLARATION_MSWAR_INFO";		// 2009-01-12 by dhjin, 선전 포고 - 선전 포고 정보 못찾음
-	case ERR_NO_MORE_DECLARATION_MSWAR_SET:				return"ERR_NO_MORE_DECLARATION_MSWAR_SET";		// 2009-01-12 by dhjin, 선전 포고 - 선전 포고 시간을 더 이상 설정 할 수 없다.
-	case ERR_INVALID_DECLARATION_MSWAR_TIME:			return"ERR_INVALID_DECLARATION_MSWAR_TIME";		// 2009-01-12 by dhjin, 선전 포고 - 선전 포고 시간 설정이 잘못됨.
-
-	case ERR_CANNOT_CHOOSE_INFLUENCE_TYPE:				return"ERR_CANNOT_CHOOSE_INFLUENCE_TYPE";		// 2009-03-31 by cmkwon, 세력초기화 시스템 구현 - 
-
-	case ERR_CANNOT_CONNECT_INTERNET:					return "ERR_CANNOT_CONNECT_INTERNET";
-	case ERR_CANNOT_CONNECT_AUTO_UPDATE_SERVER:			return "ERR_CANNOT_CONNECT_AUTO_UPDATE_SERVER";
-	case ERR_LOCAL_FILE_CREATE_FAIL:					return "ERR_LOCAL_FILE_CREATE_FAIL";
-	case ERR_AUTO_UPDATE_SERVER_PERMISSION_DENIED:		return "ERR_AUTO_UPDATE_SERVER_PERMISSION_DENIED";
-	case ERR_UPDATE_FILE_NOT_FOUND:						return "ERR_UPDATE_FILE_NOT_FOUND";
-	case ERR_UPDATE_FILE_DOWNLOADING_FAIL:				return "ERR_UPDATE_FILE_DOWNLOADING_FAIL";
-	case ERR_UPDATE_FILE_DOWNLOADING_CANCEL:			return "ERR_UPDATE_FILE_DOWNLOADING_CANCEL";
-	case ERR_FUNC_HttpOpenRequest:						return "ERR_FUNC_HttpOpenRequest";
-	case ERR_FUNC_HttpSendRequest:						return "ERR_FUNC_HttpSendRequest";
-	case ERR_FUNC_HttpQueryInfo:						return "ERR_FUNC_HttpQueryInfo";
-	case ERR_VERSIONINFO_FILE_NOT_FOUND:				return "ERR_VERSIONINFO_FILE_NOT_FOUND";		// 2007-05-09 by cmkwon
-	case ERR_VERSIONINFO_FILE_CAN_NOT_CREATE:			return "ERR_VERSIONINFO_FILE_CAN_NOT_CREATE";		// 2007-05-09 by cmkwon
-	case ERR_NOT_ALLOWED_IP:							return "ERR_NOT_ALLOWED_IP";		// 2007-10-19 by cmkwon, AllowedIP 시스템 변경 -
-
-	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 
-	case ERR_DEBUFF_SKILL_APPLYING_SLIENCE:				return "ERR_DEBUFF_SKILL_APPLYING_SLIENCE";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 사일런스 디버프가 적용중이다.
-	case ERR_RELEASE_SKILL_NOT_FIND:					return "ERR_RELEASE_SKILL_NOT_FIND";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 해제할 스킬을 찾을수가 없다.
-	case ERR_DEBUFF_SKILL_APPLYING_NOT_HP_RECOVERY:		return "ERR_DEBUFF_SKILL_APPLYING_NOT_HP_RECOVERY";		// 2009-09-09 ~ 2010 by dhjin, 인피니티 - HP회복 금지
-	case ERR_DEBUFF_SKILL_APPLYING_NOT_DP_RECOVERY:		return "ERR_DEBUFF_SKILL_APPLYING_NOT_DP_RECOVERY";		// 2009-09-09 ~ 2010 by dhjin, 인피니티 - DP회복 금지
-	case ERR_DEBUFF_SKILL_APPLYING_NOT_SP_RECOVERY:		return "ERR_DEBUFF_SKILL_APPLYING_NOT_SP_RECOVERY";		// 2009-09-09 ~ 2010 by dhjin, 인피니티 - SP회복 금지
-	case ERR_INFINITY_NO_SUCH_MODE_LIST:				return "ERR_INFINITY_NO_SUCH_MODE_LIST";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 리스트를 찾지 못했을 경우
-	case ERR_INFINITY_NO_SUCH_READY_LIST:				return "ERR_INFINITY_NO_SUCH_READY_LIST";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 대기 리스트를 찾지 못했을 경우
-	case ERR_INFINITY_OVER_ENTRANCECOUNT:				return "ERR_INFINITY_OVER_ENTRANCECOUNT";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 입장 가능한 수를 넘겼다.
-	case ERR_INFINITY_CREATE_FAIL:						return "ERR_INFINITY_CREATE_FAIL";						// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 생성 실패
-	case ERR_INFINITY_JOIN_FAIL_SOCKET:					return "ERR_INFINITY_JOIN_FAIL_SOCKET";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 가입 실패 - 소켓 NULL값
-	case ERR_INFINITY_MAX_ADMISSIONCNT:					return "ERR_INFINITY_MAX_ADMISSIONCNT";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 가입 실패 - 최대 인원
-	case ERR_INFINITY_MISMATCH_LEVEL:					return "ERR_INFINITY_MISMATCH_LEVEL";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 가입 실패 - 레벨
-	case ERR_INFINITY_MODE:								return "ERR_INFINITY_MODE";								// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 잘못된 모드
-	case ERR_INFINITY_CREATEUID:						return "ERR_INFINITY_CREATEUID";						// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 잘못된 생성 번호
-	case ERR_INFINITY_NO_SUCH_MASTER_USER:				return "ERR_INFINITY_NO_SUCH_MASTER_USER";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 가입 실패 - 인피 마스터
-	case ERR_INFINITY_JOIN_FAIL_MASTERUSER_REJECT:		return "ERR_INFINITY_JOIN_FAIL_MASTERUSER_REJECT";		// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 가입 실패 - 생성 번호
-	case ERR_INFINITY_NO_SUCH_MEMBER_LIST:				return "ERR_INFINITY_NO_SUCH_MEMBER_LIST";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 유저 리스트를 찾지 못했을 경우
-	case ERR_INFINITY_STATE:							return "ERR_INFINITY_STATE";							// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티 잘못된 상태값
-	case ERR_INFINITY_SAME_MASTER:						return "ERR_INFINITY_SAME_MASTER";						// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 동일 인물!
-	case ERR_INFINITY_MASTER:							return "ERR_INFINITY_MASTER";							// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 마스터가 아니다.
-	case ERR_INFINITY_CREATE_MAPCHANNEL:				return "ERR_INFINITY_CREATE_MAPCHANNEL";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 맵 생성 중 채널 생성 오류
-	case ERR_INFINITY_NOT_ALL_READY:					return "ERR_INFINITY_NOT_ALL_READY";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 모든 유저가 래디 상태가 아니다.
-	case ERR_INFINITY_CANNOT_USE_ITEM:					return "ERR_INFINITY_CANNOT_USE_ITEM";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티에서 사용 불가
-	case ERR_INFINITY_MIN_ADMISSIONCNT:					return "ERR_INFINITY_MIN_ADMISSIONCNT";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피 이용 최소 인원 오류
-	case ERR_INFINITY_TENDER_PROCESSING:				return "ERR_INFINITY_TENDER_PROCESSING";				// 2009-09-09 ~ 2010 by dhjin, 인피니티 - Tender중이다.
-	case ERR_INFINITY_NOT_PROCESSING_TENDERITEM:		return "ERR_INFINITY_NOT_PROCESSING_TENDERITEM";		// 2009-09-09 ~ 2010 by dhjin, 인피니티 - Tender진행중인 아이템이 아니다.
-	case ERR_INFINITY_ONLY_USE_ITEM:					return "ERR_INFINITY_ONLY_USE_ITEM";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 인피니티에서만 사용 가능
-	case ERR_INFINITY_CANNOT_SUCH_TEAM:					return "ERR_INFINITY_CANNOT_SUCH_TEAM";					// 2009-09-09 ~ 2010 by dhjin, 인피니티 - 팅긴 유저 재접속 처리, 존재하는 팀이 없다.
-	case ERR_INFINITY_NULL_VALUE:						return "ERR_INFINITY_NULL_VALUE";						// 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크, NULL값 체크
-	case ERR_INFINITY_CANNOT_ALL_START:					return "ERR_INFINITY_CANNOT_ALL_START";					// 2010-04-06 by cmkwon, 인피2차 추가 수정 - 
-	case ERR_INFINITY_TENDER_ALREADY_CHOICED:			return "ERR_INFINITY_TENDER_ALREADY_CHOICED";			// 2010-04-09 by cmkwon, 인피2차 추가 수정(단계별 보상 추가) - 
-
-	case ERR_INFINITY_DIFFICLUTY_NOT_FIND :				return "ERR_INFINITY_DIFFICLUTY_NOT_FIND";				// 2010-05-04 by shcho, 인피니티 난이도 조절 - 난이도를 찾지 못했을 때
-	case ERR_INFINITY_DIFFICULTY_LEVEL_SAME :			return "ERR_INFINITY_DIFFICULTY_LEVEL_SAME";			// 2010. 05. 19 by hsLee 인피니티 필드 2차 난이도 조절. (신호처리 + 몬스터 처리(서버) ) - 같은 난이도로 변경 요청 오류.
-	case ERR_INFINITY_DIFFICULTY_LEVEL_INVALID :		return "ERR_INFINITY_DIFFICULTY_LEVEL_INVALID";			// 2010. 05. 19 by hsLee 인피니티 필드 2차 난이도 조절. (신호처리 + 몬스터 처리(서버) ) - 유효하지 않은 난이도 변경값 요청 오류.
-
-	case ERR_INFINITY_MISMATCH_CREATEUID :				return "ERR_INFINITY_MISMATCH_CREATEUID";				// 인피니티 - 방 생성번호 불일치.	// 2010. 07. 27 by hsLee 인피니티 2차 거점 방어 시네마 연출 스킵 처리.
-	case ERR_INFINITY_PLAYING_STATE :					return "ERR_INFINITY_PLAYING_STATE";					// 인피니티 - 게임 진행 중이 아닌 경우. ( STATE - PLAYING ~ 엔딩 ) // 2010. 07. 27 by hsLee 인피니티 2차 거점 방어 시네마 연출 스킵 처리.
-	case ERR_INFINITY_ALWAYS_SKIP_ENDINGCINEMA :		return "ERR_INFINITY_ALWAYS_SKIP_ENDINGCINEMA";			// 인피니티 - 이미 연출 스킵 활성화 되어 있음. // 2010. 07. 27 by hsLee 인피니티 2차 거점 방어 시네마 연출 스킵 처리.
-
-	case ERR_DEBUFF_SKILL_APPLYING_STOPMAGIC :			return "ERR_DEBUFF_SKILL_APPLYING_STOPMAGIC";			// 2011-10-28 by hskim, EP4 [트리거 시스템] - 스킬 추가 : 침묵 당해 스킬을 사용할수 없습니다.
-
-	case ERR_KNOWN_ERROR:								return "ERR_KNOWN_ERROR";			// 2010-04-26 by cmkwon, 러시아 Innva 인증/빌링 시스템 변경 - 
-	case ERR_INVALID_HANDLE:							return "ERR_INVALID_HANDLE";			// 2010-04-26 by cmkwon, 러시아 Innva 인증/빌링 시스템 변경 - 
-
-	///////////////////////////////////////////////////////////////////////////////
-	// 2011-01-26 by hskim, 인증 서버 구현
-
-	case ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DATA:			return "ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DATA"; // 2011-01-26 by hskim, 인증 서버 구현 - PreServer 로 부터 받은 Data Size가 Authentication Packet Type에 따른 Data Size보다 작음
-	case ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DB:			return "ERR_PROTOCOL_INVALID_AUTHENTICATION_SERVER_LOGIN_DB";	// 2011-01-26 by hskim, 인증 서버 구현 - PreServer 로 부터 받은데이타를 사용해 인증절차를 거쳤지만 중간에 정상적으로 처리되지 않았다
-
-	/////////////////////////////////////////////////////////////
-	// 2011-08-22 by hskim, 파트너 시스템 2차
-
-	case ERR_PET_NUMERIC_VALUE_OUT_OF_RANGE:			return "ERR_PET_NUMERIC_VALUE_OUT_OF_RANGE";		// 2011-09-15 by hskim, 파트너 시스템 2차 - 값이 범위를 벗어남
-	case ERR_PET_NOT_EQUIPPED:							return "ERR_PET_NOT_EQUIPPED";						// 2011-09-15 by hskim, 파트너 시스템 2차 - 펫이 장착되어 있지 않다
-	case ERR_PET_EMPTY_NAME:							return "ERR_PET_EMPTY_NAME";						// 2011-09-15 by hskim, 파트너 시스템 2차 - 이름이 비여 있음
-	case ERR_PET_NOT_ALLOW_LEVEL_UP:					return "ERR_PET_NOT_ALLOW_LEVEL_UP";				// 2011-09-15 by hskim, 파트너 시스템 2차 - 레벨업 허용 안함
-	case ERR_PET_NOT_ALLOW_CHANGE_NAME:					return "ERR_PET_NOT_ALLOW_CHANGE_NAME";				// 2011-09-15 by hskim, 파트너 시스템 2차 - 이름 변경 허용 안함
-	case ERR_PET_NOT_ALLOW_SOCKET_INDEX:				return "ERR_PET_NOT_ALLOW_SOCKET_INDEX";			// 2011-09-15 by hskim, 파트너 시스템 2차 - 허용안되는 소켓 인덱스
-	case ERR_PET_ALREADY_USE_SOCKET:					return "ERR_PET_ALREADY_USE_SOCKET";				// 2011-09-15 by hskim, 파트너 시스템 2차 - 이미 사용된 소켓
-	case ERR_PET_INVALID_SOCKET:						return "ERR_PET_INVALID_SOCKET";					// 2011-09-15 by hskim, 파트너 시스템 2차 - 잘못된 소켓
-	case ERR_PET_NO_SUCH_INFO:							return "ERR_PET_NO_SUCH_INFO";						// 2011-09-15 by hskim, 파트너 시스템 2차 - 펫관련 정보를 찾을수 없음
-	case ERR_PET_INVALID_AUTOSKILL:						return "ERR_PET_INVALID_AUTOSKILL";					// 2011-09-15 by hskim, 파트너 시스템 2차 - 잘못된 자동 스킬
-	case ERR_PET_INVALID_AUTOKIT:						return "ERR_PET_INVALID_AUTOKIT";					// 2011-09-15 by hskim, 파트너 시스템 2차 - 잘못된 오트 스킬
-	case ERR_PET_NOT_MATCH_SOCKET:						return "ERR_PET_NOT_MATCH_SOCKET";					// 2011-09-15 by hskim, 파트너 시스템 2차 - 소켓아이템이 서버정보와 일치하지 않는다
-
-	case ERR_SECURITY_NOT_CHECK_VERSION:				return "ERR_SECURITY_NOT_CHECK_VERSION";
-	case ERR_SECURITY_HACKING_GUID:						return "ERR_SECURITY_HACKING_GUID";
-	case ERR_SECURITY_HACKING_CRC:						return "ERR_SECURITY_HACKING_CRC";
-	case ERR_SECURITY_HACKING_CLIENT:					return "ERR_SECURITY_HACKING_CLIENT";
-	case ERR_SECURITY_ANTICPX_INVALID_HANDLE:			return "ERR_SECURITY_ANTICPX_INVALID_HANDLE";	// 2008-04-03 by cmkwon, 핵쉴드 서버 연동 시스템 수정 - 
-	case ERR_SECURITY_CREATE_CLIENT_FAIL:				return "ERR_SECURITY_CREATE_CLIENT_FAIL";		// 2008-04-03 by cmkwon, 핵쉴드 서버 연동 시스템 수정 - 
-
-	case ERR_AHNHS_ENGINE_DETECT_GAME_HACK:				return "ERR_AHNHS_ENGINE_DETECT_GAME_HACK";
-	case ERR_AHNHS_ACTAPC_DETECT_AUTOMOUSE:				return "ERR_AHNHS_ACTAPC_DETECT_AUTOMOUSE";
-	case ERR_AHNHS_ACTAPC_DETECT_ALREADYHOOKED:			return "ERR_AHNHS_ACTAPC_DETECT_ALREADYHOOKED";
-	case ERR_AHNHS_ACTAPC_DETECT_SPEEDHACK:				return "ERR_AHNHS_ACTAPC_DETECT_SPEEDHACK";
-	case ERR_AHNHS_ACTAPC_DETECT_SPEEDHACK_APP:			return "ERR_AHNHS_ACTAPC_DETECT_SPEEDHACK_APP";
-	case ERR_AHNHS_ACTAPC_DETECT_KDTRACE:				return "ERR_AHNHS_ACTAPC_DETECT_KDTRACE";
-	case ERR_AHNHS_ACTAPC_DETECT_KDTRACE_CHANGED:		return "ERR_AHNHS_ACTAPC_DETECT_KDTRACE_CHANGED";
-	case ERR_AHNHS_ACTAPC_DETECT_DRIVERFAILED:			return "ERR_AHNHS_ACTAPC_DETECT_DRIVERFAILED";
-	case ERR_AHNHS_ACTAPC_DETECT_HOOKFUNCTION:			return "ERR_AHNHS_ACTAPC_DETECT_HOOKFUNCTION";
-	case ERR_AHNHS_ACTAPC_DETECT_MESSAGEHOOK:			return "ERR_AHNHS_ACTAPC_DETECT_MESSAGEHOOK";
-	case ERR_AHNHS_ACTAPC_DETECT_MODULE_CHANGE:			return "ERR_AHNHS_ACTAPC_DETECT_MODULE_CHANGE";
-	case ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_ACCESS:	return "ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_ACCESS";	// 2007-04-09 by cmkwon
-
-	case ERR_AHNHS_ACTAPC_DETECT_ENGINEFAILED:				return "ERR_AHNHS_ACTAPC_DETECT_ENGINEFAILED";	// 2008-03-24 by cmkwon, 핵쉴드 2.0 적용 - AHNHS_ACTAPC_DETECT_ENGINEFAILED 추가됨
-	case ERR_AHNHS_ACTAPC_DETECT_AUTOMACRO:						return "ERR_AHNHS_ACTAPC_DETECT_AUTOMACRO";						// 2009-07-17 by cmkwon, 핵쉴드 자체 종료 처리 에러타입추가(클라이언트만 사용) - 
-	case ERR_AHNHS_ACTAPC_DETECT_CODEMISMATCH:					return "ERR_AHNHS_ACTAPC_DETECT_CODEMISMATCH";					// 2009-07-17 by cmkwon, 핵쉴드 자체 종료 처리 에러타입추가(클라이언트만 사용) - 
-	case ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS:	return "ERR_AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS";	// 2009-07-17 by cmkwon, 핵쉴드 자체 종료 처리 에러타입추가(클라이언트만 사용) - 
-	case ERR_AHNHS_ACTAPC_DETECT_LMP_FAILED:					return "ERR_AHNHS_ACTAPC_DETECT_LMP_FAILED";					// 2009-07-17 by cmkwon, 핵쉴드 자체 종료 처리 에러타입추가(클라이언트만 사용) - 
-
-	case ERR_CASH_PREMIUM_CARD_INVALID_ITEMNUM:			return "ERR_CASH_PREMIUM_CARD_INVALID_ITEMNUM";
-	case ERR_CASH_PREMIUM_CARD_ALREADY_USING:			return "ERR_CASH_PREMIUM_CARD_ALREADY_USING";
-	case ERR_CASH_PREMIUM_CARD_NOT_MATCHED:				return "ERR_CASH_PREMIUM_CARD_NOT_MATCHED";
-//	case ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE:		return "ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE";
-	case ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE:		return "ERR_CASH_PREMIUM_CARD_NOT_YET_BUY_STATE";
-	case ERR_NOT_DISSOLVED_ITEM:						return "ERR_NOT_DISSOLVED_ITEM";
-	case ERR_NOT_INSERT_DISSOLVED_ITEMS:				return "ERR_NOT_INSERT_DISSOLVED_ITEMS";
-	case ERR_CANNOT_DO_GIFT_UNDER_LEVEL:				return "ERR_CANNOT_DO_GIFT_UNDER_LEVEL";	// 2013-07-08 by bckim, 캐나다요청 레벨70 미만은 선물하기 불가
-	
-	// 2012-08-17 by jhseol, 마상 BPSoft 빌링시스템
-	case ERR_CASH_BPSOFT_COM_LIBRARY_INIT:				return "ERR_CASH_BPSOFT_COM_LIBRARY_INIT";
-	case ERR_CASH_BPSOFT_CREATION_OBJECK:				return "ERR_CASH_BPSOFT_CREATION_OBJECK";
-	case ERR_CASH_BPSOFT_METHOD_CALL:					return "ERR_CASH_BPSOFT_METHOD_CALL";
-	case ERR_CASH_BPSOFT_EXCEPTION:						return "ERR_CASH_BPSOFT_EXCEPTION";
-	// end 2012-08-17 by jhseol, 마상 BPSoft 빌링시스템
-
-	case ERR_PROTOCOL_MULTIPLE_IP_CONNECTION:			return "ERR_PROTOCOL_MULTIPLE_IP_CONNECTION";	// 2015-11-24 Future, Restrict Multiple IP Access
-
-	// 2015-12-17 Future, new error codes for the Nation Change Card
-	case ERR_IS_LEADER:									return "ERR_IS_LEADER";
-	case ERR_NOT_ENOUGH_FAME:							return "ERR_NOT_ENOUGH_FAME";
-	case ERR_INVALID_INFLUENCE:							return "ERR_INVALID_INFLUENCE";
-	case ERR_UNFAIR_BALANCE:							return "ERR_UNFAIR_BALANCE";
-	case ERR_IS_GUILD_MEMBER:							return "ERR_IS_GUILD_MEMBER";
-
-	// 2016-01-04 Future, User is having a warp restriction
-	case ERR_WARP_RESTRICTED:							return "ERR_WARP_RESTRICTED";
-
-	}
-
-	return "UNKNOWN_ERROR";
-=======
-    switch(err)
+    switch (err)
     {
     case ERR_NO_ERROR:                                    return "ERR_NO_ERROR";
     case ERR_COMMON_UNKNOWN_ERROR:                        return "ERR_COMMON_UNKNOWN_ERROR";
@@ -3519,7 +2716,6 @@ const char* GetErrorString(Err_t err)
     }
 
     return "UNKNOWN_ERROR";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 
@@ -3548,29 +2744,7 @@ const char* GetErrorString(Err_t err)
 
 char *Get_EVENT_TYPE_String(EventType_t i_evType)
 {
-<<<<<<< HEAD
-	switch (i_evType)
-	{
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_NOEVENT);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_WARP);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_WARP_TARGET);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_ENTER_BUILDING);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_LANDING);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_RACING_CHECK_POTINT);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_OBJECT_MONSTER);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_PATTERN_POINT);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_OBJ_BUILDING_NPC);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_LANDING_PATTERN_START);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_LANDING_PATTERN_END);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_TAKEOFF_PATTERN_START);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_TAKEOFF_PATTERN_END);
-		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_OBJ_ENTER_BUILDING);
-//		GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_OBJ_LEAVE_BUILDING);
-	}
-	
-	return "UNKNOWN_EVENT_TYPE";
-=======
-    switch(i_evType)
+    switch (i_evType)
     {
         GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_NOEVENT);
         GET_CASERETURN_STRING_BY_TYPE(EVENT_TYPE_WARP);
@@ -3590,27 +2764,11 @@ char *Get_EVENT_TYPE_String(EventType_t i_evType)
     }
     
     return "UNKNOWN_EVENT_TYPE";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 char * GetStringBLOCKED_TYPE(int i_blocktype)
 {
-<<<<<<< HEAD
-	switch (i_blocktype)
-	{
-	case T_BLOCKEDACCOUNT_UNKNOWN:				return "Unknown";				// 알수 없음
-	case T_BLOCKEDACCOUNT_NORMAL:				return "Normal";				// 특별한 사유 없음, 임시로
-	case T_BLOCKEDACCOUNT_MONEY_RELATED:		return "Related Money";			// 
-	case T_BLOCKEDACCOUNT_ITEM_RELATED:			return "Related Item";			// 
-	case T_BLOCKEDACCOUNT_SPEEDHACK_RELATED:	return "Related SpeedHack";		//  
-	case T_BLOCKEDACCOUNT_CHAT_RELATED:			return "Related Chatting";		// 
-	case T_BLOCKEDACCOUNT_CHAT_GAMEBUG:			return "Related GameBug";		// 
-	case T_BLOCKEDACCOUNT_MEMORYHACK_AUTOBLOCK:	return "Related AutoBlock - MemHack";		// 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
-	case T_BLOCKEDACCOUNT_SPEEDHACK_AUTOBLOCK:	return "Related AutoBlock - SpdHack";		// 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
-	}
-	return "Unknown";
-=======
-    switch(i_blocktype)
+    switch (i_blocktype)
     {
     case T_BLOCKEDACCOUNT_UNKNOWN:                return "Unknown";                // 알수 없음
     case T_BLOCKEDACCOUNT_NORMAL:                return "Normal";                // 특별한 사유 없음, 임시로
@@ -3623,7 +2781,6 @@ char * GetStringBLOCKED_TYPE(int i_blocktype)
     case T_BLOCKEDACCOUNT_SPEEDHACK_AUTOBLOCK:    return "Related AutoBlock - SpdHack";        // 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
     }
     return "Unknown";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -3638,95 +2795,49 @@ char * GetStringBLOCKED_TYPE(int i_blocktype)
 ///////////////////////////////////////////////////////////////////////////////
 int GetBlockTypeBYBlockTypeString(char *i_szTyString)
 {
-<<<<<<< HEAD
-	if (0 == stricmp(i_szTyString, "Unknown"))
-	{
-		return T_BLOCKEDACCOUNT_UNKNOWN;
-	}
-
-	if (0 == stricmp(i_szTyString, "Normal"))
-	{
-		return T_BLOCKEDACCOUNT_NORMAL;
-	}
-	if (0 == stricmp(i_szTyString, "Related Money"))
-	{
-		return T_BLOCKEDACCOUNT_MONEY_RELATED;
-	}
-	if (0 == stricmp(i_szTyString, "Related Item"))
-	{
-		return T_BLOCKEDACCOUNT_ITEM_RELATED;
-	}
-	if (0 == stricmp(i_szTyString, "Related SpeedHack"))
-	{
-		return T_BLOCKEDACCOUNT_SPEEDHACK_RELATED;
-	}
-	if (0 == stricmp(i_szTyString, "Related Chatting"))
-	{
-		return T_BLOCKEDACCOUNT_CHAT_RELATED;
-	}
-	if (0 == stricmp(i_szTyString, "Related GameBug"))
-	{
-		return T_BLOCKEDACCOUNT_CHAT_GAMEBUG;
-	}
-	// 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
-	if (0 == stricmp(i_szTyString, "Related AutoBlock - MemHack"))
-	{
-		return T_BLOCKEDACCOUNT_MEMORYHACK_AUTOBLOCK;
-	}
-	// end 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
-	// 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
-	if (0 == stricmp(i_szTyString, "Related AutoBlock - SpdHack"))
-	{
-		return T_BLOCKEDACCOUNT_SPEEDHACK_AUTOBLOCK;
-	}
-	// end 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
-	
-	return T_BLOCKEDACCOUNT_UNKNOWN;
-=======
-    if(0 == stricmp(i_szTyString, "Unknown"))
+    if (0 == stricmp(i_szTyString, "Unknown"))
     {
         return T_BLOCKEDACCOUNT_UNKNOWN;
     }
 
-    if(0 == stricmp(i_szTyString, "Normal"))
+    if (0 == stricmp(i_szTyString, "Normal"))
     {
         return T_BLOCKEDACCOUNT_NORMAL;
     }
-    if(0 == stricmp(i_szTyString, "Related Money"))
+    if (0 == stricmp(i_szTyString, "Related Money"))
     {
         return T_BLOCKEDACCOUNT_MONEY_RELATED;
     }
-    if(0 == stricmp(i_szTyString, "Related Item"))
+    if (0 == stricmp(i_szTyString, "Related Item"))
     {
         return T_BLOCKEDACCOUNT_ITEM_RELATED;
     }
-    if(0 == stricmp(i_szTyString, "Related SpeedHack"))
+    if (0 == stricmp(i_szTyString, "Related SpeedHack"))
     {
         return T_BLOCKEDACCOUNT_SPEEDHACK_RELATED;
     }
-    if(0 == stricmp(i_szTyString, "Related Chatting"))
+    if (0 == stricmp(i_szTyString, "Related Chatting"))
     {
         return T_BLOCKEDACCOUNT_CHAT_RELATED;
     }
-    if(0 == stricmp(i_szTyString, "Related GameBug"))
+    if (0 == stricmp(i_szTyString, "Related GameBug"))
     {
         return T_BLOCKEDACCOUNT_CHAT_GAMEBUG;
     }
     // 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
-    if(0 == stricmp(i_szTyString, "Related AutoBlock - MemHack"))
+    if (0 == stricmp(i_szTyString, "Related AutoBlock - MemHack"))
     {
         return T_BLOCKEDACCOUNT_MEMORYHACK_AUTOBLOCK;
     }
     // end 2012-12-14 by hskim, 메모리핵 자동 블럭 기능 구현
     // 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
-    if(0 == stricmp(i_szTyString, "Related AutoBlock - SpdHack"))
+    if (0 == stricmp(i_szTyString, "Related AutoBlock - SpdHack"))
     {
         return T_BLOCKEDACCOUNT_SPEEDHACK_AUTOBLOCK;
     }
     // end 2013-01-29 by hskim, 스피드핵 자동 블럭 기능 구현
     
     return T_BLOCKEDACCOUNT_UNKNOWN;
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn            char *GetStringGuildMarkState(BYTE i_byGuildMarkState, BOOL i_bForUser/*=FALSE*/)
@@ -3740,30 +2851,9 @@ int GetBlockTypeBYBlockTypeString(char *i_szTyString)
 ///////////////////////////////////////////////////////////////////////////////
 const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=FALSE*/)
 {
-<<<<<<< HEAD
-	if (!i_bForUser)
-	{
-		switch (i_byGuildMarkState)
-		{
-		case GUILD_MARK_STATE_NONE:					return "GUILD_MARK_STATE_NONE";
-		case GUILD_MARK_STATE_WAITING_PERMISSION:	return "GUILD_MARK_STATE_WAITING_PERMISSION";
-		case GUILD_MARK_STATE_NORMAL:				return "GUILD_MARK_STATE_NORMAL";
-		default:									return "GUILD_MARK_STATE_UNKNWON";
-		}
-	}
-
-	switch (i_byGuildMarkState)
-	{
-	case GUILD_MARK_STATE_NONE:					return STRMSG_070802_0004;
-	case GUILD_MARK_STATE_WAITING_PERMISSION:	return STRMSG_070802_0005;
-	case GUILD_MARK_STATE_NORMAL:				return STRMSG_070802_0006;
-	default:									return STRMSG_070802_0007;
-	}
-	
-=======
     if (!i_bForUser)
     {
-        switch(i_byGuildMarkState)
+        switch (i_byGuildMarkState)
         {
         case GUILD_MARK_STATE_NONE:                    return "GUILD_MARK_STATE_NONE";
         case GUILD_MARK_STATE_WAITING_PERMISSION:    return "GUILD_MARK_STATE_WAITING_PERMISSION";
@@ -3772,15 +2862,13 @@ const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=F
         }
     }
 
-    switch(i_byGuildMarkState)
+    switch (i_byGuildMarkState)
     {
     case GUILD_MARK_STATE_NONE:                    return STRMSG_070802_0004;
     case GUILD_MARK_STATE_WAITING_PERMISSION:    return STRMSG_070802_0005;
     case GUILD_MARK_STATE_NORMAL:                return STRMSG_070802_0006;
     default:                                    return STRMSG_070802_0007;
     }
-    
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -3795,26 +2883,7 @@ const char *GetStringGuildMarkState(BYTE i_byGuildMarkState, bool i_bForUser/*=F
 ///////////////////////////////////////////////////////////////////////////////
 char *GetEnchatLogTypeString(int i_nEnchantLogTy)
 {
-<<<<<<< HEAD
-	switch (i_nEnchantLogTy)
-	{
-	case ENCHANT_LOGTYPE_ENCHANT_FAIL				:				return "ENCHANT_LOGTYPE_ENCHANT_FAIL";
-	case ENCHANT_LOGTYPE_ENCHANT_SUCCESS			:				return "ENCHANT_LOGTYPE_ENCHANT_SUCCESS";
-	case ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL			:				return "ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL";
-	case ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS		:				return "ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS";
-	case ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL			:				return "ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL";
-	case ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS		:				return "ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS";
-	case ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL			:				return "ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL";
-	case ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS		:				return "ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS";
-	case ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL	:				return "ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL";
-	case ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS	:				return "ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS";
-	case ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL	:				return "ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL";
-	case ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS	:				return "ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS";
-	}
-
-	return "ENCHANT_LOGTYPE_UNKNOWN";
-=======
-    switch(i_nEnchantLogTy)
+    switch (i_nEnchantLogTy)
     {
     case ENCHANT_LOGTYPE_ENCHANT_FAIL                :                return "ENCHANT_LOGTYPE_ENCHANT_FAIL";
     case ENCHANT_LOGTYPE_ENCHANT_SUCCESS            :                return "ENCHANT_LOGTYPE_ENCHANT_SUCCESS";
@@ -3831,23 +2900,12 @@ char *GetEnchatLogTypeString(int i_nEnchantLogTy)
     }
 
     return "ENCHANT_LOGTYPE_UNKNOWN";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 // 2013-07-01 by bckim, 10인챈트 미만 하이퍼카드처리, 로그추가, 운영툴 보완
 char *GetTryEnchantSuccessTypeString(int i_nSuccessType)
 {
-<<<<<<< HEAD
-	switch (i_nSuccessType)
-	{
-		case TRY_ENCHANT_FAIL				:				return "FAIL";
-		case TRY_ENCHANT_SUCCESS			:				return "SUCCESS";
-		case TRY_ENCHANT_PREVENT_5			:				return "PREVENT_5";
-		case TRY_ENCHANT_PREVENT_10			:				return "PREVENT_10";
-	}	
-	return "TRY_ENCHANT_LOGTYPE_UNKNOWN";
-=======
-    switch(i_nSuccessType)
+    switch (i_nSuccessType)
     {
         case TRY_ENCHANT_FAIL                :                return "FAIL";
         case TRY_ENCHANT_SUCCESS            :                return "SUCCESS";
@@ -3855,137 +2913,48 @@ char *GetTryEnchantSuccessTypeString(int i_nSuccessType)
         case TRY_ENCHANT_PREVENT_10            :                return "PREVENT_10";
     }    
     return "TRY_ENCHANT_LOGTYPE_UNKNOWN";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 // End. 2013-07-01 by bckim, 10인챈트 미만 하이퍼카드처리, 로그추가, 운영툴 보완
 
 
 int GetEnchantLogType(ITEM *i_pEnchantItemInfo, bool i_bSuccessFlag)
 {
-<<<<<<< HEAD
-	if (ITEMKIND_ENCHANT == i_pEnchantItemInfo->Kind)
-	{
-		if (i_pEnchantItemInfo->IsExistDesParam(DES_ENCHANT_INITIALIZE))
-		{
-			return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL : ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS;
-		}
-		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_FAIL : ENCHANT_LOGTYPE_ENCHANT_SUCCESS;
-	}
-
-	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX_INITIALIZE))
-	{
-		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS;
-	}
-	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX_INITIALIZE))
-	{
-		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS;
-	}
-
-	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX))
-	{
-		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS;
-	}
-	if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX))
-	{
-		return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS;
-	}
-
-	return ENCHANT_LOGTYPE_UNKNOWN;
-=======
-    if(ITEMKIND_ENCHANT == i_pEnchantItemInfo->Kind)
+    if (ITEMKIND_ENCHANT == i_pEnchantItemInfo->Kind)
     {
-        if(i_pEnchantItemInfo->IsExistDesParam(DES_ENCHANT_INITIALIZE))
+        if (i_pEnchantItemInfo->IsExistDesParam(DES_ENCHANT_INITIALIZE))
         {
             return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_INIT_FAIL : ENCHANT_LOGTYPE_ENCHANT_INIT_SUCCESS;
         }
         return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_ENCHANT_FAIL : ENCHANT_LOGTYPE_ENCHANT_SUCCESS;
     }
 
-    if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX_INITIALIZE))
+    if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX_INITIALIZE))
     {
         return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_INIT_SUCCESS;
     }
-    if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX_INITIALIZE))
+    if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX_INITIALIZE))
     {
         return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_INIT_SUCCESS;
     }
 
-    if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX))
+    if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_PREFIX))
     {
         return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_PREFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_PREFIX_SUCCESS;
     }
-    if(i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX))
+    if (i_pEnchantItemInfo->IsExistDesParam(DES_RARE_FIX_SUFFIX))
     {
         return (FALSE == i_bSuccessFlag) ? ENCHANT_LOGTYPE_GAMBLE_SUFFIX_FAIL : ENCHANT_LOGTYPE_GAMBLE_SUFFIX_SUCCESS;
     }
 
     return ENCHANT_LOGTYPE_UNKNOWN;
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 
 // 2013-03-13 by hskim, 웹 캐시 상점
 char* GetErrorXMLRPCString(int err)
 {
-<<<<<<< HEAD
-	// 아래 부분 구현이 마무리되면 영어로 번역 할 예정
-
-	switch (err)
-	{
-	/*
-	case XMLRPC_ERROR_INTERNAL_SERVER				:				return "서버 내부 에러";
-	case XMLRPC_ERROR_INVALID_SERVER_ID				:				return "서버 ID 유효하지 않음";
-	case XMLRPC_ERROR_DISABLE_SERVER				:				return "서버 처리 불가 상태";
-	case XMLRPC_ERROR_DISABLE_REQUEST				:				return "서버 해당 요청 처리 불가 상태";
-	case XMLRPC_ERROR_INVALID_USER_IP				:				return "유저 IP 주소가 유효하지 않음";
-	case XMLRPC_ERROR_NOT_MATCHED_USER_INFO			:				return "계정과 캐릭터 정보가 같지 않음";
-	case XMLRPC_ERROR_INVALID_ACCOUNTUID			:				return "계정 정보가 유효하지 않음";
-	case XMLRPC_ERROR_INVALID_CHARACTERUID			:				return "캐릭터 정보가 유효하지 않음";
-	case XMLRPC_ERROR_INVALID_ITEMNUM				:				return "아이템 번호가 유효하지 않음";
-	case XMLRPC_ERROR_OUT_OF_RANGE_ITEMCOUNT		:				return "아이템 수의 범위가 유효하지 않음";
-	case XMLRPC_ERROR_INVALID_AUTHENTICATION_KEY	:				return "구매 상점 인증키가 유효하지 않음";
-	case XMLRPC_ERROR_NOT_ACCEPTED_USER				:				return "해당 유저의 요청 처리 불가";
-	case XMLRPC_ERROR_INVALID_ITEM_STORAGE			:				return "아이템 위치가 유효하지 않음";
-	case XMLRPC_ERROR_NEED_MORE_CASH				:				return "구매에 필요한 캐시 부족";
-	case XMLRPC_ERROR_BILLING_ERROR					:				return "빌링 연동 에러";
-	case XMLRPC_ERROR_INVALID_GET_CHARACTERUID		:				return "선물 받을 계정 정보가 유효하지 않음";
-	case XMLRPC_ERROR_NOT_FOUND_BILLING_ITEM_LIST	:				return "빌링 목록에 없는 아이템 (구매 불가)";
-	case XMLRPC_ERROR_UNKNOWN_ERROR					:				return "알수 없는 에러";
-	case XMLRPC_ERROR_NOT_FOUND_RPC_METHOD			:				return "RPC 메소드를 찾을 수 없음";
-	case XMLRPC_ERROR_NOT_MATCHED_PARAMETER_TYPE	:				return "RPC 메소드의 파라미터 형식이 틀림";
-	case XMLRPC_ERROR_INVALID_XML					:				return "XML 형식이 틀림";
-	*/
-
-	case XMLRPC_ERROR_INTERNAL_SERVER				:				return "XMLRPC_ERROR_INTERNAL_SERVER";
-	case XMLRPC_ERROR_INVALID_SERVER_ID				:				return "XMLRPC_ERROR_INVALID_SERVER_ID";
-	case XMLRPC_ERROR_DISABLE_SERVER				:				return "XMLRPC_ERROR_DISABLE_SERVER";
-	case XMLRPC_ERROR_DISABLE_REQUEST				:				return "XMLRPC_ERROR_DISABLE_REQUEST";
-	case XMLRPC_ERROR_INVALID_USER_IP				:				return "XMLRPC_ERROR_INVALID_USER_IP";
-	case XMLRPC_ERROR_NOT_MATCHED_USER_INFO			:				return "XMLRPC_ERROR_NOT_MATCHED_USER_INFO";
-	case XMLRPC_ERROR_INVALID_ACCOUNTUID			:				return "XMLRPC_ERROR_INVALID_ACCOUNTUID";
-	case XMLRPC_ERROR_INVALID_CHARACTERUID			:				return "XMLRPC_ERROR_INVALID_CHARACTERUID";
-	case XMLRPC_ERROR_INVALID_ITEMNUM				:				return "XMLRPC_ERROR_INVALID_ITEMNUM";
-	case XMLRPC_ERROR_OUT_OF_RANGE_ITEMCOUNT		:				return "XMLRPC_ERROR_OUT_OF_RANGE_ITEMCOUNT";
-	case XMLRPC_ERROR_INVALID_AUTHENTICATION_KEY	:				return "XMLRPC_ERROR_INVALID_AUTHENTICATION_KEY";
-	case XMLRPC_ERROR_NOT_ACCEPTED_USER				:				return "XMLRPC_ERROR_NOT_ACCEPTED_USER";
-	case XMLRPC_ERROR_INVALID_ITEM_STORAGE			:				return "XMLRPC_ERROR_INVALID_ITEM_STORAGE";
-	case XMLRPC_ERROR_NEED_MORE_CASH				:				return "XMLRPC_ERROR_NEED_MORE_CASH";
-	case XMLRPC_ERROR_BILLING_ERROR					:				return "XMLRPC_ERROR_BILLING_ERROR";
-	case XMLRPC_ERROR_INVALID_GET_CHARACTERUID		:				return "XMLRPC_ERROR_INVALID_GET_CHARACTERUID";
-	case XMLRPC_ERROR_NOT_FOUND_BILLING_ITEM_LIST	:				return "XMLRPC_ERROR_NOT_FOUND_BILLING_ITEM_LIST";
-	case XMLRPC_ERROR_UNKNOWN_ERROR					:				return "XMLRPC_ERROR_UNKNOWN_ERROR";
-	case XMLRPC_ERROR_NOT_FOUND_RPC_METHOD			:				return "XMLRPC_ERROR_NOT_FOUND_RPC_METHOD";
-	case XMLRPC_ERROR_NOT_MATCHED_PARAMETER_TYPE	:				return "XMLRPC_ERROR_NOT_MATCHED_PARAMETER_TYPE";
-	case XMLRPC_ERROR_INVALID_XML					:				return "XMLRPC_ERROR_INVALID_XML";
-
-	default:
-		break;
-	}
-
-	return "XMLRPC_ERROR_UNKNOWN";
-=======
     // 아래 부분 구현이 마무리되면 영어로 번역 할 예정
 
-    switch(err)
+    switch (err)
     {
     /*
     case XMLRPC_ERROR_INTERNAL_SERVER                :                return "서버 내부 에러";
@@ -4038,6 +3007,5 @@ char* GetErrorXMLRPCString(int err)
     }
 
     return "XMLRPC_ERROR_UNKNOWN";
->>>>>>> f4bcbdf355e85ff618821df979812bc8282fff21
 }
 // end 2013-03-13 by hskim, 웹 캐시 상점

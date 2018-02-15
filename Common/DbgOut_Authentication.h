@@ -13,7 +13,7 @@ inline void DbgOutA (LPCSTR p)
 {
     COPYDATASTRUCT cd; 
     HWND hWnd = ::FindWindow (g_dbgOutwindowClassName, g_dbgOut); 
-    if(hWnd)
+    if (hWnd)
     {  
         cd.dwData = 0;
         cd.cbData = (strlen(p)+1)*sizeof(char);

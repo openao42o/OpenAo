@@ -151,5 +151,4 @@ AtumTime& AtumTime::operator/=(const int n)
 	return *this;
 }
 
-#endif
 #endif // COMMON_ATUMTIME_H_

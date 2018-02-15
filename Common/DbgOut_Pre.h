@@ -13,17 +13,17 @@ inline void DbgOutA (LPCSTR p)
 {
     COPYDATASTRUCT cd; 
     HWND hWnd = ::FindWindow (g_dbgOutwindowClassName, g_dbgOut); 
-    if(hWnd)
+    if (hWnd)
     {  
         cd.dwData = 0;
         cd.cbData = (strlen(p)+1)*sizeof(char);
         cd.lpData = (void *)p; 
         ::SendMessage (hWnd, WM_COPYDATA, 0, (LPARAM)&cd);
     }
-	else
-	{
-		SetLastError(0);
-	}
+    else
+    {
+        SetLastError(0);
+    }
 }
 
 
@@ -48,10 +48,10 @@ inline void DbgOutW (LPCWSTR p)
         cd.lpData = (void *)p; 
         ::SendMessage (hWnd, WM_COPYDATA, 0, (LPARAM)&cd);  
     }
-	else
-	{
-		SetLastError(0);
-	}
+    else
+    {
+        SetLastError(0);
+    }
 }
 
 // DBGOUTW
@@ -67,11 +67,11 @@ inline void DbgOutW (LPCWSTR p)
 
 inline void DbgOut (LPCTSTR pFormat, ...)
 {
-	va_list args;
-	va_start(args, pFormat);
+    va_list args;
+    va_start(args, pFormat);
 
     _TCHAR buffer[1024*sizeof(_TCHAR)];
-	vsprintf(buffer, pFormat, args);
+    vsprintf(buffer, pFormat, args);
 
     #ifdef UNICODE
     DbgOutW (buffer);
@@ -96,11 +96,11 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
    if (::GetLastError() == 0) 
         return 0;
    
-	va_list args;
-	va_start(args, pFormat);
+    va_list args;
+    va_start(args, pFormat);
 
     _TCHAR buffer[1024*sizeof(_TCHAR)];
-	vsprintf(buffer, pFormat, args);
+    vsprintf(buffer, pFormat, args);
 
     LPVOID pMessage;
     DWORD  result;

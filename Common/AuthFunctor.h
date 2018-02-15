@@ -156,7 +156,7 @@ public:
 
     void operator=(IFunctor* fnt)
     { 
-        if( m_pFnt ) m_pFnt->Release();
+        if ( m_pFnt ) m_pFnt->Release();
         m_pFnt = fnt;
     }
 

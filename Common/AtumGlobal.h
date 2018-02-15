@@ -169,9 +169,9 @@ void SetIntDataByVector(vector<VECTYPE> &vecInfo, int nIndex)
 {
     vector<VECTYPE>::iterator it = vecInfo.begin();
 
-    while(it != vecInfo.end())
+    while (it != vecInfo.end())
     {
-        if(*(it) == nIndex)
+        if (*(it) == nIndex)
         {
             return;
         }
@@ -196,9 +196,9 @@ void SetClientIndexDataByVector(vector<VECTYPE> &vecInfo, ClientIndex_t nClientI
 {
     vector<VECTYPE>::iterator it = vecInfo.begin();
 
-    while(it != vecInfo.end())
+    while (it != vecInfo.end())
     {
-        if(*(it) == nClientIndex)
+        if (*(it) == nClientIndex)
         {
             return;
         }
@@ -231,9 +231,9 @@ void SendPacketDataByVector(MessageType_t MsgType, vector<VECTYPE> &vecInfo)
     pMsgType    = (MessageType_t*)buffer;
     pOtherInfo    = (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER);
 
-    for(int i=0; i < vecInfo.size(); i++)
+    for (int i=0; i < vecInfo.size(); i++)
     {
-        if(nBytes + MSG_SIZE(VECTYPE) > SIZE_MAX_PACKET)
+        if (nBytes + MSG_SIZE(VECTYPE) > SIZE_MAX_PACKET)
         {
             g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
             nBytes = 0;
@@ -248,7 +248,7 @@ void SendPacketDataByVector(MessageType_t MsgType, vector<VECTYPE> &vecInfo)
         pOtherInfo                = (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER + nBytes);
     }
 
-    if(nBytes > 0)
+    if (nBytes > 0)
     {
         g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
 //        DBGOUT("SendPacketDataByVector Size (%d)\n", vecInfo.size());
@@ -274,43 +274,43 @@ typedef enum
     APPSTATE_CLOSE,                // 서버와의 연결 종료 상태
     APPSTATE_ERROR                // 게임 에러 상태    
 } EnumAppState;
-    // APPSTATE_GAME
-    typedef enum
-    {
-        GEARSTATE_FLYING,            // 비행 상태
-        GEARSTATE_LAND,                // 착륙 상태
-        GEARSTATE_DEAD,                // 폭발 상태
-        GEARSTATE_WARF,                // 워프 상태
-        GEARSTATE_SHOP                // 도시/상점 메뉴 상태
-    } EnumGearState;
-        // GEARSTATE_FLYING
-        typedef enum
-        {
-            FLYINGSTATE_NORMAL_FLYING,    // 보통 비행 상태
-            FLYINGSTATE_ACCELATING,        // 속도 높이는 상태
-            FLYINGSTATE_BOOSTER,        // 부스터 사용 상태
-            FLYINGSTATE_BREAK,            // 속도 줄이는 상태
-            FLYINGSTATE_AIR_BREAKING,    // 공중 정지 시도 상태
-            FLYINGSTATE_AIR_BREAK        // 공중 정지 상태
-        } EnumFlyingState;    
-        // GEARSTATE_LAND
-        typedef enum
-        {
-            LANDSTATE_LANDING,            // 착륙 시도 상태
-            LANDSTATE_LANDED,            // 착륙 상태
-            LANDSTATE_TAKEOFF,            // 이륙 상태
-            LANDSTATE_MOVE,                // 움직이는 상태(A기어)
-            LANDSTATE_ACCELATING,        // 속도 높이는 상태(A기어)
-            LANDSTATE_BREAK                // 속도 줄이는 상태(A기어)
-        } EnumLandState;
-        // GEARSTATE_DEAD
-        typedef enum
-        {
-            GAMESTATE_FALLING,            // 폭발중, 기어는 폭발,공중폭발 둘중에 선택해서 한다.
-            GAMESTATE_FALLEN,            // 폭발 완료
-            GAMESTATE_EXPLODING,        // 공중 폭발 중
-            GAMESTATE_EXPLODED,            // 공중 폭발 완료
-        } EnumDeadState;
+// APPSTATE_GAME
+typedef enum
+{
+    GEARSTATE_FLYING,            // 비행 상태
+    GEARSTATE_LAND,                // 착륙 상태
+    GEARSTATE_DEAD,                // 폭발 상태
+    GEARSTATE_WARF,                // 워프 상태
+    GEARSTATE_SHOP                // 도시/상점 메뉴 상태
+} EnumGearState;
+// GEARSTATE_FLYING
+typedef enum
+{
+    FLYINGSTATE_NORMAL_FLYING,    // 보통 비행 상태
+    FLYINGSTATE_ACCELATING,        // 속도 높이는 상태
+    FLYINGSTATE_BOOSTER,        // 부스터 사용 상태
+    FLYINGSTATE_BREAK,            // 속도 줄이는 상태
+    FLYINGSTATE_AIR_BREAKING,    // 공중 정지 시도 상태
+    FLYINGSTATE_AIR_BREAK        // 공중 정지 상태
+} EnumFlyingState;    
+// GEARSTATE_LAND
+typedef enum
+{
+    LANDSTATE_LANDING,            // 착륙 시도 상태
+    LANDSTATE_LANDED,            // 착륙 상태
+    LANDSTATE_TAKEOFF,            // 이륙 상태
+    LANDSTATE_MOVE,                // 움직이는 상태(A기어)
+    LANDSTATE_ACCELATING,        // 속도 높이는 상태(A기어)
+    LANDSTATE_BREAK                // 속도 줄이는 상태(A기어)
+} EnumLandState;
+// GEARSTATE_DEAD
+typedef enum
+{
+    GAMESTATE_FALLING,            // 폭발중, 기어는 폭발,공중폭발 둘중에 선택해서 한다.
+    GAMESTATE_FALLEN,            // 폭발 완료
+    GAMESTATE_EXPLODING,        // 공중 폭발 중
+    GAMESTATE_EXPLODED,            // 공중 폭발 완료
+} EnumDeadState;
 
 // 2005-10-10 by ispark
 // 나에게 강제 PK 건 유저 타겟

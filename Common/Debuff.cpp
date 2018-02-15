@@ -36,7 +36,7 @@ void CDebuff::InitDebuff() {
 ***************************************************************************************/
 void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePowerRatio /*= 1.0f*/ ) 
 {
-    if(NULL == i_pSkill) 
+    if (NULL == i_pSkill) 
     {
         // 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크
         return;
@@ -62,7 +62,7 @@ void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePow
 
     mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
 
-    while(itr != m_mtvectDebuffInfo.end()) 
+    while (itr != m_mtvectDebuffInfo.end()) 
     {
         if ( itr->ItemNum == i_pSkill->ItemNum            // 2009-09-09 ~ 2010-01-20 by dhjin, 인피니티 - 가끔 몬스터 스킬 사용 안되는 버그 수정
             && itr->DesParam == i_pSkill->ArrDestParameter[i_nDesParamIdx]
@@ -81,8 +81,8 @@ void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePow
 BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {        // 2011-08-01 by hskim, 파트너 시스템 2차 - 자료형 변경 (DestParameter - 255 -> 32767 지원)
     mt_auto_lock mta(&m_mtvectDebuffInfo);
     mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
-    while(itr != m_mtvectDebuffInfo.end()) {
-        if(i_byDestParam == itr->DesParam) {
+    while (itr != m_mtvectDebuffInfo.end()) {
+        if (i_byDestParam == itr->DesParam) {
             return TRUE;
         }
         itr++;
@@ -94,12 +94,12 @@ BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {        // 2011-08
 BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck/* = TRUE*/) {        // 2011-08-01 by hskim, 파트너 시스템 2차 - 자료형 변경 (DestParameter - 255 -> 32767 지원)
     mt_auto_lock mta(&m_mtvectDebuffInfo);
     
-    if(i_bTimeCheck) {
+    if (i_bTimeCheck) {
         DWORD dwCurTick = timeGetTime();    
         mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
-        while(itr != m_mtvectDebuffInfo.end()) {
+        while (itr != m_mtvectDebuffInfo.end()) {
             DWORD dwElapseTick = dwCurTick - itr->dwUseTime;
-            if(i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam 
+            if (i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam 
 //                && dwElapseTick >= itr->Time
                 ) {
                 itr = m_mtvectDebuffInfo.erase(itr);
@@ -107,11 +107,10 @@ BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BO
             }
             itr++;
         }
-    }
-    else {    
+    } else {    
         mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
-        while(itr != m_mtvectDebuffInfo.end()) {
-            if(i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam) {
+        while (itr != m_mtvectDebuffInfo.end()) {
+            if (i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam) {
                 itr = m_mtvectDebuffInfo.erase(itr);
                 return TRUE;
             }
@@ -123,7 +122,7 @@ BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BO
 }
 
 INT CDebuff::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DEBUFF_INFO *o_pDebuffInfo) {
-    if(NULL == o_pDebuffInfo) {
+    if (NULL == o_pDebuffInfo) {
         // 2009-09-09 ~ 2010-01 by dhjin, 인피니티 - 소스 체크
         return FALSE;
     }
@@ -132,7 +131,7 @@ INT CDebuff::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DEBUFF_INFO *o_pDebuffInfo)
     
     mt_auto_lock mta(&m_mtvectDebuffInfo);
     mtvectorDebuffInfo::iterator itr = m_mtvectDebuffInfo.begin();
-    for(; itr != m_mtvectDebuffInfo.end(); itr++) {
+    for (; itr != m_mtvectDebuffInfo.end(); itr++) {
         o_pDebuffInfo[DebuffInfoCount].ItemNum        = itr->ItemNum;
         DebuffInfoCount++;
     }
