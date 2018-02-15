@@ -39,10 +39,10 @@ CAtumNode::~CAtumNode()
 //
 HRESULT CAtumNode::InitDeviceObjects()
 {
-	// 차일드의 것을 호출
-	if ( m_pChild ) 
-		for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
-			pAtumNode->InitDeviceObjects();
+    // 차일드의 것을 호출
+    if ( m_pChild ) 
+        for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
+            pAtumNode->InitDeviceObjects();
 
     return S_OK;
 }
@@ -53,10 +53,10 @@ HRESULT CAtumNode::InitDeviceObjects()
 //
 HRESULT CAtumNode::RestoreDeviceObjects()
 {
-	// 차일드의 것을 호출
-	if ( m_pChild ) 
-		for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
-			pAtumNode->RestoreDeviceObjects();
+    // 차일드의 것을 호출
+    if ( m_pChild ) 
+        for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
+            pAtumNode->RestoreDeviceObjects();
 
         return S_OK;
 }
@@ -66,10 +66,10 @@ HRESULT CAtumNode::RestoreDeviceObjects()
 //
 HRESULT CAtumNode::InvalidateDeviceObjects()
 {
-	// 차일드의 것을 호출
-	if ( m_pChild ) 
-		for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
-			pAtumNode->InvalidateDeviceObjects(); // 2016-01-08 exception at this point
+    // 차일드의 것을 호출
+    if ( m_pChild ) 
+        for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
+            pAtumNode->InvalidateDeviceObjects(); // 2016-01-08 exception at this point
 
         return S_OK;
 }
@@ -79,10 +79,10 @@ HRESULT CAtumNode::InvalidateDeviceObjects()
 //
 HRESULT CAtumNode::DeleteDeviceObjects()
 {
-	// 차일드의 것을 호출
-	if ( m_pChild ) 
-		for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
-			pAtumNode->DeleteDeviceObjects();
+    // 차일드의 것을 호출
+    if ( m_pChild ) 
+        for ( CAtumNode* pAtumNode = m_pChild; pAtumNode; pAtumNode = pAtumNode->m_pNext )
+            pAtumNode->DeleteDeviceObjects();
 
         return S_OK;
 }
@@ -177,23 +177,23 @@ void CAtumNode::Render()
 CAtumNode* CAtumNode::AddChild( CAtumNode* pAtumNode )
 {
   // 차일드가 있으면 그것의 앞에다 끼워넣는다.
-	if (pAtumNode->m_bUsing)
-	{
-		CAtumNode * pNode = m_pChild;
-		m_pChild = pAtumNode;
-		if (pNode)
-		{
-			m_pChild->m_pNext = pNode;
-			pNode->m_pPrev = m_pChild;
-		}
-	}
-	else
-	{
-		//DBGOUT("ERROR CAtumNode::AddChild( CAtumNode* pAtumNode ), pAtumNode->m_bUsing == FALSE )\n");
-		delete pAtumNode; 
-		pAtumNode = NULL;
-	}
-	return pAtumNode;
+    if (pAtumNode->m_bUsing)
+    {
+        CAtumNode * pNode = m_pChild;
+        m_pChild = pAtumNode;
+        if (pNode)
+        {
+            m_pChild->m_pNext = pNode;
+            pNode->m_pPrev = m_pChild;
+        }
+    }
+    else
+    {
+        //DBGOUT("ERROR CAtumNode::AddChild( CAtumNode* pAtumNode ), pAtumNode->m_bUsing == FALSE )\n");
+        delete pAtumNode; 
+        pAtumNode = NULL;
+    }
+    return pAtumNode;
 }
 
 void CAtumNode::DeleteChild( CAtumNode* pAtumNode )
