@@ -1,4 +1,5 @@
-﻿// HPAction.cpp: implementation of the CHPAction class.
+﻿//Copyright[2002] MasangSoft
+// HPAction.cpp: implementation of the CHPAction class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -42,20 +43,15 @@ void CHPAction::InitHPActionListByDB(vectHPAction * i_pvectHPActionDBValue) {
 	for (; itr != m_vectHPAction.end(); itr++) {
 		if(0 != itr->UseItemArrayIdx) {
 			this->InitHPActionAttackHPRateList(&*itr);
-		}
-		else if(HPACTION_TALK_CONDITION_HP_RATE == itr->HPTalkCondition) {
+		} else if (HPACTION_TALK_CONDITION_HP_RATE == itr->HPTalkCondition) {
 			this->InitHPActionTalkHPRateList(&*itr);
-		}
-		else if(HPACTION_TALK_CONDITION_DAMAGED_RANDOM == itr->HPTalkCondition) {
+		} else if (HPACTION_TALK_CONDITION_DAMAGED_RANDOM == itr->HPTalkCondition) {
 			this->InitHPActionTalkDamagedRandomList(&*itr);
-		}
-		else if(HPACTION_TALK_CONDITION_CREATE == itr->HPTalkCondition) {
+		} else if (HPACTION_TALK_CONDITION_CREATE == itr->HPTalkCondition) {
 			this->InitHPActionTalkCreate(&*itr);
-		}
-		else if(HPACTION_TALK_CONDITION_DEAD == itr->HPTalkCondition) {
+		} else if (HPACTION_TALK_CONDITION_DEAD == itr->HPTalkCondition) {
 			this->InitHPActionTalkDead(&*itr);
-		}
-		else if(HPACTION_TALK_CONDITION_TARGET_CHANGE == itr->HPTalkCondition) {
+		} else if (HPACTION_TALK_CONDITION_TARGET_CHANGE == itr->HPTalkCondition) {
 			 this->InitHPActionTalkTargetChange(&*itr);
 		}
 	}
@@ -295,8 +291,7 @@ BOOL CHPAction::GetTalkDamagedRandom(HPTalk_t * o_pTalk) {
 
 	if(0 == RandomSize) {
 		return FALSE;
-	}
-	else {
+	} else {
 		// 2010-07-19 by dhjin, 확률 수식 변경
 //		Prob100_t TalkAllRandom = RANDI(1, PROB100_MAX_VALUE+1);
 		Prob100_t TalkAllRandom = RAND100();

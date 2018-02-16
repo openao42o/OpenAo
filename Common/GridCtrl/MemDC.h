@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #if !defined(AFX_MEMDC_H__CA1D3541_7235_11D1_ABBA_00A0243D1382__INCLUDED_)
 #define AFX_MEMDC_H__CA1D3541_7235_11D1_ABBA_00A0243D1382__INCLUDED_
 
@@ -23,82 +24,81 @@
 //
 // This class implements a memory Device Context
 namespace masang{
-	class CMemDC : public CDC
-	{
-	public:
+    class CMemDC : public CDC
+    {
+    public:
 
-		// constructor sets up the memory DC
-		CMemDC(CDC* pDC) : CDC()
-		{
-			ASSERT(pDC != NULL);
+        // constructor sets up the memory DC
+        CMemDC(CDC* pDC) : CDC()
+        {
+            ASSERT(pDC != NULL);
 
-			m_pDC = pDC;
-			m_pOldBitmap = NULL;
+            m_pDC = pDC;
+            m_pOldBitmap = NULL;
 #ifndef WCE_NO_PRINTING
-			m_bMemDC = !pDC->IsPrinting();
+            m_bMemDC = !pDC->IsPrinting();
 #else
-			m_bMemDC = FALSE;
+            m_bMemDC = FALSE;
 #endif
 
-			if (m_bMemDC)    // Create a Memory DC
-			{
-				pDC->GetClipBox(&m_rect);
-				CreateCompatibleDC(pDC);
-				m_bitmap.CreateCompatibleBitmap(pDC, m_rect.Width(), m_rect.Height());
-				m_pOldBitmap = SelectObject(&m_bitmap);
+            if (m_bMemDC)    // Create a Memory DC
+            {
+                pDC->GetClipBox(&m_rect);
+                CreateCompatibleDC(pDC);
+                m_bitmap.CreateCompatibleBitmap(pDC, m_rect.Width(), m_rect.Height());
+                m_pOldBitmap = SelectObject(&m_bitmap);
 #ifndef _WIN32_WCE
-				SetWindowOrg(m_rect.left, m_rect.top);
+                SetWindowOrg(m_rect.left, m_rect.top);
 #endif
-				// EFW - Bug fix - Fill background in case the user has overridden
-				// WM_ERASEBKGND.  We end up with garbage otherwise.
-				// CJM - moved to fix a bug in the fix.
-				FillSolidRect(m_rect, pDC->GetBkColor());
-			}
-			else        // Make a copy of the relevent parts of the current DC for printing
-			{
+                // EFW - Bug fix - Fill background in case the user has overridden
+                // WM_ERASEBKGND.  We end up with garbage otherwise.
+                // CJM - moved to fix a bug in the fix.
+                FillSolidRect(m_rect, pDC->GetBkColor());
+            }
+            else        // Make a copy of the relevent parts of the current DC for printing
+            {
 #if !defined(_WIN32_WCE) || ((_WIN32_WCE > 201) && !defined(WCE_NO_PRINTING))
-				m_bPrinting = pDC->m_bPrinting;
+                m_bPrinting = pDC->m_bPrinting;
 #endif
-				m_hDC = pDC->m_hDC;
-				m_hAttribDC = pDC->m_hAttribDC;
-			}
+                m_hDC = pDC->m_hDC;
+                m_hAttribDC = pDC->m_hAttribDC;
+            }
 
-		}
+        }
 
-		// Destructor copies the contents of the mem DC to the original DC
-		~CMemDC()
-		{
-			if (m_bMemDC)
-			{
-				// Copy the offscreen bitmap onto the screen.
-				m_pDC->BitBlt(m_rect.left, m_rect.top, m_rect.Width(), m_rect.Height(),
-					this, m_rect.left, m_rect.top, SRCCOPY);
+        // Destructor copies the contents of the mem DC to the original DC
+        ~CMemDC()
+        {
+            if (m_bMemDC)
+            {
+                // Copy the offscreen bitmap onto the screen.
+                m_pDC->BitBlt(m_rect.left, m_rect.top, m_rect.Width(), m_rect.Height(),
+                    this, m_rect.left, m_rect.top, SRCCOPY);
 
-				//Swap back the original bitmap.
-				SelectObject(m_pOldBitmap);
-			}
-			else {
-				// All we need to do is replace the DC with an illegal value,
-				// this keeps us from accidently deleting the handles associated with
-				// the CDC that was passed to the constructor.
-				m_hDC = m_hAttribDC = NULL;
-			}
-		}
+                //Swap back the original bitmap.
+                SelectObject(m_pOldBitmap);
+            } else {
+                // All we need to do is replace the DC with an illegal value,
+                // this keeps us from accidently deleting the handles associated with
+                // the CDC that was passed to the constructor.
+                m_hDC = m_hAttribDC = NULL;
+            }
+        }
 
-		// Allow usage as a pointer
-		CMemDC* operator->() { return this; }
+        // Allow usage as a pointer
+        CMemDC* operator->() { return this; }
 
-		// Allow usage as a pointer
-		operator CMemDC*() { return this; }
+        // Allow usage as a pointer
+        operator CMemDC*() { return this; }
 
-	private:
-		CBitmap  m_bitmap;      // Offscreen bitmap
-		CBitmap* m_pOldBitmap;  // bitmap originally found in CMemDC
-		CDC*     m_pDC;         // Saves CDC passed in constructor
-		CRect    m_rect;        // Rectangle of drawing area.
-		BOOL     m_bMemDC;      // TRUE if CDC really is a Memory DC.
-	};
-};
+    private:
+        CBitmap  m_bitmap;      // Offscreen bitmap
+        CBitmap* m_pOldBitmap;  // bitmap originally found in CMemDC
+        CDC*     m_pDC;         // Saves CDC passed in constructor
+        CRect    m_rect;        // Rectangle of drawing area.
+        BOOL     m_bMemDC;      // TRUE if CDC really is a Memory DC.
+    };
+}; // namespace masang
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}

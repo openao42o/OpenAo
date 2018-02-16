@@ -169,23 +169,23 @@ UINT CGridCell::GetMargin() const
 BOOL CGridCell::Edit(int nRow, int nCol, CRect rect, CPoint /* point */, UINT nID, UINT nChar)
 {
     if ( m_bEditing )
-	{      
+    {      
         if (m_pEditWnd)
-		    m_pEditWnd->SendMessage ( WM_CHAR, nChar );    
+            m_pEditWnd->SendMessage ( WM_CHAR, nChar );    
     }  
-	else  
-	{   
-		DWORD dwStyle = ES_LEFT;
-		if (GetFormat() & DT_RIGHT) 
-			dwStyle = ES_RIGHT;
-		else if (GetFormat() & DT_CENTER) 
-			dwStyle = ES_CENTER;
-		
-		m_bEditing = TRUE;
-		
-		// InPlaceEdit auto-deletes itself
-		CGridCtrl* pGrid = GetGrid();
-		m_pEditWnd = new CInPlaceEdit(pGrid, rect, dwStyle, nID, nRow, nCol, GetText(), nChar);
+    else  
+    {   
+        DWORD dwStyle = ES_LEFT;
+        if (GetFormat() & DT_RIGHT) 
+            dwStyle = ES_RIGHT;
+        else if (GetFormat() & DT_CENTER) 
+            dwStyle = ES_CENTER;
+        
+        m_bEditing = TRUE;
+        
+        // InPlaceEdit auto-deletes itself
+        CGridCtrl* pGrid = GetGrid();
+        m_pEditWnd = new CInPlaceEdit(pGrid, rect, dwStyle, nID, nRow, nCol, GetText(), nChar);
     }
     return TRUE;
 }

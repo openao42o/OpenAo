@@ -99,7 +99,7 @@ CInPlaceEdit::CInPlaceEdit(CWnd* pParent, CRect& rect, DWORD dwStyle, UINT nID,
 
     // Added by KiteFly. When entering DBCS chars into cells the first char was being lost
     // SenMessage changed to PostMessage (John Lagerquist)
-    if( nFirstChar < 0x80)
+    if ( nFirstChar < 0x80)
         PostMessage(WM_CHAR, nFirstChar);   
     else
         PostMessage(WM_IME_CHAR, nFirstChar);
@@ -187,7 +187,7 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     // and whether there is space to grow
     if (size.cx > m_Rect.Width())
     {
-        if( size.cx + m_Rect.left < ParentRect.right )
+        if ( size.cx + m_Rect.left < ParentRect.right )
             m_Rect.right = m_Rect.left + size.cx;
         else
             m_Rect.right = ParentRect.right;
@@ -218,7 +218,7 @@ void CInPlaceEdit::PostNcDestroy()
 {
     CEdit::PostNcDestroy();
     
-    delete this;	
+    delete this;    
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ void CInPlaceEdit::EndEdit()
     // causing assertions because the edit control goes away the first time.
     static BOOL bAlreadyEnding = FALSE;
 
-    if(bAlreadyEnding)
+    if (bAlreadyEnding)
         return;
 
     bAlreadyEnding = TRUE;

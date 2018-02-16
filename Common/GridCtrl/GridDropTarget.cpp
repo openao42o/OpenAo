@@ -104,8 +104,9 @@ DROPEFFECT CGridDropTarget::OnDragScroll(CWnd* pWnd, DWORD dwKeyState, CPoint /*
             return DROPEFFECT_COPY;
         else
             return DROPEFFECT_MOVE;
-    } else
+    } else {
         return DROPEFFECT_NONE;
+    }
 }
 
 DROPEFFECT CGridDropTarget::OnDragEnter(CWnd* pWnd, COleDataObject* pDataObject, 

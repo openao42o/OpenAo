@@ -1,4 +1,5 @@
-﻿// HPAction.h: interface for the CHPAction class.
+﻿//Copyright[2002] MasangSoft
+// HPAction.h: interface for the CHPAction class.
 //
 //////////////////////////////////////////////////////////////////////
 

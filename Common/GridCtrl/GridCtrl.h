@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+ï»¿/////////////////////////////////////////////////////////////////////////////
 // GridCtrl.h : header file
 //
 // MFC Grid Control - main header
@@ -91,8 +91,8 @@
 #define DDX_GridControl(pDX, nIDC, rControl)  DDX_Control(pDX, nIDC, rControl)     
 
 
-// 2009-09-16 by cmkwon, ¼¼·Â ÃÊ±âÈ­½Ã ¾îºäÂ¡ ¹æÁö ±¸Çö - À§Ä¡ ÀÌµ¿
-#define GRID_CELL_FORMAT	((DWORD)DT_LEFT|DT_VCENTER|DT_SINGLELINE)
+// 2009-09-16 by cmkwon, ì„¸ë ¥ ì´ˆê¸°í™”ì‹œ ì–´ë·°ì§• ë°©ì§€ êµ¬í˜„ - ìœ„ì¹˜ ì´ë™
+#define GRID_CELL_FORMAT    ((DWORD)DT_LEFT|DT_VCENTER|DT_SINGLELINE)
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Structures
@@ -238,10 +238,10 @@ public:
     void     SetGridLineColor(COLORREF clr)       { m_crGridLineColour = clr;         }
     COLORREF GetGridLineColor() const             { return m_crGridLineColour;        }
 
-	void	 SetTitleTipBackClr(COLORREF clr = CLR_DEFAULT) { m_crTTipBackClr = clr;  }
-	COLORREF GetTitleTipBackClr()				            { return m_crTTipBackClr; }
-	void	 SetTitleTipTextClr(COLORREF clr = CLR_DEFAULT) { m_crTTipTextClr = clr;  }
-	COLORREF GetTitleTipTextClr()				            { return m_crTTipTextClr; }
+    void     SetTitleTipBackClr(COLORREF clr = CLR_DEFAULT) { m_crTTipBackClr = clr;  }
+    COLORREF GetTitleTipBackClr()                            { return m_crTTipBackClr; }
+    void     SetTitleTipTextClr(COLORREF clr = CLR_DEFAULT) { m_crTTipTextClr = clr;  }
+    COLORREF GetTitleTipTextClr()                            { return m_crTTipTextClr; }
 
     // ***************************************************************************** //
     // These have been deprecated. Use GetDefaultCell and then set the colors
@@ -411,7 +411,7 @@ public:
     BOOL DeleteNonFixedRows();
     BOOL DeleteAllItems();
 
-	void ClearCells(CCellRange Selection);
+    void ClearCells(CCellRange Selection);
 
     BOOL AutoSizeRow(int nRow, BOOL bResetScroll = TRUE);
     BOOL AutoSizeColumn(int nCol, UINT nAutoSizeStyle = GVS_DEFAULT, BOOL bResetScroll = TRUE);
@@ -492,15 +492,15 @@ public:
 public:
     CCellID GetNextItem(CCellID& cell, int nFlags) const;
 
-	BOOL SortItems(int nCol, BOOL bAscending, LPARAM data = 0);
+    BOOL SortItems(int nCol, BOOL bAscending, LPARAM data = 0);
     BOOL SortTextItems(int nCol, BOOL bAscending, LPARAM data = 0);
     BOOL SortItems(PFNLVCOMPARE pfnCompare, int nCol, BOOL bAscending, LPARAM data = 0);
 
-	void SetCompareFunction(PFNLVCOMPARE pfnCompare);
+    void SetCompareFunction(PFNLVCOMPARE pfnCompare);
 
-	// in-built sort functions
-	static int CALLBACK pfnCellTextCompare(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
-	static int CALLBACK pfnCellNumericCompare(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
+    // in-built sort functions
+    static int CALLBACK pfnCellTextCompare(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
+    static int CALLBACK pfnCellNumericCompare(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Printing
@@ -539,7 +539,7 @@ public:
 public:
     virtual ~CGridCtrl();
 
-	// 2009-01-28 by cmkwon, Ä³½¬˜Þ ¼öÁ¤(ÃßÃµÅÇ,½Å»óÇ° Ãß°¡) - public À¸·Î ÀÌµ¿ÇÔ.
+    // 2009-01-28 by cmkwon, ìºì‰¬Â˜?ìˆ˜ì •(ì¶”ì²œíƒ­,ì‹ ìƒí’ˆ ì¶”ê°€) - public ìœ¼ë¡œ ì´ë™í•¨.
     int  GetScrollPos32(int nBar, BOOL bGetTrackPos = FALSE);
     BOOL SetScrollPos32(int nBar, int nPos, BOOL bRedraw = TRUE);
 
@@ -583,7 +583,7 @@ protected:
 
     CPoint GetPointClicked(int nRow, int nCol, const CPoint& point);
 
-	void ValidateAndModifyCellContents(int nRow, int nCol, LPCTSTR strText);
+    void ValidateAndModifyCellContents(int nRow, int nCol, LPCTSTR strText);
 
 // Overrrides
     // ClassWizard generated virtual function overrides
@@ -595,7 +595,7 @@ protected:
 protected:
 #if !defined(_WIN32_WCE_NO_PRINTING) && !defined(GRIDCONTROL_NO_PRINTING)
     // Printing
-	virtual void PrintFixedRowCells(int nStartColumn, int nStopColumn, int& row, CRect& rect,
+    virtual void PrintFixedRowCells(int nStartColumn, int nStopColumn, int& row, CRect& rect,
                                     CDC *pDC, BOOL& bFirst);
     virtual void PrintColumnHeadings(CDC *pDC, CPrintInfo *pInfo);
     virtual void PrintHeader(CDC *pDC, CPrintInfo *pInfo);
@@ -615,7 +615,7 @@ protected:
     // Editing
     virtual void  OnEditCell(int nRow, int nCol, CPoint point, UINT nChar);
     virtual void  OnEndEditCell(int nRow, int nCol, CString str);
-	virtual BOOL  ValidateEdit(int nRow, int nCol, LPCTSTR str);
+    virtual BOOL  ValidateEdit(int nRow, int nCol, LPCTSTR str);
     virtual void  EndEditing();
 
     // Drawing
@@ -714,7 +714,7 @@ protected:
     // sorting
     int          m_bAscending;
     int          m_nSortColumn;
-	PFNLVCOMPARE m_pfnCompare;
+    PFNLVCOMPARE m_pfnCompare;
 
     // EFW - Added to support shaded/unshaded printout.  If true, colored
     // cells will print as-is.  If false, all text prints as black on white.
@@ -725,9 +725,9 @@ protected:
     int         m_nHeaderHeight, m_nFooterHeight, m_nLeftMargin,
                 m_nRightMargin, m_nTopMargin, m_nBottomMargin, m_nGap;
 
-	// 2013-02-05 by bckim, Ä³½Ã¼¥ ÃßÃµÅÇ Á¤·Ä¼ø¼­ºÎ¿© - Á¢±Ù±ÇÇÑ ¼öÁ¤ protected: -> public:
+    // 2013-02-05 by bckim, ìºì‹œìƒµ ì¶”ì²œíƒ­ ì •ë ¬ìˆœì„œë¶€ì—¬ - ì ‘ê·¼ê¶Œí•œ ìˆ˜ì • protected: -> public:
 public:
-	void SelectRows(CCellID currentCell, BOOL bForceRedraw=FALSE, BOOL bSelectCells=TRUE);
+    void SelectRows(CCellID currentCell, BOOL bForceRedraw=FALSE, BOOL bSelectCells=TRUE);
 
 protected:
     void SelectAllCells();
@@ -747,7 +747,7 @@ protected:
     afx_msg void OnTimer(UINT nIDEvent);
     afx_msg UINT OnGetDlgCode();
     afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+    afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);

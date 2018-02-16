@@ -1,5 +1,6 @@
-﻿#ifndef _GFBILLING_LIB_H_
-#define _GFBILLING_LIB_H_
+﻿//Copyright[2002] MasangSoft
+#ifndef COMMON_GFBILLINGLIB_H_ 
+#define COMMON_GFBILLINGLIB_H_ 
 
 // 0.011
 
@@ -70,4 +71,4 @@ GFMSBILLING_API void GFBillingReqExecute(const char* i_szServerIP, const int i_n
 typedef void (*PGFBILLINGREQUEST)(const char* i_szServerIP, const int i_nServerPort, GFSBILLING_REQ_DATA * i_pReqData, GFSBILLING_RET_DATA * o_pRetData);
 
 
-#endif // #ifndef _GFBILLING_LIB_H_
+#endif // COMMON_GFBILLINGLIB_H_ 

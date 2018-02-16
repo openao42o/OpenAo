@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿//Copyright[2002] MasangSoft
+#pragma once
 
 #include "AtumParam.h"
 #include "SystemLogManager.h"
@@ -253,4 +254,4 @@ namespace server
 
 	template<typename... args_t>
 	void writeline(const char* str, args_t... args) { g_pGlobal->WriteSystemLineEX(false, str, args...); }
-}
+} // namespace server

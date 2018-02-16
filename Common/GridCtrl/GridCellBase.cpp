@@ -1,3 +1,4 @@
+//Copyright[2000] Ken Bertelson
 // GridCellBase.cpp : implementation file
 //
 // MFC Grid Control - Main grid cell base class
@@ -118,7 +119,7 @@ BOOL CGridCellBase::Draw(CDC* pDC, int nRow, int nCol, CRect rect,  BOOL bEraseB
     if (!pGrid || !pDC)
         return FALSE;
 
-    if( rect.Width() <= 0 || rect.Height() <= 0)  // prevents imagelist item from drawing even
+    if ( rect.Width() <= 0 || rect.Height() <= 0)  // prevents imagelist item from drawing even
         return FALSE;                             //  though cell is hidden
 
     //TRACE3("Drawing %scell %d, %d\n", IsFixed()? _T("Fixed ") : _T(""), nRow, nCol);
@@ -149,7 +150,7 @@ BOOL CGridCellBase::Draw(CDC* pDC, int nRow, int nCol, CRect rect,  BOOL bEraseB
     {
         // Always draw even in list mode so that we can tell where the
         // cursor is at.  Use the highlight colors though.
-        if(GetState() & GVIS_SELECTED)
+        if (GetState() & GVIS_SELECTED)
         {
             TextBkClr = ::GetSysColor(COLOR_HIGHLIGHT);
             TextClr = ::GetSysColor(COLOR_HIGHLIGHTTEXT);
@@ -173,7 +174,7 @@ BOOL CGridCellBase::Draw(CDC* pDC, int nRow, int nCol, CRect rect,  BOOL bEraseB
 
         // Don't adjust frame rect if no grid lines so that the
         // whole cell is enclosed.
-        if(pGrid->GetGridLines() != GVL_NONE)
+        if (pGrid->GetGridLines() != GVL_NONE)
         {
             rect.right--;
             rect.bottom--;
@@ -197,7 +198,7 @@ BOOL CGridCellBase::Draw(CDC* pDC, int nRow, int nCol, CRect rect,  BOOL bEraseB
         pDC->SetTextColor(TextClr);
 
         // Adjust rect after frame draw if no grid lines
-        if(pGrid->GetGridLines() == GVL_NONE)
+        if (pGrid->GetGridLines() == GVL_NONE)
         {
             rect.right--;
             rect.bottom--;
@@ -290,7 +291,7 @@ BOOL CGridCellBase::Draw(CDC* pDC, int nRow, int nCol, CRect rect,  BOOL bEraseB
             int nImageWidth = Info.rcImage.right-Info.rcImage.left+1;
             int nImageHeight = Info.rcImage.bottom-Info.rcImage.top+1;
 
-            if( nImageWidth + rect.left <= rect.right + (int)(2*GetMargin())
+            if ( nImageWidth + rect.left <= rect.right + (int)(2*GetMargin())
                 && nImageHeight + rect.top <= rect.bottom + (int)(2*GetMargin())  )
             {
                 pGrid->GetImageList()->Draw(pDC, GetImage(), rect.TopLeft(), ILD_NORMAL);
@@ -443,13 +444,13 @@ BOOL CGridCellBase::OnSetCursor()
 
 void CGridCellBase::OnEndEdit() 
 {
-	ASSERT( FALSE); 
+    ASSERT( FALSE); 
 }
 
 BOOL CGridCellBase::ValidateEdit(LPCTSTR str)
 {
     UNUSED_ALWAYS(str);
-	return TRUE;
+    return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -484,7 +485,7 @@ CSize CGridCellBase::GetTextExtent(LPCTSTR szText, CDC* pDC /*= NULL*/)
     if (pDC == NULL || szText == NULL)
     {
         if (szText)
-			pDC = pGrid->GetDC();
+            pDC = pGrid->GetDC();
         if (pDC == NULL || szText == NULL) 
         {
             CGridDefaultCell* pDefCell = (CGridDefaultCell*) GetDefaultCell();
@@ -591,7 +592,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
     if (!pGrid || !pDC)
         return FALSE;
 
-    if( rect.Width() <= 0
+    if ( rect.Width() <= 0
         || rect.Height() <= 0)  // prevents imagelist item from drawing even
         return FALSE;           //  though cell is hidden
 
@@ -599,7 +600,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
 
     pDC->SetBkMode(TRANSPARENT);
 
-    if(pGrid->GetShadedPrintOut())
+    if (pGrid->GetShadedPrintOut())
     {
         // Get the default cell implementation for this kind of cell. We use it if this cell
         // has anything marked as "default"
@@ -609,7 +610,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
 
         // Use custom color if it doesn't match the default color and the
         // default grid background color.  If not, leave it alone.
-        if(IsFixed())
+        if (IsFixed())
             crBG = (GetBackClr() != CLR_DEFAULT) ? GetBackClr() : pDefaultCell->GetBackClr();
         else
             crBG = (GetBackClr() != CLR_DEFAULT && GetBackClr() != pDefaultCell->GetBackClr()) ?
@@ -618,7 +619,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
         // Use custom color if the background is different or if it doesn't
         // match the default color and the default grid text color.  If not,
         // use black to guarantee the text is visible.
-        if(IsFixed())
+        if (IsFixed())
             crFG = (GetBackClr() != CLR_DEFAULT) ? GetTextClr() : pDefaultCell->GetTextClr();
         else
             crFG = (GetBackClr() != CLR_DEFAULT ||
@@ -630,13 +631,13 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
         // colors will be visible.  If not, some colors turn to solid black
         // or white when printed and may not show up.  This may be caused by
         // coarse dithering by the printer driver too (see image note below).
-        if(pDC->GetDeviceCaps(NUMCOLORS) == 2 && crBG == CLR_DEFAULT)
+        if (pDC->GetDeviceCaps(NUMCOLORS) == 2 && crBG == CLR_DEFAULT)
             crFG = RGB(GetRValue(crFG) * 0.30, GetGValue(crFG) * 0.59,
                 GetBValue(crFG) * 0.11);
 
         // Only erase the background if the color is not the default
         // grid background color.
-        if(crBG != CLR_DEFAULT)
+        if (crBG != CLR_DEFAULT)
         {
             CBrush brush(crBG);
             rect.right++; rect.bottom++;
@@ -664,7 +665,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
     // Bold the fixed cells if not shading the print out.  Use italic
     // font it it is enabled.
     const LOGFONT* plfFont = GetFont();
-    if(IsFixed() && !pGrid->GetShadedPrintOut())
+    if (IsFixed() && !pGrid->GetShadedPrintOut())
     {
         Font.CreateFont(plfFont->lfHeight, 0, 0, 0, FW_BOLD, plfFont->lfItalic, 0, 0,
             ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
@@ -684,7 +685,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
 
     // Draw lines only when wanted on fixed cells.  Normal cell grid lines
     // are handled in OnPrint.
-    if(pGrid->GetGridLines() != GVL_NONE && IsFixed())
+    if (pGrid->GetGridLines() != GVL_NONE && IsFixed())
     {
         CPen lightpen(PS_SOLID, 1,  ::GetSysColor(COLOR_3DHIGHLIGHT)),
              darkpen(PS_SOLID,  1, ::GetSysColor(COLOR_3DDKSHADOW)),
@@ -706,7 +707,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
 
     rect.DeflateRect(GetMargin(), 0);
 
-    if(pGrid->GetImageList() && GetImage() >= 0)
+    if (pGrid->GetImageList() && GetImage() >= 0)
     {
         // NOTE: If your printed images look like fuzzy garbage, check the
         //       settings on your printer driver.  If it's using coarse
@@ -715,7 +716,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
         //       print properly.  My HP 4L had that problem.
 
         IMAGEINFO Info;
-        if(pGrid->GetImageList()->GetImageInfo(GetImage(), &Info))
+        if (pGrid->GetImageList()->GetImageInfo(GetImage(), &Info))
         {
             int nImageWidth = Info.rcImage.right-Info.rcImage.left;
             pGrid->GetImageList()->Draw(pDC, GetImage(), rect.TopLeft(), ILD_NORMAL);
@@ -724,7 +725,7 @@ BOOL CGridCellBase::PrintCell(CDC* pDC, int /*nRow*/, int /*nCol*/, CRect rect)
     }
 
     // Draw without clipping so as not to lose text when printed for real
-	// DT_NOCLIP removed 01.01.01. Slower, but who cares - we are printing!
+    // DT_NOCLIP removed 01.01.01. Slower, but who cares - we are printing!
     DrawText(pDC->m_hDC, GetText(), -1, rect,
         GetFormat() | /*DT_NOCLIP | */ DT_NOPREFIX);
 
@@ -740,7 +741,7 @@ Callable by derived classes, only
 LRESULT CGridCellBase::SendMessageToParent(int nRow, int nCol, int nMessage)
 {
     CGridCtrl* pGrid = GetGrid();
-    if( pGrid)
+    if ( pGrid)
         return pGrid->SendMessageToParent(nRow, nCol, nMessage);
     else
         return 0;

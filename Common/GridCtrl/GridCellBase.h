@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+ï»¿/////////////////////////////////////////////////////////////////////////////
 // GridCellBase.h : header file
 //
 // MFC Grid Control - Grid cell base class header file
@@ -51,7 +51,7 @@ class CGridCtrl;
 #define GVIF_FORMAT             (GVIF_STATE<<3)
 #define GVIF_FONT               (GVIF_STATE<<4)
 #define GVIF_MARGIN             (GVIF_STATE<<5)
-#define GVIF_INT64				(GVIF_STATE<<6)	// 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É ºòÀÎÆ® ¸¶½ºÅ© Ãß°¡
+#define GVIF_INT64				(GVIF_STATE<<6)	// 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ë¹…ì¸íŠ¸ ë§ˆìŠ¤í¬ ì¶”ê°€
 #define GVIF_ALL                (GVIF_TEXT|GVIF_IMAGE|GVIF_PARAM|GVIF_STATE|GVIF_BKCLR|GVIF_FGCLR| \
                                  GVIF_FORMAT|GVIF_FONT|GVIF_MARGIN)
 
@@ -61,14 +61,14 @@ typedef struct _GV_ITEM {
     UINT     mask;        // Mask for use in getting/setting cell data
     UINT     nState;      // cell state (focus/hilighted etc)
     DWORD    nFormat;     // Format of cell
-    int      iImage;      // index of the list view item’s icon
+    int      iImage;      // index of the list view itemÂ’s icon
     COLORREF crBkClr;     // Background colour (or CLR_DEFAULT)
     COLORREF crFgClr;     // Forground colour (or CLR_DEFAULT)
     LPARAM   lParam;      // 32-bit value to associate with item
     LOGFONT  lfFont;      // Cell font
     UINT     nMargin;     // Internal cell margin
     CString  strText;     // Text in cell
-	INT64	 bigInt;	  // 2012-02-27 by jhseol, È­ÆóÅë°èÅø °ü·Ã ºòÀÎÆ® Ãß°¡
+	INT64	 bigInt;	  // 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê´€ë ¨ ë¹…ì¸íŠ¸ ì¶”ê°€
 } GV_ITEM;
 
 
@@ -103,9 +103,9 @@ public:
     virtual void SetMargin( UINT /* nMargin */)             { ASSERT( FALSE);    }
     virtual void SetGrid(CGridCtrl* /* pGrid */)            { ASSERT( FALSE);    }
     virtual void SetCoords( int /* nRow */, int /* nCol */) { ASSERT( FALSE);    }
-// start 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+// start 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
 	virtual void SetInt64(INT64 /* nBigInt */)           { ASSERT( FALSE);    }
-// end 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+// end 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
     virtual LPCTSTR  GetText() const                        { ASSERT( FALSE); return NULL;  }
     virtual LPCTSTR  GetTipText() const                     { return GetText();             } // may override TitleTip return
     virtual int      GetImage() const                       { ASSERT( FALSE); return -1;    }

@@ -1,4 +1,5 @@
-﻿// FunctionLog.h: interface for the CFunctionLog class.
+﻿//Copyright[2002] MasangSoft
+// FunctionLog.h: interface for the CFunctionLog class.
 //
 //////////////////////////////////////////////////////////////////////
 

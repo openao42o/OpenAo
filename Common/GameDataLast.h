@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #pragma once
 
 #ifdef bool
