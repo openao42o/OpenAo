@@ -1,4 +1,4 @@
-//Copyright[2002] MasangSoft
+ï»¿//Copyright[2002] MasangSoft
 #if !defined(AFX_KBCBMP_H__3B18A7EA_F8CB_4410_8E1E_AA0B72F039BB__INCLUDED_)
 #define AFX_KBCBMP_H__3B18A7EA_F8CB_4410_8E1E_AA0B72F039BB__INCLUDED_
 
@@ -11,20 +11,20 @@
 /////////////////////////////////////////////////////////////////////////////
 // CKbcBmp view
 //
-// Á¦ÀÛ - °ûº´Âù(kbckbc@postech.ac.kr | http://kbckbc.com)
-// È¤½Ã¶óµµ »ç¿ëÇÏ½Ã´Â ºĞ²²¼± Å¬·¡½º ÀÌ¸§ÀÌ³ª¸¶ À¯ÁöÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-// ±×·¡µµ ÀúÀÇ ³ë·ÂÀÌ ´ã±ä °Å¶õ°É ÀÌÇØÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
+// ì œì‘ - ê³½ë³‘ì°¬(kbckbc@postech.ac.kr | http://kbckbc.com)
+// í˜¹ì‹œë¼ë„ ì‚¬ìš©í•˜ì‹œëŠ” ë¶„ê»˜ì„  í´ë˜ìŠ¤ ì´ë¦„ì´ë‚˜ë§ˆ ìœ ì§€í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+// ê·¸ë˜ë„ ì €ì˜ ë…¸ë ¥ì´ ë‹´ê¸´ ê±°ë€ê±¸ ì´í•´í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
 
 class CKbcBmp : public CView
 {
 public:
-	void				LoadBitmap(CString);	// ÆÄÀÏ ÀÌ¸§ÀÌ Á÷Á¢ µé¾î¿Ã ¶§..
-	void				LoadBitmap(UINT);		// ¸®¼Ò½º°¡ µé¾î¿Ã ¶§..
+	void				LoadBitmap(CString);	// íŒŒì¼ ì´ë¦„ì´ ì§ì ‘ ë“¤ì–´ì˜¬ ë•Œ..
+	void				LoadBitmap(UINT);		// ë¦¬ì†ŒìŠ¤ê°€ ë“¤ì–´ì˜¬ ë•Œ..
 
-	// Draw - ºñÆ®¸Ê ±×·ÁÁÖ´Â ÇÔ¼öÀÌ´Ù. º¸¸é ¾Ë°ÚÁã?
-	// Draw(CDC *pDC,int nX,int nY)						- ±×³É ºñÆ®¸Ê ±×·ÁÁÙ ¶§..
-	// Draw(CDC *pDC,int nX,int nY,UINT nMask)			- ¹è°æ»ö ¾Èº¸ÀÌ°Ô ºñÆ®¸Ê ±×·ÁÁÙ ¶§..
-	// Draw(CDC *pDC,int nSeq,int nX,int nY,UINT nMask)	- KbcButton ¿¡¼­ È£ÃâµÇ´Â ÇÔ¼ö..
+	// Draw - ë¹„íŠ¸ë§µ ê·¸ë ¤ì£¼ëŠ” í•¨ìˆ˜ì´ë‹¤. ë³´ë©´ ì•Œê² ì¥?
+	// Draw(CDC *pDC,int nX,int nY)						- ê·¸ëƒ¥ ë¹„íŠ¸ë§µ ê·¸ë ¤ì¤„ ë•Œ..
+	// Draw(CDC *pDC,int nX,int nY,UINT nMask)			- ë°°ê²½ìƒ‰ ì•ˆë³´ì´ê²Œ ë¹„íŠ¸ë§µ ê·¸ë ¤ì¤„ ë•Œ..
+	// Draw(CDC *pDC,int nSeq,int nX,int nY,UINT nMask)	- KbcButton ì—ì„œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜..
 	void				Draw(CDC *pDC,int nX,int nY);	
 	void				Draw(CDC *pDC,int nX,int nY,UINT nMask);	
 	void				Draw(CDC *pDC,int nSeq,int nX,int nY,UINT nMask);	

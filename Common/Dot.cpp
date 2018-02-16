@@ -189,7 +189,7 @@ INT CDot::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DOT_INFO *o_pDotInfo) {
     
     mt_auto_lock mta(&m_mtvectDotInfo);
     mtvectorDotInfo::iterator itr = m_mtvectDotInfo.begin();
-    for(; itr != m_mtvectDotInfo.end(); itr++) {
+    for (; itr != m_mtvectDotInfo.end(); itr++) {
         o_pDotInfo[DotInfoCount].ItemNum            = itr->ItemNum; 
         DotInfoCount++;
     }

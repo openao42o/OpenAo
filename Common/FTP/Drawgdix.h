@@ -169,7 +169,7 @@ class CSelPen    : public CSelect
 public:
 
     CSelPen(CDC * pDC)
-      :CSelect(pDC), m_pOldPen(NULL){}
+      :CSelect(pDC), m_pOldPen(NULL) {}
 
     CSelPen(CDC * pDC, COLORREF col, int sty = PS_SOLID, int wid = 0)
         :CSelect(pDC), m_pOldPen(NULL)
@@ -307,7 +307,7 @@ public:
 class CMyFont : public CFont
 {
 public:
-    CMyFont(){}
+    CMyFont() {}
     CMyFont(CDC * pDC, int size, LPCTSTR face = NULL, BOOL bold = 0,
             BOOL italic = 0, BOOL underlined = 0, BOOL fixed = 0,
             BOOL hiquality = 0, int angleindegrees = 0)
@@ -604,7 +604,7 @@ public:
 
     void Restore()
     {
-        if(m_OldBkColor == CLR_INVALID) return;
+        if (m_OldBkColor == CLR_INVALID) return;
         VERIFY(m_pDC->SetBkColor(m_OldBkColor) != CLR_INVALID);
         m_OldBkColor = CLR_INVALID;
     }
@@ -638,7 +638,7 @@ public:
 
     void Restore()
     {
-        if(m_OldTextColor == CLR_INVALID) return;
+        if (m_OldTextColor == CLR_INVALID) return;
         VERIFY(m_pDC->SetTextColor(m_OldTextColor) != CLR_INVALID);
         m_OldTextColor = CLR_INVALID;
     }
@@ -672,7 +672,7 @@ public:
 
     void Restore()
     {
-        if(m_OldTextAlign == GDI_ERROR) return;
+        if (m_OldTextAlign == GDI_ERROR) return;
         VERIFY(m_pDC->SetTextAlign(m_OldTextAlign) != GDI_ERROR);
         m_OldTextAlign = GDI_ERROR;
     }

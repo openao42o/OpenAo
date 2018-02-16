@@ -47,14 +47,14 @@ void CKbcButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 
     // 비활성화 상태이면 비활성화로 세팅된 버튼을 그려준다.
-    if( m_bDisable == TRUE )
+    if ( m_bDisable == TRUE )
         m_bmpImage.Draw(pDC,1,0,0,m_nMask);
 
     // 비활성화 상태가 아니라면..
     else
     {
         // 버튼이 클릭 되었을때 그림
-        if( lpDrawItemStruct->itemState & ODS_SELECTED )
+        if ( lpDrawItemStruct->itemState & ODS_SELECTED )
             m_bmpImage.Draw(pDC,3,0,0,m_nMask);
 
         // 버튼에 커서가 올라가 있을 때 그림.
@@ -128,7 +128,7 @@ void CKbcButton::OnMouseMove(UINT nFlags, CPoint point)
     // m_bCursorOnWindow 로 체크를 해준 것은 마우스가 버튼 밖에 있다가
     // 버튼 위로 포인터가 움직였을 경우 한번만 WM_MOUSEHOVER 메세지를 발생시키기 위함이다.
     // 포인터가 버튼을 떠났을 경우에도 한번만 WM_MOUSELEAVE 메세지를 발생시키기 위함.
-    if( m_bCursorOnButton == FALSE )
+    if ( m_bCursorOnButton == FALSE )
     {
         TRACKMOUSEEVENT tme;
         ZeroMemory(&tme,sizeof(TRACKMOUSEEVENT));
@@ -180,7 +180,7 @@ void CKbcButton::OnLButtonDown(UINT nFlags, CPoint point)
     // 실행하지 않는다. 왜냐 이게 실행되면 부모에게 Notify 해주기 때문에
     // 부모가 이 버튼이 눌려 졌다는걸 알게 된다. 모르게 해야 하므로 
     // 함수를 불러주지 않는다.
-    if( !m_bDisable )
+    if ( !m_bDisable )
         CButton::OnLButtonDown(nFlags, point);
 }
 
@@ -190,7 +190,7 @@ BOOL CKbcButton::PreTranslateMessage(MSG* pMsg)
     // 툴팁이 아직 생성되지 않았다면..
     // 즉 SetToolTipText 함수가 호출되지 않아 Create되지 않았다면
     // 건너뛴다.
-    if( m_ToolTip.GetSafeHwnd() != NULL )
+    if ( m_ToolTip.GetSafeHwnd() != NULL )
         m_ToolTip.RelayEvent(pMsg);
     
     return CButton::PreTranslateMessage(pMsg);

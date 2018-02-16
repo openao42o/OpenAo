@@ -153,7 +153,7 @@ BOOL CFTPManager::DownloadFile(const char *i_pRemoteFileName, const char *i_pLoc
             return FALSE;
         }
 
-        if(0 == amount_read)
+        if (0 == amount_read)
         {// 2006-06-30 by cmkwon, 완료시 0 Bytes를 리턴한다.
 
             break;
@@ -187,7 +187,7 @@ BOOL CFTPManager::DownloadFile(const char *i_pRemoteFileName, const char *i_pLoc
 
 BOOL CFTPManager::DownloadFileByThread(const char *i_pRemoteFileName, const char *i_pLocalFileName, HWND i_hWnd)
 {
-    if(NULL == i_hWnd
+    if (NULL == i_hWnd
         || 0 == strcmp(i_pRemoteFileName, ""))
     {
         return FALSE;
@@ -248,7 +248,7 @@ BOOL CFTPManager::DownloadFileByThread(const char *i_pRemoteFileName, const char
             ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_ERROR, ERR_UPDATE_FILE_DOWNLOADING_FAIL, 0);
             return FALSE;
         }
-        if(0 == amount_read)
+        if (0 == amount_read)
         {// 2006-06-30 by cmkwon
             break;
         }
@@ -258,7 +258,7 @@ BOOL CFTPManager::DownloadFileByThread(const char *i_pRemoteFileName, const char
         total_read += amount_read;
 
         ::PostMessage(i_hWnd, WM_UPDATEFILE_DOWNLOAD_PROGRESS, total_read, 0);
-        if(m_bDownloadThreadCancelFlag)
+        if (m_bDownloadThreadCancelFlag)
         {        
             delete buffer;            // delete buffer
             fileObject.Close();        // close resources
