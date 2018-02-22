@@ -4268,7 +4268,7 @@ BOOL CGridCtrl::SetItem(const GV_ITEM* pItem)
         pCell->SetFont(&(pItem->lfFont));
     if ( pItem->mask & GVIF_MARGIN)
         pCell->SetMargin( pItem->nMargin);
-    if ( pItem->mask & GVIF_INT64)             // start 2012-02-27 by jhseol, 화폐통계툴 기능 추가
+    if ( pItem->mask & GVIF_INT64)
         pCell->SetInt64( pItem->bigInt);
     
     return TRUE;
@@ -6739,7 +6739,7 @@ void CGridCtrl::PrintRowButtons(CDC *pDC, CPrintInfo* /*pInfo*/)
                 int Overlap = (iCol == 0)? 0:1;
                 pDC->MoveTo(rect.left-Overlap, rect.bottom);
                 pDC->LineTo(rect.right, rect.bottom);
-                if ( bFirst) {
+                if (bFirst) {
                     pDC->MoveTo(rect.left-Overlap, rect.top-1);
                     pDC->LineTo(rect.right, rect.top-1);
                     bFirst = FALSE;

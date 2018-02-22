@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 // MonsterData.cpp: implementation of the CMonsterData class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -17,10 +18,10 @@
 #include "Camera.h"
 #include "Weapon.h"
 #include "Cinema.h"
-// 2007-11-22 by bhsohn ¾Æ·¹³ª ÅëÇÕ¼­¹ö
+// 2007-11-22 by bhsohn ì•„ë ˆë‚˜ í†µí•©ì„œë²„
 #include "IMSocketManager.h"
 //#include "ImSocket.h"
-#include "INFGameMain.h" // 2011-05-17 by jhahn	ÀÎÇÇ3Â÷ ¸ó½ºÅÍ ±³Ã¼
+#include "INFGameMain.h" // 2011-05-17 by jhahn	ì¸í”¼3ì°¨ ëª¬ìŠ¤í„° êµì²´
 
 #include "FieldWinSocket.h"
 #include "Frustum.h"
@@ -68,7 +69,7 @@ CMonsterData::CMonsterData(MSG_FC_CHARACTER_GET_MONSTER_INFO_OK * pMsg)
 	//m_dwState = _NORMAL;
 	m_dwPartType = _MONSTER;
 	
-	// 2004-11-24 by ydkim ¸ó½ºÅÍ Æ÷Áö¼Ç ¼ÂÆÃ
+	// 2004-11-24 by ydkim ëª¬ìŠ¤í„° í¬ì§€ì…˜ ì…‹íŒ…
 	//m_vPos = D3DXVECTOR3(0,30,0);
 	//m_vOldPos = D3DXVECTOR3(0,30,0);
 	//m_vVel = D3DXVECTOR3(1,0,0);
@@ -113,7 +114,7 @@ CMonsterData::CMonsterData(MSG_FC_CHARACTER_GET_MONSTER_INFO_OK * pMsg)
 
 	m_bAlphaBlending = FALSE;
 	m_fMaterialCheckTime = 2.0f;
-	D3DUtil_InitMaterial( m_material, 1.0f, 1.0f, 1.0f );// ÀÓ½Ã ÄÚµå
+	D3DUtil_InitMaterial( m_material, 1.0f, 1.0f, 1.0f );// ì„ì‹œ ì½”ë“œ
 	m_pMonsterInfo = NULL;
 	m_ptCurRegion.x = (int)(m_vPos.x/(TILE_SIZE*3));
 	m_ptCurRegion.y = (int)(m_vPos.z/(TILE_SIZE*3));
@@ -124,21 +125,21 @@ CMonsterData::CMonsterData(MSG_FC_CHARACTER_GET_MONSTER_INFO_OK * pMsg)
 	m_nUpDir = 1;
 	m_nSideDir = 1;
 
-	// ¸ó½ºÅÍ ½ºÅ³ °ü·Ã 2004.06.25 jschoi
+	// ëª¬ìŠ¤í„° ìŠ¤í‚¬ ê´€ë ¨ 2004.06.25 jschoi
 	m_nMonsterSkillState = MONSTER_SKILL_OFF;
 	m_bSkillEnd = FALSE;
 	m_pMonsterMovePattern = NULL;
 //	RestoreShadow();
 	SetPkState(PK_NORMAL,TRUE);
 	// 2004-11-30 by jschoi
-	DisableObjectMonsterObject();	// »ı¼ºµÇ´Â ¸ó½ºÅÍ°¡ ¿ÀºêÁ§Æ® ¸ó½ºÅÍ¶ó¸é ´ëÃ¼µÇ´Â ¸Ê¿ÀºêÁ§Æ®¸¦ ºñÈ°¼ºÈ­ ½ÃÅ²´Ù.
+	DisableObjectMonsterObject();	// ìƒì„±ë˜ëŠ” ëª¬ìŠ¤í„°ê°€ ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„°ë¼ë©´ ëŒ€ì²´ë˜ëŠ” ë§µì˜¤ë¸Œì íŠ¸ë¥¼ ë¹„í™œì„±í™” ì‹œí‚¨ë‹¤.
 	m_nTargetIndex = 0;
 
-	// 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 	m_nMultiIndex = 0;
 	m_nSiegeIndex = 0;
 	m_bSiegeMode = FALSE;
-	// end 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// end 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 }
 
 CMonsterData::~CMonsterData()
@@ -146,7 +147,7 @@ CMonsterData::~CMonsterData()
 	FLOG( "~CMonsterData()" );
 	
 	// 2004-11-30 by jschoi
-	EnableObjectMonsterObject();	// ¼Ò¸êµÇ´Â ¸ó½ºÅÍ°¡ ¿ÀºêÁ§Æ® ¸ó½ºÅÍ¶ó¸é ´ëÃ¼µÇ´Â ¸Ê¿ÀºêÁ§Æ®¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
+	EnableObjectMonsterObject();	// ì†Œë©¸ë˜ëŠ” ëª¬ìŠ¤í„°ê°€ ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„°ë¼ë©´ ëŒ€ì²´ë˜ëŠ” ë§µì˜¤ë¸Œì íŠ¸ë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
 
 	m_pMonsterInfo = NULL;
 	if(m_pMoveChat)
@@ -161,7 +162,7 @@ CMonsterData::~CMonsterData()
 		m_pIDChat->DeleteDeviceObjects();
 	}
 	util::del(m_pIDChat);
-	if(m_pCharacterInfo)//Ãß°¡
+	if(m_pCharacterInfo)//ì¶”ê°€
 	{
 		m_pCharacterInfo->InvalidateDeviceObjects();
 		m_pCharacterInfo->DeleteDeviceObjects();
@@ -227,19 +228,19 @@ void CMonsterData::Init()
 		D3DXMatrixScaling(&m_mScale,m_pMonsterInfo->ScaleValue,m_pMonsterInfo->ScaleValue,m_pMonsterInfo->ScaleValue);
 	else
 		D3DXMatrixScaling(&m_mScale,1.0f,1.0f,1.0f);
-	// ÃÊ±âÈ­½Ã¿¡ ÃÖÃÊ ¸ÅÆ®¸¯½º¸¦ ±¸ÇÑ´Ù.
+	// ì´ˆê¸°í™”ì‹œì— ìµœì´ˆ ë§¤íŠ¸ë¦­ìŠ¤ë¥¼ êµ¬í•œë‹¤.
 	D3DXMatrixLookAtRH( &m_mMatrix, &m_vPos, &(m_vPos+10.0f*m_vVel), &m_vUp);
 	D3DXMatrixInverse( &m_mMatrix, NULL, &m_mMatrix );
 	m_mMatrix = m_mScale*m_mMatrix;
 
-	// 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 	m_vecMonMultiInfo = g_pDatabase->GetvecMultiTargetInfo(m_pMonsterInfo->MonsterUnitKind);
 	m_nindexSize = m_vecMonMultiInfo.size();
 
-	// 2011. 09. 28 by jskim ³Í Å¸°Ù ½Ã½ºÅÛ ¹ö±× ¼öÁ¤
+	// 2011. 09. 28 by jskim ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •
 	//if(m_nindexSize > NULL)
 	if(m_nindexSize > 0)
-	// end 2011. 09. 28 by jskim ³Í Å¸°Ù ½Ã½ºÅÛ ¹ö±× ¼öÁ¤
+	// end 2011. 09. 28 by jskim ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •
 	{
 		for(int i=0; i < m_nindexSize; i++)
 		{
@@ -262,7 +263,7 @@ void CMonsterData::Init()
 		}
 
 	}
-	// end 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// end 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 
 
 	// effect
@@ -285,13 +286,13 @@ void CMonsterData::Init()
 	{
 		wsprintf(strFileName,"%08d.obj",m_pMonsterInfo->SourceIndex);
 		LoadCharacterEffect(strFileName);
-		// 2012-04-18 by mspark, ¿ÀºêÁ§Æ® ¸®¼Ò½º Á¤¸®
+		// 2012-04-18 by mspark, ì˜¤ë¸Œì íŠ¸ ë¦¬ì†ŒìŠ¤ ì •ë¦¬
 #ifdef C_OBJECT_RESOURCE_ORGANIZE_MSPARK
 		FILE* file = _tfopen( _T("(Obj)MonsterData.txt"), _T("a") );
 		fprintf( file, "%08d - [MapIndex : %04d]\n", m_pMonsterInfo->SourceIndex, g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex );
 		fclose(file);
 #endif
-		// end 2012-04-18 by mspark, ¿ÀºêÁ§Æ® ¸®¼Ò½º Á¤¸®
+		// end 2012-04-18 by mspark, ì˜¤ë¸Œì íŠ¸ ë¦¬ì†ŒìŠ¤ ì •ë¦¬
 		if(m_pCharacterInfo)
 		{
 			m_pCharacterInfo->SetCharacterAnimationBodyConditionMask(BODYCON_MONSTER_ANIMATION_TIME);
@@ -299,7 +300,7 @@ void CMonsterData::Init()
 			m_SecondaryAttack.vSidePos = m_pCharacterInfo->GetEffectPos( BODYCON_MON_FIREATTACK1_MASK, RC_EFF_DUMMY_POSITION );
 		}
 
-		////////////////// bodycondition Á¤¸®(state) /////////////////////////////////////////
+		////////////////// bodycondition ì •ë¦¬(state) /////////////////////////////////////////
 		if( m_info.BodyCondition & BODYCON_FLY_MASK )
 		{
 			ChangeUnitState( _NORMAL );
@@ -324,18 +325,18 @@ void CMonsterData::Init()
 		m_bAlphaBlending = m_pMonsterInfo->AlphaBlending;
 
 
-		// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+		// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 		//m_fMaxHP = m_pMonsterInfo->HP;
 		m_fMaxHP = m_info.MaxHP;
-		// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+		// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 		
 
 
 		nCheckLevel = m_pMonsterInfo->Level - g_pShuttleChild->m_myShuttleInfo.Level;
-		// 2009. 11. 23 by jskim ¸®¼Ò½º ·Îµù ±¸Á¶ º¯°æ
+		// 2009. 11. 23 by jskim ë¦¬ì†ŒìŠ¤ ë¡œë”© êµ¬ì¡° ë³€ê²½
 		//m_pMonMesh = m_pRenderer->InitData(m_pMonsterInfo->SourceIndex);
 		m_pMonMesh = m_pRenderer->InitData(m_pMonsterInfo->SourceIndex, _MONSTER_TYPE);
-		//end 2009. 11. 23 by jskim ¸®¼Ò½º ·Îµù ±¸Á¶ º¯°æ
+		//end 2009. 11. 23 by jskim ë¦¬ì†ŒìŠ¤ ë¡œë”© êµ¬ì¡° ë³€ê²½
 //		m_fObjectSize = m_pMonsterInfo->Size * m_pMonsterInfo->ScaleValue;
 		m_fObjectSize = m_pMonsterInfo->Size;
 		
@@ -377,7 +378,7 @@ void CMonsterData::Init()
 		if(nCheckLevel <= 0)
 		{
 
-			// 2006-12-08 by ispark, º¸½º¸÷¿¡¼­´Â Èò»öÀÌ ¸¶Áö¸·ÀÌ´Ù.(ÆÄ¶û»ö ¾øÀ½)
+			// 2006-12-08 by ispark, ë³´ìŠ¤ëª¹ì—ì„œëŠ” í°ìƒ‰ì´ ë§ˆì§€ë§‰ì´ë‹¤.(íŒŒë‘ìƒ‰ ì—†ìŒ)
 			if(COMPARE_MPOPTION_BIT(m_pMonsterInfo->MPOption, MPOPTION_BIT_BOSS_MONSTER))
 			{
 				if(nCheckLevel <= -2)
@@ -385,7 +386,7 @@ void CMonsterData::Init()
 					dwChatType = COLOR_MONSTER_4;
 				}
 			}
-			// 2006-12-08 by ispark, ³×ÀÓµå¿¡¼­´Â 5·¹º§´ç »öÀÌ º¯ÇÑ´Ù.
+			// 2006-12-08 by ispark, ë„¤ì„ë“œì—ì„œëŠ” 5ë ˆë²¨ë‹¹ ìƒ‰ì´ ë³€í•œë‹¤.
 			else if(COMPARE_MPOPTION_BIT(m_pMonsterInfo->MPOption, MPOPTION_BIT_NAMED_MONSTER))
 			{
 				if(nCheckLevel > -5)
@@ -441,7 +442,7 @@ void CMonsterData::Tick()
 			//m_dwState = _EXPLODED;
 		}
 	}
-	// ÆĞÅ¶ÀÌ ¿À´Â ½Ã°£¿¡ µû¶ó ÀÌµ¿ ÁöÁ¡À» ÁÙÀÎ´Ù(·ºÀ¸·Î ÀÎÇÑ Èçµé¸² ¹æÁö)
+	// íŒ¨í‚·ì´ ì˜¤ëŠ” ì‹œê°„ì— ë”°ë¼ ì´ë™ ì§€ì ì„ ì¤„ì¸ë‹¤(ë ‰ìœ¼ë¡œ ì¸í•œ í”ë“¤ë¦¼ ë°©ì§€)
 	D3DXVECTOR3 vMovepos;
 //	if(m_fLifeTime < 1.5f && m_fLifeTime >= 0.0f)
 	if(m_fLifeTime < (MONSTER_LIFE_TIME-0.5f) && m_fLifeTime >= (MONSTER_LIFE_TIME-2.0f))
@@ -466,7 +467,7 @@ void CMonsterData::Tick()
 		{
 			m_bRenderHP = TRUE;
 		}
-//		m_nMonsterTypePrimary = MONSTERDATA_MONSTERLIST; // ÀÓ½Ã List  Å¸ÀÔÀ» ¾ø¾Ö¾ßÇÒÁöµµ...
+//		m_nMonsterTypePrimary = MONSTERDATA_MONSTERLIST; // ì„ì‹œ List  íƒ€ì…ì„ ì—†ì• ì•¼í• ì§€ë„...
 
 		// 2004-05-07 by dhkwon
 //		ITEM* pItem = NULL;
@@ -525,7 +526,7 @@ void CMonsterData::Tick()
 				}
 				m_pEffectTarget = (CAppEffectData *)g_pD3dApp->m_pEffectList->AddChild(m_pEffectTarget);
 				char message[256];
-				sprintf(message,"2Çü Å¸°Ù ¼³Á¤µÊ");
+				sprintf(message,"2í˜• íƒ€ê²Ÿ ì„¤ì •ë¨");
 				g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 			}
 		}
@@ -536,7 +537,7 @@ void CMonsterData::Tick()
 				m_pEffectTarget->m_bUsing = FALSE;
 				m_pEffectTarget = NULL;
 				char message[256];
-				wsprintf(message,"2Çü Å¸°Ù ÇØÁ¦µÊ");
+				wsprintf(message,"2í˜• íƒ€ê²Ÿ í•´ì œë¨");
 				g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 			}
 		}
@@ -548,7 +549,7 @@ void CMonsterData::Tick()
 //		}
 
 
-		// 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+		// 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 
 // 		if(COMPARE_BODYCON_BIT(m_info.BodyCondition,
 // 			BODYCON_MON_FIREATTACK1_MASK|
@@ -566,7 +567,7 @@ void CMonsterData::Tick()
 			D3DXVec3Normalize(&m_vVel,&m_vNextVel);
 		}
 		
-		// end 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+		// end 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 		else
 		{
 			D3DXVECTOR3 vSide;
@@ -578,7 +579,7 @@ void CMonsterData::Tick()
 //				D3DXVec3Normalize(&m_vNextVel,&m_vNextVel);
 //				m_vUp = vNormal;
 //			}
-//			// ¹æÇâ
+//			// ë°©í–¥
 //			else
 			{
 				float fAngle;
@@ -594,7 +595,7 @@ void CMonsterData::Tick()
 //		fLength = D3DXVec3Length(&(m_vVel - m_vNextVel));
 //		m_vVel += fLength*10.0f*m_vMoveVel*fElapsedTime;
 //		D3DXVec3Normalize(&m_vVel,&m_vVel);
-		// ÁÂÇ¥
+		// ì¢Œí‘œ
 		m_vPos += 1.0f*vMovepos*fElapsedTime;
 		D3DXVECTOR3 vUp;
 		if(m_dwState == _LANDED)
@@ -648,7 +649,7 @@ void CMonsterData::Tick()
 			D3DXVec3TransformCoord(&m_vUp,&m_vUp,&matTemp);
 		}
 
-		// ¿ÀºêÁ§Æ®¿¡ ¸ó½ºÅÍ°¡ ³¢Áö ¾Ê°Ô °Ë»öÇÏ¿© ÁÂÇ¥ ÀÌµ¿½ÃÄÑÁØ´Ù - Ãß°¡ÇØ¾ßÇÔ
+		// ì˜¤ë¸Œì íŠ¸ì— ëª¬ìŠ¤í„°ê°€ ë¼ì§€ ì•Šê²Œ ê²€ìƒ‰í•˜ì—¬ ì¢Œí‘œ ì´ë™ì‹œì¼œì¤€ë‹¤ - ì¶”ê°€í•´ì•¼í•¨
 		/////////////////////////////////////////////////////////////
 
 		/////////////////////////////////////////////////////////////
@@ -661,7 +662,7 @@ void CMonsterData::Tick()
 			m_pEffectTarget->m_bUsing = FALSE;
 			m_pEffectTarget = NULL;
 			char message[256];
-			wsprintf(message,STRMSG_C_TARGET_0001);	//"2Çü Å¸°Ù ÇØÁ¦µÊ"
+			wsprintf(message,STRMSG_C_TARGET_0001);	//"2í˜• íƒ€ê²Ÿ í•´ì œë¨"
 			g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 		}
 		if(g_pShuttleChild->m_pOrderTarget == this)
@@ -673,7 +674,7 @@ void CMonsterData::Tick()
 				m_pCharacterInfo->ChangeBodyCondition(m_info.BodyCondition);
 		}
 		if(g_pScene->m_byMapType == MAP_TYPE_TUTORIAL)
-		{// ÃÊº¸ ¹Ì¼ÇÀÏ ¶§ »¡¸® ¾ø¾îÁö°Ô ÇÏÀÚ
+		{// ì´ˆë³´ ë¯¸ì…˜ì¼ ë•Œ ë¹¨ë¦¬ ì—†ì–´ì§€ê²Œ í•˜ì
 			m_fMaterialCheckTime -= 2.0f*fElapsedTime;
 			if(m_fMaterialCheckTime <= 0.0f)
 			{
@@ -682,7 +683,7 @@ void CMonsterData::Tick()
 				//m_dwState = _EXPLODED;
 			}
 			if(m_fMaterialCheckTime < 1.0f)
-				D3DUtil_InitMaterial( m_material, m_fMaterialCheckTime, m_fMaterialCheckTime, m_fMaterialCheckTime );// ÀÓ½Ã ÄÚµå
+				D3DUtil_InitMaterial( m_material, m_fMaterialCheckTime, m_fMaterialCheckTime, m_fMaterialCheckTime );// ì„ì‹œ ì½”ë“œ
 		}
 		m_fMaterialCheckTime -= 2.0f*fElapsedTime;
 		if ( m_fMaterialCheckTime <= 0.0f )
@@ -702,7 +703,7 @@ void CMonsterData::Tick()
 			m_pEffectTarget->m_bUsing = FALSE;
 			m_pEffectTarget = NULL;
 			char message[256];
-			wsprintf(message,STRMSG_C_TARGET_0001);	//"2Çü Å¸°Ù ÇØÁ¦µÊ"
+			wsprintf(message,STRMSG_C_TARGET_0001);	//"2í˜• íƒ€ê²Ÿ í•´ì œë¨"
 			g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 		}
 		if(g_pShuttleChild->m_pOrderTarget == this)
@@ -713,45 +714,45 @@ void CMonsterData::Tick()
 	{
 //		if(COMPARE_BODYCON_BIT(GetCurrentBodyCondition(),BODYCON_DAMAGE3_MASK))
 //		{
-//			ChangeBodyCondition(BODYCON_DAMAGE3_MASK | BODYCON_BOOSTER1_MASK);//Ãß¶ôÇÏ¸é¼­ º¸¿©ÁÙ ¹ÙµğÄÁµğ¼Ç
+//			ChangeBodyCondition(BODYCON_DAMAGE3_MASK | BODYCON_BOOSTER1_MASK);//ì¶”ë½í•˜ë©´ì„œ ë³´ì—¬ì¤„ ë°”ë””ì»¨ë””ì…˜
 //		}
 
 		if(m_bRenderState && m_vPos.y < g_pGround->CheckHeightMap(m_vPos) + 
 			(m_pMonMesh!=NULL?m_pMonMesh->m_fRadius : m_fObjectSize) )
 		{
-			ChangeBodyCondition(BODYCON_EXPLOSION_MASK);//Ãß¶ô ÈÄ º¸¿©ÁÙ ¹ÙµğÄÁµğ¼Ç
+			ChangeBodyCondition(BODYCON_EXPLOSION_MASK);//ì¶”ë½ í›„ ë³´ì—¬ì¤„ ë°”ë””ì»¨ë””ì…˜
 			ChangeUnitState( _FALLEN );
 
-			// 2004-10-19 by jschoi   ¿©±â¼­ ÆĞÅÏ ¼Ò¸ê
+			// 2004-10-19 by jschoi   ì—¬ê¸°ì„œ íŒ¨í„´ ì†Œë©¸
 			util::del(m_pMonsterMovePattern);		
 
 		}
 		else
 		{
-			// ¿©±â¼­ ÆĞÅÏ Àû¿ë
+			// ì—¬ê¸°ì„œ íŒ¨í„´ ì ìš©
 			if(m_pMonsterMovePattern)
 			{
 
-				// 2009. 11. 02 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ÀÎ½ºÅÏ½º ´øÁ¯ ½Ã½ºÅÛ
-				// ¾ËÆÄ ºí·£µù ¾øÀÌ Ãß¶ôÇÏ´Â ¸ó½ºÅÍÀÇ °æ¿ì °­Á¦·Î ¼Óµµ Á¶Àı
+				// 2009. 11. 02 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ì¸ìŠ¤í„´ìŠ¤ ë˜ì ¼ ì‹œìŠ¤í…œ
+				// ì•ŒíŒŒ ë¸”ëœë”© ì—†ì´ ì¶”ë½í•˜ëŠ” ëª¬ìŠ¤í„°ì˜ ê²½ìš° ê°•ì œë¡œ ì†ë„ ì¡°ì ˆ
 				if( COMPARE_MPOPTION_BIT( m_pMonsterInfo->MPOption, MPOPTION_BIT_NO_ALPHABLENDING_IN_DEAD )
 					&& m_pMonsterMovePattern->IsCinemaOver() )
 				{
 					m_pMonsterMovePattern->SetCurrentCinemaPointVelocity( 500.0f );
 				}
-				// end 2009. 11. 02 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ÀÎ½ºÅÏ½º ´øÁ¯ ½Ã½ºÅÛ
+				// end 2009. 11. 02 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ì¸ìŠ¤í„´ìŠ¤ ë˜ì ¼ ì‹œìŠ¤í…œ
 								
 				BOOL bSkillStop = m_pMonsterMovePattern->SkillTick();	
 				EVENT_POINT SkillPoint;
 
 				SkillPoint=m_pMonsterMovePattern->GetCurrentCinemaPoint();
-				m_vPos = SkillPoint.vPosition;			// À§Ä¡
-				m_vVel = SkillPoint.vDirection;			// ¹æÇâ
-				m_vUp = SkillPoint.vUpVector;			// ¾÷º¤ÅÍ
+				m_vPos = SkillPoint.vPosition;			// ìœ„ì¹˜
+				m_vVel = SkillPoint.vDirection;			// ë°©í–¥
+				m_vUp = SkillPoint.vUpVector;			// ì—…ë²¡í„°
 
 			}
 			else
-			{ // ÆĞÅÏÀÌ ¾ø´Ù¸é..
+			{ // íŒ¨í„´ì´ ì—†ë‹¤ë©´..
 			m_fFallingTime += fElapsedTime;
 			if(1.0f - m_fFallingTime > 0.0f)
 				m_vPos -= 40.0f*(1.0f - m_fFallingTime)*m_vVel*fElapsedTime;
@@ -766,7 +767,7 @@ void CMonsterData::Tick()
 			m_pEffectTarget->m_bUsing = FALSE;
 			m_pEffectTarget = NULL;
 			char message[256];
-			wsprintf(message,STRMSG_C_TARGET_0001);	//"2Çü Å¸°Ù ÇØÁ¦µÊ"
+			wsprintf(message,STRMSG_C_TARGET_0001);	//"2í˜• íƒ€ê²Ÿ í•´ì œë¨"
 			g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 		}
 		if(g_pShuttleChild->m_pOrderTarget == this)
@@ -785,13 +786,13 @@ void CMonsterData::Tick()
 	else if(m_dwState == _AUTODESTROYED)
 	{
 		// 2005-10-28 by ispark
-		// °øÁß ¼Ò¸ê
+		// ê³µì¤‘ ì†Œë©¸
 		if(m_pEffectTarget)
 		{
 			m_pEffectTarget->m_bUsing = FALSE;
 			m_pEffectTarget = NULL;
 			char message[256];
-			wsprintf(message,STRMSG_C_TARGET_0001);	//"2Çü Å¸°Ù ÇØÁ¦µÊ"
+			wsprintf(message,STRMSG_C_TARGET_0001);	//"2í˜• íƒ€ê²Ÿ í•´ì œë¨"
 			g_pD3dApp->m_pChat->CreateChatChild(message,COLOR_SYSTEM);
 		}
 		if(g_pShuttleChild->m_pOrderTarget == this)
@@ -808,7 +809,7 @@ void CMonsterData::Tick()
 			m_bUsing = FALSE;
 		}
 	}
-	// ¹°¼ÓÀÎÁö Ã¼Å©
+	// ë¬¼ì†ì¸ì§€ ì²´í¬
 	if(g_pShuttleChild->CheckIsWater(m_vPos) && m_vPos.y < g_pGround->m_projectInfo.fWaterHeight)
 		m_bIsUnderWater = TRUE;
 	if(m_bAniColl && MOVE_AVAILABLE_STATE(m_dwState))
@@ -822,18 +823,18 @@ void CMonsterData::Tick()
 		}
 	}
 
-	// ½ºÅ³ »ç¿ëÁß - 2004.06.25 jschoi
+	// ìŠ¤í‚¬ ì‚¬ìš©ì¤‘ - 2004.06.25 jschoi
 	if(m_nMonsterSkillState != MONSTER_SKILL_OFF)
 	{
 		UseSkillMove();
 	}
 
-	// 2004-11-26 by jschoi - TargetVector°¡ ¼öÆòÀ¸·Î¸¸ ÀÌµ¿µÇ´Â ¸ó½ºÅÍ Å¸ÀÔ Ãß°¡
+	// 2004-11-26 by jschoi - TargetVectorê°€ ìˆ˜í‰ìœ¼ë¡œë§Œ ì´ë™ë˜ëŠ” ëª¬ìŠ¤í„° íƒ€ì… ì¶”ê°€
 	if(m_info.MonsterForm == FORM_OBJECT_PLANE_ROTATE || m_info.MonsterForm == FORM_OBJECT_STOP)
 	{
 		m_vVel.y = 0;
 		m_vUp = D3DXVECTOR3(0,1,0);
-		// 2008-11-06 by bhsohn Æ÷´ë ¸ó½ºÅÍ ¾ø¾îÁö´Â ¹ö±× ¼öÁ¤
+		// 2008-11-06 by bhsohn í¬ëŒ€ ëª¬ìŠ¤í„° ì—†ì–´ì§€ëŠ” ë²„ê·¸ ìˆ˜ì •
 		D3DXVec3Normalize(&m_vVel,&m_vVel);
 
 		D3DXMatrixLookAtRH( &m_mMatrix, &m_vPos, &(m_vPos+m_vVel), &m_vUp);
@@ -860,21 +861,21 @@ void CMonsterData::Tick()
 	g_pD3dApp->CalcObjectSourceScreenCoords(m_vPos, g_pD3dApp->GetBackBufferDesc().Width, g_pD3dApp->GetBackBufferDesc().Height, 
 		m_nObjScreenX, m_nObjScreenY, m_nObjScreenW );
 
-	// 2005-01-05 by jschoi - ÇöÀç ºí·»µù ¸Ş½Ã »ç¿ë ¾ÈÇÔ.
+	// 2005-01-05 by jschoi - í˜„ì¬ ë¸”ë Œë”© ë©”ì‹œ ì‚¬ìš© ì•ˆí•¨.
 //	m_bCheckBlend = FALSE;
 
 //	m_bIsRender = FALSE;
-	// 50.0f ¼öÄ¡´Â Â÷ÈÄ¿¡ ¼ÅÆ²ÀÇ Å©±â¿Í ¸ó½ºÅÍÀÇ Å©±âÀÇ ÇÕÀÇ Àı¹İÀÇ Å©±â·Î ¼ÂÆÃµÇ¾î¾ßÇÑ´Ù.
+	// 50.0f ìˆ˜ì¹˜ëŠ” ì°¨í›„ì— ì…”í‹€ì˜ í¬ê¸°ì™€ ëª¬ìŠ¤í„°ì˜ í¬ê¸°ì˜ í•©ì˜ ì ˆë°˜ì˜ í¬ê¸°ë¡œ ì…‹íŒ…ë˜ì–´ì•¼í•œë‹¤.
 	if(m_bRenderState && D3DXVec3Length(&(m_vPos - g_pShuttleChild->m_vPos)) < 
 		20.0f+(m_pMonMesh!=NULL?m_pMonMesh->m_fRadius : m_fObjectSize) )
 	{
 		m_bCheckColl = TRUE;
-		g_pShuttleChild->m_bCollMonsterCheck++;		// ¼ÅÆ²¿¡°Ô Ãæµ¹ Ã¼Å©·çÆ¾¿¡ µé¾î°¡¶ó°í ¼ÂÆÃ
+		g_pShuttleChild->m_bCollMonsterCheck++;		// ì…”í‹€ì—ê²Œ ì¶©ëŒ ì²´í¬ë£¨í‹´ì— ë“¤ì–´ê°€ë¼ê³  ì…‹íŒ…
 	}
 	else
 		m_bCheckColl = FALSE;
 	
-	/// Monster ¿¡ ÀıµÎÃ¼ ÄÃ¸µÀ» Àû¿ëÇÏ¿© m_vecMonsterRenderList ¸¦ ¸¸µç´Ù. - 2004-08-03 jschoi	
+	/// Monster ì— ì ˆë‘ì²´ ì»¬ë§ì„ ì ìš©í•˜ì—¬ m_vecMonsterRenderList ë¥¼ ë§Œë“ ë‹¤. - 2004-08-03 jschoi	
 	if(m_bUsing)
 	{
 		BOOL bResult = g_pFrustum->CheckSphere( m_vPos.x, m_vPos.y, m_vPos.z, 
@@ -886,7 +887,7 @@ void CMonsterData::Tick()
 
 			m_fDistanceCamera = D3DXVec3Length(&(m_vPos - g_pD3dApp->m_pCamera->GetEyePt()));
 
-			// 2005-01-05 by jschoi - ÇöÀç ºí·»µù ¸Ş½Ã »ç¿ë¾ÈÇÔ.
+			// 2005-01-05 by jschoi - í˜„ì¬ ë¸”ë Œë”© ë©”ì‹œ ì‚¬ìš©ì•ˆí•¨.
 //			D3DXVECTOR3 v1,v2;
 //			m_bCheckBlend = FALSE;
 //			D3DXVec3Normalize(&v1,&(g_pShuttleChild->m_vPos - g_pD3dApp->m_pCamera->GetEyePt()));
@@ -917,7 +918,7 @@ void CMonsterData::Tick()
 		}	
 	}
 
-	// ±×¸²ÀÚ ±×¸± ¸ó½ºÅÍ ¼±Á¤ 2004-07-29 jschoi
+	// ê·¸ë¦¼ì ê·¸ë¦´ ëª¬ìŠ¤í„° ì„ ì • 2004-07-29 jschoi
 	if(m_bRenderState && m_bUsing)
 	{
 	D3DXVECTOR3 vShadowPos;
@@ -970,7 +971,7 @@ void CMonsterData::Tick()
 		}
 	}
 
-	// ÃÊº¸ ¸Ê ÀÏ¶§(Äù½ºÆ®Áß)
+	// ì´ˆë³´ ë§µ ì¼ë•Œ(í€˜ìŠ¤íŠ¸ì¤‘)
 	if(g_pScene->m_byMapType == MAP_TYPE_TUTORIAL)
 	{
 		if(g_pShuttleChild->m_pTarget == this)
@@ -1032,15 +1033,15 @@ void CMonsterData::Tick()
 		g_pScene->ChangeToBlockData(this);
 	}
 
-	// 2007-05-17 by bhsohn ¿ÀºêÁ§Æ® µÚ¿¡ ¼û¾úÀ»½Ã ¿¡ ´ëÇÑ Ã³ °Ë»ç Ã³¸®
+	// 2007-05-17 by bhsohn ì˜¤ë¸Œì íŠ¸ ë’¤ì— ìˆ¨ì—ˆì„ì‹œ ì— ëŒ€í•œ ì²˜ ê²€ì‚¬ ì²˜ë¦¬
 	TickObjectCheck();
 
-	// 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 
-	// 2011. 09. 28 by jskim ³Í Å¸°Ù ½Ã½ºÅÛ ¹ö±× ¼öÁ¤
+	// 2011. 09. 28 by jskim ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •
 	//if(m_nindexSize > NULL)
 	if(m_nindexSize > 0)
-	// end 2011. 09. 28 by jskim ³Í Å¸°Ù ½Ã½ºÅÛ ¹ö±× ¼öÁ¤
+	// end 2011. 09. 28 by jskim ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ ë²„ê·¸ ìˆ˜ì •
 	{
 		for( int i=0; i < m_nindexSize; i ++)
 		{	
@@ -1055,7 +1056,7 @@ void CMonsterData::Tick()
 			m_vecvmultiData[i]->TargetMatrix = tempmat;	
 		}		
 	}
-	// end 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+	// end 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 }
 
 void CMonsterData::CheckAniTime(float fElapsedTime)
@@ -1093,40 +1094,40 @@ void CMonsterData::Render()
 	{
 		if(m_pMonsterInfo)
 		{
-			/// ±¤¿ø ¼³Á¤
-			// 2006-08-14 by ispark, ¸ó½ºÅÍ ±¤¿ø Àç¼³Á¤
-			// ¿ìÁÖ¸Ê¿¡¼­´Â ¸Ê ±¤¿ø¿¡ ¿µÇâÀ» ¹Ş´Â´Ù.
-			// ·¹ÀÌ´Ù°¡ ¾øÀ»½Ã ¾îµÓ°Ô ÇÑ´Ù.
+			/// ê´‘ì› ì„¤ì •
+			// 2006-08-14 by ispark, ëª¬ìŠ¤í„° ê´‘ì› ì¬ì„¤ì •
+			// ìš°ì£¼ë§µì—ì„œëŠ” ë§µ ê´‘ì›ì— ì˜í–¥ì„ ë°›ëŠ”ë‹¤.
+			// ë ˆì´ë‹¤ê°€ ì—†ì„ì‹œ ì–´ë‘¡ê²Œ í•œë‹¤.
 			if( m_bCharacter == FALSE && 
 				g_pStoreData->FindItemInInventoryByWindowPos(POS_PROW) != NULL &&
 				(g_pScene->m_bNight == TRUE ||
 				IsTileMapRenderEnable(g_pShuttleChild->m_myShuttleInfo.MapChannelIndex.MapIndex) == FALSE))
 			{
-//				g_pD3dDev->SetLight( 0, &light ); /// µğ¹ÙÀÌ½º¿¡ 0¹ø ±¤¿ø ¼³Ä¡ 
-				g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// µğ¹ÙÀÌ½º¿¡ 0¹ø ±¤¿ø ¼³Ä¡ 
+//				g_pD3dDev->SetLight( 0, &light ); /// ë””ë°”ì´ìŠ¤ì— 0ë²ˆ ê´‘ì› ì„¤ì¹˜ 
+				g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// ë””ë°”ì´ìŠ¤ì— 0ë²ˆ ê´‘ì› ì„¤ì¹˜ 
 				g_pD3dDev->SetLight( 1, &g_pScene->m_light1 );
-				g_pD3dDev->LightEnable( 0, TRUE ); /// 0¹ø ±¤¿øÀ» ÄÒ´Ù 
-				g_pD3dDev->LightEnable( 1, TRUE ); /// 1¹ø ±¤¿øÀ» ÄÒ´Ù 
-				g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ±¤¿ø¼³Á¤À» ÄÒ´Ù 			
-//				g_pD3dDev->SetRenderState( D3DRS_AMBIENT, 0x00505050 ); /// È¯°æ±¤¿ø(ambient light)ÀÇ °ª ¼³Á¤
+				g_pD3dDev->LightEnable( 0, TRUE ); /// 0ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+				g_pD3dDev->LightEnable( 1, TRUE ); /// 1ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+				g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ê´‘ì›ì„¤ì •ì„ ì¼ ë‹¤ 			
+//				g_pD3dDev->SetRenderState( D3DRS_AMBIENT, 0x00505050 ); /// í™˜ê²½ê´‘ì›(ambient light)ì˜ ê°’ ì„¤ì •
 			}
 			else
 			{
-				g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// µğ¹ÙÀÌ½º¿¡ 0¹ø ±¤¿ø ¼³Ä¡ 
-				g_pD3dDev->LightEnable( 0, TRUE ); /// 0¹ø ±¤¿øÀ» ÄÒ´Ù 
-				g_pD3dDev->LightEnable( 1, FALSE ); /// 1¹ø ±¤¿øÀ» ÄÒ´Ù 
-				g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ±¤¿ø¼³Á¤À» ÄÒ´Ù
+				g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// ë””ë°”ì´ìŠ¤ì— 0ë²ˆ ê´‘ì› ì„¤ì¹˜ 
+				g_pD3dDev->LightEnable( 0, TRUE ); /// 0ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+				g_pD3dDev->LightEnable( 1, FALSE ); /// 1ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+				g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ê´‘ì›ì„¤ì •ì„ ì¼ ë‹¤
 			}			
 			m_pRenderer->Render(this);
 			
-			g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// µğ¹ÙÀÌ½º¿¡ 0¹ø ±¤¿ø ¼³Ä¡ 
-			g_pD3dDev->LightEnable( 0, TRUE ); /// 0¹ø ±¤¿øÀ» ÄÒ´Ù 
-			g_pD3dDev->LightEnable( 1, FALSE ); /// 1¹ø ±¤¿øÀ» ÄÒ´Ù 
-			g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ±¤¿ø¼³Á¤À» ÄÒ´Ù 	
+			g_pD3dDev->SetLight( 0, &g_pScene->m_light0 ); /// ë””ë°”ì´ìŠ¤ì— 0ë²ˆ ê´‘ì› ì„¤ì¹˜ 
+			g_pD3dDev->LightEnable( 0, TRUE ); /// 0ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+			g_pD3dDev->LightEnable( 1, FALSE ); /// 1ë²ˆ ê´‘ì›ì„ ì¼ ë‹¤ 
+			g_pD3dDev->SetRenderState( D3DRS_LIGHTING, TRUE ); /// ê´‘ì›ì„¤ì •ì„ ì¼ ë‹¤ 	
 		}
 		else
 		{
-			Init();// ¸ó½ºÅÍ Á¤º¸°¡ ¼­¹ö¿¡¼­ ¿ÀÁö ¾Ê¾Æ ´Ù½Ã ¿äÃ»ÇÑ´Ù.
+			Init();// ëª¬ìŠ¤í„° ì •ë³´ê°€ ì„œë²„ì—ì„œ ì˜¤ì§€ ì•Šì•„ ë‹¤ì‹œ ìš”ì²­í•œë‹¤.
 			DBGOUT("Request MonsterInfo(%d) to Server\n", m_info.MonsterUnitKind);
 		}
 	}
@@ -1142,7 +1143,7 @@ void CMonsterData::RenderShadow()
 		}
 		else
 		{
-			Init();// ¸ó½ºÅÍ Á¤º¸°¡ ¼­¹ö¿¡¼­ ¿ÀÁö ¾Ê¾Æ ´Ù½Ã ¿äÃ»ÇÑ´Ù.
+			Init();// ëª¬ìŠ¤í„° ì •ë³´ê°€ ì„œë²„ì—ì„œ ì˜¤ì§€ ì•Šì•„ ë‹¤ì‹œ ìš”ì²­í•œë‹¤.
 			DBGOUT("Request MonsterInfo(%d) to Server\n", m_info.MonsterUnitKind);
 		}
 	}
@@ -1159,18 +1160,18 @@ void CMonsterData::SetPosition(MSG_FC_MOVE_OK* pMsg)
 		m_vUp = D3DXVECTOR3(0,1,0);
 
 		float fLength = D3DXVec3Length(&(m_vNextPos - m_vPos));
-		// °Å¸®Â÷°¡ ¹ß»ı ÇÔÀ¸·Î ¿¹»óÁöÁ¡À» °è»êÇÑ´Ù.-ÇöÀçÀÇ ¼Óµµ¿¡ ºñ·ÊÇÏ¿© °è»ê
+		// ê±°ë¦¬ì°¨ê°€ ë°œìƒ í•¨ìœ¼ë¡œ ì˜ˆìƒì§€ì ì„ ê³„ì‚°í•œë‹¤.-í˜„ì¬ì˜ ì†ë„ì— ë¹„ë¡€í•˜ì—¬ ê³„ì‚°
 		m_vExpectPos = m_vNextPos + (m_vNextPos - m_vPos)*0.5f;//*fLength;
 		m_vMovepos = m_vExpectPos - m_vPos;
 		fLength = D3DXVec3Length(&m_vMovepos);
-		// ÇöÀç ¼Óµµ°¡ ¼ÅÆ²ÀÇ ÃÖ´ë ¼Óµµº¸´Ù Å©¸é ÃÖ´ë ¼Óµµ¸¸Å­ÀÇ Å©±â·Î ÁÙ¿©Áà¾ßÇÑ´Ù.
+		// í˜„ì¬ ì†ë„ê°€ ì…”í‹€ì˜ ìµœëŒ€ ì†ë„ë³´ë‹¤ í¬ë©´ ìµœëŒ€ ì†ë„ë§Œí¼ì˜ í¬ê¸°ë¡œ ì¤„ì—¬ì¤˜ì•¼í•œë‹¤.
 		if(!COMPARE_BODYCON_BIT(m_info.BodyCondition,BODYCON_CREATION_MASK) && 
 			(fLength > 250.0f || m_fLifeTime <= 0.0f))
 		{
 			D3DXVec3Normalize(&m_vMovepos,&m_vMovepos);
 			m_vPos = m_vNextPos;
 		}
-		// ¹æÇâ°ú ¾÷º¤ÅÍ´Â ÁÂÇ¥Ã³·³ Å©°Ô ¿µÇâÀ» ÁÖÁö ¾ÊÀ¸¹Ç·Î Expect¸¦ ±¸ÇÏÁö ¾Ê°Ú´Ù.
+		// ë°©í–¥ê³¼ ì—…ë²¡í„°ëŠ” ì¢Œí‘œì²˜ëŸ¼ í¬ê²Œ ì˜í–¥ì„ ì£¼ì§€ ì•Šìœ¼ë¯€ë¡œ Expectë¥¼ êµ¬í•˜ì§€ ì•Šê² ë‹¤.
 		m_vMoveVel = m_vNextVel - m_vVel;
 	}
 //	DBGOUT("Monster(%d) LifeTime = %.2f\n", this->m_info.MonsterIndex, m_fLifeTime);
@@ -1185,10 +1186,10 @@ void CMonsterData::SetMonPosition(MSG_FC_MONSTER_MOVE_OK* pMsg)
 		return;
 	FLOG( "CMonsterData::SetMonPosition(MSG_FC_MONSTER_MOVE_OK* pMsg)" );
 
-	// ¸ó½ºÅÍÀÇ Å¸°Ù ÀÎµ¦½º
+	// ëª¬ìŠ¤í„°ì˜ íƒ€ê²Ÿ ì¸ë±ìŠ¤
 	m_nTargetIndex = pMsg->TargetIndex;
 	
-	if(m_info.MonsterForm == FORM_OBJECT_STOP)	// Á¤ÁöÇü ¸ó½ºÅÍÀÇ °æ¿ì
+	if(m_info.MonsterForm == FORM_OBJECT_STOP)	// ì •ì§€í˜• ëª¬ìŠ¤í„°ì˜ ê²½ìš°
 	{
 		m_vNextPos = A2DX(pMsg->PositionVector);
 		D3DXVec3Normalize(&m_vNextVel,&A2DX(pMsg->TargetVector));
@@ -1198,12 +1199,12 @@ void CMonsterData::SetMonPosition(MSG_FC_MONSTER_MOVE_OK* pMsg)
 		m_vVel = m_vNextVel;
 		m_vPos = m_vNextPos;
 	}
-	else										// Á¤ÁöÇü ¸ó½ºÅÍ°¡ ¾Æ´Ñ°æ¿ì
+	else										// ì •ì§€í˜• ëª¬ìŠ¤í„°ê°€ ì•„ë‹Œê²½ìš°
 	{
 		if(MOVE_AVAILABLE_STATE(m_dwState))
 		{
 	//		if(!COMPARE_BODYCON_BIT(m_info.BodyCondition,BODYCON_CREATION_MASK) && m_fLifeTime <= 1.0f)
-	//		{// 1.5ÃÊµ¿¾È ¿òÁ÷ÀÓÀÌ ¿ÀÁö ¾Ê´Ù°¡ ¿ÔÀ»¶§ ·¢ÀÌ ÀÖÀ¸¹Ç·Î ÇöÁÂÇ¥·Î ÀÌµ¿½ÃÅ²´Ù.
+	//		{// 1.5ì´ˆë™ì•ˆ ì›€ì§ì„ì´ ì˜¤ì§€ ì•Šë‹¤ê°€ ì™”ì„ë•Œ ë™ì´ ìˆìœ¼ë¯€ë¡œ í˜„ì¢Œí‘œë¡œ ì´ë™ì‹œí‚¨ë‹¤.
 	//		}
 			m_vNextPos = A2DX(pMsg->PositionVector);
 			D3DXVec3Normalize(&m_vNextVel,&A2DX(pMsg->TargetVector));
@@ -1211,11 +1212,11 @@ void CMonsterData::SetMonPosition(MSG_FC_MONSTER_MOVE_OK* pMsg)
 			m_vUp = D3DXVECTOR3(0,1,0);
 
 			float fLength = D3DXVec3Length(&(m_vNextPos - m_vPos));
-			// °Å¸®Â÷°¡ ¹ß»ı ÇÔÀ¸·Î ¿¹»óÁöÁ¡À» °è»êÇÑ´Ù.-ÇöÀçÀÇ ¼Óµµ¿¡ ºñ·ÊÇÏ¿© °è»ê
+			// ê±°ë¦¬ì°¨ê°€ ë°œìƒ í•¨ìœ¼ë¡œ ì˜ˆìƒì§€ì ì„ ê³„ì‚°í•œë‹¤.-í˜„ì¬ì˜ ì†ë„ì— ë¹„ë¡€í•˜ì—¬ ê³„ì‚°
 			m_vExpectPos = m_vNextPos + (m_vNextPos - m_vPos)*0.5f;//*fLength;
 			m_vMovepos = m_vExpectPos - m_vPos;
 			fLength = D3DXVec3Length(&m_vMovepos);
-			// ÇöÀç ¼Óµµ°¡ ¼ÅÆ²ÀÇ ÃÖ´ë ¼Óµµº¸´Ù Å©¸é ÃÖ´ë ¼Óµµ¸¸Å­ÀÇ Å©±â·Î ÁÙ¿©Áà¾ßÇÑ´Ù.
+			// í˜„ì¬ ì†ë„ê°€ ì…”í‹€ì˜ ìµœëŒ€ ì†ë„ë³´ë‹¤ í¬ë©´ ìµœëŒ€ ì†ë„ë§Œí¼ì˜ í¬ê¸°ë¡œ ì¤„ì—¬ì¤˜ì•¼í•œë‹¤.
 			if(!COMPARE_BODYCON_BIT(m_info.BodyCondition,BODYCON_CREATION_MASK) && 
 				(fLength > 500.0f || m_fLifeTime <= 0.0f))
 			{
@@ -1223,9 +1224,9 @@ void CMonsterData::SetMonPosition(MSG_FC_MONSTER_MOVE_OK* pMsg)
 				m_vPos = m_vNextPos;
 	//			m_vPos = A2DX(pMsg->PositionVector);
 				D3DXVec3Normalize(&m_vVel,&A2DX(pMsg->TargetVector));
-//				DBGOUT("Monster : Different Position to Set \n");//ÁÂÇ¥ Â÷ÀÌ°¡ ¸¹ÀÌ ³ª¼­ ÇÑ¹ø¿¡ ÀÌµ¿ÇÕ´Ï´Ù.
+//				DBGOUT("Monster : Different Position to Set \n");//ì¢Œí‘œ ì°¨ì´ê°€ ë§ì´ ë‚˜ì„œ í•œë²ˆì— ì´ë™í•©ë‹ˆë‹¤.
 			}
-			// ¹æÇâ°ú ¾÷º¤ÅÍ´Â ÁÂÇ¥Ã³·³ Å©°Ô ¿µÇâÀ» ÁÖÁö ¾ÊÀ¸¹Ç·Î Expect¸¦ ±¸ÇÏÁö ¾Ê°Ú´Ù.
+			// ë°©í–¥ê³¼ ì—…ë²¡í„°ëŠ” ì¢Œí‘œì²˜ëŸ¼ í¬ê²Œ ì˜í–¥ì„ ì£¼ì§€ ì•Šìœ¼ë¯€ë¡œ Expectë¥¼ êµ¬í•˜ì§€ ì•Šê² ë‹¤.
 			if(m_dwState == _LANDED)
 			{
 				D3DXVECTOR3 vNormal = GetMapNormalVector(m_vPos);
@@ -1395,10 +1396,10 @@ void CMonsterData::CheckShadowPos()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
-/// \brief		¼­¹ö¿¡¼­ ¸ó½ºÅÍ ¹ÙµğÄÁµğ¼Ç Ã¼ÀÎÁö
+/// \brief		ì„œë²„ì—ì„œ ëª¬ìŠ¤í„° ë°”ë””ì»¨ë””ì…˜ ì²´ì¸ì§€
 /// \author		dhkwon
 /// \date		2004-05-17 ~ 2004-05-17
-/// \warning	LANDED : LANDING -> LANDED, DEAD : 2°¡Áö Å¸ÀÔ(EXPLOSION, FALL)
+/// \warning	LANDED : LANDING -> LANDED, DEAD : 2ê°€ì§€ íƒ€ì…(EXPLOSION, FALL)
 ///				
 /// \param		
 /// \return		
@@ -1410,7 +1411,7 @@ void CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
 		(!COMPARE_BODYCON_BIT(m_info.BodyCondition,BODYCON_MON_AUTODESTROYED_MASK) && 
 		COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_MON_AUTODESTROYED_MASK)))
 	{
-		// targetÁ¤¸®, weaponÁ¤¸®
+		// targetì •ë¦¬, weaponì •ë¦¬
 		if( g_pShuttleChild->m_pOrderTarget && 
 			g_pShuttleChild->m_pOrderTarget == this)
 		{
@@ -1423,7 +1424,7 @@ void CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
 			{
 				pNode->m_pTarget = NULL;
 				
-				// 2004-12-02 by ydkim ¸¶ÀÎ°ø°İ½Ã ¾îÅÃÀ»¹ŞÀ»¶§ Å¸°ÙÀÌ ¾ø¾îÁ³À»¶§
+				// 2004-12-02 by ydkim ë§ˆì¸ê³µê²©ì‹œ ì–´íƒì„ë°›ì„ë•Œ íƒ€ê²Ÿì´ ì—†ì–´ì¡Œì„ë•Œ
 				if(pNode->m_dwPartType == _MINE
 					&& pNode->m_dwWeaponState == _EXPLODING)
 				{
@@ -1475,7 +1476,7 @@ void CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
 			}
 			break;
 
-		// 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+		// 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 		case BODYCON_MON_FIREATTACK7_MASK:
 		case BODYCON_MON_FIREATTACK8_MASK:
 		case BODYCON_MON_FIREATTACK9_MASK:
@@ -1489,12 +1490,12 @@ void CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
 				m_SecondaryAttack.vSidePos = m_pCharacterInfo->GetEffectPos( hyAttackBodyCondition, RC_EFF_DUMMY_POSITION );
 			}
 			break;
-		// end 2009. 09. 21 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå ¸ó½ºÅÍ ½ºÅ³ ±¸Çö
+		// end 2009. 09. 21 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ ëª¬ìŠ¤í„° ìŠ¤í‚¬ êµ¬í˜„
 
 		}
-		// 2006-08-23 by ispark, ¹Ùµğ ÄÁµğ¼ÇÀ» ¹Ş¾Æ¼­ ÁÂÇ¥¸¦ ¼ÂÆÃ ÇßÁö¸¸ tick()À» µ¹±â Àü¿¡ ¹«±â¸¦ »ı¼ºÇÑ´Ù.
-		// ±×·¯´Ù º¸´Ï Àü¿¡ ½ğ ¹«±â ÁÂÇ¥¿¡¼­ ¹«±â°¡ ¹ß»ç°¡ µÈ´Ù.
-		// ±×·¯´Ï ¹Ø¿¡¼­ ¼ÂÆÃÀ» ÇÑ´Ù.
+		// 2006-08-23 by ispark, ë°”ë”” ì»¨ë””ì…˜ì„ ë°›ì•„ì„œ ì¢Œí‘œë¥¼ ì…‹íŒ… í–ˆì§€ë§Œ tick()ì„ ëŒê¸° ì „ì— ë¬´ê¸°ë¥¼ ìƒì„±í•œë‹¤.
+		// ê·¸ëŸ¬ë‹¤ ë³´ë‹ˆ ì „ì— ìœ ë¬´ê¸° ì¢Œí‘œì—ì„œ ë¬´ê¸°ê°€ ë°œì‚¬ê°€ ëœë‹¤.
+		// ê·¸ëŸ¬ë‹ˆ ë°‘ì—ì„œ ì…‹íŒ…ì„ í•œë‹¤.
 		D3DXVec3TransformCoord(&m_vLWSecondaryPos, &m_SecondaryAttack.vSidePos, &m_mMatrix);
 		D3DXVECTOR3 vSecondaryRightPos = D3DXVECTOR3(-m_SecondaryAttack.vSidePos.x, m_SecondaryAttack.vSidePos.y, m_SecondaryAttack.vSidePos.z);
 		D3DXVec3TransformCoord(&m_vRWSecondaryPos, &vSecondaryRightPos, &m_mMatrix);
@@ -1504,10 +1505,10 @@ void CMonsterData::ChangeBodyConditionFromServer(BodyCond_t hyBodyCondition)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			CMonsterData::ChangeBodyCondition(BodyCond_t hyBodyCondition)
-/// \brief		¸ó½ºÅÍÀÇ ¹ÙµğÄÁµğ¼ÇÀ» ¹Ù²Û´Ù.
+/// \brief		ëª¬ìŠ¤í„°ì˜ ë°”ë””ì»¨ë””ì…˜ì„ ë°”ê¾¼ë‹¤.
 /// \author		dhkwon
 /// \date		2004-04-09 ~ 2004-04-09
-/// \warning	CUnitDataÀÇ ChangeBodyConditionÀº UNIT¿¡¸¸ Àû¿ëµÇ±â ¶§¹®¿¡ ¸ó½ºÅÍ´Â ¿©±â¼­ ÀçÁ¤ÀÇÇØ¼­ ¾´´Ù.
+/// \warning	CUnitDataì˜ ChangeBodyConditionì€ UNITì—ë§Œ ì ìš©ë˜ê¸° ë•Œë¬¸ì— ëª¬ìŠ¤í„°ëŠ” ì—¬ê¸°ì„œ ì¬ì •ì˜í•´ì„œ ì“´ë‹¤.
 ///
 /// \param		
 /// \return		
@@ -1520,24 +1521,24 @@ void CMonsterData::ChangeBodyCondition(BodyCond_t hyBodyCondition)
 	{
 		return;
 	}
-	if(hyBodyCondition & BODYCON_FLY_MASK)//FLY»óÅÂ
+	if(hyBodyCondition & BODYCON_FLY_MASK)//FLYìƒíƒœ
 	{
 		ChangeUnitState( _NORMAL );
 		hyBodyCondition = hyBodyCondition & ~BODYCON_FLY_MASK;
 		if( COMPARE_BODYCON_BIT(GetCurrentBodyCondition(),BODYCON_BOOSTER3_MASK) && 
 			!COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_BOOSTER3_MASK))
 		{
-//			m_pCharacterInfo->ChangeBodyCondition((hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_BOOSTER4_MASK);//ºÎ½ºÅÍ ²ô±â
+//			m_pCharacterInfo->ChangeBodyCondition((hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_BOOSTER4_MASK);//ë¶€ìŠ¤í„° ë„ê¸°
 //			return;
 			hyBodyCondition = (hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_BOOSTER4_MASK;
 		}
 	}
-	else if(hyBodyCondition & BODYCON_LANDED_MASK)//LANDED»óÅÂ
+	else if(hyBodyCondition & BODYCON_LANDED_MASK)//LANDEDìƒíƒœ
 	{
 		if( COMPARE_BODYCON_BIT(GetCurrentBodyCondition(),BODYCON_LANDED_MASK) && 
 			!COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_LANDED_MASK))
 		{
-			m_pCharacterInfo->ChangeBodyCondition( (hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_LANDING_MASK);//·£µù
+			m_pCharacterInfo->ChangeBodyCondition( (hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_LANDING_MASK);//ëœë”©
 			ChangeUnitState(_LANDING);
 			return;
 		}
@@ -1546,42 +1547,42 @@ void CMonsterData::ChangeBodyCondition(BodyCond_t hyBodyCondition)
 			ChangeUnitState(_LANDED);
 		}
 	}
-	else if(hyBodyCondition & BODYCON_DEAD_MASK)//DEAD»óÅÂ
+	else if(hyBodyCondition & BODYCON_DEAD_MASK)//DEADìƒíƒœ
 	{
 		if(!COMPARE_BODYCON_BIT(GetCurrentBodyCondition(),BODYCON_DEAD_MASK) &&
 			COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_DEAD_MASK))
 		{
 			DelSecondWeapon();
 
-			// 2010. 02. 04 by ckPark °ø°İ ÁØºñ µµÁß¿¡ Á×Àº ¸ó½ºÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç ¹ö±× ¼öÁ¤
+			// 2010. 02. 04 by ckPark ê³µê²© ì¤€ë¹„ ë„ì¤‘ì— ì£½ì€ ëª¬ìŠ¤í„° ì• ë‹ˆë©”ì´ì…˜ ë²„ê·¸ ìˆ˜ì •
 			m_pCharacterInfo->ForceTurnOffBodyCondition( BODYCON_MON_ATTACKALL_MASK );
-			// end 2010. 02. 04 by ckPark °ø°İ ÁØºñ µµÁß¿¡ Á×Àº ¸ó½ºÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç ¹ö±× ¼öÁ¤
+			// end 2010. 02. 04 by ckPark ê³µê²© ì¤€ë¹„ ë„ì¤‘ì— ì£½ì€ ëª¬ìŠ¤í„° ì• ë‹ˆë©”ì´ì…˜ ë²„ê·¸ ìˆ˜ì •
 
 			if(COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_EXPLOSION_MASK))
 			{
 				m_pCharacterInfo->ChangeBodyCondition( (hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | BODYCON_EXPLOSION_MASK );
 				ChangeUnitState( _EXPLODING );
-//				DBGOUT("¸ó½ºÅÍ(%x) EXPLODING... \n",this);
+//				DBGOUT("ëª¬ìŠ¤í„°(%x) EXPLODING... \n",this);
 				return;
 			}
-			else // BODYCON_FALL_MASK, Ãß¶ô »óÅÂ
+			else // BODYCON_FALL_MASK, ì¶”ë½ ìƒíƒœ
 			{
 				m_pCharacterInfo->ChangeBodyCondition( (hyBodyCondition & ~BODYCON_MONSTER_SINGLE) | (BODYCON_EXPLOSION_MASK|BODYCON_DAMAGE3_MASK) );
 				ChangeUnitState( _FALLING );
 				
-				// 2004-10-19 by jschoi  ¿©±â¼­ ÆĞÅÏ »ı¼º
+				// 2004-10-19 by jschoi  ì—¬ê¸°ì„œ íŒ¨í„´ ìƒì„±
 				m_mMatrix._32 = 0;
 				m_mMatrix._21 = 0;
 				m_mMatrix._22 = 1;
 				m_mMatrix._23 = 0;
 				InitMonsterMovePattern(PATTERN_UNIT_FALLING);
 
-//				DBGOUT("¸ó½ºÅÍ(%x) FALLING... \n",this);
+//				DBGOUT("ëª¬ìŠ¤í„°(%x) FALLING... \n",this);
 				return;
 			}
 		}
 	}
-	else if(hyBodyCondition & BODYCON_MON_AUTODESTROYED_MASK)// °øÁß ¼Ò¸ê
+	else if(hyBodyCondition & BODYCON_MON_AUTODESTROYED_MASK)// ê³µì¤‘ ì†Œë©¸
 	{
 		if(!COMPARE_BODYCON_BIT(GetCurrentBodyCondition(),BODYCON_MON_AUTODESTROYED_MASK) &&
 			COMPARE_BODYCON_BIT(hyBodyCondition,BODYCON_MON_AUTODESTROYED_MASK))
@@ -1595,7 +1596,7 @@ void CMonsterData::ChangeBodyCondition(BodyCond_t hyBodyCondition)
 			}
 		}
 	}
-	// object ¸ó½ºÅÍÀÎ °æ¿ì´Â ChangeBodyConditionÀ» ¾²°í ÀÏ¹İ ¸ó½ºÅÍÀÎ °æ¿ì´Â ResetÀ» ¾´´Ù.
+	// object ëª¬ìŠ¤í„°ì¸ ê²½ìš°ëŠ” ChangeBodyConditionì„ ì“°ê³  ì¼ë°˜ ëª¬ìŠ¤í„°ì¸ ê²½ìš°ëŠ” Resetì„ ì“´ë‹¤.
 	if(m_info.MonsterForm >= FORM_OBJECT_STOP && m_info.MonsterForm <= FORM_OBJECT_CANNON)
 	{
 		m_pCharacterInfo->ChangeBodyCondition( hyBodyCondition );
@@ -1610,7 +1611,7 @@ void CMonsterData::ChangeBodyCondition(BodyCond_t hyBodyCondition)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			CMonsterData::MonsterChangeHPFromServer( INT CurrentHP )
-/// \brief		¼­¹ö¿¡¼­ ¿Â ¸ó½ºÅÍ HP Á¤º¸
+/// \brief		ì„œë²„ì—ì„œ ì˜¨ ëª¬ìŠ¤í„° HP ì •ë³´
 /// \author		dhkwon
 /// \date		2004-05-17 ~ 2004-05-17
 /// \warning	
@@ -1629,31 +1630,31 @@ void CMonsterData::MonsterChangeHPFromServer( INT CurrentHP )
 	if(m_pMonsterInfo)
 	{
 
-		// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+		// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 		//float fRate = (float)CurrentHP/(float)m_pMonsterInfo->HP;
 		float fRate = (float)CurrentHP/(float)m_info.MaxHP;
-		// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+		// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
 
-		// damage bodycondition ¼¼ÆÃ
+		// damage bodycondition ì„¸íŒ…
 		if(fRate < CHARACTER_DAMAGE_STATE_05)
 		{
-			// µ¥¹ÌÁö 1,2,3¹ø ¸ğµÎ È°¼ºÈ­
+			// ë°ë¯¸ì§€ 1,2,3ë²ˆ ëª¨ë‘ í™œì„±í™”
 			ChangeKeepingBodyCondition( BODYCON_DAMAGE1_MASK | BODYCON_DAMAGE2_MASK | BODYCON_DAMAGE3_MASK );
 		}
 		else if(fRate < CHARACTER_DAMAGE_STATE_10)
 		{
-			// µ¥¹ÌÁö 1,2¹ø È°¼ºÈ­
+			// ë°ë¯¸ì§€ 1,2ë²ˆ í™œì„±í™”
 			ChangeKeepingBodyCondition( BODYCON_DAMAGE1_MASK | BODYCON_DAMAGE2_MASK );
 		}
 		else if(fRate < CHARACTER_DAMAGE_STATE_15)
 		{
-			// µ¥¹ÌÁö 1¹ø È°¼ºÈ­
+			// ë°ë¯¸ì§€ 1ë²ˆ í™œì„±í™”
 			ChangeKeepingBodyCondition( BODYCON_DAMAGE1_MASK );
 		}
 		else
 		{
-			// µ¥¹ÌÁö ºñÈ°¼ºÈ­
+			// ë°ë¯¸ì§€ ë¹„í™œì„±í™”
 			ChangeKeepingBodyCondition( GetCurrentBodyCondition() & ~(BODYCON_DAMAGE1_MASK | BODYCON_DAMAGE2_MASK | BODYCON_DAMAGE3_MASK ) );
 		}
 	}
@@ -1662,7 +1663,7 @@ void CMonsterData::MonsterChangeHPFromServer( INT CurrentHP )
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			D3DXVECTOR3 CMonsterData::GetMapNormalVector(D3DXVECTOR3 vPos)
-/// \brief		¸ó½ºÅÍ Âø·ú½Ã Å¸°Ù°ú ¾÷º¤Å¸´Â Å¬¶óÀÌ¾ğÆ®¿¡¼­ °è»êÇÑ´Ù.
+/// \brief		ëª¬ìŠ¤í„° ì°©ë¥™ì‹œ íƒ€ê²Ÿê³¼ ì—…ë²¡íƒ€ëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ê³„ì‚°í•œë‹¤.
 /// \author		dhkwon
 /// \date		2004-05-29 ~ 2004-05-29
 /// \warning	
@@ -1688,8 +1689,8 @@ D3DXVECTOR3 CMonsterData::GetMapNormalVector(D3DXVECTOR3 vPos)
 		int k = (i*nMapSizeY+j);
 
 		// 2005-04-06 by jschoi
-//		if(g_pGround->m_pTileInfo[k].useWater)// ¹° À§
-		if(g_pGround->m_pTileInfo[k].dwWaterType == 1)// ¹° À§
+//		if(g_pGround->m_pTileInfo[k].useWater)// ë¬¼ ìœ„
+		if(g_pGround->m_pTileInfo[k].dwWaterType == 1)// ë¬¼ ìœ„
 		{
 			return D3DXVECTOR3(0,1,0);
 		}
@@ -1700,7 +1701,7 @@ D3DXVECTOR3 CMonsterData::GetMapNormalVector(D3DXVECTOR3 vPos)
 			g_pGround->m_pTileVertexArray[(i+1)*(nMapSizeY+1)+(j)].pos,
 			&fDist))//, &fBary1, &fBary2 ))
 		{
-			// ÁöÇüÀÇ ³ë¸Öº¤ÅÍ¸¦ ±¸ÇÑ´Ù.
+			// ì§€í˜•ì˜ ë…¸ë©€ë²¡í„°ë¥¼ êµ¬í•œë‹¤.
 			D3DXVec3Cross(&vNormal,&(g_pGround->m_pTileVertexArray[(i)*(nMapSizeY+1)+(j+1)].pos
 				-g_pGround->m_pTileVertexArray[(i)*(nMapSizeY+1)+j].pos),
 				&(g_pGround->m_pTileVertexArray[(i+1)*(nMapSizeY+1)+(j)].pos
@@ -1712,7 +1713,7 @@ D3DXVECTOR3 CMonsterData::GetMapNormalVector(D3DXVECTOR3 vPos)
 			g_pGround->m_pTileVertexArray[(i+1)*(nMapSizeY+1)+j+1].pos,
 			&fDist))//, &fBary1, &fBary2 ))
 		{
-			// ÁöÇüÀÇ ³ë¸Öº¤ÅÍ¸¦ ±¸ÇÑ´Ù.
+			// ì§€í˜•ì˜ ë…¸ë©€ë²¡í„°ë¥¼ êµ¬í•œë‹¤.
 			D3DXVec3Cross(&vNormal,&(g_pGround->m_pTileVertexArray[(i+1)*(nMapSizeY+1)+(j+1)].pos
 				-g_pGround->m_pTileVertexArray[(i)*(nMapSizeY+1)+j+1].pos),
 				&(g_pGround->m_pTileVertexArray[(i+1)*(nMapSizeY+1)+(j)].pos
@@ -1725,12 +1726,12 @@ D3DXVECTOR3 CMonsterData::GetMapNormalVector(D3DXVECTOR3 vPos)
 }
 
 
-// ¸ó½ºÅÍ ½ºÅ³ 2004.06.26 jschoi
+// ëª¬ìŠ¤í„° ìŠ¤í‚¬ 2004.06.26 jschoi
 void CMonsterData::UseSkillMove()
 {
 	if(m_nMonsterSkillState == MONSTER_WAIT_END_SKILL)
 	{
-		// ÃÖÁ¾ ÁÂÇ¥ ·Îµå
+		// ìµœì¢… ì¢Œí‘œ ë¡œë“œ
 		m_vPos = m_vOldSkillEndPos;
 		m_vVel = m_vOldSkillEndVel;
 		m_vUp = m_vOldSkillEndUp;
@@ -1741,11 +1742,11 @@ void CMonsterData::UseSkillMove()
 		EVENT_POINT SkillPoint;
 
 		SkillPoint=m_pMonsterMovePattern->GetCurrentCinemaPoint();
-		m_vPos = SkillPoint.vPosition;			// À§Ä¡
-		m_vVel = SkillPoint.vDirection;			// ¹æÇâ
-		m_vUp = SkillPoint.vUpVector;			// ¾÷º¤ÅÍ
+		m_vPos = SkillPoint.vPosition;			// ìœ„ì¹˜
+		m_vVel = SkillPoint.vDirection;			// ë°©í–¥
+		m_vUp = SkillPoint.vUpVector;			// ì—…ë²¡í„°
 
-		// Ãæµ¹ Ã³¸® 2004.06.26 jschoi
+		// ì¶©ëŒ ì²˜ë¦¬ 2004.06.26 jschoi
 		float fCheckHeight;
 		BOOL bIsWater = g_pShuttleChild->CheckIsWater(m_vPos);
 		if(bIsWater)
@@ -1763,16 +1764,16 @@ void CMonsterData::UseSkillMove()
 
 		if(bSkillStop)
 		{
-			m_fLeanRate= 0;						// ÀÌÀü ¾÷º¤ÅÍ¸¦ ±â·ÏÇÏ¿© ºÎµå·´°Ô ±â¿ïÀÎ´Ù(ÁÂ¿ì ÀÌµ¿ ±â¿ïÀÓ°ú È¸Àü ±â¿ïÀÓ Á¶Àı)
+			m_fLeanRate= 0;						// ì´ì „ ì—…ë²¡í„°ë¥¼ ê¸°ë¡í•˜ì—¬ ë¶€ë“œëŸ½ê²Œ ê¸°ìš¸ì¸ë‹¤(ì¢Œìš° ì´ë™ ê¸°ìš¸ì„ê³¼ íšŒì „ ê¸°ìš¸ì„ ì¡°ì ˆ)
 			m_nMonsterSkillState = MONSTER_WAIT_END_SKILL;
 
-			// ½ºÅ³ÀÌ ³¡³µÀ½À» ¼­¹ö·Î ¾Ë¸°´Ù.
+			// ìŠ¤í‚¬ì´ ëë‚¬ìŒì„ ì„œë²„ë¡œ ì•Œë¦°ë‹¤.
 			MSG_FC_MONSTER_SKILL_END_SKILL sMsg;
 			sMsg.MonsterIndex	= m_info.MonsterIndex;
 			sMsg.PositionVector	= m_vPos;
 			sMsg.TargetVector	= m_vVel*1000.0f;			// TargetVector * 1000.0f		
 
-			// ÇöÀç ÁÂÇ¥ ÀúÀå
+			// í˜„ì¬ ì¢Œí‘œ ì €ì¥
 			m_vOldSkillEndPos = m_vPos;
 			m_vOldSkillEndVel = m_vVel;
 			m_vOldSkillEndUp = m_vUp;
@@ -1787,7 +1788,7 @@ void CMonsterData::UseSkillMove()
 
 void CMonsterData::InitMonsterMovePattern(int nMonsterMoveType)
 {
-//  ½Ã³×¸¶ Æ÷ÀÎÆ® ¼ÂÆÃ/////////////////////////////////////////////////////////////////
+//  ì‹œë„¤ë§ˆ í¬ì¸íŠ¸ ì…‹íŒ…/////////////////////////////////////////////////////////////////
 	char str[32];
 	sprintf(str,"%08d", nMonsterMoveType);
 	if(m_pMonsterMovePattern != NULL)
@@ -1808,10 +1809,10 @@ void CMonsterData::InitMonsterMovePattern(int nMonsterMoveType)
 	ep.vUpVector = D3DXVECTOR3(m_mMatrix._21,m_mMatrix._22,m_mMatrix._23);
 	D3DXVec3Normalize(&ep.vDirection,&ep.vDirection);
 	ep.fVelocity = 100;
-	ep.fCurvature = DEFAULT_CURVATURE;	// ÃÊ±â°ª ¼ÂÆÃ
+	ep.fCurvature = DEFAULT_CURVATURE;	// ì´ˆê¸°ê°’ ì…‹íŒ…
 	m_pMonsterMovePattern->InitCinemaData(ep);
-//	DBGOUT("½ºÅ³ »ç¿ë MonsterData¿¡ InitSkillPattern()ÀÓ..\n");
-//  ÃÊ±âÈ­ Á¾·á ///////////////////////////////////////////////////////////////////////
+//	DBGOUT("ìŠ¤í‚¬ ì‚¬ìš© MonsterDataì— InitSkillPattern()ì„..\n");
+//  ì´ˆê¸°í™” ì¢…ë£Œ ///////////////////////////////////////////////////////////////////////
 }
 
 void CMonsterData::EnableObjectMonsterObject()
@@ -1850,7 +1851,7 @@ void CMonsterData::DisableObjectMonsterObject()
 				D3DXVec3Length(&(pObj->m_vPos - m_vPos)) < 10.0f )
 			{
 				pObj->m_bEnableObjectMonsterObject = FALSE;
-				// 2006-07-05 by ispark, Á×´Â ºÎºĞ ¼öÁ¤
+				// 2006-07-05 by ispark, ì£½ëŠ” ë¶€ë¶„ ìˆ˜ì •
 				vectorCObjectChildPtr::iterator itObj = find(g_pScene->m_vectorRangeObjectPtrList.begin(), g_pScene->m_vectorRangeObjectPtrList.end(), pObj);
 				if(itObj != g_pScene->m_vectorRangeObjectPtrList.end())
 				{
@@ -1867,8 +1868,8 @@ void CMonsterData::DisableObjectMonsterObject()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CEnemyData::UpdateCheckObjectTOEnemy()
-/// \brief		¿ÀºêÁ§Æ® Ãæµ¹ °ü·Ã ¿©ºÎ ÆÇ´Ü 
-/// \author		// 2007-05-17 by bhsohn ¿ÀºêÁ§Æ® µÚ¿¡ ¼û¾úÀ»½Ã ¿¡ ´ëÇÑ Ã³ °Ë»ç Ã³¸®	
+/// \brief		ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ê´€ë ¨ ì—¬ë¶€ íŒë‹¨ 
+/// \author		// 2007-05-17 by bhsohn ì˜¤ë¸Œì íŠ¸ ë’¤ì— ìˆ¨ì—ˆì„ì‹œ ì— ëŒ€í•œ ì²˜ ê²€ì‚¬ ì²˜ë¦¬	
 /// \date		2007-05-17 ~ 2007-05-17
 /// \warning	
 ///
@@ -1877,24 +1878,24 @@ void CMonsterData::DisableObjectMonsterObject()
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CMonsterData::UpdateCheckObjectTOEnemy()
 {	
-	// ¿ÀºêÁ§Æ® Ãæµ¹ °ü·Ã Ã¼Å©
+	// ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ê´€ë ¨ ì²´í¬
 	D3DXVECTOR3	vMyShuttlePos	= g_pShuttleChild->m_vPos;
 	D3DXVECTOR3	vEmenyPos		= m_vPos;
 
  	m_bCheckObject = FALSE;
 	m_bCheckObjectEnemyShow = TRUE;		
 	
-	// ÇÑ¹ø¿¡ Á÷¼± ·¹ÀÌÀú¸¦ ½ğ´Ù.
+	// í•œë²ˆì— ì§ì„  ë ˆì´ì €ë¥¼ ìœë‹¤.
 	if(g_pScene->IsObjectCheckPosTOPos(vMyShuttlePos, vEmenyPos, m_vUp))
 	{
-		// ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù.
+		// ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤.
 		m_bCheckObject = TRUE;
 		m_bCheckObjectEnemyShow = FALSE;
 	}
-	// ÁöÇü°ü·Ã Ã¼Å©¸¦ ÇÑ´Ù. 
+	// ì§€í˜•ê´€ë ¨ ì²´í¬ë¥¼ í•œë‹¤. 
 	else if(g_pScene->IsTileCheckPosTOPos(vMyShuttlePos, vEmenyPos))
 	{
-		// ÁöÇüÀÌ ÀÖ´Ù.
+		// ì§€í˜•ì´ ìˆë‹¤.
 		m_bCheckObject = TRUE;
 		m_bCheckObjectEnemyShow = FALSE;
 	}
@@ -1903,8 +1904,8 @@ BOOL CMonsterData::UpdateCheckObjectTOEnemy()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CMonsterData::IsCheckObjectColl()
-/// \brief		Å¸ÄÏÀ» ÀâÀ» ½Ã, ¿ÀºêÁ§Æ® Ãæµ¹ °ü·Ã ¿©ºÎ ÆÇ´Ü 
-/// \author		// 2007-05-17 by bhsohn ¿ÀºêÁ§Æ® µÚ¿¡ ¼û¾úÀ»½Ã ¿¡ ´ëÇÑ Ã³ °Ë»ç Ã³¸®	
+/// \brief		íƒ€ì¼“ì„ ì¡ì„ ì‹œ, ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ê´€ë ¨ ì—¬ë¶€ íŒë‹¨ 
+/// \author		// 2007-05-17 by bhsohn ì˜¤ë¸Œì íŠ¸ ë’¤ì— ìˆ¨ì—ˆì„ì‹œ ì— ëŒ€í•œ ì²˜ ê²€ì‚¬ ì²˜ë¦¬	
 /// \date		2007-05-17 ~ 2007-05-17
 /// \warning	
 ///
@@ -1918,8 +1919,8 @@ BOOL CMonsterData::IsCheckObjectColl()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CMonsterData::IsCheckObjectShow()
-/// \brief		¿ÀºêÁ§Æ®¸¦ ±×¸±Áö ¸»Áö¸¦ °áÁ¤ÇÑ´Ù.
-/// \author		// 2007-05-17 by bhsohn ¿ÀºêÁ§Æ® µÚ¿¡ ¼û¾úÀ»½Ã ¿¡ ´ëÇÑ Ã³ °Ë»ç Ã³¸®	
+/// \brief		ì˜¤ë¸Œì íŠ¸ë¥¼ ê·¸ë¦´ì§€ ë§ì§€ë¥¼ ê²°ì •í•œë‹¤.
+/// \author		// 2007-05-17 by bhsohn ì˜¤ë¸Œì íŠ¸ ë’¤ì— ìˆ¨ì—ˆì„ì‹œ ì— ëŒ€í•œ ì²˜ ê²€ì‚¬ ì²˜ë¦¬	
 /// \date		2007-05-17 ~ 2007-05-17
 /// \warning	
 ///
@@ -1933,10 +1934,10 @@ BOOL CMonsterData::IsCheckObjectShow()
 
 void CMonsterData::TickObjectCheck()
 {
-	if((g_pD3dApp->IsMyShuttleCharacter() == TRUE)		// ¸¶À»ÀÌ¸é ¹«Á¶°Ç º¸ÀÎ´Ù.
-		|| (m_info.MonsterIndex == g_pShuttleChild->GetTargetClientIndext())	// ÀûÀ» Å¸ÄÏ Àâ°íÀÖÀ¸¸é
-		|| (m_nTargetIndex == g_pShuttleChild->GetMyShuttleInfo().ClientIndex)// ³ª¸¦ Å¸ÄÏÀ» Àâ°í ÀÖÀ¸¸é ¹«Á¶°Ç º¸ÀÎ´Ù.
-		|| ( m_nTargetIndex != 0))  // 2007-06-28 by bhsohn ³ª¸¦ Å¸ÄÏ Àâ°í ÀÖÁö ¾ÈÀº ¸ó½ºÅÍ¿¡ ´ëÇÑ Å¸ÄÏ Ã³¸®
+	if((g_pD3dApp->IsMyShuttleCharacter() == TRUE)		// ë§ˆì„ì´ë©´ ë¬´ì¡°ê±´ ë³´ì¸ë‹¤.
+		|| (m_info.MonsterIndex == g_pShuttleChild->GetTargetClientIndext())	// ì ì„ íƒ€ì¼“ ì¡ê³ ìˆìœ¼ë©´
+		|| (m_nTargetIndex == g_pShuttleChild->GetMyShuttleInfo().ClientIndex)// ë‚˜ë¥¼ íƒ€ì¼“ì„ ì¡ê³  ìˆìœ¼ë©´ ë¬´ì¡°ê±´ ë³´ì¸ë‹¤.
+		|| ( m_nTargetIndex != 0))  // 2007-06-28 by bhsohn ë‚˜ë¥¼ íƒ€ì¼“ ì¡ê³  ìˆì§€ ì•ˆì€ ëª¬ìŠ¤í„°ì— ëŒ€í•œ íƒ€ì¼“ ì²˜ë¦¬
 		
 	{
 		m_bCheckObjectEnemyShow = TRUE;
@@ -1944,22 +1945,22 @@ void CMonsterData::TickObjectCheck()
 	else if( m_pMonsterInfo && (IS_SAME_CHARACTER_MONSTER_INFLUENCE(g_pShuttleChild->GetMyShuttleInfo().InfluenceType,
 													m_pMonsterInfo->Belligerence)))
 	{
-		// °°ÀºÆí ¼¼·Â ¸ó½ºÅÍÀÌ´Ù. 
+		// ê°™ì€í¸ ì„¸ë ¥ ëª¬ìŠ¤í„°ì´ë‹¤. 
 		m_bCheckObjectEnemyShow = TRUE;
 	}
-	// 2010. 03. 03 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷(ÀÔÀå UIº¯°æ)
+	// 2010. 03. 03 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨(ì…ì¥ UIë³€ê²½)
 	else if( m_pMonsterInfo && m_pMonsterInfo->Belligerence == BELL_INFINITY_DEFENSE_MONSTER )
 	{
 		m_bCheckObjectEnemyShow = TRUE;
 	}
-	// end 2010. 03. 03 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷(ÀÔÀå UIº¯°æ)
+	// end 2010. 03. 03 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨(ì…ì¥ UIë³€ê²½)
 	else
 	{
 		m_bCheckObjectEnemyShow = FALSE;
 	}
 }
 
-// 2010. 03. 18 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷(¸ó½ºÅÍ ½ºÅ³ Ãß°¡)
+// 2010. 03. 18 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨(ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì¶”ê°€)
 void	CMonsterData::InsertMonsterBuffSkill( INT nSkillNum, ITEM* pSkillItem )
 {
 	if( m_mapMonsterBuffSkill.find( nSkillNum ) == m_mapMonsterBuffSkill.end() )
@@ -1985,9 +1986,9 @@ ITEM*	CMonsterData::GetSkillItemWithDesParam( BYTE nDesParam )
 
 	return NULL;
 }
-// end 2010. 03. 18 by ckPark ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷(¸ó½ºÅÍ ½ºÅ³ Ãß°¡)
+// end 2010. 03. 18 by ckPark ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨(ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì¶”ê°€)
 
-// 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+// 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 D3DXVECTOR3 CMonsterData::GetMultiPos(int nMultiIndex)
 {
 	D3DXVECTOR3 v3 = D3DXVECTOR3(0,0,0);
@@ -2009,10 +2010,10 @@ void CMonsterData::GetScreenPos(D3DXVECTOR3 vMultiPos, int &x, int &y, int& w)
 {
 	g_pD3dApp->CalcObjectSourceScreenCoords(vMultiPos, g_pD3dApp->GetBackBufferDesc().Width, g_pD3dApp->GetBackBufferDesc().Height, x, y, w );
 }
-// end 11. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö - ³Í Å¸°Ù ½Ã½ºÅÛ
+// end 11. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„ - ë„Œ íƒ€ê²Ÿ ì‹œìŠ¤í…œ
 
 
-// 2011-05-17 by jhahn	ÀÎÇÇ3Â÷ ¸ó½ºÅÍ ±³Ã¼
+// 2011-05-17 by jhahn	ì¸í”¼3ì°¨ ëª¬ìŠ¤í„° êµì²´
 void CMonsterData::ChangeMonster(int ChangeMonsterUnitKind)
 {
 	
@@ -2031,9 +2032,9 @@ void CMonsterData::ChangeMonsterInfo(int nSourceIndex, BodyCond_t nBodyCon)
 {
 	m_pMonMesh = m_pRenderer->InitData( nSourceIndex, nBodyCon);
 }
-//end 2011-05-17 by jhahn	ÀÎÇÇ3Â÷ ¸ó½ºÅÍ ±³Ã¼
+//end 2011-05-17 by jhahn	ì¸í”¼3ì°¨ ëª¬ìŠ¤í„° êµì²´
 
-//2011-06-05 by jhahn	ÀÎÇÇ3Â÷ ¸ó½ºÅÍ »èÁ¦
+//2011-06-05 by jhahn	ì¸í”¼3ì°¨ ëª¬ìŠ¤í„° ì‚­ì œ
 void CMonsterData::DeleteMonster()
 {	
 	m_info.BodyCondition = BODYCON_MON_AUTODESTROYED_MASK;
@@ -2043,4 +2044,4 @@ void CMonsterData::DeleteMonster()
 	m_pMonMesh = m_pRenderer->InitData( FALSE, m_info.BodyCondition);
 	
 }
-//end 2011-06-05 by jhahn	ÀÎÇÇ3Â÷ ¸ó½ºÅÍ »èÁ¦
+//end 2011-06-05 by jhahn	ì¸í”¼3ì°¨ ëª¬ìŠ¤í„° ì‚­ì œ

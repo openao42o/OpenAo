@@ -1,7 +1,7 @@
-﻿#ifndef COMMON_ANTICPXSVR_H_
+﻿// Copyright [2002] MasangSoft
+#ifndef COMMON_ANTICPXSVR_H_
 #define COMMON_ANTICPXSVR_H_
 
-// Copyright [2002] MasangSoft
 #define ANTICPX_INVALID_HANDLE_VALUE		(0)
 
 //////////////////////////////////////////////////////////////////////////

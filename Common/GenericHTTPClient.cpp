@@ -473,7 +473,7 @@ BOOL GenericHTTPClient::RequestPostMultiPartsFormData(LPCTSTR szURI)
     DWORD    dwHTTPRequestLength=__SIZE_HTTP_BUFFER;
 
     ::ZeroMemory(szHTTPRequest, __SIZE_HTTP_BUFFER);
-    if(!::HttpQueryInfo(_hHTTPRequest, HTTP_QUERY_RAW_HEADERS_CRLF, szHTTPRequest, &dwHTTPRequestLength, NULL)){
+    if (!::HttpQueryInfo(_hHTTPRequest, HTTP_QUERY_RAW_HEADERS_CRLF, szHTTPRequest, &dwHTTPRequestLength, NULL)) {
         _dwError=::GetLastError();
         LPVOID     lpMsgBuffer;
         DWORD dwRet=FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
@@ -992,7 +992,7 @@ int GenericHTTPClient::LoadXMLFromQueryHTTPResponse(void)
 {
 #if defined(USING_MSXML)
     LPCTSTR szResponseMsg = this->QueryHTTPResponse();
-    if(0 >= strlen(szResponseMsg))
+    if (0 >= strlen(szResponseMsg))
     {
         return -1;    // no response message
     }
@@ -1000,7 +1000,7 @@ int GenericHTTPClient::LoadXMLFromQueryHTTPResponse(void)
     this->UninitializeXMLLoader();
     
     HRESULT hr = m_pIXMLDOMDoc.CreateInstance(__uuidof(DOMDocument)); 
-    if(FAILED(hr))
+    if (FAILED(hr))
     {
         return -2;    // Create fail
     }
@@ -1016,7 +1016,7 @@ int GenericHTTPClient::LoadXMLFromQueryHTTPResponse(void)
     hr = m_pIXMLDOMDoc->loadXML(bstr);
     ::SysFreeString(bstr);
     
-    if(hr == 0) 
+    if (hr == 0) 
     {        
         this->UninitializeXMLLoader();
         return -4;
@@ -1033,7 +1033,7 @@ int GenericHTTPClient::LoadXMLFromQueryHTTPResponse(void)
 void GenericHTTPClient::UninitializeXMLLoader(void)
 {
 #if defined(USING_MSXML)
-    if(NULL != m_pIXMLDOMDoc)
+    if (NULL != m_pIXMLDOMDoc)
     {
         m_pIXMLDOMDoc->Release();
     }
@@ -1046,14 +1046,14 @@ void GenericHTTPClient::UninitializeXMLLoader(void)
 BOOL GenericHTTPClient::GetTextFromXMLLoaderByNodeName(LPSTR o_szNodeText, int i_nBufSize, LPCTSTR i_szNodeName, int i_NodeIndex/*=0*/)
 {
 #if defined(USING_MSXML)
-    if(NULL == m_pIXMLDOMDoc
+    if (NULL == m_pIXMLDOMDoc
         || FALSE == m_bIsXMLLoaded)
     {
         return FALSE;
     }
 
     IXMLDOMNodeListPtr pNodeList = m_pIXMLDOMDoc->selectNodes(i_szNodeName);
-    if(NULL == pNodeList
+    if (NULL == pNodeList
         || 0 >= pNodeList->length
         || i_NodeIndex+1 > pNodeList->length)
     {

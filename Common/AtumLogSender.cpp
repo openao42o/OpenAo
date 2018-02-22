@@ -1209,7 +1209,9 @@ BOOL CAtumLogSender::SendLogMessageITEMSPI(CFieldIOCPSocket *pCharacterSocket, I
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CAtumLogSender::SendLogMessageITEMGetItemByItemEvent(CFieldIOCPSocket *pCharacterSocket, ITEM_GENERAL *pItem, INT nChangeCount)
 {
-    if (pItem == NULL){                    return FALSE;}
+    if (pItem == NULL) {
+        return FALSE;
+    }
 
     INIT_MSG_WITH_BUFFER(MSG_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT, T_FL_LOG_ITEM_GET_ITEM_BY_ITEMEVENT, pSMsg, SendBuf);
     pSMsg->CharacterUniqueNumber    = pItem->Possess;

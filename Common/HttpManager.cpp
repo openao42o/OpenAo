@@ -86,13 +86,13 @@ Err_t CHttpManager::DownloadFileByHttp(const char *i_pServerName, int i_nServerP
     m_nServerPort            = i_nServerPort;
     util::strncpy(m_szRemoteFileName, i_pRemoteFileName, HM_SIZE_MAX_FILE_NAME);
     util::strncpy(m_szLocalFileName, i_pLocalFileName, HM_SIZE_MAX_FILE_NAME);
-    if(i_bUseThread)
+    if (i_bUseThread)
     {
         m_hUpdateWindow        = i_hUpdateWindow;
         
         //unsigned thrdaddr;
         //m_hDownloadThread = ch BEGINTHREADEX (NULL, 0, DownloadThreadByHttp, (LPVOID)this, 0, &thrdaddr);
-        //if(NULL == m_hDownloadThread)
+        //if (NULL == m_hDownloadThread)
         //{
         //    return FALSE;
         //}
@@ -129,14 +129,14 @@ Err_t CHttpManager::DownloadFileByHttp(const char *i_pServerName, int i_nServerP
 Err_t CHttpManager::_DownLoadFileByHttp(void)
 {
     HINTERNET hInternetSession = ::InternetOpen(STRMSG_WINDOW_TEXT, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
-    if(NULL == hInternetSession)
+    if (NULL == hInternetSession)
     {// 2007-01-05 by cmkwon, 인터넷이 연결되어 있지 않습니다
 
         return ERR_CANNOT_CONNECT_INTERNET;
     }
 
     HINTERNET hHttpConnection = ::InternetConnect(hInternetSession, m_szServerName, m_nServerPort, NULL, NULL, INTERNET_SERVICE_HTTP, 0, (DWORD)this );
-    if(NULL == hHttpConnection)
+    if (NULL == hHttpConnection)
     {// 2007-01-05 by cmkwon, 서버 오류로 연결할 수 없습니다
         ::InternetCloseHandle(hInternetSession);
         hInternetSession    = NULL;
@@ -149,7 +149,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
     ppszAcceptTypes[1]    = NULL;
     DWORD        dwFlag    = INTERNET_FLAG_RELOAD | INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_KEEP_CONNECTION;
     HINTERNET hHttpFile    = ::HttpOpenRequest(hHttpConnection, NULL, m_szRemoteFileName, NULL, NULL, ppszAcceptTypes, dwFlag, (DWORD)this );
-    if(NULL == hHttpFile)
+    if (NULL == hHttpFile)
     {
         ::InternetCloseHandle(hHttpConnection);
         hHttpConnection        = NULL;
@@ -159,7 +159,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
         return ERR_FUNC_HttpOpenRequest;
     }
 
-    if(FALSE == ::HttpSendRequest(hHttpFile, NULL, 0, NULL, 0))
+    if (FALSE == ::HttpSendRequest(hHttpFile, NULL, 0, NULL, 0))
     {
         ::InternetCloseHandle(hHttpFile);
         hHttpFile            = NULL;
@@ -187,7 +187,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
     }
     
     nStatusCode = atoi( szStatusCode );
-    switch(nStatusCode)
+    switch (nStatusCode)
     {
     case HTTP_STATUS_OK:
         break;
@@ -222,7 +222,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
 
     ///////////////////////////////////////////////////////////////////////////////
     // 다운로드 파일 크기를 Post 한다
-    if(m_hUpdateWindow)
+    if (m_hUpdateWindow)
     {
         ::PostMessage(m_hUpdateWindow, WM_UPDATEFILE_DOWNLOAD_INIT, dwContentLen, 0);
     }
@@ -267,7 +267,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
             return ERR_UPDATE_FILE_DOWNLOADING_FAIL;
         }
 
-        if(m_bDownloadThreadCancelFlag)
+        if (m_bDownloadThreadCancelFlag)
         {// 2007-01-05 by cmkwon, 다운 로드 취소
             
             fileObject.Close();
@@ -283,12 +283,12 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
             return ERR_UPDATE_FILE_DOWNLOADING_CANCEL;
         }
         
-        if(0 < dwRead)
+        if (0 < dwRead)
         {
             fileObject.Write(buffer, dwRead);
             dwTotalRead += dwRead;
 
-            if(m_hUpdateWindow)
+            if (m_hUpdateWindow)
             {
                 ::PostMessage(m_hUpdateWindow, WM_UPDATEFILE_DOWNLOAD_PROGRESS, dwTotalRead, 0);
             }
@@ -326,7 +326,7 @@ DWORD WINAPI DownloadThreadByHttp(LPVOID lpParam)
 
     Err_t err = phttpMan->_DownLoadFileByHttp();
 
-    if(ERR_NO_ERROR == err)
+    if (ERR_NO_ERROR == err)
     {
         phttpMan->PostMessage2UpdateWindow(WM_UPDATEFILE_DOWNLOAD_OK, 0, 0);
     }
@@ -349,7 +349,7 @@ DWORD WINAPI DownloadThreadByHttp(LPVOID lpParam)
 ///////////////////////////////////////////////////////////////////////////////
 void CHttpManager::PostMessage2UpdateWindow(UINT i_uiMsgTy, WPARAM i_wParam, LPARAM i_lParam)
 {
-    if(m_hUpdateWindow)
+    if (m_hUpdateWindow)
     {
         ::PostMessage(m_hUpdateWindow, i_uiMsgTy, i_wParam, i_lParam);
     }

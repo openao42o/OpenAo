@@ -339,9 +339,9 @@ public:
     void SetAutoSizeStyle(int nStyle = GVS_BOTH)  { m_nAutoSizeColumnStyle = nStyle;  }
     int  GetAutoSizeStyle()                       { return m_nAutoSizeColumnStyle; }
 
-    void EnableHiddenColUnhide(BOOL bEnable = TRUE){ m_bHiddenColUnhide = bEnable;    }
+    void EnableHiddenColUnhide(BOOL bEnable = TRUE) { m_bHiddenColUnhide = bEnable;    }
     BOOL GetHiddenColUnhide()                     { return m_bHiddenColUnhide;        }
-    void EnableHiddenRowUnhide(BOOL bEnable = TRUE){ m_bHiddenRowUnhide = bEnable;    }
+    void EnableHiddenRowUnhide(BOOL bEnable = TRUE) { m_bHiddenRowUnhide = bEnable;    }
     BOOL GetHiddenRowUnhide()                     { return m_bHiddenRowUnhide;        }
 
     void EnableColumnHide(BOOL bEnable = TRUE)    { m_bAllowColHide = bEnable;        }

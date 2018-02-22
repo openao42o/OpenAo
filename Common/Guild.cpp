@@ -23,7 +23,7 @@ CIMIOCP        *CGuildMember::ms_pIMIOCP1            = NULL;
 // Guild Member
 BOOL CGuildMember::SetOnline(CIMIOCPSocket *i_pSocket)
 {
-    if(NULL == i_pSocket
+    if (NULL == i_pSocket
         || FALSE == i_pSocket->IsUsing())
     {
         return FALSE;
@@ -223,13 +223,13 @@ BOOL CGuild::SendGuildBonusExp()
     msgBonusExpRate->nBonusExpRate    = m_nBonusExpRate;
     // 2012-10-12 by jhjang 해피 아워 경험치 보너스 시스템 리뉴얼
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {        
-        if(&*itr == NULL)
+        if (&*itr == NULL)
             continue;
         CGuildMember &rGuildMember = *itr;
 
-        if(rGuildMember.m_pIMIOCPSocket != NULL
+        if (rGuildMember.m_pIMIOCPSocket != NULL
             && rGuildMember.m_pIMIOCPSocket->IsUsing())
         {
 
@@ -250,7 +250,7 @@ BOOL CGuild::SendFieldToGuildMembers(BYTE *buffer
                                    , MSG_IC_COUNTDOWN_START *i_pCountdownStart/*=NULL*/) //필드 서버의 길드 맴버에게 전송
 {
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {        
         if (itr->m_pIMIOCPSocket != NULL 
             && itr->m_pIMIOCPSocket->IsUsing()
@@ -259,7 +259,7 @@ BOOL CGuild::SendFieldToGuildMembers(BYTE *buffer
             && itr->m_pIMIOCPSocket->ms_pIMIOCP->m_pFieldServerSocket->IsUsing()
             && CharacterUniqueNumberToExclude != itr->m_CharacterUniqueNumber)
         {
-            if(i_pCountdownStart)
+            if (i_pCountdownStart)
             {
                 itr->m_pIMIOCPSocket->ms_pIMIOCP->m_pFieldServerSocket->m_countdownChecker.StartCountDown(i_pCountdownStart->byCountdownType, i_pCountdownStart->nWaitingSecond*1000, timeGetTime());
             }                                                             
@@ -275,7 +275,7 @@ BOOL CGuild::SendFieldToGuildMembers(BYTE *buffer
 void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TRUE*/)
 {
     CGuildMember *pMember = NULL;
-    if(FALSE == this->GetGuildMember(i_pSocket->m_character.CharacterUniqueNumber, pMember))
+    if (FALSE == this->GetGuildMember(i_pSocket->m_character.CharacterUniqueNumber, pMember))
     {
         char    szSystemLog[1024];
         sprintf(szSystemLog, "[ERROR] SetOnlineMember Error, GuildUID(%d) CharacterUID(%d)\r\n"
@@ -284,7 +284,7 @@ void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TR
         return;
     }
 
-    if(FALSE == pMember->SetOnline(i_pSocket))
+    if (FALSE == pMember->SetOnline(i_pSocket))
     {
         return;
     }
@@ -295,7 +295,7 @@ void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TR
     SendGuildBonusExp();
     // end 2012-10-12 by jhjang 해피 아워 경험치 보너스 시스템 리뉴얼
 
-    if(i_bSendMSG)
+    if (i_bSendMSG)
     {
         INIT_MSG_WITH_BUFFER(MSG_IC_GUILD_SET_MEMBER_STATE, T_IC_GUILD_SET_MEMBER_STATE, msgSetState, msgSetStateBuf);
         msgSetState->MemberUniqueNumber    = pMember->m_CharacterUniqueNumber;
@@ -307,7 +307,7 @@ void CGuild::SetOnlineGuildMember(CIMIOCPSocket *i_pSocket, BOOL i_bSendMSG/*=TR
 void CGuild::SetOfflineGuildMember(UID32_t i_uidCharacter, BOOL i_bSendMSG/*=TRUE*/)
 {
     CGuildMember *pMember = NULL;
-    if(FALSE == this->GetGuildMember(i_uidCharacter, pMember))
+    if (FALSE == this->GetGuildMember(i_uidCharacter, pMember))
     {
         char    szSystemLog[1024];
         sprintf(szSystemLog, "[ERROR] SetOfflineMember Error, GuildUID(%d) CharacterUID(%d)\r\n"
@@ -360,7 +360,7 @@ int CGuild::GetLiveMemberCountByMapChannelIndex(MAP_CHANNEL_INDEX i_mapChannIdx)
     while (itr != m_ListGuildMember.end())
     {
         CGuildMember *tmpGuildMember = &(*itr);
-        if(tmpGuildMember->m_bIsOnline
+        if (tmpGuildMember->m_bIsOnline
             && tmpGuildMember->m_pIMIOCPSocket
             && tmpGuildMember->m_pIMIOCPSocket->IsUsing()
             && i_mapChannIdx == tmpGuildMember->m_pIMIOCPSocket->m_character.MapChannelIndex
@@ -393,13 +393,13 @@ BOOL CGuild::SendMsgToGuildMembers(BYTE *buffer
                                    , MSG_IC_COUNTDOWN_START *i_pCountdownStart/*=NULL*/)
 {
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {        
         if (itr->m_pIMIOCPSocket != NULL 
             && itr->m_pIMIOCPSocket->IsUsing()
             && CharacterUniqueNumberToExclude != itr->m_CharacterUniqueNumber)
         {
-            if(i_pCountdownStart)
+            if (i_pCountdownStart)
             {
                 itr->m_pIMIOCPSocket->m_countdownChecker.StartCountDown(i_pCountdownStart->byCountdownType, i_pCountdownStart->nWaitingSecond*1000, timeGetTime());
             }
@@ -414,7 +414,7 @@ BOOL CGuild::SendChatMsgToGuildMembers(BYTE *buffer
                                        , BitFlag16_t i_chatFlag8)
 {
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {        
         if (itr->m_pIMIOCPSocket)
         {
@@ -426,7 +426,7 @@ BOOL CGuild::SendChatMsgToGuildMembers(BYTE *buffer
 
 int CGuild::Send_MSG_IC_GUILD_GET_GUILD_INFO_OK(CIMIOCPSocket *i_pIISock)
 {
-    if(NULL == i_pIISock
+    if (NULL == i_pIISock
         || FALSE == i_pIISock->IsUsing())
     {
         return FALSE;
@@ -457,12 +457,12 @@ int CGuild::Send_MSG_IC_GUILD_GET_GUILD_INFO_OK(CIMIOCPSocket *i_pIISock)
     
     int offset = MSG_SIZE(MSG_IC_GUILD_GET_GUILD_INFO_OK);
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {
         CGuildMember &tmpMember                = *itr;
         MEX_GUILD_MEMBER_INFO *pMemberInfo    = NULL;
         
-        if(offset+sizeof(MEX_GUILD_MEMBER_INFO) > SIZE_MAX_PACKET)
+        if (offset+sizeof(MEX_GUILD_MEMBER_INFO) > SIZE_MAX_PACKET)
         {
             i_pIISock->SendAddData(SendBuf, offset);
             bUseGetMemberListOK                    = TRUE;
@@ -490,7 +490,7 @@ void CGuild::PrintGuildInfo(CIMIOCPSocket *pCharacterSocket)
     pCharacterSocket->SendString128(STRING_128_ADMIN_CMD, buf);
         
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    while(itr != m_ListGuildMember.end())
+    while (itr != m_ListGuildMember.end())
     {
         CGuildMember &tmpMember = *itr;
         sprintf(buf, "Member: %s(%d) %d %s",
@@ -536,16 +536,16 @@ void CGuild::AddGuildFame(int i_nAddValues)
 //{
 //    int nMemberCnts = 0;
 //    listGuildMember::iterator itr(m_ListGuildMember.begin());
-//    for(; itr != m_ListGuildMember.end(); itr++)
+//    for (; itr != m_ListGuildMember.end(); itr++)
 //    {
-//        if(itr->m_bIsOnline
+//        if (itr->m_bIsOnline
 //            && itr->m_pIMIOCPSocket
 //            && itr->m_pIMIOCPSocket->IsValidCharacter())
 //        {
 //            pArrIISockPtr[nMemberCnts]    = itr->m_pIMIOCPSocket;
 //            nMemberCnts++;
 //
-//            if(SIZE_MAX_INITIAL_GUILD_CAPACITY+COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY <= nMemberCnts)
+//            if (SIZE_MAX_INITIAL_GUILD_CAPACITY+COUNT_IN_MEMBERSHIP_ADDED_GUILD_CAPACITY <= nMemberCnts)
 //            {
 //                break;
 //            }
@@ -568,9 +568,9 @@ void CGuild::AddGuildFame(int i_nAddValues)
 int CGuild::GetGuildMemberIISocket(vectCIMIOCPSocketPtr *o_pvectIISockPtr)
 {
     listGuildMember::iterator itr(m_ListGuildMember.begin());
-    for(; itr != m_ListGuildMember.end(); itr++)
+    for (; itr != m_ListGuildMember.end(); itr++)
     {
-        if(itr->m_bIsOnline
+        if (itr->m_bIsOnline
             && itr->m_pIMIOCPSocket
             && itr->m_pIMIOCPSocket->IsValidCharacter())
         {
@@ -647,7 +647,7 @@ BOOL CGuild::CheckRank(UID32_t i_CharacterUniqueNumber, BYTE i_nNewRank)
     }
 
     listGuildMember::iterator itr = m_ListGuildMember.begin();
-    while(itr != m_ListGuildMember.end())
+    while (itr != m_ListGuildMember.end())
     {
         CGuildMember &tmpMember = *itr;
         if (tmpMember.m_Rank == i_nNewRank)
@@ -713,7 +713,7 @@ void CGuild::CheckOldIntroductionContent()
     ATUM_DATE_TIME    CurTime;
     CurTime.SetCurrentDateTime();
 
-    if(GUILDINTRODUCTION_PASSED_RANGE_DAY * 24 < m_GuildIntroduction.RegDate.GetTimeDiffTimeInHours(CurTime) )
+    if (GUILDINTRODUCTION_PASSED_RANGE_DAY * 24 < m_GuildIntroduction.RegDate.GetTimeDiffTimeInHours(CurTime) )
     {
         ms_pIMIOCP3->m_pAtumIMDBManager->MakeAndEnqueueQuery(QT_GuildDeleteIntroduction, NULL, NULL, (void*)m_GuildUniqueNumber);
         util::zero(&m_GuildIntroduction, sizeof(SGUILD_INTRODUCTION));
@@ -733,7 +733,7 @@ void CGuild::CheckOldIntroductionContent()
 ///////////////////////////////////////////////////////////////////////////////
 void CGuild::SetGuildMemberShip(BOOL i_bMemberShip, ATUM_DATE_TIME * i_pMemberShipExpireTime /*= NULL*/)
 {
-    if(!i_bMemberShip)
+    if (!i_bMemberShip)
     {
         m_bMemberShip = FALSE;
         m_MemberShipExpireTime.Reset();

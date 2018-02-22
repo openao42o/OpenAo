@@ -39,10 +39,10 @@ BOOL GInitFunctionLogSharedMemory(void)
                                   0, 
                                   MAX_FUNCTION_LOG_LINE*SIZE_OF_LOG,
                                   FUNCTION_LOG_SHARED_MEMORY_NAME );
-    if( g_hFunctionLogSharedMemory != NULL )
+    if ( g_hFunctionLogSharedMemory != NULL )
     {
 #ifdef _DEBUG
-        if( GetLastError() == ERROR_ALREADY_EXISTS )
+        if ( GetLastError() == ERROR_ALREADY_EXISTS )
         {
             DBGOUT("GInitFunctionLogSharedMemory(void) : Opend pre_existing shared memory.\n");
         }
@@ -58,7 +58,7 @@ BOOL GInitFunctionLogSharedMemory(void)
                                              0,
                                              0,
                                              0 );
-    if( g_szFunctionLogSharedMemory == NULL )
+    if ( g_szFunctionLogSharedMemory == NULL )
     {
         DBGOUT( "GInitFunctionLogSharedMemory(void) : Unable to map into memory.\n");
         return FALSE;
@@ -98,11 +98,11 @@ BOOL GCloseFunctionLogSharedMemory(void)
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
 {
-    if( !g_szFunctionLogSharedMemory )
+    if ( !g_szFunctionLogSharedMemory )
     {
         return FALSE;
     }
-    if( g_nCurrentSharedMemoryLine * SIZE_OF_LOG > (MAX_FUNCTION_LOG_LINE-1)*SIZE_OF_LOG )
+    if ( g_nCurrentSharedMemoryLine * SIZE_OF_LOG > (MAX_FUNCTION_LOG_LINE-1)*SIZE_OF_LOG )
     {
         DBGOUT("ERROR : GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize ) CurrentLine이 너무 크다.\n");
         return FALSE;
@@ -112,7 +112,7 @@ BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
     memcpy( g_szFunctionLogSharedMemory + g_nCurrentSharedMemoryLine * SIZE_OF_LOG, 
             i_pBuffer,
             i_nSize);
-    if( ++g_nCurrentSharedMemoryLine >= MAX_FUNCTION_LOG_LINE )
+    if ( ++g_nCurrentSharedMemoryLine >= MAX_FUNCTION_LOG_LINE )
     {
         g_nCurrentSharedMemoryLine = 0;
     }

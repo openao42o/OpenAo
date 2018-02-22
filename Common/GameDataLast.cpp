@@ -63,7 +63,7 @@ bool CGameData::GetCheckSum(BYTE o_byObjCheckSum[32], int *o_pnFileSize, char* p
     *o_pnFileSize = lFileSize;            // 2007-05-28 by cmkwon
     fseek(fp, 0L, SEEK_SET);    
 
-    BYTE *pFileData = new BYTE [lFileSize];
+    BYTE *pFileData = new BYTE[lFileSize];
     memset(pFileData, 0x00, lFileSize);
     fread(pFileData, lFileSize, 1, fp);
 // 2009-05-29 by cmkwon, Hash알고리즘 추가(SHA256) - 
@@ -190,9 +190,9 @@ bool CGameData::make_parse_file_ext()
     _lseek(ReadFile, 0, SEEK_SET);
     int n;
     
-    while((n = read(ReadFile, DataBuff, sizeof(DataBuff))) != 0)
+    while ((n = read(ReadFile, DataBuff, sizeof(DataBuff))) != 0)
     {
-        if(n == -1)
+        if (n == -1)
         {
             DBGOUT("%s ERROR ReadFile(%s - %d)\n", m_ZipFilePath, strerror( errno ), errno);
             util::del_array(pTemp);
@@ -220,7 +220,7 @@ bool CGameData::make_parse_file_ext()
     memcpy( pTotal_header, &pTemp[readPointer], sizeof(TotalHeader) );
     readPointer += sizeof(TotalHeader);
     // read data header
-    for( int i=0 ; i < (pTotal_header->m_DataNumber) ; i++)
+    for ( int i=0 ; i < (pTotal_header->m_DataNumber) ; i++)
     {
         auto pHeader = new DataHeader;
         memcpy((void*) pHeader, &pTemp[readPointer], sizeof(DataHeader)-4);

@@ -418,12 +418,12 @@ extern "C"
     #define _AhnHS_CheckHackShieldRunningStatus()            HS_ERR_OK
     #define _AhnHS_SendHsLog(arg1,arg2,arg3);    
     #define _AhnHS_VerifyProtectedFunction()    HS_ERR_OK
-    #define AHNHS_PROTECT_FUNCTION                __try{\
+    #define AHNHS_PROTECT_FUNCTION                __try {\
                                                     HS_ERR_OK;    \
-                                                }__finally{}
-    #define AHNHS_PROTECT_FUNCTIONEX(arg1)        __try{\
+                                                } __finally{}
+    #define AHNHS_PROTECT_FUNCTIONEX(arg1)        __try {\
                                                 arg1=HS_ERR_OK    \
-                                                }__finally{}
+                                                } __finally{}
     #define _AhnHS_QueryPerformanceCounter(arg1,arg2)    TRUE
     #define _AhnHS_QueryPerformanceFrequency(arg1,arg2)    TRUE
     #define _AhnHS_GetTickCount(arg1)            HS_ERR_OK
@@ -922,15 +922,15 @@ __stdcall
 _AhnHS_VerifyProtectedFunction();
 
 #define AHNHS_PROTECT_FUNCTION        \
-__try{                                \
+__try {                                \
     _AhnHS_VerifyProtectedFunction();    \
-}__finally{}                        \
+} __finally{}                        \
 
 
 #define AHNHS_PROTECT_FUNCTIONEX(nRet)        \
-__try{                                        \
+__try {                                        \
     nRet = _AhnHS_VerifyProtectedFunction();    \
-}__finally{}                                \
+} __finally{}                                \
 
 BOOL
 __stdcall 
