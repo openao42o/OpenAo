@@ -1,7 +1,8 @@
+Ôªø//Copyright[2002] MasangSoft
 // FunctionLog.cpp: implementation of the CFunctionLog class.
 //
 //////////////////////////////////////////////////////////////////////
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN        // Exclude rarely-used stuff from Windows headers
 //#include <afxwin.h>
 #define DIRECTINPUT_VERSION 0x800
 #define _WIN32_WINNT 0x0400
@@ -14,128 +15,128 @@
 
 #ifdef _FUNCTION_LOG
 
-#define FUNCTION_LOG_SHARED_MEMORY_NAME		"AtumFunctionLogMemory"
-int		g_nCurrentSharedMemoryLine = 0;
-char	*g_szFunctionLogSharedMemory = NULL; //[MAX_FUNCTION_LOG_LINE][SIZE_OF_LOG];
-HANDLE	g_hFunctionLogSharedMemory = NULL;
-CRITICAL_SECTION		m_csFunctionLog;
+#define FUNCTION_LOG_SHARED_MEMORY_NAME        "AtumFunctionLogMemory"
+int        g_nCurrentSharedMemoryLine = 0;
+char    *g_szFunctionLogSharedMemory = NULL; //[MAX_FUNCTION_LOG_LINE][SIZE_OF_LOG];
+HANDLE    g_hFunctionLogSharedMemory = NULL;
+CRITICAL_SECTION        m_csFunctionLog;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			BOOL GInitFunctionLogSharedMemory(void)
-/// \brief		∆„º«∑Œ±Î¿ª ¿ß«— ∞¯¿Ø ∏ﬁ∏∏Æ √ ±‚»≠
-/// \author		dhkwon
-/// \date		2004-03-15 ~ 2004-03-15
-/// \warning	
+/// \fn            BOOL GInitFunctionLogSharedMemory(void)
+/// \brief        ÌéëÏÖòÎ°úÍπÖÏùÑ ÏúÑÌïú Í≥µÏú† Î©îÎ™®Î¶¨ Ï¥àÍ∏∞Ìôî
+/// \author        dhkwon
+/// \date        2004-03-15 ~ 2004-03-15
+/// \warning    
 ///
-/// \param		VOID
-/// \return		BOOL
+/// \param        VOID
+/// \return        BOOL
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GInitFunctionLogSharedMemory(void)
 {
-	g_hFunctionLogSharedMemory = CreateFileMapping( (HANDLE)0XFFFFFFFF, 
-								  NULL, 
-								  PAGE_READWRITE, 
-								  0, 
-								  MAX_FUNCTION_LOG_LINE*SIZE_OF_LOG,
-								  FUNCTION_LOG_SHARED_MEMORY_NAME );
-	if( g_hFunctionLogSharedMemory != NULL )
-	{
+    g_hFunctionLogSharedMemory = CreateFileMapping( (HANDLE)0XFFFFFFFF, 
+                                  NULL, 
+                                  PAGE_READWRITE, 
+                                  0, 
+                                  MAX_FUNCTION_LOG_LINE*SIZE_OF_LOG,
+                                  FUNCTION_LOG_SHARED_MEMORY_NAME );
+    if ( g_hFunctionLogSharedMemory != NULL )
+    {
 #ifdef _DEBUG
-		if( GetLastError() == ERROR_ALREADY_EXISTS )
-		{
-			DBGOUT("GInitFunctionLogSharedMemory(void) : Opend pre_existing shared memory.\n");
-		}
+        if ( GetLastError() == ERROR_ALREADY_EXISTS )
+        {
+            DBGOUT("GInitFunctionLogSharedMemory(void) : Opend pre_existing shared memory.\n");
+        }
 #endif // _DEBUG_endif
-	}
-	else
-	{
-		DBGOUT( "GInitFunctionLogSharedMemory(void) : Unable to create shared memory.\n");
-		return NULL;
-	}
-	g_szFunctionLogSharedMemory = (LPTSTR) MapViewOfFile( g_hFunctionLogSharedMemory, 
-											 FILE_MAP_ALL_ACCESS,
-											 0,
-											 0,
-											 0 );
-	if( g_szFunctionLogSharedMemory == NULL )
-	{
-		DBGOUT( "GInitFunctionLogSharedMemory(void) : Unable to map into memory.\n");
-		return FALSE;
-	}
-	InitializeCriticalSection(&m_csFunctionLog);
-	return TRUE;
+    }
+    else
+    {
+        DBGOUT( "GInitFunctionLogSharedMemory(void) : Unable to create shared memory.\n");
+        return NULL;
+    }
+    g_szFunctionLogSharedMemory = (LPTSTR) MapViewOfFile( g_hFunctionLogSharedMemory, 
+                                             FILE_MAP_ALL_ACCESS,
+                                             0,
+                                             0,
+                                             0 );
+    if ( g_szFunctionLogSharedMemory == NULL )
+    {
+        DBGOUT( "GInitFunctionLogSharedMemory(void) : Unable to map into memory.\n");
+        return FALSE;
+    }
+    InitializeCriticalSection(&m_csFunctionLog);
+    return TRUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			BOOL GCloseFunctionLogSharedMemory(void)
-/// \brief		∆„º«∑Œ±Î¿ª ¿ß«— ∞¯¿Ø∏ﬁ∏∏Æ «ÿ¡¶
-/// \author		dhkwon
-/// \date		2004-03-15 ~ 2004-03-15
-/// \warning	
+/// \fn            BOOL GCloseFunctionLogSharedMemory(void)
+/// \brief        ÌéëÏÖòÎ°úÍπÖÏùÑ ÏúÑÌïú Í≥µÏú†Î©îÎ™®Î¶¨ Ìï¥Ï†ú
+/// \author        dhkwon
+/// \date        2004-03-15 ~ 2004-03-15
+/// \warning    
 ///
-/// \param		VOID
-/// \return		BOOL
+/// \param        VOID
+/// \return        BOOL
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GCloseFunctionLogSharedMemory(void)
 {
-	UnmapViewOfFile(g_szFunctionLogSharedMemory);
-	CloseHandle(g_hFunctionLogSharedMemory);
-	g_szFunctionLogSharedMemory = NULL;
-	DeleteCriticalSection(&m_csFunctionLog);
-	return TRUE;
+    UnmapViewOfFile(g_szFunctionLogSharedMemory);
+    CloseHandle(g_hFunctionLogSharedMemory);
+    g_szFunctionLogSharedMemory = NULL;
+    DeleteCriticalSection(&m_csFunctionLog);
+    return TRUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
-/// \brief		∆„º«∑Œ±Î¿« ∞¯¿Ø∏ﬁ∏∏Æ∑Œ ¿¸º€
-/// \author		dhkwon
-/// \date		2004-03-15 ~ 2004-03-15
-/// \warning	
+/// \fn            BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
+/// \brief        ÌéëÏÖòÎ°úÍπÖÏùò Í≥µÏú†Î©îÎ™®Î¶¨Î°ú Ï†ÑÏÜ°
+/// \author        dhkwon
+/// \date        2004-03-15 ~ 2004-03-15
+/// \warning    
 ///
-/// \param		char *i_pBuffer, int i_nSize
-/// \return		BOOL
+/// \param        char *i_pBuffer, int i_nSize
+/// \return        BOOL
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize )
 {
-	if( !g_szFunctionLogSharedMemory )
-	{
-		return FALSE;
-	}
-	if( g_nCurrentSharedMemoryLine * SIZE_OF_LOG > (MAX_FUNCTION_LOG_LINE-1)*SIZE_OF_LOG )
-	{
-		DBGOUT("ERROR : GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize ) CurrentLine¿Ã ≥ π´ ≈©¥Ÿ.\n");
-		return FALSE;
-	}
+    if ( !g_szFunctionLogSharedMemory )
+    {
+        return FALSE;
+    }
+    if ( g_nCurrentSharedMemoryLine * SIZE_OF_LOG > (MAX_FUNCTION_LOG_LINE-1)*SIZE_OF_LOG )
+    {
+        DBGOUT("ERROR : GWriteFunctionLogSharedMemory( char *i_pBuffer, int i_nSize ) CurrentLineÏù¥ ÎÑàÎ¨¥ ÌÅ¨Îã§.\n");
+        return FALSE;
+    }
 
-	EnterCriticalSection(&m_csFunctionLog);
-	memcpy( g_szFunctionLogSharedMemory + g_nCurrentSharedMemoryLine * SIZE_OF_LOG, 
-			i_pBuffer,
-			i_nSize);
-	if( ++g_nCurrentSharedMemoryLine >= MAX_FUNCTION_LOG_LINE )
-	{
-		g_nCurrentSharedMemoryLine = 0;
-	}
-	LeaveCriticalSection(&m_csFunctionLog);
-	
-	return TRUE;
+    EnterCriticalSection(&m_csFunctionLog);
+    memcpy( g_szFunctionLogSharedMemory + g_nCurrentSharedMemoryLine * SIZE_OF_LOG, 
+            i_pBuffer,
+            i_nSize);
+    if ( ++g_nCurrentSharedMemoryLine >= MAX_FUNCTION_LOG_LINE )
+    {
+        g_nCurrentSharedMemoryLine = 0;
+    }
+    LeaveCriticalSection(&m_csFunctionLog);
+    
+    return TRUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			BOOL GReadFunctionLogSharedMemory( int *io_nStartIndex, char *io_pBuffer, int *io_nSize )
-/// \brief		∆„º«∑Œ±Î¿« ∞¯¿Ø∏ﬁ∏∏Æ∏¶ ¿–¿Ω
-/// \author		dhkwon
-/// \date		2004-03-15 ~ 2004-03-15
-/// \warning	¿¸√º∏¶ ¿–æÓø¬¥Ÿ.
+/// \fn            BOOL GReadFunctionLogSharedMemory( int *io_nStartIndex, char *io_pBuffer, int *io_nSize )
+/// \brief        ÌéëÏÖòÎ°úÍπÖÏùò Í≥µÏú†Î©îÎ™®Î¶¨Î•º ÏùΩÏùå
+/// \author        dhkwon
+/// \date        2004-03-15 ~ 2004-03-15
+/// \warning    Ï†ÑÏ≤¥Î•º ÏùΩÏñ¥Ïò®Îã§.
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GReadFunctionLogSharedMemory( int *io_nCurrentLine, char *&io_pBuffer, int *io_nSize )
 {
-	*io_nCurrentLine = g_nCurrentSharedMemoryLine;
-	io_pBuffer = g_szFunctionLogSharedMemory;
-	*io_nSize = MAX_FUNCTION_LOG_LINE * SIZE_OF_LOG;
-	return TRUE;
+    *io_nCurrentLine = g_nCurrentSharedMemoryLine;
+    io_pBuffer = g_szFunctionLogSharedMemory;
+    *io_nSize = MAX_FUNCTION_LOG_LINE * SIZE_OF_LOG;
+    return TRUE;
 }
 
 #endif // _FUNCTION_LOG_endif

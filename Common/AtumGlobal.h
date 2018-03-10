@@ -1,26 +1,27 @@
-#if !defined(ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_)
-#define ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_
+ï»¿//Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMGLOBAL_H_
+#define COMMON_ATUMGLOBAL_H_
 
 #include "stdafx.h"
 #include "math.h"
 //#include "AtumParam.h"
 //#include "AtumDataLoader.h"
 #include <FieldWinSocket.h>
-// 2007-11-22 by bhsohn ¾Æ·¹³ª ÅëÇÕ¼­¹ö
+// 2007-11-22 by bhsohn ì•„ë ˆë‚˜ í†µí•©ì„œë²„
 #include <FieldWinSocketManager.h>
 
 class CParamFactor;
 class CD3DHanFont;
-// 2007-11-22 by bhsohn ¾Æ·¹³ª ÅëÇÕ¼­¹ö
-//extern CFieldWinSocket			*g_pFieldWinSocket;
-extern CFieldWinSocketManager	*g_pFieldWinSocket;
+// 2007-11-22 by bhsohn ì•„ë ˆë‚˜ í†µí•©ì„œë²„
+//extern CFieldWinSocket            *g_pFieldWinSocket;
+extern CFieldWinSocketManager    *g_pFieldWinSocket;
 
-// º¤ÅÍ °öÇÏ±â ( (x1,y1,z1) * (x2,y2,z2) = (x1*x2, y1*y2, z1*z2)
-#define MULTI_VECTOR(X,Y)		(D3DXVECTOR3(X.x*Y.x, X.y*Y.y, X.z*Y.z)) 
+// ë²¡í„° ê³±í•˜ê¸° ( (x1,y1,z1) * (x2,y2,z2) = (x1*x2, y1*y2, z1*z2)
+#define MULTI_VECTOR(X,Y)        (D3DXVECTOR3(X.x*Y.x, X.y*Y.y, X.z*Y.z)) 
 
-inline DWORD FtoDW( FLOAT f )	{ return *((DWORD*)&f); }
+inline DWORD FtoDW( FLOAT f )    { return *((DWORD*)&f); }
 
-void	FAR PASCAL BMP_To_JPG(char *Source, char *Target);// AtumJPG.LIB
+void    FAR PASCAL BMP_To_JPG(char *Source, char *Target);// AtumJPG.LIB
 
 void SetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam, float fDestValue);
 float GetParamFactor_DesParam( CParamFactor &paramFactor, int nDestParam);
@@ -35,7 +36,7 @@ unsigned short GGetUnitKindHexToDeimal(unsigned short i_nUnitKind);
 int GetUnitTypeDecimal(unsigned short nUnitKind); 
 float Random(float max, float min);
 int GetCreateUnitWeapon11(int nUnitKind);
-int GetCreateUnitWeapon12(int nUnitkind);	// 2006-01-02 by ispark
+int GetCreateUnitWeapon12(int nUnitkind);    // 2006-01-02 by ispark
 int GetCreateUnitEngine(int nUnitKind);
 char* GetGuildRankName( BYTE nGuildRank );
 int GetGearTrace(UINT nUnitKind);
@@ -47,7 +48,7 @@ UINT GetUnitNum(int nDegree, int nDefenseItemNum, int nUnitKind, BOOL bCharacter
 char* GetWaterTypeAtMap( USHORT nMapIndex );
 BOOL IsPkEnableMap( USHORT nMapIndex);
 BOOL IsTileMapRenderEnable( USHORT nMapIndex );
-// 2007-04-19 by bhsohn Ãæµ¹ Ã³¸® ¹®Á¦
+// 2007-04-19 by bhsohn ì¶©ëŒ ì²˜ë¦¬ ë¬¸ì œ
 BOOL IsTileMapTickEnable(USHORT nMapIndex );
 BOOL IsSkyRenderEnable( USHORT nMapIndex );
 BOOL IsSunRenderEnable( USHORT nMapIndex );
@@ -59,7 +60,7 @@ DWORD GetFogColor(USHORT nMapIndex, BOOL bDay);
 D3DXVECTOR3 GetMapDirection(USHORT nMapIndex,BOOL bDay);
 void CheckMouseReverse(POINT* pt);
 
-// 2007-04-13 by bhsohn A±â¾î Æ÷´ë¹®Á¦
+// 2007-04-13 by bhsohn Aê¸°ì–´ í¬ëŒ€ë¬¸ì œ
 float GetRadianVectorBetweenVector(D3DXVECTOR3 i_vecDir, D3DXVECTOR3 i_vecUp);
 D3DXVECTOR3 GetRadianVector(D3DXVECTOR3 i_vecOld, D3DXVECTOR3 i_vecUp, FLOAT i_fRadianMove);
 
@@ -70,252 +71,252 @@ BOOL GetCharactorName(char* o_szCharatorName,INT i_nPilotNum);
 void GetBaseChange3D(POINT pt, D3DXVECTOR3 *vOutPos, D3DXVECTOR3 *vOutDir);
 // 2005-11-30 by ispark
 int GetPositionInvenScreenMode();
-BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex);									// 2006-01-02 by ispark
-BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex);							// 2006-01-02 by ispark
+BOOL EnableRevivalMap(USHORT nInfluenceType, USHORT nMapIndex);                                    // 2006-01-02 by ispark
+BOOL IsNotInfluenceSameMap(USHORT nInfluenceType, USHORT nMapIndex);                            // 2006-01-02 by ispark
 #ifdef FREEWAR_
 BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BYTE byType = 1, UINT WarZone = 0);
 #else
-BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BYTE byType = 1);	// 2006-01-07 by ispark
+BOOL IsInfluenceCharacter(USHORT nMyInfluenceType, USHORT nEnemyInfuenceType, BYTE byType = 1);    // 2006-01-07 by ispark
 #endif
-int GetMapItemVisibleDistance(USHORT nMapIndex);												// 2006-01-13 by ispark
-int GetInvenUseEngineEffectNum(int nUnitKind);													// 2006-01-23 by ispark
-int GetInvenUseEngineObjectNum(int nUnitKind);													// 2006-01-24 by ispark
-int GetMusicVolume(int nRate);																	// 2006-03-22 by ispark
-DWORD GetFontColor( char chr );																	// 2006-04-17 by ispark
-DWORD GetFontColor(char* str);																	// 2015-03-22 by killburne
-BOOL ReSetRemoveString(int nType, char *pChar);													// 2006-04-17 by ispark
-float GetCollReflect(D3DXVECTOR3 *pvOut, D3DXVECTOR3 *pvVel, D3DXVECTOR3 *pvNor, BOOL	bRight = TRUE);	// 2006-05-09 by ispark
-void GetInfluenceString(char* pOutStr, USHORT nMyInfluenceType);								// 2006-05-24 by ispark
+int GetMapItemVisibleDistance(USHORT nMapIndex);                                                // 2006-01-13 by ispark
+int GetInvenUseEngineEffectNum(int nUnitKind);                                                    // 2006-01-23 by ispark
+int GetInvenUseEngineObjectNum(int nUnitKind);                                                    // 2006-01-24 by ispark
+int GetMusicVolume(int nRate);                                                                    // 2006-03-22 by ispark
+DWORD GetFontColor( char chr );                                                                    // 2006-04-17 by ispark
+DWORD GetFontColor(char* str);                                                                    // 2015-03-22 by killburne
+BOOL ReSetRemoveString(int nType, char *pChar);                                                    // 2006-04-17 by ispark
+float GetCollReflect(D3DXVECTOR3 *pvOut, D3DXVECTOR3 *pvVel, D3DXVECTOR3 *pvNor, BOOL    bRight = TRUE);    // 2006-05-09 by ispark
+void GetInfluenceString(char* pOutStr, USHORT nMyInfluenceType);                                // 2006-05-24 by ispark
 
-// 2006-08-09 by ispark, ½ºÆ®¸µ
-void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont = NULL);	// ÀüÃ¼ ½ºÆ®¸µ Àı´Ü³»±â
-// 2007-11-15 by bhsohn Äù½ºÆ®¼³Á¤ÇÒ‹š¸¸ \nµÇ°Ô º¯°æ
-//BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont);		// 2006-08-07 by ispark
-//BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont, BOOL bChRt = FALSE);		// 2006-08-07 by ispark
-BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont, BOOL bChRt = FALSE, BOOL bShop = FALSE);		// 2013-04-05 by ssjung ˜Ş ÀÏ¶§ ¾ÆÀÌÅÛ ÀÌ¸§ ±ÛÀÚ ¼ö ³Ñ¾î °¥¶§ Ã³¸® º¸Á¤
+// 2006-08-09 by ispark, ìŠ¤íŠ¸ë§
+void StringCullingUserData(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont = NULL);    // ì „ì²´ ìŠ¤íŠ¸ë§ ì ˆë‹¨ë‚´ê¸°
+// 2007-11-15 by bhsohn í€˜ìŠ¤íŠ¸ì„¤ì •í• Â‹Âšë§Œ \në˜ê²Œ ë³€ê²½
+//BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont);        // 2006-08-07 by ispark
+//BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont, BOOL bChRt = FALSE);        // 2006-08-07 by ispark
+BOOL StringCullingUserDataEx(char *pLineString, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont, BOOL bChRt = FALSE, BOOL bShop = FALSE);        // 2013-04-05 by ssjung Â˜?ì¼ë•Œ ì•„ì´í…œ ì´ë¦„ ê¸€ì ìˆ˜ ë„˜ì–´ ê°ˆë•Œ ì²˜ë¦¬ ë³´ì •
 
 //BOOL StringCullingUserData2( char* strTalk, int nCullStringNum, vector<string> *vecStorage, CD3DHanFont* pHanFont);
-//void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, vector<string> *vecStorage); // Æ¯Á¤¹®ÀÚ ¾Õ¿¡ ÀÚ¸£±â
+//void StringCullingUserData3(char *pLineString, int nState, int nCullStringNum, vector<string> *vecStorage); // íŠ¹ì •ë¬¸ì ì•ì— ìë¥´ê¸°
 
-// 2008-01-23 by bhsohn °ø¹éÀ¸·Î ±Û¾¾ Â¥¸£´Â ÇÔ¼ö »ı¼º
-BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string> *vecDstString, CD3DHanFont* pFont, BOOL bChRt = FALSE); // Æ¯Á¤¹®ÀÚ ¾Õ¿¡ ÀÚ¸£±â
+// 2008-01-23 by bhsohn ê³µë°±ìœ¼ë¡œ ê¸€ì”¨ ì§œë¥´ëŠ” í•¨ìˆ˜ ìƒì„±
+BOOL StringCullingUserData_ToBlank( char* strTalk, int nCullPixel, vector<string> *vecDstString, CD3DHanFont* pFont, BOOL bChRt = FALSE); // íŠ¹ì •ë¬¸ì ì•ì— ìë¥´ê¸°
 char StringCullingAddVector(char chColorSave, char* pString, vector<string> *vecDstString);
-// 2008-07-07 by dgwoo ¾Æ¸ÓÀÇ ³ôÀÌ¸¦ ¸®ÅÏÇÑ´Ù.
+// 2008-07-07 by dgwoo ì•„ë¨¸ì˜ ë†’ì´ë¥¼ ë¦¬í„´í•œë‹¤.
 FLOAT GetAmorGearHeight(INT i_nAmmor, BOOL i_bSelect = FALSE);
 
 
 
-// 2007-07-27 by bhsohn ±Û¾¾ ÄÃ¸µ ¹ö±× ¼öÁ¤
-// 2008-01-23 by bhsohn °ø¹éÀ¸·Î ±Û¾¾ Â¥¸£´Â ÇÔ¼ö »ı¼º
-char GetLineFindColor(char* pTxtTmp);				
-char GetFindColorOnTxt(char* pTxtTmp);// 2008-07-24 by bhsohn ÄÃ¸µ °ü·Ã ¹ö±× ¼öÁ¤
+// 2007-07-27 by bhsohn ê¸€ì”¨ ì»¬ë§ ë²„ê·¸ ìˆ˜ì •
+// 2008-01-23 by bhsohn ê³µë°±ìœ¼ë¡œ ê¸€ì”¨ ì§œë¥´ëŠ” í•¨ìˆ˜ ìƒì„±
+char GetLineFindColor(char* pTxtTmp);                
+char GetFindColorOnTxt(char* pTxtTmp);// 2008-07-24 by bhsohn ì»¬ë§ ê´€ë ¨ ë²„ê·¸ ìˆ˜ì •
 
-ATUM_DATE_TIME GetServerDateTime();																// 2006-10-11 by ispark
-// 2009. 09. 10 by jsKim ¾Æ·¹³ª ÁøÀÔ½Ã ½ÃÀÛ Ä«¿îÅÍ ¹ö±× ¼öÁ¤
-ATUM_DATE_TIME GetArenaServerDateTime();														
-// end 2009. 09. 10 by jsKim ¾Æ·¹³ª ÁøÀÔ½Ã ½ÃÀÛ Ä«¿îÅÍ ¹ö±× ¼öÁ¤
-// 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
+ATUM_DATE_TIME GetServerDateTime();                                                                // 2006-10-11 by ispark
+// 2009. 09. 10 by jsKim ì•„ë ˆë‚˜ ì§„ì…ì‹œ ì‹œì‘ ì¹´ìš´í„° ë²„ê·¸ ìˆ˜ì •
+ATUM_DATE_TIME GetArenaServerDateTime();                                                        
+// end 2009. 09. 10 by jsKim ì•„ë ˆë‚˜ ì§„ì…ì‹œ ì‹œì‘ ì¹´ìš´í„° ë²„ê·¸ ìˆ˜ì •
+// 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 
-//ATUM_DATE_TIME GetAtumDateTimeFormSecond(int nSecond);											// 2006-10-11 by ispark
-void	GetAtumDateTimeFormSecond( const int nSecond, int* pDay, int* pHour, int* pMin, int* Sec );
+//ATUM_DATE_TIME GetAtumDateTimeFormSecond(int nSecond);                                            // 2006-10-11 by ispark
+void    GetAtumDateTimeFormSecond( const int nSecond, int* pDay, int* pHour, int* pMin, int* Sec );
 
-// end 2009. 06. 10 by ckPark 255ÀÏ ³Ñ´Â ¾ÆÀÌÅÛ »ç¿ë ½Ã°£ Á¦´ë·Î ³ª¿ÀÁö ¾Ê´Â ¿À·ù ¼öÁ¤
-
-
-// 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
-void	GetString_TimeLeft( DWORD nSec, char* pBuff );			// ³²Àº ½Ã°£ nSec¸¦ ½Ã°£¹®ÀÚ¿­·Î pBuff
-BOOL	GetString_CoolTime( CItemInfo* pItem, char* pBuff );	// pItemÀÇ ÄğÅ¸ÀÓÀ» ½Ã°£¹®ÀÚ¿­·Î pBuff
-// end 2010. 02. 11 by ckPark ¹ßµ¿·ù ÀåÂø¾ÆÀÌÅÛ
+// end 2009. 06. 10 by ckPark 255ì¼ ë„˜ëŠ” ì•„ì´í…œ ì‚¬ìš© ì‹œê°„ ì œëŒ€ë¡œ ë‚˜ì˜¤ì§€ ì•ŠëŠ” ì˜¤ë¥˜ ìˆ˜ì •
 
 
-char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond);							// 2006-10-11 by ispark
-BOOL CheckFontColor( char chr );																// 2006-10-23 by ispark
-BOOL CheckFontColor(char* str);																	// 2015-03-22 by killburne
-void GetScale(float& fXScale, float& fYScale);													// 2007-07-03 by dgwoo
-MapIndex_t GetMapIndexBGM(USHORT nMapIndex);													// 2007-08-02 by dgwoo BGMÀÇ ÀÎµ¦½º°ªÀ» ¾ò¾î¿Â´Ù.
-DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay);					// 2007-09-19 by dgwooÀÌ¹ÌÁöÀÇ ÆĞÀÌµå ÀÎ ¾Æ¿ôµîÀ» °è»êÇØÁØ´Ù.
-BOOL IsMousePosClientArea();																	// 2008-01-14 by dgwoo ¸¶¿ì½º À§Ä¡°¡ Å¬¶óÀÌ¾ğÆ® ¿µ¿ª¿¡ ÀÖ´Â°¡?
-// 2008-03-19 by bhsohn FLOATÇü ÀçÁ¤·Ä ÇÏ¿© »ç¿ë
+// 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
+void    GetString_TimeLeft( DWORD nSec, char* pBuff );            // ë‚¨ì€ ì‹œê°„ nSecë¥¼ ì‹œê°„ë¬¸ìì—´ë¡œ pBuff
+BOOL    GetString_CoolTime( CItemInfo* pItem, char* pBuff );    // pItemì˜ ì¿¨íƒ€ì„ì„ ì‹œê°„ë¬¸ìì—´ë¡œ pBuff
+// end 2010. 02. 11 by ckPark ë°œë™ë¥˜ ì¥ì°©ì•„ì´í…œ
+
+
+char * GetStringDateTimeFormSecond(char * o_strDateTime, int nSecond);                            // 2006-10-11 by ispark
+BOOL CheckFontColor( char chr );                                                                // 2006-10-23 by ispark
+BOOL CheckFontColor(char* str);                                                                    // 2015-03-22 by killburne
+void GetScale(float& fXScale, float& fYScale);                                                    // 2007-07-03 by dgwoo
+MapIndex_t GetMapIndexBGM(USHORT nMapIndex);                                                    // 2007-08-02 by dgwoo BGMì˜ ì¸ë±ìŠ¤ê°’ì„ ì–»ì–´ì˜¨ë‹¤.
+DWORD GetCurrentColor(float fTime, DWORD dwType, float fTotal, float fDelay);                    // 2007-09-19 by dgwooì´ë¯¸ì§€ì˜ íŒ¨ì´ë“œ ì¸ ì•„ì›ƒë“±ì„ ê³„ì‚°í•´ì¤€ë‹¤.
+BOOL IsMousePosClientArea();                                                                    // 2008-01-14 by dgwoo ë§ˆìš°ìŠ¤ ìœ„ì¹˜ê°€ í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì— ìˆëŠ”ê°€?
+// 2008-03-19 by bhsohn FLOATí˜• ì¬ì •ë ¬ í•˜ì—¬ ì‚¬ìš©
 float FloatRangeDecimal(float fValue, int nDecimalPoint);
 INT ChangeChatButtonNumber(INT i_nMenuIndex);
 
-// 2008-03-19 by bhsohn FLOATÇü ÀçÁ¤·Ä ÇÏ¿© »ç¿ë
+// 2008-03-19 by bhsohn FLOATí˜• ì¬ì •ë ¬ í•˜ì—¬ ì‚¬ìš©
 float FloatSecRangeSharp(float fValue);
 
-// 2009-03-18 by bhsohn Ã¤ÆÃÃ¢ Ä¿¼­ ÀÌµ¿ ½Ã½ºÅÛ Ãß°¡
+// 2009-03-18 by bhsohn ì±„íŒ…ì°½ ì»¤ì„œ ì´ë™ ì‹œìŠ¤í…œ ì¶”ê°€
 int GetStringBuffPos(const char* pTxt, int i_nCurSelPos);
-int GetStringBuffLen(const char* pTxt);		// ±Û¾¾ ±æÀÌ¸¦ ¾Ë¾Æ¿Â´Ù.
+int GetStringBuffLen(const char* pTxt);        // ê¸€ì”¨ ê¸¸ì´ë¥¼ ì•Œì•„ì˜¨ë‹¤.
 int NormalizeRect(RECT *prt);
-// end 2009-03-18 by bhsohn Ã¤ÆÃÃ¢ Ä¿¼­ ÀÌµ¿ ½Ã½ºÅÛ Ãß°¡
+// end 2009-03-18 by bhsohn ì±„íŒ…ì°½ ì»¤ì„œ ì´ë™ ì‹œìŠ¤í…œ ì¶”ê°€
 
-int NumDigits(int x);	// 2015-12-21 Future, int32 optimized method of determinating the number of digits in a number
+int NumDigits(int x);    // 2015-12-21 Future, int32 optimized method of determinating the number of digits in a number
 
 /*--------------------------------------------------------------------------*/
 // 2006-06-15 by ispark
-// ÅÛÇÃ¸´
+// í…œí”Œë¦¿
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			void CAtumApplication::SetIntDataByVector(vector<VECTYPE> &vecInfo, int nIndex)
-/// \brief		INT ÀÚ·áÇü ÀÔ·Â
-/// \author		ispark
-/// \date		2006-06-15 ~ 2006-06-15
-/// \warning	
+/// \fn            void CAtumApplication::SetIntDataByVector(vector<VECTYPE> &vecInfo, int nIndex)
+/// \brief        INT ìë£Œí˜• ì…ë ¥
+/// \author        ispark
+/// \date        2006-06-15 ~ 2006-06-15
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 template<class VECTYPE> 
 void SetIntDataByVector(vector<VECTYPE> &vecInfo, int nIndex)
 {
-	vector<VECTYPE>::iterator it = vecInfo.begin();
+    vector<VECTYPE>::iterator it = vecInfo.begin();
 
-	while(it != vecInfo.end())
-	{
-		if(*(it) == nIndex)
-		{
-			return;
-		}
+    while (it != vecInfo.end())
+    {
+        if (*(it) == nIndex)
+        {
+            return;
+        }
 
-		it++;
-	}
+        it++;
+    }
 
-	vecInfo.push_back(nIndex);
+    vecInfo.push_back(nIndex);
 }
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			void CAtumApplication::SetClientIndexDataByVector(ClientIndex_t nClientIndex)
-/// \brief		ClientIndex_t ÀÚ·áÇü ÀÔ·Â
-/// \author		ispark
-/// \date		2006-06-15 ~ 2006-06-15
-/// \warning	
+/// \fn            void CAtumApplication::SetClientIndexDataByVector(ClientIndex_t nClientIndex)
+/// \brief        ClientIndex_t ìë£Œí˜• ì…ë ¥
+/// \author        ispark
+/// \date        2006-06-15 ~ 2006-06-15
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 template<class VECTYPE> 
 void SetClientIndexDataByVector(vector<VECTYPE> &vecInfo, ClientIndex_t nClientIndex)
 {
-	vector<VECTYPE>::iterator it = vecInfo.begin();
+    vector<VECTYPE>::iterator it = vecInfo.begin();
 
-	while(it != vecInfo.end())
-	{
-		if(*(it) == nClientIndex)
-		{
-			return;
-		}
+    while (it != vecInfo.end())
+    {
+        if (*(it) == nClientIndex)
+        {
+            return;
+        }
 
-		it++;
-	}
+        it++;
+    }
 
-	vecInfo.push_back(nClientIndex);
+    vecInfo.push_back(nClientIndex);
 }
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			void CAtumApplication::SendPacketDataByVector(MessageType_t MsgType, VECTYPE &vecInfo)
-/// \brief		¸Ş¼¼Áö ¹¶ÃÄ¼­ º¸³»±â Á¤º¸ ¿äÃ» º¸³»±â
-/// \author		ispark
-/// \date		2006-06-15 ~ 2006-06-15
-/// \warning	
+/// \fn            void CAtumApplication::SendPacketDataByVector(MessageType_t MsgType, VECTYPE &vecInfo)
+/// \brief        ë©”ì„¸ì§€ ë­‰ì³ì„œ ë³´ë‚´ê¸° ì •ë³´ ìš”ì²­ ë³´ë‚´ê¸°
+/// \author        ispark
+/// \date        2006-06-15 ~ 2006-06-15
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 template<class VECTYPE> 
 void SendPacketDataByVector(MessageType_t MsgType, vector<VECTYPE> &vecInfo)
 {
-	char buffer[SIZE_MAX_PACKET];
-	int nBytes = 0;
-	MessageType_t *pMsgType = NULL;
-	VECTYPE *pOtherInfo = NULL;
+    char buffer[SIZE_MAX_PACKET];
+    int nBytes = 0;
+    MessageType_t *pMsgType = NULL;
+    VECTYPE *pOtherInfo = NULL;
 
-	memset(buffer, 0x00, SIZE_MAX_PACKET);
+    memset(buffer, 0x00, SIZE_MAX_PACKET);
 
-	pMsgType	= (MessageType_t*)buffer;
-	pOtherInfo	= (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER);
+    pMsgType    = (MessageType_t*)buffer;
+    pOtherInfo    = (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER);
 
-	for(int i=0; i < vecInfo.size(); i++)
-	{
-		if(nBytes + MSG_SIZE(VECTYPE) > SIZE_MAX_PACKET)
-		{
-			g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
-			nBytes = 0;
-			pMsgType	= (MessageType_t*)buffer;
-			pOtherInfo	= (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER);
-		}
+    for (int i=0; i < vecInfo.size(); i++)
+    {
+        if (nBytes + MSG_SIZE(VECTYPE) > SIZE_MAX_PACKET)
+        {
+            g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
+            nBytes = 0;
+            pMsgType    = (MessageType_t*)buffer;
+            pOtherInfo    = (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER);
+        }
 
-		*pMsgType				= MsgType;		
-		*pOtherInfo				= vecInfo[i];
-		nBytes					+= MSG_SIZE(VECTYPE);		
-		pMsgType				= (MessageType_t*)(buffer + nBytes);
-		pOtherInfo				= (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER + nBytes);
-	}
+        *pMsgType                = MsgType;        
+        *pOtherInfo                = vecInfo[i];
+        nBytes                    += MSG_SIZE(VECTYPE);        
+        pMsgType                = (MessageType_t*)(buffer + nBytes);
+        pOtherInfo                = (VECTYPE*)(buffer + SIZE_FIELD_TYPE_HEADER + nBytes);
+    }
 
-	if(nBytes > 0)
-	{
-		g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
-//		DBGOUT("SendPacketDataByVector Size (%d)\n", vecInfo.size());
-	}
-	
-	vecInfo.clear();
+    if (nBytes > 0)
+    {
+        g_pD3dApp->m_pFieldWinSocket->Write(buffer, nBytes);
+//        DBGOUT("SendPacketDataByVector Size (%d)\n", vecInfo.size());
+    }
+    
+    vecInfo.clear();
 }
-// ÅÛÇÃ¸´
+// í…œí”Œë¦¿
 /*--------------------------------------------------------------------------*/
 
 typedef enum 
 {
-	APPSTATE_LOGO_LOADING,		// LOGO ·Îµù
-	APPSTATE_LOGO,				// ÃÖÃÊ °ÔÀÓ ½ÇÇà½Ã Logo¸¦ º¸¿©ÁÖ´Â »óÅÂ
-	APPSTATE_CONNECTING_SERVER,	// Field server·ÎÀÇ Á¢¼Ó,·Î±×ÀÎ ´ë±â »óÅÂ
-	APPSTATE_GAME_LOADING,		// ÃÖÃÊ °ÔÀÓ ½ÇÇà½Ã ÃÊ±âÈ­ ÀÛ¾÷
-	APPSTATE_SELECT,			// select menu
-	APPSTATE_CREATE,			// create menu
-	APPSTATE_MAP_LOADING,		// ¸Ê ·Îµù »óÅÂ
-	APPSTATE_GAME,				// °ÔÀÓ
-	APPSTATE_GAME_END_LOCK,		// °ÔÀÓ Á¾·á ÁØºñ µµÁß
-	APPSTATE_GAME_END,			// °ÔÀÓ Á¾·á ÁØºñ ¿Ï·á
-	APPSTATE_CLOSE,				// ¼­¹ö¿ÍÀÇ ¿¬°á Á¾·á »óÅÂ
-	APPSTATE_ERROR				// °ÔÀÓ ¿¡·¯ »óÅÂ	
+    APPSTATE_LOGO_LOADING,        // LOGO ë¡œë”©
+    APPSTATE_LOGO,                // ìµœì´ˆ ê²Œì„ ì‹¤í–‰ì‹œ Logoë¥¼ ë³´ì—¬ì£¼ëŠ” ìƒíƒœ
+    APPSTATE_CONNECTING_SERVER,    // Field serverë¡œì˜ ì ‘ì†,ë¡œê·¸ì¸ ëŒ€ê¸° ìƒíƒœ
+    APPSTATE_GAME_LOADING,        // ìµœì´ˆ ê²Œì„ ì‹¤í–‰ì‹œ ì´ˆê¸°í™” ì‘ì—…
+    APPSTATE_SELECT,            // select menu
+    APPSTATE_CREATE,            // create menu
+    APPSTATE_MAP_LOADING,        // ë§µ ë¡œë”© ìƒíƒœ
+    APPSTATE_GAME,                // ê²Œì„
+    APPSTATE_GAME_END_LOCK,        // ê²Œì„ ì¢…ë£Œ ì¤€ë¹„ ë„ì¤‘
+    APPSTATE_GAME_END,            // ê²Œì„ ì¢…ë£Œ ì¤€ë¹„ ì™„ë£Œ
+    APPSTATE_CLOSE,                // ì„œë²„ì™€ì˜ ì—°ê²° ì¢…ë£Œ ìƒíƒœ
+    APPSTATE_ERROR                // ê²Œì„ ì—ëŸ¬ ìƒíƒœ    
 } EnumAppState;
-	// APPSTATE_GAME
-	typedef enum
-	{
-		GEARSTATE_FLYING,			// ºñÇà »óÅÂ
-		GEARSTATE_LAND,				// Âø·ú »óÅÂ
-		GEARSTATE_DEAD,				// Æø¹ß »óÅÂ
-		GEARSTATE_WARF,				// ¿öÇÁ »óÅÂ
-		GEARSTATE_SHOP				// µµ½Ã/»óÁ¡ ¸Ş´º »óÅÂ
-	} EnumGearState;
-		// GEARSTATE_FLYING
-		typedef enum
-		{
-			FLYINGSTATE_NORMAL_FLYING,	// º¸Åë ºñÇà »óÅÂ
-			FLYINGSTATE_ACCELATING,		// ¼Óµµ ³ôÀÌ´Â »óÅÂ
-			FLYINGSTATE_BOOSTER,		// ºÎ½ºÅÍ »ç¿ë »óÅÂ
-			FLYINGSTATE_BREAK,			// ¼Óµµ ÁÙÀÌ´Â »óÅÂ
-			FLYINGSTATE_AIR_BREAKING,	// °øÁß Á¤Áö ½Ãµµ »óÅÂ
-			FLYINGSTATE_AIR_BREAK		// °øÁß Á¤Áö »óÅÂ
-		} EnumFlyingState;	
-		// GEARSTATE_LAND
-		typedef enum
-		{
-			LANDSTATE_LANDING,			// Âø·ú ½Ãµµ »óÅÂ
-			LANDSTATE_LANDED,			// Âø·ú »óÅÂ
-			LANDSTATE_TAKEOFF,			// ÀÌ·ú »óÅÂ
-			LANDSTATE_MOVE,				// ¿òÁ÷ÀÌ´Â »óÅÂ(A±â¾î)
-			LANDSTATE_ACCELATING,		// ¼Óµµ ³ôÀÌ´Â »óÅÂ(A±â¾î)
-			LANDSTATE_BREAK				// ¼Óµµ ÁÙÀÌ´Â »óÅÂ(A±â¾î)
-		} EnumLandState;
-		// GEARSTATE_DEAD
-		typedef enum
-		{
-			GAMESTATE_FALLING,			// Æø¹ßÁß, ±â¾î´Â Æø¹ß,°øÁßÆø¹ß µÑÁß¿¡ ¼±ÅÃÇØ¼­ ÇÑ´Ù.
-			GAMESTATE_FALLEN,			// Æø¹ß ¿Ï·á
-			GAMESTATE_EXPLODING,		// °øÁß Æø¹ß Áß
-			GAMESTATE_EXPLODED,			// °øÁß Æø¹ß ¿Ï·á
-		} EnumDeadState;
+// APPSTATE_GAME
+typedef enum
+{
+    GEARSTATE_FLYING,            // ë¹„í–‰ ìƒíƒœ
+    GEARSTATE_LAND,                // ì°©ë¥™ ìƒíƒœ
+    GEARSTATE_DEAD,                // í­ë°œ ìƒíƒœ
+    GEARSTATE_WARF,                // ì›Œí”„ ìƒíƒœ
+    GEARSTATE_SHOP                // ë„ì‹œ/ìƒì  ë©”ë‰´ ìƒíƒœ
+} EnumGearState;
+// GEARSTATE_FLYING
+typedef enum
+{
+    FLYINGSTATE_NORMAL_FLYING,    // ë³´í†µ ë¹„í–‰ ìƒíƒœ
+    FLYINGSTATE_ACCELATING,        // ì†ë„ ë†’ì´ëŠ” ìƒíƒœ
+    FLYINGSTATE_BOOSTER,        // ë¶€ìŠ¤í„° ì‚¬ìš© ìƒíƒœ
+    FLYINGSTATE_BREAK,            // ì†ë„ ì¤„ì´ëŠ” ìƒíƒœ
+    FLYINGSTATE_AIR_BREAKING,    // ê³µì¤‘ ì •ì§€ ì‹œë„ ìƒíƒœ
+    FLYINGSTATE_AIR_BREAK        // ê³µì¤‘ ì •ì§€ ìƒíƒœ
+} EnumFlyingState;    
+// GEARSTATE_LAND
+typedef enum
+{
+    LANDSTATE_LANDING,            // ì°©ë¥™ ì‹œë„ ìƒíƒœ
+    LANDSTATE_LANDED,            // ì°©ë¥™ ìƒíƒœ
+    LANDSTATE_TAKEOFF,            // ì´ë¥™ ìƒíƒœ
+    LANDSTATE_MOVE,                // ì›€ì§ì´ëŠ” ìƒíƒœ(Aê¸°ì–´)
+    LANDSTATE_ACCELATING,        // ì†ë„ ë†’ì´ëŠ” ìƒíƒœ(Aê¸°ì–´)
+    LANDSTATE_BREAK                // ì†ë„ ì¤„ì´ëŠ” ìƒíƒœ(Aê¸°ì–´)
+} EnumLandState;
+// GEARSTATE_DEAD
+typedef enum
+{
+    GAMESTATE_FALLING,            // í­ë°œì¤‘, ê¸°ì–´ëŠ” í­ë°œ,ê³µì¤‘í­ë°œ ë‘˜ì¤‘ì— ì„ íƒí•´ì„œ í•œë‹¤.
+    GAMESTATE_FALLEN,            // í­ë°œ ì™„ë£Œ
+    GAMESTATE_EXPLODING,        // ê³µì¤‘ í­ë°œ ì¤‘
+    GAMESTATE_EXPLODED,            // ê³µì¤‘ í­ë°œ ì™„ë£Œ
+} EnumDeadState;
 
 // 2005-10-10 by ispark
-// ³ª¿¡°Ô °­Á¦ PK °Ç À¯Àú Å¸°Ù
+// ë‚˜ì—ê²Œ ê°•ì œ PK ê±´ ìœ ì € íƒ€ê²Ÿ
 typedef struct PK_TARGET
 {
-	int			nTargetIndex;
+    int            nTargetIndex;
 } PK_TARGET;
 
-#endif // !defined(ATUMGLOBAL_H__017A08F0_77F1_4553_AF1A_FDFE85643262__INCLUDED_)
+#endif // COMMON_ATUMGLOBAL_H_

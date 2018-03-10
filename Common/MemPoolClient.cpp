@@ -1,4 +1,4 @@
-// MemPool.cpp: implementation of the CMemPool class.
+Ôªø// MemPool.cpp: implementation of the CMemPool class.
 //
 //////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
@@ -29,7 +29,7 @@ CMemPoolClient::~CMemPoolClient()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		ø¿∫Í¡ß∆Æ∏¶ µÓ∑œ«—¥Ÿ.
+/// \brief		Ïò§Î∏åÏ†ùÌä∏Î•º Îì±Î°ùÌïúÎã§.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -44,7 +44,7 @@ BOOL CMemPoolClient::AddObject(DWORD i_dwObjTypeSize, DWORD i_dwObjPoolSize/* = 
 	for(i = 0; i < nCount; i++)
 	{
 		if(m_ObjInfo[i].dwObjTypeSize == i_dwObjTypeSize)
-		{// ∞∞¿∫ ≈©±‚¿« ø¿∫Í¡ß∆Æ∞° ¿÷¿ª∞ÊøÏø£ ∞∞¿∫ ø¿∫Í¡ß∆Æ∏¶ ªÁøÎ«—¥Ÿ.
+		{// Í∞ôÏùÄ ÌÅ¨Í∏∞Ïùò Ïò§Î∏åÏ†ùÌä∏Í∞Ä ÏûàÏùÑÍ≤ΩÏö∞Ïóî Í∞ôÏùÄ Ïò§Î∏åÏ†ùÌä∏Î•º ÏÇ¨Ïö©ÌïúÎã§.
 			m_ObjInfo[i].dwObjPoolSize += i_dwObjPoolSize;
 			return FALSE;
 		}
@@ -62,7 +62,7 @@ BOOL CMemPoolClient::AddObject(DWORD i_dwObjTypeSize, DWORD i_dwObjPoolSize/* = 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		∏ﬁ∏∏Æ «Æ ª˝º∫.
+/// \brief		Î©îÎ™®Î¶¨ ÌíÄ ÏÉùÏÑ±.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -83,7 +83,7 @@ BOOL CMemPoolClient::InitObjects()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		∏µÁ µø¿€¿Ã ≥°≥≠»ƒ ∏ﬁ∏∏Æ Delete.
+/// \brief		Î™®Îì† ÎèôÏûëÏù¥ ÎÅùÎÇúÌõÑ Î©îÎ™®Î¶¨ Delete.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -108,7 +108,7 @@ BOOL CMemPoolClient::AllDeleteObject()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¿‘∑¬πﬁ¿∫ ªÁ¿Ã¡Ó¿« ø¿∫Í¡ß∆Æø° ªÁøÎ∞°¥…«— ø¿∫Í¡ß∆Æ¿« ¡÷º“∞™¿ª π›»Ø.
+/// \brief		ÏûÖÎ†•Î∞õÏùÄ ÏÇ¨Ïù¥Ï¶àÏùò Ïò§Î∏åÏ†ùÌä∏Ïóê ÏÇ¨Ïö©Í∞ÄÎä•Ìïú Ïò§Î∏åÏ†ùÌä∏Ïùò Ï£ºÏÜåÍ∞íÏùÑ Î∞òÌôò.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -133,7 +133,7 @@ void* CMemPoolClient::ObjectNew(DWORD i_Size)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		ø¿∫Í¡ß∆Æø° ¿Ø»ø«œµµ∑œ ∫Ø∞Ê π◊ √ ±‚»≠.
+/// \brief		Ïò§Î∏åÏ†ùÌä∏Ïóê Ïú†Ìö®ÌïòÎèÑÎ°ù Î≥ÄÍ≤Ω Î∞è Ï¥àÍ∏∞Ìôî.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -157,7 +157,7 @@ BOOL CMemPoolClient::ObjectDelete(void *i_p,DWORD i_Size)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		ø¿∫Í¡ß∆Æø° ªÁøÎ¡ﬂ¿Œ ∞πºˆ.
+/// \brief		Ïò§Î∏åÏ†ùÌä∏Ïóê ÏÇ¨Ïö©Ï§ëÏù∏ Í∞ØÏàò.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	

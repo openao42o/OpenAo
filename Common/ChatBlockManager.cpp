@@ -1,5 +1,5 @@
-// ChatBlockManager.cpp: implementation of the CChatBlockManager class.
-//
+ï»¿// ChatBlockManager.cpp: implementation of the CChatBlockManager class.
+// Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
@@ -17,119 +17,119 @@ CChatBlockManager::CChatBlockManager()
 
 CChatBlockManager::~CChatBlockManager()
 {
-	mt_auto_lock mtA(&m_mtmapChatBlockInfoPtr);
-	
-	for (auto& x : m_mtmapChatBlockInfoPtr) delete x.second;
-	
-	m_mtmapChatBlockInfoPtr.clear();
+    mt_auto_lock mtA(&m_mtmapChatBlockInfoPtr);
+    
+    for (auto& x : m_mtmapChatBlockInfoPtr) delete x.second;
+    
+    m_mtmapChatBlockInfoPtr.clear();
 }
 
 
 void CChatBlockManager::InsertChatBlockList(char *i_szCharacterName, int i_nBlockTermMinutes)
 {
-	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-	char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
-	util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
-	_strupr(szCapitalCharName);
+    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+    char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
+    util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
+    _strupr(szCapitalCharName);
 
-	m_mtmapChatBlockInfoPtr.lock();
-	{
-		DWORD			dwCurTick = timeGetTime();
-		DWORD			dwExpireTick = dwCurTick + i_nBlockTermMinutes*60*1000;
-		SChatBlockInfo	*pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-		if(NULL == pBlockInfo)
-		{
-			pBlockInfo = new SChatBlockInfo;
-			strncpy(pBlockInfo->szBlockedCharacterName, szCapitalCharName, SIZE_MAX_CHARACTER_NAME);	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-			pBlockInfo->dwChatBlockedTick	= dwCurTick;
-			pBlockInfo->dwExpireTick		= dwExpireTick;			// ms ´ÜÀ§·Î º¯°æ
+    m_mtmapChatBlockInfoPtr.lock();
+    {
+        DWORD            dwCurTick = timeGetTime();
+        DWORD            dwExpireTick = dwCurTick + i_nBlockTermMinutes*60*1000;
+        SChatBlockInfo    *pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+        if (NULL == pBlockInfo)
+        {
+            pBlockInfo = new SChatBlockInfo;
+            strncpy(pBlockInfo->szBlockedCharacterName, szCapitalCharName, SIZE_MAX_CHARACTER_NAME);    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+            pBlockInfo->dwChatBlockedTick    = dwCurTick;
+            pBlockInfo->dwExpireTick        = dwExpireTick;            // ms ë‹¨ìœ„ë¡œ ë³€ê²½
 
-			///////////////////////////////////////////////////////////////////////////////
-			// Ã¤ÆÃºí·°¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù
-			m_mtmapChatBlockInfoPtr.insertLock(szCapitalCharName, pBlockInfo);		// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-		}
-		else if(pBlockInfo->dwExpireTick < dwExpireTick)
-		{
-			pBlockInfo->dwChatBlockedTick	= dwCurTick;
-			pBlockInfo->dwExpireTick		= dwExpireTick;
-		}
-	}
-	m_mtmapChatBlockInfoPtr.unlock();
+            ///////////////////////////////////////////////////////////////////////////////
+            // ì±„íŒ…ë¸”ëŸ­ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤
+            m_mtmapChatBlockInfoPtr.insertLock(szCapitalCharName, pBlockInfo);        // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+        }
+        else if (pBlockInfo->dwExpireTick < dwExpireTick)
+        {
+            pBlockInfo->dwChatBlockedTick    = dwCurTick;
+            pBlockInfo->dwExpireTick        = dwExpireTick;
+        }
+    }
+    m_mtmapChatBlockInfoPtr.unlock();
 
 }
 
 void CChatBlockManager::DeleteChatBlockList(char *i_szCharacterName)
 {
-	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-	char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
-	util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
-	_strupr(szCapitalCharName);
+    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+    char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
+    util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
+    _strupr(szCapitalCharName);
 
-	auto pBlockInfo = m_mtmapChatBlockInfoPtr.popLock(szCapitalCharName);		// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-	util::del(pBlockInfo);
+    auto pBlockInfo = m_mtmapChatBlockInfoPtr.popLock(szCapitalCharName);        // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+    util::del(pBlockInfo);
 }
 
 BOOL CChatBlockManager::IsExistChatBlockList(int *o_pRemainMinute, char *i_szCharacterName)
 {
-	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-	char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
-	util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
-	_strupr(szCapitalCharName);
+    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+    char szCapitalCharName[SIZE_MAX_CHARACTER_NAME];
+    util::strncpy(szCapitalCharName, i_szCharacterName, SIZE_MAX_CHARACTER_NAME);
+    _strupr(szCapitalCharName);
 
-	m_mtmapChatBlockInfoPtr.lock();
-	{
-		SChatBlockInfo	*pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);	// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-		if(pBlockInfo)
-		{
-			DWORD dwCurTick = timeGetTime();
-			if(dwCurTick < pBlockInfo->dwExpireTick)
-			{// Ã¤±İ ½Ã°£ÀÌ Áö³ªÁö ¾ÊÀ½
+    m_mtmapChatBlockInfoPtr.lock();
+    {
+        SChatBlockInfo    *pBlockInfo = m_mtmapChatBlockInfoPtr.findNoLock(szCapitalCharName);    // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+        if (pBlockInfo)
+        {
+            DWORD dwCurTick = timeGetTime();
+            if (dwCurTick < pBlockInfo->dwExpireTick)
+            {// ì±„ê¸ˆ ì‹œê°„ì´ ì§€ë‚˜ì§€ ì•ŠìŒ
 
-				*o_pRemainMinute = ((pBlockInfo->dwExpireTick-dwCurTick)/1000)/60;		// ³²Àº½Ã°£(ºĞÀ¸·Î º¯°æ)
-				m_mtmapChatBlockInfoPtr.unlock();
-				return TRUE;
-			}
+                *o_pRemainMinute = ((pBlockInfo->dwExpireTick-dwCurTick)/1000)/60;        // ë‚¨ì€ì‹œê°„(ë¶„ìœ¼ë¡œ ë³€ê²½)
+                m_mtmapChatBlockInfoPtr.unlock();
+                return TRUE;
+            }
 
-			///////////////////////////////////////////////////////////////////////////////
-			// Ã¤±İ ½Ã°£ÀÌ Áö³µÀ¸¹Ç·Î Ã¤±İÁ¤º¸¸¦ »èÁ¦ÇÔ
-			this->DeleteChatBlockList(szCapitalCharName);		// 2008-12-30 by cmkwon, Ã¤±İ ¿µ¹® ´ë¼Ò¹®ÀÚ ¹ö±× ¼öÁ¤ - 
-		}
-	}
-	m_mtmapChatBlockInfoPtr.unlock();
+            ///////////////////////////////////////////////////////////////////////////////
+            // ì±„ê¸ˆ ì‹œê°„ì´ ì§€ë‚¬ìœ¼ë¯€ë¡œ ì±„ê¸ˆì •ë³´ë¥¼ ì‚­ì œí•¨
+            this->DeleteChatBlockList(szCapitalCharName);        // 2008-12-30 by cmkwon, ì±„ê¸ˆ ì˜ë¬¸ ëŒ€ì†Œë¬¸ì ë²„ê·¸ ìˆ˜ì • - 
+        }
+    }
+    m_mtmapChatBlockInfoPtr.unlock();
 
-	return FALSE;
+    return FALSE;
 }
 
-// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - CChatBlockManager::CheckChatBlockList()¿¡ ÀÎÀÚ Ãß°¡(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr=NULL)
+// 2008-12-30 by cmkwon, ì§€ë„ì ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - CChatBlockManager::CheckChatBlockList()ì— ì¸ì ì¶”ê°€(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr=NULL)
 void CChatBlockManager::CheckChatBlockList(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr/*=NULL*/)
 {
-	m_mtmapChatBlockInfoPtr.lock();
-	{
-		DWORD	dwCurTick = timeGetTime();
-		mtmapChatBlockInfoPtr::iterator itr(m_mtmapChatBlockInfoPtr.begin());
-		while (itr != m_mtmapChatBlockInfoPtr.end())
-		{
-			SChatBlockInfo *pBlockInfo = itr->second;
-			if(pBlockInfo->dwExpireTick < dwCurTick)
-			{// Ã¤±İ ½Ã°£ÀÌ Áö³µÀ½
-				
-				// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
-				//util::del(pBlockInfo);
-				if(NULL == o_pvectReleasedBlockInfoPtr)
-				{
-					util::del(pBlockInfo);
-				}
-				else
-				{
-					o_pvectReleasedBlockInfoPtr->push_back(pBlockInfo);	// 2008-12-30 by cmkwon, ¾Ë¾Æ¼­ ¸Ş¸ğ¸® ÇØÁ¦ ÇØ¾ß ÇÑ´Ù.
-					pBlockInfo	= NULL;
-				}
-				m_mtmapChatBlockInfoPtr.erase(itr++);
-				continue;
-			}
+    m_mtmapChatBlockInfoPtr.lock();
+    {
+        DWORD    dwCurTick = timeGetTime();
+        mtmapChatBlockInfoPtr::iterator itr(m_mtmapChatBlockInfoPtr.begin());
+        while (itr != m_mtmapChatBlockInfoPtr.end())
+        {
+            SChatBlockInfo *pBlockInfo = itr->second;
+            if (pBlockInfo->dwExpireTick < dwCurTick)
+            {// ì±„ê¸ˆ ì‹œê°„ì´ ì§€ë‚¬ìŒ
+                
+                // 2008-12-30 by cmkwon, ì§€ë„ì ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
+                //util::del(pBlockInfo);
+                if (NULL == o_pvectReleasedBlockInfoPtr)
+                {
+                    util::del(pBlockInfo);
+                }
+                else
+                {
+                    o_pvectReleasedBlockInfoPtr->push_back(pBlockInfo);    // 2008-12-30 by cmkwon, ì•Œì•„ì„œ ë©”ëª¨ë¦¬ í•´ì œ í•´ì•¼ í•œë‹¤.
+                    pBlockInfo    = NULL;
+                }
+                m_mtmapChatBlockInfoPtr.erase(itr++);
+                continue;
+            }
 
-			itr++;
-		}
-	}
-	m_mtmapChatBlockInfoPtr.unlock();
+            itr++;
+        }
+    }
+    m_mtmapChatBlockInfoPtr.unlock();
 }

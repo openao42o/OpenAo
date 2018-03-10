@@ -1,265 +1,265 @@
-/*++ HackShield SDK header file   
-
-Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
-
-Module Name:
-
-    HShield.h
-
-Abstract:
-
-    This header file defines the data types and constants, and exposes APIs 
-	that are defined by HackShield Library.
-
-Tag Information:
-	
-	This header file is auto-generated at $$HSHIELD_BUILD_DATETIME$$.
-
---*/
+ï»¿//++ HackShield SDK header file   
+//
+//Copyright (C), AhnLab, Inc. 2002-2008, All rights reserved.
+//
+//Module Name:
+//
+//    HShield.h
+//
+//Abstract:
+//
+//    This header file defines the data types and constants, and exposes APIs 
+//    that are defined by HackShield Library.
+//
+//Tag Information:
+//    
+//    This header file is auto-generated at $$HSHIELD_BUILD_DATETIME$$.
+//
+//
            
-#ifndef _HSHIELD_H_INC
-#define _HSHIELD_H_INC
+#ifndef COMMON_HSHIELD_H_
+#define COMMON_HSHIELD_H_
 
 // HShield Library Version Info
-#define STATE_DEV		0x00
-#define STATE_ALPHA		0x01
-#define STATE_BETA		0x02
-#define STATE_RC_RTM	0x03
+#define STATE_DEV        0x00
+#define STATE_ALPHA        0x01
+#define STATE_BETA        0x02
+#define STATE_RC_RTM    0x03
 
-// M : Major ¹öÀü
-// m : Minior ¹öÀü
-// p : ÆÐÄ¡ ¹öÀü
-// s1 : STATE_DEV, STATE_ALPHA, STATE_BETA, STATE_RC_RTM Á¤º¸
-// s2 : °¢ »óÅÂº° ¹öÀü Á¤º¸. e.g.) Alpha1, Alpha2
-// b : ºôµå ¹øÈ£
-//#define	HSVERSION(M,m,p,s1,s2,b) (M&0x0F)<<28|(m&0x0F)<<24|(p&0x1F)<<19|(s1&0x03)<<17|(s2&0x07)<<14|(b&0x3FFF)
+// M : Major ë²„ì „
+// m : Minior ë²„ì „
+// p : íŒ¨ì¹˜ ë²„ì „
+// s1 : STATE_DEV, STATE_ALPHA, STATE_BETA, STATE_RC_RTM ì •ë³´
+// s2 : ê° ìƒíƒœë³„ ë²„ì „ ì •ë³´. e.g.) Alpha1, Alpha2
+// b : ë¹Œë“œ ë²ˆí˜¸
+//#define    HSVERSION(M,m,p,s1,s2,b) (M&0x0F)<<28|(m&0x0F)<<24|(p&0x1F)<<19|(s1&0x03)<<17|(s2&0x07)<<14|(b&0x3FFF)
 
 
 //-------------------------------------------------
 // Initialize Option
 //-------------------------------------------------
-#define AHNHS_CHKOPT_SPEEDHACK					0x2
-#define AHNHS_CHKOPT_READWRITEPROCESSMEMORY 	0x4
-#define AHNHS_CHKOPT_KDTRACER					0x8
-#define AHNHS_CHKOPT_AUTOMOUSE					0x20
+#define AHNHS_CHKOPT_SPEEDHACK                    0x2
+#define AHNHS_CHKOPT_READWRITEPROCESSMEMORY     0x4
+#define AHNHS_CHKOPT_KDTRACER                    0x8
+#define AHNHS_CHKOPT_AUTOMOUSE                    0x20
 #define AHNHS_CHKOPT_MESSAGEHOOK                0x40
 #define AHNHS_CHKOPT_PROCESSSCAN                0x80
 
 
-#define AHNHS_CHKOPT_ALL (	AHNHS_CHKOPT_SPEEDHACK \
-							| AHNHS_CHKOPT_READWRITEPROCESSMEMORY \
-							| AHNHS_CHKOPT_KDTRACER \
-							| AHNHS_CHKOPT_AUTOMOUSE \
-							| AHNHS_CHKOPT_PROCESSSCAN \
-							| AHNHS_USE_LOG_FILE \
-							| AHNHS_DONOT_TERMINATE_PROCESS )
+#define AHNHS_CHKOPT_ALL (    AHNHS_CHKOPT_SPEEDHACK \
+                            | AHNHS_CHKOPT_READWRITEPROCESSMEMORY \
+                            | AHNHS_CHKOPT_KDTRACER \
+                            | AHNHS_CHKOPT_AUTOMOUSE \
+                            | AHNHS_CHKOPT_PROCESSSCAN \
+                            | AHNHS_USE_LOG_FILE \
+                            | AHNHS_DONOT_TERMINATE_PROCESS )
 
 #define AHNHS_USE_LOG_FILE                      0x100
 #define AHNHS_DONOT_TERMINATE_PROCESS           0x2000
 #define AHNHS_DISPLAY_HACKSHIELD_LOGO           0x4000
 
-#define AHNHS_CHKOPT_PROTECTSCREEN				0x20000
-#define AHNHS_CHKOPT_LOCAL_MEMORY_PROTECTION	0x80000
-#define AHNHS_CHKOPT_ABNORMAL_FUNCTION_CALL		0x100000
-#define AHNHS_CHKOPT_ANTIFREESERVER				0x200000
-#define AHNHS_ALLOW_SWITCH_WINDOW				0x400000
-#define AHNHS_CHKOPT_STANDALONE					0x800000
-#define AHNHS_CHKOPT_PROTECT_D3DX				0x1000000
-#define AHNHS_CHKOPT_SELF_DESTRUCTION			0x2000000
-#define AHNHS_DISPLAY_HACKSHIELD_TRAYICON		0x4000000
-#define AHNHS_CHKOPT_DETECT_VIRTUAL_MACHINE		0x8000000
-#define	AHNHS_CHKOPT_UPDATED_FILE_CHECK			0x10000000
-#define AHNHS_CHKOPT_SEND_MONITOR_ONCE			0x20000000
-#define AHNHS_CHKOPT_SEND_MONITOR_DELAY			0x40000000
-#define AHNHS_CHKOPT_ABNORMAL_FUNCTION_CALL_V2	0x80000000
+#define AHNHS_CHKOPT_PROTECTSCREEN                0x20000
+#define AHNHS_CHKOPT_LOCAL_MEMORY_PROTECTION    0x80000
+#define AHNHS_CHKOPT_ABNORMAL_FUNCTION_CALL        0x100000
+#define AHNHS_CHKOPT_ANTIFREESERVER                0x200000
+#define AHNHS_ALLOW_SWITCH_WINDOW                0x400000
+#define AHNHS_CHKOPT_STANDALONE                    0x800000
+#define AHNHS_CHKOPT_PROTECT_D3DX                0x1000000
+#define AHNHS_CHKOPT_SELF_DESTRUCTION            0x2000000
+#define AHNHS_DISPLAY_HACKSHIELD_TRAYICON        0x4000000
+#define AHNHS_CHKOPT_DETECT_VIRTUAL_MACHINE        0x8000000
+#define    AHNHS_CHKOPT_UPDATED_FILE_CHECK            0x10000000
+#define AHNHS_CHKOPT_SEND_MONITOR_ONCE            0x20000000
+#define AHNHS_CHKOPT_SEND_MONITOR_DELAY            0x40000000
+#define AHNHS_CHKOPT_ABNORMAL_FUNCTION_CALL_V2    0x80000000
 
 //-------------------------------------------------
 // SpeedHack Sensing Ratio
 //-------------------------------------------------
-#define	AHNHS_SPEEDHACK_SENSING_RATIO_HIGHEST	0x1
-#define	AHNHS_SPEEDHACK_SENSING_RATIO_HIGH		0x2
-#define	AHNHS_SPEEDHACK_SENSING_RATIO_NORMAL	0x4
-#define	AHNHS_SPEEDHACK_SENSING_RATIO_LOW		0x8
-#define	AHNHS_SPEEDHACK_SENSING_RATIO_LOWEST	0x10
+#define    AHNHS_SPEEDHACK_SENSING_RATIO_HIGHEST    0x1
+#define    AHNHS_SPEEDHACK_SENSING_RATIO_HIGH        0x2
+#define    AHNHS_SPEEDHACK_SENSING_RATIO_NORMAL    0x4
+#define    AHNHS_SPEEDHACK_SENSING_RATIO_LOW        0x8
+#define    AHNHS_SPEEDHACK_SENSING_RATIO_LOWEST    0x10
 
 //
 // SpeedHack Extra option
 //
-#define AHNHS_SPEEDHACK_EXOPT_ALLOW_SLOW		0x80000000
+#define AHNHS_SPEEDHACK_EXOPT_ALLOW_SLOW        0x80000000
 
 // SelfDestruction Ratio
-#define	AHNHS_SELFDESTRUCTION_RATIO_FAST			0x100	//30ÃÊ
-#define	AHNHS_SELFDESTRUCTION_RATIO_NORMAL			0x200	//1ºÐ
-#define	AHNHS_SELFDESTRUCTION_RATIO_SLOW			0x400	//3ºÐ
-#define	AHNHS_SELFDESTRUCTION_RATIO_VERYSLOW		0x800	//5ºÐ
+#define    AHNHS_SELFDESTRUCTION_RATIO_FAST            0x100    //30ì´ˆ
+#define    AHNHS_SELFDESTRUCTION_RATIO_NORMAL            0x200    //1ë¶„
+#define    AHNHS_SELFDESTRUCTION_RATIO_SLOW            0x400    //3ë¶„
+#define    AHNHS_SELFDESTRUCTION_RATIO_VERYSLOW        0x800    //5ë¶„
 
-// Local PC ÀÎÁõÁ¤º¸ ¿É¼Ç ¹× ±×¿¡ µû¸¥ µ¥ÀÌÅÍ Å©±â
-#define OPTION_NO_CHECK			1		
-#define OPTION_CHECK_INTEGRITY	2
+// Local PC ì¸ì¦ì •ë³´ ì˜µì…˜ ë° ê·¸ì— ë”°ë¥¸ ë°ì´í„° í¬ê¸°
+#define OPTION_NO_CHECK            1        
+#define OPTION_CHECK_INTEGRITY    2
 
-#define DATASIZE_NO_CHECK			16
-#define DATASIZE_CHECK_INTEGRITY	48
+#define DATASIZE_NO_CHECK            16
+#define DATASIZE_CHECK_INTEGRITY    48
 
 //-------------------------------------------------
 //ERROR CODE
 //-------------------------------------------------
-#define HS_ERR_OK                               0x00000000		// ÇÔ¼ö È£Ãâ ¼º°ø
-#define HS_ERR_UNKNOWN                          0x00000001		// ¾Ë ¼ö ¾ø´Â ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
-#define HS_ERR_INVALID_PARAM                    0x00000002		// ¿Ã¹Ù¸£Áö ¾ÊÀº ÀÎÀÚÀÔ´Ï´Ù.
-#define HS_ERR_NOT_INITIALIZED                  0x00000003		// ÇÙ½¯µå ¸ðµâÀÌ ÃÊ±âÈ­µÇÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
-#define HS_ERR_COMPATIBILITY_MODE_RUNNING       0x00000004		// ÇöÀç ÇÁ·Î¼¼½º°¡ È£È¯¼º ¸ðµå·Î ½ÇÇàµÇ¾ú½À´Ï´Ù.
-#define HS_ERR_ALREADY_UNINITIALIZED			0x00000005		// Uninitialize°¡ ¼öÇàµÈ ÀÌÈÄ¿¡´Â °ÔÀÓÀ» Àç½ÇÇàÇÑÈÄ InitializeÇØ¾ß ÇÕ´Ï´Ù.
-#define HS_ERR_STRING_CONVERSION_FAILED			0x00000006		// Unicode ¹®ÀÚ º¯È¯ÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù. 
-#define HS_ERR_EXCEPTION_RAISED					0x00000007		// ¿¹¿Ü(Exception)°¡ ¹ß»ýÇÏ¿´½À´Ï´Ù.
-	
-#define HS_ERR_INVALID_LICENSE                  0x00000100		// ¿Ã¹Ù¸£Áö ¾ÊÀº ¶óÀÌ¼¾½º Å°ÀÔ´Ï´Ù.
-#define HS_ERR_INVALID_FILES                    0x00000101		// Àß¸øµÈ ÆÄÀÏ ¼³Ä¡µÇ¾ú½À´Ï´Ù. ÇÁ·Î±×·¥À» Àç¼³Ä¡ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
+#define HS_ERR_OK                               0x00000000        // í•¨ìˆ˜ í˜¸ì¶œ ì„±ê³µ
+#define HS_ERR_UNKNOWN                          0x00000001        // ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.
+#define HS_ERR_INVALID_PARAM                    0x00000002        // ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì¸ìžìž…ë‹ˆë‹¤.
+#define HS_ERR_NOT_INITIALIZED                  0x00000003        // í•µì‰´ë“œ ëª¨ë“ˆì´ ì´ˆê¸°í™”ë˜ì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
+#define HS_ERR_COMPATIBILITY_MODE_RUNNING       0x00000004        // í˜„ìž¬ í”„ë¡œì„¸ìŠ¤ê°€ í˜¸í™˜ì„± ëª¨ë“œë¡œ ì‹¤í–‰ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define HS_ERR_ALREADY_UNINITIALIZED            0x00000005        // Uninitializeê°€ ìˆ˜í–‰ëœ ì´í›„ì—ëŠ” ê²Œìž„ì„ ìž¬ì‹¤í–‰í•œí›„ Initializeí•´ì•¼ í•©ë‹ˆë‹¤.
+#define HS_ERR_STRING_CONVERSION_FAILED            0x00000006        // Unicode ë¬¸ìž ë³€í™˜ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤. 
+#define HS_ERR_EXCEPTION_RAISED                    0x00000007        // ì˜ˆì™¸(Exception)ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+    
+#define HS_ERR_INVALID_LICENSE                  0x00000100        // ì˜¬ë°”ë¥´ì§€ ì•Šì€ ë¼ì´ì„¼ìŠ¤ í‚¤ìž…ë‹ˆë‹¤.
+#define HS_ERR_INVALID_FILES                    0x00000101        // ìž˜ëª»ëœ íŒŒì¼ ì„¤ì¹˜ë˜ì—ˆìŠµë‹ˆë‹¤. í”„ë¡œê·¸ëž¨ì„ ìž¬ì„¤ì¹˜í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.
 #define HS_ERR_INIT_DRV_FAILED                  0x00000102
-#define HS_ERR_ANOTHER_SERVICE_RUNNING          0x00000103		// ´Ù¸¥ °ÔÀÓÀÌ³ª ÇÁ·Î¼¼½º¿¡¼­ ÇÙ½¯µå¸¦ ÀÌ¹Ì »ç¿ëÇÏ°í ÀÖ½À´Ï´Ù.
-#define HS_ERR_ALREADY_INITIALIZED              0x00000104		// ÀÌ¹Ì ÇÙ½¯µå ¸ðµâÀÌ ÃÊ±âÈ­µÇ¾î ÀÖ½À´Ï´Ù.
-#define HS_ERR_DEBUGGER_DETECT                  0x00000105		// ÄÄÇ»ÅÍ¿¡¼­ µð¹ö°Å ½ÇÇàÀÌ °¨ÁöµÇ¾ú½À´Ï´Ù. µð¹ö°ÅÀÇ ½ÇÇàÀ» ÁßÁö½ÃÅ² µÚ¿¡ ´Ù½Ã ½ÇÇà½ÃÄÑÁÖ½Ã±â¹Ù¶ø´Ï´Ù.
-#define HS_ERR_EXECUTABLE_FILE_CRACKED			0x00000106		// ½ÇÇà ÆÄÀÏÀÇ ÄÚµå°¡ Å©·¢ µÇ¾ú½À´Ï´Ù.
-#define HS_ERR_NEED_ADMIN_RIGHTS				0x00000107		// ADMIN ±ÇÇÑÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-#define HS_ERR_MODULE_INIT_FAILED				0x00000108	    // ÇÙ½¯µå ¸ðµâ ÃÊ±âÈ­¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
+#define HS_ERR_ANOTHER_SERVICE_RUNNING          0x00000103        // ë‹¤ë¥¸ ê²Œìž„ì´ë‚˜ í”„ë¡œì„¸ìŠ¤ì—ì„œ í•µì‰´ë“œë¥¼ ì´ë¯¸ ì‚¬ìš©í•˜ê³  ìžˆìŠµë‹ˆë‹¤.
+#define HS_ERR_ALREADY_INITIALIZED              0x00000104        // ì´ë¯¸ í•µì‰´ë“œ ëª¨ë“ˆì´ ì´ˆê¸°í™”ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+#define HS_ERR_DEBUGGER_DETECT                  0x00000105        // ì»´í“¨í„°ì—ì„œ ë””ë²„ê±° ì‹¤í–‰ì´ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤. ë””ë²„ê±°ì˜ ì‹¤í–‰ì„ ì¤‘ì§€ì‹œí‚¨ ë’¤ì— ë‹¤ì‹œ ì‹¤í–‰ì‹œì¼œì£¼ì‹œê¸°ë°”ëžë‹ˆë‹¤.
+#define HS_ERR_EXECUTABLE_FILE_CRACKED            0x00000106        // ì‹¤í–‰ íŒŒì¼ì˜ ì½”ë“œê°€ í¬ëž™ ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define HS_ERR_NEED_ADMIN_RIGHTS                0x00000107        // ADMIN ê¶Œí•œì´ í•„ìš”í•©ë‹ˆë‹¤.
+#define HS_ERR_MODULE_INIT_FAILED                0x00000108        // í•µì‰´ë“œ ëª¨ë“ˆ ì´ˆê¸°í™”ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
 
 
-#define HS_ERR_START_ENGINE_FAILED              0x00000200		// ÇØÅ· ÇÁ·Î±×·¥ °¨Áö ¿£ÁøÀ» ½ÃÀÛÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define HS_ERR_ALREADY_SERVICE_RUNNING          0x00000201		// ÀÌ¹Ì ÇÙ½¯µå ¼­ºñ½º°¡ ½ÇÇà ÁßÀÔ´Ï´Ù.
-#define HS_ERR_DRV_FILE_CREATE_FAILED           0x00000202		// ÇÙ½¯µå µå¶óÀÌ¹ö ÆÄÀÏÀ» »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define HS_ERR_REG_DRV_FILE_FAILED              0x00000203		// ÇÙ½¯µå µå¶óÀÌ¹ö¸¦ µî·ÏÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define HS_ERR_START_DRV_FAILED                 0x00000204		// ÇÙ½¯µå µå¶óÀÌ¹ö¸¦ ½ÃÀÛÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define HS_ERR_START_THREAD_FAILED			    0x00000205      // ÇÙ½¯µå °Ë»ç ½º·¹µå¸¦ ½ÃÀÛÇÒ ¼ö ¾ø½À´Ï´Ù.
-#define HS_ERR_ALREADY_GAME_STARTED	            0x00000206		// °ÔÀÓÀÌ ÀÌ¹Ì ½ÇÇà ÁßÀÔ´Ï´Ù. °ÔÀÓÀ» Áßº¹ÇØ¼­ ½ÇÇàÇÒ ¼ö ¾ø½À´Ï´Ù. 
-#define HS_ERR_VIRTUAL_MACHINE_DETECT			0x00000207		// °¡»ó OS ¶Ç´Â ¿¡¹Ä·¹ÀÌÅÍ¿¡¼­´Â °ÔÀÓÀ» ½ÇÇàÇÒ ¼ö ¾ø½À´Ï´Ù.  
+#define HS_ERR_START_ENGINE_FAILED              0x00000200        // í•´í‚¹ í”„ë¡œê·¸ëž¨ ê°ì§€ ì—”ì§„ì„ ì‹œìž‘í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define HS_ERR_ALREADY_SERVICE_RUNNING          0x00000201        // ì´ë¯¸ í•µì‰´ë“œ ì„œë¹„ìŠ¤ê°€ ì‹¤í–‰ ì¤‘ìž…ë‹ˆë‹¤.
+#define HS_ERR_DRV_FILE_CREATE_FAILED           0x00000202        // í•µì‰´ë“œ ë“œë¼ì´ë²„ íŒŒì¼ì„ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define HS_ERR_REG_DRV_FILE_FAILED              0x00000203        // í•µì‰´ë“œ ë“œë¼ì´ë²„ë¥¼ ë“±ë¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define HS_ERR_START_DRV_FAILED                 0x00000204        // í•µì‰´ë“œ ë“œë¼ì´ë²„ë¥¼ ì‹œìž‘í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define HS_ERR_START_THREAD_FAILED                0x00000205      // í•µì‰´ë“œ ê²€ì‚¬ ìŠ¤ë ˆë“œë¥¼ ì‹œìž‘í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+#define HS_ERR_ALREADY_GAME_STARTED                0x00000206        // ê²Œìž„ì´ ì´ë¯¸ ì‹¤í–‰ ì¤‘ìž…ë‹ˆë‹¤. ê²Œìž„ì„ ì¤‘ë³µí•´ì„œ ì‹¤í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. 
+#define HS_ERR_VIRTUAL_MACHINE_DETECT            0x00000207        // ê°€ìƒ OS ë˜ëŠ” ì—ë®¬ë ˆì´í„°ì—ì„œëŠ” ê²Œìž„ì„ ì‹¤í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.  
 
-#define HS_ERR_SERVICE_NOT_RUNNING              0x00000301		// ÇÙ½¯µå ¼­ºñ½º°¡ ½ÇÇàµÇ°í ÀÖÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
-#define HS_ERR_SERVICE_STILL_RUNNING            0x00000302		// ÇÙ½¯µå ¼­ºñ½º°¡ ¾ÆÁ÷ ½ÇÇàÁßÀÎ »óÅÂÀÔ´Ï´Ù.
-#define HS_ERR_ALREADY_EXISTED					0x00000303		// ÀÌ¹Ì Á¸ÀçÇÏ°í Á¤º¸ÀÔ´Ï´Ù.
-#define HS_ERR_INVALID_DATA						0x00000304		// ºñÁ¤»óÀûÀÎ µ¥ÀÌÅÍÀÔ´Ï´Ù. 
-#define HS_ERR_NOT_SUPPORTED					0x00000305		// Áö¿øÇÏÁö ¾Ê½À´Ï´Ù. 
+#define HS_ERR_SERVICE_NOT_RUNNING              0x00000301        // í•µì‰´ë“œ ì„œë¹„ìŠ¤ê°€ ì‹¤í–‰ë˜ê³  ìžˆì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
+#define HS_ERR_SERVICE_STILL_RUNNING            0x00000302        // í•µì‰´ë“œ ì„œë¹„ìŠ¤ê°€ ì•„ì§ ì‹¤í–‰ì¤‘ì¸ ìƒíƒœìž…ë‹ˆë‹¤.
+#define HS_ERR_ALREADY_EXISTED                    0x00000303        // ì´ë¯¸ ì¡´ìž¬í•˜ê³  ì •ë³´ìž…ë‹ˆë‹¤.
+#define HS_ERR_INVALID_DATA                        0x00000304        // ë¹„ì •ìƒì ì¸ ë°ì´í„°ìž…ë‹ˆë‹¤. 
+#define HS_ERR_NOT_SUPPORTED                    0x00000305        // ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. 
 
-#define HS_ERR_NEED_UPDATE                      0x00000401		// ÇÙ½¯µå ¸ðµâÀÇ ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿äÇÕ´Ï´Ù.
+#define HS_ERR_NEED_UPDATE                      0x00000401        // í•µì‰´ë“œ ëª¨ë“ˆì˜ ì—…ë°ì´íŠ¸ê°€ í•„ìš”í•©ë‹ˆë‹¤.
 
-#define HS_ERR_API_IS_HOOKED					0x00000501		// ÇØ´ç API°¡ ÈÄÅ·µÇ¾î ÀÖ´Â »óÅÂÀÔ´Ï´Ù.
+#define HS_ERR_API_IS_HOOKED                    0x00000501        // í•´ë‹¹ APIê°€ í›„í‚¹ë˜ì–´ ìžˆëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
 
-#define HS_ERR_GET_SDKVERSION_FAILED			0x00000601		// ¹öÀü°ªÀ» °¡Á®¿À´Âµ¥ ½ÇÆÐ
+#define HS_ERR_GET_SDKVERSION_FAILED            0x00000601        // ë²„ì „ê°’ì„ ê°€ì ¸ì˜¤ëŠ”ë° ì‹¤íŒ¨
 
-#define HS_ERR_LMP_START						0x00000701		// LMP ±â´ÉÀ» ½ÃÀÛÇÒ ¼ö ¾ø½À´Ï´Ù.
+#define HS_ERR_LMP_START                        0x00000701        // LMP ê¸°ëŠ¥ì„ ì‹œìž‘í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-#define HS_ERR_HSMS_WAIT_TIME_OUT				0x00000801
-#define HS_ERR_HSMS_WAIT_FAILED					0x00000802
-#define HS_ERR_HSMS_NOT_RUNNING					0x00000803		// ÇÙ½¯µå ¸ð´ÏÅÍ¸µ ¼­ºñ½º°¡ ½ÇÇàµÇ°í ÀÖÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
+#define HS_ERR_HSMS_WAIT_TIME_OUT                0x00000801
+#define HS_ERR_HSMS_WAIT_FAILED                    0x00000802
+#define HS_ERR_HSMS_NOT_RUNNING                    0x00000803        // í•µì‰´ë“œ ëª¨ë‹ˆí„°ë§ ì„œë¹„ìŠ¤ê°€ ì‹¤í–‰ë˜ê³  ìžˆì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
 
-#define HS_ERR_AUTH_LOCALPC_FAILED			    0x00000901		// AuthenticateLocalPC ½ÇÆÐ
-#define HS_ERR_AUTH_LOCALPC_NOT_SUPPORTED_OS    0x00000902		// AuthenticateLocalPC °¡ Áö¿øÇÏÁö ¾Ê´Â OSÀÔ´Ï´Ù.
-
-//-------------------------------------------------
-// Server-Client ¿¬µ¿ ¹öÀü  ERROR CODE
-//-------------------------------------------------
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_INVALIDPARAM				0x00010000
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKESESSIONKEY_FAIL			0x00010001
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_INITCRYPT_FAIL				0x00010002
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_DECRYPTMESSAGE_FAIL			0x00010003
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETMEMHASH_FAIL				0x00010004
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETMODNAME_FAIL				0x00010005
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETFILEHASH_FAIL			0x00010006
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETHSHIELDHASH_FAIL			0x00010007
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKEHSHIELDFLAG_FAIL		0x00010008
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKEACKSEQUENCENUM_FAIL		0x00010009
-#define HS_ERR_ANTICPCNT_MAKEACKMSG_ENCRYPTMESSAGE_FAIL			0x0001000A
-
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_INVALIDPARAM			0x00010010
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_MAKESESSIONKEY_FAIL		0x00010011
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_INITCRYPT_FAIL			0x00010012
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_DECRYPTMESSAGE_FAIL		0x00010013
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_GETGUIDFROMFILE_FAIL	0x00010014
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_MAKEACKSEQUENCENUM_FAIL	0x00010015
-#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_ENCRYPTMESSAGE_FAIL		0x00010016	
-
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INVALIDPARAM			0x00010020
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_OPENFILEMAPPING_FAIL	0x00010021
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_MAPVIEWOFFILE_FAIL		0x00010022
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INITCRYPT_FAIL			0x00010023
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_DECRYPTMESSAGE_FAIL	0x00010024
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INVALIDMMF				0x00010025
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_OPENEVENT_FAIL			0x00010026
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_GETMODFILENAME_FAIL	0x00010027
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_GETINSTRUCTION_FAIL	0x00010028
-#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_ENCRYPTMESSAGE_FAIL	0x00010029
-
-#define HS_ERR_ANTICPCNT_DEBUGGER_DETECTED						0x00010030
-
+#define HS_ERR_AUTH_LOCALPC_FAILED                0x00000901        // AuthenticateLocalPC ì‹¤íŒ¨
+#define HS_ERR_AUTH_LOCALPC_NOT_SUPPORTED_OS    0x00000902        // AuthenticateLocalPC ê°€ ì§€ì›í•˜ì§€ ì•ŠëŠ” OSìž…ë‹ˆë‹¤.
 
 //-------------------------------------------------
-// Server-Client Ex ¿¬µ¿ ¹öÀü ¿¡·¯ ÄÚµå Á¤ÀÇ
+// Server-Client ì—°ë™ ë²„ì „  ERROR CODE
 //-------------------------------------------------
-#define HS_ERR_ANTICPXCNT_BASECODE								0xE4010000
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_INVALIDPARAM                0x00010000
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKESESSIONKEY_FAIL            0x00010001
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_INITCRYPT_FAIL                0x00010002
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_DECRYPTMESSAGE_FAIL            0x00010003
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETMEMHASH_FAIL                0x00010004
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETMODNAME_FAIL                0x00010005
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETFILEHASH_FAIL            0x00010006
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_GETHSHIELDHASH_FAIL            0x00010007
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKEHSHIELDFLAG_FAIL        0x00010008
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_MAKEACKSEQUENCENUM_FAIL        0x00010009
+#define HS_ERR_ANTICPCNT_MAKEACKMSG_ENCRYPTMESSAGE_FAIL            0x0001000A
 
-// ÆÄ¶ó¹ÌÅÍ °ªÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_INVALID_PARAMETER						(HS_ERR_ANTICPXCNT_BASECODE + 0x1)
-// Àß¸øµÈ ¸Þ¸ð¸® ÁÖ¼Ò¸¦ Á¢±ÙÇÏ¿´½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_INVALID_ADDRESS						(HS_ERR_ANTICPXCNT_BASECODE + 0x2)
-// ¸Þ¸ð¸®°¡ ºÎÁ·ÇÕ´Ï´Ù
-#define HS_ERR_ANTICPXCNT_NOT_ENOUGH_MEMORY						(HS_ERR_ANTICPXCNT_BASECODE + 0x3)
-// CRC TableÀ» ÃÊ±âÈ­ ÇÏ´Âµ¥ ½ÇÆÐÇÏ¿´½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_CRC_TABLE_INIT_FAILED					(HS_ERR_ANTICPXCNT_BASECODE + 0x4)
-// ¸Þ½ÃÁö ±æÀÌ°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_BAD_LENGTH							(HS_ERR_ANTICPXCNT_BASECODE + 0x5)
-// ¹öÆÛÀÇ Å©±â°¡ ÀÛ½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_INSUFFICIENT_BUFFER					(HS_ERR_ANTICPXCNT_BASECODE + 0x6)
-// ÇöÀç ¹öÀü¿¡¼­ Áö¿øÇÏÁö ¾Ê´Â ±â´ÉÀÌ´Ù
-#define HS_ERR_ANTICPXCNT_NOT_SUPPORTED							(HS_ERR_ANTICPXCNT_BASECODE + 0x7)
-// ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_FILE_NOT_FOUND						(HS_ERR_ANTICPXCNT_BASECODE + 0x8)
-// ÀÔ·Â¹ÞÀº ¸Þ½ÃÁöÀÇ Å©±â°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_INVALID_MESSAGE_SIZE					(HS_ERR_ANTICPXCNT_BASECODE + 0x9)
-// ¿Ã¹Ù¸¥ Æ÷¸äÀÌ ¾Æ´Õ´Ï´Ù
-#define HS_ERR_ANTICPXCNT_BAD_FORMAT							(HS_ERR_ANTICPXCNT_BASECODE + 0xA)
-// µð¹ö±× »óÈ²À» °¨ÁöÇÏ¿´½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_DEBUGGER_DETECTED						(HS_ERR_ANTICPXCNT_BASECODE + 0xB)
-// ÇÙ½¯µå ¸ðµâ °æ·Î°¡ Àß ¸øµÇ¾ú°Å³ª ÇÙ½¯µå ¸ðµâÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_BAD_HSHIELD_MODULE					(HS_ERR_ANTICPXCNT_BASECODE + 0xC)
-// Å¬¶óÀÌ¾ðÆ® ¸ðµâÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_BAD_CLIENT_FILE						(HS_ERR_ANTICPXCNT_BASECODE + 0xD)
-// ¼­¹ö·Î ºÎÅÍ Àü´Þ ¹ÞÀº ¿äÃ» ¸Þ½ÃÁö°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù
-#define HS_ERR_ANTICPXCNT_BAD_REQUEST							(HS_ERR_ANTICPXCNT_BASECODE + 0xE)
-// ÇÙ½¯µå ÄÚ¾î ¿£ÁøÀÌ Á¤»óÀûÀ¸·Î µ¿ÀÛÇÏÁö ¾Ê½À´Ï´Ù (µð¹ÙÀÌ½º µå¶óÀÌ¹ö)
-#define HS_ERR_ANTICPXCNT_HSHIELD_CORE_ENGINE_NOT_WORKING		(HS_ERR_ANTICPXCNT_BASECODE + 0xF)
-// ÇØÅ· ½Ãµµ¿¡ ÀÇÇØ ½Ã½ºÅÛÀÌ ¿Àµ¿ÀÛ ÇÒ °æ¿ì ¹ß»ý
-#define HS_ERR_ANTICPXCNT_UNKNOWN								(HS_ERR_ANTICPXCNT_BASECODE + 0xFF)
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_INVALIDPARAM            0x00010010
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_MAKESESSIONKEY_FAIL        0x00010011
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_INITCRYPT_FAIL            0x00010012
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_DECRYPTMESSAGE_FAIL        0x00010013
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_GETGUIDFROMFILE_FAIL    0x00010014
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_MAKEACKSEQUENCENUM_FAIL    0x00010015
+#define HS_ERR_ANTICPCNT_MAKEGUIDACKMSG_ENCRYPTMESSAGE_FAIL        0x00010016    
+
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INVALIDPARAM            0x00010020
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_OPENFILEMAPPING_FAIL    0x00010021
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_MAPVIEWOFFILE_FAIL        0x00010022
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INITCRYPT_FAIL            0x00010023
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_DECRYPTMESSAGE_FAIL    0x00010024
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_INVALIDMMF                0x00010025
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_OPENEVENT_FAIL            0x00010026
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_GETMODFILENAME_FAIL    0x00010027
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_GETINSTRUCTION_FAIL    0x00010028
+#define HS_ERR_ANTICPCNT_SAVEFUNCADDRESS_ENCRYPTMESSAGE_FAIL    0x00010029
+
+#define HS_ERR_ANTICPCNT_DEBUGGER_DETECTED                        0x00010030
+
+
+//-------------------------------------------------
+// Server-Client Ex ì—°ë™ ë²„ì „ ì—ëŸ¬ ì½”ë“œ ì •ì˜
+//-------------------------------------------------
+#define HS_ERR_ANTICPXCNT_BASECODE                                0xE4010000
+
+// íŒŒë¼ë¯¸í„° ê°’ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_INVALID_PARAMETER                        (HS_ERR_ANTICPXCNT_BASECODE + 0x1)
+// ìž˜ëª»ëœ ë©”ëª¨ë¦¬ ì£¼ì†Œë¥¼ ì ‘ê·¼í•˜ì˜€ìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_INVALID_ADDRESS                        (HS_ERR_ANTICPXCNT_BASECODE + 0x2)
+// ë©”ëª¨ë¦¬ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_NOT_ENOUGH_MEMORY                        (HS_ERR_ANTICPXCNT_BASECODE + 0x3)
+// CRC Tableì„ ì´ˆê¸°í™” í•˜ëŠ”ë° ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_CRC_TABLE_INIT_FAILED                    (HS_ERR_ANTICPXCNT_BASECODE + 0x4)
+// ë©”ì‹œì§€ ê¸¸ì´ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_BAD_LENGTH                            (HS_ERR_ANTICPXCNT_BASECODE + 0x5)
+// ë²„í¼ì˜ í¬ê¸°ê°€ ìž‘ìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_INSUFFICIENT_BUFFER                    (HS_ERR_ANTICPXCNT_BASECODE + 0x6)
+// í˜„ìž¬ ë²„ì „ì—ì„œ ì§€ì›í•˜ì§€ ì•ŠëŠ” ê¸°ëŠ¥ì´ë‹¤
+#define HS_ERR_ANTICPXCNT_NOT_SUPPORTED                            (HS_ERR_ANTICPXCNT_BASECODE + 0x7)
+// íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_FILE_NOT_FOUND                        (HS_ERR_ANTICPXCNT_BASECODE + 0x8)
+// ìž…ë ¥ë°›ì€ ë©”ì‹œì§€ì˜ í¬ê¸°ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_INVALID_MESSAGE_SIZE                    (HS_ERR_ANTICPXCNT_BASECODE + 0x9)
+// ì˜¬ë°”ë¥¸ í¬ë©§ì´ ì•„ë‹™ë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_BAD_FORMAT                            (HS_ERR_ANTICPXCNT_BASECODE + 0xA)
+// ë””ë²„ê·¸ ìƒí™©ì„ ê°ì§€í•˜ì˜€ìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_DEBUGGER_DETECTED                        (HS_ERR_ANTICPXCNT_BASECODE + 0xB)
+// í•µì‰´ë“œ ëª¨ë“ˆ ê²½ë¡œê°€ ìž˜ ëª»ë˜ì—ˆê±°ë‚˜ í•µì‰´ë“œ ëª¨ë“ˆì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_BAD_HSHIELD_MODULE                    (HS_ERR_ANTICPXCNT_BASECODE + 0xC)
+// í´ë¼ì´ì–¸íŠ¸ ëª¨ë“ˆì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_BAD_CLIENT_FILE                        (HS_ERR_ANTICPXCNT_BASECODE + 0xD)
+// ì„œë²„ë¡œ ë¶€í„° ì „ë‹¬ ë°›ì€ ìš”ì²­ ë©”ì‹œì§€ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤
+#define HS_ERR_ANTICPXCNT_BAD_REQUEST                            (HS_ERR_ANTICPXCNT_BASECODE + 0xE)
+// í•µì‰´ë“œ ì½”ì–´ ì—”ì§„ì´ ì •ìƒì ìœ¼ë¡œ ë™ìž‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤ (ë””ë°”ì´ìŠ¤ ë“œë¼ì´ë²„)
+#define HS_ERR_ANTICPXCNT_HSHIELD_CORE_ENGINE_NOT_WORKING        (HS_ERR_ANTICPXCNT_BASECODE + 0xF)
+// í•´í‚¹ ì‹œë„ì— ì˜í•´ ì‹œìŠ¤í…œì´ ì˜¤ë™ìž‘ í•  ê²½ìš° ë°œìƒ
+#define HS_ERR_ANTICPXCNT_UNKNOWN                                (HS_ERR_ANTICPXCNT_BASECODE + 0xFF)
 
 //-------------------------------------------------
 // CallBack Code
 //-------------------------------------------------
-#define AHNHS_ACTAPC_STATUS_HACKSHIELD_RUNNING		0x010001		// ÇÙ½¯µå »óÅÂ È®ÀÎ ±â´ÉÀ» »ç¿ëÇÏ´Â °æ¿ì¿¡ È£Ãâ µÇ´Â ÄÝ¹éÀÔ´Ï´Ù.  
-																	// ÇÙ½¯µå°¡ Á¤»óÀûÀ¸·Î µ¿ÀÛ ÇÏ°í ÀÖ´Â µ¿¾È ÀÌ ÄÝ¹éÀÌ È£Ãâ µË´Ï´Ù. 
-																	// ¿À·ù ÄÚµå °¡ ¾Æ´Ï¹Ç·Î °ÔÀÓ¿¡¼­ ³»ºÎÀûÀ¸·Î È®ÀÎ ÇÕ´Ï´Ù. 
-#define AHNHS_ACTAPC_DETECT_UNSUPPORTED_PLATFORM	0x010103        // Áö¿øÇÏÁö ¾Ê´Â ÇÃ·§ÆûÀÔ´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_AUTOMACRO				0x010104		// ¿ÀÅä¸ÞÅ©·Î ÇàÀ§°¡ °¨ÁöµÇ¾ú½À´Ï´Ù.	
+#define AHNHS_ACTAPC_STATUS_HACKSHIELD_RUNNING        0x010001        // í•µì‰´ë“œ ìƒíƒœ í™•ì¸ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ëŠ” ê²½ìš°ì— í˜¸ì¶œ ë˜ëŠ” ì½œë°±ìž…ë‹ˆë‹¤.  
+                                                                    // í•µì‰´ë“œê°€ ì •ìƒì ìœ¼ë¡œ ë™ìž‘ í•˜ê³  ìžˆëŠ” ë™ì•ˆ ì´ ì½œë°±ì´ í˜¸ì¶œ ë©ë‹ˆë‹¤. 
+                                                                    // ì˜¤ë¥˜ ì½”ë“œ ê°€ ì•„ë‹ˆë¯€ë¡œ ê²Œìž„ì—ì„œ ë‚´ë¶€ì ìœ¼ë¡œ í™•ì¸ í•©ë‹ˆë‹¤. 
+#define AHNHS_ACTAPC_DETECT_UNSUPPORTED_PLATFORM    0x010103        // ì§€ì›í•˜ì§€ ì•ŠëŠ” í”Œëž«í¼ìž…ë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_AUTOMACRO                0x010104        // ì˜¤í† ë©”í¬ë¡œ í–‰ìœ„ê°€ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.    
 
-#define AHNHS_ACTAPC_DETECT_HOOKFUNCTION			0x010301		// º¸È£ API¿¡ ´ëÇÑ ÈÄÅ· ÇàÀ§°¡ °¨ÁöµÇ¾ú½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_DRIVERFAILED			0x010302		// ÇØÅ· Â÷´Ü µå¶óÀÌ¹ö°¡ ·ÎµåµÇÁö ¾Ê¾Ò½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_SPEEDHACK				0x010303		// ½ºÇÇµåÇÙ·ùÀÇ ÇÁ·Î±×·¥¿¡ ÀÇÇØ ½Ã½ºÅÛ ½Ã°£ÀÌ º¯°æµÇ¾ú½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_KDTRACE					0x010307		// µð¹ö°Å Æ®·¡ÀÌ½ÌÀÌ ¹ß»ýÇß´Ù.(Ä¿³Î µð¹ö°Å È°¼ºÈ­, ÀÌÈÄ ºê·¹ÀÌÅ© Æ÷ÀÎÅÍ Ã³¸®)
+#define AHNHS_ACTAPC_DETECT_HOOKFUNCTION            0x010301        // ë³´í˜¸ APIì— ëŒ€í•œ í›„í‚¹ í–‰ìœ„ê°€ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_DRIVERFAILED            0x010302        // í•´í‚¹ ì°¨ë‹¨ ë“œë¼ì´ë²„ê°€ ë¡œë“œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_SPEEDHACK                0x010303        // ìŠ¤í”¼ë“œí•µë¥˜ì˜ í”„ë¡œê·¸ëž¨ì— ì˜í•´ ì‹œìŠ¤í…œ ì‹œê°„ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_KDTRACE                    0x010307        // ë””ë²„ê±° íŠ¸ëž˜ì´ì‹±ì´ ë°œìƒí–ˆë‹¤.(ì»¤ë„ ë””ë²„ê±° í™œì„±í™”, ì´í›„ ë¸Œë ˆì´í¬ í¬ì¸í„° ì²˜ë¦¬)
 
-#define AHNHS_ENGINE_DETECT_GAME_HACK				0x010501		// °ÔÀÓ ÇØÅ·ÅøÀÇ ½ÇÇàÀÌ ¹ß°ßµÇ¾ú½À´Ï´Ù.
-#define AHNHS_ENGINE_DETECT_WINDOWED_HACK			0x010503		// Ã¢¸ðµå ÇØÅ·Åø
-#define AHNHS_ACTAPC_DETECT_MULTI_LOADING			0x010504		// Å¬¶óÀÌ¾ðÆ® ¸ÖÆ¼ ·Îµù °¨Áö.
+#define AHNHS_ENGINE_DETECT_GAME_HACK                0x010501        // ê²Œìž„ í•´í‚¹íˆ´ì˜ ì‹¤í–‰ì´ ë°œê²¬ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define AHNHS_ENGINE_DETECT_WINDOWED_HACK            0x010503        // ì°½ëª¨ë“œ í•´í‚¹íˆ´
+#define AHNHS_ACTAPC_DETECT_MULTI_LOADING            0x010504        // í´ë¼ì´ì–¸íŠ¸ ë©€í‹° ë¡œë”© ê°ì§€.
 
-#define AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_ACCESS	0x010601		// ÄÚµå ÆÐÄ¡ ½Ãµµ°¡ °¨ÁöµÇ¾ú½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_WRITE	0x010602		// ¸Þ¸ð¸®¿¡ Write ½Ãµµ°¡ °¨ÁöµÇ¾ú½À´Ï´Ù.
+#define AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_ACCESS    0x010601        // ì½”ë“œ íŒ¨ì¹˜ ì‹œë„ê°€ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_ABNORMAL_MEMORY_WRITE    0x010602        // ë©”ëª¨ë¦¬ì— Write ì‹œë„ê°€ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.
 
-#define AHNHS_ACTAPC_DETECT_ENGINEFAILED			0x010702		// ¿£Áø±â´ÉÀÌ Á¤»óÀûÀÌÁö ¾Ê½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_CODEMISMATCH			0x010703		// ÄÚµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. 
-#define AHNHS_ACTAPC_DETECT_MEM_MODIFY_FROM_LMP		0x010705		// º¸È£ ¸ðµâ¿¡ ´ëÇØ¼­ ¸Þ¸ð¸® º¯Á¶°¡ °¨ÁöµÇ¾ú½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_LMP_FAILED				0x010706		// ÇÙ½¯µå ·ÎÄÃ ¸Þ¸ð¸® º¸È£ ±â´ÉÀÌ Á¤»óÀûÀÌÁö ¾Ê½À´Ï´Ù.
-#define AHNHS_ACTAPC_DETECT_RMEM_MODIFY_FROM_LMP	0x010709		// rdata(.rsrc) section¿¡ VirtualProtect¸¦ ÅëÇØ ¸Þ¸ð¸®¿¡ writeÇÏ·Á°í ÇÔ.
+#define AHNHS_ACTAPC_DETECT_ENGINEFAILED            0x010702        // ì—”ì§„ê¸°ëŠ¥ì´ ì •ìƒì ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_CODEMISMATCH            0x010703        // ì½”ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+#define AHNHS_ACTAPC_DETECT_MEM_MODIFY_FROM_LMP        0x010705        // ë³´í˜¸ ëª¨ë“ˆì— ëŒ€í•´ì„œ ë©”ëª¨ë¦¬ ë³€ì¡°ê°€ ê°ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_LMP_FAILED                0x010706        // í•µì‰´ë“œ ë¡œì»¬ ë©”ëª¨ë¦¬ ë³´í˜¸ ê¸°ëŠ¥ì´ ì •ìƒì ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.
+#define AHNHS_ACTAPC_DETECT_RMEM_MODIFY_FROM_LMP    0x010709        // rdata(.rsrc) sectionì— VirtualProtectë¥¼ í†µí•´ ë©”ëª¨ë¦¬ì— writeí•˜ë ¤ê³  í•¨.
 
-#define AHNHS_ACTAPC_DETECT_ABNORMAL_FUNCTION_CALL	0x010801		// Game EXE³»ÀÇ ÄÚµå¸¦ ¿ÜºÎ ¸ðµâ¿¡¼­ ÀÓÀÇ·Î È£ÃâÇÏ¿´½À´Ï´Ù.
+#define AHNHS_ACTAPC_DETECT_ABNORMAL_FUNCTION_CALL    0x010801        // Game EXEë‚´ì˜ ì½”ë“œë¥¼ ì™¸ë¶€ ëª¨ë“ˆì—ì„œ ìž„ì˜ë¡œ í˜¸ì¶œí•˜ì˜€ìŠµë‹ˆë‹¤.
 
-#define AHNHS_ACTAPC_DETECT_ANTIFREESERVER			0x010901		// GameÀÌ ¿Ã¹Ù¸¥ ¼­¹ö·Î Á¢¼ÓÀ» ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.
+#define AHNHS_ACTAPC_DETECT_ANTIFREESERVER            0x010901        // Gameì´ ì˜¬ë°”ë¥¸ ì„œë²„ë¡œ ì ‘ì†ì„ í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 
-#define AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS	0x010A01	// HackShield º¸¾È ±â´ÉÀÌ Á¤»óÀûÀ¸·Î µ¿ÀÛÇÏÁö ¾Ê½À´Ï´Ù.
+#define AHNHS_ACTAPC_DETECT_ABNORMAL_HACKSHIELD_STATUS    0x010A01    // HackShield ë³´ì•ˆ ê¸°ëŠ¥ì´ ì •ìƒì ìœ¼ë¡œ ë™ìž‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
 
 #pragma pack(push)
@@ -268,14 +268,14 @@ Tag Information:
 #ifndef __ANTICPX_TRANS_BUFFER__
 #define __ANTICPX_TRANS_BUFFER__
 
-#define ANTICPX_TRANS_BUFFER_MAX	400
+#define ANTICPX_TRANS_BUFFER_MAX    400
 
-#define	DEFAULT_HSMS_TIME_OUT		(5 * 1000)   // 5ÃÊ
+#define    DEFAULT_HSMS_TIME_OUT        (5 * 1000)   // 5ì´ˆ
 
 typedef struct _AHNHS_TRANS_BUFFER
 {
-	unsigned char byBuffer[ANTICPX_TRANS_BUFFER_MAX/* ¼Û¼ö½Å ÆÐÅ¶ÀÇ ÃÖ´ë Å©±â */];
-	unsigned short nLength;
+    unsigned char byBuffer[ANTICPX_TRANS_BUFFER_MAX/* ì†¡ìˆ˜ì‹  íŒ¨í‚·ì˜ ìµœëŒ€ í¬ê¸° */];
+    unsigned short nLength;
 } AHNHS_TRANS_BUFFER, *PAHNHS_TRANS_BUFFER;
 
 #endif // __ANTICPX_TRANS_BUFFER__
@@ -286,114 +286,114 @@ typedef struct _AHNHS_TRANS_BUFFER
 typedef struct AHNHS_EXT_ERRORINFOA
 {
 
-	CHAR szServer[MAX_PATH];
-	CHAR szUserId[MAX_PATH];
-	CHAR szGameVersion[MAX_PATH];
+    CHAR szServer[MAX_PATH];
+    CHAR szUserId[MAX_PATH];
+    CHAR szGameVersion[MAX_PATH];
 
 } AHNHS_EXT_ERRORINFOA, *PAHNHS_EXT_ERRORINFOA;
 
 typedef struct AHNHS_EXT_ERRORINFOW
 {
 
-	WCHAR szServer[MAX_PATH];
-	WCHAR szUserId[MAX_PATH];
-	WCHAR szGameVersion[MAX_PATH];
+    WCHAR szServer[MAX_PATH];
+    WCHAR szUserId[MAX_PATH];
+    WCHAR szGameVersion[MAX_PATH];
 
 } AHNHS_EXT_ERRORINFOW, *PAHNHS_EXT_ERRORINFOW;
 #if defined(UNICODE) | defined(_UNICODE)
-	#define AHNHS_EXT_ERRORINFO	AHNHS_EXT_ERRORINFOW
+    #define AHNHS_EXT_ERRORINFO    AHNHS_EXT_ERRORINFOW
 #else
-	#define	AHNHS_EXT_ERRORINFO	AHNHS_EXT_ERRORINFOA
+    #define    AHNHS_EXT_ERRORINFO    AHNHS_EXT_ERRORINFOA
 #endif // !UNICODE
 
-#endif __AHNHS_EXT_ERRORINFO__
+#endif // __AHNHS_EXT_ERRORINFO__
 
-#pragma pack(pop) // ±âÁ¸ alignment º¹±¸.
+#pragma pack(pop) // ê¸°ì¡´ alignment ë³µêµ¬.
 
 //-------------------------------------------------
-// CallBack½Ã Àü´ÞµÇ´Â µ¥ÀÌÅÍ
+// CallBackì‹œ ì „ë‹¬ë˜ëŠ” ë°ì´í„°
 //-------------------------------------------------
 #pragma pack(push)
 #pragma pack(1)
 
 typedef struct tagACTAPCPARAM_DETECT_HOOKFUNCTION
-{	
-	char szFunctionName[128];		// file path
-	char szModuleName[128];
-	
+{    
+    char szFunctionName[128];        // file path
+    char szModuleName[128];
+    
 } ACTAPCPARAM_DETECT_HOOKFUNCTION, *PACTAPCPARAM_DETECT_HOOKFUNCTION;
 
 //-------------------------------------------------
-// ¿ÀÅä¸¶¿ì½º °ü·Ã APC Structure
+// ì˜¤í† ë§ˆìš°ìŠ¤ ê´€ë ¨ APC Structure
 //-------------------------------------------------
 typedef struct tagACTAPCPARAM_DETECT_AUTOMOUSE
 {
-	BYTE	byDetectType;			// AutoMouse °ü·Ã API È£Ãâ 1, AutoMouse °ü·Ã API º¯Á¶ 2
-	DWORD	dwPID;					// AutoMouse ÇÁ·Î¼¼½º ¶Ç´Â API °¡ º¯Á¶µÈ ÇÁ·Î¼¼½º
-	CHAR	szProcessName[16+1];	// ÇÁ·Î¼¼½º¸í
-	CHAR	szAPIName[128];			// È£ÃâµÈ API ¸í ¶Ç´Â º¯Á¶µÈ API ¸í
+    BYTE    byDetectType;            // AutoMouse ê´€ë ¨ API í˜¸ì¶œ 1, AutoMouse ê´€ë ¨ API ë³€ì¡° 2
+    DWORD    dwPID;                    // AutoMouse í”„ë¡œì„¸ìŠ¤ ë˜ëŠ” API ê°€ ë³€ì¡°ëœ í”„ë¡œì„¸ìŠ¤
+    CHAR    szProcessName[16+1];    // í”„ë¡œì„¸ìŠ¤ëª…
+    CHAR    szAPIName[128];            // í˜¸ì¶œëœ API ëª… ë˜ëŠ” ë³€ì¡°ëœ API ëª…
 
 } ACTAPCPARAM_DETECT_AUTOMOUSE, *PACTAPCPARAM_DETECT_AUTOMOUSE;
 
 //-------------------------------------------------
-// ¿ÀÅä¸ÅÅ©·Î °ü·Ã APC Structure
+// ì˜¤í† ë§¤í¬ë¡œ ê´€ë ¨ APC Structure
 //-------------------------------------------------
 typedef struct
-{	
-	BYTE byDetectType;		// AutoKeyboard 1, AutoMouse °ü·Ã API º¯Á¶ 2
-	CHAR szModuleName[128];
-	
+{    
+    BYTE byDetectType;        // AutoKeyboard 1, AutoMouse ê´€ë ¨ API ë³€ì¡° 2
+    CHAR szModuleName[128];
+    
 } ACTAPCPARAM_DETECT_AUTOMACRO, *PACTAPCPARAM_DETECT_AUTOMACRO;
 
-#define	AHNHS_AUTOMACRO_APCTYPE_KEYBOARD	1
-#define	AHNHS_AUTOMACRO_APCTYPE_MOUSE		2
+#define    AHNHS_AUTOMACRO_APCTYPE_KEYBOARD    1
+#define    AHNHS_AUTOMACRO_APCTYPE_MOUSE        2
 
 //-------------------------------------------------
-// AHNHS_ENGINE_DETECT_GAME_HACK	Callback Structure
+// AHNHS_ENGINE_DETECT_GAME_HACK    Callback Structure
 //-------------------------------------------------
 typedef struct tagAHNHS_ENGINE_DETECT_GAME_HACK_CALLBACK
 {
-	CHAR	szMessageA[128+1];		// Detect game hack name
-	DWORD	cbMessageLen;			// name length
-	DWORD	dwHackNo;
+    CHAR    szMessageA[128+1];        // Detect game hack name
+    DWORD    cbMessageLen;            // name length
+    DWORD    dwHackNo;
 
 } AHNHS_ENGINE_DETECT_GAME_HACK_CALLBACK, *PAHNHS_ENGINE_DETECT_GAME_HACK_CALLBACK;
 
-// AFC ¿äÃ» Á¤º¸ Å¸ÀÔ ¹× ±¸Á¶Ã¼ 
-#define EAGLE_AFCEX_QUERYTYPE_THREADCOUNT			0x1
-#define EAGLE_AFCEX_QUERYTYPE_FUNCTIONCOUNT			0x2
+// AFC ìš”ì²­ ì •ë³´ íƒ€ìž… ë° êµ¬ì¡°ì²´ 
+#define EAGLE_AFCEX_QUERYTYPE_THREADCOUNT            0x1
+#define EAGLE_AFCEX_QUERYTYPE_FUNCTIONCOUNT            0x2
 typedef struct 
 {
-	DWORD	dwType;
-	DWORD	dwIndex;
-	int		nCount;
+    DWORD    dwType;
+    DWORD    dwIndex;
+    int        nCount;
 } AHNHS_AFCEX_QUERY_INFO, *PAHNHS_AFCEX_QUERY_INFO;
 
 #pragma pack(pop)
 
 //-------------------------------------------------
-// Server-Client ¿¬µ¿ ¹öÀü¿¡ »ç¿ëµÇ´Â ¹öÆÛÀÇ Å©±â
+// Server-Client ì—°ë™ ë²„ì „ì— ì‚¬ìš©ë˜ëŠ” ë²„í¼ì˜ í¬ê¸°
 //-------------------------------------------------
-#define SIZEOF_REQMSG		ANTICPX_TRANS_BUFFER_MAX
-#define SIZEOF_ACKMSG		ANTICPX_TRANS_BUFFER_MAX
-#define SIZEOF_GUIDREQMSG	ANTICPX_TRANS_BUFFER_MAX
-#define SIZEOF_GUIDACKMSG	ANTICPX_TRANS_BUFFER_MAX
+#define SIZEOF_REQMSG        ANTICPX_TRANS_BUFFER_MAX
+#define SIZEOF_ACKMSG        ANTICPX_TRANS_BUFFER_MAX
+#define SIZEOF_GUIDREQMSG    ANTICPX_TRANS_BUFFER_MAX
+#define SIZEOF_GUIDACKMSG    ANTICPX_TRANS_BUFFER_MAX
 
 
 //-------------------------------------------------
-// HackShield µ¿ÀÛ »óÅÂ °ª  
+// HackShield ë™ìž‘ ìƒíƒœ ê°’  
 //-------------------------------------------------
 enum HS_RUNNING_STATUS {
-	HS_RUNNING_STATUS_CHECK_MONITORING_THREAD = 1,
+    HS_RUNNING_STATUS_CHECK_MONITORING_THREAD = 1,
 };
 
 //-------------------------------------------------
 // Callback Function Prototype
 //-------------------------------------------------
 typedef int (__stdcall* PFN_AhnHS_Callback)(
-	long lCode,
-	long lParamSize,
-	void* pParam 
+    long lCode,
+    long lParamSize,
+    void* pParam 
 );
 
 
@@ -406,105 +406,105 @@ extern "C"
 
 #if defined(_NO_HACKSHIELD)
 
-	#define	AHNHS_NOT_NULL	(1)	// Æ÷ÀÎÅÍ°ªÀ» ¸®ÅÏÇÏ´Â °æ¿ì, NOT NULL·Î Ã³¸®
+    #define    AHNHS_NOT_NULL    (1)    // í¬ì¸í„°ê°’ì„ ë¦¬í„´í•˜ëŠ” ê²½ìš°, NOT NULLë¡œ ì²˜ë¦¬
 
-	// ±âº» ±â´É
-	#define	_AhnHS_Initialize(arg1,arg2,arg3,arg4,arg5,arg6)	HS_ERR_OK
-	#define	_AhnHS_StartService()				HS_ERR_OK
-	#define	_AhnHS_StopService()				HS_ERR_OK
-	#define _AhnHS_Uninitialize()				HS_ERR_OK
-	#define _AhnHS_PauseService(arg1)			HS_ERR_OK
-	#define _AhnHS_ResumeService()				HS_ERR_OK
-	#define _AhnHS_CheckHackShieldRunningStatus()			HS_ERR_OK
-	#define _AhnHS_SendHsLog(arg1,arg2,arg3)	;	
-	#define _AhnHS_VerifyProtectedFunction()	HS_ERR_OK
-	#define AHNHS_PROTECT_FUNCTION				__try{\
-													HS_ERR_OK;	\
-												}__finally{}
-	#define AHNHS_PROTECT_FUNCTIONEX(arg1)		__try{\
-												arg1=HS_ERR_OK	\
-												}__finally{}
-	#define _AhnHS_QueryPerformanceCounter(arg1,arg2)	TRUE
-	#define _AhnHS_QueryPerformanceFrequency(arg1,arg2)	TRUE
-	#define _AhnHS_GetTickCount(arg1)			HS_ERR_OK
-		
-	// ¸ð´ÏÅÍ¸µ ¼­ºñ½º ±â´É
-	#define _AhnHS_StartMonitor(arg1,arg2)		HS_ERR_OK
-	#define _AhnHS_SetUserId(arg1)				;
-	#define _AhnHS_UpdateMonitorInfo(arg1)		;
-	#define _AhnHS_SetUserCustomInfo(arg1)		HS_ERR_OK
-	#define _AhnHS_SendUserCustomInfo(arg1)		HS_ERR_OK
+    // ê¸°ë³¸ ê¸°ëŠ¥
+    #define    _AhnHS_Initialize(arg1,arg2,arg3,arg4,arg5,arg6)    HS_ERR_OK
+    #define    _AhnHS_StartService()                HS_ERR_OK
+    #define    _AhnHS_StopService()                HS_ERR_OK
+    #define _AhnHS_Uninitialize()                HS_ERR_OK
+    #define _AhnHS_PauseService(arg1)            HS_ERR_OK
+    #define _AhnHS_ResumeService()                HS_ERR_OK
+    #define _AhnHS_CheckHackShieldRunningStatus()            HS_ERR_OK
+    #define _AhnHS_SendHsLog(arg1,arg2,arg3);    
+    #define _AhnHS_VerifyProtectedFunction()    HS_ERR_OK
+    #define AHNHS_PROTECT_FUNCTION                __try {\
+                                                    HS_ERR_OK;    \
+                                                } __finally{}
+    #define AHNHS_PROTECT_FUNCTIONEX(arg1)        __try {\
+                                                arg1=HS_ERR_OK    \
+                                                } __finally{}
+    #define _AhnHS_QueryPerformanceCounter(arg1,arg2)    TRUE
+    #define _AhnHS_QueryPerformanceFrequency(arg1,arg2)    TRUE
+    #define _AhnHS_GetTickCount(arg1)            HS_ERR_OK
+        
+    // ëª¨ë‹ˆí„°ë§ ì„œë¹„ìŠ¤ ê¸°ëŠ¥
+    #define _AhnHS_StartMonitor(arg1,arg2)        HS_ERR_OK
+    #define _AhnHS_SetUserId(arg1);
+    #define _AhnHS_UpdateMonitorInfo(arg1);
+    #define _AhnHS_SetUserCustomInfo(arg1)        HS_ERR_OK
+    #define _AhnHS_SendUserCustomInfo(arg1)        HS_ERR_OK
 
-	// LMP ±â´É
-	#define	_AhnHS_IsModuleSecure(arg1)			TRUE
-	
-	// È®Àå¼­¹ö¿¬µ¿
-	#define _AhnHS_MakeResponse(arg1,arg2,arg3)				HS_ERR_OK
+    // LMP ê¸°ëŠ¥
+    #define    _AhnHS_IsModuleSecure(arg1)            TRUE
+    
+    // í™•ìž¥ì„œë²„ì—°ë™
+    #define _AhnHS_MakeResponse(arg1,arg2,arg3)                HS_ERR_OK
 
-	// the others
-	#define _AhnHS_CheckAPIHooked(arg1,arg2,arg3)			HS_ERR_OK	
-	#define _AhnHS_CheckFileCRC(arg1)						HS_ERR_OK
-	#define _AhnHS_PreTranslateBufferedDIMessage(arg1)		HS_ERR_OK
-	#define _AhnHS_PreTranslateBufferedDICounter(arg1)		HS_ERR_OK
-	#define _AhnHS_PreTranslateImmediateDIMessage(arg1,arg2)	HS_ERR_OK
-	#define _AhnHS_Direct3DCreate9(arg1)					AHNHS_NOT_NULL
-	#define _AhnHS_Direct3DCreate8(arg1)					AHNHS_NOT_NULL
-	#define _AhnHS_sendto(arg1,arg2,arg3,arg4,arg5,arg6)	HS_ERR_OK
-	#define _AhnHS_GetSDKVersion(arg1)						HS_ERR_OK
+    // the others
+    #define _AhnHS_CheckAPIHooked(arg1,arg2,arg3)            HS_ERR_OK    
+    #define _AhnHS_CheckFileCRC(arg1)                        HS_ERR_OK
+    #define _AhnHS_PreTranslateBufferedDIMessage(arg1)        HS_ERR_OK
+    #define _AhnHS_PreTranslateBufferedDICounter(arg1)        HS_ERR_OK
+    #define _AhnHS_PreTranslateImmediateDIMessage(arg1,arg2)    HS_ERR_OK
+    #define _AhnHS_Direct3DCreate9(arg1)                    AHNHS_NOT_NULL
+    #define _AhnHS_Direct3DCreate8(arg1)                    AHNHS_NOT_NULL
+    #define _AhnHS_sendto(arg1,arg2,arg3,arg4,arg5,arg6)    HS_ERR_OK
+    #define _AhnHS_GetSDKVersion(arg1)                        HS_ERR_OK
 
-	// AFC v2 Ex.
-	#define _AhnHS_ThreadStart()							HS_ERR_OK
-	#define _AhnHS_ThreadStop()								HS_ERR_OK
-	#define _AhnHS_ThreadStartEx()							HS_ERR_OK
-	#define _AhnHS_ThreadStopEx()							HS_ERR_OK
-	#define _AhnHS_CheckProtectedStatus(arg1);				HS_ERR_OK
-	#define _AhnHS_SetProtectedFunction(arg1);				HS_ERR_OK
-	
-	// »ç¿ëÀÚ Local PC ½Äº°Á¤º¸ Àü´Þ
-	#define _AhnHS_AuthenticateLocalPC(arg1,arg2,arg3,arg4)		HS_ERR_OK		
-#else	//!_NO_HACKSHIELD
+    // AFC v2 Ex.
+    #define _AhnHS_ThreadStart()                            HS_ERR_OK
+    #define _AhnHS_ThreadStop()                                HS_ERR_OK
+    #define _AhnHS_ThreadStartEx()                            HS_ERR_OK
+    #define _AhnHS_ThreadStopEx()                            HS_ERR_OK
+    #define _AhnHS_CheckProtectedStatus(arg1);                HS_ERR_OK
+    #define _AhnHS_SetProtectedFunction(arg1);                HS_ERR_OK
+    
+    // ì‚¬ìš©ìž Local PC ì‹ë³„ì •ë³´ ì „ë‹¬
+    #define _AhnHS_AuthenticateLocalPC(arg1,arg2,arg3,arg4)        HS_ERR_OK        
+#else    //!_NO_HACKSHIELD
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ÃÊ±âÈ­ ÇÔ¼ö
+ * @remarks    í•µì‰´ë“œ ì´ˆê¸°í™” í•¨ìˆ˜
  *
- * @param	szFileName : [IN] Ehsvc.dllÀÇ Full Path
- * @param	pfn_Callback : [OUT] Callback Function Pointer
- * @param	nGameCode : [IN] Game Code
- * @param	szLicenseKey : [IN] License Code
- * @param	unOption : [IN] Initialize Options
- * @param	unAdditionalRatio : [IN] SpeedHack Sensing Ratio + Self-Destruction Time Ratio
+ * @param    szFileName : [IN] Ehsvc.dllì˜ Full Path
+ * @param    pfn_Callback : [OUT] Callback Function Pointer
+ * @param    nGameCode : [IN] Game Code
+ * @param    szLicenseKey : [IN] License Code
+ * @param    unOption : [IN] Initialize Options
+ * @param    unAdditionalRatio : [IN] SpeedHack Sensing Ratio + Self-Destruction Time Ratio
  *
  */
 int
 __stdcall
 _AhnHS_InitializeA (
-	const char*			szFileNameA,
-	PFN_AhnHS_Callback	pfn_Callback,
-	int					nGameCode,
-	const char*			szLicenseKeyA,
-	unsigned int		unOption,
-	unsigned int		unAdditionalRatio
-	);
+    const char*            szFileNameA,
+    PFN_AhnHS_Callback    pfn_Callback,
+    int                    nGameCode,
+    const char*            szLicenseKeyA,
+    unsigned int        unOption,
+    unsigned int        unAdditionalRatio
+    );
 int
 __stdcall
 _AhnHS_InitializeW (
-	const wchar_t*		szFileNameW,
-	PFN_AhnHS_Callback	pfn_Callback,
-	int					nGameCode,
-	const wchar_t*			szLicenseKeyW,
-	unsigned int		unOption,
-	unsigned int		unAdditionalRatio
-	);
+    const wchar_t*        szFileNameW,
+    PFN_AhnHS_Callback    pfn_Callback,
+    int                    nGameCode,
+    const wchar_t*            szLicenseKeyW,
+    unsigned int        unOption,
+    unsigned int        unAdditionalRatio
+    );
 #if defined(UNICODE) | defined(_UNICODE) 
-	#define _AhnHS_Initialize	_AhnHS_InitializeW
+    #define _AhnHS_Initialize    _AhnHS_InitializeW
 #else
-	#define _AhnHS_Initialize	_AhnHS_InitializeA
+    #define _AhnHS_Initialize    _AhnHS_InitializeA
 #endif // !UNICODE
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ½ÃÀÛ ÇÔ¼ö
+ * @remarks    í•µì‰´ë“œ ì‹œìž‘ í•¨ìˆ˜
  *
  */
 int
@@ -514,7 +514,7 @@ _AhnHS_StartService ();
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå Á¾·á ÇÔ¼ö
+ * @remarks    í•µì‰´ë“œ ì¢…ë£Œ í•¨ìˆ˜
  *
  */
 int
@@ -524,35 +524,35 @@ _AhnHS_StopService ();
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ±â´É ÁßÁö ÇÔ¼ö·Î ÇöÀç´Â Å°º¸µå °ü·Ã ¸Þ½ÃÁö ÈÅ°ü·Ã ±â´É¸¸ ÁßÁö ½ÃÅ²´Ù.
+ * @remarks    í•µì‰´ë“œ ê¸°ëŠ¥ ì¤‘ì§€ í•¨ìˆ˜ë¡œ í˜„ìž¬ëŠ” í‚¤ë³´ë“œ ê´€ë ¨ ë©”ì‹œì§€ í›…ê´€ë ¨ ê¸°ëŠ¥ë§Œ ì¤‘ì§€ ì‹œí‚¨ë‹¤.
  *
- * @param	unPauseOption : [IN] ÁßÁö ÇÏ·Á´Â ±â´ÉÀÇ ¿É¼Ç ( ÇöÀç´Â AHNHS_CHKOPT_MESSAGEHOOK¸¸ °¡´É)
+ * @param    unPauseOption : [IN] ì¤‘ì§€ í•˜ë ¤ëŠ” ê¸°ëŠ¥ì˜ ì˜µì…˜ ( í˜„ìž¬ëŠ” AHNHS_CHKOPT_MESSAGEHOOKë§Œ ê°€ëŠ¥)
  *
  */
 int
 __stdcall
 _AhnHS_PauseService (
-	unsigned int unPauseOption
-	);
+    unsigned int unPauseOption
+    );
 
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ±â´É Àç°³ ÇÔ¼ö·Î ÇöÀç´Â Å°º¸µå °ü·Ã ¸Þ½ÃÁö ÈÅ°ü·Ã ±â´É¸¸ Àç°³ ½ÃÅ²´Ù.
+ * @remarks    í•µì‰´ë“œ ê¸°ëŠ¥ ìž¬ê°œ í•¨ìˆ˜ë¡œ í˜„ìž¬ëŠ” í‚¤ë³´ë“œ ê´€ë ¨ ë©”ì‹œì§€ í›…ê´€ë ¨ ê¸°ëŠ¥ë§Œ ìž¬ê°œ ì‹œí‚¨ë‹¤.
  *
- * @param	unResumeOption : [IN] Àç°³ ÇÏ·Á´Â ±â´ÉÀÇ ¿É¼Ç ( ÇöÀç´Â AHNHS_CHKOPT_MESSAGEHOOK¸¸ °¡´É)
+ * @param    unResumeOption : [IN] ìž¬ê°œ í•˜ë ¤ëŠ” ê¸°ëŠ¥ì˜ ì˜µì…˜ ( í˜„ìž¬ëŠ” AHNHS_CHKOPT_MESSAGEHOOKë§Œ ê°€ëŠ¥)
  *
  */
 int
 __stdcall
 _AhnHS_ResumeService (
-	unsigned int unResumeOption
-	);
+    unsigned int unResumeOption
+    );
 
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ¿ÏÀü Á¾·á ÇÔ¼ö
+ * @remarks    í•µì‰´ë“œ ì™„ì „ ì¢…ë£Œ í•¨ìˆ˜
  *
  */
 int
@@ -563,59 +563,59 @@ _AhnHS_Uninitialize ();
 int 
 __stdcall
 _AhnHS_CheckAPIHookedA (
-	const char*	szModuleNameA,
-	const char*	szFunctionNameA,
-	const char*	szSpecificPathA
-	);
+    const char*    szModuleNameA,
+    const char*    szFunctionNameA,
+    const char*    szSpecificPathA
+    );
 int 
 __stdcall
 _AhnHS_CheckAPIHookedW (
-	const wchar_t*	szModuleNameW,
-	const wchar_t*	szFunctionNameW,
-	const wchar_t*	szSpecificPathW
-	);
+    const wchar_t*    szModuleNameW,
+    const wchar_t*    szFunctionNameW,
+    const wchar_t*    szSpecificPathW
+    );
 #if defined(UNICODE) | defined(_UNICODE)
-	#define _AhnHS_CheckAPIHooked	_AhnHS_CheckAPIHookedW
+    #define _AhnHS_CheckAPIHooked    _AhnHS_CheckAPIHookedW
 #else
-	#define _AhnHS_CheckAPIHooked	_AhnHS_CheckAPIHookedA
+    #define _AhnHS_CheckAPIHooked    _AhnHS_CheckAPIHookedA
 #endif // !UNICODE
 
 
 /*!
  * 
- * @remarks	¼­¹ö·ÎºÎÅÍ ¿äÃ»¹ÞÀ» °æ¿ì ÇØ´ç ¸Þ½ÃÁö¿¡ ´ëÇÑ ÀÀ´ä¸Þ½ÃÁö¸¦ ¸¸µç´Ù.
+ * @remarks    ì„œë²„ë¡œë¶€í„° ìš”ì²­ë°›ì„ ê²½ìš° í•´ë‹¹ ë©”ì‹œì§€ì— ëŒ€í•œ ì‘ë‹µë©”ì‹œì§€ë¥¼ ë§Œë“ ë‹¤.
  *
- * @param	pbyRequest : [IN] ¿äÃ» ¸Þ½ÃÁö ¹öÆÛ
- * @param	ulRequestLength : [IN] ¿äÃ» ¸Þ½ÃÁö ±æÀÌ
- * @param	pResponseBuffer : [OUT] ÀÀ´ä ¸Þ½ÃÁö ¹öÆÛ
+ * @param    pbyRequest : [IN] ìš”ì²­ ë©”ì‹œì§€ ë²„í¼
+ * @param    ulRequestLength : [IN] ìš”ì²­ ë©”ì‹œì§€ ê¸¸ì´
+ * @param    pResponseBuffer : [OUT] ì‘ë‹µ ë©”ì‹œì§€ ë²„í¼
  *
  */
 int
 __stdcall
 _AhnHS_MakeResponse (
-	unsigned char *pbyRequest,
-	unsigned long ulRequestLength, 
-	PAHNHS_TRANS_BUFFER pResponseBuffer
-	);
+    unsigned char *pbyRequest,
+    unsigned long ulRequestLength, 
+    PAHNHS_TRANS_BUFFER pResponseBuffer
+    );
 
 /*!
  * 
- * @remarks	DirectInputÀÇ Buffered ¹æ½Ä¿¡¼­ÀÇ Scan ÄÚµå Ã³¸®.
+ * @remarks    DirectInputì˜ Buffered ë°©ì‹ì—ì„œì˜ Scan ì½”ë“œ ì²˜ë¦¬.
  *
- * @param	pbyRequest : [IN] ¿äÃ» ¸Þ½ÃÁö ¹öÆÛ
+ * @param    pbyRequest : [IN] ìš”ì²­ ë©”ì‹œì§€ ë²„í¼
  *
  */
 int
 __stdcall
 _AhnHS_PreTranslateBufferedDIMessage ( 
-	IN USHORT usMakeCode 
-	);
+    IN USHORT usMakeCode 
+    );
 
 /*!
  * 
- * @remarks	DirectInputÀÇ Buffered ¹æ½Ä¿¡¼­ÀÇ Scan ÄÚµå Ã³¸®.
+ * @remarks    DirectInputì˜ Buffered ë°©ì‹ì—ì„œì˜ Scan ì½”ë“œ ì²˜ë¦¬.
  *
- * @param	dwCnt : [IN] ÀÔ·ÂÀ¸·Î Ã³¸®ÇÏ´Â °³¼ö ( key down, upÀ» µû·Î Ã³¸®ÇÏ´Â °æ¿ì´Â 1 »ç¿ë)
+ * @param    dwCnt : [IN] ìž…ë ¥ìœ¼ë¡œ ì²˜ë¦¬í•˜ëŠ” ê°œìˆ˜ ( key down, upì„ ë”°ë¡œ ì²˜ë¦¬í•˜ëŠ” ê²½ìš°ëŠ” 1 ì‚¬ìš©)
  *
  */
 int
@@ -624,11 +624,11 @@ _AhnHS_PreTranslateBufferedDICounter(DWORD dwCnt = 2);
 
 /*!
  * 
- * @remarks	DirectInputÀÇ Immediate ¹æ½Ä¿¡¼­ÀÇ Scan ÄÚµå Ã³¸®.
+ * @remarks    DirectInputì˜ Immediate ë°©ì‹ì—ì„œì˜ Scan ì½”ë“œ ì²˜ë¦¬.
  *
- * @param	pbyRequest : [IN] ¿äÃ» ¸Þ½ÃÁö ¹öÆÛ
- * @param	ulRequestLength : [IN] ¿äÃ» ¸Þ½ÃÁö ±æÀÌ
- * @param	pResponseBuffer : [OUT] ÀÀ´ä ¸Þ½ÃÁö ¹öÆÛ
+ * @param    pbyRequest : [IN] ìš”ì²­ ë©”ì‹œì§€ ë²„í¼
+ * @param    ulRequestLength : [IN] ìš”ì²­ ë©”ì‹œì§€ ê¸¸ì´
+ * @param    pResponseBuffer : [OUT] ì‘ë‹µ ë©”ì‹œì§€ ë²„í¼
  *
  */
 int
@@ -640,230 +640,230 @@ _AhnHS_PreTranslateImmediateDIMessage (
 
 /*!
  * 
- * @remarks	¾ÈÀüÇÑ Direct3DCreate9 API¸¦ À§ÇÑ Wrapper Function
+ * @remarks    ì•ˆì „í•œ Direct3DCreate9 APIë¥¼ ìœ„í•œ Wrapper Function
  *
- * @param	SDKVersion : [IN] Direct3DCreate9 APIÀÇ ÀÎÀÚ·Î µé¾î°¡´Â SDK Version
+ * @param    SDKVersion : [IN] Direct3DCreate9 APIì˜ ì¸ìžë¡œ ë“¤ì–´ê°€ëŠ” SDK Version
  *
  */
 PVOID
 __stdcall
 _AhnHS_Direct3DCreate9 (
-	IN UINT SDKVersion
-	);
+    IN UINT SDKVersion
+    );
 
 
 /*!
  * 
- * @remarks	¾ÈÀüÇÑ Direct3DCreate8 API¸¦ À§ÇÑ Wrapper Function
+ * @remarks    ì•ˆì „í•œ Direct3DCreate8 APIë¥¼ ìœ„í•œ Wrapper Function
  *
- * @param	SDKVersion : [IN] Direct3DCreate8 APIÀÇ ÀÎÀÚ·Î µé¾î°¡´Â SDK Version
+ * @param    SDKVersion : [IN] Direct3DCreate8 APIì˜ ì¸ìžë¡œ ë“¤ì–´ê°€ëŠ” SDK Version
  *
  */
 PVOID
 __stdcall
 _AhnHS_Direct3DCreate8 (
-	IN UINT SDKVersion
-	);
+    IN UINT SDKVersion
+    );
 
 
 /*!
  * 
- * @remarks	¾ÈÀüÇÑ sendto API¸¦ À§ÇÑ Wrapper Function (sendto API¿Í µ¿ÀÏÇÏ°Ô »ç¿ë)
+ * @remarks    ì•ˆì „í•œ sendto APIë¥¼ ìœ„í•œ Wrapper Function (sendto APIì™€ ë™ì¼í•˜ê²Œ ì‚¬ìš©)
  *
- * @param	s : [IN] ¼ÒÄÏ
- * @param	buf : [IN] Àü¼ÛµÉ ¹öÆÛ
- * @param	len : [IN] ¹öÆÛÀÇ ±æÀÌ
- * @param	flags : [IN] ÇÔ¼ö ¿ªÈ°À» ³ªÅ¸³»´Â ÇÃ·¹±×
- * @param	to : [IN] ¹öÆÛ(µ¥ÀÌÅÍ)°¡ Àü¼ÛµÉ ¿ø°Ý È£½ºÆ®ÀÇ ¾îµå·¹½º
- * @param	tolen : to º¯¼öÀÇ Å©±â
+ * @param    s : [IN] ì†Œì¼“
+ * @param    buf : [IN] ì „ì†¡ë  ë²„í¼
+ * @param    len : [IN] ë²„í¼ì˜ ê¸¸ì´
+ * @param    flags : [IN] í•¨ìˆ˜ ì—­í™œì„ ë‚˜íƒ€ë‚´ëŠ” í”Œë ˆê·¸
+ * @param    to : [IN] ë²„í¼(ë°ì´í„°)ê°€ ì „ì†¡ë  ì›ê²© í˜¸ìŠ¤íŠ¸ì˜ ì–´ë“œë ˆìŠ¤
+ * @param    tolen : to ë³€ìˆ˜ì˜ í¬ê¸°
  *
  */
 int
 __stdcall
-_AhnHS_sendto (			
-	IN  int s,
-	IN  char* buf,
-	IN  int len,
-	IN  int flags,
-	IN  const struct sockaddr* to,
-	IN  int tolen
-	);
+_AhnHS_sendto (            
+    IN  int s,
+    IN  char* buf,
+    IN  int len,
+    IN  int flags,
+    IN  const struct sockaddr* to,
+    IN  int tolen
+    );
 
 int
 __stdcall
 _AhnHS_GetSDKVersion ( 
-	OUT DWORD *dwVersion 
-	);
+    OUT DWORD *dwVersion 
+    );
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ¸ð´ÏÅÍ¸µ ¼­ºñ½º¸¦ ½ÃÀÛÇÕ´Ï´Ù.
+ * @remarks    í•µì‰´ë“œ ëª¨ë‹ˆí„°ë§ ì„œë¹„ìŠ¤ë¥¼ ì‹œìž‘í•©ë‹ˆë‹¤.
  *
- * @param	IN AHNHS_EXT_ERRORINFO HsExtErrorInfo :  ¸ð´ÏÅÍ¸µ °ü·Ã ÀÔ·Â Á¤º¸µé
-                                  - ¼­¹ö URLÁÖ¼Ò. ( "123.456.789.123" or "www.monitor.com" )
-								  - User ID		  ( "User1" )
-								  - Game Version  ( "5.0.2.1" )
-			IN LPCSTR szFileName : ehsvc.dll ÀüÃ¼ °æ·Î.
+ * @param    IN AHNHS_EXT_ERRORINFO HsExtErrorInfo :  ëª¨ë‹ˆí„°ë§ ê´€ë ¨ ìž…ë ¥ ì •ë³´ë“¤
+                                  - ì„œë²„ URLì£¼ì†Œ. ( "123.456.789.123" or "www.monitor.com" )
+                                  - User ID          ( "User1" )
+                                  - Game Version  ( "5.0.2.1" )
+            IN LPCSTR szFileName : ehsvc.dll ì „ì²´ ê²½ë¡œ.
  */
 int 
 __stdcall 
 _AhnHS_StartMonitorA ( 
-		IN AHNHS_EXT_ERRORINFOA HsExtErrorInfoA,
-		IN const char* szFileNameA 
-		);		
+        IN AHNHS_EXT_ERRORINFOA HsExtErrorInfoA,
+        IN const char* szFileNameA 
+        );        
 int
 __stdcall
 _AhnHS_StartMonitorW ( 
-		IN AHNHS_EXT_ERRORINFOW HsExtErrorInfoW,
-		IN const wchar_t* szFileNameW 
-		);
+        IN AHNHS_EXT_ERRORINFOW HsExtErrorInfoW,
+        IN const wchar_t* szFileNameW 
+        );
 #if defined(UNICODE) | defined(_UNICODE)
-	#define _AhnHS_StartMonitor	_AhnHS_StartMonitorW
+    #define _AhnHS_StartMonitor    _AhnHS_StartMonitorW
 #else
-	#define _AhnHS_StartMonitor _AhnHS_StartMonitorA
-#endif // !UNOCODE	
+    #define _AhnHS_StartMonitor _AhnHS_StartMonitorA
+#endif // !UNOCODE    
 
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ¸ð´ÏÅÍ¸µ ¼­ºñ½º¸¦ À§ÇÑ ¾ÆÀÌµð Á¤º¸ ÀÔ·Â
+ * @remarks    í•µì‰´ë“œ ëª¨ë‹ˆí„°ë§ ì„œë¹„ìŠ¤ë¥¼ ìœ„í•œ ì•„ì´ë”” ì •ë³´ ìž…ë ¥
  *
- * @param	IN LPCSTR szUserID : ¾ÆÀÌµð 
+ * @param    IN LPCSTR szUserID : ì•„ì´ë”” 
  *
  * @remarks
-		_AhnHS_StartMonitor¿¡¼­µµ ÀÌÀÌµð Á¤º¸¸¦ ¹ÞÀ¸³ª ÇÙ½¯µå ÃÊ±âÈ­ ½ÃÁ¡¿¡ À¯Àú Á¤º¸¸¦ ¾ËÁö ¸øÇÏ´Â °æ¿ì°¡ 
-		ÀÖ´Ù. µû¶ó¼­ ¾ÆÀÌµð¸¦ ¾Æ´Â ½ÃÁ¡¿¡ ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÏ¿© À¯ÀúÁ¤º¸¸¦ ¾ò´Â´Ù.
-		¾ÆÀÌµð¸¦ ¾ò±â Àü±îÁö´Â ¾ÆÀÌµð Á¤º¸°¡ ¾øÀÌ ¿¡·¯°ªÀÌ Àü¼ÛµÈ´Ù.
+        _AhnHS_StartMonitorì—ì„œë„ ì´ì´ë”” ì •ë³´ë¥¼ ë°›ìœ¼ë‚˜ í•µì‰´ë“œ ì´ˆê¸°í™” ì‹œì ì— ìœ ì € ì •ë³´ë¥¼ ì•Œì§€ ëª»í•˜ëŠ” ê²½ìš°ê°€ 
+        ìžˆë‹¤. ë”°ë¼ì„œ ì•„ì´ë””ë¥¼ ì•„ëŠ” ì‹œì ì— ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ ìœ ì €ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+        ì•„ì´ë””ë¥¼ ì–»ê¸° ì „ê¹Œì§€ëŠ” ì•„ì´ë”” ì •ë³´ê°€ ì—†ì´ ì—ëŸ¬ê°’ì´ ì „ì†¡ëœë‹¤.
  */
 void
 __stdcall 
 _AhnHS_SetUserIdA ( 
-		IN const char* szUserIDA
-		);
+        IN const char* szUserIDA
+        );
 void
 __stdcall
 _AhnHS_SetUserIdW ( 
-		IN const wchar_t* szUserIDW
-		);
+        IN const wchar_t* szUserIDW
+        );
 
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_SetUserId	_AhnHS_SetUserIdW
+    #define    _AhnHS_SetUserId    _AhnHS_SetUserIdW
 #else
-	#define _AhnHS_SetUserId	_AhnHS_SetUserIdA
+    #define _AhnHS_SetUserId    _AhnHS_SetUserIdA
 #endif // !UNICODE
 
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå ¸ð´ÏÅÍ¸µ ¼­ºñ½º°¡ ½ÃÀÛµÈ ÀÌÈÄ¿¡ °ÔÀÓ¿¡¼­ º¯°æÇÏ°íÀÚ ÇÏ´Â ¸ð´ÏÅÍ¸µ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+ * @remarks    í•µì‰´ë“œ ëª¨ë‹ˆí„°ë§ ì„œë¹„ìŠ¤ê°€ ì‹œìž‘ëœ ì´í›„ì— ê²Œìž„ì—ì„œ ë³€ê²½í•˜ê³ ìž í•˜ëŠ” ëª¨ë‹ˆí„°ë§ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
  *
- * @param	IN AHNHS_EXT_ERRORINFO HsExtErrorInfo :  ¸ð´ÏÅÍ¸µ °ü·Ã ÀÔ·Â Á¤º¸µé
+ * @param    IN AHNHS_EXT_ERRORINFO HsExtErrorInfo :  ëª¨ë‹ˆí„°ë§ ê´€ë ¨ ìž…ë ¥ ì •ë³´ë“¤
           - Server URL       ( NULL )
-		  - User ID            ( "User1" )
-		  - Game Version  ( "5.0.2.1" )
+          - User ID            ( "User1" )
+          - Game Version  ( "5.0.2.1" )
  */
 void
 __stdcall 
 _AhnHS_UpdateMonitorInfoA ( 
-		IN AHNHS_EXT_ERRORINFOA HsExtMonInfoA
-		);
+        IN AHNHS_EXT_ERRORINFOA HsExtMonInfoA
+        );
 void
 __stdcall
 _AhnHS_UpdateMonitorInfoW ( 
-		IN AHNHS_EXT_ERRORINFOW HsExtMonInfoW
-		);
+        IN AHNHS_EXT_ERRORINFOW HsExtMonInfoW
+        );
 
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_UpdateMonitorInfo	_AhnHS_UpdateMonitorInfoW
+    #define    _AhnHS_UpdateMonitorInfo    _AhnHS_UpdateMonitorInfoW
 #else
-	#define _AhnHS_UpdateMonitorInfo	_AhnHS_UpdateMonitorInfoA
+    #define _AhnHS_UpdateMonitorInfo    _AhnHS_UpdateMonitorInfoA
 #endif // !UNICODE
 
 /*!
  * 
- * @remarks	ÇÙ½¯µå°¡ ¸ð´ÏÅÍ¸µ ¼­¹ö·Î Á¤º¸ Àü¼Û½Ã °í°´ ÀÓÀÇÀÇ Ãß°¡Á¤º¸ ±âÀÔ
+ * @remarks    í•µì‰´ë“œê°€ ëª¨ë‹ˆí„°ë§ ì„œë²„ë¡œ ì •ë³´ ì „ì†¡ì‹œ ê³ ê° ìž„ì˜ì˜ ì¶”ê°€ì •ë³´ ê¸°ìž…
  *
- * @param	IN LPCSTR szUserCostomInfo : UserCostomInfo Á¤º¸ 
+ * @param    IN LPCSTR szUserCostomInfo : UserCostomInfo ì •ë³´ 
  *
  */
 int
 __stdcall 
 _AhnHS_SetUserCustomInfoA ( 
-		IN const char* szUserCostomInfoA
-		);
+        IN const char* szUserCostomInfoA
+        );
 int
 __stdcall
 _AhnHS_SetUserCustomInfoW ( 
-		IN const wchar_t* szUserCustomInfoW
-		);
+        IN const wchar_t* szUserCustomInfoW
+        );
 
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_SetUserCustomInfo	_AhnHS_SetUserCustomInfoW
+    #define    _AhnHS_SetUserCustomInfo    _AhnHS_SetUserCustomInfoW
 #else
-	#define _AhnHS_SetUserCustomInfo	_AhnHS_SetUserCustomInfoA
+    #define _AhnHS_SetUserCustomInfo    _AhnHS_SetUserCustomInfoA
 #endif // !UNICODE
 
 
 /*!
  * 
- * @remarks	¸ð´ÏÅÍ¸µ ¼­¹ö·Î À¯Àú°¡ Á¤ÀÇÇÑ ¿¡·¯Á¤º¸¸¦ Àü¼Û.
+ * @remarks    ëª¨ë‹ˆí„°ë§ ì„œë²„ë¡œ ìœ ì €ê°€ ì •ì˜í•œ ì—ëŸ¬ì •ë³´ë¥¼ ì „ì†¡.
  *
- * @param	IN DWORD dwTimeout : wait time out value
+ * @param    IN DWORD dwTimeout : wait time out value
  *
  */
 int
 __stdcall 
 _AhnHS_SendUserCustomInfoA ( 
-		IN const char* szUserCustomInfoA,
-		IN DWORD dwTimeout = DEFAULT_HSMS_TIME_OUT
-		);
+        IN const char* szUserCustomInfoA,
+        IN DWORD dwTimeout = DEFAULT_HSMS_TIME_OUT
+        );
 int
 __stdcall 
 _AhnHS_SendUserCustomInfoW ( 
-		IN const wchar_t* szUserCustomInfoW,
-		IN DWORD dwTimeout = DEFAULT_HSMS_TIME_OUT
-		);
+        IN const wchar_t* szUserCustomInfoW,
+        IN DWORD dwTimeout = DEFAULT_HSMS_TIME_OUT
+        );
 
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_SendUserCustomInfo	_AhnHS_SendUserCustomInfoW
+    #define    _AhnHS_SendUserCustomInfo    _AhnHS_SendUserCustomInfoW
 #else
-	#define _AhnHS_SendUserCustomInfo	_AhnHS_SendUserCustomInfoA
+    #define _AhnHS_SendUserCustomInfo    _AhnHS_SendUserCustomInfoA
 #endif // !UNICODE
 
 /*!
  * 
- * @remarks	ÀÔ·ÂµÈ °æ·Î¿¡ ÇØ´çÇÏ´Â ¸ðµâ³»¿¡ ÇÙ½¯µå Á¤º¸°¡ Á¤»óÀûÀ¸·Î Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+ * @remarks    ìž…ë ¥ëœ ê²½ë¡œì— í•´ë‹¹í•˜ëŠ” ëª¨ë“ˆë‚´ì— í•µì‰´ë“œ ì •ë³´ê°€ ì •ìƒì ìœ¼ë¡œ í¬í•¨ë˜ì–´ ìžˆëŠ”ì§€ í™•ì¸í•œë‹¤.
  *
- * @param	const char* szModulePath : ¸ðµâ °æ·Î(ÀüÃ¼ °æ·Î)
+ * @param    const char* szModulePath : ëª¨ë“ˆ ê²½ë¡œ(ì „ì²´ ê²½ë¡œ)
  *
  * @remarks
-		ÇØ´ç °æ·ÎÀÇ ¸ðµâ¾È¿¡ CSInspector¿¡¼­ ÆÐÅ· ÀÌÀü¿¡ »ý¼ºÇÑ Á¤º¸°¡  Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÔ
+        í•´ë‹¹ ê²½ë¡œì˜ ëª¨ë“ˆì•ˆì— CSInspectorì—ì„œ íŒ¨í‚¹ ì´ì „ì— ìƒì„±í•œ ì •ë³´ê°€  ì¡´ìž¬í•˜ëŠ”ì§€ í™•ì¸í•¨
  * @return
-        TRUE : Á¤»ó Á¸Àç 
-		FALSE : Á¸ÀçÇÏÁö ¾ÊÀ½
+        TRUE : ì •ìƒ ì¡´ìž¬ 
+        FALSE : ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
  */
 
 BOOL
 __stdcall 
 _AhnHS_IsModuleSecureA ( 
-		IN const char* szModulePathA
-		);
+        IN const char* szModulePathA
+        );
 BOOL
 __stdcall
 _AhnHS_IsModuleSecureW ( 
-		IN const wchar_t* szModulePathW
-		);
+        IN const wchar_t* szModulePathW
+        );
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_IsModuleSecure	_AhnHS_IsModuleSecureW
+    #define    _AhnHS_IsModuleSecure    _AhnHS_IsModuleSecureW
 #else
-	#define _AhnHS_IsModuleSecure	_AhnHS_IsModuleSecureA
+    #define _AhnHS_IsModuleSecure    _AhnHS_IsModuleSecureA
 #endif // !UNICODE
 
 
 
 /*!
  * 
- * @remarks	
+ * @remarks    
  *
  *
  */
@@ -875,41 +875,41 @@ int
 __stdcall
 _AhnHS_CheckFileCRCW ();
 #if defined(UNICODE) | defined(_UNICODE) 
-	#define _AhnHS_CheckFileCRC	_AhnHS_CheckFileCRCW
+    #define _AhnHS_CheckFileCRC    _AhnHS_CheckFileCRCW
 #else
-	#define _AhnHS_CheckFileCRC	_AhnHS_CheckFileCRCA
+    #define _AhnHS_CheckFileCRC    _AhnHS_CheckFileCRCA
 #endif // !UNICODE
 
 
 /*!
  * 
- * ÇÙ½¯µå¿Í °ü·ÃµÈ ¿©·¯°¡Áö ¹®Á¦¸¦ °ÔÀÓ»ç¸¦ ÅëÇÏÁö ¾Ê°í ºü¸£°Ô Ã³¸®ÇÏ±â À§ÇØ °³¹ßµÈ ±â´ÉÀ¸·Î¼­ 
- * ÇØÅ·ÀÌ ¹ß»ýÇÑ ÈÄ ÇÙ½¯µåÀÇ ·Î±×¸¦ °ÔÀÓ À¯Àú°¡ ¼±ÅÃÇÏ¿© ¾È·¦¿¡ º¸³¾ ¼ö ÀÖ´Â±â´ÉÀÌ´Ù.
+ * í•µì‰´ë“œì™€ ê´€ë ¨ëœ ì—¬ëŸ¬ê°€ì§€ ë¬¸ì œë¥¼ ê²Œìž„ì‚¬ë¥¼ í†µí•˜ì§€ ì•Šê³  ë¹ ë¥´ê²Œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ ê°œë°œëœ ê¸°ëŠ¥ìœ¼ë¡œì„œ 
+ * í•´í‚¹ì´ ë°œìƒí•œ í›„ í•µì‰´ë“œì˜ ë¡œê·¸ë¥¼ ê²Œìž„ ìœ ì €ê°€ ì„ íƒí•˜ì—¬ ì•ˆëž©ì— ë³´ë‚¼ ìˆ˜ ìžˆëŠ”ê¸°ëŠ¥ì´ë‹¤.
  *
- * @param	dwError : ÇÙ½¯µå ¿¡·¯ÄÚµå.   ex) AHNHS_ENGINE_DETECT_GAME_HACK(0x10501)
- * @param	szUserID : °ÔÀÓ À¯Àú ¾ÆÀÌµð. ex) "User1"
+ * @param    dwError : í•µì‰´ë“œ ì—ëŸ¬ì½”ë“œ.   ex) AHNHS_ENGINE_DETECT_GAME_HACK(0x10501)
+ * @param    szUserID : ê²Œìž„ ìœ ì € ì•„ì´ë””. ex) "User1"
  *
  * @remarks
- *		ÇÙ½¯µå ¿¡·¯ÄÚµå´Â _AhnHS_InitializeÇÔ¼öÀÇ 2¹øÂ° ÀÎÀÚ°ª¿¡ ÀÔ·ÂµÇ´Â ÇÙ½¯µå ÄÝ¹éÇÔ¼öÀÇ 
- *		Ã¹¹øÂ° ÀÎÀÚÀÎ lCode °ªÀÌ´Ù.
+ *        í•µì‰´ë“œ ì—ëŸ¬ì½”ë“œëŠ” _AhnHS_Initializeí•¨ìˆ˜ì˜ 2ë²ˆì§¸ ì¸ìžê°’ì— ìž…ë ¥ë˜ëŠ” í•µì‰´ë“œ ì½œë°±í•¨ìˆ˜ì˜ 
+ *        ì²«ë²ˆì§¸ ì¸ìžì¸ lCode ê°’ì´ë‹¤.
  */
 
 void
 __stdcall 
 _AhnHS_SendHsLogA ( IN DWORD dwError,
-					IN const char* szUserID,
-					IN const char* szHShieldPath
-				  );
+                    IN const char* szUserID,
+                    IN const char* szHShieldPath
+                  );
 void
 __stdcall
 _AhnHS_SendHsLogW ( IN DWORD dwError,
-					IN const wchar_t* szUserIDW,
-					IN const wchar_t* szHShieldPathW
-				  );
+                    IN const wchar_t* szUserIDW,
+                    IN const wchar_t* szHShieldPathW
+                  );
 #if defined(UNICODE) | defined(_UNICODE)
-	#define	_AhnHS_SendHsLog	_AhnHS_SendHsLogW
+    #define    _AhnHS_SendHsLog    _AhnHS_SendHsLogW
 #else
-	#define _AhnHS_SendHsLog	_AhnHS_SendHsLogA
+    #define _AhnHS_SendHsLog    _AhnHS_SendHsLogA
 #endif // !UNICODE
 
 int 
@@ -921,16 +921,16 @@ int
 __stdcall 
 _AhnHS_VerifyProtectedFunction();
 
-#define AHNHS_PROTECT_FUNCTION		\
-__try{								\
-	_AhnHS_VerifyProtectedFunction();	\
-}__finally{}						\
+#define AHNHS_PROTECT_FUNCTION        \
+__try {                                \
+    _AhnHS_VerifyProtectedFunction();    \
+} __finally{}                        \
 
 
-#define AHNHS_PROTECT_FUNCTIONEX(nRet)		\
-__try{										\
-	nRet = _AhnHS_VerifyProtectedFunction();	\
-}__finally{}								\
+#define AHNHS_PROTECT_FUNCTIONEX(nRet)        \
+__try {                                        \
+    nRet = _AhnHS_VerifyProtectedFunction();    \
+} __finally{}                                \
 
 BOOL
 __stdcall 
@@ -972,31 +972,31 @@ _AhnHS_SetProtectedFunction( IN DWORD dwIndex );
 
 /*!
  * 
- * Local PC ÀÇ °íÀ¯ Á¤º¸(HD Key)¸¦ Àü´ÞÇÏ¿© ÇØ´ç PC¸¦ ÀÎÁõÇÏ±â À§ÇÑ ÇÔ¼ö
+ * Local PC ì˜ ê³ ìœ  ì •ë³´(HD Key)ë¥¼ ì „ë‹¬í•˜ì—¬ í•´ë‹¹ PCë¥¼ ì¸ì¦í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
  *
- * @param	[IN] DWORD dwSessionId			: ¼¼¼Ç ID 
- * @param	[OUT] PBYTE pbyAuthData			: Local PC ÀÇ °íÀ¯ Á¤º¸
- * @param	[OUT] PDWORD pdwDataLength		: pbyAuthData µ¥ÀÌÅÍÀÇ Å©±â
- * @param	[IN] DWORD dwCheckOption		: pbyAuthData ÀÇ ±¸Á¶¸¦ °áÁ¤Áþ´Â ¿É¼Ç°ª
+ * @param    [IN] DWORD dwSessionId            : ì„¸ì…˜ ID 
+ * @param    [OUT] PBYTE pbyAuthData            : Local PC ì˜ ê³ ìœ  ì •ë³´
+ * @param    [OUT] PDWORD pdwDataLength        : pbyAuthData ë°ì´í„°ì˜ í¬ê¸°
+ * @param    [IN] DWORD dwCheckOption        : pbyAuthData ì˜ êµ¬ì¡°ë¥¼ ê²°ì •ì§“ëŠ” ì˜µì…˜ê°’
  *
- * @retval	HS_ERR_OK : ¼º°ø, ÀÌ¿Ü´Â ½ÇÆÐ
+ * @retval    HS_ERR_OK : ì„±ê³µ, ì´ì™¸ëŠ” ì‹¤íŒ¨
  *
  * @remarks
- *			dwCheckOption: OPTION_NO_CHECK or OPTION_CHECK_INTEGRITY ¸¸ °¡´É  			
+ *            dwCheckOption: OPTION_NO_CHECK or OPTION_CHECK_INTEGRITY ë§Œ ê°€ëŠ¥              
  */
 int
 __stdcall 
 _AhnHS_AuthenticateLocalPC(
-						  IN DWORD dwSessionId,		
-						  OUT PBYTE pbyAuthData,
-						  OUT PDWORD pdwDataLength,
-						  IN DWORD dwCheckOption
-						  );
-						  
-#endif	//_NO_HACKSHIELD
+                          IN DWORD dwSessionId,        
+                          OUT PBYTE pbyAuthData,
+                          OUT PDWORD pdwDataLength,
+                          IN DWORD dwCheckOption
+                          );
+                          
+#endif    //_NO_HACKSHIELD
 
 #if defined(__cplusplus)
 }
 #endif
 
-#endif _HSHIELD_H_INC
+#endif // COMMON_HSHIELD_H_

@@ -1,10 +1,11 @@
-#ifndef _FTP_MANAGER_H_
-#define _FTP_MANAGER_H_
+Ôªø//Copyright[2002] MasangSoft
+#ifndef COMMON_FTP_FTPMANAGER_H_
+#define COMMON_FTP_FTPMANAGER_H_
 
 #include "Wininet.h"
 #include <thread>
 
-// 2007-01-05 by cmkwon, ERR_XXX∑Œ ºˆ¡§«‘
+// 2007-01-05 by cmkwon, ERR_XXX¬∑√é ¬º√∂√Å¬§√á√î
 //typedef enum
 //{
 //	DOWNLOAD_ERR_FTP_CONNECT			= 0,
@@ -55,4 +56,4 @@ public:
 	HWND		m_hUpdateWindow;
 };
 
-#endif // _FTP_MANAGER_H_
+#endif // COMMON_FTP_FTPMANAGER_H_

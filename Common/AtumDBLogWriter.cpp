@@ -1,3 +1,4 @@
+ï»¿//Copyright [2002] MasangSoft
 #include "stdafx.h"
 #include "atumprotocol.h"
 #include "AtumDBLogWriter.h"
@@ -31,7 +32,7 @@ const char* GetLogBaseString(FL_USER_LOG_BASE *pLogBase, string& str)
 	return str.c_str();
 }
 
-// 2006-09-14 by cmkwon, »ç¿ëÇÏÁö ¾Ê´Â ÇÔ¼öµé
+// 2006-09-14 by cmkwon, ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í•¨ìˆ˜ë“¤
 // BOOL CAtumDBLogWriter::InsertLog_Connection(
 // 						CODBCStatement *i_pODBCStmt,
 // 						BYTE			i_nLogType,
@@ -78,16 +79,16 @@ const char* GetLogBaseString(FL_USER_LOG_BASE *pLogBase, string& str)
 // 	i_pODBCStmt->FreeStatement();
 // 
 // /*
-// 	* ·Î±×ÀÎÇÒ¶§  ÇÁ·Î½ÃÁ® PB_GAMELOGIN È£Ãâ
-// 	ÆÄ¶ó¹ÌÅÍ  
+// 	* ë¡œê·¸ì¸í• ë•Œ  í”„ë¡œì‹œì ¸ PB_GAMELOGIN í˜¸ì¶œ
+// 	íŒŒë¼ë¯¸í„°  
 // 	@strClientID VARCHAR(20),  	-- User ID  <<  MGame ID
 // 	@strIPAddr VARCHAR(16),   	-- User IP Address
 // 	@nGameID INT    		-- GameSvr ID = 10061
 // 
 // 		 PB_GAMELOGIN @strClientID, @strIPAddr , @nGameID 
 //  
-// 	* ·Î±×¾Æ¿ôÇÒ¶§ ÇÁ·Î½ÃÁ®  PB_GAMELOGOUT È£Ãâ
-// 	ÆÄ¶ó¹ÌÅÍ
+// 	* ë¡œê·¸ì•„ì›ƒí• ë•Œ í”„ë¡œì‹œì ¸  PB_GAMELOGOUT í˜¸ì¶œ
+// 	íŒŒë¼ë¯¸í„°
 // 	@strClientID VARCHAR(20)  	-- User ID  <<  MGame ID
 //  
 // 		PB_GAMELOGOUT @strClientID
@@ -248,7 +249,7 @@ const char* GetLogBaseString(FL_USER_LOG_BASE *pLogBase, string& str)
 // }
 // 
 
-// 2008-01-17 by cmkwon, T_A: »èÁ¦ »óÅÂÀÇ Ä³¸¯ÅÍ ¿µ±¸È÷ »èÁ¦ÇÏ´Â ±â´É Ãß°¡ - CAtumDBLogWriter::InsertLog_User_Game_Start_End() ¸¦ ÁÖ¼®»óÅÂ¸¦ º¹¿ø ½ÃÅ´
+// 2008-01-17 by cmkwon, T_A: ì‚­ì œ ìƒíƒœì˜ ìºë¦­í„° ì˜êµ¬íˆ ì‚­ì œí•˜ëŠ” ê¸°ëŠ¥ ì¶”ê°€ - CAtumDBLogWriter::InsertLog_User_Game_Start_End() ë¥¼ ì£¼ì„ìƒíƒœë¥¼ ë³µì› ì‹œí‚´
 BOOL CAtumDBLogWriter::InsertLog_User_Game_Start_End(
 						CODBCStatement		*i_pODBCStmt,
 						T1<T0::FL_LOG>		i_nLogType,
@@ -263,7 +264,7 @@ BOOL CAtumDBLogWriter::InsertLog_User_Game_Start_End(
 	--!!!!
 	-- Name: atum_log_insert_user_game_start_end
 	-- Desc: inserts log
-	--			2006-12-18 by cmkwon, ÀÎÀÚ Ãß°¡(@i_PCBangPlayTime INT)
+	--			2006-12-18 by cmkwon, ì¸ì ì¶”ê°€(@i_PCBangPlayTime INT)
 	--====
 	CREATE PROCEDURE atum_log_insert_user_game_start_end
 		@i_LogType					TINYINT,
@@ -300,15 +301,15 @@ BOOL CAtumDBLogWriter::InsertLog_User_Game_Start_End(
 	SQLBindParameter(i_pODBCStmt->m_hstmt, 10, SQL_PARAM_INPUT, SQL_C_ULONG, SQL_INTEGER, 0, 0, &i_nPlayTime, 0, NULL);
 	SQLBindParameter(i_pODBCStmt->m_hstmt, 11, SQL_PARAM_INPUT, SQL_C_SBIGINT, SQL_BIGINT, 0, 0, &I_nTotalPlayTime, 0, NULL);
 
-	// 2008-01-17 by cmkwon, T_A: »èÁ¦ »óÅÂÀÇ Ä³¸¯ÅÍ ¿µ±¸È÷ »èÁ¦ÇÏ´Â ±â´É Ãß°¡ - ÁÖ¼® Ã³¸®µÈ ÈÄ Ãß°¡µÈ ÀÎÀÚ Ãß°¡ÇÔ
+	// 2008-01-17 by cmkwon, T_A: ì‚­ì œ ìƒíƒœì˜ ìºë¦­í„° ì˜êµ¬íˆ ì‚­ì œí•˜ëŠ” ê¸°ëŠ¥ ì¶”ê°€ - ì£¼ì„ ì²˜ë¦¬ëœ í›„ ì¶”ê°€ëœ ì¸ì ì¶”ê°€í•¨
 	int PCBangPalyTime	= 0;
 	int PCBangUID		= 0;
 	SQLBindParameter(i_pODBCStmt->m_hstmt, 12, SQL_PARAM_INPUT, SQL_C_ULONG, SQL_INTEGER, 0, 0, &PCBangPalyTime, 0, NULL);		// 2006-12-18 by cmkwon
-	SQLBindParameter(i_pODBCStmt->m_hstmt, 13, SQL_PARAM_INPUT, SQL_C_ULONG, SQL_INTEGER, 0, 0, &PCBangUID, 0, NULL);			// 2007-01-22 by dhjin, Ãß°¡ÇÔ
+	SQLBindParameter(i_pODBCStmt->m_hstmt, 13, SQL_PARAM_INPUT, SQL_C_ULONG, SQL_INTEGER, 0, 0, &PCBangUID, 0, NULL);			// 2007-01-22 by dhjin, ì¶”ê°€í•¨
 
 	BOOL bRet = i_pODBCStmt->ExecuteQuery((char*)(PROCEDURE_080822_0028), TRUE);
 	if (!bRet)
-	{
+    {
 //		i_pODBCStmt->ProcessLogMessagesForStmt("atum_log_insert_user_game_start_end Failed!\r\n");
 		char szTemp[1024];
 		sprintf(szTemp, "%s\r\n", GetLogBaseString(i_pUserLogBase, string()));
@@ -570,18 +571,18 @@ BOOL CAtumDBLogWriter::InsertLog_User_Game_Start_End(
 // 
 
 
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É
-// SCAdminTool¿¡¼­ »ç¿ë
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥
+// SCAdminToolì—ì„œ ì‚¬ìš©
 
 BOOL CAtumDBLogWriter::InsertLog_Item_Enchant_Change_By_Admin(
 						CODBCStatement		*i_pODBCStmt,
 						T1<T0::FL_LOG>		i_nLogType,
-						FL_ITEM_LOG_BASE	*i_pItemLogBase,		// ÄÉ¸¯ÅÍ À¯´ÏÅ© ³Ñ¹ö 
+						FL_ITEM_LOG_BASE	*i_pItemLogBase,		// ì¼€ë¦­í„° ìœ ë‹ˆí¬ ë„˜ë²„ 
 						ITEM_FOR_LOG		*i_pItem4Log,			// ItemUniqueNumber;  ItemNum; CurrentCount;
 						INT					i_EnchantCardNumber,
 						INT					i_ChangeEnchantCount,
 						INT					i_ResultEnchantCount,
-						char				*i_szCharacterName)		// ¿î¿µÀÚ °èÁ¤
+						char				*i_szCharacterName)		// ìš´ì˜ì ê³„ì •
 {
 	/*[Stored Query Definition]************************************************
 	CREATE PROCEDURE [dbo].[atum_log_insert_item_Enchant_Change_By_Admin]
@@ -614,7 +615,7 @@ BOOL CAtumDBLogWriter::InsertLog_Item_Enchant_Change_By_Admin(
 
 	BOOL bRet = i_pODBCStmt->ExecuteQuery((char*)(PROCEDURE_121121_0002), TRUE);
 	if (!bRet)
-	{
+    {
 		i_pODBCStmt->FreeStatement();
 		return FALSE;
 	}
@@ -622,10 +623,10 @@ BOOL CAtumDBLogWriter::InsertLog_Item_Enchant_Change_By_Admin(
 	i_pODBCStmt->FreeStatement();
 	return TRUE;
 }
-// 2012-11-21 by bckim, ¿î¿µÅø±â´ÉÃß°¡, ÀÎÃ¦Æ®¾ÆÀÌÅÛÁ¦°Å±â´É. End
+// 2012-11-21 by bckim, ìš´ì˜íˆ´ê¸°ëŠ¥ì¶”ê°€, ì¸ì±ˆíŠ¸ì•„ì´í…œì œê±°ê¸°ëŠ¥. End
 
 
-// 2006-09-21 by cmkwon, SCAdminTool¿¡¼­ »ç¿ëÇÏ°í ÀÖÀ½
+// 2006-09-21 by cmkwon, SCAdminToolì—ì„œ ì‚¬ìš©í•˜ê³  ìˆìŒ
 BOOL CAtumDBLogWriter::InsertLog_Item_Trade(
 						CODBCStatement		*i_pODBCStmt,
 						T1<T0::FL_LOG>		i_nLogType,
@@ -666,7 +667,7 @@ BOOL CAtumDBLogWriter::InsertLog_Item_Trade(
 
 	BOOL bRet = i_pODBCStmt->ExecuteQuery((char*)(PROCEDURE_080822_0029), TRUE);
 	if (!bRet)
-	{
+    {
 		i_pODBCStmt->FreeStatement();
 		return FALSE;
 	}
@@ -858,7 +859,7 @@ BOOL CAtumDBLogWriter::InsertLog_Item_Trade(
 // 		@i_LogType					TINYINT,
 // 		@i_MapIndex					SMALLINT,
 // 		@i_ChannelIndex				SMALLINT,
-//  		@i_MonsterUnitKind			INT,		-- »ı¼º ¸ó½ºÅÍ Á¤º¸
+//  		@i_MonsterUnitKind			INT,		-- ìƒì„± ëª¬ìŠ¤í„° ì •ë³´
 //  		@i_CreatedTime				VARCHAR(30),
 //  		@i_DeadTime					VARCHAR(30),
 //  		@i_AttackUser1				VARCHAR(20),
@@ -936,7 +937,7 @@ BOOL CAtumDBLogWriter::InsertLog_Item_Trade(
 // BOOL CAtumDBLogWriter::MGame_PB_Init(CODBCStatement			*i_pODBCStmt)
 // {
 // 	/*[Stored Query Definition]************************************************
-// 	-- Á¢¼ÓÀÚ Ã¼Å© ÇÁ·Î½ÃÁ®
+// 	-- ì ‘ì†ì ì²´í¬ í”„ë¡œì‹œì ¸
 // 	CREATE PROCEDURE PB_INIT
 // 	@nGameID int		-- Game ID
 // 
@@ -989,7 +990,7 @@ BOOL CAtumDBLogWriter::InserLog_Live_Deleted_Character(
 
 	BOOL bRet = i_pODBCStmt->ExecuteQuery((char*)(PROCEDURE_080822_0030), TRUE);
 	if (!bRet)
-	{
+    {
 		i_pODBCStmt->FreeStatement();
 		return FALSE;
 	}

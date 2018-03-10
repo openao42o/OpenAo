@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 //#include "SocketHeader.h"
 #include "WinPacket.h"
@@ -7,12 +7,12 @@
 
 using namespace std;
 
-// socket HWND¿¡¼­ ¹Ş´Â ¸Ş½ÃÁö(¾Æ·¡ ¸Ş½ÃÁö´Â ÀçÁ¤ÀÇÇØ¼­ ÇÊ¿äÇÑ ¸Ş½ÃÁö·Î ¹Ù²Ü ¼ö ÀÖ´Ù.)
+// socket HWNDì—ì„œ ë°›ëŠ” ë©”ì‹œì§€(ì•„ë˜ ë©”ì‹œì§€ëŠ” ì¬ì •ì˜í•´ì„œ í•„ìš”í•œ ë©”ì‹œì§€ë¡œ ë°”ê¿€ ìˆ˜ ìˆë‹¤.)
 #define	WM_USER_BASE				(WM_USER + 222)
 #define	WM_ASYNC_EVENT				(WM_USER_BASE + 1)				//
-#define	WM_PACKET_NOTIFY			(WM_USER_BASE + 2)				// HWND¿¡ Àü´ŞµÇ´Â ¸Ş½ÃÁö
-#define WM_ASYNC_EVENT_BY_NPLAY		(WM_USER_BASE + 3)				// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ
-#define	WM_PACKET_NOTIFY_BY_NPLAY	(WM_USER_BASE + 4)				// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ
+#define	WM_PACKET_NOTIFY			(WM_USER_BASE + 2)				// HWNDì— ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€
+#define WM_ASYNC_EVENT_BY_NPLAY		(WM_USER_BASE + 3)				// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ
+#define	WM_PACKET_NOTIFY_BY_NPLAY	(WM_USER_BASE + 4)				// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ
 
 
 class CWinSocket
@@ -22,47 +22,47 @@ public:
 	{
 		WS_ERROR = 0x0001,
 		WS_CONNECTED = 0x0002,
-		WS_ACCEPTED = 0x0003, // 2007-06-21 by cmkwon, Å¬¶óÀÌ¾ğÆ®ÀÇ ¼Ò½º¿Í ÅëÇÕ
+		WS_ACCEPTED = 0x0003, // 2007-06-21 by cmkwon, í´ë¼ì´ì–¸íŠ¸ì˜ ì†ŒìŠ¤ì™€ í†µí•©
 		WS_RECEIVED = 0x0004,
 		WS_CLOSED = 0x0005
 	};
 
-	explicit CWinSocket(ENServerType PeerType, HWND hWnd, UINT wmSock = WM_ASYNC_EVENT, UINT wmNotify = WM_PACKET_NOTIFY, BOOL bEncoding = FALSE, char* szNPlayServerIP_Real = "", char* szNPlayServerIP_BackUp = "");// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - NPlay ¼­¹ö IP ÀÎÀÚ Ãß°¡
+	explicit CWinSocket(ENServerType PeerType, HWND hWnd, UINT wmSock = WM_ASYNC_EVENT, UINT wmNotify = WM_PACKET_NOTIFY, BOOL bEncoding = FALSE, char* szNPlayServerIP_Real = "", char* szNPlayServerIP_BackUp = "");// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - NPlay ì„œë²„ IP ì¸ì ì¶”ê°€
 	virtual ~CWinSocket();
 
 protected:
-	HWND m_hMsgWnd; // Socket Event¿Í Notify ¸Ş½ÃÁö Àü¼Û À©µµ¿ì
-	SOCKET m_Socket; // ¼ÒÄÏÀÇ ÇÚµé
-	UINT m_wmSocket; // HWND¿¡¼­ Socket Ã³¸® ¸Ş½ÃÁö(WSAAsyncSelectÇÔ¼ö ¸ŞÁö½Ã)
-	UINT m_wmNotify; // HWND¿¡ Åëº¸µÇ´Â ¸Ş½ÃÁö(HWND¿¡ ¼ÒÄÏ Ã³¸®°á°ú Åëº¸)
-	BOOL m_bConnected; // ¼ÒÄÏÀÌ remote¿Í ¿¬°áµÇ¾ú´ÂÁöÀÇ ÇÃ·¡±×
-	int m_nLastError; // ¸¶Áö¸· Error code
+	HWND m_hMsgWnd; // Socket Eventì™€ Notify ë©”ì‹œì§€ ì „ì†¡ ìœˆë„ìš°
+	SOCKET m_Socket; // ì†Œì¼“ì˜ í•¸ë“¤
+	UINT m_wmSocket; // HWNDì—ì„œ Socket ì²˜ë¦¬ ë©”ì‹œì§€(WSAAsyncSelectí•¨ìˆ˜ ë©”ì§€ì‹œ)
+	UINT m_wmNotify; // HWNDì— í†µë³´ë˜ëŠ” ë©”ì‹œì§€(HWNDì— ì†Œì¼“ ì²˜ë¦¬ê²°ê³¼ í†µë³´)
+	BOOL m_bConnected; // ì†Œì¼“ì´ remoteì™€ ì—°ê²°ë˜ì—ˆëŠ”ì§€ì˜ í”Œë˜ê·¸
+	int m_nLastError; // ë§ˆì§€ë§‰ Error code
 	int m_nAsyncFlag; // WSAAsyncSelect Event parameter
 	BOOL m_bEncodingFlag;
 
-	SOCKADDR_IN m_SockAddrLocal; // localÀ» À§ÇÑ ¼ÒÄÏ ÁÖ¼Ò ±¸Á¶Ã¼(Bind½Ã¿¡ ÇÊ¿ä)
-	SOCKADDR_IN m_SockAddrRemote; // remoteÀ» À§ÇÑ ¼ÒÄÏ ÁÖ¼Ò ±¸Á¶Ã¼(Accetp¿Í Connect½Ã¿¡ ÇÊ¿ä)
+	SOCKADDR_IN m_SockAddrLocal; // localì„ ìœ„í•œ ì†Œì¼“ ì£¼ì†Œ êµ¬ì¡°ì²´(Bindì‹œì— í•„ìš”)
+	SOCKADDR_IN m_SockAddrRemote; // remoteì„ ìœ„í•œ ì†Œì¼“ ì£¼ì†Œ êµ¬ì¡°ì²´(Accetpì™€ Connectì‹œì— í•„ìš”)
 	list<CSendPacket*> m_listSendPacket; // Send Packet Pointer list
-	CRITICAL_SECTION m_criticalSendList; // Send Packet List ÀÇ µ¿±âÈ­¸¦ À§ÇØ
+	CRITICAL_SECTION m_criticalSendList; // Send Packet List ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´
 	char m_RecvBuffer[SIZE_MAX_SOCKET_BUFFER ]; // Receive Buffer
 	CRecvPacket m_RecvPacket; //
-	queue<char*> m_queueRecvMessage; // Received Message¸¦ ÀúÀåÇØ ³õÀ» Å¥
-	CRITICAL_SECTION m_criticalRecvMessageQueue; // Received Message QueueÀÇ µ¿±âÈ­¸¦ À§ÇØ
+	queue<char*> m_queueRecvMessage; // Received Messageë¥¼ ì €ì¥í•´ ë†“ì„ í
+	CRITICAL_SECTION m_criticalRecvMessageQueue; // Received Message Queueì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´
 
 	BYTE m_byHostSequenceNumber;
 	BYTE m_byPeerSequenceNumber;
-	BOOL m_bPeerSequenceNumberInitFlag; // »ó´ë¹æÀÇ ¹Ş¾Æ¾ßÇÒ Sequence NumberÀÇ ÃÊ±âÈ­ ¿©ºÎ ÇÃ·¡±×
+	BOOL m_bPeerSequenceNumberInitFlag; // ìƒëŒ€ë°©ì˜ ë°›ì•„ì•¼í•  Sequence Numberì˜ ì´ˆê¸°í™” ì—¬ë¶€ í”Œë˜ê·¸
 
-	MessageType_t m_msgTyLastPacket; // 2008-02-22 by cmkwon, ¸¶Áö¸· ÆĞÅ¶ ¸Ş½ÃÁö Å¸ÀÓ
+	MessageType_t m_msgTyLastPacket; // 2008-02-22 by cmkwon, ë§ˆì§€ë§‰ íŒ¨í‚· ë©”ì‹œì§€ íƒ€ì„
 
-	// 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ
+	// 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ
 	char m_szNPlayServerIP_Real[SIZE_MAX_IPADDRESS ];
 	char m_szNPlayServerIP_BackUp[SIZE_MAX_IPADDRESS ];
-	// end 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ
+	// end 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ
 
 public:
-	int m_nPeerPort; // UDP Åë½ÅÀ» À§ÇÑ »ó´ë¹æ Port
-	char m_szPeerIP[SIZE_MAX_IPADDRESS ]; // TCP : ÇöÀç ¿¬°áµÈ ClientÀÇ IP Address,  UDP : Åë½ÅÀ» À§ÇÑ »ó´ë¹æ IP Address
+	int m_nPeerPort; // UDP í†µì‹ ì„ ìœ„í•œ ìƒëŒ€ë°© Port
+	char m_szPeerIP[SIZE_MAX_IPADDRESS ]; // TCP : í˜„ì¬ ì—°ê²°ëœ Clientì˜ IP Address,  UDP : í†µì‹ ì„ ìœ„í•œ ìƒëŒ€ë°© IP Address
 	ENServerType m_PeerSocketType;
 	BOOL m_bSendNotify; // Send just one time Notify message 20060514 by dhkwon
 
@@ -76,15 +76,15 @@ public:
 	inline BOOL AsyncSelect(int nMode);
 	inline BOOL AsyncSelect();
 	inline SOCKET GetSocketHandle(void);
-	BOOL SetOptionWinSocket(int level, int nOption, char* pValue, int nValueSize); // 2007-06-21 by cmkwon, TCP Nagle ¾Ë°í¸®Áò ÇØÁ¦¸¦ À§ÇØ
+	BOOL SetOptionWinSocket(int level, int nOption, char* pValue, int nValueSize); // 2007-06-21 by cmkwon, TCP Nagle ì•Œê³ ë¦¬ì¦˜ í•´ì œë¥¼ ìœ„í•´
 
-	// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - ÀÎÀÚÃß°¡(BOOL i_bBlockingMode=FALSE)
-	BOOL Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode = FALSE); // Client·Î¼­ µ¿ÀÛ, Server ·Î ¿¬°á½Ãµµ
-	BOOL Bind(int nPort); // Server·Î¼­ µ¿ÀÛ, ÁöÁ¤µÈ Æ÷Æ®¸¦ ¿­¾î³õ´Â´Ù. Listen½Ã¿¡ ÇÊ¿ä
-	BOOL Listen(int nBackLog = 1); // Server·Î¼­ µ¿ÀÛ, Á¢¼ÓÇÏ·Á´Â Clinet¸¦ ±â´Ù¸°´Ù.
-	BOOL CloseSocket(int reason = 0); // SocketÀ» ´İ´Â´Ù.
+	// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - ì¸ìì¶”ê°€(BOOL i_bBlockingMode=FALSE)
+	BOOL Connect(LPCSTR strPeerIP, int nPort, BOOL i_bBlockingMode = FALSE); // Clientë¡œì„œ ë™ì‘, Server ë¡œ ì—°ê²°ì‹œë„
+	BOOL Bind(int nPort); // Serverë¡œì„œ ë™ì‘, ì§€ì •ëœ í¬íŠ¸ë¥¼ ì—´ì–´ë†“ëŠ”ë‹¤. Listenì‹œì— í•„ìš”
+	BOOL Listen(int nBackLog = 1); // Serverë¡œì„œ ë™ì‘, ì ‘ì†í•˜ë ¤ëŠ” Clinetë¥¼ ê¸°ë‹¤ë¦°ë‹¤.
+	BOOL CloseSocket(int reason = 0); // Socketì„ ë‹«ëŠ”ë‹¤.
 
-	BOOL Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket = FALSE); // 2012-10-05 by jhseol, NPlay pc¹æ ¸ğµâ - ÆĞÅ¶ÀÇ ÇØ´õ Á¦°Å ¿©ºÎÀÎÀÚ Ãß°¡
+	BOOL Write(LPCSTR pPacket, int nLength, BOOL NPlaySocket = FALSE); // 2012-10-05 by jhseol, NPlay pcë°© ëª¨ë“ˆ - íŒ¨í‚·ì˜ í•´ë” ì œê±° ì—¬ë¶€ì¸ì ì¶”ê°€
 	BOOL Write(BYTE* pPacket, int nLength) { return Write(LPCSTR(pPacket), nLength); }
 	
 	BOOL WriteMessageType(MessageType_t msgType);
@@ -95,9 +95,9 @@ public:
 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - 
-	BOOL WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTimeInSec = -1); // 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - CWinSocket::WriteBlockingMode() Ãß°¡
-	BOOL ReadBlockingMode(LPSTR o_pBuffer, int nRLength, int i_nLimiteTimeInSec = -1); // 2007-12-21 by cmkwon, CWinSocket ¿¡ ºí·¯Å· ¸ğµå ±¸Çö - CWinSocket::ReadBlockingMode() Ãß°¡
+	// 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - 
+	BOOL WriteBlockingMode(LPCSTR pPacket, int nLength, int i_nLimiteTimeInSec = -1); // 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - CWinSocket::WriteBlockingMode() ì¶”ê°€
+	BOOL ReadBlockingMode(LPSTR o_pBuffer, int nRLength, int i_nLimiteTimeInSec = -1); // 2007-12-21 by cmkwon, CWinSocket ì— ë¸”ëŸ¬í‚¹ ëª¨ë“œ êµ¬í˜„ - CWinSocket::ReadBlockingMode() ì¶”ê°€
 
 	void SendErrorMessage(MessageType_t msgType, Err_t err, int errParam1 = 0, int errParam2 = 0, char* errMsg = NULL, BOOL bCloseConnection = FALSE);
 
@@ -113,15 +113,15 @@ public:
 
 public:
 	// Message Operations
-	LONG OnAsyncEvent(LONG lParam); // ½ÇÁ¦ ¹ß»ıÇÏ´Â Socket Event¸¦ ¿¬°áµÈ À©µµ¿ìÀÇ Handle·Î ºÒ·ÁÁú Event handler
-	BOOL OnAccept(int nErrorCode); // Accept°¡ µÈÈÄ¿¡ ¹ß»ı
-	BOOL OnReceive(int nErrorCode); // ÀĞÀ» µ¥ÀÌÅ¸°¡ ÀÖÀ»¶§ ¹ß»ı
-	BOOL OnSendReady(int nErrorCode); // ¼ÒÄÏÀÌ µ¥ÀÌÅ¸ Àü¼ÛÇÒ¼ö ÀÖÀ»¶§ ¹ß»ı
+	LONG OnAsyncEvent(LONG lParam); // ì‹¤ì œ ë°œìƒí•˜ëŠ” Socket Eventë¥¼ ì—°ê²°ëœ ìœˆë„ìš°ì˜ Handleë¡œ ë¶ˆë ¤ì§ˆ Event handler
+	BOOL OnAccept(int nErrorCode); // Acceptê°€ ëœí›„ì— ë°œìƒ
+	BOOL OnReceive(int nErrorCode); // ì½ì„ ë°ì´íƒ€ê°€ ìˆì„ë•Œ ë°œìƒ
+	BOOL OnSendReady(int nErrorCode); // ì†Œì¼“ì´ ë°ì´íƒ€ ì „ì†¡í• ìˆ˜ ìˆì„ë•Œ ë°œìƒ
 	BOOL OnOutOfBand(int nErrorCode); //
 
-	virtual BOOL OnConnect(int nErrorCode); // ¼ÒÄÏÀÌ ¿¬°áµÈÈÄ¿¡ ¹ß»ı
-	virtual BOOL OnRecvdPacket(LPSTR pPacket, int nLength, BYTE nSeq); // ÇÏ³ªÀÇ ÆĞÅ¶ÀÌ µµÂøÇßÀ» ¶§ ¹ß»ı
-	virtual BOOL OnCloseSocket(int nErrorCode); // ¼ÒÄÏÀÌ ´İÈ÷°í ¹ß»ı
+	virtual BOOL OnConnect(int nErrorCode); // ì†Œì¼“ì´ ì—°ê²°ëœí›„ì— ë°œìƒ
+	virtual BOOL OnRecvdPacket(LPSTR pPacket, int nLength, BYTE nSeq); // í•˜ë‚˜ì˜ íŒ¨í‚·ì´ ë„ì°©í–ˆì„ ë•Œ ë°œìƒ
+	virtual BOOL OnCloseSocket(int nErrorCode); // ì†Œì¼“ì´ ë‹«íˆê³  ë°œìƒ
 
 	static BOOL m_bSocketInitFlag;
 	static BOOL SocketInit(void);

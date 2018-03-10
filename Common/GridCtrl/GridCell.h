@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+ï»¿/////////////////////////////////////////////////////////////////////////////
 // GridCell.h : header file
 //
 // MFC Grid Control - Grid cell class header file
@@ -63,9 +63,9 @@ public:
     virtual CWnd* GetEditWnd() const             { return m_pEditWnd;   }
     virtual void  SetCoords( int /* nRow */, int /* nCol */) {}  // don't need to know the row and
                                                                 // column for base implementation
-	// start 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+	// start 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
 	virtual void  SetInt64(INT64 nInt64)        { m_nInt64 = nInt64; }
-    // end 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+    // end 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
     virtual LPCTSTR     GetText() const             { return (m_strText.IsEmpty())? _T("") : m_strText; }
     virtual int         GetImage() const            { return m_nImage;  }
     virtual LPARAM      GetData() const             { return m_lParam;  }
@@ -92,7 +92,7 @@ protected:
 protected:
     CString    m_strText;      // Cell text (or binary data if you wish...)
     LPARAM     m_lParam;       // 32-bit value to associate with item
-    int        m_nImage;       // Index of the list view item’s icon
+    int        m_nImage;       // Index of the list view itemÂ’s icon
     DWORD      m_nFormat;
     COLORREF   m_crFgClr;
     COLORREF   m_crBkClr;
@@ -103,9 +103,9 @@ protected:
 
     CGridCtrl* m_pGrid;        // Parent grid control
     CWnd*      m_pEditWnd;
-// start 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+// start 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
 	INT64		m_nInt64;
-// end 2012-02-27 by jhseol, È­ÆóÅë°èÅø ±â´É Ãß°¡
+// end 2012-02-27 by jhseol, í™”íí†µê³„íˆ´ ê¸°ëŠ¥ ì¶”ê°€
 };
 
 // This class is for storing grid default values. It's a little heavy weight, so

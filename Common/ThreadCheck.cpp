@@ -1,4 +1,4 @@
-// ThreadCheck.cpp: implementation of the CThreadCheck class.
+Ôªø// ThreadCheck.cpp: implementation of the CThreadCheck class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -28,7 +28,7 @@ CThreadCheck::CThreadCheck()
 {
 	m_nSettingThreadCounts = 0;
 	m_bSettingCompletionFlag = FALSE;
-	m_dwCheckTick = 30000;	// 30√ 
+	m_dwCheckTick = 30000;	// 30√É√ä
 	m_ThreadInfoDB.reserve(10);
 }
 

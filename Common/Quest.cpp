@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+ï»¿//#include "stdafx.h"
 #include "Quest.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -15,8 +15,8 @@ void CQuest::Reset()
 	// Basic Info
 	QuestIndex = 0;
 	memset(QuestName, 0x00, SIZE_MAX_QUEST_NAME);
-	QuestEpisodeType				= QUEST_EPISODE_TYPE_1AND2;		// 2008-06-16 by cmkwon, EP3 Äù½ºÆ® ±âÁ¸ Äù½ºÆ®¿Í ±¸º° - ±âº»°ª
-	QuestPartyType			= QUEST_PARTYTYPE_NONE;			// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ
+	QuestEpisodeType				= QUEST_EPISODE_TYPE_1AND2;		// 2008-06-16 by cmkwon, EP3 í€˜ìŠ¤íŠ¸ ê¸°ì¡´ í€˜ìŠ¤íŠ¸ì™€ êµ¬ë³„ - ê¸°ë³¸ê°’
+	QuestPartyType			= QUEST_PARTYTYPE_NONE;			// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°
 	QuestKind			= QUEST_KIND_NORMAL;
 	QuestType = 0;
 	QuestStartType = 0;
@@ -29,10 +29,10 @@ void CQuest::Reset()
 	PartyQuestMemberCount = 0;
 	DropItemToAllAttackCharacter	= FALSE;
 	TimeLimitInMinutes				= 0;
-	IsDiscardable					= TRUE;		// 2006-07-20 by cmkwon, ±âº»ÀÌ ¹Ì¼Ç Æ÷±â °¡´É
+	IsDiscardable					= TRUE;		// 2006-07-20 by cmkwon, ê¸°ë³¸ì´ ë¯¸ì…˜ í¬ê¸° ê°€ëŠ¥
 	IsCityWar						= FALSE;
 	IsNeverCompletionByUser			= FALSE;
-	IsDropItemToAllPartyMembers		= FALSE;	// 2009-01-13 by cmkwon, ¹Ì¼Ç º¸»óÀ» ÆÄÆ¼¿ø ¸ğµÎ¿¡°Ô ÁÖ±â ¸í·É¾î Ãß°¡ - CQuest¿¡ ¸â¹ö º¯¼ö ÃÊ±âÈ­
+	IsDropItemToAllPartyMembers		= FALSE;	// 2009-01-13 by cmkwon, ë¯¸ì…˜ ë³´ìƒì„ íŒŒí‹°ì› ëª¨ë‘ì—ê²Œ ì£¼ê¸° ëª…ë ¹ì–´ ì¶”ê°€ - CQuestì— ë©¤ë²„ ë³€ìˆ˜ ì´ˆê¸°í™”
 
 
 	// Start Requirements
@@ -72,11 +72,11 @@ void CQuest::Reset()
 	// Completion Action
 	EndDeleteItemVector.clear();
 	EndPayItemVector.clear();
-	EndMissionMasterPayItemVector.clear();		// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ
+	EndMissionMasterPayItemVector.clear();		// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°
 	EndRandomPayItemVector.clear();
 	EndPayMixItemVector.clear();
 	EndPayBonusStat = 0;
-// 2005-11-15 by cmkwon, »èÁ¦ÇÔ
+// 2005-11-15 by cmkwon, ì‚­ì œí•¨
 //	EndPayBonusSkillPoint = 0;
 	EndPayFame = 0;
 	EndPayStatus = 0;
@@ -87,14 +87,14 @@ void CQuest::Reset()
 	EndCinemaNum = 0;
 	EndInfluenceType		= 0;
 
-	// Quest¿ë Drop Item List
+	// Questìš© Drop Item List
 	vecQuestDropItem.clear();
 
 	vecQuestDropCharacter2Item.clear();
 
 	StartPayItemWeight = 0.0f;
 	EndPayItemWeight = 0.0f;
-	EndMissionMasterPayItemWeight = 0.0f;	// 2008-12-02 by dhjin, ¹Ì¼Ç¸¶½ºÅÍ
+	EndMissionMasterPayItemWeight = 0.0f;	// 2008-12-02 by dhjin, ë¯¸ì…˜ë§ˆìŠ¤í„°
 }
 
 CQuest *CQuest::Clone()
@@ -213,7 +213,7 @@ BOOL CQuest::IsFirstScenarioQuest(BYTE i_byInflTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CQuest::IsEndTypeTimeOver(void)
-/// \brief		// 2007-12-06 by cmkwon, ½Ã°£Á¦ÇÑ Äù½ºÆ® ¼­¹ö¿¡¼­ ½Ã°£ Ã¼Å©ÇÏ°Ô ¼öÁ¤ - CQuest::IsEndTypeTimeOver() Ãß°¡
+/// \brief		// 2007-12-06 by cmkwon, ì‹œê°„ì œí•œ í€˜ìŠ¤íŠ¸ ì„œë²„ì—ì„œ ì‹œê°„ ì²´í¬í•˜ê²Œ ìˆ˜ì • - CQuest::IsEndTypeTimeOver() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-12-06 ~ 2007-12-06
 /// \warning	
@@ -234,7 +234,7 @@ BOOL CQuest::IsEndTypeTimeOver(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			BOOL CQuest::IsCompleteEndTypeTimeOver(int i_nSpentTimeInSec)
-/// \brief		// 2007-12-06 by cmkwon, ½Ã°£Á¦ÇÑ Äù½ºÆ® ¼­¹ö¿¡¼­ ½Ã°£ Ã¼Å©ÇÏ°Ô ¼öÁ¤ - CQuest::IsCompleteEndTypeTimeOver() Ãß°¡
+/// \brief		// 2007-12-06 by cmkwon, ì‹œê°„ì œí•œ í€˜ìŠ¤íŠ¸ ì„œë²„ì—ì„œ ì‹œê°„ ì²´í¬í•˜ê²Œ ìˆ˜ì • - CQuest::IsCompleteEndTypeTimeOver() ì¶”ê°€
 /// \author		cmkwon
 /// \date		2007-12-06 ~ 2007-12-06
 /// \warning	

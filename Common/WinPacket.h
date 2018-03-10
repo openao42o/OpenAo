@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SocketHeader.h"
 
@@ -57,31 +57,31 @@ public:
 private:
 	void EncodePacket(char *pBlock, int nLength, unsigned char seq)
 	{
-		// XOR_N »ı¼º, 4, 8, 12, ... , 124
+		// XOR_N ìƒì„±, 4, 8, 12, ... , 124
 		BYTE XOR_N = (BYTE)((GetTickCount() % 30 + 1) * 4);
 
-		// º¯¼öµé ¼±¾ğ, Á¤ÀÇ
+		// ë³€ìˆ˜ë“¤ ì„ ì–¸, ì •ì˜
 		BYTE checkSum = 0;
 		int nDummyLen = seq % 4;
 		int woffset = SIZE_BODY_LENGTH;
 		int roffset = 0;
 		int xoffset = XOR_N;
 
-		// size¸¦ º¹»ç
+		// sizeë¥¼ ë³µì‚¬
 		*(unsigned short*)m_pPacket
 			= (unsigned short)(nLength + SIZE_CHECKSUM + nDummyLen);
 
-		// encode flag 1B¸¦ »ı¼ºÇÏ°í º¹»ç
+		// encode flag 1Bë¥¼ ìƒì„±í•˜ê³  ë³µì‚¬
 		BYTE encodeFlag = ENCODE_MASK | (XOR_N_MASK & XOR_N);
 		*(BYTE*)(m_pPacket + woffset) = encodeFlag;
 		woffset += SIZE_ENCODE_FLAG;
 
-		// sequence number(1B)¸¦ XORÇÑÈÄ, º¹»ç, checksum °è»ê ½ÃÀÛ
+		// sequence number(1B)ë¥¼ XORí•œí›„, ë³µì‚¬, checksum ê³„ì‚° ì‹œì‘
 		checkSum ^= seq;
 		*(BYTE*)(m_pPacket + woffset) = (seq ^ XOR_ENCODE_BYTES[XOR_N - 1]);
 		woffset += SIZE_SEQ_NUM;
 
-		// MSGs¸¦ 4B¾¿ XOR, checksum °è»ê
+		// MSGsë¥¼ 4Bì”© XOR, checksum ê³„ì‚°
 		int nEndValue = (int)(nLength / 4) * 4;
 		DWORD checkSum_4B = 0;
 		while (roffset < nEndValue)
@@ -94,13 +94,13 @@ private:
 			xoffset = (xoffset + 4) % SIZE_XOR_ENCODE_BYTES;
 		}
 
-		// 4BÀÇ checkSum_4B¸¦ 1BÀÇ checkSumÀ¸·Î º¯È¯
+		// 4Bì˜ checkSum_4Bë¥¼ 1Bì˜ checkSumìœ¼ë¡œ ë³€í™˜
 		checkSum ^= (*((char*)&checkSum_4B)
 			^ *((char*)&checkSum_4B + 1)
 			^ *((char*)&checkSum_4B + 2)
 			^ *((char*)&checkSum_4B + 3));
 
-		// ³²¾ÆÀÖ´Â nLength - nEndValue ¸¸Å­ÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸® -> XOR + checkSum
+		// ë‚¨ì•„ìˆëŠ” nLength - nEndValue ë§Œí¼ì˜ ë°ì´í„°ë¥¼ ì²˜ë¦¬ -> XOR + checkSum
 		for (int i = 0; i < nLength - nEndValue; i++)
 		{
 			checkSum ^= pBlock[roffset];
@@ -111,10 +111,10 @@ private:
 			xoffset = (xoffset + 1) % SIZE_XOR_ENCODE_BYTES;
 		}
 
-		// checksumÀ» Ãß°¡
+		// checksumì„ ì¶”ê°€
 		m_pPacket[woffset++] = checkSum ^ XOR_ENCODE_BYTES[xoffset];
 
-		// dummy data´Â XOR_ENCODE_BYTES¸¦ »ç¿ëÇÔ
+		// dummy dataëŠ” XOR_ENCODE_BYTESë¥¼ ì‚¬ìš©í•¨
 		const char *dummyData = XOR_ENCODE_BYTES + XOR_N;
 
 		memcpy(m_pPacket + woffset, dummyData, nDummyLen);
@@ -150,17 +150,17 @@ public:
 		if (NULL == pBlock
 			|| 0 >= nLength
 			|| RecvCompleted())
-		{	// ÆÄ¶ó¹ÌÅÍ°¡ À¯È¿ÇÏÁö ¾Ê°í ÀÌ¹Ì ÆĞÅ¶ÀÌ ¿Ï¼ºµÇ¾îÀÖÀ¸¸é FALSE¸¦ ¸®ÅÏ
+		{	// íŒŒë¼ë¯¸í„°ê°€ ìœ íš¨í•˜ì§€ ì•Šê³  ì´ë¯¸ íŒ¨í‚·ì´ ì™„ì„±ë˜ì–´ìˆìœ¼ë©´ FALSEë¥¼ ë¦¬í„´
 
 			return -1;
 		}
 
 		if (m_nRemainedHeaderSize > 0)
-		{	// ¹Ş¾Æ¾ßÇÒ Header Size°¡ ÀÖ´Ù¸é ¸ÕÀú Header¸¦ ¿Ï¼ºÇÑ´Ù.
+		{	// ë°›ì•„ì•¼í•  Header Sizeê°€ ìˆë‹¤ë©´ ë¨¼ì € Headerë¥¼ ì™„ì„±í•œë‹¤.
 
-			if (m_nRemainedHeaderSize > SIZE_PACKET_HEADER) { return -2; }	// ¹Ş¾Æ¾ßÇÒ Header Size°¡ À¯È¿ÇÏÁö ¾ÊÀ½
+			if (m_nRemainedHeaderSize > SIZE_PACKET_HEADER) { return -2; }	// ë°›ì•„ì•¼í•  Header Sizeê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
 			if (m_nRemainedHeaderSize <= nLength)
-			{	// ¹ŞÀº µ¥ÀÌÅÍ°¡ ³²Àº ÆĞÅ¶ Çì´õ »çÀÌÁî º¸´Ù Å©¸é
+			{	// ë°›ì€ ë°ì´í„°ê°€ ë‚¨ì€ íŒ¨í‚· í—¤ë” ì‚¬ì´ì¦ˆ ë³´ë‹¤ í¬ë©´
 
 				memcpy(m_pPacketHeader + SIZE_PACKET_HEADER - m_nRemainedHeaderSize, pBlock, m_nRemainedHeaderSize);
 				pBlock += m_nRemainedHeaderSize;
@@ -168,9 +168,9 @@ public:
 				*UsedBytes += m_nRemainedHeaderSize;
 				m_nRemainedHeaderSize = 0;
 
-				m_nPacketLength = *(unsigned short*)m_pPacketHeader;		// body length¸¦ ÀúÀå
+				m_nPacketLength = *(unsigned short*)m_pPacketHeader;		// body lengthë¥¼ ì €ì¥
 				if (SIZE_MAX_PACKET + SIZE_MAX_DUMMY_DATA + SIZE_CHECKSUM < m_nPacketLength)
-				{	// Packet lengthÀÇ À¯È¿¼ºÀ» Ã¼Å©
+				{	// Packet lengthì˜ ìœ íš¨ì„±ì„ ì²´í¬
 
 					return -3;
 				}
@@ -186,16 +186,16 @@ public:
 		else if (0 == m_nPacketLength)
 		{
 			if (SIZE_PACKET_HEADER <= nLength)
-			{	// ¹ŞÀº µ¥ÀÌÅÍ°¡ ÆĞÅ¶ Çì´õ »çÀÌÁî º¸´Ù Å©¸é
+			{	// ë°›ì€ ë°ì´í„°ê°€ íŒ¨í‚· í—¤ë” ì‚¬ì´ì¦ˆ ë³´ë‹¤ í¬ë©´
 
-				memcpy(m_pPacketHeader, pBlock, SIZE_PACKET_HEADER);		// header¿¡¼­ packet size¸¸ »©³½´Ù.
+				memcpy(m_pPacketHeader, pBlock, SIZE_PACKET_HEADER);		// headerì—ì„œ packet sizeë§Œ ë¹¼ë‚¸ë‹¤.
 				pBlock += SIZE_PACKET_HEADER;
 				nLength -= SIZE_PACKET_HEADER;
 				*UsedBytes += SIZE_PACKET_HEADER;
 
-				m_nPacketLength = *(unsigned short*)m_pPacketHeader;		// body length¸¦ ÀúÀå
+				m_nPacketLength = *(unsigned short*)m_pPacketHeader;		// body lengthë¥¼ ì €ì¥
 				if (SIZE_MAX_PACKET + SIZE_MAX_DUMMY_DATA + SIZE_CHECKSUM < m_nPacketLength)
-				{	// Packet lengthÀÇ À¯È¿¼ºÀ» Ã¼Å©
+				{	// Packet lengthì˜ ìœ íš¨ì„±ì„ ì²´í¬
 
 					return -4;
 				}
@@ -210,7 +210,7 @@ public:
 		}
 
 		if (m_nPacketLength - m_nCurrentLength < nLength)
-		{	// ÀÔ·ÂµÈ µ¥ÀÌÅ¸°¡ ¿Ï¼ºÇØ¾ßÇÒ ÆĞÅ¶º¸´Ù Å¬°æ¿ì, ¿Ï¼ºÇØ¾ßÇÒ µ¥ÀÌÅ¸ Å©±â¸¸Å­¸¸ º¹»çÇÑ´Ù.
+		{	// ì…ë ¥ëœ ë°ì´íƒ€ê°€ ì™„ì„±í•´ì•¼í•  íŒ¨í‚·ë³´ë‹¤ í´ê²½ìš°, ì™„ì„±í•´ì•¼í•  ë°ì´íƒ€ í¬ê¸°ë§Œí¼ë§Œ ë³µì‚¬í•œë‹¤.
 
 			nLength = m_nPacketLength - m_nCurrentLength;
 		}
@@ -223,13 +223,13 @@ public:
 		}
 
 		if (m_nCurrentLength == m_nPacketLength)
-		{	// ¿Ï¼ºÇØ¾ß ÇÒ ¸¸Å­ÀÇ µ¥ÀÌÅ¸°¡ ´Ù ÀÔ·ÂµÊ
+		{	// ì™„ì„±í•´ì•¼ í•  ë§Œí¼ì˜ ë°ì´íƒ€ê°€ ë‹¤ ì…ë ¥ë¨
 
 			m_DecodingInfo.bIsVaildPacket = TRUE;
 			BYTE encode_flag = *((BYTE*)m_pPacketHeader + SIZE_BODY_LENGTH);
 			m_DecodingInfo.bIsPacketEncoded = ((encode_flag&ENCODE_MASK) == ENCODE_MASK) ? TRUE : FALSE;
 
-			// ¾ÏÈ£È­ ÆĞÅ¶ÀÌ¸é decode ½ÃÀÛ
+			// ì•”í˜¸í™” íŒ¨í‚·ì´ë©´ decode ì‹œì‘
 			if (m_DecodingInfo.bIsPacketEncoded)
 			{
 				m_DecodingInfo.nXOR_N = (encode_flag&XOR_N_MASK);
@@ -264,37 +264,37 @@ protected:
 		int roffset = 0;			// for READING received data
 		int xoffset = m_DecodingInfo.nXOR_N;
 
-		// packet¿¡ Æ÷ÇÔµÈ seq. number(1B) ²¨³»±â
+		// packetì— í¬í•¨ëœ seq. number(1B) êº¼ë‚´ê¸°
 		m_DecodingInfo.nSeqNumber
 			= m_pPacketHeader[SIZE_BODY_LENGTH + SIZE_ENCODE_FLAG] ^ XOR_ENCODE_BYTES[xoffset - 1];
 		checkSum ^= m_DecodingInfo.nSeqNumber;
 
-		// dummy dataÀÇ length
+		// dummy dataì˜ length
 		int nDummyLen = m_DecodingInfo.nSeqNumber % 4;
 
-		// XOR ¿¬»ê Ã³¸®, locality À§ÇØ checksum ÇÔ²² °è»ê
-		// ºü¸¥ °è»ê À§ÇØ 4B ¾¿ °è»êÇÔ
+		// XOR ì—°ì‚° ì²˜ë¦¬, locality ìœ„í•´ checksum í•¨ê»˜ ê³„ì‚°
+		// ë¹ ë¥¸ ê³„ì‚° ìœ„í•´ 4B ì”© ê³„ì‚°í•¨
 		DWORD checkSum_4B = 0;
 		int	nEndValue = (int)((m_nPacketLength - nDummyLen - SIZE_CHECKSUM) / 4) * 4;
 		while (roffset < nEndValue)
 		{
-			// XOR Ã³¸®
+			// XOR ì²˜ë¦¬
 			*(DWORD*)(m_pPacket + woffset)
 				= *(DWORD*)(m_pPacket + roffset) ^ *(DWORD*)(XOR_ENCODE_BYTES + xoffset);
-			// checksum °è»ê
+			// checksum ê³„ì‚°
 			checkSum_4B ^= *(DWORD*)(m_pPacket + woffset);
 
 			woffset += 4;
 			roffset += 4;
 			xoffset = (xoffset + 4) % SIZE_XOR_ENCODE_BYTES;
 		}
-		// checksum ÇÕÄ¡±â
+		// checksum í•©ì¹˜ê¸°
 		checkSum ^= (*((char*)&checkSum_4B)
 			^ *((char*)&checkSum_4B + 1)
 			^ *((char*)&checkSum_4B + 2)
 			^ *((char*)&checkSum_4B + 3));
 
-		// 4¹ÙÀÌÆ®¾¿ Ã³¸®ÇÏ°í ³²Àº ¹ÙÀÌÆ®¸¦ Ã³¸®
+		// 4ë°”ì´íŠ¸ì”© ì²˜ë¦¬í•˜ê³  ë‚¨ì€ ë°”ì´íŠ¸ë¥¼ ì²˜ë¦¬
 		int nRepeat = (m_nPacketLength - nDummyLen - SIZE_CHECKSUM) - nEndValue;
 		for (int i = 0; i < nRepeat; i++)
 		{
@@ -307,11 +307,11 @@ protected:
 			xoffset = (xoffset + 1) % SIZE_XOR_ENCODE_BYTES;
 		}
 
-		// packet¿¡ Æ÷ÇÔµÈ checksum ²¨³»±â
+		// packetì— í¬í•¨ëœ checksum êº¼ë‚´ê¸°
 		char packetCheckSum
 			= m_pPacket[roffset] ^ XOR_ENCODE_BYTES[xoffset];
 
-		// checksum È®ÀÎ
+		// checksum í™•ì¸
 		if (checkSum != packetCheckSum)
 		{
 			// error, invalid checksum
@@ -334,7 +334,7 @@ protected:
 };
 
 // 2016 DevX
-//// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+//// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 
 //class CRecvHTTPPacket
 //{
 //public:
@@ -381,7 +381,7 @@ protected:
 //	
 //	if( RecvCompleted() )		
 //	{
-//		return m_nCurrentLength;		// ´ÙÀ½ ÆĞÅ¶±îÁö ´ë±â...
+//		return m_nCurrentLength;		// ë‹¤ìŒ íŒ¨í‚·ê¹Œì§€ ëŒ€ê¸°...
 //	}
 //
 //	if(NULL == pBlock 
@@ -425,7 +425,7 @@ protected:
 //			{
 //				m_nPacketLength = m_nCurrentLength;
 //
-//				return -4;		// Çì´õ¿¡ Content-Length: ¾øÀ½
+//				return -4;		// í—¤ë”ì— Content-Length: ì—†ìŒ
 //			}
 //
 //			m_bHttpLengNeeded = FALSE;
@@ -477,4 +477,4 @@ protected:
 //{
 //	return TRUE;
 //}
-//// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡
+//// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì 

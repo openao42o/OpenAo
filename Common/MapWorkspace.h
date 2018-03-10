@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "MapBlock.h"
 
@@ -16,30 +16,30 @@ public:
 	virtual ~CMapWorkspace();
 
 	CMapProject* GetMapProjectByMapIndex(MapIndex_t MapIndex);
-	CMapProject* GetMapProjectByIndex(int index);	// check: MapChannel µµÀÔÁß, 20040322, kelovon
+	CMapProject* GetMapProjectByIndex(int index);	// check: MapChannel ë„ì…ì¤‘, 20040322, kelovon
 	int GetMapProjectCounts() const { return m_vectorPtrMapProject.size(); }
 
-	BOOL LoadAllObjectInfofromDB();			// ¸ğµç Object Á¤º¸¸¦ DB¿¡¼­ °¡Á®¿Â´Ù
-	int ChangeMapInfluenceType2AllConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd);	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼¼·Â Ãß°¡ ºñÆ®
+	BOOL LoadAllObjectInfofromDB();			// ëª¨ë“  Object ì •ë³´ë¥¼ DBì—ì„œ ê°€ì ¸ì˜¨ë‹¤
+	int ChangeMapInfluenceType2AllConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd);	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„¸ë ¥ ì¶”ê°€ ë¹„íŠ¸
 
 	virtual CMapProject * CreateChildMapProject(PROJECTINFO * i_pProjectInfo);
 
-	// 2008-09-10 by cmkwon, ÅëÇÕ¾Æ·¹³ª ¸Ê¼³Á¤(map.cfg) °ü·Ã ¼öÁ¤ - 
+	// 2008-09-10 by cmkwon, í†µí•©ì•„ë ˆë‚˜ ë§µì„¤ì •(map.cfg) ê´€ë ¨ ìˆ˜ì • - 
 	//virtual	BOOL LoadAllProject(const char* pFileName);
 	virtual	BOOL LoadAllProject(const char* pFileName, BOOL i_bIsArenaServer, vectMapIndexList *i_pvectArenaMapIndexList);
 
-	// Map Block °ü·Ã
+	// Map Block ê´€ë ¨
 	static BLOCK_INDEX SelectBlockIndexWithPosition(float x, float z);
 
 	//
-	CIOCP						*m_pIOCPServer;			// IOCP ServerÀÇ Æ÷ÀÎÅÍ
+	CIOCP						*m_pIOCPServer;			// IOCP Serverì˜ í¬ì¸í„°
 	MapIndex_t					m_DefaultMapIndex1;		// 2004-03-26 by cmkwon,
 
-	// MapProject °ü·Ã
-	vector<CMapProject*>		m_vectorPtrMapProject;	// »ı¼ºÇÏ´Â MapProject ÀÇ Æ÷ÀÎÅÍ
-	ez_map<int, MAPOBJECTINFO>	m_mapMapObjectInfo;		// ¸ğµç Object Á¤º¸ map
-	vector<ObjectNum_t>			m_CinemaObjectNumList;	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!! 
+	// MapProject ê´€ë ¨
+	vector<CMapProject*>		m_vectorPtrMapProject;	// ìƒì„±í•˜ëŠ” MapProject ì˜ í¬ì¸í„°
+	ez_map<int, MAPOBJECTINFO>	m_mapMapObjectInfo;		// ëª¨ë“  Object ì •ë³´ map
+	vector<ObjectNum_t>			m_CinemaObjectNumList;	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!! 
 
-	static int					ms_nSIZE_BLOCK_X;		// ¸ÊÀÇ BlockSize ·Î FieldServer ¿Í NPCServer´Â ´Ù¸¥°ªÀ» »ç¿ëÇÒ¼ö ÀÖ´Ù.
-	static int					ms_nSIZE_BLOCK_Z;		// ¸ÊÀÇ BlockSize ·Î FieldServer ¿Í NPCServer´Â ´Ù¸¥°ªÀ» »ç¿ëÇÒ¼ö ÀÖ´Ù.
+	static int					ms_nSIZE_BLOCK_X;		// ë§µì˜ BlockSize ë¡œ FieldServer ì™€ NPCServerëŠ” ë‹¤ë¥¸ê°’ì„ ì‚¬ìš©í• ìˆ˜ ìˆë‹¤.
+	static int					ms_nSIZE_BLOCK_Z;		// ë§µì˜ BlockSize ë¡œ FieldServer ì™€ NPCServerëŠ” ë‹¤ë¥¸ê°’ì„ ì‚¬ìš©í• ìˆ˜ ìˆë‹¤.
 };

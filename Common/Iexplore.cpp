@@ -1,14 +1,14 @@
-/*****************************************************************************\
-IExplore.cpp
-Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
-You may use this code in your applications at no cost, so long as credit
-is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
-\*****************************************************************************/
+ï»¿///*****************************************************************************\
+//IExplore.cpp
+//Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
+//You may use this code in your applications at no cost, so long as credit
+//is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
+//\*****************************************************************************/
 #include "stdafx.h"
 #include "IExplore.h"
 #include <TCHAR.H>
-#include <exdisp.h>		// Defines of stuff like IWebBrowser2. This is an include file with Visual C 6 and above
-#include <mshtml.h>		// Defines of stuff like IHTMLDocument2. This is an include file with Visual C 6 and above
+#include <exdisp.h>        // Defines of stuff like IWebBrowser2. This is an include file with Visual C 6 and above
+#include <mshtml.h>        // Defines of stuff like IHTMLDocument2. This is an include file with Visual C 6 and above
 
 
 
@@ -29,10 +29,10 @@ is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// 2007-09-03 by cmkwon, ÀÎÀÚ Ãß°¡ÇÔ(, RECT *i_prtHostrWindowPos/*=NULL*/) - ÃÊ±â »ý¼º À©µµ¿ì ¼³Á¤
+// 2007-09-03 by cmkwon, ì¸ìž ì¶”ê°€í•¨(, RECT *i_prtHostrWindowPos/*=NULL*/) - ì´ˆê¸° ìƒì„± ìœˆë„ìš° ì„¤ì •
 Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostData2, LPSTR szHeaders, RECT *i_prtHostrWindowPos/*=NULL*/)
 {
-    #define Assert(x) if(!x) MessageBox(NULL, "IE ERROR!", "Error", MB_ICONSTOP)
+    #define Assert(x) if (!x) MessageBox(NULL, "IE ERROR!", "Error", MB_ICONSTOP)
 
     HRESULT                     hret;
 //    IUnknown                   *pUnknown;            
@@ -54,7 +54,7 @@ Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostDa
     m_pClientSite = new ClientSite(this);
     m_pInPlaceSite = new InPlaceSite(this);
     m_pWebBrowserEvents2 = new WebBrowserEvents2(this);
-	m_pWebBrowser			= NULL;				// 2007-09-06 by cmkwon, ÃÊ±âÈ­
+    m_pWebBrowser            = NULL;                // 2007-09-06 by cmkwon, ì´ˆê¸°í™”
 
     // Instantiate Web Browser control
     hret = CoCreateInstance(CLSID_WebBrowser, NULL, CLSCTX_ALL, IID_IUnknown, (void**)(&m_pUnknown));
@@ -76,22 +76,22 @@ Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostDa
 //    Assert(SUCCEEDED(hret));
 //    m_pInPlaceObject->Release();
 
-	RECT rWindowPos;
-	
-	if(NULL == i_prtHostrWindowPos)
-	{
-		rWindowPos = ReSizeWindow();
-	}
-	else
-	{
-		rWindowPos	= *i_prtHostrWindowPos;
-		this->ReSizeRect(rWindowPos);
-	}
-	
+    RECT rWindowPos;
+    
+    if (NULL == i_prtHostrWindowPos)
+    {
+        rWindowPos = ReSizeWindow();
+    }
+    else
+    {
+        rWindowPos    = *i_prtHostrWindowPos;
+        this->ReSizeRect(rWindowPos);
+    }
+    
     // Activate the site
     hret = m_pObject->DoVerb(OLEIVERB_INPLACEACTIVATE, NULL, m_pClientSite, 0, hwndParent, &rWindowPos);
     Assert(SUCCEEDED(hret));
-	m_pObject->Release();
+    m_pObject->Release();
 
     // Set event handler
     hret = m_pUnknown->QueryInterface(IID_IConnectionPointContainer, (void**)(&m_pConnectionPointContainer));
@@ -106,81 +106,81 @@ Host::Host(HWND hwndParent,LPSTR strWebAddress, LPSTR szPostData, LPSTR szPostDa
     // Get Web Browser interface
     hret = m_pUnknown->QueryInterface(IID_IWebBrowser2, (void**)&m_pWebBrowser);
     Assert(SUCCEEDED(hret));
-    if(m_pUnknown) m_pUnknown->Release();
+    if (m_pUnknown) m_pUnknown->Release();
 
-	// Transfer BSTR from LPSTR
-	VARIANT *pvarURL;
-	VARIANT varURL;		
+    // Transfer BSTR from LPSTR
+    VARIANT *pvarURL;
+    VARIANT varURL;        
 
- 	pvarURL = NULL;
-	
-	if ( !strWebAddress )
-		return;
+     pvarURL = NULL;
+    
+    if ( !strWebAddress )
+        return;
  
-	if ( !*strWebAddress )
-		return;
+    if ( !*strWebAddress )
+        return;
  
-	int len = lstrlen( strWebAddress ) + 1;
+    int len = lstrlen( strWebAddress ) + 1;
  
-	WCHAR *pszW;
- 	pszW = new WCHAR[len];
+    WCHAR *pszW;
+     pszW = new WCHAR[len];
  
-	MultiByteToWideChar( CP_ACP, 0, strWebAddress, -1, pszW, len );
-	VariantInit( &varURL );
+    MultiByteToWideChar( CP_ACP, 0, strWebAddress, -1, pszW, len );
+    VariantInit( &varURL );
  
-	varURL.vt = VT_BSTR;
-	varURL.bstrVal = SysAllocString( pszW );
+    varURL.vt = VT_BSTR;
+    varURL.bstrVal = SysAllocString( pszW );
 
-	delete []pszW;
+    delete []pszW;
 
-	pvarURL = &varURL;
+    pvarURL = &varURL;
 
-	// Go to Url
-	hret = m_pWebBrowser->Navigate2( pvarURL, NULL, NULL, NULL, NULL  );
-//	hret = pWebBrowser->Navigate( strWebAddress, NULL, NULL, pvarPostData, pvarHeaders  );
+    // Go to Url
+    hret = m_pWebBrowser->Navigate2( pvarURL, NULL, NULL, NULL, NULL  );
+//    hret = pWebBrowser->Navigate( strWebAddress, NULL, NULL, pvarPostData, pvarHeaders  );
 
-	VariantClear( pvarURL );
+    VariantClear( pvarURL );
  
     Assert(SUCCEEDED(hret));
-	m_pClientSite->Release();
-    if(m_pWebBrowser) 
-	{
-		m_pWebBrowser->Release();
-	}
-	
-// 2007-09-06 by cmkwon, Á¤»ó µ¿ÀÛ ÇÏÁö ¾ÊÀ½
-//	///////////////////////////////////////////////////////////////////////////////	
-//	// 2007-09-06 by cmkwon, ½ºÅ©·Ñ »èÁ¦ÇÏ±â
-//	hr = m_pWebBrowser->QueryInterface(IID_IWebBrowser2, reinterpret_cast<void**>(&pWB));
-//	IDispatch *pDocDisp		= NULL;
-//	hret = m_pWebBrowser->get_Document(&pDocDisp);
-//	if(SUCCEEDED(hret) && pDocDisp)
-//	{
-//		IHTMLDocument2 *pDoc	= NULL;
-//		hret = pDocDisp->QueryInterface(IID_IHTMLDocument2, (void**)&pDoc);
-//		if(SUCCEEDED(hret) && pDoc)
-//		{
-//			IHTMLElement *pIElement = NULL;
-//			hret = pDoc->get_body(&pIElement);
+    m_pClientSite->Release();
+    if (m_pWebBrowser) 
+    {
+        m_pWebBrowser->Release();
+    }
+    
+// 2007-09-06 by cmkwon, ì •ìƒ ë™ìž‘ í•˜ì§€ ì•ŠìŒ
+//    ///////////////////////////////////////////////////////////////////////////////    
+//    // 2007-09-06 by cmkwon, ìŠ¤í¬ë¡¤ ì‚­ì œí•˜ê¸°
+//    hr = m_pWebBrowser->QueryInterface(IID_IWebBrowser2, reinterpret_cast<void**>(&pWB));
+//    IDispatch *pDocDisp        = NULL;
+//    hret = m_pWebBrowser->get_Document(&pDocDisp);
+//    if (SUCCEEDED(hret) && pDocDisp)
+//    {
+//        IHTMLDocument2 *pDoc    = NULL;
+//        hret = pDocDisp->QueryInterface(IID_IHTMLDocument2, (void**)&pDoc);
+//        if (SUCCEEDED(hret) && pDoc)
+//        {
+//            IHTMLElement *pIElement = NULL;
+//            hret = pDoc->get_body(&pIElement);
 //
-//			IHTMLBodyElement *pIBodyElement = NULL;
-//			hret = pIElement->QueryInterface(IID_IHTMLBodyElement, (void**)&pIBodyElement);
+//            IHTMLBodyElement *pIBodyElement = NULL;
+//            hret = pIElement->QueryInterface(IID_IHTMLBodyElement, (void**)&pIBodyElement);
 //
-//			CString strOption = _T("no");   // yes no auto
-//			BSTR bstr;
-//			bstr = strOption.AllocSysString();
-//			pIBodyElement->put_scroll(bstr);
-//		}
-//		pDoc->Release();
-//	}
+//            CString strOption = _T("no");   // yes no auto
+//            BSTR bstr;
+//            bstr = strOption.AllocSysString();
+//            pIBodyElement->put_scroll(bstr);
+//        }
+//        pDoc->Release();
+//    }
 }
 
 Host::~Host()
 {
     // Clean up hosted classes
-    if(m_pClientSite) delete m_pClientSite;
-    if(m_pInPlaceSite) delete m_pInPlaceSite;
-    if(m_pWebBrowserEvents2) delete m_pWebBrowserEvents2;
+    if (m_pClientSite) delete m_pClientSite;
+    if (m_pInPlaceSite) delete m_pInPlaceSite;
+    if (m_pWebBrowserEvents2) delete m_pWebBrowserEvents2;
 
     // Release COM library
     OleUninitialize();
@@ -191,7 +191,7 @@ ULONG STDMETHODCALLTYPE Host::AddRef()
 
 ULONG STDMETHODCALLTYPE Host::Release()
 {
-    if(!--m_dwRefCount)
+    if (!--m_dwRefCount)
         delete this;
     return m_dwRefCount;
 }
@@ -199,7 +199,7 @@ ULONG STDMETHODCALLTYPE Host::Release()
 RECT Host::ReSizeWindow()
 {
     // Set the site limits
-	HRESULT hr;
+    HRESULT hr;
     RECT rWindowPos;
     GetClientRect(m_hwndParent, &rWindowPos);
 
@@ -209,13 +209,13 @@ RECT Host::ReSizeWindow()
     Assert(SUCCEEDED(hr));
     m_pInPlaceObject->Release();
 
-	return rWindowPos;
+    return rWindowPos;
 }
 
 void Host::ReSizeRect(RECT rt)
 {
     // Set the site limits
-	HRESULT hr;
+    HRESULT hr;
 
     hr = m_pUnknown->QueryInterface(IID_IOleInPlaceObject, (void**)(&m_pInPlaceObject));
     Assert(SUCCEEDED(hr));
@@ -226,27 +226,27 @@ void Host::ReSizeRect(RECT rt)
 
 STDMETHODIMP Host::QueryInterface(REFIID riid, void ** ppvObject)
 {
-    if(ppvObject == NULL) return E_INVALIDARG;
+    if (ppvObject == NULL) return E_INVALIDARG;
     *ppvObject = NULL;
 
-    if(riid == IID_IUnknown)
+    if (riid == IID_IUnknown)
         *ppvObject = this;
-    else if(riid == IID_IOleClientSite)
+    else if (riid == IID_IOleClientSite)
         *ppvObject = m_pClientSite;
-    else if(riid == IID_IOleInPlaceSite)
+    else if (riid == IID_IOleInPlaceSite)
         *ppvObject = m_pInPlaceSite;
-    else if(riid == DIID_DWebBrowserEvents2)
+    else if (riid == DIID_DWebBrowserEvents2)
         *ppvObject = m_pWebBrowserEvents2;
 
-    if(*ppvObject == NULL) return E_NOINTERFACE;
+    if (*ppvObject == NULL) return E_NOINTERFACE;
     AddRef();
     return S_OK;
 }
 
 void Host::Refresh()
 {
-	if(m_pWebBrowser)
-		m_pWebBrowser->Refresh();
+    if (m_pWebBrowser)
+        m_pWebBrowser->Refresh();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -375,7 +375,7 @@ HRESULT STDMETHODCALLTYPE WebBrowserEvents2::Invoke(DISPID dispIdMember, REFIID 
                                                     EXCEPINFO FAR* pExcepInfo,
                                                     unsigned int FAR* puArgErr) 
 {
-//    if(dispIdMember == DISPID_DOCUMENTCOMPLETE)
+//    if (dispIdMember == DISPID_DOCUMENTCOMPLETE)
 //    {
 //        if (pDispParams->rgvarg[0].pvarVal->vt & VT_BYREF)
 //            MessageBoxW(NULL, (LPCWSTR)*pDispParams->rgvarg[0].pvarVal->pbstrVal, (LPCWSTR)*pDispParams->rgvarg[0].pvarVal->pbstrVal, MB_OK);

@@ -1,13 +1,14 @@
+ï»¿//Copyright[2002] MasangSoft
 ///////////////////////////////////////////////////////////////////////////////
 //  GlobalFunc.cpp : 
 //
-//  Date	: 2008-06-26 by cmkwon
+//  Date    : 2008-06-26 by cmkwon
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "GlobalFunc.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
+// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
 //! INTORFLOAT union for easy access to bits of a float.
 typedef union
 {
@@ -25,82 +26,82 @@ INTORFLOAT  FTOIBIAS = {((23 - 0 + 127) << 23) + (1 << 22)};
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			int f2i(float f) 
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ı : Game Programming Gems2 chapter 2.1¿¡ Yossarian King¾¾°¡ ÀÛ¼ºÇÑ ¹æ¹ıÀÔ´Ï´Ù
-///					ÀåÁ¡ : FPU¸ğµå¿¡ µû¶ó ÀÏ¹İÀûÀ¸·Î ÀÏ¹İ intÇüº¯È¯°ú Á¤È®È÷ ÀÏÄ¡ÇÕ´Ï´Ù.
-///					´ÜÁ¡ : floatÀÇ °ªÀÌ 2ÀÇ 23½Â(8388608)º¸´Ù ÀÛ¾Æ¾ß ÇÕ´Ï´Ù. ¶ÇÇÑ, FPU¸ğµå°¡ ChoppingÀÌ ¾Æ´Ñ °æ¿ì. ¿¹¸¦ µé¸é À§ÀÇ fastf2i_round³ª fastf2i¿Í °°ÀÌ »ç¿ëÇÏ¸é ¾ÈµË´Ï´Ù. fastf2i_round³ª fastf2i´Â FPU¸ğµå¸¦ ¹İ¿Ã¸²¸ğµå·Î »ç¿ëÇÏ´Âµ¥, f2iÇÔ¼ö´Â FPU¸ğµå¸¦ µû·Î ¼³Á¤ÇÏÁö ¾Ê±â ¶§¹®¿¡ ÇöÀç FPU¸ğµå ±×´ë·Î º¯È¯À» ½ÃµµÇÕ´Ï´Ù. (FPU¸ğµå´Â À§ÀÇ Âü°í¸¦ º¸½Ã±â ¹Ù¶ø´Ï´Ù)
-/// \author		cmkwon
-/// \date		2008-06-26 ~ 2008-06-26
-/// \warning	
+/// \fn            int f2i(float f) 
+/// \brief        // 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///                    ë°©ë²• : Game Programming Gems2 chapter 2.1ì— Yossarian Kingì”¨ê°€ ì‘ì„±í•œ ë°©ë²•ì…ë‹ˆë‹¤
+///                    ì¥ì  : FPUëª¨ë“œì— ë”°ë¼ ì¼ë°˜ì ìœ¼ë¡œ ì¼ë°˜ intí˜•ë³€í™˜ê³¼ ì •í™•íˆ ì¼ì¹˜í•©ë‹ˆë‹¤.
+///                    ë‹¨ì  : floatì˜ ê°’ì´ 2ì˜ 23ìŠ¹(8388608)ë³´ë‹¤ ì‘ì•„ì•¼ í•©ë‹ˆë‹¤. ë˜í•œ, FPUëª¨ë“œê°€ Choppingì´ ì•„ë‹Œ ê²½ìš°. ì˜ˆë¥¼ ë“¤ë©´ ìœ„ì˜ fastf2i_roundë‚˜ fastf2iì™€ ê°™ì´ ì‚¬ìš©í•˜ë©´ ì•ˆë©ë‹ˆë‹¤. fastf2i_roundë‚˜ fastf2iëŠ” FPUëª¨ë“œë¥¼ ë°˜ì˜¬ë¦¼ëª¨ë“œë¡œ ì‚¬ìš©í•˜ëŠ”ë°, f2ií•¨ìˆ˜ëŠ” FPUëª¨ë“œë¥¼ ë”°ë¡œ ì„¤ì •í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— í˜„ì¬ FPUëª¨ë“œ ê·¸ëŒ€ë¡œ ë³€í™˜ì„ ì‹œë„í•©ë‹ˆë‹¤. (FPUëª¨ë“œëŠ” ìœ„ì˜ ì°¸ê³ ë¥¼ ë³´ì‹œê¸° ë°”ëë‹ˆë‹¤)
+/// \author        cmkwon
+/// \date        2008-06-26 ~ 2008-06-26
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 inline int f2i(float f) 
 {
-	INTORFLOAT ftmp;
-	ftmp.f = f;
-	ftmp.f += FTOIBIAS.f;
-	ftmp.i -= FTOIBIAS.i;
-	return ftmp.i;	
+    INTORFLOAT ftmp;
+    ftmp.f = f;
+    ftmp.f += FTOIBIAS.f;
+    ftmp.i -= FTOIBIAS.i;
+    return ftmp.i;    
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			int fastf2i_round(float f)
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///				¹æ¹ı : FPU¸¦ ÀÌ¿ëÇÑ ÀÎ¶óÀÎ ¾î¼ÀÄÚµåÀÔ´Ï´Ù. 
-///				ÀåÁ¡ : °¡Àå ºü¸¨´Ï´Ù.
-///				´ÜÁ¡ : ¹İ¿Ã¸²ÀÌ µË´Ï´Ù. µû¶ó¼­ int a = int(1234.56f) ¿Í °°Àº °ªÀÌ ¾È ³ª¿Â´Ù´Â °ÍÀÔ´Ï´Ù. ¹İ¿Ã¸²µÇ¾î¼­ 1235°¡ ³ª¿É´Ï´Ù. 	
-/// \author		cmkwon
-/// \date		2008-06-26 ~ 2008-06-26
-/// \warning	
+/// \fn            int fastf2i_round(float f)
+/// \brief        // 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///                ë°©ë²• : FPUë¥¼ ì´ìš©í•œ ì¸ë¼ì¸ ì–´ì…ˆì½”ë“œì…ë‹ˆë‹¤. 
+///                ì¥ì  : ê°€ì¥ ë¹ ë¦…ë‹ˆë‹¤.
+///                ë‹¨ì  : ë°˜ì˜¬ë¦¼ì´ ë©ë‹ˆë‹¤. ë”°ë¼ì„œ int a = int(1234.56f) ì™€ ê°™ì€ ê°’ì´ ì•ˆ ë‚˜ì˜¨ë‹¤ëŠ” ê²ƒì…ë‹ˆë‹¤. ë°˜ì˜¬ë¦¼ë˜ì–´ì„œ 1235ê°€ ë‚˜ì˜µë‹ˆë‹¤.     
+/// \author        cmkwon
+/// \date        2008-06-26 ~ 2008-06-26
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 inline int fastf2i_round(float f)
 {
 #ifdef _WIN32
-	int i;
-	__asm
-	{
-		fld		f
-		fistp	i
-	}
-	return i;
+    int i;
+    __asm
+    {
+        fld        f
+        fistp    i
+    }
+    return i;
 #else
-	return (int)(f + 0.5f);
-#endif	
+    return (int)(f + 0.5f);
+#endif    
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			int fastf2i(float fValue)
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ı : ¿ª½Ã FPU¸¦ ÀÌ¿ëÇÑ ÀÎ¶óÀÎ ¾î¼ÀÄÚµåÀÌÁö¸¸ ¹İ¿Ã¸²À» ¾ÈÇÏµµ·Ï ¾à°£ÀÇ Á¶Á¤À» ÇÕ´Ï´Ù.
-///					ÀåÁ¡ : ¿ª½Ã ¹æ¹ı1°ú Èí»çÇÏ°Ô ºü¸¨´Ï´Ù.
-///					´ÜÁ¡ : ¹æ¹ı1¿¡¼­ ¹İ¿Ã¸²ÀÌ ¾ÈµÇµµ·Ï ¹İ¿Ã¸²°ªÀ» »©ÁÖ°í ÀÖ½À´Ï´Ù¸¸ 0.9999999f½ÄÀÇ °ªÀÌ µé¾î¿À¸é ¿ª½Ã ¹İ¿Ã¸²µË´Ï´Ù. ¹°·Ğ round_to_nearest ¸¦ ¾à°£ »óÈ²¿¡ ¸Â°Ô ¼öÁ¤ÇÏ¸é µÇ´Â °ÍÀÔ´Ï´Ù¸¸ ¾à°£ ÂóÂóÇÑ °Í »ç½ÇÀÔ´Ï´Ù.
-/// \author		cmkwon
-/// \date		2008-06-26 ~ 2008-06-26
-/// \warning	
+/// \fn            int fastf2i(float fValue)
+/// \brief        // 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///                    ë°©ë²• : ì—­ì‹œ FPUë¥¼ ì´ìš©í•œ ì¸ë¼ì¸ ì–´ì…ˆì½”ë“œì´ì§€ë§Œ ë°˜ì˜¬ë¦¼ì„ ì•ˆí•˜ë„ë¡ ì•½ê°„ì˜ ì¡°ì •ì„ í•©ë‹ˆë‹¤.
+///                    ì¥ì  : ì—­ì‹œ ë°©ë²•1ê³¼ í¡ì‚¬í•˜ê²Œ ë¹ ë¦…ë‹ˆë‹¤.
+///                    ë‹¨ì  : ë°©ë²•1ì—ì„œ ë°˜ì˜¬ë¦¼ì´ ì•ˆë˜ë„ë¡ ë°˜ì˜¬ë¦¼ê°’ì„ ë¹¼ì£¼ê³  ìˆìŠµë‹ˆë‹¤ë§Œ 0.9999999fì‹ì˜ ê°’ì´ ë“¤ì–´ì˜¤ë©´ ì—­ì‹œ ë°˜ì˜¬ë¦¼ë©ë‹ˆë‹¤. ë¬¼ë¡  round_to_nearest ë¥¼ ì•½ê°„ ìƒí™©ì— ë§ê²Œ ìˆ˜ì •í•˜ë©´ ë˜ëŠ” ê²ƒì…ë‹ˆë‹¤ë§Œ ì•½ê°„ ì°ì°í•œ ê²ƒ ì‚¬ì‹¤ì…ë‹ˆë‹¤.
+/// \author        cmkwon
+/// \date        2008-06-26 ~ 2008-06-26
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 inline int fastf2i(float fValue)
 {
 #ifdef _WIN32
-	static const float round_to_nearest = -0.499999f;
+    static const float round_to_nearest = -0.499999f;
 
     int iValue;
     __asm 
-	{
-		fld		fValue
-		fadd	round_to_nearest
-		fistp	iValue
-	}
+    {
+        fld        fValue
+        fadd    round_to_nearest
+        fistp    iValue
+    }
     return iValue;
 #else
     return (int)fValue;
@@ -108,38 +109,38 @@ inline int fastf2i(float fValue)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			int Float2Int( float a )
-/// \brief		// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
-///					¹æ¹ı : intº¯È¯À» ±×´ë·Î ÀÎ¶óÀÎ ¾î¼ÀÈ­ ÇÏ¿´½À´Ï´Ù.
-///					ÀåÁ¡ : ÀÏ¹İ intÇüº¯È¯°ú Á¤È®È÷ ÀÏÄ¡ÇÕ´Ï´Ù.
-///					´ÜÁ¡ : ±×´ÙÁö ¸¹ÀÌ ºü¸£Áö ¾Ê³×¿ä.
-/// \author		cmkwon
-/// \date		2008-06-26 ~ 2008-06-26
-/// \warning	
+/// \fn            int Float2Int( float a )
+/// \brief        // 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
+///                    ë°©ë²• : intë³€í™˜ì„ ê·¸ëŒ€ë¡œ ì¸ë¼ì¸ ì–´ì…ˆí™” í•˜ì˜€ìŠµë‹ˆë‹¤.
+///                    ì¥ì  : ì¼ë°˜ intí˜•ë³€í™˜ê³¼ ì •í™•íˆ ì¼ì¹˜í•©ë‹ˆë‹¤.
+///                    ë‹¨ì  : ê·¸ë‹¤ì§€ ë§ì´ ë¹ ë¥´ì§€ ì•Šë„¤ìš”.
+/// \author        cmkwon
+/// \date        2008-06-26 ~ 2008-06-26
+/// \warning    
 ///
-/// \param		
-/// \return		
+/// \param        
+/// \return        
 ///////////////////////////////////////////////////////////////////////////////
 inline int Float2Int( float a )
 {
 #ifdef _WIN32
-	int CtrlwdHolder;
-	int CtrlwdSetter;
-	int RetVal;
-	__asm 
-	{
-		fld    a					// push 'a' onto the FP stack
-		fnstcw CtrlwdHolder			// store FPU control word
-		movzx  eax, CtrlwdHolder	// move and zero extend word into eax
-		and    eax, 0xFFFFF3FF		// set all bits except rounding bits to 1
-		or     eax, 0x00000C00		// set rounding mode bits to round down
-		mov    CtrlwdSetter, eax	// Prepare to set the rounding mode -- prepare to enter plaid!
-		fldcw  CtrlwdSetter			// Entering plaid!
-		fistp  RetVal				// Store and converted (to int) result
-		fldcw  CtrlwdHolder			// Restore control word
-	}
-	return RetVal;
+    int CtrlwdHolder;
+    int CtrlwdSetter;
+    int RetVal;
+    __asm 
+    {
+        fld    a                    // push 'a' onto the FP stack
+        fnstcw CtrlwdHolder            // store FPU control word
+        movzx  eax, CtrlwdHolder    // move and zero extend word into eax
+        and    eax, 0xFFFFF3FF        // set all bits except rounding bits to 1
+        or     eax, 0x00000C00        // set rounding mode bits to round down
+        mov    CtrlwdSetter, eax    // Prepare to set the rounding mode -- prepare to enter plaid!
+        fldcw  CtrlwdSetter            // Entering plaid!
+        fistp  RetVal                // Store and converted (to int) result
+        fldcw  CtrlwdHolder            // Restore control word
+    }
+    return RetVal;
 #else
-	return (int)a;
-#endif	
+    return (int)a;
+#endif    
 }

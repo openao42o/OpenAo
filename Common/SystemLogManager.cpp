@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "SystemLogManager.h"
 
 #include <time.h>
@@ -47,7 +47,7 @@ BOOL CSystemLogManager::InitLogManger(BOOL bUse, const char *szFileName, const c
 	}
 	LeaveCriticalSection(&m_criticalSection);
 
-	// 2009-02-23 by cmkwon, PC ÀçºÎÆÃ °æ°ú ½Ã°£ ·Î±İ ³²±â±â Ãß°¡
+	// 2009-02-23 by cmkwon, PC ì¬ë¶€íŒ… ê²½ê³¼ ì‹œê°„ ë¡œê¸ˆ ë‚¨ê¸°ê¸° ì¶”ê°€
 	int nElapsedSec	= GetTickCount()/1000;
 	int nSecond		= nElapsedSec%60;
 	int nMinute		= (nElapsedSec/60)%60;
@@ -72,10 +72,10 @@ BOOL CSystemLogManager::OpenFile(const char *szFileName, const char *szDirectory
 		if(nErr != ERROR_ALREADY_EXISTS)
 		{
 			///////////////////////////////////////////////////////////////////////////////
-			// 2008-09-24 by cmkwon, °ÔÀÓ ·Î±× Æú´õ  \Log\ ÀÚµ¿ »ı¼ºµÇ°Ô ±¸Çö - 
+			// 2008-09-24 by cmkwon, ê²Œì„ ë¡œê·¸ í´ë”  \Log\ ìë™ ìƒì„±ë˜ê²Œ êµ¬í˜„ - 
 			char szTmDir[MAX_PATH];
 			util::zero(szTmDir, MAX_PATH);
-			memcpy(szTmDir, szDirectory, strlen(szDirectory)-1);	// 2008-09-24 by cmkwon, ¸¶Áö¸· / or \ ¹®ÀÚ¸¦ Á¦°ÅÇÏ°í º¹»ç
+			memcpy(szTmDir, szDirectory, strlen(szDirectory)-1);	// 2008-09-24 by cmkwon, ë§ˆì§€ë§‰ / or \ ë¬¸ìë¥¼ ì œê±°í•˜ê³  ë³µì‚¬
 
 			char *pParentDirEnd = strrchr(szTmDir, '\\');
 			if(NULL == pParentDirEnd)
@@ -83,7 +83,7 @@ BOOL CSystemLogManager::OpenFile(const char *szFileName, const char *szDirectory
 				pParentDirEnd = strrchr(szTmDir, '/');
 			}			
 			if(pParentDirEnd)
-			{// 2008-09-24 by cmkwon, 2¹øÂ° »óÀ§ µğ·ºÅä¸®°¡ ÀÖ´Ù¸é »ı¼ºÇØ º»´Ù.
+			{// 2008-09-24 by cmkwon, 2ë²ˆì§¸ ìƒìœ„ ë””ë ‰í† ë¦¬ê°€ ìˆë‹¤ë©´ ìƒì„±í•´ ë³¸ë‹¤.
 				char szParentDirPath[MAX_PATH];
 				util::zero(szParentDirPath, MAX_PATH);
 				memcpy(szParentDirPath, szTmDir, min(pParentDirEnd-szTmDir, MAX_PATH));

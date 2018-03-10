@@ -1,4 +1,4 @@
-// WayPointManager.cpp: implementation of the CWayPointManager class.
+Ôªø// WayPointManager.cpp: implementation of the CWayPointManager class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -104,7 +104,7 @@ BOOL CWayPointManager::LoadDBWayPointData(CODBCStatement *i_odbcstmt)
 	CAtumDBHelper::DBLoadWayPointMoveDataInfo(i_odbcstmt , this, FALSE);
 	CAtumDBHelper::DBLoadWayPointDataInfo(i_odbcstmt , this, FALSE);
 
-	Sort();		// ¡§∑ƒ
+	Sort();		// √Å¬§¬∑√Ñ
 
 	return TRUE;
 }

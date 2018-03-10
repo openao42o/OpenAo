@@ -14252,7 +14252,7 @@ ProcessResult CFieldIOCPSocket::Process_FC_CHARACTER_DELETE(const char* pPacket,
 	}
 
 	pMsgDel = (MSG_FC_CHARACTER_DELETE*)pRecvMsg;
-	if( pMsgDel->AccountUniqueNumber == 0)
+	if( pMsgDel->AccountUniqueNumber == 0 || pMsgDel->AccountUniqueNumber != m_character.AccountUniqueNumber)
 	{
 		// Protocol Error 처리
 		// - 접속한 AccountUniqueNumber와 요청한 AccountUniqueNumber이 다르다

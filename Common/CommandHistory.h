@@ -1,5 +1,5 @@
-// CommandHistory.h: interface for the CCommandHistory class.
-//
+ï»¿// CommandHistory.h: interface for the CCommandHistory class.
+//Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_COMMANDHISTORY_H__E17CC8A8_4994_4A53_BB1B_0EF3A49BB3DA__INCLUDED_)
@@ -29,16 +29,16 @@ public:
 	void Sort();
 
 	void ResetPosition();
-	int GetPosition();					// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
-	BOOL SetPosition(int posFromLast);	// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
+	int GetPosition();					// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
+	BOOL SetPosition(int posFromLast);	// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
 
 	char* GetCurrent();
 	char* GetNext();
 	char* GetPrev();
 	char* GetOldest();
 	char* GetLastest();
-	char* GetAtPosFromLast(int i_nPosFromLast);		// µÚ·ÎºÎÅÍ n¹ø Â°, 1ºÎÅÍ ½ÃÀÛÇÏ±â
-	char* GetAtPos(int i_nPos);						// 0ºÎÅÍ ½ÃÀÛÇÏ±â
+	char* GetAtPosFromLast(int i_nPosFromLast);		// ë’¤ë¡œë¶€í„° në²ˆ ì§¸, 1ë¶€í„° ì‹œì‘í•˜ê¸°
+	char* GetAtPos(int i_nPos);						// 0ë¶€í„° ì‹œì‘í•˜ê¸°
 
 	BOOL AddCommand(const char* szCmd);
 	void Clear();
@@ -48,11 +48,11 @@ public:
 
 public:
 	list<string>	m_listHistory;
-	string			m_szHistoryFileName;	// "" ÀÌ¸é ÀúÀåÇÏÁö ¾Ê´Â´Ù
-	string			m_szHistoryFilePath;	// "" ÀÌ¸é ÇöÀç µğ·ºÅÍ¸®
+	string			m_szHistoryFileName;	// "" ì´ë©´ ì €ì¥í•˜ì§€ ì•ŠëŠ”ë‹¤
+	string			m_szHistoryFilePath;	// "" ì´ë©´ í˜„ì¬ ë””ë ‰í„°ë¦¬
 	int				m_nSize;				// capacity
-	BOOL			m_bDuplicate;			// Áßº¹À» Çã¿ëÇÒ Áö ¿©ºÎ
-	BOOL			m_bSort;				// Á¤·ÄÇÒ Áö ¿©ºÎ
+	BOOL			m_bDuplicate;			// ì¤‘ë³µì„ í—ˆìš©í•  ì§€ ì—¬ë¶€
+	BOOL			m_bSort;				// ì •ë ¬í•  ì§€ ì—¬ë¶€
 	int				m_nHistPos;
 };
 

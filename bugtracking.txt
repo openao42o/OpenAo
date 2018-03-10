@@ -1,11 +1,11 @@
-Fieldserver crash: when duplicate loggin apparently pre server may send incorrect client index.
-Negative times on SPs during MS wars
+01-10 19:00:00|[DB Error] DBWorkerThreadID(20632) hstmt(0x6D814C8): atum_UpdateInfluenceWarData Failed!
 
-		01-10 19:00:00|[DB Error] DBWorkerThreadID(20632) hstmt(0x6D814C8): atum_UpdateInfluenceWarData Failed!
 
-		01-10 19:00:00|	szSqlState    = 42000
-		01-10 19:00:00|	pfNativeError = 8144
-		01-10 19:00:00|	szErrorMsg    = [Microsoft][ODBC SQL Server Driver][SQL Server]Procedure or function atum_UpdateInfluenceWarData has too many arguments specified.
+01-10 19:00:00|	szSqlState    = 42000
+		
+01-10 19:00:00|	pfNativeError = 8144
+		
+01-10 19:00:00|	szErrorMsg    = [Microsoft][ODBC SQL Server Driver][SQL Server]Procedure or function atum_UpdateInfluenceWarData has too many arguments specified.
 		01-10 19:00:00|	pcbErrorMsg   = 130
 
 		01-10 19:00:00|	ODBCRowNumber = 1

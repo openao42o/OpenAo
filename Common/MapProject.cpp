@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MapProject.h"
 #include "IOCP.h"
 #include "MapChannel.h"
@@ -39,11 +39,11 @@ CMapProject::CMapProject(CMapWorkspace * i_pMapWorkspace, PROJECTINFO * i_pProje
 
 	m_DefaltWarpTargetIndex		= -1;
 	m_WarpAreaMap.clear();
-// 2005-07-21 by hblee : m_WarpObjectMap´ë½Å¿¡ m_vectorObjectInfo¸¦ ÀÌ¿ë.
+// 2005-07-21 by hblee : m_WarpObjectMapëŒ€ì‹ ì— m_vectorObjectInfoë¥¼ ì´ìš©.
 //	m_WarpObjectMap.clear();
 
 	m_vTileInfo.clear();
-	m_vectorVERTEXINFO.clear();								// MfileÀÇ Á¤º¸¸¦ ÀúÀåÇÒ ¹è¿­ÀÇ Æ÷ÀÎÅÍ
+	m_vectorVERTEXINFO.clear();								// Mfileì˜ ì •ë³´ë¥¼ ì €ì¥í•  ë°°ì—´ì˜ í¬ì¸í„°
 
 	m_pIOCPSocketMapSession		= NULL;
 
@@ -55,18 +55,18 @@ CMapProject::CMapProject(CMapWorkspace * i_pMapWorkspace, PROJECTINFO * i_pProje
 	m_nWritedSize				= 0;
 	m_dwLastSendedTick			= 0;
 
-	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 	//m_uiMapCheckSum				= 0;				// 2007-04-06 by cmkwon
-	util::zero(&m_mapCheckSum, sizeof(m_mapCheckSum));	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	util::zero(&m_mapCheckSum, sizeof(m_mapCheckSum));	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 
 
-	m_nOriginalMapInfluenceType = m_nMapInfluenceType;		// 2006-02-09 by cmkwon, ¿ø·¡ MapInfluenceTypeÀ» ÀúÀåÇÑ´Ù.
+	m_nOriginalMapInfluenceType = m_nMapInfluenceType;		// 2006-02-09 by cmkwon, ì›ë˜ MapInfluenceTypeì„ ì €ì¥í•œë‹¤.
 
-// 2007-05-21 by cmkwon, ÀÏ¹İ±º µµ½Ã¸Ê Ãß°¡·Î ¼öÁ¤µÊ
+// 2007-05-21 by cmkwon, ì¼ë°˜êµ° ë„ì‹œë§µ ì¶”ê°€ë¡œ ìˆ˜ì •ë¨
 //	if(IS_VCN_CITY_MAP_INDEX(m_nMapIndex)
 //		||IS_ANI_CITY_MAP_INDEX(m_nMapIndex))
 	if(IS_CITY_MAP_INDEX(m_nMapIndex))
-	{// 2006-05-19 by cmkwon, µµ½Ã Âø·úÁöÁ¡ ¼³Á¤
+	{// 2006-05-19 by cmkwon, ë„ì‹œ ì°©ë¥™ì§€ì  ì„¤ì •
 		m_vectCityWarpTargetPositionList.reserve(5);
 	}
 }
@@ -80,7 +80,7 @@ CMapProject::~CMapProject()
 		int nIdx = 0;
 		int nTotal = 0;
 
-		// 2004-03-29 by cmkwon, Ã¤³Îº°·Î Ãâ·ÂÇØ¾ßÇÔ
+		// 2004-03-29 by cmkwon, ì±„ë„ë³„ë¡œ ì¶œë ¥í•´ì•¼í•¨
 //		sprintf(szSystemLog, "%4d ==>\r\n", m_nMapIndex);
 //		g_pGlobal->WriteSystemLog(szSystemLog);
 //		//DBGOUT(szSystemLog);
@@ -120,7 +120,7 @@ CMapProject::~CMapProject()
 	}
 	m_WarpAreaMap.clear();
 
-// 2005-07-21 by hblee : m_WarpObjectMap´ë½Å¿¡ m_vectorObjectInfo¸¦ ÀÌ¿ë.
+// 2005-07-21 by hblee : m_WarpObjectMapëŒ€ì‹ ì— m_vectorObjectInfoë¥¼ ì´ìš©.
 //	// clean WarpObjectMap
 //	map<int, vector<int>*>::iterator itrObj = m_WarpObjectMap.begin();
 //	for ( ; itrObj != m_WarpObjectMap.end(); itrObj++)
@@ -130,7 +130,7 @@ CMapProject::~CMapProject()
 //	m_WarpObjectMap.clear();
 
 	// clean VertexInfo
-	// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+	// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 	vector<TILEINFO>::iterator itrTile(m_vTileInfo.begin());
 	for(; itrTile != m_vTileInfo.end(); itrTile++)
 	{
@@ -219,7 +219,7 @@ BOOL CMapProject::InitMapProject(void)
 		}
 	}
 
-	// check: ResGetCharacterInfoByName()¿¡¼­ ÁöÇü Á¤º¸¸¦ È®ÀÎÇÏ¹Ç·Î °¡Áö°í ÀÖ¾î¾ß ÇÔ! 20030915, kelovon
+	// check: ResGetCharacterInfoByName()ì—ì„œ ì§€í˜• ì •ë³´ë¥¼ í™•ì¸í•˜ë¯€ë¡œ ê°€ì§€ê³  ìˆì–´ì•¼ í•¨! 20030915, kelovon
 	if (this->LoadMFile() == FALSE)
 	{	// error
 		char	szError[1024];
@@ -236,10 +236,10 @@ BOOL CMapProject::InitMapProject(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::LoadMap
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : void
-// ÇÔ ¼ö ¼³ ¸í  : Map ÀÌ¸§¿¡ ÇØ´çÇÏ´Â ¸ÊÀÇ Á¤º¸¿Í ¸Ê¾È¿¡ ÀÖ´Â ¸ó½ºÅÍÀÇ Á¤º¸¸¦ ¸ÊÀÌ¸§.sma ÆÄÀÏ·Î ºÎÅÍ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::LoadMap
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : void
+// í•¨ ìˆ˜ ì„¤ ëª…  : Map ì´ë¦„ì— í•´ë‹¹í•˜ëŠ” ë§µì˜ ì •ë³´ì™€ ë§µì•ˆì— ìˆëŠ” ëª¬ìŠ¤í„°ì˜ ì •ë³´ë¥¼ ë§µì´ë¦„.sma íŒŒì¼ë¡œ ë¶€í„° ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
 //
 BOOL CMapProject::LoadMap(BOOL bLoadJustEvent)
 {
@@ -292,16 +292,16 @@ BOOL CMapProject::LoadMap(BOOL bLoadJustEvent)
 
 	struct _TILEINFO4LOADING
 	{
-		D3DXVECTOR3 m_vPosition;								// ¼­¹ö¿¡¼­´Â °­Á¦ ¿öÇÁ½Ã¿¡¸¸ »ç¿ëÇÑ´Ù. ¼­¹ö¼­´Â ·Îµù ½Ã ¹«Á¶°Ç 0À¸·Î ¸¸µç´Ù, by kelovon, 20030713
-		int			m_nMoveType;								// 0ÀÌ¸é °¥¼ö ÀÖ´Â Áö¿ª, 0ÀÌ 1ÀÌ¸é Ã¼Å©, 2ÀÌ¸é ¸ø°¡´Â Áö¿ª
-		BYTE		m_bPKType;									// PK °¡´É ¿©ºÎ
-		BOOL		m_bEnableLand;								// Âø·ú °¡´É ¿©ºÎ
+		D3DXVECTOR3 m_vPosition;								// ì„œë²„ì—ì„œëŠ” ê°•ì œ ì›Œí”„ì‹œì—ë§Œ ì‚¬ìš©í•œë‹¤. ì„œë²„ì„œëŠ” ë¡œë”© ì‹œ ë¬´ì¡°ê±´ 0ìœ¼ë¡œ ë§Œë“ ë‹¤, by kelovon, 20030713
+		int			m_nMoveType;								// 0ì´ë©´ ê°ˆìˆ˜ ìˆëŠ” ì§€ì—­, 0ì´ 1ì´ë©´ ì²´í¬, 2ì´ë©´ ëª»ê°€ëŠ” ì§€ì—­
+		BYTE		m_bPKType;									// PK ê°€ëŠ¥ ì—¬ë¶€
+		BOOL		m_bEnableLand;								// ì°©ë¥™ ê°€ëŠ¥ ì—¬ë¶€
 		BYTE		m_bEventType;								// EVENT_TYPE_XXX
-		short		m_EventwParam1;								// ¿ø·¡ event area index, µµ½Ã ÀÎµ¦½º, ~0ÀÌ¸é ³ªÁß¿¡ T_FP_EVENT_NOTIFY_WARP_OK ¿¡¼­ m_EventwParam1À» È®ÀÎÇØ¼­ ~0ÀÌ¸é util::del()ÇÑ´Ù
-		short		m_EventwParam2;								// Ã£¾Æ°¥ event area index, °Ç¹° Á¾·ù, ~0ÀÌ¸é defaultWarpTargetIndex¸¦ »ç¿ëÇÑ´Ù
-		short		m_EventwParam3;								// ¸Ê ÀÎµ¦½º
-		char		m_EventstrParam[SIZE_MAX_EVENT_PARAM_NAME];	// »ç¿ë ¾È ÇÔ! check: ¸Ê ÀÌ¸§À» EventwParam3·Î ³Ñ±è, 20040601, kelovon
-		DWORD		m_dwWaterType;								// 0(¹°ÀÌ ¾Æ´Ô), 1(¼­¹ö/Å¬¶óÀÌ¾ğÆ® ¹°Å¸ÀÏ), 2(Only ¼­¹ö ¹°Å¸ÀÏ), 3(Only Å¬¶óÀÌ¾ğÆ® ¹°Å¸ÀÏ)
+		short		m_EventwParam1;								// ì›ë˜ event area index, ë„ì‹œ ì¸ë±ìŠ¤, ~0ì´ë©´ ë‚˜ì¤‘ì— T_FP_EVENT_NOTIFY_WARP_OK ì—ì„œ m_EventwParam1ì„ í™•ì¸í•´ì„œ ~0ì´ë©´ util::del()í•œë‹¤
+		short		m_EventwParam2;								// ì°¾ì•„ê°ˆ event area index, ê±´ë¬¼ ì¢…ë¥˜, ~0ì´ë©´ defaultWarpTargetIndexë¥¼ ì‚¬ìš©í•œë‹¤
+		short		m_EventwParam3;								// ë§µ ì¸ë±ìŠ¤
+		char		m_EventstrParam[SIZE_MAX_EVENT_PARAM_NAME];	// ì‚¬ìš© ì•ˆ í•¨! check: ë§µ ì´ë¦„ì„ EventwParam3ë¡œ ë„˜ê¹€, 20040601, kelovon
+		DWORD		m_dwWaterType;								// 0(ë¬¼ì´ ì•„ë‹˜), 1(ì„œë²„/í´ë¼ì´ì–¸íŠ¸ ë¬¼íƒ€ì¼), 2(Only ì„œë²„ ë¬¼íƒ€ì¼), 3(Only í´ë¼ì´ì–¸íŠ¸ ë¬¼íƒ€ì¼)
 	};
 
 	int nNewEventInfoCnt	 = 0;
@@ -358,7 +358,7 @@ BOOL CMapProject::LoadMap(BOOL bLoadJustEvent)
 
 
 	///////////////////////////////////////////////////////////////////////////
-	// ¸ÖÆ¼ ¼­¹ö¿¡¼­ ´Ù¸¥ ÇÊµå ¼­¹öÀÇ warpÁ¤º¸¸¦ ·Îµå ÇÒ ¶§ »ç¿ë
+	// ë©€í‹° ì„œë²„ì—ì„œ ë‹¤ë¥¸ í•„ë“œ ì„œë²„ì˜ warpì •ë³´ë¥¼ ë¡œë“œ í•  ë•Œ ì‚¬ìš©
 	if (bLoadJustEvent)
 	{
 		// release resources
@@ -381,7 +381,7 @@ BOOL CMapProject::LoadMap(BOOL bLoadJustEvent)
 
 	server::writeline("  Load Monster Info ==> # of MonsterInfo: %d\r\n", nMonster);
 
-// check: MapChannel µµÀÔÁß, 20040324, kelovon, ¸ó½ºÅÍ Á¤º¸ ·Îµù Àç±¸Çö ¹× ¸ó½ºÅÍÀÇ array¸¦ channel·Î ºĞ¸®ÇØ³»´Â ÀÛ¾÷ ÇÊ¿äÇÔ!
+// check: MapChannel ë„ì…ì¤‘, 20040324, kelovon, ëª¬ìŠ¤í„° ì •ë³´ ë¡œë”© ì¬êµ¬í˜„ ë° ëª¬ìŠ¤í„°ì˜ arrayë¥¼ channelë¡œ ë¶„ë¦¬í•´ë‚´ëŠ” ì‘ì—… í•„ìš”í•¨!
 	m_nMaxMonsterCount		= 0;
 	for (i = 0; i < nMonster; i++)
 	{
@@ -420,7 +420,7 @@ struct sort_vectorObjectMonsterInfoByEventIndex: binary_function<OBJECTINFOSERVE
 {
 	bool operator()(OBJECTINFOSERVER obj1, OBJECTINFOSERVER obj2)
 	{
-		return obj1.m_EventInfo.m_EventwParam1 < obj2.m_EventInfo.m_EventwParam1;	// ¿À¸§ Â÷¼ø Á¤·Ä
+		return obj1.m_EventInfo.m_EventwParam1 < obj2.m_EventInfo.m_EventwParam1;	// ì˜¤ë¦„ ì°¨ìˆœ ì •ë ¬
 	};
 };
 
@@ -428,21 +428,21 @@ struct sort_OBJECTINFOSERVER_By_EventType
 {
 	bool operator()(OBJECTINFOSERVER op1, OBJECTINFOSERVER op2)
 	{
-		return op1.m_EventInfo.m_bEventType < op2.m_EventInfo.m_bEventType;				// ¿À¸¥Â÷¼ø Á¤·Ä
+		return op1.m_EventInfo.m_bEventType < op2.m_EventInfo.m_bEventType;				// ì˜¤ë¥¸ì°¨ìˆœ ì •ë ¬
 	}
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!! 
+// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!! 
 typedef struct _OBJECTINFOCLIENT
 {
-	DWORD		dwObjType;						// Object Å¸ÀÔ
+	DWORD		dwObjType;						// Object íƒ€ì…
 	INT			nObjCount;						// No using
 	D3DXVECTOR3 vPos;
 	D3DXVECTOR3 vVel;
 	D3DXVECTOR3 vUp;
 	DWORD		dwObjectMonsterUniqueNunber;	//
-	BYTE		byIsCityWar;					// µµ½ÃÁ¡·É¸ó½ºÅÍ(ÀÌÀü¿¡ bObjectTexIndex)
+	BYTE		byIsCityWar;					// ë„ì‹œì ë ¹ëª¬ìŠ¤í„°(ì´ì „ì— bObjectTexIndex)
 	UINT		nNextEventIndex;				// 2005-07-15 by cmkwon, nObjectSrcIndex --> nNextEventIndex
 	BYTE		bBodyCondition;
 	BOOL		bIsEvent;
@@ -461,44 +461,44 @@ typedef struct _MAP_DATA
 	int				nObjectNumber;
 }MapInfo;
 
-// 2012-05-02 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Á¤º¸
+// 2012-05-02 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì •ë³´
 typedef struct _OBJECTSCALEINFO
 {
 	D3DXVECTOR3 vObjScale;	
 } OBJECTSCALEINFO;
-// end 2012-05-02 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Á¤º¸
+// end 2012-05-02 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì •ë³´
 
 typedef struct _TILEINFOCLIENT // tile type
 {
-	INT			useTexNumber;		// »ç¿ëÅØ½ºÃÄÀÇ ÀÎµ¦½º
-	BOOL		useWater;			// Water »ç¿ë
-	INT			waterHeight;		// Water ³ôÀÌ
+	INT			useTexNumber;		// ì‚¬ìš©í…ìŠ¤ì³ì˜ ì¸ë±ìŠ¤
+	BOOL		useWater;			// Water ì‚¬ìš©
+	INT			waterHeight;		// Water ë†’ì´
 	SHORT		waterTexNumber;		// Water Texture
 	BYTE		bMove;				// Move Type
-	BOOL		bEnableLand;		// Âø·ú°¡´É
-	BYTE		bEventType;			// ÀÌº¥Æ® Å¸ÀÔ 1:(¿öÇÁ ÀÔ±¸) 2:(¿öÇÁ Ãâ±¸) 3:»óÁ¡
+	BOOL		bEnableLand;		// ì°©ë¥™ê°€ëŠ¥
+	BYTE		bEventType;			// ì´ë²¤íŠ¸ íƒ€ì… 1:(ì›Œí”„ ì…êµ¬) 2:(ì›Œí”„ ì¶œêµ¬) 3:ìƒì 
 } TILEINFOCLIENT;
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::LoadMFile
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : void
-// ÇÔ ¼ö ¼³ ¸í  : ¸ó½ºÅÍ ÀÌµ¿½Ã ¸Ê°úÀÇ Ãæµ¹ °è»êÀ» À§ÇØ ¸ÊÁ¤º¸¸¦ "¸ÊÀÌ¸§.m"ÆÄÀÏ·Î ºÎÅÍ °¡Á®¿Í ¼³Á¤ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::LoadMFile
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : void
+// í•¨ ìˆ˜ ì„¤ ëª…  : ëª¬ìŠ¤í„° ì´ë™ì‹œ ë§µê³¼ì˜ ì¶©ëŒ ê³„ì‚°ì„ ìœ„í•´ ë§µì •ë³´ë¥¼ "ë§µì´ë¦„.m"íŒŒì¼ë¡œ ë¶€í„° ê°€ì ¸ì™€ ì„¤ì •í•œë‹¤.
 //
 BOOL CMapProject::LoadMFile(void)
 {
 	////////////////////////////////////////////////////////////////////////////////
-	// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!! À§·Î ¼öÁ¤
+	// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!! ìœ„ë¡œ ìˆ˜ì •
 // 	typedef struct _OBJECTINFOCLIENT
 // 	{
-// 		DWORD		dwObjType;						// Object Å¸ÀÔ
+// 		DWORD		dwObjType;						// Object íƒ€ì…
 // 		INT			nObjCount;						// No using
 // 		D3DXVECTOR3 vPos;
 // 		D3DXVECTOR3 vVel;
 // 		D3DXVECTOR3 vUp;
 // 		DWORD		dwObjectMonsterUniqueNunber;	//
-// 		BYTE		byIsCityWar;					// µµ½ÃÁ¡·É¸ó½ºÅÍ(ÀÌÀü¿¡ bObjectTexIndex)
+// 		BYTE		byIsCityWar;					// ë„ì‹œì ë ¹ëª¬ìŠ¤í„°(ì´ì „ì— bObjectTexIndex)
 // 		UINT		nNextEventIndex;				// 2005-07-15 by cmkwon, nObjectSrcIndex --> nNextEventIndex
 // 		BYTE		bBodyCondition;
 // 		BOOL		bIsEvent;
@@ -519,13 +519,13 @@ BOOL CMapProject::LoadMFile(void)
 // 
 // 	typedef struct _TILEINFOCLIENT // tile type
 // 	{
-// 		INT			useTexNumber;		// »ç¿ëÅØ½ºÃÄÀÇ ÀÎµ¦½º
-// 		BOOL		useWater;			// Water »ç¿ë
-// 		INT			waterHeight;		// Water ³ôÀÌ
+// 		INT			useTexNumber;		// ì‚¬ìš©í…ìŠ¤ì³ì˜ ì¸ë±ìŠ¤
+// 		BOOL		useWater;			// Water ì‚¬ìš©
+// 		INT			waterHeight;		// Water ë†’ì´
 // 		SHORT		waterTexNumber;		// Water Texture
 // 		BYTE		bMove;				// Move Type
-// 		BOOL		bEnableLand;		// Âø·ú°¡´É
-// 		BYTE		bEventType;			// ÀÌº¥Æ® Å¸ÀÔ 1:(¿öÇÁ ÀÔ±¸) 2:(¿öÇÁ Ãâ±¸) 3:»óÁ¡
+// 		BOOL		bEnableLand;		// ì°©ë¥™ê°€ëŠ¥
+// 		BYTE		bEventType;			// ì´ë²¤íŠ¸ íƒ€ì… 1:(ì›Œí”„ ì…êµ¬) 2:(ì›Œí”„ ì¶œêµ¬) 3:ìƒì 
 // 	} TILEINFOCLIENT;
 
 	char			szTemp[256];	
@@ -534,11 +534,11 @@ BOOL CMapProject::LoadMFile(void)
 	sprintf(szTemp, "%s../Map/%04d.dat", CONFIG_ROOT.c_str(), m_nMapIndex);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2007-04-06 by cmkwon, °¢ ÆÄÀÏÀÇ CheckSumÀ» ±¸ÇÑ´Ù
-// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	// 2007-04-06 by cmkwon, ê° íŒŒì¼ì˜ CheckSumì„ êµ¬í•œë‹¤
+// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 //	int nfSize = 0;
 //	tmMapGameData.GetCheckSum(&m_uiMapCheckSum, &nfSize, szTemp);
-	tmMapGameData.GetCheckSum(m_mapCheckSum.byDigest, &m_mapCheckSum.nFileSize, szTemp);	// 2009-05-29 by cmkwon, Hash¾Ë°í¸®Áò Ãß°¡(SHA256) - 
+	tmMapGameData.GetCheckSum(m_mapCheckSum.byDigest, &m_mapCheckSum.nFileSize, szTemp);	// 2009-05-29 by cmkwon, Hashì•Œê³ ë¦¬ì¦˜ ì¶”ê°€(SHA256) - 
 
 	if(FALSE == tmMapGameData.SetFile(szTemp, FALSE, NULL, FALSE))
 	{
@@ -574,7 +574,7 @@ BOOL CMapProject::LoadMFile(void)
 	pOffset += sizeof(MapInfo);
 
 
-	// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+	// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 	char		*pObjScale = NULL;
 	DataHeader	*pDataHeader2 = NULL;
 	OBJECTSCALEINFO		tmObjScaleInfo;
@@ -584,11 +584,11 @@ BOOL CMapProject::LoadMFile(void)
 	{
 		pObjScale = pDataHeader2->m_pData + SIZE_SMA_FILE_HEADER;
 	}
-	// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+	// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 
 
 	///////////////////////////////////////////////////////////////////////////////
-	// Map Vertex Á¤º¸¸¦ ·ÎµùÇÑ´Ù.
+	// Map Vertex ì •ë³´ë¥¼ ë¡œë”©í•œë‹¤.
 	vectorVERTEXINFO	tmvectorVERTEXINFO(tmMapInfo.nVertexNumber);
 	int i = 0;
 	int tmpSQRTVertexNumber = sqrt(tmMapInfo.nVertexNumber);
@@ -597,11 +597,11 @@ BOOL CMapProject::LoadMFile(void)
 	{
 		for  (nZ = 0; nZ < tmpSQRTVertexNumber; nZ++)
 		{
-			// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+			// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 			//tmvectorVERTEXINFO[i] = *(VERTEXINFO*)pOffset;
 			//pOffset += sizeof(VERTEXINFO);
 			///////////////////////////////////////////////////////////////////////////////
-			// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+			// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 			VERTEXINFO4Loading *pVertexInfo4Load = (VERTEXINFO4Loading*)pOffset;
 			VERTEXINFO tmVertexInfo;
 			tmVertexInfo.pos		= pVertexInfo4Load->pos;
@@ -621,18 +621,18 @@ BOOL CMapProject::LoadMFile(void)
 // 	g_pGlobal->WriteSystemLogEX(TRUE, "[TEMP] 100408 VERTEXINFO TotalCount(%8d) TotalBytes(%8d) \r\n", sTotalCount, sTotalByte);
 
 	///////////////////////////////////////////////////////////////////////////////
-	// ¼­¹ö¿¡¼­´Â TileInfoClient¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù
+	// ì„œë²„ì—ì„œëŠ” TileInfoClientë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 	pOffset += tmMapInfo.nTileInfoNumber * sizeof(TILEINFOCLIENT);
 	
 	///////////////////////////////////////////////////////////////////////////////
-	// Map Object Á¤º¸¸¦ ·ÎµùÇÑ´Ù.
+	// Map Object ì •ë³´ë¥¼ ë¡œë”©í•œë‹¤.
 	if(tmMapInfo.nObjectNumber > 0)
 	{
 		////////////////////////////////////////////////////////////////////////////////
-		// 2009-09-09 ~ 2010 by dhjin, ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!! 
+		// 2009-09-09 ~ 2010 by dhjin, ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!! 
 #ifdef _ATUM_NPC_SERVER
-		if(g_pNPCGlobal->GetIsArenaServer() && g_pNPCGlobal->m_D3DApp.GetD3DDevice())		// 2011-06-15 by hski, ÀÎÇÇ´ÏÆ¼ 3Â÷ - º¯°æ ¿ÀºêÁ§Æ® ·ÎµùÇÏ´Ù Á×´Â ¹®Á¦ ÇØ°á
-		{// 2010-02-26 by cmkwon, DirectX »ç¿ë ¸øÇÒ¶§ Á×´Â ¹ö±× ¼öÁ¤ - 
+		if(g_pNPCGlobal->GetIsArenaServer() && g_pNPCGlobal->m_D3DApp.GetD3DDevice())		// 2011-06-15 by hski, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ ë¡œë”©í•˜ë‹¤ ì£½ëŠ” ë¬¸ì œ í•´ê²°
+		{// 2010-02-26 by cmkwon, DirectX ì‚¬ìš© ëª»í• ë•Œ ì£½ëŠ” ë²„ê·¸ ìˆ˜ì • - 
 			vector<ObjectNum_t>::iterator itrObj = m_pMapWorkspace->m_CinemaObjectNumList.begin();
 			for(; itrObj != m_pMapWorkspace->m_CinemaObjectNumList.end(); itrObj++) {
 				CGameData		gameData;
@@ -664,18 +664,18 @@ BOOL CMapProject::LoadMFile(void)
 		OBJECTINFOCLIENT	tmObjClient;
 		OBJECTINFOSERVER	ObjInfo;
 		MAPOBJECTINFO		DBObjectInfo;
-		OBJECTSCALEINFO		ObjScaleInfo;							// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
-		ObjScaleInfo.vObjScale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);		// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë		
+		OBJECTSCALEINFO		ObjScaleInfo;							// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
+		ObjScaleInfo.vObjScale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);		// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©		
 		for(int i = 0; i < tmMapInfo.nObjectNumber; i++)
 		{
-			// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+			// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 			if(pDataHeader2)
 			{
 				memcpy(&tmObjScaleInfo, pObjScale, sizeof(OBJECTSCALEINFO));
 				ObjScaleInfo.vObjScale = tmObjScaleInfo.vObjScale;
 				pObjScale += sizeof(OBJECTSCALEINFO);
 			}			
-			// end 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+			// end 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 
 			memset(&ObjInfo, 0x00, sizeof(OBJECTINFOSERVER));
 			memcpy(&tmObjClient, pOffset, sizeof(OBJECTINFOCLIENT));
@@ -699,7 +699,7 @@ BOOL CMapProject::LoadMFile(void)
 
 			// event info
 			ObjInfo.m_EventInfo.m_EventReceiver = EVENT_RECEIVER_OBJECT;
-// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - ÇÊ¿ä ¾ø¾î¼­ Á¦°ÅµÊ
+// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - í•„ìš” ì—†ì–´ì„œ ì œê±°ë¨
 //			ObjInfo.m_EventInfo.m_TileOrObjectIndex = m_vectorObjectInfo.size();
 
 			ObjInfo.m_EventInfo.m_vPosition			= ObjInfo.m_vPos;
@@ -708,25 +708,25 @@ BOOL CMapProject::LoadMFile(void)
 			ObjInfo.m_EventInfo.m_EventwParam2		= tmObjClient.sEventIndexTo;
 			ObjInfo.m_EventInfo.m_EventwParam3		= tmObjClient.sEventIndex3;
 			ObjInfo.m_EventInfo.m_NextEventIndex	= tmObjClient.nNextEventIndex;
-			ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind		= tmObjClient.dwObjectMonsterUniqueNunber;		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CMapProject::LoadMFile#, Ç×»ó ¼³Á¤µÇµµ·Ï ¼öÁ¤
+			ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind		= tmObjClient.dwObjectMonsterUniqueNunber;		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CMapProject::LoadMFile#, í•­ìƒ ì„¤ì •ë˜ë„ë¡ ìˆ˜ì •
 			
-			ObjInfo.m_bNotCreateMonster				= FALSE;		// 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+			ObjInfo.m_bNotCreateMonster				= FALSE;		// 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 			
 			if(EVENT_TYPE_OBJECT_MONSTER == ObjInfo.m_EventInfo.m_bEventType)
-			{// ¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¼³Á¤ ¿ÀºêÁ§Æ®
+			{// ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ì„¤ì • ì˜¤ë¸Œì íŠ¸
 
-// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - À§¿¡¼­ Ã³¸®
+// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - ìœ„ì—ì„œ ì²˜ë¦¬
 //				ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind	= tmObjClient.dwObjectMonsterUniqueNunber;
-// 2006-11-22 by cmkwon, ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤				ObjInfo.m_EventInfo.m_byIsCityWarMonster		= tmObjClient.byIsCityWar;
+// 2006-11-22 by cmkwon, ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •				ObjInfo.m_EventInfo.m_byIsCityWarMonster		= tmObjClient.byIsCityWar;
 
-				// start 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
-				if( TRUE == IS_MAP_INFLUENCE_INFINITY(this->GetMapInfluenceType()) )		// ÀÎÇÇ´ÏÆ¼ÀÇ °æ¿ì ±âº»ÀûÀ¸·Î ¼ÒÈ¯ÀÌ ¾ÈµÇµµ·Ï ¼³Á¤ÇÑ´Ù.
+				// start 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
+				if( TRUE == IS_MAP_INFLUENCE_INFINITY(this->GetMapInfluenceType()) )		// ì¸í”¼ë‹ˆí‹°ì˜ ê²½ìš° ê¸°ë³¸ì ìœ¼ë¡œ ì†Œí™˜ì´ ì•ˆë˜ë„ë¡ ì„¤ì •í•œë‹¤.
 				{
 					ObjInfo.m_bNotCreateMonster	= TRUE;
 				}
-				// end 2011-06-02 ÀÎÇÇ´ÏÆ¼ 3Â÷ - ½ºÅÜ 6 - ÁÖ±âÀû ¼ÒÈ¯ ±â´É Á¦ÀÛ
+				// end 2011-06-02 ì¸í”¼ë‹ˆí‹° 3ì°¨ - ìŠ¤í… 6 - ì£¼ê¸°ì  ì†Œí™˜ ê¸°ëŠ¥ ì œì‘
 
-				ObjInfo.m_EventInfo.m_byBossMonster				= tmObjClient.byIsCityWar;		// 2006-11-22 by cmkwon, º¯¼ö¸í º¯°æ(m_byIsCityWarMonster->m_byBossMonster) - µµ½ÃÁ¡·ÉÀüÀº ¾ø¾îÁü
+				ObjInfo.m_EventInfo.m_byBossMonster				= tmObjClient.byIsCityWar;		// 2006-11-22 by cmkwon, ë³€ìˆ˜ëª… ë³€ê²½(m_byIsCityWarMonster->m_byBossMonster) - ë„ì‹œì ë ¹ì „ì€ ì—†ì–´ì§
 				m_vectorObjectMonsterInfo.push_back(ObjInfo);
 
 				INT nChangeMonsterNum = DEFAULT_OBJECT_MONSTER_OBJECT+ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind;
@@ -744,24 +744,24 @@ BOOL CMapProject::LoadMFile(void)
 				&& DBObjectInfo.CollisionForServer)
 			{
 				///////////////////////////////////////////////////////////////////////////////
-				// NPC Server¿¡¼­ Ãæµ¹ Ã³¸®¸¦ À§ÇØ CSkinnedMesh¸¦ ·ÎµùÇÑ´Ù			
+				// NPC Serverì—ì„œ ì¶©ëŒ ì²˜ë¦¬ë¥¼ ìœ„í•´ CSkinnedMeshë¥¼ ë¡œë”©í•œë‹¤			
 				D3DXMatrixLookAtLH(&ObjInfo.m_matrix, &ObjInfo.m_vPos, &(ObjInfo.m_vPos + ObjInfo.m_vVel), &ObjInfo.m_vUp);
 				D3DXMatrixInverse( &ObjInfo.m_matrix, NULL, &ObjInfo.m_matrix );			
 				
-				// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+				// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 				D3DXMATRIX objscale;
 				D3DXMatrixIdentity(&objscale);
 				D3DXMatrixScaling(&objscale,ObjScaleInfo.vObjScale.x,ObjScaleInfo.vObjScale.y,ObjScaleInfo.vObjScale.z);
 				D3DXMatrixMultiply(&ObjInfo.m_matrix,  &objscale, &ObjInfo.m_matrix);
-				// end 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+				// end 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 
 				mapSkinnedMeshPtr::iterator itMap = m_mapObjectSkinnedMeshPtr.find(ObjInfo.m_dwObjType);
-				if(itMap == m_mapObjectSkinnedMeshPtr.end() || ObjScaleInfo.vObjScale != D3DXVECTOR3(1.0f, 1.0f, 1.0f))// 2012-05-24 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+				if(itMap == m_mapObjectSkinnedMeshPtr.end() || ObjScaleInfo.vObjScale != D3DXVECTOR3(1.0f, 1.0f, 1.0f))// 2012-05-24 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 				{
 					CGameData		gameData;
 					CSkinnedMesh	*pMesh = new CSkinnedMesh;
 					
-					// 2007-05-28 by cmkwon, ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ÇÔ				
+					// 2007-05-28 by cmkwon, ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •í•¨				
 					sprintf(szTemp, "%s/%08d.obj", RESOBJ_DIRECTORY_PATH, ObjInfo.m_dwObjType);
 					if(FALSE == gameData.SetFile(szTemp, FALSE, NULL, FALSE))
 					{
@@ -778,7 +778,7 @@ BOOL CMapProject::LoadMFile(void)
 					else
 					{						
 						pMesh->InitDeviceObjects();
-						pMesh->LoadMeshHierarchyFromMem(&gameData, ObjScaleInfo.vObjScale);// 2012-05-23 by isshin ¸ÊÅø °³¼± ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Àû¿ë
+						pMesh->LoadMeshHierarchyFromMem(&gameData, ObjScaleInfo.vObjScale);// 2012-05-23 by isshin ë§µíˆ´ ê°œì„  ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì ìš©
 						pMesh->Tick(0);
 
 						m_mapObjectSkinnedMeshPtr.insert(pair<int, CSkinnedMesh*>(ObjInfo.m_dwObjType, pMesh));						
@@ -807,32 +807,32 @@ BOOL CMapProject::LoadMFile(void)
 			{
 
 				///////////////////////////////////////////////////////////////////////////////
-				// DefaltWarpTargetIndex°¡ ¼³Á¤µÇÁö ¾È¾ÒÀ»¶§ ¼³Á¤Ã³¸®
+				// DefaltWarpTargetIndexê°€ ì„¤ì •ë˜ì§€ ì•ˆì•˜ì„ë•Œ ì„¤ì •ì²˜ë¦¬
 				if(ObjInfo.m_EventInfo.m_bEventType == EVENT_TYPE_WARP
 					|| EVENT_TYPE_WARP_TARGET == ObjInfo.m_EventInfo.m_bEventType)
 				{
 					if(m_DefaltWarpTargetIndex == -1
 						|| m_DefaltWarpTargetIndex > ObjInfo.m_EventInfo.m_EventwParam1)
-					{// 2005-07-15 by cmkwon, EventIndex°¡ °¡Àå ÀÛÀº °ªÀ¸·Î ¼³Á¤ÇÑ´Ù.
+					{// 2005-07-15 by cmkwon, EventIndexê°€ ê°€ì¥ ì‘ì€ ê°’ìœ¼ë¡œ ì„¤ì •í•œë‹¤.
 						m_DefaltWarpTargetIndex = ObjInfo.m_EventInfo.m_EventwParam1;
 					}					
 				}
 
 				///////////////////////////////////////////////////////////////////////////////
-				// Event ObjectInfo Vector¿¡ Ãß°¡ÇÑ´Ù
+				// Event ObjectInfo Vectorì— ì¶”ê°€í•œë‹¤
 				m_vectorObjectInfo.push_back(ObjInfo);
 
-// 2007-05-21 by cmkwon, ÀÏ¹İ±º µµ½Ã¸Ê Ãß°¡·Î ¼öÁ¤µÊ
+// 2007-05-21 by cmkwon, ì¼ë°˜êµ° ë„ì‹œë§µ ì¶”ê°€ë¡œ ìˆ˜ì •ë¨
 //				if( EVENT_TYPE_OBJ_ENTER_BUILDING == ObjInfo.m_EventInfo.m_bEventType
 //					&& (IS_VCN_CITY_MAP_INDEX(m_nMapIndex) || IS_ANI_CITY_MAP_INDEX(m_nMapIndex))
 //					)
 
-// 2008-02-12 by cmkwon, IS_CITY_MAP_INDEX() ¸ÅÅ©·Î¸¦ Æ÷°ıÀûÀÎ µµ½Ã¸ÊÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏ - ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤
+// 2008-02-12 by cmkwon, IS_CITY_MAP_INDEX() ë§¤í¬ë¡œë¥¼ í¬ê´„ì ì¸ ë„ì‹œë§µì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´ - ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •
 // 				if(EVENT_TYPE_OBJ_ENTER_BUILDING == ObjInfo.m_EventInfo.m_bEventType
-// 					&& (IS_CITY_MAP_INDEX(m_nMapIndex) || IS_OUTPOST_CITY_MAP_INDEX(m_nMapIndex) || IS_CONFERENCEROOM_MAP_INDEX(m_nMapIndex)))	// 2007-09-10 by dhjin, ÀüÁø±â±â µµ½Ã¸Êµµ Ãß°¡, È¸ÀÇ·ëµµ Ãß°¡
+// 					&& (IS_CITY_MAP_INDEX(m_nMapIndex) || IS_OUTPOST_CITY_MAP_INDEX(m_nMapIndex) || IS_CONFERENCEROOM_MAP_INDEX(m_nMapIndex)))	// 2007-09-10 by dhjin, ì „ì§„ê¸°ê¸° ë„ì‹œë§µë„ ì¶”ê°€, íšŒì˜ë£¸ë„ ì¶”ê°€
 				if(EVENT_TYPE_OBJ_ENTER_BUILDING == ObjInfo.m_EventInfo.m_bEventType
-					&& (IS_CITY_MAP_INDEX(m_nMapIndex)))	// 2007-09-10 by dhjin, ÀüÁø±â±â µµ½Ã¸Êµµ Ãß°¡, È¸ÀÇ·ëµµ Ãß°¡
-				{// 2006-05-19 by cmkwon, µµ½Ã Âø·ú ¿ÀºêÁ§Æ® - ¿©·¯°³ ÀÏ¼ö ÀÖ´Ù
+					&& (IS_CITY_MAP_INDEX(m_nMapIndex)))	// 2007-09-10 by dhjin, ì „ì§„ê¸°ê¸° ë„ì‹œë§µë„ ì¶”ê°€, íšŒì˜ë£¸ë„ ì¶”ê°€
+				{// 2006-05-19 by cmkwon, ë„ì‹œ ì°©ë¥™ ì˜¤ë¸Œì íŠ¸ - ì—¬ëŸ¬ê°œ ì¼ìˆ˜ ìˆë‹¤
 					m_vectCityWarpTargetPositionList.push_back(ObjInfo.m_EventInfo.m_vPosition);
 				}
 			}// End_if(EVENT_TYPE_NOEVENT != ObjInfo.m_EventInfo.m_bEventType)
@@ -843,11 +843,11 @@ BOOL CMapProject::LoadMFile(void)
 		sort(m_vectorObjectInfo.begin(), m_vectorObjectInfo.end(), sort_OBJECTINFOSERVER_By_EventType());
 
 		///////////////////////////////////////////////////////////////////////////////
-		// ÃÖ´ë ¸ó½ºÅÍ¼ö¿¡ ¿ÀºêÁ§Æ® ¸ó½ºÅÍ¼ö + 100 ==> ¿ÀºêÁ§Æ® ¸ó½ºÅÍ´Â ¼ÒÈ¯ °ø°İÀ» ¸¹ÀÌ »ç¿ëÇÏ¹Ç·Î ¿©À¯¸¦ Ãß°¡ÇÑ´Ù.
-		this->m_nMaxMonsterCount += m_vectorObjectMonsterInfo.size() + MAX_MONSTER_COUNT_SPARE/2;	// ¼ÒÈ¯ °ø°İ ¸ó½ºÅÍ¸¦ À§ÇØ ¿©À¯¸¦ µĞ´Ù
+		// ìµœëŒ€ ëª¬ìŠ¤í„°ìˆ˜ì— ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„°ìˆ˜ + 100 ==> ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„°ëŠ” ì†Œí™˜ ê³µê²©ì„ ë§ì´ ì‚¬ìš©í•˜ë¯€ë¡œ ì—¬ìœ ë¥¼ ì¶”ê°€í•œë‹¤.
+		this->m_nMaxMonsterCount += m_vectorObjectMonsterInfo.size() + MAX_MONSTER_COUNT_SPARE/2;	// ì†Œí™˜ ê³µê²© ëª¬ìŠ¤í„°ë¥¼ ìœ„í•´ ì—¬ìœ ë¥¼ ë‘”ë‹¤
 
 		///////////////////////////////////////////////////////////////////////////////
-		// ¿ÀºêÁ§Æ® ¸ó½ºÅÍ Á¤º¸ Ã¼Å© ¹× º¸¿©ÁØ´Ù
+		// ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ì •ë³´ ì²´í¬ ë° ë³´ì—¬ì¤€ë‹¤
 		char	szSystemLog[1024];
 		if(false == m_vectorObjectMonsterInfo.empty())
 		{
@@ -858,7 +858,7 @@ BOOL CMapProject::LoadMFile(void)
 
 				BOOL bErrorEventParam1 = FALSE;
 				if(0 >= pObjInfoServer->m_EventInfo.m_EventwParam3)
-				{// 2006-12-18 by cmkwon, ¼ÒÈ¯ ½Ã°£ Ã¼Å©
+				{// 2006-12-18 by cmkwon, ì†Œí™˜ ì‹œê°„ ì²´í¬
 					bErrorEventParam1	= TRUE;
 				}
 				else
@@ -919,7 +919,7 @@ BOOL CMapProject::LoadMFile(void)
 	}// end_if
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2005-04-20 by cmkwon, Æ©Åä¸®¾ó¸ÊÀÏ °æ¿ì + 200
+	// 2005-04-20 by cmkwon, íŠœí† ë¦¬ì–¼ë§µì¼ ê²½ìš° + 200
 	if(IS_TUTORIAL_MAP_INDEX(this->m_nMapIndex))
 	{
 		this->m_nMaxMonsterCount += MAX_MONSTER_COUNT_SPARE;
@@ -977,7 +977,7 @@ D3DXVECTOR3 CMapProject::GetRandomCityWarpTargetPosition(void)
 D3DXVECTOR3 CMapProject::GetRandomXZCityWarpTargetPosition(void)
 {
 // 2005-12-21 by cmkwon
-//	return GetCityWarpTargetPosition();		// 2005-08-05 by cmkwon, µ¿ÀÏÇÑ ÁÂÇ¥¸¦ ³Ñ±ä´Ù.
+//	return GetCityWarpTargetPosition();		// 2005-08-05 by cmkwon, ë™ì¼í•œ ì¢Œí‘œë¥¼ ë„˜ê¸´ë‹¤.
 	return CAtumSJ::GetRandomXZVec3(&GetRandomCityWarpTargetPosition(), SIZE_CITY_POSITION_RANDOM_XZ_RADIUS);
 }
 
@@ -999,7 +999,7 @@ int CMapProject::GetMapInfluenceType(void)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \fn			BOOL CMapProject::SetMapInfluenceType2ConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼¼·Â Ãß°¡ ºñÆ®
+/// \fn			BOOL CMapProject::SetMapInfluenceType2ConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„¸ë ¥ ì¶”ê°€ ë¹„íŠ¸
 /// \brief		
 /// \author		cmkwon
 /// \date		2006-02-09 ~ 2006-02-09
@@ -1008,7 +1008,7 @@ int CMapProject::GetMapInfluenceType(void)
 /// \param		
 /// \return		
 ///////////////////////////////////////////////////////////////////////////////
-BOOL CMapProject::SetMapInfluenceType2ConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¼¼·Â Ãß°¡ ºñÆ®
+BOOL CMapProject::SetMapInfluenceType2ConflictArea(SHORT i_sMapInflTy, BOOL i_bAdd)	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ì„¸ë ¥ ì¶”ê°€ ë¹„íŠ¸
 {
 	if(FALSE == this->IsConflictAreaMap())
 	{
@@ -1016,10 +1016,10 @@ BOOL CMapProject::SetMapInfluenceType2ConflictArea(SHORT i_sMapInflTy, BOOL i_bA
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// 2009-01-12 by dhjin, ¼±Àü Æ÷°í - ¹Ø°ú °°ÀÌ º¯°æ, ºĞÀïÁö¿ª->¼¼·Â¸Ê->Áß¸³¸Ê
+	// 2009-01-12 by dhjin, ì„ ì „ í¬ê³  - ë°‘ê³¼ ê°™ì´ ë³€ê²½, ë¶„ìŸì§€ì—­->ì„¸ë ¥ë§µ->ì¤‘ë¦½ë§µ
 //	this->m_nMapInfluenceType = i_sMapInflTy;
 	if(this->m_nOriginalMapInfluenceType == this->m_nMapInfluenceType)
-	{// ¼¼·Â¸ÊÀ¸·Î
+	{// ì„¸ë ¥ë§µìœ¼ë¡œ
 		if(i_bAdd)
 		{
 			this->m_nMapInfluenceType = i_sMapInflTy;
@@ -1104,7 +1104,7 @@ BOOL CMapProject::IsConflictAreaMap(void)
 ///////////////////////////////////////////////////////////////////////////////
 int CMapProject::GetWarpObjectIndex(BYTE i_byCharInflTy)
 {
-	// 2007-05-22 by cmkwon, ÀÏ¹İ¼¼·Âµµ½Ã¸Ê(¾ÆÄ«µ¥¹Ì¸Ê) ±¸ÇöÀ¸·Î ¼öÁ¤
+	// 2007-05-22 by cmkwon, ì¼ë°˜ì„¸ë ¥ë„ì‹œë§µ(ì•„ì¹´ë°ë¯¸ë§µ) êµ¬í˜„ìœ¼ë¡œ ìˆ˜ì •
 	if(IS_NORMAL_INFLUENCE_TYPE(i_byCharInflTy)
 		|| IS_VCN_INFLUENCE_TYPE(i_byCharInflTy))
 	{
@@ -1120,7 +1120,7 @@ int CMapProject::GetWarpObjectIndex(BYTE i_byCharInflTy)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			int CMapProject::GetTeleportWarpObjectIndex()
-/// \brief		ÅÚ·¹Æ÷Æ® ¿öÇÁ ¿ÀºêÀèÆ® ÀÎµ¦½º°ª ¾ò¾î¿À±â
+/// \brief		í…”ë ˆí¬íŠ¸ ì›Œí”„ ì˜¤ë¸Œì­íŠ¸ ì¸ë±ìŠ¤ê°’ ì–»ì–´ì˜¤ê¸°
 /// \author		dhjin
 /// \date		2007-09-15 ~ 2007-09-15
 /// \warning	
@@ -1135,11 +1135,11 @@ int CMapProject::GetTeleportWarpObjectIndex()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::GetHeight
-// ¹İÈ¯µÇ´Â Çü  : float
-// ÇÔ ¼ö ÀÎ ÀÚ  : D3DXVECTOR3 vPos
-// ÇÔ ¼ö ¼³ ¸í  : vPosÀÇ ÁÂÇ¥¿¡¼­ÀÇ ³ôÀÌ¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö, ¸ÊÁ¤º¸¸¦ ÀÌ¿ëÇÏ¿© ±¸ÇÑ´Ù.
-//					¹°ÀÏ °æ¿ì ¹°ÀÇ ³ôÀÌµµ °è»ê¿¡ Æ÷ÇÔÇÑ´Ù
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::GetHeight
+// ë°˜í™˜ë˜ëŠ” í˜•  : float
+// í•¨ ìˆ˜ ì¸ ì  : D3DXVECTOR3 vPos
+// í•¨ ìˆ˜ ì„¤ ëª…  : vPosì˜ ì¢Œí‘œì—ì„œì˜ ë†’ì´ë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜, ë§µì •ë³´ë¥¼ ì´ìš©í•˜ì—¬ êµ¬í•œë‹¤.
+//					ë¬¼ì¼ ê²½ìš° ë¬¼ì˜ ë†’ì´ë„ ê³„ì‚°ì— í¬í•¨í•œë‹¤
 float CMapProject::GetMapHeightIncludeWater(const D3DXVECTOR3 *vPos)
 {
 	if(FALSE == this->IsValidPosition(vPos->x, vPos->z))
@@ -1151,7 +1151,7 @@ float CMapProject::GetMapHeightIncludeWater(const D3DXVECTOR3 *vPos)
 	i = CHANGE_TO_TILEINDEX(vPos->x);
 	z = CHANGE_TO_TILEINDEX(vPos->z);
 	if(FALSE == IsValidTileIndex(i, z))
-	{	// ÁÂÇ¥°¡ À¯È¿ÇÏÁö ¾ÊÀ½
+	{	// ì¢Œí‘œê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
 
 		return 0;
 	}
@@ -1171,11 +1171,11 @@ float CMapProject::GetMapHeightIncludeWater(const D3DXVECTOR3 *vPos)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::GetHeightOnlyMap
-// ¹İÈ¯µÇ´Â Çü  : float
-// ÇÔ ¼ö ÀÎ ÀÚ  : D3DXVECTOR3 vPos
-// ÇÔ ¼ö ¼³ ¸í  : vPosÀÇ ÁÂÇ¥¿¡¼­ÀÇ ³ôÀÌ¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö, ¸ÊÁ¤º¸¸¦ ÀÌ¿ëÇÏ¿© ±¸ÇÑ´Ù.
-//					¹°ÀÏ °æ¿ì ¹°ÀÇ ³ôÀÌµµ °è»ê¿¡ Æ÷ÇÔÇÑ´Ù
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::GetHeightOnlyMap
+// ë°˜í™˜ë˜ëŠ” í˜•  : float
+// í•¨ ìˆ˜ ì¸ ì  : D3DXVECTOR3 vPos
+// í•¨ ìˆ˜ ì„¤ ëª…  : vPosì˜ ì¢Œí‘œì—ì„œì˜ ë†’ì´ë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜, ë§µì •ë³´ë¥¼ ì´ìš©í•˜ì—¬ êµ¬í•œë‹¤.
+//					ë¬¼ì¼ ê²½ìš° ë¬¼ì˜ ë†’ì´ë„ ê³„ì‚°ì— í¬í•¨í•œë‹¤
 float CMapProject::GetMapHeightExcludeWater(const D3DXVECTOR3 *vPos)
 {
 	if(FALSE == this->IsValidPosition(vPos->x, vPos->z))
@@ -1187,7 +1187,7 @@ float CMapProject::GetMapHeightExcludeWater(const D3DXVECTOR3 *vPos)
 	i = CHANGE_TO_TILEINDEX(vPos->x);
 	z = CHANGE_TO_TILEINDEX(vPos->z);
 	if(FALSE == IsValidTileIndex(i, z))
-	{	// ÁÂÇ¥°¡ À¯È¿ÇÏÁö ¾ÊÀ½
+	{	// ì¢Œí‘œê°€ ìœ íš¨í•˜ì§€ ì•ŠìŒ
 
 		return 0;
 	}
@@ -1217,18 +1217,18 @@ float CMapProject::GetDefaultFlyingHeight(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::IntersectTriangle
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : const D3DXVECTOR3& orig
-// ÇÔ ¼ö ÀÎ ÀÚ  : const D3DXVECTOR3& dir
-// ÇÔ ¼ö ÀÎ ÀÚ  : D3DXVECTOR3& v0
-// ÇÔ ¼ö ÀÎ ÀÚ  : D3DXVECTOR3& v1
-// ÇÔ ¼ö ÀÎ ÀÚ  : D3DXVECTOR3& v2
-// ÇÔ ¼ö ÀÎ ÀÚ  : FLOAT* t
-// ÇÔ ¼ö ÀÎ ÀÚ  : FLOAT* u
-// ÇÔ ¼ö ÀÎ ÀÚ  : FLOAT* v
-// ÇÔ ¼ö ¼³ ¸í  : ¼¼Á¡°ú ¼ÅÆ²ÀÇ ÁÂÇ¥ Åõ¿µÇÒ ¹æÇâÀ» ÀÎÀÚ·Î ÇØ¼­ Åõ¿µÇßÀ»¶§ÀÇ ÁÂÇ¥¸¦ ±¸ÇØÁÖ´Â ÇÔ¼ö - Åõ¿µÇßÀ»¶§ ±× Æú¸®°ïÀ§¿¡ ÀÖ´Ù¸é TRUE ¸®ÅÏ
-//					¸Ê°úÀÇ Ãæµ¹ °Ë»ç ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::IntersectTriangle
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : const D3DXVECTOR3& orig
+// í•¨ ìˆ˜ ì¸ ì  : const D3DXVECTOR3& dir
+// í•¨ ìˆ˜ ì¸ ì  : D3DXVECTOR3& v0
+// í•¨ ìˆ˜ ì¸ ì  : D3DXVECTOR3& v1
+// í•¨ ìˆ˜ ì¸ ì  : D3DXVECTOR3& v2
+// í•¨ ìˆ˜ ì¸ ì  : FLOAT* t
+// í•¨ ìˆ˜ ì¸ ì  : FLOAT* u
+// í•¨ ìˆ˜ ì¸ ì  : FLOAT* v
+// í•¨ ìˆ˜ ì„¤ ëª…  : ì„¸ì ê³¼ ì…”í‹€ì˜ ì¢Œí‘œ íˆ¬ì˜í•  ë°©í–¥ì„ ì¸ìë¡œ í•´ì„œ íˆ¬ì˜í–ˆì„ë•Œì˜ ì¢Œí‘œë¥¼ êµ¬í•´ì£¼ëŠ” í•¨ìˆ˜ - íˆ¬ì˜í–ˆì„ë•Œ ê·¸ í´ë¦¬ê³¤ìœ„ì— ìˆë‹¤ë©´ TRUE ë¦¬í„´
+//					ë§µê³¼ì˜ ì¶©ëŒ ê²€ì‚¬ í•¨ìˆ˜
 BOOL CMapProject::IntersectTriangle( const D3DXVECTOR3& orig,
                                        const D3DXVECTOR3& dir, D3DXVECTOR3& v0,
                                        D3DXVECTOR3& v1, D3DXVECTOR3& v2,
@@ -1288,7 +1288,7 @@ EVENTINFO *CMapProject::GetEventInfoByTileEventAreaIndex(int i_evAreaIdx)
 	map<int, vector<int>*>::iterator itr = m_WarpAreaMap.find(i_evAreaIdx);
 	if (itr != m_WarpAreaMap.end())
 	{
-		return	m_vTileInfo[(*itr->second)[0]].m_pEventInfo;	// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+		return	m_vTileInfo[(*itr->second)[0]].m_pEventInfo;	// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 	}
 
 	return NULL;
@@ -1311,7 +1311,7 @@ EVENTINFO *CMapProject::GetEventInfoByObjectEventAreaIndex(int i_evAreaIdx)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			EVENTINFO *CMapProject::GetEventInfoByEventAreaIndex(int i_evAreaIdx)
-/// \brief		ÀÌº¥Æ®¿µ¿ª ÀÎµ¦½º·Î EVENTINFO Á¤º¸ °¡Á®¿À±â
+/// \brief		ì´ë²¤íŠ¸ì˜ì—­ ì¸ë±ìŠ¤ë¡œ EVENTINFO ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 /// \author		cmkwon
 /// \date		2005-07-21 ~ 2005-07-21
 /// \warning	
@@ -1322,7 +1322,7 @@ EVENTINFO *CMapProject::GetEventInfoByObjectEventAreaIndex(int i_evAreaIdx)
 EVENTINFO *CMapProject::GetEventInfoByEventAreaIndex(int i_evAreaIdx)
 {
 	///////////////////////////////////////////////////////////////////////////////
-	// 1. ¿ÀºêÁ§Æ®¿¡¼­ °Ë»ö
+	// 1. ì˜¤ë¸Œì íŠ¸ì—ì„œ ê²€ìƒ‰
 	EVENTINFO *pRetEventInfo = this->GetEventInfoByObjectEventAreaIndex(i_evAreaIdx);
 	if(pRetEventInfo)
 	{
@@ -1330,7 +1330,7 @@ EVENTINFO *CMapProject::GetEventInfoByEventAreaIndex(int i_evAreaIdx)
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2. Å¸ÀÏ ÀÌº¥Æ® ¿µ¿ª¿¡¼­ °Ë»ö
+	// 2. íƒ€ì¼ ì´ë²¤íŠ¸ ì˜ì—­ì—ì„œ ê²€ìƒ‰
 	pRetEventInfo = this->GetEventInfoByTileEventAreaIndex(i_evAreaIdx);
 	if(pRetEventInfo)
 	{
@@ -1382,7 +1382,7 @@ BOOL CMapProject::IsValidBlockIndex(int i_BlockIdx_X, int i_BlockIdx_Z)
 
 //////////////////////////////////////////////////////////////////////////////
 /// \fn			CMapChannel *CMapProject::GetMapChannelByIndex(int i_nIndex, BOOL i_bOnlyEnabledChannel/*=FALSE*/)
-/// \brief		ÇØ´ç indexÀÇ CMapChannel*¸¦ ¹İÈ¯
+/// \brief		í•´ë‹¹ indexì˜ CMapChannel*ë¥¼ ë°˜í™˜
 /// \author		kelovon
 /// \date		2004-03-24 ~ 2004-03-24
 /// \warning
@@ -1450,7 +1450,7 @@ CMapChannel *CMapProject::GetFirstMapChannel(BOOL i_bOnlyEnabledChannel)
 	return pMapChannel;
 }
 
-// 2004-12-07 by cmkwon, Ã¤³Î ½Ç½Ã°£ Áõ°¡°¡ ¾ø¾î ÇÊ¿ä¾ø´Â ÇÔ¼ö
+// 2004-12-07 by cmkwon, ì±„ë„ ì‹¤ì‹œê°„ ì¦ê°€ê°€ ì—†ì–´ í•„ìš”ì—†ëŠ” í•¨ìˆ˜
 //CMapChannel *CMapProject::GetLastMapChannel(BOOL i_bOnlyEnabledChannel)
 //{
 //	CMapChannel *pMapChannel = NULL;
@@ -1509,11 +1509,11 @@ BOOL CMapProject::Send2Peer(BYTE *pData, int nSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CMapProject::IsValidTileForCreateMonster
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : const D3DXVECTOR3 *pPosVector3
-// ÇÔ ¼ö ¼³ ¸í  : ¸ó½ºÅÍ »ı¼ºÀÌ °¡´ÉÇÑ Å¸ÀÏÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏÇÑ´Ù.
-//					ÇöÀç´Â Warp Å¸ÀÏ¸¸ ¸ó½ºÅÍ »ı¼ºÀÌ ºÒ°¡ÀÌ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : CMapProject::IsValidTileForCreateMonster
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : const D3DXVECTOR3 *pPosVector3
+// í•¨ ìˆ˜ ì„¤ ëª…  : ëª¬ìŠ¤í„° ìƒì„±ì´ ê°€ëŠ¥í•œ íƒ€ì¼ì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•œë‹¤.
+//					í˜„ì¬ëŠ” Warp íƒ€ì¼ë§Œ ëª¬ìŠ¤í„° ìƒì„±ì´ ë¶ˆê°€ì´ë‹¤.
 BOOL CMapProject::IsValidTileForCreateMonster(D3DXVECTOR3 *pPosVector3)
 {
 	if(FALSE == IsValidPosition(pPosVector3))
@@ -1521,10 +1521,10 @@ BOOL CMapProject::IsValidTileForCreateMonster(D3DXVECTOR3 *pPosVector3)
 		return FALSE;
 	}
 
-	// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+	// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 	//return GetTileInfo(pPosVector3)->m_EventInfo.m_bEventType != EVENT_TYPE_WARP;	
 	///////////////////////////////////////////////////////////////////////////////
-	// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - 
+	// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - 
 	EVENTINFO *pTileEvInfo = this->GetTileEventInfo(pPosVector3);
 	if(NULL == pTileEvInfo)
 	{
@@ -1536,7 +1536,7 @@ BOOL CMapProject::IsValidTileForCreateMonster(D3DXVECTOR3 *pPosVector3)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CMapProject::CreateNewObject(ObjectIdx_t i_dwDeleteObjectUID, ObjectNum_t i_dwNewObjectNum, mtNewObjectInfoList * o_pNewObjectInfoList)
-/// \brief		ÀÎÇÇ´ÏÆ¼ - º¯°æ ¿ÀºêÁ§Æ®¸¦ À§ÇØ!!!!
+/// \brief		ì¸í”¼ë‹ˆí‹° - ë³€ê²½ ì˜¤ë¸Œì íŠ¸ë¥¼ ìœ„í•´!!!!
 /// \author		dhjin
 /// \date		2009-09-09 ~ 2010
 /// \warning	
@@ -1546,7 +1546,7 @@ BOOL CMapProject::IsValidTileForCreateMonster(D3DXVECTOR3 *pPosVector3)
 ///////////////////////////////////////////////////////////////////////////////
 void CMapProject::CreateNewObject(ObjectIdx_t i_dwDeleteObjectUID, ObjectNum_t i_dwNewObjectNum, mtNewObjectInfoList * o_pNewObjectInfoList) {
 #ifdef _ATUM_NPC_SERVER
-	mt_auto_lock mtCreateObjList(o_pNewObjectInfoList); // 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
+	mt_auto_lock mtCreateObjList(o_pNewObjectInfoList); // 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
 	vectorObjectInfoServer::iterator	itrOriObj = m_vectorObjectInfo.begin();
 	for(; itrOriObj != m_vectorObjectInfo.end(); itrOriObj++) {
 		if(i_dwDeleteObjectUID == itrOriObj->m_EventInfo.m_EventwParam1) {
@@ -1561,7 +1561,7 @@ void CMapProject::CreateNewObject(ObjectIdx_t i_dwDeleteObjectUID, ObjectNum_t i
 			
 			// event info
 			ObjInfo.m_EventInfo.m_EventReceiver = itrOriObj->m_EventInfo.m_EventReceiver;
-// 2010-04-14 by cmkwon, ¼­¹ö ¸Ş¸ğ¸® ºÎÁ· ¹®Á¦ ¼öÁ¤ - ÇÊ¿ä ¾ø¾î¼­ Á¦°ÅµÊ
+// 2010-04-14 by cmkwon, ì„œë²„ ë©”ëª¨ë¦¬ ë¶€ì¡± ë¬¸ì œ ìˆ˜ì • - í•„ìš” ì—†ì–´ì„œ ì œê±°ë¨
 //			ObjInfo.m_EventInfo.m_TileOrObjectIndex = itrOriObj->m_EventInfo.m_TileOrObjectIndex;
 			
 			ObjInfo.m_EventInfo.m_vPosition			= itrOriObj->m_EventInfo.m_vPosition;
@@ -1570,7 +1570,7 @@ void CMapProject::CreateNewObject(ObjectIdx_t i_dwDeleteObjectUID, ObjectNum_t i
 			ObjInfo.m_EventInfo.m_EventwParam2		= itrOriObj->m_EventInfo.m_EventwParam2;
 			ObjInfo.m_EventInfo.m_EventwParam3		= itrOriObj->m_EventInfo.m_EventwParam3;
 			ObjInfo.m_EventInfo.m_NextEventIndex	= itrOriObj->m_EventInfo.m_NextEventIndex;
-			ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind		= itrOriObj->m_EventInfo.m_nObejctMonsterUnitKind;		// 2009-10-12 by cmkwon, ÇÁ¸®½ºÄ« Á¦°Å ¹æ¾È Àû¿ë - CMapProject::LoadMFile#, Ç×»ó ¼³Á¤µÇµµ·Ï ¼öÁ¤
+			ObjInfo.m_EventInfo.m_nObejctMonsterUnitKind		= itrOriObj->m_EventInfo.m_nObejctMonsterUnitKind;		// 2009-10-12 by cmkwon, í”„ë¦¬ìŠ¤ì¹´ ì œê±° ë°©ì•ˆ ì ìš© - CMapProject::LoadMFile#, í•­ìƒ ì„¤ì •ë˜ë„ë¡ ìˆ˜ì •
 			D3DXMatrixLookAtLH(&ObjInfo.m_matrix, &ObjInfo.m_vPos, &(ObjInfo.m_vPos + ObjInfo.m_vVel), &ObjInfo.m_vUp);
 			D3DXMatrixInverse( &ObjInfo.m_matrix, NULL, &ObjInfo.m_matrix );
 			mapSkinnedMeshPtr::iterator itMap = m_mapObjectSkinnedMeshPtr.find(ObjInfo.m_dwObjType);

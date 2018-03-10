@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 // HPAction.h: interface for the CHPAction class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -16,33 +17,33 @@ public:
 	virtual ~CHPAction();
 
 	void Init();
-	void InitHPActionListByDB(vectHPAction * i_pvectHPActionDBValue);			// DB°ªÀ¸·Î ÃÊ±âÈ­
-	void InitHPActionAttackHPRateList(HPACTION * i_pHPAction);					// HP°ª¿¡ µû¸¥ °ø°İ °ü·Ã ¸®½ºÆ®¸¸ µû·Î ¸¸µç´Ù.
-	void InitHPActionTalkHPRateList(HPACTION * i_pHPAction);					// HP°ª °ü·Ã ´ëÈ­ ¸®½ºÆ®¸¦ µû·Î ¸¸µç´Ù.
-	void InitHPActionTalkDamagedRandomList(HPACTION * i_pHPAction);				// ÇÇ°İ½Ã ´ëÈ­ ¸®½ºÆ®¸£ µû·Î ¸¸µç´Ù.
-	void InitHPActionTalkCreate(HPACTION * i_pHPAction);						// »ı¼º½Ã ´ëÈ­ Á¤º¸ µû·Î ¸¸µç´Ù.
-	void InitHPActionTalkDead(HPACTION * i_pHPAction);							// Á×À½½Ã ´ëÈ­ Á¤º¸ µû·Î ¸¸µç´Ù.
-	void InitHPActionTalkTargetChange(HPACTION * i_pHPAction);					// Å¸°Ù º¯°æ ½Ã ´ëÈ­ Á¤º¸ µû·Î ¸¸µç´Ù.
+	void InitHPActionListByDB(vectHPAction * i_pvectHPActionDBValue);			// DBê°’ìœ¼ë¡œ ì´ˆê¸°í™”
+	void InitHPActionAttackHPRateList(HPACTION * i_pHPAction);					// HPê°’ì— ë”°ë¥¸ ê³µê²© ê´€ë ¨ ë¦¬ìŠ¤íŠ¸ë§Œ ë”°ë¡œ ë§Œë“ ë‹¤.
+	void InitHPActionTalkHPRateList(HPACTION * i_pHPAction);					// HPê°’ ê´€ë ¨ ëŒ€í™” ë¦¬ìŠ¤íŠ¸ë¥¼ ë”°ë¡œ ë§Œë“ ë‹¤.
+	void InitHPActionTalkDamagedRandomList(HPACTION * i_pHPAction);				// í”¼ê²©ì‹œ ëŒ€í™” ë¦¬ìŠ¤íŠ¸ë¥´ ë”°ë¡œ ë§Œë“ ë‹¤.
+	void InitHPActionTalkCreate(HPACTION * i_pHPAction);						// ìƒì„±ì‹œ ëŒ€í™” ì •ë³´ ë”°ë¡œ ë§Œë“ ë‹¤.
+	void InitHPActionTalkDead(HPACTION * i_pHPAction);							// ì£½ìŒì‹œ ëŒ€í™” ì •ë³´ ë”°ë¡œ ë§Œë“ ë‹¤.
+	void InitHPActionTalkTargetChange(HPACTION * i_pHPAction);					// íƒ€ê²Ÿ ë³€ê²½ ì‹œ ëŒ€í™” ì •ë³´ ë”°ë¡œ ë§Œë“ ë‹¤.
 	BOOL CheckValidSizeAttackItemIdx();
 	BOOL CheckValidSizeTalkCreate();
 	BOOL CheckValidSizeTalkDead();
 	BOOL CheckValidSizeTalkHPRate();
 	BOOL CheckValidSizeTalkDamagedRadom();
 	BOOL CheckValidSizeTalkTargetChange();
-	BOOL GetAttackItemIdxHPRate(MonHP_t i_CurrentMonHP, ItemIdx_t * o_pAttackItemIdx, INT * o_pSelectVectIdx);	// HP°ª¿¡ µû¸¥ °ø°İ ¸ó½ºÅÍ¾ÆÀÌÅÛ¹è¿­ÀÎµ¦½º °¡Á®¿À±â
-	BOOL GetNextAttackItem(ItemIdx_t * o_pAttackItemIdx);								// ¿¬¼Ó °ø°İ °ªÀÌ ÀÖ´ÂÁö
-// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤, ¹Ø°ú °°ÀÌ ¼öÁ¤ HPActionItem »ç¿ë½Ã »ç¿ë Ä«¿îÆ®¸¦ ÁÙÀÎ´Ù.
-//	void SetSuccessAttackItemIdxHPRate(INT i_SelectVectIdx);							// HP°ª¿¡ µû¸¥ °ø°İ ¼º°ø Ã³¸®
-	void SetSuccessAttackItemIdxHPRate();												// HP°ª¿¡ µû¸¥ °ø°İ ¼º°ø Ã³¸®
-	BOOL GetTalkCreate(HPACTION_TALK_HPRATE * o_pTalkHPRate);							// »ı¼º½Ã ´ëÈ­ °¡Á®¿À±â
-	BOOL GetTalkDead(HPACTION_TALK_HPRATE * o_pTalkHPRate);								// Á×¾úÀ» °æ¿ì ´ëÈ­ °¡Á®¿À±â
-	BOOL GetTalkHPRate(MonHP_t i_CurrentMonHP, HPACTION_TALK_HPRATE * o_pTalkHPRate);	// HP°ª¿¡ µû¸¥ ´ëÈ­ °¡Á®¿À±â
-	BOOL GetTalkDamagedRandom(HPTalk_t * o_pTalk);										// ÇÇ°İ½Ã ´ëÈ­ °¡Á®¿À±â	
-	BOOL GetTalkTargetChange(HPTalk_t * o_pTalk);										// Å¸°Ù º¯°æ ½Ã ´ëÈ­ °¡Á®¿À±â	
+	BOOL GetAttackItemIdxHPRate(MonHP_t i_CurrentMonHP, ItemIdx_t * o_pAttackItemIdx, INT * o_pSelectVectIdx);	// HPê°’ì— ë”°ë¥¸ ê³µê²© ëª¬ìŠ¤í„°ì•„ì´í…œë°°ì—´ì¸ë±ìŠ¤ ê°€ì ¸ì˜¤ê¸°
+	BOOL GetNextAttackItem(ItemIdx_t * o_pAttackItemIdx);								// ì—°ì† ê³µê²© ê°’ì´ ìˆëŠ”ì§€
+// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •, ë°‘ê³¼ ê°™ì´ ìˆ˜ì • HPActionItem ì‚¬ìš©ì‹œ ì‚¬ìš© ì¹´ìš´íŠ¸ë¥¼ ì¤„ì¸ë‹¤.
+//	void SetSuccessAttackItemIdxHPRate(INT i_SelectVectIdx);							// HPê°’ì— ë”°ë¥¸ ê³µê²© ì„±ê³µ ì²˜ë¦¬
+	void SetSuccessAttackItemIdxHPRate();												// HPê°’ì— ë”°ë¥¸ ê³µê²© ì„±ê³µ ì²˜ë¦¬
+	BOOL GetTalkCreate(HPACTION_TALK_HPRATE * o_pTalkHPRate);							// ìƒì„±ì‹œ ëŒ€í™” ê°€ì ¸ì˜¤ê¸°
+	BOOL GetTalkDead(HPACTION_TALK_HPRATE * o_pTalkHPRate);								// ì£½ì—ˆì„ ê²½ìš° ëŒ€í™” ê°€ì ¸ì˜¤ê¸°
+	BOOL GetTalkHPRate(MonHP_t i_CurrentMonHP, HPACTION_TALK_HPRATE * o_pTalkHPRate);	// HPê°’ì— ë”°ë¥¸ ëŒ€í™” ê°€ì ¸ì˜¤ê¸°
+	BOOL GetTalkDamagedRandom(HPTalk_t * o_pTalk);										// í”¼ê²©ì‹œ ëŒ€í™” ê°€ì ¸ì˜¤ê¸°	
+	BOOL GetTalkTargetChange(HPTalk_t * o_pTalk);										// íƒ€ê²Ÿ ë³€ê²½ ì‹œ ëŒ€í™” ê°€ì ¸ì˜¤ê¸°	
 	void EraseHPActionByUseItemArrayIdx(ItemIdx_t i_UseItemArrayIdx);
-	void SetHPTalkAttack(ItemIdx_t i_ItemArrayIdx, INT i_ItemNum);							// °ø°İ¿¡ µû¸¥ ´ëÈ­ ÀúÀå
-	BOOL GetPreHPTalkAttack(ItemIdx_t i_AttackItemNum, HPTalk_t * o_pPreTalk, MSec_t * o_pPreHPCameraTremble);			// ÁØºñ °ø°İ½Ã ´ëÈ­ ¹× Ä«¸Ş¶ó ¶³¸² °¡Á®¿À±â
-	BOOL GetHPTalkAttack(ItemIdx_t i_AttackItemNum , HPTalk_t * o_pTalk, MSec_t * o_pHPCameraTremble);					// °ø°İ½Ã ´ëÈ­ ¹× Ä«¸Ş¶ó ¶³¸² °¡Á®¿À±â
+	void SetHPTalkAttack(ItemIdx_t i_ItemArrayIdx, INT i_ItemNum);							// ê³µê²©ì— ë”°ë¥¸ ëŒ€í™” ì €ì¥
+	BOOL GetPreHPTalkAttack(ItemIdx_t i_AttackItemNum, HPTalk_t * o_pPreTalk, MSec_t * o_pPreHPCameraTremble);			// ì¤€ë¹„ ê³µê²©ì‹œ ëŒ€í™” ë° ì¹´ë©”ë¼ ë–¨ë¦¼ ê°€ì ¸ì˜¤ê¸°
+	BOOL GetHPTalkAttack(ItemIdx_t i_AttackItemNum , HPTalk_t * o_pTalk, MSec_t * o_pHPCameraTremble);					// ê³µê²©ì‹œ ëŒ€í™” ë° ì¹´ë©”ë¼ ë–¨ë¦¼ ê°€ì ¸ì˜¤ê¸°
 	
 protected:
 	vectHPAction					m_vectHPAction;
@@ -55,8 +56,8 @@ protected:
 	HPACTION_TALK_HPRATE			m_CreateTalk;
 	HPACTION_TALK_HPRATE			m_DeadTalk;
 	HPTalk_t						m_TargetChangeTalk[SIZE_MAX_HPTALK_DESCRIPTION];
-	HPActionUID_t					m_HPActionAttackUID;			// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
-	HPActionUID_t					m_HPActionAttackTalkUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ÀÎÇÇ´ÏÆ¼ - ÇÑ ¾ÆÀÌÅÛÀ¸·Î ¿©·¯ ´ë»ç °¡´ÉÇÏ°Ô ¼öÁ¤
+	HPActionUID_t					m_HPActionAttackUID;			// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
+	HPActionUID_t					m_HPActionAttackTalkUID;		// 2009-09-09 ~ 2010-01-13 by dhjin, ì¸í”¼ë‹ˆí‹° - í•œ ì•„ì´í…œìœ¼ë¡œ ì—¬ëŸ¬ ëŒ€ì‚¬ ê°€ëŠ¥í•˜ê²Œ ìˆ˜ì •
 };
 
 #endif // !defined(AFX_HPACTION_H__6E1DDDE4_5068_41C9_BD4C_2032B4B4248E__INCLUDED_)

@@ -1,11 +1,12 @@
-#ifndef __ATUM_TIME_H__
-#define __ATUM_TIME_H__
+Ôªø// Copyright[2002] MasangSoft
+#ifndef COMMON_ATUMTIME_H_
+#define COMMON_ATUMTIME_H_
 
 #include "StdAfx.h"
 
 struct AtumTime {
-	int Hour;		// Ω√
-	int Minute;		// ∫–
+	int Hour;		// ¬Ω√É
+	int Minute;		// ¬∫√ê
 
 	AtumTime() : Hour(0), Minute(0) {}
 	AtumTime(int h, int m) : Hour(h), Minute(m) { Rearrange(); }
@@ -150,4 +151,4 @@ AtumTime& AtumTime::operator/=(const int n)
 	return *this;
 }
 
-#endif
+#endif // COMMON_ATUMTIME_H_

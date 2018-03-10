@@ -1,4 +1,4 @@
-// VTCQuerySC.h - Version 1.1
+ï»¿// VTCQuerySC.h - Version 1.1
 // Create 01/06/2006 by Hoavq
 // Version 1.0: Support Single-Thread mode only. Query data through one connection (blocking)
 // Version 1.1(Beta): Support Multi-thread mode & multi-connection to server
@@ -17,12 +17,12 @@
 //02/06/2006	Hoavq				Version 1.0 Completed
 //===========================================================================================
 
-// 2009-06-25 by cmkwon, º£Æ®³² VTC ºô¸µ ½Ã½ºÅÛ ¼öÁ¤ - ±âÁ¸ ¼Ò½º ÁÖ¼® Ã³¸®
+// 2009-06-25 by cmkwon, ë² íŠ¸ë‚¨ VTC ë¹Œë§ ì‹œìŠ¤í…œ ìˆ˜ì • - ê¸°ì¡´ ì†ŒìŠ¤ ì£¼ì„ ì²˜ë¦¬
 // #ifdef VTCQUERYSC_EXPORTS
 // 	#define VTCQUERYSC_API __declspec(dllexport)
 // #else
 // 	#define VTCQUERYSC_API __declspec(dllimport)
-// 	#pragma comment(lib, "VTCQuerySC.lib")					// 2007-09-13 by cmkwon, °¢ ¼­¹öº° ºô¸µ ¶óÀÌºê·¯¸® µû·Î ·Îµù
+// 	#pragma comment(lib, "VTCQuerySC.lib")					// 2007-09-13 by cmkwon, ê° ì„œë²„ë³„ ë¹Œë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ ë”°ë¡œ ë¡œë”©
 // #endif
 // 
 // //=============== Constant definitaion =============
@@ -56,7 +56,7 @@
 // #define	VTC_SC_DEFAULT_TIMEOUT				10
 // #define	VTC_SC_DEFAULT_SERVER_IP		"10.10.1.25"	// 2006-06-14 by cmkwon
 // #define	VTC_SC_DEFAULT_SERVER_PORT		6125
-// #define	VTC_SC_TEST_SERVER_PORT			7236			// 2006-07-06 by cmkwon, Å×¼·¿ë ¼­¹ö Æ÷Æ® Ãß°¡ÇÔ
+// #define	VTC_SC_TEST_SERVER_PORT			7236			// 2006-07-06 by cmkwon, í…Œì„­ìš© ì„œë²„ í¬íŠ¸ ì¶”ê°€í•¨
 // 
 // #define	VTC_SC_MAXCONCURRENT_QUERY		10
 // 
@@ -101,18 +101,18 @@
 // 																	 int nTimeoutSec = VTC_SC_DEFAULT_TIMEOUT);
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2009-06-25 by cmkwon, º£Æ®³² VTC ºô¸µ ½Ã½ºÅÛ ¼öÁ¤ - 
+// 2009-06-25 by cmkwon, ë² íŠ¸ë‚¨ VTC ë¹Œë§ ì‹œìŠ¤í…œ ìˆ˜ì • - 
 #define VTCBILL_SIZE_MAX_ACCOUNT_NAME			30
 #define VTCBILL_SIZE_MAX_CHARACTER_NAME			20
 #define VTCBILL_SIZE_MAX_IPADDRESS				16
 struct SVTCBILL_REQ_DATA
 {
-	int		nCommand;											// ¸í·ÉÁ¾·ù(1:ÀÜ¾×Á¶È¸, 2:¾ÆÀÌÅÛ±¸¸Å)
-	char	szAccountName[VTCBILL_SIZE_MAX_ACCOUNT_NAME];		// ±¸¸ÅÀÚÁ¤º¸(AccountName)
-	char	szCharacterName[VTCBILL_SIZE_MAX_CHARACTER_NAME];	// ±¸¸ÅÀÚÁ¤º¸(°ÔÀÓ³»ÀÇ Ä³¸¯ÅÍ¸í)
-	int		nItemNum;											// ±¸¸Å ¾ÆÀÌÅÛ(ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ ¾ÆÀÌÅÛ¸¸ ±¸¸Å°¡´É)
-	int		nItemPrice;											// ±¸¸Å ¾ÆÀÌÅÛÀÇ °¡°İ
-	char	szUserIP[VTCBILL_SIZE_MAX_IPADDRESS];				// ±¸¸ÅÀÚÁ¤º¸(±¸¸ÅÀÚ IP)	
+	int		nCommand;											// ëª…ë ¹ì¢…ë¥˜(1:ì”ì•¡ì¡°íšŒ, 2:ì•„ì´í…œêµ¬ë§¤)
+	char	szAccountName[VTCBILL_SIZE_MAX_ACCOUNT_NAME];		// êµ¬ë§¤ìì •ë³´(AccountName)
+	char	szCharacterName[VTCBILL_SIZE_MAX_CHARACTER_NAME];	// êµ¬ë§¤ìì •ë³´(ê²Œì„ë‚´ì˜ ìºë¦­í„°ëª…)
+	int		nItemNum;											// êµ¬ë§¤ ì•„ì´í…œ(ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœ ì•„ì´í…œë§Œ êµ¬ë§¤ê°€ëŠ¥)
+	int		nItemPrice;											// êµ¬ë§¤ ì•„ì´í…œì˜ ê°€ê²©
+	char	szUserIP[VTCBILL_SIZE_MAX_IPADDRESS];				// êµ¬ë§¤ìì •ë³´(êµ¬ë§¤ì IP)	
 };
 
 #define VTCBILL_ERR_SUCCESS									0
@@ -120,17 +120,17 @@ struct SVTCBILL_REQ_DATA
 #define VTCBILL_ERR_NOT_ENOUGH_MONEY						-51
 #define VTCBILL_ERR_INVALID_ITEM_INFORMATION				-52
 #define VTCBILL_ERR_DB_TRANSACTION							-99
-#define VTCBILL_ERR_DB_CONNECT_FAIL							-100			// ºô¸µ DB Server·Î ¿¬°á ½ÇÆĞ
-#define VTCBILL_ERR_DB_QUERY_ERROR							-101			// DB Query ½ÇÆĞ
-#define VTCBILL_ERR_DB_QUERY_FETCH_ERROR					-102			// DB Query ½ÇÆĞ
+#define VTCBILL_ERR_DB_CONNECT_FAIL							-100			// ë¹Œë§ DB Serverë¡œ ì—°ê²° ì‹¤íŒ¨
+#define VTCBILL_ERR_DB_QUERY_ERROR							-101			// DB Query ì‹¤íŒ¨
+#define VTCBILL_ERR_DB_QUERY_FETCH_ERROR					-102			// DB Query ì‹¤íŒ¨
 #define VTCBILL_ERR_DB_INVALID_BILLING_COMMAND				-110			// 
 
 //----------------------------------------------------------------
-//-- ¼ö½Åµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ìˆ˜ì‹ ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 struct SVTCBILL_RET_DATA
 {
-	int  nRetErrCode;				// Ã³¸®°á°ú (=VTCBILL_ERR_SUCCESS: ¼º°ø, <>VTCBILL_ERR_SUCCESS: ¿¡·¯), VTCBILL_ERR_XXX
-	int  nCashPoint;				// ½ÇÁ¦·Î °áÁ¦ÇÏ¿© ¼ÒÀ¯ÇÑ Point
-	int  nBonusPoint;				// ÀÌº¥Æ® È¤Àº ´Ù¸¥ »çÀ¯·Î ÀÎÇØ ¼ÒÀ¯ÇÑ Point
+	int  nRetErrCode;				// ì²˜ë¦¬ê²°ê³¼ (=VTCBILL_ERR_SUCCESS: ì„±ê³µ, <>VTCBILL_ERR_SUCCESS: ì—ëŸ¬), VTCBILL_ERR_XXX
+	int  nCashPoint;				// ì‹¤ì œë¡œ ê²°ì œí•˜ì—¬ ì†Œìœ í•œ Point
+	int  nBonusPoint;				// ì´ë²¤íŠ¸ í˜¹ì€ ë‹¤ë¥¸ ì‚¬ìœ ë¡œ ì¸í•´ ì†Œìœ í•œ Point
 };

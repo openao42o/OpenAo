@@ -1,11 +1,12 @@
-// start 2012-03-21 by hskim, ÇÙ½¯µå ±â´É Ãß°¡ [ÀÚµ¿ ¾÷µ¥ÀÌÆ®/¿É¼Ç Ãß°¡/¸ğ´ÏÅÍ¸µ ½Ã½ºÅÛ]
-#ifndef _CONFIG_HACK_SHIELD_H_
-#define _CONFIG_HACK_SHIELD_H_
+ï»¿//Copyright[2002] MasangSoft
+// start 2012-03-21 by hskim, í•µì‰´ë“œ ê¸°ëŠ¥ ì¶”ê°€ [ìë™ ì—…ë°ì´íŠ¸/ì˜µì…˜ ì¶”ê°€/ëª¨ë‹ˆí„°ë§ ì‹œìŠ¤í…œ]
+#ifndef COMMON_CONFIGHACKSHIELD_H_
+#define COMMON_CONFIGHACKSHIELD_H_
 
 //////////////////////////////////////////////////////////////////////
-// ÇÙ ½¯µå °ü·Ã ÄÚµå
+// í•µ ì‰´ë“œ ê´€ë ¨ ì½”ë“œ
 // 2006-06-05 by ispark
-// 2012-03-21 by hskim, ÇÙ½¯µå ±â´É Ãß°¡ [ÀÚµ¿ ¾÷µ¥ÀÌÆ®/¿É¼Ç Ãß°¡/¸ğ´ÏÅÍ¸µ ½Ã½ºÅÛ] - °øÅë ÄÚµå Á¤¸®
+// 2012-03-21 by hskim, í•µì‰´ë“œ ê¸°ëŠ¥ ì¶”ê°€ [ìë™ ì—…ë°ì´íŠ¸/ì˜µì…˜ ì¶”ê°€/ëª¨ë‹ˆí„°ë§ ì‹œìŠ¤í…œ] - ê³µí†µ ì½”ë“œ ì •ë¦¬
 //////////////////////////////////////////////////////////////////////
 #ifdef YEDANG_RELEASE
 	#ifdef _TEST_SERVER
@@ -33,8 +34,8 @@
 		#define HACKSHIELD_GAME_CODE				4703
 	#endif
 // end 2008-09-19 by bhsohn Canada HackShield
-// 2007-09-27 by bhsohn º£Æ®³² ½ÇÇàÆÄÀÏ¸í º¯°æ
-// 2009. 09. 21 by jskim °ÔÀÓ°¡µå XTRAP Àû¿ë(¹èÆ®³²)
+// 2007-09-27 by bhsohn ë² íŠ¸ë‚¨ ì‹¤í–‰íŒŒì¼ëª… ë³€ê²½
+// 2009. 09. 21 by jskim ê²Œì„ê°€ë“œ XTRAP ì ìš©(ë°°íŠ¸ë‚¨)
 // #elif defined(LANGUAGE_VIETNAM)
 // 	#ifdef _TEST_SERVER
 // 		#define HACKSHIELD_LICENCE_CODE				"B9D640260C6056590B0CF72A"
@@ -43,8 +44,8 @@
 // 		#define HACKSHIELD_LICENCE_CODE				"EDAA54877F02A804257C85CE"
 // 		#define HACKSHIELD_GAME_CODE				4705
 // 	#endif
-// end 2009. 09. 21 by jskim °ÔÀÓ°¡µå XTRAP Àû¿ë(¹èÆ®³²)
-// 2008-04-30 by bhsohn ÅÂ±¹ ¹öÀü Ãß°¡
+// end 2009. 09. 21 by jskim ê²Œì„ê°€ë“œ XTRAP ì ìš©(ë°°íŠ¸ë‚¨)
+// 2008-04-30 by bhsohn íƒœêµ­ ë²„ì „ ì¶”ê°€
 #elif defined(LANGUAGE_THAI)
 	#ifdef _TEST_SERVER
 		#define HACKSHIELD_LICENCE_CODE				"DE36C7646C016856143FD7C4"
@@ -53,7 +54,7 @@
 		#define HACKSHIELD_LICENCE_CODE				"DE36C7646C016856143FD7C4"
 		#define HACKSHIELD_GAME_CODE				4708
 	#endif
-// 2008-10-14 by dgwoo gameforge4d ÇÙ½¯µå Ãß°¡.
+// 2008-10-14 by dgwoo gameforge4d í•µì‰´ë“œ ì¶”ê°€.
 #elif defined(GAMEFORGE_RELEASE)
 	#ifdef _TEST_SERVER
 		#define HACKSHIELD_LICENCE_CODE				"2025A0437939566CC1DCF4B1"
@@ -76,5 +77,5 @@
 #define HACKSHIELD_FILE_PATH_DBG			"\\HShield\\EhSvc.dll"	
 #define HACKSHIELD_FILE_PATH				"HShield\\EhSvc.dll"	
 
-#endif // _CONFIG_HACK_SHIELD_H_
-// end 2012-03-21 by hskim, ÇÙ½¯µå ±â´É Ãß°¡ [ÀÚµ¿ ¾÷µ¥ÀÌÆ®/¿É¼Ç Ãß°¡/¸ğ´ÏÅÍ¸µ ½Ã½ºÅÛ]
+#endif // COMMON_CONFIGHACKSHIELD_H_
+// end 2012-03-21 by hskim, í•µì‰´ë“œ ê¸°ëŠ¥ ì¶”ê°€ [ìë™ ì—…ë°ì´íŠ¸/ì˜µì…˜ ì¶”ê°€/ëª¨ë‹ˆí„°ë§ ì‹œìŠ¤í…œ]

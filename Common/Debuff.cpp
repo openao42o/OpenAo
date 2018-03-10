@@ -1,5 +1,5 @@
-// Debuff.cpp: implementation of the CDebuff class.
-//
+ï»¿// Debuff.cpp: implementation of the CDebuff class.
+////Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 
 CDebuff::CDebuff()
 {
-	this->InitDebuff();
+    this->InitDebuff();
 }
 
 CDebuff::~CDebuff()
@@ -20,122 +20,121 @@ CDebuff::~CDebuff()
 }
 
 void CDebuff::InitDebuff() {
-	mt_auto_lock mta(&m_mtvectDebuffInfo);
-	m_mtvectDebuffInfo.clear();
+    mt_auto_lock mta(&m_mtvectDebuffInfo);
+    m_mtvectDebuffInfo.clear();
 }
 
 
 /**************************************************************************************
 **
-**	µð¹öÇÁ Á¤º¸ µî·Ï.
+**    ë””ë²„í”„ ì •ë³´ ë“±ë¡.
 **
-**	Create Info : ??. ??. ??
+**    Create Info : ??. ??. ??
 **
-**	Update Info : 2010. 06. 08 by hsLee. - ¹ë·±½º ÀÎÀÚ Ãß°¡. ( fIncreasePowerRatio )
+**    Update Info : 2010. 06. 08 by hsLee. - ë°¸ëŸ°ìŠ¤ ì¸ìž ì¶”ê°€. ( fIncreasePowerRatio )
 **
 ***************************************************************************************/
 void CDebuff::SetDebuff(ITEM * i_pSkill, INT i_nDesParamIdx , float fIncreasePowerRatio /*= 1.0f*/ ) 
 {
-	if(NULL == i_pSkill) 
-	{
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
-		return;
-	}
+    if (NULL == i_pSkill) 
+    {
+        // 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
+        return;
+    }
 
-	DEBUFFINFO	DebuffInfo;
-		util::zero(&DebuffInfo, sizeof(DEBUFFINFO));
+    DEBUFFINFO    DebuffInfo;
+        util::zero(&DebuffInfo, sizeof(DEBUFFINFO));
 
-	DebuffInfo.ItemNum			= i_pSkill->ItemNum;
-	DebuffInfo.Kind				= i_pSkill->Kind;
-	DebuffInfo.DesParam			= i_pSkill->ArrDestParameter[i_nDesParamIdx];
+    DebuffInfo.ItemNum            = i_pSkill->ItemNum;
+    DebuffInfo.Kind                = i_pSkill->Kind;
+    DebuffInfo.DesParam            = i_pSkill->ArrDestParameter[i_nDesParamIdx];
 
-	// 2010. 06. 08 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àý. (¾Æ±º µ¿ÀÏ ¹ë·±½º Àû¿ë.)
-	//DebuffInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx];
-	DebuffInfo.DesParamValue	= i_pSkill->ArrParameterValue[i_nDesParamIdx] * fIncreasePowerRatio;
+    // 2010. 06. 08 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì•„êµ° ë™ì¼ ë°¸ëŸ°ìŠ¤ ì ìš©.)
+    //DebuffInfo.DesParamValue    = i_pSkill->ArrParameterValue[i_nDesParamIdx];
+    DebuffInfo.DesParamValue    = i_pSkill->ArrParameterValue[i_nDesParamIdx] * fIncreasePowerRatio;
 
-	DebuffInfo.Time				= i_pSkill->Time;
-	DebuffInfo.SkillLevel		= i_pSkill->SkillLevel;
-	DebuffInfo.SkillType		= i_pSkill->SkillType;
-	DebuffInfo.dwUseTime		= timeGetTime();
+    DebuffInfo.Time                = i_pSkill->Time;
+    DebuffInfo.SkillLevel        = i_pSkill->SkillLevel;
+    DebuffInfo.SkillType        = i_pSkill->SkillType;
+    DebuffInfo.dwUseTime        = timeGetTime();
 
-	mt_auto_lock mta(&m_mtvectDebuffInfo);
+    mt_auto_lock mta(&m_mtvectDebuffInfo);
 
-	mtvectorDebuffInfo::iterator	itr = m_mtvectDebuffInfo.begin();
+    mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
 
-	while(itr != m_mtvectDebuffInfo.end()) 
-	{
-		if ( itr->ItemNum == i_pSkill->ItemNum			// 2009-09-09 ~ 2010-01-20 by dhjin, ÀÎÇÇ´ÏÆ¼ - °¡²û ¸ó½ºÅÍ ½ºÅ³ »ç¿ë ¾ÈµÇ´Â ¹ö±× ¼öÁ¤
-			&& itr->DesParam == i_pSkill->ArrDestParameter[i_nDesParamIdx]
-			&& itr->SkillLevel <= i_pSkill->SkillLevel) 
-		{
-			// °°Àº µð¹öÇÁÀÌÁö¸¸ ´õ ³ô°Å³ª °°Àº È¿°ú¿¡ µð¹öÇÁÀÌ¸é °»½ÅÇÑ´Ù.
-			itr = m_mtvectDebuffInfo.erase(itr);
-			m_mtvectDebuffInfo.push_back(DebuffInfo);
-			return;
-		}
-		itr++;
-	}
-	m_mtvectDebuffInfo.push_back(DebuffInfo);
+    while (itr != m_mtvectDebuffInfo.end()) 
+    {
+        if ( itr->ItemNum == i_pSkill->ItemNum            // 2009-09-09 ~ 2010-01-20 by dhjin, ì¸í”¼ë‹ˆí‹° - ê°€ë” ëª¬ìŠ¤í„° ìŠ¤í‚¬ ì‚¬ìš© ì•ˆë˜ëŠ” ë²„ê·¸ ìˆ˜ì •
+            && itr->DesParam == i_pSkill->ArrDestParameter[i_nDesParamIdx]
+            && itr->SkillLevel <= i_pSkill->SkillLevel) 
+        {
+            // ê°™ì€ ë””ë²„í”„ì´ì§€ë§Œ ë” ë†’ê±°ë‚˜ ê°™ì€ íš¨ê³¼ì— ë””ë²„í”„ì´ë©´ ê°±ì‹ í•œë‹¤.
+            itr = m_mtvectDebuffInfo.erase(itr);
+            m_mtvectDebuffInfo.push_back(DebuffInfo);
+            return;
+        }
+        itr++;
+    }
+    m_mtvectDebuffInfo.push_back(DebuffInfo);
 }
 
-BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
-	mt_auto_lock mta(&m_mtvectDebuffInfo);
-	mtvectorDebuffInfo::iterator	itr = m_mtvectDebuffInfo.begin();
-	while(itr != m_mtvectDebuffInfo.end()) {
-		if(i_byDestParam == itr->DesParam) {
-			return TRUE;
-		}
-		itr++;
-	}
+BOOL CDebuff::CheckApplyingDebuff(DestParam_t i_byDestParam) {        // 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìžë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
+    mt_auto_lock mta(&m_mtvectDebuffInfo);
+    mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
+    while (itr != m_mtvectDebuffInfo.end()) {
+        if (i_byDestParam == itr->DesParam) {
+            return TRUE;
+        }
+        itr++;
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
-BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck/* = TRUE*/) {		// 2011-08-01 by hskim, ÆÄÆ®³Ê ½Ã½ºÅÛ 2Â÷ - ÀÚ·áÇü º¯°æ (DestParameter - 255 -> 32767 Áö¿ø)
-	mt_auto_lock mta(&m_mtvectDebuffInfo);
-	
-	if(i_bTimeCheck) {
-		DWORD dwCurTick = timeGetTime();	
-		mtvectorDebuffInfo::iterator	itr = m_mtvectDebuffInfo.begin();
-		while(itr != m_mtvectDebuffInfo.end()) {
-			DWORD dwElapseTick = dwCurTick - itr->dwUseTime;
-			if(i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam 
-//				&& dwElapseTick >= itr->Time
-				) {
-				itr = m_mtvectDebuffInfo.erase(itr);
-				return TRUE;
-			}
-			itr++;
-		}
-	}
-	else {	
-		mtvectorDebuffInfo::iterator	itr = m_mtvectDebuffInfo.begin();
-		while(itr != m_mtvectDebuffInfo.end()) {
-			if(i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam) {
-				itr = m_mtvectDebuffInfo.erase(itr);
-				return TRUE;
-			}
-			itr++;
-		}
-	}
+BOOL CDebuff::ReleaseDebuff(ItemIdx_t i_nSkillNum, DestParam_t i_byDestParam, BOOL i_bTimeCheck/* = TRUE*/) {        // 2011-08-01 by hskim, íŒŒíŠ¸ë„ˆ ì‹œìŠ¤í…œ 2ì°¨ - ìžë£Œí˜• ë³€ê²½ (DestParameter - 255 -> 32767 ì§€ì›)
+    mt_auto_lock mta(&m_mtvectDebuffInfo);
+    
+    if (i_bTimeCheck) {
+        DWORD dwCurTick = timeGetTime();    
+        mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
+        while (itr != m_mtvectDebuffInfo.end()) {
+            DWORD dwElapseTick = dwCurTick - itr->dwUseTime;
+            if (i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam 
+//                && dwElapseTick >= itr->Time
+                ) {
+                itr = m_mtvectDebuffInfo.erase(itr);
+                return TRUE;
+            }
+            itr++;
+        }
+    } else {    
+        mtvectorDebuffInfo::iterator    itr = m_mtvectDebuffInfo.begin();
+        while (itr != m_mtvectDebuffInfo.end()) {
+            if (i_nSkillNum == itr->ItemNum && itr->DesParam == i_byDestParam) {
+                itr = m_mtvectDebuffInfo.erase(itr);
+                return TRUE;
+            }
+            itr++;
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 INT CDebuff::MSG_FC_CHARACTER_DEBUFF_DOT_INFO_OK(MSG_DEBUFF_INFO *o_pDebuffInfo) {
-	if(NULL == o_pDebuffInfo) {
-		// 2009-09-09 ~ 2010-01 by dhjin, ÀÎÇÇ´ÏÆ¼ - ¼Ò½º Ã¼Å©
-		return FALSE;
-	}
+    if (NULL == o_pDebuffInfo) {
+        // 2009-09-09 ~ 2010-01 by dhjin, ì¸í”¼ë‹ˆí‹° - ì†ŒìŠ¤ ì²´í¬
+        return FALSE;
+    }
 
-	int	DebuffInfoCount = 0;
-	
-	mt_auto_lock mta(&m_mtvectDebuffInfo);
-	mtvectorDebuffInfo::iterator itr = m_mtvectDebuffInfo.begin();
-	for(; itr != m_mtvectDebuffInfo.end(); itr++) {
-		o_pDebuffInfo[DebuffInfoCount].ItemNum		= itr->ItemNum;
-		DebuffInfoCount++;
-	}
-	
-	return DebuffInfoCount;
+    int    DebuffInfoCount = 0;
+    
+    mt_auto_lock mta(&m_mtvectDebuffInfo);
+    mtvectorDebuffInfo::iterator itr = m_mtvectDebuffInfo.begin();
+    for (; itr != m_mtvectDebuffInfo.end(); itr++) {
+        o_pDebuffInfo[DebuffInfoCount].ItemNum        = itr->ItemNum;
+        DebuffInfoCount++;
+    }
+    
+    return DebuffInfoCount;
 }

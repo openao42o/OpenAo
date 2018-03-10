@@ -1,11 +1,11 @@
-#pragma once
+О╩©#pragma once
 
 namespace VMemPool
 {
 	BOOL vmPoolAddObject(DWORD dwObjTypeSize, DWORD dwObjPoolSize = 1024);
 	BOOL vmPoolInit();
 	void vmPoolClean();
-	void vmPoolSaveCurrentStatus();		// 2009-05-04 by cmkwon, ╦ч╦П╦╝г╝ ╩Себа╓╨╦ ╥н╠в Ё╡╠Б╠Б - 
+	void vmPoolSaveCurrentStatus();		// 2009-05-04 by cmkwon, К╘■К╙╗К╕╛М▓─ Л┐│М┐°Л═∙КЁ╢ К║°Й╥╦ К┌╗Й╦╟Й╦╟ - 
 
 	void* vmObjectNew(DWORD dwObjSize);
 	void vmObjectDelete(void *p, DWORD dwObjSize);

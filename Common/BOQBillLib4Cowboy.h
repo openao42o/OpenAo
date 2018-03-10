@@ -1,57 +1,59 @@
-
+ï»¿//Copyright[2002] MasangSoft
 // 2006-08-24 by cmkwon, billing server ip changed(64.127.103.228 --> 192.168.7.111)
+#ifndef COMMON_BOQBILLLIB4COWBOY_H_
+#define COMMON_BOQBILLLIB4COWBOY_H_
 #define BILL_SERVER_INFO "192.168.7.111:24701"
 
 #ifdef BOQBILL_EXPORTS
 	#define BOQBILL_API extern "C" __declspec(dllexport)
 #else
 	#define BOQBILL_API extern "C" __declspec(dllimport)
-	#pragma comment(lib, "BOQBillLib4Cowboy.lib")					// 2007-09-13 by cmkwon, °¢ ¼­¹öº° ºô¸µ ¶óÀÌºê·¯¸® µû·Î ·Îµù	
+	#pragma comment(lib, "BOQBillLib4Cowboy.lib")					// 2007-09-13 by cmkwon, ê° ì„œë²„ë³„ ë¹Œë§ ë¼ì´ë¸ŒëŸ¬ë¦¬ ë”°ë¡œ ë¡œë”©	
 #endif
 
 //----------------------------------------------------------------
-//--Àü¼Ûµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//--ì „ì†¡ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 typedef struct _BILLSENDDATA
 {	
-	int  nCommand;					// ¸í·ÉÁ¾·ù(1:ÀÜ¾×Á¶È¸, 2:¾ÆÀÌÅÛ±¸¸Å)
-	char szUserNo[10+1];			// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚ¹øÈ£)	
-	char szUserID[20+1];			// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚ¾ÆÀÌµğ)
-	char szUserName[50+1];			// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚÀÌ¸§)
-	char szGameCharacterName[30+1];	// ±¸¸ÅÀÚÁ¤º¸(°ÔÀÓ³»ÀÇ Ä³¸¯ÅÍ¸í)
-	char szUserIP[16];				// ±¸¸ÅÀÚÁ¤º¸(±¸¸ÅÀÚ IP)
-	char szGameItemID[20+1];		// ¾ÆÀÌÅÛÁ¤º¸(°ÔÀÓÃø ±¸¸Å¾ÆÀÌÅÛ¹øÈ£)	
-	char szReserved[51];			// ¿¹¾àÇÊµå
+	int  nCommand;					// ëª…ë ¹ì¢…ë¥˜(1:ì”ì•¡ì¡°íšŒ, 2:ì•„ì´í…œêµ¬ë§¤)
+	char szUserNo[10+1];			// êµ¬ë§¤ìì •ë³´(ì‚¬ìš©ìë²ˆí˜¸)	
+	char szUserID[20+1];			// êµ¬ë§¤ìì •ë³´(ì‚¬ìš©ìì•„ì´ë””)
+	char szUserName[50+1];			// êµ¬ë§¤ìì •ë³´(ì‚¬ìš©ìì´ë¦„)
+	char szGameCharacterName[30+1];	// êµ¬ë§¤ìì •ë³´(ê²Œì„ë‚´ì˜ ìºë¦­í„°ëª…)
+	char szUserIP[16];				// êµ¬ë§¤ìì •ë³´(êµ¬ë§¤ì IP)
+	char szGameItemID[20+1];		// ì•„ì´í…œì •ë³´(ê²Œì„ì¸¡ êµ¬ë§¤ì•„ì´í…œë²ˆí˜¸)	
+	char szReserved[51];			// ì˜ˆì•½í•„ë“œ
 } BILLSENDDATA, *LPBILLSENDDATA;
 
 
 //----------------------------------------------------------------
-//--¼ö½Åµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//--ìˆ˜ì‹ ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 typedef struct _BILLRETDATA
 {
-	int  nRetVal;					// Ã³¸®°á°ú (0 : ¼º°ø, 0 <> ¿¡·¯)
-	char szRetMsg[1024+1];			// Ã³¸®¸Ş½ÃÁö(¿¡·¯¹ß»ı½Ã ÂüÁ¶)
-	int  nRealCash;					// RealCash ÀÜ¾×
-	int  nBonusCash;				// BonusCash ÀÜ¾×
-	char szChargeNo[30+1];			// °ú±İ¹øÈ£(¾ÆÀÌÅÛ±¸¸Å °á°úKey)
+	int  nRetVal;					// ì²˜ë¦¬ê²°ê³¼ (0 : ì„±ê³µ, 0 <> ì—ëŸ¬)
+	char szRetMsg[1024+1];			// ì²˜ë¦¬ë©”ì‹œì§€(ì—ëŸ¬ë°œìƒì‹œ ì°¸ì¡°)
+	int  nRealCash;					// RealCash ì”ì•¡
+	int  nBonusCash;				// BonusCash ì”ì•¡
+	char szChargeNo[30+1];			// ê³¼ê¸ˆë²ˆí˜¸(ì•„ì´í…œêµ¬ë§¤ ê²°ê³¼Key)
 } BILLRETDATA, *LPBILLRETDATA;
 
 
 //----------------------------------------------------------------
-// ÀÜ¾×Á¶È¸,¾ÆÀÌÅÛ ±¸¸Å ¿ÜºÎ³ëÃâ ÇÔ¼ö
+// ì”ì•¡ì¡°íšŒ,ì•„ì´í…œ êµ¬ë§¤ ì™¸ë¶€ë…¸ì¶œ í•¨ìˆ˜
 //
-// Return Value: int - ¸í·É ¼º°ø/½ÇÆĞ ¿©ºÎ(¸í·É ¼º°ø½Ã 0, ½ÇÆĞ½Ã -1¸¦ returnÇÔ,
-//                     ´Ü¼øÈ÷ ¸í·É½ÇÇà¼º°ø¿©ºÎ¸¸ ÀÇ¹ÌÇÔ. ¸í·É¾î Ã³¸®°á°ú¸¦ È®ÀÎÇÏ·Á¸é BILLRETDATAÀÇ nRetValÂüÁ¶!
-// Parameter   : const char* szServerInfo	[in]	ºô¸µµ¥¸ó¼­¹öÁ¤º¸ "IP:Port"
-//				 const LPBILLSENDDATA pData	[in]	Àü´ŞÇÒ Data
-//				 LPBILLRETDATA pRet			[out]	Àü´Ş¹ŞÀ» °á°ú°ª
+// Return Value: int - ëª…ë ¹ ì„±ê³µ/ì‹¤íŒ¨ ì—¬ë¶€(ëª…ë ¹ ì„±ê³µì‹œ 0, ì‹¤íŒ¨ì‹œ -1ë¥¼ returní•¨,
+//                     ë‹¨ìˆœíˆ ëª…ë ¹ì‹¤í–‰ì„±ê³µì—¬ë¶€ë§Œ ì˜ë¯¸í•¨. ëª…ë ¹ì–´ ì²˜ë¦¬ê²°ê³¼ë¥¼ í™•ì¸í•˜ë ¤ë©´ BILLRETDATAì˜ nRetValì°¸ì¡°!
+// Parameter   : const char* szServerInfo	[in]	ë¹Œë§ë°ëª¬ì„œë²„ì •ë³´ "IP:Port"
+//				 const LPBILLSENDDATA pData	[in]	ì „ë‹¬í•  Data
+//				 LPBILLRETDATA pRet			[out]	ì „ë‹¬ë°›ì„ ê²°ê³¼ê°’
 //
 //----------------------------------------------------------------
 BOQBILL_API int BillCmdExecute(const char* szServerInfo, const LPBILLSENDDATA pData, LPBILLRETDATA pRet);
 
 
-// 2006-06-05 by cmkwon, ¿¡·¯ ÄÚµå([F]:frequently)
+// 2006-06-05 by cmkwon, ì—ëŸ¬ ì½”ë“œ([F]:frequently)
 // 		2272	account information check failed.
 // 		2274	[F]user status is invalid.(currently not available)
 // 		2275	bad user check failed.
@@ -79,11 +81,12 @@ BOQBILL_API int BillCmdExecute(const char* szServerInfo, const LPBILLSENDDATA pD
 // 		2267	give event item failed.
 // 		2268	applied count update error.
 // 
-// 		ÀÜ¾×Á¶È¸	
+// 		ì”ì•¡ì¡°íšŒ	
 // 		2017	account query error.
 // 		2018	RealCash Balance abnormal.
 // 		2018	BonusCash Balance abnormal.
 // 		2018	Mileage Balance abnormal.
 // 
 // 
-//		±âÅ¸	Network Error
+//		ê¸°íƒ€	Network Error
+#endif // COMMON_BOQBILLLIB4COWBOY_H_

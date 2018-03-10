@@ -1,5 +1,5 @@
-// XmlRpc.h: interface for the CXmlRpc class.
-// 2013-03-13 by hskim, ¿• ƒ≥Ω√ ªÛ¡°
+Ôªø// XmlRpc.h: interface for the CXmlRpc class.
+// 2013-03-13 by hskim, Ïõπ Ï∫êÏãú ÏÉÅÏ†ê Copyright [2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_XMLRPC_H__4E7BD9D8_0358_48D1_B745_BF6E308CCABC__INCLUDED_)
@@ -14,29 +14,29 @@
 class CXmlRpc
 {
 public:
-	CXmlRpc();
-	virtual ~CXmlRpc();
+    CXmlRpc();
+    virtual ~CXmlRpc();
 
-	void Clear();
+    void Clear();
 
-	BOOL ParseFormXML(char *pXMLText);
+    BOOL ParseFormXML(char *pXMLText);
 
-	BOOL IsEmpty()							{ return m_szMethodName.empty(); }
-	BOOL IsVaild();
-	const char *GetMethodName()				{ return m_szMethodName.c_str(); }
+    BOOL IsEmpty()                            { return m_szMethodName.empty(); }
+    BOOL IsVaild();
+    const char *GetMethodName()                { return m_szMethodName.c_str(); }
 
-	int	GetParamsCount()					{ return m_ParamsValue.size(); }
-	XmlRpc::XmlRpcValue &GetParamsValue()	{ return m_ParamsValue; }
-
-public:
-	void GenerateResponse(int iRtnValue);
-	std::string GenerateHeader(std::string const& body);
-	void GenerateFaultResponse(std::string const& errorMsg, int errorCode);
+    int    GetParamsCount()                    { return m_ParamsValue.size(); }
+    XmlRpc::XmlRpcValue &GetParamsValue()    { return m_ParamsValue; }
 
 public:
-	std::string						m_szMethodName;
-	std::string						m_szResponse;
-	XmlRpc::XmlRpcValue				m_ParamsValue;
+    void GenerateResponse(int iRtnValue);
+    std::string GenerateHeader(std::string const& body);
+    void GenerateFaultResponse(std::string const& errorMsg, int errorCode);
+
+public:
+    std::string                        m_szMethodName;
+    std::string                        m_szResponse;
+    XmlRpc::XmlRpcValue                m_ParamsValue;
 
 private:
     static const char METHODNAME_TAG[];

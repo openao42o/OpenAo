@@ -1,11 +1,11 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "SocketHeader.h"
 #include "DefineGlobal.h"
 
 //////////////////////////////////////////////////////////////////////////
 // Global Variable
 //////////////////////////////////////////////////////////////////////////
-BYTE g_exchangeMsgPrintLevel = PRINTLEVEL_NO_MSG;	// check: MSG¸¦ printÇÏ´Â levelÀ» Á¶Á¤ÇÏ±â À§ÇØ(AtumMonitor·Î Á¶Àı °¡´É), by kelovon
+BYTE g_exchangeMsgPrintLevel = PRINTLEVEL_NO_MSG;	// check: MSGë¥¼ printí•˜ëŠ” levelì„ ì¡°ì •í•˜ê¸° ìœ„í•´(AtumMonitorë¡œ ì¡°ì ˆ ê°€ëŠ¥), by kelovon
 
 
 
@@ -92,14 +92,14 @@ BOOL _GGetLocalIP(BYTE *ip0, BYTE *ip1, BYTE *ip2, BYTE *ip3, int nLocalIPType)
 		// ==============================================
 		switch (pHost[0])
 		{
-		case 169:	// ÀÚµ¿ °³ÀÎ ip ÁÖ¼Ò
+		case 169:	// ìë™ ê°œì¸ ip ì£¼ì†Œ
 			if (pHost[1] == 254)
 			{
 				bRet = (nLocalIPType == 1);
 				break;
 			}
 
-			// »ç¼³ ip ÁÖ¼Ò
+			// ì‚¬ì„¤ ip ì£¼ì†Œ
 		case 10:
 			bRet = (nLocalIPType == 3);
 			break;
@@ -116,14 +116,14 @@ BOOL _GGetLocalIP(BYTE *ip0, BYTE *ip1, BYTE *ip2, BYTE *ip3, int nLocalIPType)
 				break;
 			}
 
-			// °øÀÎ ip ÁÖ¼Ò
+			// ê³µì¸ ip ì£¼ì†Œ
 		default:
 			bRet = (nLocalIPType == 2);
 
 		} // End switch
 		// ==============================================
 
-		// ¾ò°íÀÚ ÇÏ´Â ipÀÎ °æ¿ì ÀúÀåÇÏ°í ¸®ÅÏ
+		// ì–»ê³ ì í•˜ëŠ” ipì¸ ê²½ìš° ì €ì¥í•˜ê³  ë¦¬í„´
 		if (bRet)
 		{
 			*ip0 = pHost[0];
@@ -149,7 +149,7 @@ BOOL _GGetLocalIP(BYTE *ip0, BYTE *ip1, BYTE *ip2, BYTE *ip3, int nLocalIPType)
 ///////////////////////////////////////////////////////////////////////////////
 BOOL GGetLocalIP(char *o_szLocalIP, int nLocalIPType/*=IP_TYPE_AUTOPRIVATE*/)
 {
-	strcpy(o_szLocalIP, "127.0.0.1");		// 2006-04-11 by cmkwon, ÃÊ±âÈ­
+	strcpy(o_szLocalIP, "127.0.0.1");		// 2006-04-11 by cmkwon, ì´ˆê¸°í™”
 
 	BOOL bRet;
 	BYTE ip0, ip1, ip2, ip3;

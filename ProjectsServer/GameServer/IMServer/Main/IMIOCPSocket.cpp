@@ -3837,7 +3837,7 @@ ProcessResult CIMIOCPSocket::Process_FI_CONNECT_NOTIFY_DEAD(const char* pPacket,
 
 ProcessResult CIMIOCPSocket::Process_FI_CONNECT_NOTIFY_GAMEEND(const char* pPacket, int nLength, int &nBytesUsed)
 {
-	if (FALSE == g_pIMGlobal->CheckAllowedToolIP(this->GetPeerIP()))
+	if (FALSE == g_pIMGlobal->CheckAllowedToolIP(this->GetPeerIP()) || this != ms_pIMIOCP->m_pFieldServerSocket)
 	{
 		g_pIMGlobal->WriteSystemLogEX(TRUE, "HACKUSER!! Connect Process_FI_CONNECT_NOTIFY_GAMEEND Command Using: HackingIP(%15s)\r\n", this->GetPeerIP());
 		return RES_RETURN_FALSE;

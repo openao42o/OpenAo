@@ -1,4 +1,4 @@
-// RegistryControl.cpp: implementation of the CRegistryControl class.
+ï»¿// RegistryControl.cpp: implementation of the CRegistryControl class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -17,7 +17,7 @@ static char THIS_FILE[]=__FILE__;
 
 CRegistryControl::CRegistryControl()
 {
-	m_hMainRegsKey			= HKEY_CURRENT_USER;	// 2007-09-01 by cmkwon, ±âº»°ª
+	m_hMainRegsKey			= HKEY_CURRENT_USER;	// 2007-09-01 by cmkwon, ê¸°ë³¸ê°’
 	m_hSubRegsKey			= NULL;
 	memset(m_szKeyPath, 0x00, nMaxStringSize);
 }
@@ -40,21 +40,21 @@ CRegistryControl::~CRegistryControl()
 BOOL CRegistryControl::RegistryControlInit(HKEY i_hMainKey, char *i_szKeyPath, BOOL i_bMustCreate/*=FALSE*/)
 {
 	if(NULL != m_hSubRegsKey)
-	{// 2007-09-01 by cmkwon, RegistryControlClean()ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ÃÊ±âÈ­ÇØ¾ßÁö ´Ù½Ã »ç¿ë °¡´ÉÇÏ´Ù
+	{// 2007-09-01 by cmkwon, RegistryControlClean()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ ì´ˆê¸°í™”í•´ì•¼ì§€ ë‹¤ì‹œ ì‚¬ìš© ê°€ëŠ¥í•˜ë‹¤
 		return FALSE;
 	}
 
 	HKEY hKey = NULL;
 	if(ERROR_SUCCESS != RegOpenKeyEx(i_hMainKey, i_szKeyPath, 0L, KEY_ALL_ACCESS, &hKey))
-	{// ·¹Áö½ºÆ®¸® Key°¡ Á¸ÀçÇÏÁö´ÂÁö Ã¼Å©
+	{// ë ˆì§€ìŠ¤íŠ¸ë¦¬ Keyê°€ ì¡´ì¬í•˜ì§€ëŠ”ì§€ ì²´í¬
 
 		if(FALSE == i_bMustCreate)
-		{// 2007-09-01 by cmkwon, °­Á¦ »ı¼º Ã¼Å©
+		{// 2007-09-01 by cmkwon, ê°•ì œ ìƒì„± ì²´í¬
 			return FALSE;
 		}
 
 		if(ERROR_SUCCESS != RegCreateKey(i_hMainKey, i_szKeyPath, &hKey))
-		{// 2007-09-01 by cmkwon, HKEY_LOCAL_MACHINE ·¹Áö½ºÆ®¸® »ı¼º ±ÇÇÑÀÌ ¾ø´Â°Í °°À½
+		{// 2007-09-01 by cmkwon, HKEY_LOCAL_MACHINE ë ˆì§€ìŠ¤íŠ¸ë¦¬ ìƒì„± ê¶Œí•œì´ ì—†ëŠ”ê²ƒ ê°™ìŒ
 			return FALSE;
 		}
 	}
@@ -99,7 +99,7 @@ BOOL CRegistryControl::RegistryControlClean(void)
 BOOL CRegistryControl::ReadInt(char *i_szValueName, DWORD *o_pdwData)
 {
 	if(NULL == m_hSubRegsKey)
-	{// 2007-09-01 by cmkwon, RegistryControlInit()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ ÃÊ±âÈ­¸¦ ¸ÕÀú ÇØ¾ßÇÑ´Ù
+	{// 2007-09-01 by cmkwon, RegistryControlInit()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì´ˆê¸°í™”ë¥¼ ë¨¼ì € í•´ì•¼í•œë‹¤
 		return FALSE;
 	}
 
@@ -132,7 +132,7 @@ BOOL CRegistryControl::ReadInt(char *i_szValueName, DWORD *o_pdwData)
 BOOL CRegistryControl::ReadString(char *i_szValueName, char *o_szData, int i_nDataBufferLen)
 {
 	if(NULL == m_hSubRegsKey)
-	{// 2007-09-01 by cmkwon, RegistryControlInit()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ ÃÊ±âÈ­¸¦ ¸ÕÀú ÇØ¾ßÇÑ´Ù
+	{// 2007-09-01 by cmkwon, RegistryControlInit()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì´ˆê¸°í™”ë¥¼ ë¨¼ì € í•´ì•¼í•œë‹¤
 		return FALSE;
 	}
 
@@ -169,7 +169,7 @@ BOOL CRegistryControl::ReadString(char *i_szValueName, char *o_szData, int i_nDa
 BOOL CRegistryControl::WriteInt(char *i_szValueName, DWORD i_dwData)
 {
 	if(NULL == m_hSubRegsKey)
-	{// 2007-09-01 by cmkwon, RegistryControlInit()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ ÃÊ±âÈ­¸¦ ¸ÕÀú ÇØ¾ßÇÑ´Ù
+	{// 2007-09-01 by cmkwon, RegistryControlInit()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì´ˆê¸°í™”ë¥¼ ë¨¼ì € í•´ì•¼í•œë‹¤
 		return FALSE;
 	}
 
@@ -200,7 +200,7 @@ BOOL CRegistryControl::WriteInt(char *i_szValueName, DWORD i_dwData)
 BOOL CRegistryControl::WriteString(char *i_szValueName, char *i_szData)
 {
 	if(NULL == m_hSubRegsKey)
-	{// 2007-09-01 by cmkwon, RegistryControlInit()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ ÃÊ±âÈ­¸¦ ¸ÕÀú ÇØ¾ßÇÑ´Ù
+	{// 2007-09-01 by cmkwon, RegistryControlInit()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì´ˆê¸°í™”ë¥¼ ë¨¼ì € í•´ì•¼í•œë‹¤
 		return FALSE;
 	}
 

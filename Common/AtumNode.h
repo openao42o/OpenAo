@@ -1,8 +1,7 @@
+ï»¿//Copyright[2002] MasangSoft
 // AtumNode.h: interface for the CAtumNode class.
 //
 //////////////////////////////////////////////////////////////////////
-
-
 #pragma once
 
 #include <windows.h>
@@ -55,11 +54,11 @@ public:
 	CAtumNode* AddChild(CAtumNode* pAtumNode);
 	void DeleteChild(CAtumNode* pAtumNode);
 
-	CAtumNode*		m_pPrev;		// ÀÌÀüÀÇ ³ëµå
-	CAtumNode*		m_pNext;		// ÀÌÈÄÀÇ ³ëµå
-	CAtumNode*		m_pChild;		// Â÷ÀÏµå ³ëµå
-	CAtumNode*		m_pParent;		// ºÎ¸ğÀÇ ³ëµå
-	DWORD			m_dwStateBlock;	// ·»´õ¸µ»óÅÂºí·°
+	CAtumNode*		m_pPrev;		// ì´ì „ì˜ ë…¸ë“œ
+	CAtumNode*		m_pNext;		// ì´í›„ì˜ ë…¸ë“œ
+	CAtumNode*		m_pChild;		// ì°¨ì¼ë“œ ë…¸ë“œ
+	CAtumNode*		m_pParent;		// ë¶€ëª¨ì˜ ë…¸ë“œ
+	DWORD			m_dwStateBlock;	// ë Œë”ë§ìƒíƒœë¸”ëŸ­
 	BOOL			m_bUsing;
 	DWORD			m_dwPartType;	// enum PartType
 };

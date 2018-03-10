@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 // KbcButton.cpp : implementation file
 //
 
@@ -14,10 +15,10 @@ static char THIS_FILE[] = __FILE__;
 // CKbcButton
 
 CKbcButton::CKbcButton()
-{	
-	m_bDisable			= FALSE;
-	m_bCursorOnButton	= FALSE;
-	m_bHover			= FALSE;
+{    
+    m_bDisable            = FALSE;
+    m_bCursorOnButton    = FALSE;
+    m_bHover            = FALSE;
 }
 
 CKbcButton::~CKbcButton()
@@ -26,14 +27,14 @@ CKbcButton::~CKbcButton()
 
 
 BEGIN_MESSAGE_MAP(CKbcButton, CButton)
-	//{{AFX_MSG_MAP(CKbcButton)
-	ON_WM_MOUSEMOVE()
-	ON_WM_LBUTTONDOWN()
-	ON_WM_SETCURSOR()
-	ON_MESSAGE(WM_MOUSEHOVER,OnMouseHover)
-	ON_MESSAGE(WM_MOUSELEAVE,OnMouseLeave)
-	ON_WM_ERASEBKGND()
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(CKbcButton)
+    ON_WM_MOUSEMOVE()
+    ON_WM_LBUTTONDOWN()
+    ON_WM_SETCURSOR()
+    ON_MESSAGE(WM_MOUSEHOVER,OnMouseHover)
+    ON_MESSAGE(WM_MOUSELEAVE,OnMouseLeave)
+    ON_WM_ERASEBKGND()
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,211 +42,211 @@ END_MESSAGE_MAP()
 
 void CKbcButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
-	// LPDRAWITEMSTRUCT ·Î ºÎÅÍ DC ¾ò¾î¿À°í...
-	CDC* pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
+    // LPDRAWITEMSTRUCT ë¡œ ë¶€í„° DC ì–»ì–´ì˜¤ê³ ...
+    CDC* pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
 
 
-	// ºñÈ°¼ºÈ­ »óÅÂÀÌ¸é ºñÈ°¼ºÈ­·Î ¼¼ÆÃµÈ ¹öÆ°À» ±×·ÁÁØ´Ù.
-	if( m_bDisable == TRUE )
-		m_bmpImage.Draw(pDC,1,0,0,m_nMask);
+    // ë¹„í™œì„±í™” ìƒíƒœì´ë©´ ë¹„í™œì„±í™”ë¡œ ì„¸íŒ…ëœ ë²„íŠ¼ì„ ê·¸ë ¤ì¤€ë‹¤.
+    if ( m_bDisable == TRUE )
+        m_bmpImage.Draw(pDC,1,0,0,m_nMask);
 
-	// ºñÈ°¼ºÈ­ »óÅÂ°¡ ¾Æ´Ï¶ó¸é..
-	else
-	{
-		// ¹öÆ°ÀÌ Å¬¸¯ µÇ¾úÀ»¶§ ±×¸²
-		if( lpDrawItemStruct->itemState & ODS_SELECTED )
-			m_bmpImage.Draw(pDC,3,0,0,m_nMask);
+    // ë¹„í™œì„±í™” ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´..
+    else
+    {
+        // ë²„íŠ¼ì´ í´ë¦­ ë˜ì—ˆì„ë•Œ ê·¸ë¦¼
+        if ( lpDrawItemStruct->itemState & ODS_SELECTED )
+            m_bmpImage.Draw(pDC,3,0,0,m_nMask);
 
-		// ¹öÆ°¿¡ Ä¿¼­°¡ ¿Ã¶ó°¡ ÀÖÀ» ¶§ ±×¸².
-		else if ( m_bHover)
-			m_bmpImage.Draw(pDC,2,0,0,m_nMask);
+        // ë²„íŠ¼ì— ì»¤ì„œê°€ ì˜¬ë¼ê°€ ìˆì„ ë•Œ ê·¸ë¦¼.
+        else if ( m_bHover)
+            m_bmpImage.Draw(pDC,2,0,0,m_nMask);
 
-		// ¾Æ¹« »óÅÂµµ ¾Æ´Ò¶§ ±×¸²..
-		else
-			m_bmpImage.Draw(pDC,0,0,0,m_nMask);
-	}
-	
+        // ì•„ë¬´ ìƒíƒœë„ ì•„ë‹ë•Œ ê·¸ë¦¼..
+        else
+            m_bmpImage.Draw(pDC,0,0,0,m_nMask);
+    }
+    
 }
 
 void CKbcButton::SetBmpButtonImage(CString strFileName,UINT nMask)
 {
-	m_bmpImage.LoadBitmap(strFileName);
-	m_nMask = nMask;
-	
+    m_bmpImage.LoadBitmap(strFileName);
+    m_nMask = nMask;
+    
 
-	// ¿ì¼± ¹öÆ°ÀÇ Å©±â¸¦ °è»êÇØ ³õ´Â´Ù.
-	// ±×¸²ÀÇ ³ôÀÌ¿Í Æø¿¡¼­ ¹öÆ°ÀÇ Å©±â¸¦ ¾ò¾î¿Ô´Ù.
-	m_rectButton.left	= 0;
-	m_rectButton.top	= 0;
-	m_rectButton.right	= m_bmpImage.GetSliceWidth();
-	m_rectButton.bottom	= m_bmpImage.GetHeight();
+    // ìš°ì„  ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•´ ë†“ëŠ”ë‹¤.
+    // ê·¸ë¦¼ì˜ ë†’ì´ì™€ í­ì—ì„œ ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ì–»ì–´ì™”ë‹¤.
+    m_rectButton.left    = 0;
+    m_rectButton.top    = 0;
+    m_rectButton.right    = m_bmpImage.GetSliceWidth();
+    m_rectButton.bottom    = m_bmpImage.GetHeight();
 
 
-	// ¹öÆ°ÀÇ Å©±â¸¦ ±×¸²¿¡´Ù°¡ ¸ÂÃçÁÖ¾î¾ß ÇÑ´Ù. 
-	// ³ôÀÌ¿Í ÆøÀº ±×¸²¿¡¼­ ³ª¿À¹Ç·Î ±¸ÇÏ±â ½±´Ù.
-	// ¹öÆ°ÀÇ left ¿Í top À» ¾Ë¾Æ¾ß ÇÏ´Âµ¥ ¹Ø¿¡ Ã³·³ÇÏ¸é ±¸ÇØÁø´Ù.
-	CWnd *pWnd = this->GetParent();
-	GetWindowRect(&m_rectButtonPos);
-	pWnd->ScreenToClient(m_rectButtonPos);
-	m_rectButtonPos.right	= m_rectButtonPos.left + m_bmpImage.GetSliceWidth();
-	m_rectButtonPos.bottom	= m_rectButtonPos.top  + m_bmpImage.GetHeight();
+    // ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ê·¸ë¦¼ì—ë‹¤ê°€ ë§ì¶°ì£¼ì–´ì•¼ í•œë‹¤. 
+    // ë†’ì´ì™€ í­ì€ ê·¸ë¦¼ì—ì„œ ë‚˜ì˜¤ë¯€ë¡œ êµ¬í•˜ê¸° ì‰½ë‹¤.
+    // ë²„íŠ¼ì˜ left ì™€ top ì„ ì•Œì•„ì•¼ í•˜ëŠ”ë° ë°‘ì— ì²˜ëŸ¼í•˜ë©´ êµ¬í•´ì§„ë‹¤.
+    CWnd *pWnd = this->GetParent();
+    GetWindowRect(&m_rectButtonPos);
+    pWnd->ScreenToClient(m_rectButtonPos);
+    m_rectButtonPos.right    = m_rectButtonPos.left + m_bmpImage.GetSliceWidth();
+    m_rectButtonPos.bottom    = m_rectButtonPos.top  + m_bmpImage.GetHeight();
 
-	MoveWindow(m_rectButtonPos);
+    MoveWindow(m_rectButtonPos);
 }
 
 void CKbcButton::SetBmpButtonImage(UINT nResourceID,UINT nMask)
 {
-	m_bmpImage.LoadBitmap(nResourceID);
-	m_nMask = nMask;
-	
+    m_bmpImage.LoadBitmap(nResourceID);
+    m_nMask = nMask;
+    
 
-	// ¿ì¼± ¹öÆ°ÀÇ Å©±â¸¦ °è»êÇØ ³õ´Â´Ù.
-	// ±×¸²ÀÇ ³ôÀÌ¿Í Æø¿¡¼­ ¹öÆ°ÀÇ Å©±â¸¦ ¾ò¾î¿Ô´Ù.
-	m_rectButton.left	= 0;
-	m_rectButton.top	= 0;
-	m_rectButton.right	= m_bmpImage.GetSliceWidth();
-	m_rectButton.bottom	= m_bmpImage.GetHeight();
+    // ìš°ì„  ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•´ ë†“ëŠ”ë‹¤.
+    // ê·¸ë¦¼ì˜ ë†’ì´ì™€ í­ì—ì„œ ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ì–»ì–´ì™”ë‹¤.
+    m_rectButton.left    = 0;
+    m_rectButton.top    = 0;
+    m_rectButton.right    = m_bmpImage.GetSliceWidth();
+    m_rectButton.bottom    = m_bmpImage.GetHeight();
 
 
-	// ¹öÆ°ÀÇ Å©±â¸¦ ±×¸²¿¡´Ù°¡ ¸ÂÃçÁÖ¾î¾ß ÇÑ´Ù. 
-	// ³ôÀÌ¿Í ÆøÀº ±×¸²¿¡¼­ ³ª¿À¹Ç·Î ±¸ÇÏ±â ½±´Ù.
-	// ¹öÆ°ÀÇ left ¿Í top À» ¾Ë¾Æ¾ß ÇÏ´Âµ¥ ¹Ø¿¡ Ã³·³ÇÏ¸é ±¸ÇØÁø´Ù.
-	CWnd *pWnd = this->GetParent();
-	GetWindowRect(&m_rectButtonPos);
-	pWnd->ScreenToClient(m_rectButtonPos);
-	m_rectButtonPos.right	= m_rectButtonPos.left + m_bmpImage.GetSliceWidth();
-	m_rectButtonPos.bottom	= m_rectButtonPos.top  + m_bmpImage.GetHeight();
+    // ë²„íŠ¼ì˜ í¬ê¸°ë¥¼ ê·¸ë¦¼ì—ë‹¤ê°€ ë§ì¶°ì£¼ì–´ì•¼ í•œë‹¤. 
+    // ë†’ì´ì™€ í­ì€ ê·¸ë¦¼ì—ì„œ ë‚˜ì˜¤ë¯€ë¡œ êµ¬í•˜ê¸° ì‰½ë‹¤.
+    // ë²„íŠ¼ì˜ left ì™€ top ì„ ì•Œì•„ì•¼ í•˜ëŠ”ë° ë°‘ì— ì²˜ëŸ¼í•˜ë©´ êµ¬í•´ì§„ë‹¤.
+    CWnd *pWnd = this->GetParent();
+    GetWindowRect(&m_rectButtonPos);
+    pWnd->ScreenToClient(m_rectButtonPos);
+    m_rectButtonPos.right    = m_rectButtonPos.left + m_bmpImage.GetSliceWidth();
+    m_rectButtonPos.bottom    = m_rectButtonPos.top  + m_bmpImage.GetHeight();
 
-	MoveWindow(m_rectButtonPos);
+    MoveWindow(m_rectButtonPos);
 }
 
 
 void CKbcButton::OnMouseMove(UINT nFlags, CPoint point) 
 {
-	// WM_MOUSEHOVE ¿Í WM_MOUSELEAVE¸¦ ¹ß»ı½ÃÅ°±â À§ÇØ¼­ 
-	// _TrackMouseEvent¸¦ È£ÃâÇØÁØ´Ù.
-	// m_bCursorOnWindow ·Î Ã¼Å©¸¦ ÇØÁØ °ÍÀº ¸¶¿ì½º°¡ ¹öÆ° ¹Û¿¡ ÀÖ´Ù°¡
-	// ¹öÆ° À§·Î Æ÷ÀÎÅÍ°¡ ¿òÁ÷¿´À» °æ¿ì ÇÑ¹ø¸¸ WM_MOUSEHOVER ¸Ş¼¼Áö¸¦ ¹ß»ı½ÃÅ°±â À§ÇÔÀÌ´Ù.
-	// Æ÷ÀÎÅÍ°¡ ¹öÆ°À» ¶°³µÀ» °æ¿ì¿¡µµ ÇÑ¹ø¸¸ WM_MOUSELEAVE ¸Ş¼¼Áö¸¦ ¹ß»ı½ÃÅ°±â À§ÇÔ.
-	if( m_bCursorOnButton == FALSE )
-	{
-		TRACKMOUSEEVENT tme;
-		ZeroMemory(&tme,sizeof(TRACKMOUSEEVENT));
-		tme.cbSize = sizeof(tme);
-		tme.hwndTrack = m_hWnd;
-		tme.dwFlags = TME_LEAVE|TME_HOVER;
-		tme.dwHoverTime = 1;
-		m_bCursorOnButton = _TrackMouseEvent(&tme);
-	}
-	
-	CButton::OnMouseMove(nFlags, point);
+    // WM_MOUSEHOVE ì™€ WM_MOUSELEAVEë¥¼ ë°œìƒì‹œí‚¤ê¸° ìœ„í•´ì„œ 
+    // _TrackMouseEventë¥¼ í˜¸ì¶œí•´ì¤€ë‹¤.
+    // m_bCursorOnWindow ë¡œ ì²´í¬ë¥¼ í•´ì¤€ ê²ƒì€ ë§ˆìš°ìŠ¤ê°€ ë²„íŠ¼ ë°–ì— ìˆë‹¤ê°€
+    // ë²„íŠ¼ ìœ„ë¡œ í¬ì¸í„°ê°€ ì›€ì§ì˜€ì„ ê²½ìš° í•œë²ˆë§Œ WM_MOUSEHOVER ë©”ì„¸ì§€ë¥¼ ë°œìƒì‹œí‚¤ê¸° ìœ„í•¨ì´ë‹¤.
+    // í¬ì¸í„°ê°€ ë²„íŠ¼ì„ ë– ë‚¬ì„ ê²½ìš°ì—ë„ í•œë²ˆë§Œ WM_MOUSELEAVE ë©”ì„¸ì§€ë¥¼ ë°œìƒì‹œí‚¤ê¸° ìœ„í•¨.
+    if ( m_bCursorOnButton == FALSE )
+    {
+        TRACKMOUSEEVENT tme;
+        ZeroMemory(&tme,sizeof(TRACKMOUSEEVENT));
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = m_hWnd;
+        tme.dwFlags = TME_LEAVE|TME_HOVER;
+        tme.dwHoverTime = 1;
+        m_bCursorOnButton = _TrackMouseEvent(&tme);
+    }
+    
+    CButton::OnMouseMove(nFlags, point);
 }
 
 
 LRESULT CKbcButton::OnMouseHover(WPARAM wparam, LPARAM lparam)
 {
-	m_bHover = TRUE;
-	// DrawItemÀÌ È£ÃâµÇ¶ó°í Invalidate()ÇÔ¼ö ºÎ¸§
-	Invalidate();
-	return 0L;
+    m_bHover = TRUE;
+    // DrawItemì´ í˜¸ì¶œë˜ë¼ê³  Invalidate()í•¨ìˆ˜ ë¶€ë¦„
+    Invalidate();
+    return 0L;
 }
 
 LRESULT CKbcButton::OnMouseLeave(WPARAM wparam, LPARAM lparam)
 {
-	m_bCursorOnButton	= FALSE;
-	m_bHover			= FALSE;
-	// DrawItemÀÌ È£ÃâµÇ¶ó°í Invalidate()ÇÔ¼ö ºÎ¸§
-	Invalidate();
-	return 0L;
+    m_bCursorOnButton    = FALSE;
+    m_bHover            = FALSE;
+    // DrawItemì´ í˜¸ì¶œë˜ë¼ê³  Invalidate()í•¨ìˆ˜ ë¶€ë¦„
+    Invalidate();
+    return 0L;
 }
 
 void CKbcButton::SetButtonEnable()
 {
-	m_bDisable = FALSE;
-	// DrawItemÀÌ È£ÃâµÇ¶ó°í Invalidate()ÇÔ¼ö ºÎ¸§
-	Invalidate();
+    m_bDisable = FALSE;
+    // DrawItemì´ í˜¸ì¶œë˜ë¼ê³  Invalidate()í•¨ìˆ˜ ë¶€ë¦„
+    Invalidate();
 }
 
 void CKbcButton::SetButtonDisable()
 {
-	m_bDisable = TRUE;
-	// DrawItemÀÌ È£ÃâµÇ¶ó°í Invalidate()ÇÔ¼ö ºÎ¸§
-	Invalidate();
+    m_bDisable = TRUE;
+    // DrawItemì´ í˜¸ì¶œë˜ë¼ê³  Invalidate()í•¨ìˆ˜ ë¶€ë¦„
+    Invalidate();
 }
 
 void CKbcButton::OnLButtonDown(UINT nFlags, CPoint point) 
 {
-	// m_bDisable ÀÌ TRUE ¶ó¸é 	CButton::OnLButtonDown(nFlags, point) À»
-	// ½ÇÇàÇÏÁö ¾Ê´Â´Ù. ¿Ö³Ä ÀÌ°Ô ½ÇÇàµÇ¸é ºÎ¸ğ¿¡°Ô Notify ÇØÁÖ±â ¶§¹®¿¡
-	// ºÎ¸ğ°¡ ÀÌ ¹öÆ°ÀÌ ´­·Á Á³´Ù´Â°É ¾Ë°Ô µÈ´Ù. ¸ğ¸£°Ô ÇØ¾ß ÇÏ¹Ç·Î 
-	// ÇÔ¼ö¸¦ ºÒ·¯ÁÖÁö ¾Ê´Â´Ù.
-	if( !m_bDisable )
-		CButton::OnLButtonDown(nFlags, point);
+    // m_bDisable ì´ TRUE ë¼ë©´     CButton::OnLButtonDown(nFlags, point) ì„
+    // ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤. ì™œëƒ ì´ê²Œ ì‹¤í–‰ë˜ë©´ ë¶€ëª¨ì—ê²Œ Notify í•´ì£¼ê¸° ë•Œë¬¸ì—
+    // ë¶€ëª¨ê°€ ì´ ë²„íŠ¼ì´ ëˆŒë ¤ ì¡Œë‹¤ëŠ”ê±¸ ì•Œê²Œ ëœë‹¤. ëª¨ë¥´ê²Œ í•´ì•¼ í•˜ë¯€ë¡œ 
+    // í•¨ìˆ˜ë¥¼ ë¶ˆëŸ¬ì£¼ì§€ ì•ŠëŠ”ë‹¤.
+    if ( !m_bDisable )
+        CButton::OnLButtonDown(nFlags, point);
 }
 
 BOOL CKbcButton::PreTranslateMessage(MSG* pMsg) 
 {
-	// ÅøÆÁÀ» ¶ç¿ì±â À§ÇØ RelayEvent¸¦ È£ÃâÇØÁØ´Ù.
-	// ÅøÆÁÀÌ ¾ÆÁ÷ »ı¼ºµÇÁö ¾Ê¾Ò´Ù¸é..
-	// Áï SetToolTipText ÇÔ¼ö°¡ È£ÃâµÇÁö ¾Ê¾Æ CreateµÇÁö ¾Ê¾Ò´Ù¸é
-	// °Ç³Ê¶Ú´Ù.
-	if( m_ToolTip.GetSafeHwnd() != NULL )
-		m_ToolTip.RelayEvent(pMsg);
-	
-	return CButton::PreTranslateMessage(pMsg);
+    // íˆ´íŒì„ ë„ìš°ê¸° ìœ„í•´ RelayEventë¥¼ í˜¸ì¶œí•´ì¤€ë‹¤.
+    // íˆ´íŒì´ ì•„ì§ ìƒì„±ë˜ì§€ ì•Šì•˜ë‹¤ë©´..
+    // ì¦‰ SetToolTipText í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì§€ ì•Šì•„ Createë˜ì§€ ì•Šì•˜ë‹¤ë©´
+    // ê±´ë„ˆë›´ë‹¤.
+    if ( m_ToolTip.GetSafeHwnd() != NULL )
+        m_ToolTip.RelayEvent(pMsg);
+    
+    return CButton::PreTranslateMessage(pMsg);
 }
 
 void CKbcButton::SetToolTipText(CString strText)
 {
-	m_ToolTip.Create(this);
-	m_ToolTip.Activate(TRUE);
-	m_ToolTip.AddTool(this,(LPCTSTR)strText);
+    m_ToolTip.Create(this);
+    m_ToolTip.Activate(TRUE);
+    m_ToolTip.AddTool(this,(LPCTSTR)strText);
 }
 
 BOOL CKbcButton::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
-// 2007-01-15 by cmkwon, ¸¶¿ì½º Ä¿¼­°¡ »ç¶óÁö´Â ¹ö±× ¼öÁ¤
-//	::SetCursor(m_hCursor);
-	return TRUE;
+// 2007-01-15 by cmkwon, ë§ˆìš°ìŠ¤ ì»¤ì„œê°€ ì‚¬ë¼ì§€ëŠ” ë²„ê·¸ ìˆ˜ì •
+//    ::SetCursor(m_hCursor);
+    return TRUE;
 }
 
 void CKbcButton::SetCursor(HCURSOR hCursor)
 {
-	m_hCursor = hCursor;
+    m_hCursor = hCursor;
 }
 
 BOOL CKbcButton::OnEraseBkgnd(CDC* pDC) 
 {
-	// ÀÌ ÇÔ¼ö¿¡¼­ ÇØ ÁÖ´Â ÀÛ¾÷Àº ¹öÆ°¹Ø¿¡ ÀÖ´Â ¹ÙÅÁÀ» ¹öÆ°¹ÙÅÁ¿¡´Ù°¡ ±×·ÁÁÖ´Â °ÍÀÌ´Ù.
-	// ¸¸¾à ¹öÆ°ÀÌ ¿Ã¶ó°¡´Â À©µµ¿¡ ¹ÙÅÁ ±×¸²ÀÌ ±×·ÁÁ® ÀÖ´Ù¸é ¹öÆ°ÀÇ ³×¸ğ³­ ¿µ¿ªÀÌ µÚµ¤¾î ¹ö¸®±â ¶§¹®¿¡
-	// ¹öÆ° À§¿¡¼­ »çÁøÀ» Åõ¸íÇÏ°Ô ±×·ÁÁàµµ »ç°İÇüÀÎ ¹öÆ° ¸ğ¾çÀÌ ³ªÅ¸³ª°Ô µÈ´Ù.
-	// ±×·¯¹Ç·Î ¹öÆ°ÀÌ ¿Ã¶ó°¡´Â À©µµÀÇ, ¹öÆ°ÀÌ ¿Ã¶ó°¡´Â ±× À§Ä¡ÀÇ ±×¸²À» ¾ò¾î¿Í¼­
-	// ¹öÆ°¿¡´Ù°¡ ¹è°æÀ¸·Î ±×·ÁÁÖ¸é Åõ¸íÇÑ °Í Ã³·³ º¸ÀÎ´Ù. ÀÌ ÇÔ¼öÀÇ ¿ªÇÒÀÌ´Ù..
+    // ì´ í•¨ìˆ˜ì—ì„œ í•´ ì£¼ëŠ” ì‘ì—…ì€ ë²„íŠ¼ë°‘ì— ìˆëŠ” ë°”íƒ•ì„ ë²„íŠ¼ë°”íƒ•ì—ë‹¤ê°€ ê·¸ë ¤ì£¼ëŠ” ê²ƒì´ë‹¤.
+    // ë§Œì•½ ë²„íŠ¼ì´ ì˜¬ë¼ê°€ëŠ” ìœˆë„ì— ë°”íƒ• ê·¸ë¦¼ì´ ê·¸ë ¤ì ¸ ìˆë‹¤ë©´ ë²„íŠ¼ì˜ ë„¤ëª¨ë‚œ ì˜ì—­ì´ ë’¤ë®ì–´ ë²„ë¦¬ê¸° ë•Œë¬¸ì—
+    // ë²„íŠ¼ ìœ„ì—ì„œ ì‚¬ì§„ì„ íˆ¬ëª…í•˜ê²Œ ê·¸ë ¤ì¤˜ë„ ì‚¬ê²©í˜•ì¸ ë²„íŠ¼ ëª¨ì–‘ì´ ë‚˜íƒ€ë‚˜ê²Œ ëœë‹¤.
+    // ê·¸ëŸ¬ë¯€ë¡œ ë²„íŠ¼ì´ ì˜¬ë¼ê°€ëŠ” ìœˆë„ì˜, ë²„íŠ¼ì´ ì˜¬ë¼ê°€ëŠ” ê·¸ ìœ„ì¹˜ì˜ ê·¸ë¦¼ì„ ì–»ì–´ì™€ì„œ
+    // ë²„íŠ¼ì—ë‹¤ê°€ ë°°ê²½ìœ¼ë¡œ ê·¸ë ¤ì£¼ë©´ íˆ¬ëª…í•œ ê²ƒ ì²˜ëŸ¼ ë³´ì¸ë‹¤. ì´ í•¨ìˆ˜ì˜ ì—­í• ì´ë‹¤..
 
 
-	// ¿©±â¼­ º¸¸é ºÎ¸ğ À©µµÀÇ DC¸¦ ¾ò¾î ¿À´Â °ÍÀ» ¾Ë ¼ö ÀÖ´Ù.
-	CWnd *pWnd		 = this->GetParent();
-	CDC  *pParentDC	 = pWnd->GetDC();
+    // ì—¬ê¸°ì„œ ë³´ë©´ ë¶€ëª¨ ìœˆë„ì˜ DCë¥¼ ì–»ì–´ ì˜¤ëŠ” ê²ƒì„ ì•Œ ìˆ˜ ìˆë‹¤.
+    CWnd *pWnd         = this->GetParent();
+    CDC  *pParentDC     = pWnd->GetDC();
 
 
-	CDC					srcDC;
-	CBitmap				srcBmp;
-	CBitmap				*oldsrcBmp;
+    CDC                    srcDC;
+    CBitmap                srcBmp;
+    CBitmap                *oldsrcBmp;
 
-	
-	srcDC.CreateCompatibleDC(pParentDC);
-	srcBmp.CreateCompatibleBitmap(pParentDC,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight());
-	oldsrcBmp = srcDC.SelectObject(&srcBmp);
+    
+    srcDC.CreateCompatibleDC(pParentDC);
+    srcBmp.CreateCompatibleBitmap(pParentDC,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight());
+    oldsrcBmp = srcDC.SelectObject(&srcBmp);
 
-	// °á±¹ ºÎ¸ğ À©µµ¿¡¼­ ¹öÆ°ÀÌ ¿Ã¶ó°¡¸é¼­ µ¤°ÔµÇ´Â ±×¸²À» srcDC·Î °¡Á®¿Â´Ù.
-	srcDC.BitBlt(0,0,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight(),
-		pParentDC,m_rectButtonPos.left,m_rectButtonPos.top,SRCCOPY);
+    // ê²°êµ­ ë¶€ëª¨ ìœˆë„ì—ì„œ ë²„íŠ¼ì´ ì˜¬ë¼ê°€ë©´ì„œ ë®ê²Œë˜ëŠ” ê·¸ë¦¼ì„ srcDCë¡œ ê°€ì ¸ì˜¨ë‹¤.
+    srcDC.BitBlt(0,0,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight(),
+        pParentDC,m_rectButtonPos.left,m_rectButtonPos.top,SRCCOPY);
 
 
-	pParentDC->SelectObject(oldsrcBmp);
-	ReleaseDC(pParentDC);
+    pParentDC->SelectObject(oldsrcBmp);
+    ReleaseDC(pParentDC);
 
-//	pDC->BitBlt(0,0,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight(),&srcDC,0,0,SRCCOPY);	// 2013-03-25 by jhseol, ·±Ã³ ¹öÆ° ÀÌ¹ÌÁö ±³Ã¼°úÁ¤¿¡ ¹ß»ıÇÏ´Â ÀÌ»ó Çö»ó ¼öÁ¤ - ÁÖ¼® Ã³¸®ÇÔ.
+//    pDC->BitBlt(0,0,m_bmpImage.GetSliceWidth(),m_bmpImage.GetHeight(),&srcDC,0,0,SRCCOPY);    // 2013-03-25 by jhseol, ëŸ°ì²˜ ë²„íŠ¼ ì´ë¯¸ì§€ êµì²´ê³¼ì •ì— ë°œìƒí•˜ëŠ” ì´ìƒ í˜„ìƒ ìˆ˜ì • - ì£¼ì„ ì²˜ë¦¬í•¨.
 
-	return TRUE;
+    return TRUE;
 }

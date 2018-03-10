@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 #if !defined(AFX_KBCBUTTON_H__41D0AB53_20C4_4079_B3E2_3E8B6B337CD5__INCLUDED_)
 #define AFX_KBCBUTTON_H__41D0AB53_20C4_4079_B3E2_3E8B6B337CD5__INCLUDED_
 
@@ -10,13 +11,13 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CKbcButton window
-// CKbcButton »ç¿ë¹ý
-// DDX_Control À» »ç¿ëÇØ¼­ ¾²°íÀÚ ÇÏ´Â °÷¿¡¼­ CKbcButtonÀ¸·Î ¿¬°áÇØÁØ´ÙÀ½.. 
-// SetBmpButtonImage("test.bmp",RGB(0,0,255)); ¸¦ È£ÃâÇÏ¸é µÈ´Ù....
+// CKbcButton ì‚¬ìš©ë²•
+// DDX_Control ì„ ì‚¬ìš©í•´ì„œ ì“°ê³ ìž í•˜ëŠ” ê³³ì—ì„œ CKbcButtonìœ¼ë¡œ ì—°ê²°í•´ì¤€ë‹¤ìŒ.. 
+// SetBmpButtonImage("test.bmp",RGB(0,0,255)); ë¥¼ í˜¸ì¶œí•˜ë©´ ëœë‹¤....
 //
-// Á¦ÀÛ - °ûº´Âù(kbckbc@postech.ac.kr | http://kbckbc.com)
-// È¤½Ã¶óµµ »ç¿ëÇÏ½Ã´Â ºÐ²²¼± Å¬·¡½º ÀÌ¸§ÀÌ³ª¸¶ À¯ÁöÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-// ±×·¡µµ ÀúÀÇ ³ë·ÂÀÌ ´ã±ä °Å¶õ°É ÀÌÇØÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
+// ì œìž‘ - ê³½ë³‘ì°¬(kbckbc@postech.ac.kr | http://kbckbc.com)
+// í˜¹ì‹œë¼ë„ ì‚¬ìš©í•˜ì‹œëŠ” ë¶„ê»˜ì„  í´ëž˜ìŠ¤ ì´ë¦„ì´ë‚˜ë§ˆ ìœ ì§€í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.
+// ê·¸ëž˜ë„ ì €ì˜ ë…¸ë ¥ì´ ë‹´ê¸´ ê±°ëž€ê±¸ ì´í•´í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.
 
 class CKbcButton : public CButton
 {
@@ -24,51 +25,51 @@ class CKbcButton : public CButton
 public:
 	CKbcButton();
 
-	// Åõ¸í ºñÆ®¸ÊÀ» ±×·ÁÁÖ´Â º¯¼ö
+	// íˆ¬ëª… ë¹„íŠ¸ë§µì„ ê·¸ë ¤ì£¼ëŠ” ë³€ìˆ˜
 	CKbcBmp			m_bmpImage;
 	UINT			m_nMask;
 
 
-	// ºñÆ®¸ÊÀ¸·Î ÇØº¼¶ó°í
+	// ë¹„íŠ¸ë§µìœ¼ë¡œ í•´ë³¼ë¼ê³ 
 	void			SetBmpButtonImage(CString,UINT);
 	void			SetBmpButtonImage(UINT,UINT);
 
-	// ¹öÆ°À» È°¼ºÈ­/ºñÈ°¼ºÈ­ ½ÃÅ²´Ù.
+	// ë²„íŠ¼ì„ í™œì„±í™”/ë¹„í™œì„±í™” ì‹œí‚¨ë‹¤.
 	void			SetButtonEnable();
 	void			SetButtonDisable();
 
-	// ÅøÆÁ ¸Þ¼¼Áö¸¦ º¸ÀÎ´Ù.
+	// íˆ´íŒ ë©”ì„¸ì§€ë¥¼ ë³´ì¸ë‹¤.
 	void			SetToolTipText(CString);
 
-	// ¹öÆ°À§¿¡¼­ Ä¿¼­¸¦ ¹Ù²Û´Ù.
+	// ë²„íŠ¼ìœ„ì—ì„œ ì»¤ì„œë¥¼ ë°”ê¾¼ë‹¤.
 	void			SetCursor(HCURSOR);
 
 protected:
-	// È°¼ºÈ­ÀÎÁö ºñÈ°¼ºÈ­ÀÎÁö Àâ°í ÀÖ´Â º¯¼ö
-	// ÃÊ±â°ªÀº FALSE·Î È°¼ºÈ­¶õ ¶æÀÌ´Ù.
+	// í™œì„±í™”ì¸ì§€ ë¹„í™œì„±í™”ì¸ì§€ ìž¡ê³  ìžˆëŠ” ë³€ìˆ˜
+	// ì´ˆê¸°ê°’ì€ FALSEë¡œ í™œì„±í™”ëž€ ëœ»ì´ë‹¤.
 	BOOL			m_bDisable;
 
 
-	// Ä¿¼­°¡ ¹öÆ°À§¿¡ ÀÖ´À³Ä ¾ø´À³Ä ÆÇ´Ü
-	// WM_MOUSEHOVER ¶û WM_MOUSELEAVE ¸Þ¼¼Áö¸¦ ÇÑ¹ø¾¿¸¸ ³¯·ÁÁÖ±â À§ÇØ ¾´´Ù.
+	// ì»¤ì„œê°€ ë²„íŠ¼ìœ„ì— ìžˆëŠëƒ ì—†ëŠëƒ íŒë‹¨
+	// WM_MOUSEHOVER ëž‘ WM_MOUSELEAVE ë©”ì„¸ì§€ë¥¼ í•œë²ˆì”©ë§Œ ë‚ ë ¤ì£¼ê¸° ìœ„í•´ ì“´ë‹¤.
 	BOOL			m_bCursorOnButton;
 
 
-	// Áö±Ý ¹öÆ°ÀÌ ÇÏ¹ö »óÅÂÀÌ¸é ÇÏ¹öµÈ ±×¸²À» ±×¸°´Ù.
-	// DrawItem ÂÊ¿¡¼­ ¾´´Ù.
+	// ì§€ê¸ˆ ë²„íŠ¼ì´ í•˜ë²„ ìƒíƒœì´ë©´ í•˜ë²„ëœ ê·¸ë¦¼ì„ ê·¸ë¦°ë‹¤.
+	// DrawItem ìª½ì—ì„œ ì“´ë‹¤.
 	BOOL			m_bHover;
 
 
-	// m_rectButton ´Â ¹öÆ°ÀÇ Å©±â 0,0,10,10 ÀÌ·± ½ÄÀÇ °ªÀÌ´Ù.
-	// m_rectButtonPos Àº ¹öÆ°ÀÌ ¿Ã¶ó°¡ ÀÖ´Â ´ÙÀÌ¾ó ·Î±×¿¡¼­ À§Ä¡°ªÀÌ´Ù.
+	// m_rectButton ëŠ” ë²„íŠ¼ì˜ í¬ê¸° 0,0,10,10 ì´ëŸ° ì‹ì˜ ê°’ì´ë‹¤.
+	// m_rectButtonPos ì€ ë²„íŠ¼ì´ ì˜¬ë¼ê°€ ìžˆëŠ” ë‹¤ì´ì–¼ ë¡œê·¸ì—ì„œ ìœ„ì¹˜ê°’ì´ë‹¤.
 	CRect			m_rectButton;
 	CRect			m_rectButtonPos;
 
-	// ÅøÆÁ ¸Þ¼¼Áö¸¦ À§ÇÑ °Í~~
+	// íˆ´íŒ ë©”ì„¸ì§€ë¥¼ ìœ„í•œ ê²ƒ~~
 	CToolTipCtrl	m_ToolTip;
 
 
-	// »ç¿ëÀÚ°¡ Ä¿¼­¸¦ ¼¼ÆÃÇÒ¼öµµ ÀÖ´Âµ¥ ±×¶§ Ä¿¼­¸¦ Àâ°í ÀÖ´Â º¯¼ö
+	// ì‚¬ìš©ìžê°€ ì»¤ì„œë¥¼ ì„¸íŒ…í• ìˆ˜ë„ ìžˆëŠ”ë° ê·¸ë•Œ ì»¤ì„œë¥¼ ìž¡ê³  ìžˆëŠ” ë³€ìˆ˜
 	HCURSOR			m_hCursor;	
 
 	

@@ -1,7 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 //  VoIPProtocol.h
-//			: Æí´ë°£ À½¼º ÅëÈ­¿¡¼­ ¼­¹ö¿Í Å¬¶óÀÌ¾ðÆ®ÀÌ Åë½ÅÀ» À§ÇÑ Param Çì´õ ÆÄÀÏ
-//			  VoIP Distribute Server, VoIP Call Server, VoIP Client¿¡¼­ »ç¿ëµÊ
+//			: íŽ¸ëŒ€ê°„ ìŒì„± í†µí™”ì—ì„œ ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ì´ í†µì‹ ì„ ìœ„í•œ Param í—¤ë” íŒŒì¼
+//			  VoIP Distribute Server, VoIP Call Server, VoIP Clientì—ì„œ ì‚¬ìš©ë¨
 //
 //  Date	: 2004-03-16 by cmkwon
 ///////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ typedef enum
 } VOIP_SOCK_TYPE_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-09-30 by cmkwon, VoIP ½Ã½ºÅÛ ¼öÁ¤ - VOIP_STATE_XXX Á¤ÀÇ
+// 2008-09-30 by cmkwon, VoIP ì‹œìŠ¤í…œ ìˆ˜ì • - VOIP_STATE_XXX ì •ì˜
 typedef enum
 {
 	VOIP_STATE_UNKNOWN						= 0,
@@ -34,13 +34,13 @@ typedef enum
 } VOIP_STATE_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - TAKING_STATE_XXX Á¤ÀÇ
+// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - TAKING_STATE_XXX ì •ì˜
 typedef enum
 {
-	TALKING_STATE_MUTE						= 0,		// ¹«À½ »óÅÂ
-	TALKING_STATE_START_TALKING				= 1,		// ¸»ÇÏ±â ½ÃÀÛ
-	TALKING_STATE_TALKING					= 1,		// ¸»ÇÏ´Â »óÅÂ
-	TALKING_STATE_END_TALKING				= 2			// ¸»ÇÏ±â Á¾·á
+	TALKING_STATE_MUTE						= 0,		// ë¬´ìŒ ìƒíƒœ
+	TALKING_STATE_START_TALKING				= 1,		// ë§í•˜ê¸° ì‹œìž‘
+	TALKING_STATE_TALKING					= 1,		// ë§í•˜ëŠ” ìƒíƒœ
+	TALKING_STATE_END_TALKING				= 2			// ë§í•˜ê¸° ì¢…ë£Œ
 } TALKING_STATE_t;
 
 
@@ -48,18 +48,18 @@ typedef enum
 	///////////////////////////////////////////////////////////////////////////////
 	// User Define Macro
 	///////////////////////////////////////////////////////////////////////////////
-		#define	WM_C2D_ASYNC_EVENT					(WM_USER + 10)	// VCServer¿¡¼­ VDServer·Î ¿¬°á
-		#define	WM_C2D_PACKET_NOTIFY				(WM_USER + 11)	// HWND¿¡ Àü´ÞµÇ´Â ¸Þ½ÃÁö
-		#define	WM_S2D_ASYNC_EVENT					(WM_USER + 12)	// SCVoIP¿¡¼­ VDServer·Î ¿¬°á
-		#define	WM_S2D_PACKET_NOTIFY				(WM_USER + 13)	// HWND¿¡ Àü´ÞµÇ´Â ¸Þ½ÃÁö
-		#define	WM_S2C_ASYNC_EVENT					(WM_USER + 14)	// SCVoIP¿¡¼­ VCServer·Î ¿¬°á
-		#define	WM_S2C_PACKET_NOTIFY				(WM_USER + 15)	// HWND¿¡ Àü´ÞµÇ´Â ¸Þ½ÃÁö
+		#define	WM_C2D_ASYNC_EVENT					(WM_USER + 10)	// VCServerì—ì„œ VDServerë¡œ ì—°ê²°
+		#define	WM_C2D_PACKET_NOTIFY				(WM_USER + 11)	// HWNDì— ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€
+		#define	WM_S2D_ASYNC_EVENT					(WM_USER + 12)	// SCVoIPì—ì„œ VDServerë¡œ ì—°ê²°
+		#define	WM_S2D_PACKET_NOTIFY				(WM_USER + 13)	// HWNDì— ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€
+		#define	WM_S2C_ASYNC_EVENT					(WM_USER + 14)	// SCVoIPì—ì„œ VCServerë¡œ ì—°ê²°
+		#define	WM_S2C_PACKET_NOTIFY				(WM_USER + 15)	// HWNDì— ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€
 
 
 
 		#define SIZE_MAX_ROOM_NAME					20
 		#define SIZE_MAX_USER_NAME					20
-		#define SIZE_MAX_ROOM_COUNT					200				// ÀÚ½ÅÀ» Æ÷ÇÔÇÑ ÃÖ´ë ÀÎ¿ø¼ö
+		#define SIZE_MAX_ROOM_COUNT					200				// ìžì‹ ì„ í¬í•¨í•œ ìµœëŒ€ ì¸ì›ìˆ˜
 
 
 		#define MAKEUINT64(low, high) (  ((UINT64)(low)) | ( ((UINT64)(high))<<32 )  )
@@ -114,9 +114,9 @@ typedef enum
 
 #endif // END - #if !defined(_ATUM_CLIENT)
 
-	#define SIZE_MAX_CHANNEL_COUNT				50				// ÀÚ½ÅÀ» Æ÷ÇÔÇÑ ÃÖ´ë ÀÎ¿ø¼ö
-	#define SIZE_MAX_TALKING_USER_COUNT			10				// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ÃÖ´ë µ¿½Ã ¸»ÇÏ±â °¡´É À¯Àú¼ö
-	#define SIZE_NORMAL_TALKING_USER_COUNT		6				// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ±âº» µ¿½Ã ¸»ÇÏ±â °¡´É À¯Àú¼ö
+	#define SIZE_MAX_CHANNEL_COUNT				50				// ìžì‹ ì„ í¬í•¨í•œ ìµœëŒ€ ì¸ì›ìˆ˜
+	#define SIZE_MAX_TALKING_USER_COUNT			10				// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ìµœëŒ€ ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ìœ ì €ìˆ˜
+	#define SIZE_NORMAL_TALKING_USER_COUNT		6				// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ê¸°ë³¸ ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ìœ ì €ìˆ˜
 
 	typedef enum
 	{
@@ -145,7 +145,7 @@ typedef enum
 ///////////////////////////////////////////////////////////////////////////////////
 // SCDialer1.ocx	
 
-// 2006-12-25 by cmkwon, ½ÇÇà ÀÎÀÚ·Î ¹Þ¾Æ¼­ Ã³¸® ÇÏµµ·Ï ÇÑ´Ù.
+// 2006-12-25 by cmkwon, ì‹¤í–‰ ì¸ìžë¡œ ë°›ì•„ì„œ ì²˜ë¦¬ í•˜ë„ë¡ í•œë‹¤.
 //	#define WINDOWTEXT_ATUM_SERVER				"SpaceCowboy_R"
 //	#define WINDOWTEXT_ATUM_CLIENT				"SpaceCowboyVoIPClient"
 
@@ -165,15 +165,15 @@ typedef enum
 		AV_EV_CLIENT_ERROR			= 0x00,
 		AV_EV_CLIENT_STATUS			= 0x01,	
 		AV_EV_EXECUTE_OK			= 0x02,
-		AV_EV_NOTIFY				= 0x05,		// 2005-10-06 by cmkwon, No body, Á¤º¸ ¾Ë¸²
+		AV_EV_NOTIFY				= 0x05,		// 2005-10-06 by cmkwon, No body, ì •ë³´ ì•Œë¦¼
 		AV_EV_REGISTERED			= 0x10,				// No body
 		AV_EV_CREATE_ROOM_OK		= 0x20,				// No body
 		AV_EV_JOIN_ROOM_OK			= 0x21,				// No body
 		AV_EV_JOIN_USER				= 0x22,
 		AV_EV_GOOUT_USER			= 0x23,
 		AV_EV_TALK_USER				= 0x24,
-		AV_EV_GET_SPK_VOLUME_OK		= 0x25,		// 2008-06-12 by cmkwon, SCVoIP.exe ¿¡ Volume ¼³Á¤ ±â´É Ãß°¡ - 
-		AV_EV_CHANGED_TALKING_STATE	= 0x26,		// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+		AV_EV_GET_SPK_VOLUME_OK		= 0x25,		// 2008-06-12 by cmkwon, SCVoIP.exe ì— Volume ì„¤ì • ê¸°ëŠ¥ ì¶”ê°€ - 
+		AV_EV_CHANGED_TALKING_STATE	= 0x26,		// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 
 		AV_MT_CLIENT_END			= 0x80,
 		AV_MT_UNREGISTER			= 0x81,
@@ -185,8 +185,8 @@ typedef enum
 		AV_MT_GUILD_JOIN_ROOM		= 0xA3,
 		AV_MT_TALK					= 0xA4,
 		AV_MT_TALK_CANCEL			= 0xA5,
-		AV_MT_GET_SPK_VOLUME		= 0xA6,		// 2008-06-12 by cmkwon, SCVoIP.exe ¿¡ Volume ¼³Á¤ ±â´É Ãß°¡ - 
-		AV_MT_SET_SPK_VOLUME		= 0xA7		// 2008-06-12 by cmkwon, SCVoIP.exe ¿¡ Volume ¼³Á¤ ±â´É Ãß°¡ - 
+		AV_MT_GET_SPK_VOLUME		= 0xA6,		// 2008-06-12 by cmkwon, SCVoIP.exe ì— Volume ì„¤ì • ê¸°ëŠ¥ ì¶”ê°€ - 
+		AV_MT_SET_SPK_VOLUME		= 0xA7		// 2008-06-12 by cmkwon, SCVoIP.exe ì— Volume ì„¤ì • ê¸°ëŠ¥ ì¶”ê°€ - 
 	} AVMessageType;
 
 	class AV_MSG_WM_COPYDATA

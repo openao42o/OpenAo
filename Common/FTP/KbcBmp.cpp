@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 // KbcBmp.cpp : implementation file
 //
 
@@ -59,7 +60,7 @@ void CKbcBmp::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CKbcBmp message handlers
 
-// ÆÄÀÏÀÌ¸§À¸·Î Á÷Á¢ ·ÎµåÇÒ ¶§..
+// íŒŒì¼ì´ë¦„ìœ¼ë¡œ ì§ì ‘ ë¡œë“œí•  ë•Œ..
 void CKbcBmp::LoadBitmap(UINT nResourceID)
 {
 	m_Bitmap.LoadBitmap(nResourceID);
@@ -74,16 +75,16 @@ void CKbcBmp::LoadBitmap(UINT nResourceID)
 	m_nMode = 0;
 }
 
-// ÆÄÀÏÀÌ¸§À¸·Î Á÷Á¢ ·ÎµåÇÒ ¶§..
+// íŒŒì¼ì´ë¦„ìœ¼ë¡œ ì§ì ‘ ë¡œë“œí•  ë•Œ..
 void CKbcBmp::LoadBitmap(CString strFileName)
 {
-	// ÀÌ¹ÌÁö¸¦ ºÒ·¯¿Â´Ù.
+	// ì´ë¯¸ì§€ë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
 	m_hBitmap = (HBITMAP)::LoadImage(
 		AfxGetInstanceHandle(),
 		strFileName,
 		IMAGE_BITMAP,0,0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
-	// ÀÌ¹ÌÁöÀÇ Å©±â¸¦ ±¸ÇÏ±â À§ÇÔ..
+	// ì´ë¯¸ì§€ì˜ í¬ê¸°ë¥¼ êµ¬í•˜ê¸° ìœ„í•¨..
 	(CBitmap::FromHandle(m_hBitmap))->GetBitmap(&m_BmpInfo);
 	
 	m_nWidth		= m_BmpInfo.bmWidth;
@@ -94,7 +95,7 @@ void CKbcBmp::LoadBitmap(CString strFileName)
 	m_nMode = 1;
 }
 
-// ÆÄÀÏ¿¡¼­ Á÷Á¢ ºÒ·¯ ¿Ã ¶§...
+// íŒŒì¼ì—ì„œ ì§ì ‘ ë¶ˆëŸ¬ ì˜¬ ë•Œ...
 void CKbcBmp::Draw(CDC *pDC,int nX,int nY)
 {
 	CDC					oriDC;
@@ -103,9 +104,9 @@ void CKbcBmp::Draw(CDC *pDC,int nX,int nY)
 	UINT BMPWIDTH		= m_nWidth;
 	UINT BMPHEIGHT		= m_nHeight;
 
-	// ¿øº» ÀÌ¹ÌÁö¸¦ oriDC¿¡´Ù°¡ º¹»çÇØÁØ´Ù.
-	// ±×°ÍÀ» srcDC¿¡´Ù°¡ º¹»çÇØ¼­ ½á¾ßµÈ´Ù. ¾È±×·¯¸é ¿øº» ÀÌ¹ÌÁö°¡ »óÇÏ´Â ÀÏÀÌ ¹ß»ýÇÑ´Ù. 
-	// ÀÌ¹ÌÁö Á¶ÀÛ Àü¿¡´Â ·Îµå ÇØ³õ°í ±×°ÍÀÇ º¹»çº»À» ¸¸µé¾î ³õ°í °Å±â¼­ Á¶ÀÛÇÏÀÚ..
+	// ì›ë³¸ ì´ë¯¸ì§€ë¥¼ oriDCì—ë‹¤ê°€ ë³µì‚¬í•´ì¤€ë‹¤.
+	// ê·¸ê²ƒì„ srcDCì—ë‹¤ê°€ ë³µì‚¬í•´ì„œ ì¨ì•¼ëœë‹¤. ì•ˆê·¸ëŸ¬ë©´ ì›ë³¸ ì´ë¯¸ì§€ê°€ ìƒí•˜ëŠ” ì¼ì´ ë°œìƒí•œë‹¤. 
+	// ì´ë¯¸ì§€ ì¡°ìž‘ ì „ì—ëŠ” ë¡œë“œ í•´ë†“ê³  ê·¸ê²ƒì˜ ë³µì‚¬ë³¸ì„ ë§Œë“¤ì–´ ë†“ê³  ê±°ê¸°ì„œ ì¡°ìž‘í•˜ìž..
 	oriDC.CreateCompatibleDC(pDC);
 	poldoriDC = oriDC.SelectObject( m_nMode ? CBitmap::FromHandle(m_hBitmap) : &m_Bitmap );
 
@@ -115,7 +116,7 @@ void CKbcBmp::Draw(CDC *pDC,int nX,int nY)
 
 }
 
-// ÆÄÀÏ¿¡¼­ Á÷Á¢ ºÒ·¯ ¿Ã ¶§...
+// íŒŒì¼ì—ì„œ ì§ì ‘ ë¶ˆëŸ¬ ì˜¬ ë•Œ...
 void CKbcBmp::Draw(CDC *pDC,int nX,int nY,UINT nMask)
 {
 	UINT BLACK			= RGB(0,0,0);
@@ -136,56 +137,56 @@ void CKbcBmp::Draw(CDC *pDC,int nX,int nY,UINT nMask)
 	CBitmap				*poldmaskDC;
 	CBitmap				*poldmemDC;
 	
-	// ¿øº» ÀÌ¹ÌÁö¸¦ oriDC¿¡´Ù°¡ º¹»çÇØÁØ´Ù.
-	// ±×°ÍÀ» srcDC¿¡´Ù°¡ º¹»çÇØ¼­ ½á¾ßµÈ´Ù. ¾È±×·¯¸é ¿øº» ÀÌ¹ÌÁö°¡ »óÇÏ´Â ÀÏÀÌ ¹ß»ýÇÑ´Ù. 
-	// ÀÌ¹ÌÁö Á¶ÀÛ Àü¿¡´Â ·Îµå ÇØ³õ°í ±×°ÍÀÇ º¹»çº»À» ¸¸µé¾î ³õ°í °Å±â¼­ Á¶ÀÛÇÏÀÚ..
+	// ì›ë³¸ ì´ë¯¸ì§€ë¥¼ oriDCì—ë‹¤ê°€ ë³µì‚¬í•´ì¤€ë‹¤.
+	// ê·¸ê²ƒì„ srcDCì—ë‹¤ê°€ ë³µì‚¬í•´ì„œ ì¨ì•¼ëœë‹¤. ì•ˆê·¸ëŸ¬ë©´ ì›ë³¸ ì´ë¯¸ì§€ê°€ ìƒí•˜ëŠ” ì¼ì´ ë°œìƒí•œë‹¤. 
+	// ì´ë¯¸ì§€ ì¡°ìž‘ ì „ì—ëŠ” ë¡œë“œ í•´ë†“ê³  ê·¸ê²ƒì˜ ë³µì‚¬ë³¸ì„ ë§Œë“¤ì–´ ë†“ê³  ê±°ê¸°ì„œ ì¡°ìž‘í•˜ìž..
 	oriDC.CreateCompatibleDC(pDC);
 	poldoriDC = oriDC.SelectObject( m_nMode ? CBitmap::FromHandle(m_hBitmap) : &m_Bitmap );
 
 
-	// oriDC ÀÌ¹ÌÁö¸¦ srcDC ¿¡´Ù°¡ º¹»çÇØÁØ´Ù..
+	// oriDC ì´ë¯¸ì§€ë¥¼ srcDC ì—ë‹¤ê°€ ë³µì‚¬í•´ì¤€ë‹¤..
 	srcDC.CreateCompatibleDC(pDC);
 	srcBmp.CreateCompatibleBitmap(pDC,BMPWIDTH,BMPHEIGHT);
 	poldsrcDC = srcDC.SelectObject(&srcBmp);
 	srcDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,&oriDC,0,0,SRCCOPY);
 
 
-	// ¸¶½ºÅ©¸¦ °¡Áö´Â DC, 
-	// mask´Â ±×¸²ÀÌ ±×·ÁÁú ºÎºÐÀº Black, ¹è°æÀº White·Î Ç¥½ÃµÈ ±×¸²ÀÌ´Ù.
+	// ë§ˆìŠ¤í¬ë¥¼ ê°€ì§€ëŠ” DC, 
+	// maskëŠ” ê·¸ë¦¼ì´ ê·¸ë ¤ì§ˆ ë¶€ë¶„ì€ Black, ë°°ê²½ì€ Whiteë¡œ í‘œì‹œëœ ê·¸ë¦¼ì´ë‹¤.
 	maskDC.CreateCompatibleDC(pDC);
 	maskBmp.CreateBitmap(BMPWIDTH,BMPHEIGHT,1,1,NULL);
 	poldmaskDC = maskDC.SelectObject(&maskBmp);
 
 
-	// Àü¼ÛÇÒ(source) ±×¸²ÀÇ ¹è°æÀ» ÁöÁ¤ÇØ³õ°í BitBltÇÏ¸é 
-	// ¹è°æ»öÀº Èò»ö, ¾Æ´Ñ°ÍÀº ¸ðµÎ °ËÁ¤»öÀ¸·Î Àü¼ÛÀ» ÇØÁØ´Ù.
-	// Àü¼ÛÀ» ÇØ¼­ SRCCOPYÇÏ¸é mask ÀÌ¹ÌÁö°¡ ¿Ï¼ºµÈ´Ù.
+	// ì „ì†¡í• (source) ê·¸ë¦¼ì˜ ë°°ê²½ì„ ì§€ì •í•´ë†“ê³  BitBltí•˜ë©´ 
+	// ë°°ê²½ìƒ‰ì€ í°ìƒ‰, ì•„ë‹Œê²ƒì€ ëª¨ë‘ ê²€ì •ìƒ‰ìœ¼ë¡œ ì „ì†¡ì„ í•´ì¤€ë‹¤.
+	// ì „ì†¡ì„ í•´ì„œ SRCCOPYí•˜ë©´ mask ì´ë¯¸ì§€ê°€ ì™„ì„±ëœë‹¤.
 	srcDC.SetBkColor(MASK);
 	maskDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,&srcDC,0,0,SRCCOPY);
 
 
-	// Àü¼ÛÀ» ¹ÞÀ» DCÀÇ ¹è°æ°ú Àü°æÀ» ÁöÁ¤ÇØ ³õ°í BitBlt ÇÏ¸é
-	// Àü¼ÛÇÏ´Â ±×¸²ÀÇ White ´Â Àü¼Û ¹ÞÀ» DCÀÇ BackgroundÀÇ »öÀ¸·Î º¯È¯ µÇ°í
-	// Àü¼ÛÇÏ´Â ±×¸²ÀÇ Black Àº Àü¼Û ¹ÞÀ» DCÀÇ ForegroundÀÇ »öÀ¸·Î º¯È¯ µÈ´Ù.
-	// ÀÌ·¸°Ô µÇ¸é maskDC ÀÇ ±×¸²°ú´Â ¹ÝÀüµÇ´Â ±×¸²ÀÌ ³ª¿À°Ô µÈ´Ù.
-	// ÀÌ°ÍÀ» SRCAND¿¬»êÀ» ÇÏ¸é ±âÁ¸ÀÇ srcDC ¿¡ ÀÖ´Â ±×¸²°ú °ãÃÄÁö¸é¼­
-	// ¿øº» ±×¸²ÀÇ ¹è°æÀº °ËÁ¤»öÀÌ µÇ¹ö¸®°í ¾Æ´Ñ°ÍÀº ¿øº» ±×´ë·Î Ç¥½Ã°¡ µÈ´Ù.
+	// ì „ì†¡ì„ ë°›ì„ DCì˜ ë°°ê²½ê³¼ ì „ê²½ì„ ì§€ì •í•´ ë†“ê³  BitBlt í•˜ë©´
+	// ì „ì†¡í•˜ëŠ” ê·¸ë¦¼ì˜ White ëŠ” ì „ì†¡ ë°›ì„ DCì˜ Backgroundì˜ ìƒ‰ìœ¼ë¡œ ë³€í™˜ ë˜ê³ 
+	// ì „ì†¡í•˜ëŠ” ê·¸ë¦¼ì˜ Black ì€ ì „ì†¡ ë°›ì„ DCì˜ Foregroundì˜ ìƒ‰ìœ¼ë¡œ ë³€í™˜ ëœë‹¤.
+	// ì´ë ‡ê²Œ ë˜ë©´ maskDC ì˜ ê·¸ë¦¼ê³¼ëŠ” ë°˜ì „ë˜ëŠ” ê·¸ë¦¼ì´ ë‚˜ì˜¤ê²Œ ëœë‹¤.
+	// ì´ê²ƒì„ SRCANDì—°ì‚°ì„ í•˜ë©´ ê¸°ì¡´ì˜ srcDC ì— ìžˆëŠ” ê·¸ë¦¼ê³¼ ê²¹ì³ì§€ë©´ì„œ
+	// ì›ë³¸ ê·¸ë¦¼ì˜ ë°°ê²½ì€ ê²€ì •ìƒ‰ì´ ë˜ë²„ë¦¬ê³  ì•„ë‹Œê²ƒì€ ì›ë³¸ ê·¸ëŒ€ë¡œ í‘œì‹œê°€ ëœë‹¤.
 	srcDC.SetBkColor(BLACK);
 	srcDC.SetTextColor(WHITE);
 	srcDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,&maskDC,0,0,SRCAND);
 
-	// ÀÌÁ¦ ¸ðµç ÁØºñ°¡ µÇ¾ú´Ù. ¿ì¼± ¹è°æ(ÀÌ°ÍÀº ¿ø·¡ È­¸é¿¡ Ç¥½ÃµÇ´ø ¹è°æÀ¸·Î ¿ì¸®°¡ ¿Ã¸®°íÀÚ ÇÏ´Â ÀÌ¹ÌÁöÀÇ ¹è°æÀÌ ¾Æ´Ï´Ù.)
-	// ¹è°æÀ» ÀúÀåÇØ ³õ´Â´Ù. memDC¿¡..		
+	// ì´ì œ ëª¨ë“  ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤. ìš°ì„  ë°°ê²½(ì´ê²ƒì€ ì›ëž˜ í™”ë©´ì— í‘œì‹œë˜ë˜ ë°°ê²½ìœ¼ë¡œ ìš°ë¦¬ê°€ ì˜¬ë¦¬ê³ ìž í•˜ëŠ” ì´ë¯¸ì§€ì˜ ë°°ê²½ì´ ì•„ë‹ˆë‹¤.)
+	// ë°°ê²½ì„ ì €ìž¥í•´ ë†“ëŠ”ë‹¤. memDCì—..		
 	memDC.CreateCompatibleDC(pDC);		
 	memBmp.CreateCompatibleBitmap(pDC,BMPWIDTH,BMPHEIGHT);
 	poldmemDC = memDC.SelectObject(&memBmp);
 	memDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,pDC, nX, nY,SRCCOPY);
 
 	
-	// ±×·±´ÙÀ½ maskDC¸¦ AND ¿¬»êÀ¸·Î ¿ø·¡ È­¸éÀÇ ¹è°æ°ú ÇÕÄ¡¸é 
-	// ±×¸²ºÎºÐ¸¸ °ËÁ¤»öÀ¸·Î Ç¥½ÃµÇ°í ¹è°æ»öÀº »ì¾ÆÀÖ°Ô µÈ´Ù. 
-	// ¿©±â¿¡´Ù°¡ srcDCÀÇ ÀÌ¹ÌÁö¸¦ OR ¿¬»êÀÎ SRCPATINT ·Î Àü¼ÛÀ» ÇÏ°Ô µÇ¸é
-	// ¹è°æ»öÀÌ ±×´ë·Î »ì¾ÆÀÖ´Â ÀÌ¹ÌÁö°¡ Ãâ·ÂµÈ´Ù.
+	// ê·¸ëŸ°ë‹¤ìŒ maskDCë¥¼ AND ì—°ì‚°ìœ¼ë¡œ ì›ëž˜ í™”ë©´ì˜ ë°°ê²½ê³¼ í•©ì¹˜ë©´ 
+	// ê·¸ë¦¼ë¶€ë¶„ë§Œ ê²€ì •ìƒ‰ìœ¼ë¡œ í‘œì‹œë˜ê³  ë°°ê²½ìƒ‰ì€ ì‚´ì•„ìžˆê²Œ ëœë‹¤. 
+	// ì—¬ê¸°ì—ë‹¤ê°€ srcDCì˜ ì´ë¯¸ì§€ë¥¼ OR ì—°ì‚°ì¸ SRCPATINT ë¡œ ì „ì†¡ì„ í•˜ê²Œ ë˜ë©´
+	// ë°°ê²½ìƒ‰ì´ ê·¸ëŒ€ë¡œ ì‚´ì•„ìžˆëŠ” ì´ë¯¸ì§€ê°€ ì¶œë ¥ëœë‹¤.
 	memDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,&maskDC,0,0,SRCAND);
 	memDC.BitBlt(0,0,BMPWIDTH,BMPHEIGHT,&srcDC,0,0,SRCPAINT);
 
@@ -199,7 +200,7 @@ void CKbcBmp::Draw(CDC *pDC,int nX,int nY,UINT nMask)
 	memDC.SelectObject(poldmemDC);
 }
 
-// CKbcBmpButton ¿¡¼­ È£ÃâÇÒ ¶§ ¾²´Â ÇÔ¼ö.. ±×¸² ³×ÀåÀÌ ¿¬¼ÓÀûÀ¸·Î ºÙÀº °ÍÀ» ±×·ÁÁØ´Ù.nSeq¿¡ µû¶ó..
+// CKbcBmpButton ì—ì„œ í˜¸ì¶œí•  ë•Œ ì“°ëŠ” í•¨ìˆ˜.. ê·¸ë¦¼ ë„¤ìž¥ì´ ì—°ì†ì ìœ¼ë¡œ ë¶™ì€ ê²ƒì„ ê·¸ë ¤ì¤€ë‹¤.nSeqì— ë”°ë¼..
 void CKbcBmp::Draw(CDC *pDC,int nSeq,int nX,int nY,UINT nMask)
 {
 	UINT BLACK			= RGB(0,0,0);
@@ -223,56 +224,56 @@ void CKbcBmp::Draw(CDC *pDC,int nSeq,int nX,int nY,UINT nMask)
 	CBitmap				*poldmemDC;
 
 
-	// ¿øº» ÀÌ¹ÌÁö.. 4°³ ¹öÆ°ÀÇ ±×¸²ÀÌ ´Ù µé¾î ÀÖ´Â °ÍÀ» ºÒ·¯¿Â´Ù.
-	// oriDC¿¡´Â ÀüÃ¼ »çÀÌÁîÀÇ ±×¸²ÀÌ ´Ù µé¾îÀÖ´Ù.
+	// ì›ë³¸ ì´ë¯¸ì§€.. 4ê°œ ë²„íŠ¼ì˜ ê·¸ë¦¼ì´ ë‹¤ ë“¤ì–´ ìžˆëŠ” ê²ƒì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
+	// oriDCì—ëŠ” ì „ì²´ ì‚¬ì´ì¦ˆì˜ ê·¸ë¦¼ì´ ë‹¤ ë“¤ì–´ìžˆë‹¤.
 	oriDC.CreateCompatibleDC(pDC);
 	poldoriDC = oriDC.SelectObject(CBitmap::FromHandle(m_hBitmap));
 
 
-	// oriDC ÀÇ 1/4 ÀÌ¹ÌÁö¸¦ srcDC ¿¡´Ù°¡ º¹»çÇØÁØ´Ù..
+	// oriDC ì˜ 1/4 ì´ë¯¸ì§€ë¥¼ srcDC ì—ë‹¤ê°€ ë³µì‚¬í•´ì¤€ë‹¤..
 	srcDC.CreateCompatibleDC(pDC);
 	srcBmp.CreateCompatibleBitmap(pDC,SLICEWIDTH,BMPHEIGHT);
 	poldsrcDC = srcDC.SelectObject(&srcBmp);
 	srcDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,&oriDC,INTERVAL,0,SRCCOPY);
 
 
-	// ¸¶½ºÅ©¸¦ °¡Áö´Â DC, 
-	// mask´Â ±×¸²ÀÌ ±×·ÁÁú ºÎºÐÀº Black, ¹è°æÀº White·Î Ç¥½ÃµÈ ±×¸²ÀÌ´Ù.
+	// ë§ˆìŠ¤í¬ë¥¼ ê°€ì§€ëŠ” DC, 
+	// maskëŠ” ê·¸ë¦¼ì´ ê·¸ë ¤ì§ˆ ë¶€ë¶„ì€ Black, ë°°ê²½ì€ Whiteë¡œ í‘œì‹œëœ ê·¸ë¦¼ì´ë‹¤.
 	maskDC.CreateCompatibleDC(pDC);
 	maskBmp.CreateBitmap(SLICEWIDTH,BMPHEIGHT,1,1,NULL);
 	poldmaskDC = maskDC.SelectObject(&maskBmp);
 
 
-	// Àü¼ÛÇÒ(source) ±×¸²ÀÇ ¹è°æÀ» ÁöÁ¤ÇØ³õ°í BitBltÇÏ¸é 
-	// ¹è°æ»öÀº Èò»ö, ¾Æ´Ñ°ÍÀº ¸ðµÎ °ËÁ¤»öÀ¸·Î Àü¼ÛÀ» ÇØÁØ´Ù.
-	// Àü¼ÛÀ» ÇØ¼­ SRCCOPYÇÏ¸é mask ÀÌ¹ÌÁö°¡ ¿Ï¼ºµÈ´Ù.
+	// ì „ì†¡í• (source) ê·¸ë¦¼ì˜ ë°°ê²½ì„ ì§€ì •í•´ë†“ê³  BitBltí•˜ë©´ 
+	// ë°°ê²½ìƒ‰ì€ í°ìƒ‰, ì•„ë‹Œê²ƒì€ ëª¨ë‘ ê²€ì •ìƒ‰ìœ¼ë¡œ ì „ì†¡ì„ í•´ì¤€ë‹¤.
+	// ì „ì†¡ì„ í•´ì„œ SRCCOPYí•˜ë©´ mask ì´ë¯¸ì§€ê°€ ì™„ì„±ëœë‹¤.
 	srcDC.SetBkColor(MASK);
 	maskDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,&srcDC,0,0,SRCCOPY);
 
 
-	// Àü¼ÛÀ» ¹ÞÀ» DCÀÇ ¹è°æ°ú Àü°æÀ» ÁöÁ¤ÇØ ³õ°í BitBlt ÇÏ¸é
-	// Àü¼ÛÇÏ´Â ±×¸²ÀÇ White ´Â Àü¼Û ¹ÞÀ» DCÀÇ BackgroundÀÇ »öÀ¸·Î º¯È¯ µÇ°í
-	// Àü¼ÛÇÏ´Â ±×¸²ÀÇ Black Àº Àü¼Û ¹ÞÀ» DCÀÇ ForegroundÀÇ »öÀ¸·Î º¯È¯ µÈ´Ù.
-	// ÀÌ·¸°Ô µÇ¸é maskDC ÀÇ ±×¸²°ú´Â ¹ÝÀüµÇ´Â ±×¸²ÀÌ ³ª¿À°Ô µÈ´Ù.
-	// ÀÌ°ÍÀ» SRCAND¿¬»êÀ» ÇÏ¸é ±âÁ¸ÀÇ srcDC ¿¡ ÀÖ´Â ±×¸²°ú °ãÃÄÁö¸é¼­
-	// ¿øº» ±×¸²ÀÇ ¹è°æÀº °ËÁ¤»öÀÌ µÇ¹ö¸®°í ¾Æ´Ñ°ÍÀº ¿øº» ±×´ë·Î Ç¥½Ã°¡ µÈ´Ù.
+	// ì „ì†¡ì„ ë°›ì„ DCì˜ ë°°ê²½ê³¼ ì „ê²½ì„ ì§€ì •í•´ ë†“ê³  BitBlt í•˜ë©´
+	// ì „ì†¡í•˜ëŠ” ê·¸ë¦¼ì˜ White ëŠ” ì „ì†¡ ë°›ì„ DCì˜ Backgroundì˜ ìƒ‰ìœ¼ë¡œ ë³€í™˜ ë˜ê³ 
+	// ì „ì†¡í•˜ëŠ” ê·¸ë¦¼ì˜ Black ì€ ì „ì†¡ ë°›ì„ DCì˜ Foregroundì˜ ìƒ‰ìœ¼ë¡œ ë³€í™˜ ëœë‹¤.
+	// ì´ë ‡ê²Œ ë˜ë©´ maskDC ì˜ ê·¸ë¦¼ê³¼ëŠ” ë°˜ì „ë˜ëŠ” ê·¸ë¦¼ì´ ë‚˜ì˜¤ê²Œ ëœë‹¤.
+	// ì´ê²ƒì„ SRCANDì—°ì‚°ì„ í•˜ë©´ ê¸°ì¡´ì˜ srcDC ì— ìžˆëŠ” ê·¸ë¦¼ê³¼ ê²¹ì³ì§€ë©´ì„œ
+	// ì›ë³¸ ê·¸ë¦¼ì˜ ë°°ê²½ì€ ê²€ì •ìƒ‰ì´ ë˜ë²„ë¦¬ê³  ì•„ë‹Œê²ƒì€ ì›ë³¸ ê·¸ëŒ€ë¡œ í‘œì‹œê°€ ëœë‹¤.
 	srcDC.SetBkColor(BLACK);
 	srcDC.SetTextColor(WHITE);
 	srcDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,&maskDC,0,0,SRCAND);
 
 
-	// ÀÌÁ¦ ¸ðµç ÁØºñ°¡ µÇ¾ú´Ù. ¿ì¼± ¹è°æ(ÀÌ°ÍÀº ¿ø·¡ È­¸é¿¡ Ç¥½ÃµÇ´ø ¹è°æÀ¸·Î ¿ì¸®°¡ ¿Ã¸®°íÀÚ ÇÏ´Â ÀÌ¹ÌÁöÀÇ ¹è°æÀÌ ¾Æ´Ï´Ù.)
-	// ¹è°æÀ» ÀúÀåÇØ ³õ´Â´Ù. memDC¿¡..		
+	// ì´ì œ ëª¨ë“  ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤. ìš°ì„  ë°°ê²½(ì´ê²ƒì€ ì›ëž˜ í™”ë©´ì— í‘œì‹œë˜ë˜ ë°°ê²½ìœ¼ë¡œ ìš°ë¦¬ê°€ ì˜¬ë¦¬ê³ ìž í•˜ëŠ” ì´ë¯¸ì§€ì˜ ë°°ê²½ì´ ì•„ë‹ˆë‹¤.)
+	// ë°°ê²½ì„ ì €ìž¥í•´ ë†“ëŠ”ë‹¤. memDCì—..		
 	memDC.CreateCompatibleDC(pDC);		
 	memBmp.CreateCompatibleBitmap(pDC,SLICEWIDTH,BMPHEIGHT);
 	poldmemDC = memDC.SelectObject(&memBmp);
 	memDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,pDC, nX, nY,SRCCOPY);
 
 	
-	// ±×·±´ÙÀ½ maskDC¸¦ AND ¿¬»êÀ¸·Î ¿ø·¡ È­¸éÀÇ ¹è°æ°ú ÇÕÄ¡¸é 
-	// ±×¸²ºÎºÐ¸¸ °ËÁ¤»öÀ¸·Î Ç¥½ÃµÇ°í ¹è°æ»öÀº »ì¾ÆÀÖ°Ô µÈ´Ù. 
-	// ¿©±â¿¡´Ù°¡ srcDCÀÇ ÀÌ¹ÌÁö¸¦ OR ¿¬»êÀÎ SRCPATINT ·Î Àü¼ÛÀ» ÇÏ°Ô µÇ¸é
-	// ¹è°æ»öÀÌ ±×´ë·Î »ì¾ÆÀÖ´Â ÀÌ¹ÌÁö°¡ Ãâ·ÂµÈ´Ù.
+	// ê·¸ëŸ°ë‹¤ìŒ maskDCë¥¼ AND ì—°ì‚°ìœ¼ë¡œ ì›ëž˜ í™”ë©´ì˜ ë°°ê²½ê³¼ í•©ì¹˜ë©´ 
+	// ê·¸ë¦¼ë¶€ë¶„ë§Œ ê²€ì •ìƒ‰ìœ¼ë¡œ í‘œì‹œë˜ê³  ë°°ê²½ìƒ‰ì€ ì‚´ì•„ìžˆê²Œ ëœë‹¤. 
+	// ì—¬ê¸°ì—ë‹¤ê°€ srcDCì˜ ì´ë¯¸ì§€ë¥¼ OR ì—°ì‚°ì¸ SRCPATINT ë¡œ ì „ì†¡ì„ í•˜ê²Œ ë˜ë©´
+	// ë°°ê²½ìƒ‰ì´ ê·¸ëŒ€ë¡œ ì‚´ì•„ìžˆëŠ” ì´ë¯¸ì§€ê°€ ì¶œë ¥ëœë‹¤.
 	memDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,&maskDC,0,0,SRCAND);
 	memDC.BitBlt(0,0,SLICEWIDTH,BMPHEIGHT,&srcDC,0,0,SRCPAINT);
 

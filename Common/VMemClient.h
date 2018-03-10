@@ -1,4 +1,4 @@
-// VMem.h: interface for the VMem class.
+ï»¿// VMem.h: interface for the VMem class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -20,24 +20,24 @@ public:
 	VMem_Client();
 	virtual ~VMem_Client();
 		
-	BOOL	AllocMem(DWORD i_Size,DWORD i_Count);					// °³¼ö¸¸Å­ ¸Ş¸ğ¸® Ç® »ı¼º.
-	BOOL	ClearMem();												// ¸ğµç ¸Ş¸ğ¸®¸¦ Delete
-	BOOL	FreeMem(void* i_pMem,DWORD i_size);						// ÇÏ³ª¸¸ Free
+	BOOL	AllocMem(DWORD i_Size,DWORD i_Count);					// ê°œìˆ˜ë§Œí¼ ë©”ëª¨ë¦¬ í’€ ìƒì„±.
+	BOOL	ClearMem();												// ëª¨ë“  ë©”ëª¨ë¦¬ë¥¼ Delete
+	BOOL	FreeMem(void* i_pMem,DWORD i_size);						// í•˜ë‚˜ë§Œ Free
 	void*	GetMemNew();			
 	DWORD	GetInvalidCnt()		{return m_InvalidCnt;}
 	DWORD	GetValidCnt()		{return m_ValidCnt;}
 	
 
-	vector<void*>				m_vecPtrValid;						// Object°¡ ºñ¾îÀÖ´Â ÁÖ¼Ò°ª.
-	vector<void*>				m_vecPtr;							// °¢ ¿ÀºêÁ§Æ®ÀÇ ÁÖ¼Ò°ªÀ» °¡Áö°í ÀÖ´Ù.
+	vector<void*>				m_vecPtrValid;						// Objectê°€ ë¹„ì–´ìˆëŠ” ì£¼ì†Œê°’.
+	vector<void*>				m_vecPtr;							// ê° ì˜¤ë¸Œì íŠ¸ì˜ ì£¼ì†Œê°’ì„ ê°€ì§€ê³  ìˆë‹¤.
 	
 	
 	DWORD						m_TotalCnt;
-	DWORD						m_ValidCnt;							// »ç¿ëÁßÀÎ °³¼ö
-	DWORD						m_InvalidCnt;						// ¹Ì»ç¿ëÁßÀÎ °¹¼ö.
+	DWORD						m_ValidCnt;							// ì‚¬ìš©ì¤‘ì¸ ê°œìˆ˜
+	DWORD						m_InvalidCnt;						// ë¯¸ì‚¬ìš©ì¤‘ì¸ ê°¯ìˆ˜.
 	
 
-	DWORD						m_ObjectSize;						// ¿ÀºêÁ§Æ® »çÀÌÁî.
+	DWORD						m_ObjectSize;						// ì˜¤ë¸Œì íŠ¸ ì‚¬ì´ì¦ˆ.
 	
 
 };

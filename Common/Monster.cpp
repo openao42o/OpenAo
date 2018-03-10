@@ -1,4 +1,4 @@
-// Monster.cpp: implementation of the CMonster class.
+ï»¿// Monster.cpp: implementation of the CMonster class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -44,15 +44,15 @@ void CMonster::SetMonsterIndex(int i_nMonsterIndex)
 }
 
 
-// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
 /***************************************************************************************************************************************
 **
-**	¸ó½ºÅÍ ±âº» Á¤º¸ Æ÷ÀÎÅÍ µî·Ï.
+**	ëª¬ìŠ¤í„° ê¸°ë³¸ ì •ë³´ í¬ì¸í„° ë“±ë¡.
 **
 **	Create Info :	??. ??. ??.
 **
-**	Update Info :	2010. 05. 25. by hsLee. - È®Àå Á¤º¸ °ü·Ã Ã³¸®. ±¸Á¶ Ãß°¡¿¡ µû¸¥ ±âÁ¸ÀÇ ±âº»Á¤º¸ À¯Áö ÀÎÀÚ Ãß°¡.
+**	Update Info :	2010. 05. 25. by hsLee. - í™•ì¥ ì •ë³´ ê´€ë ¨ ì²˜ë¦¬. êµ¬ì¡° ì¶”ê°€ì— ë”°ë¥¸ ê¸°ì¡´ì˜ ê¸°ë³¸ì •ë³´ ìœ ì§€ ì¸ì ì¶”ê°€.
 **
 ****************************************************************************************************************************************/
 /*void CMonster::SetMonsterInfoPtr(MONSTER_INFO * i_pMonsterInfo)
@@ -75,7 +75,7 @@ void CMonster :: SetMonsterInfoPtr(MONSTER_INFO * i_pMonsterInfo , const bool a_
 
 /********************************************************************************************
 **
-**	¸ó½ºÅÍ È®Àå Á¤º¸ ¼³Á¤. - µ¥ÀÌÅÍ ±¸Á¶Ã¼·Î ¸ğµÎ ¹ŞÀ½.
+**	ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì„¤ì •. - ë°ì´í„° êµ¬ì¡°ì²´ë¡œ ëª¨ë‘ ë°›ìŒ.
 **
 **	Create Info :	2010. 05. 25. by hsLee.
 **
@@ -89,7 +89,7 @@ void CMonster :: SetMonsterInfoExtend_AllData ( const MONSTER_BALANCE_DATA *a_pB
 		return;
 
 
-	// 2010. 07. 05 by hsLee. ¸ó½ºÅÍ ¼ÒÈ¯ °ü·Ã. (¹ë·±½º µ¥ÀÌÅÍ ´©¶ô ¼öÁ¤.) - ¹ë·±½º µ¥ÀÌÅÍ À¯È¿¼º Ã¼Å©.
+	// 2010. 07. 05 by hsLee. ëª¬ìŠ¤í„° ì†Œí™˜ ê´€ë ¨. (ë°¸ëŸ°ìŠ¤ ë°ì´í„° ëˆ„ë½ ìˆ˜ì •.) - ë°¸ëŸ°ìŠ¤ ë°ì´í„° ìœ íš¨ì„± ì²´í¬.
 	if ( a_pBalanceInfo->IsValidData() )
 	{
 		SetMonsterInfoExtend_StatParam ( a_pBalanceInfo->fMaxHPRatio , a_pBalanceInfo->fDefenseRatio ,
@@ -120,7 +120,7 @@ void CMonster :: SetMonsterInfoExtend_AllData ( const MONSTER_BALANCE_DATA *a_pB
 
 /****************************************************************************************************
 **
-**	¸ó½ºÅÍ È®Àå Á¤º¸ ¼³Á¤ - ¸ó½ºÅÍ ¹ë·±½º µ¥ÀÌÅÍ. ( ÃÖ´ë HP, ¹æ¾î·Â, ¹æ¾îÈ®·ü, °ø·Â°İ )
+**	ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì„¤ì • - ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ë°ì´í„°. ( ìµœëŒ€ HP, ë°©ì–´ë ¥, ë°©ì–´í™•ë¥ , ê³µë ¥ê²© )
 **
 **	Create Info :	2010. 05. 20. by hsLee
 **
@@ -133,7 +133,7 @@ void CMonster :: SetMonsterInfoExtend_StatParam ( const FLOAT a_fHPPer , const F
 		return;
 
 	MonsterInfoExtend.fMaxHP = (INT)(MonsterInfoPtr->MonsterHP * a_fHPPer);
-	// 2010-07-19 by dhjin, È®·ü ¼ö½Ä º¯°æ
+	// 2010-07-19 by dhjin, í™•ë¥  ìˆ˜ì‹ ë³€ê²½
 //	MonsterInfoExtend.Defense = (Prob255_t)(MonsterInfoPtr->Defense * a_fDefensePer);
 //	MonsterInfoExtend.DefenseProbability = (Prob255_t)(MonsterInfoPtr->DefenseProbability * a_fEvasionPer);
 	MonsterInfoExtend.Defense = MonsterInfoPtr->Defense * a_fDefensePer;
@@ -150,7 +150,7 @@ void CMonster :: SetMonsterInfoExtend_StatParam ( const FLOAT a_fHPPer , const F
 
 /**************************************************************************************************
 **
-**	¸ó½ºÅÍ È®Àå Á¤º¸ ¼³Á¤ - º¸³Ê½º µ¥ÀÌÅÍ. ( °æÇèÄ¡, ¾ÆÀÌÅÛ µå¶øÈ®·ü , ¾ÆÀÌÅÛ µå¶ø °³¼ö )
+**	ëª¬ìŠ¤í„° í™•ì¥ ì •ë³´ ì„¤ì • - ë³´ë„ˆìŠ¤ ë°ì´í„°. ( ê²½í—˜ì¹˜, ì•„ì´í…œ ë“œëí™•ë¥  , ì•„ì´í…œ ë“œë ê°œìˆ˜ )
 **
 **	Create Info :	2010. 05. 20. by hsLee
 **
@@ -172,7 +172,7 @@ void CMonster :: SetMonsterInfoExtend_BonusParam ( const float a_fIncreaseExpRat
 
 }
 
-// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -247,7 +247,7 @@ void CMonster::GetAttackedInfoClientIndexList(vectorClientIndex *o_pvectClientId
 ///////////////////////////////////////////////////////////////////////////////
 void CMonster::ResetMonster(void)
 {
-// 2005-01-04 by cmkwon, ÃÊ±âÈ­ ÇÏÁö ¾Ê¾Æµµ µÈ´Ù
+// 2005-01-04 by cmkwon, ì´ˆê¸°í™” í•˜ì§€ ì•Šì•„ë„ ëœë‹¤
 //	MonsterInfoPtr					= NULL;
 	CurrentHP						= 0;
 	memset(&PositionVector, 0x00, sizeof(D3DXVECTOR3));
@@ -310,7 +310,7 @@ BOOL CMonster::OnDead(vectorActionInfoPtr *o_pmtvecAttackedInfoPtr)
 {
 	mt_auto_lock mtA(&this->m_mtvectorAttackedInfoPtr);
 	if(this->GetMonsterDeadFlag())
-	{// ¸ó½ºÅÍ°¡ ÀÌ¹Ì Æø¹ß »óÅÂÀÌ´Ù.
+	{// ëª¬ìŠ¤í„°ê°€ ì´ë¯¸ í­ë°œ ìƒíƒœì´ë‹¤.
 		return FALSE;
 	}
 	
@@ -342,10 +342,10 @@ ClientIndex_t CMonster::GetClientIndexForTargetType(void)
 }
 
 
-// 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.)
+// 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.)
 /********************************************************************************************************
 **
-**	¸ó½ºÅÍ °æÇèÄ¡ ¸®ÅÏ. ( ¸ó½ºÅÍ Ã³Ä¡ ½Ã È¹µæ·®. )
+**	ëª¬ìŠ¤í„° ê²½í—˜ì¹˜ ë¦¬í„´. ( ëª¬ìŠ¤í„° ì²˜ì¹˜ ì‹œ íšë“ëŸ‰. )
 **
 **	Create Info :	2010. 05. 31. by hsLee.
 **
@@ -363,11 +363,11 @@ Experience_t CMonster :: rtn_MonsterExperience ( void )
 	return rtn_exp;
 
 }
-// End 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.)
+// End 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - 
+/// \brief		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-12-15 ~ 2009-12-15
 /// \warning	
@@ -382,7 +382,7 @@ void CMonster::SetChangedTargetIndexTick(DWORD i_dwTick)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - 
+/// \brief		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-12-15 ~ 2009-12-15
 /// \warning	
@@ -396,17 +396,17 @@ DWORD CMonster::GetChangedTargetIndexTick(void)
 }
 
 
-struct sort_ActionInfo_by_fSumDamage		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - 
+struct sort_ActionInfo_by_fSumDamage		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - 
 {
 	bool operator()(ActionInfo *op1, ActionInfo *op2)
 	{
-		return op1->fSumDamage > op2->fSumDamage;		// ¿À¸²Â÷¼ø Á¤·Ä
+		return op1->fSumDamage > op2->fSumDamage;		// ì˜¤ë¦¼ì°¨ìˆœ ì •ë ¬
 	}
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - ÃÖ°í µ¥¹ÌÁö ClientIndex¸¦ ¸®ÅÏÇÑ´Ù.
+/// \brief		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - ìµœê³  ë°ë¯¸ì§€ ClientIndexë¥¼ ë¦¬í„´í•œë‹¤.
 /// \author		cmkwon
 /// \date		2009-12-15 ~ 2009-12-15
 /// \warning	
@@ -431,8 +431,8 @@ ClientIndex_t CMonster::GetMaxDamageUser(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// ÇÔ¼öÀÚ Å¬·¡½º
-//	Ä³¸¯ÅÍ°¡ °Å¸®¾È¿¡ ÀÖ°í À¯È¿ÇÏ¸ç ¿î¿µ,¸¶½ºÅÍ,°ü¸®ÀÚ °èÁ¤ÀÌ ¾Æ´Ï¸é Vector¿¡ Ãß°¡
+// í•¨ìˆ˜ì í´ë˜ìŠ¤
+//	ìºë¦­í„°ê°€ ê±°ë¦¬ì•ˆì— ìˆê³  ìœ íš¨í•˜ë©° ìš´ì˜,ë§ˆìŠ¤í„°,ê´€ë¦¬ì ê³„ì •ì´ ì•„ë‹ˆë©´ Vectorì— ì¶”ê°€
 //
 ///////////////////////////////////////////////////////////////////////////////
 class for_each_ResetSumDamage_IN_ActionInfoPtr
@@ -446,7 +446,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - 
+/// \brief		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - 
 /// \author		cmkwon
 /// \date		2009-12-16 ~ 2009-12-16
 /// \warning	
@@ -496,20 +496,20 @@ BOOL CMonster::IsValidMonster(BOOL i_bLiveCheck/*=TRUE*/)
 	return TRUE;
 }
 
-// start 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+// start 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			D3DXVECTOR3	CMonster::GetNearMultiTarget(D3DXVECTOR3 Target)
-/// \brief		¸ÖÆ¼ Å¸°ÙÀ» °¡Áö°í ÀÖ´ÂÁö È®ÀÎ 
+/// \brief		ë©€í‹° íƒ€ê²Ÿì„ ê°€ì§€ê³  ìˆëŠ”ì§€ í™•ì¸ 
 /// \author		hskim
 /// \date		2011-03-22
 /// \warning	
 ///
 /// \param		
-/// \return		¸ÖÆ¼ Å¸°ÙÀ» °¡Áö°í ÀÖÀ¸¸é TRUE, ¾øÀ¸¸é FASLE
+/// \return		ë©€í‹° íƒ€ê²Ÿì„ ê°€ì§€ê³  ìˆìœ¼ë©´ TRUE, ì—†ìœ¼ë©´ FASLE
 ///////////////////////////////////////////////////////////////////////////////
 BOOL CMonster::IsMultiTargetMonster()
 {
-	// ¿¹Á¤ ÀÛ¾÷ - ÃßÈÄ ½Ã½ºÅÛ ¼º´ÉÀ» À§ÇØ ¹Ì¸® °è»êÇØ³õ´Â ¹æ½ÄÀ¸·Î Ã³¸®ÇÒ ¿¹Á¤
+	// ì˜ˆì • ì‘ì—… - ì¶”í›„ ì‹œìŠ¤í…œ ì„±ëŠ¥ì„ ìœ„í•´ ë¯¸ë¦¬ ê³„ì‚°í•´ë†“ëŠ” ë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬í•  ì˜ˆì •
 
 	int a = 0;
 	D3DXVECTOR3 ZeroVector= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -526,17 +526,17 @@ BOOL CMonster::IsMultiTargetMonster()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			D3DXVECTOR3	CMonster::GetPointMultiTarget(D3DXVECTOR3 Target)
-/// \brief		ÁÖ¾îÁø ÀÎµ¦½ºÀÇ ¸ÖÆ¼ Å¸°Ù ÁÂÇ¥¸¦ ¾ò´Â ÇÔ¼ö
+/// \brief		ì£¼ì–´ì§„ ì¸ë±ìŠ¤ì˜ ë©€í‹° íƒ€ê²Ÿ ì¢Œí‘œë¥¼ ì–»ëŠ” í•¨ìˆ˜
 /// \author		hskim
 /// \date		2011-03-22
 /// \warning	
 ///
-/// \param		[i_pMultiTargetIndex, ¸ÖÆ¼Å¸°ÙÀÇ ÀÎµ¦½º - 0ÀÏ °æ¿ì ±âº» ÁÂÇ¥]
-/// \return		¼±ÅÃµÈ ¸ÖÆ¼ Å¸°Ù ÁÂÇ¥
+/// \param		[i_pMultiTargetIndex, ë©€í‹°íƒ€ê²Ÿì˜ ì¸ë±ìŠ¤ - 0ì¼ ê²½ìš° ê¸°ë³¸ ì¢Œí‘œ]
+/// \return		ì„ íƒëœ ë©€í‹° íƒ€ê²Ÿ ì¢Œí‘œ
 ///////////////////////////////////////////////////////////////////////////////
 D3DXVECTOR3	CMonster::GetPointMultiTarget(int i_pMultiTargetIndex)
 {
-	if( i_pMultiTargetIndex < 0 || i_pMultiTargetIndex > ARRAY_SIZE_MONSTER_TARGET ) return D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// Àß¸øµÈ ÀÎµ¦½º
+	if( i_pMultiTargetIndex < 0 || i_pMultiTargetIndex > ARRAY_SIZE_MONSTER_TARGET ) return D3DXVECTOR3(0.0f, 0.0f, 0.0f);		// ì˜ëª»ëœ ì¸ë±ìŠ¤
 	if( i_pMultiTargetIndex == 0 ) return D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	
 	return (PositionVector + MonsterInfoPtr->MultiTargetInfo[i_pMultiTargetIndex - 1].Position);
@@ -544,18 +544,18 @@ D3DXVECTOR3	CMonster::GetPointMultiTarget(int i_pMultiTargetIndex)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			D3DXVECTOR3	CMonster::GetNearMultiTarget(D3DXVECTOR3 Target)
-/// \brief		¸ÖÆ¼ Å¸°ÙÁß ÁÖ¾îÁø ÁÂÇ¥¿¡¼­ °¡Àå °¡±î¿î Å¸°ÙÀÇ ÁÂÇ¥¸¦ ¸®ÅÏ
+/// \brief		ë©€í‹° íƒ€ê²Ÿì¤‘ ì£¼ì–´ì§„ ì¢Œí‘œì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿì˜ ì¢Œí‘œë¥¼ ë¦¬í„´
 /// \author		hskim
 /// \date		2011-03-22
 /// \warning	
 ///
-/// \param		[Target, ºñ±³È° Å¸°ÙÀÇ ÁÂÇ¥] [i_pMultiTargetIndex, ¸ÖÆ¼Å¸°ÙÀÇ ÀÎµ¦½º - 0ÀÏ °æ¿ì ±âº» ÁÂÇ¥]
-/// \return		¸ÖÆ¼ Å¸°ÙÁß °¡Àå °¡±î¿î Å¸°ÙÀÇ ÁÂÇ¥ (Àı´ë ÁÂÇ¥)
+/// \param		[Target, ë¹„êµí™œ íƒ€ê²Ÿì˜ ì¢Œí‘œ] [i_pMultiTargetIndex, ë©€í‹°íƒ€ê²Ÿì˜ ì¸ë±ìŠ¤ - 0ì¼ ê²½ìš° ê¸°ë³¸ ì¢Œí‘œ]
+/// \return		ë©€í‹° íƒ€ê²Ÿì¤‘ ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿì˜ ì¢Œí‘œ (ì ˆëŒ€ ì¢Œí‘œ)
 ///////////////////////////////////////////////////////////////////////////////
 D3DXVECTOR3	CMonster::GetNearMultiTarget(D3DXVECTOR3 Target, int *i_pMultiTargetIndex)
 {
 	int a = 0;
-	int fMinTargetCount = 0;		// ¸ÖÆ¼ Å¸°ÙÀ» »ç¿ë ¾ÈÇÒ °æ¿ì 0 ¸®ÅÏ
+	int fMinTargetCount = 0;		// ë©€í‹° íƒ€ê²Ÿì„ ì‚¬ìš© ì•ˆí•  ê²½ìš° 0 ë¦¬í„´
 	float fTargetDist = 0.0f;
 	float fMinTargetDist = D3DXVec3LengthSq(&(PositionVector - Target));
 	D3DXVECTOR3 ZeroVector= D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -565,7 +565,7 @@ D3DXVECTOR3	CMonster::GetNearMultiTarget(D3DXVECTOR3 Target, int *i_pMultiTarget
 	{
 		if( MonsterInfoPtr->MultiTargetInfo[a].Position == ZeroVector ) continue;
 
-		// »ó´ëÀûÀÎ °ªÀ» ºñ±³ÇÏ¹Ç·Î ¼º´É¸¦ À§ÇØ D3DXVec3Length ¸»°í D3DXVec3LengthSq ÇÔ¼ö »ç¿ë
+		// ìƒëŒ€ì ì¸ ê°’ì„ ë¹„êµí•˜ë¯€ë¡œ ì„±ëŠ¥ë¥¼ ìœ„í•´ D3DXVec3Length ë§ê³  D3DXVec3LengthSq í•¨ìˆ˜ ì‚¬ìš©
 		fTargetDist = D3DXVec3LengthSq(&(PositionVector + MonsterInfoPtr->MultiTargetInfo[a].Position - Target));
 
 		if( fTargetDist < fMinTargetDist )
@@ -580,4 +580,4 @@ D3DXVECTOR3	CMonster::GetNearMultiTarget(D3DXVECTOR3 Target, int *i_pMultiTarget
 
 	return NearVector;
 }
-// end 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+// end 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€

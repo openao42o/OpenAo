@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <sql.h>
 #include <sqlext.h>
@@ -25,12 +25,12 @@ public:
 	BOOL IsReadyToUse();
 
 	BOOL ExecuteQuery(const char *pSQLQueryString, BOOL i_bAutoClean = FALSE);
-	BOOL ExecuteQuery(const UCHAR *pSQLQueryString, BOOL i_bAutoClean = FALSE);		// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - 
+	BOOL ExecuteQuery(const UCHAR *pSQLQueryString, BOOL i_bAutoClean = FALSE);		// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - 
 	void FreeStatement();
 	void ClearAllResultSets();
 
 	void ProcessLogMessagesForStmt(const char *i_szLogString = "");
-	void ProcessLogMessagesForStmt(const UCHAR *i_szLogString = NULL);				// 2008-12-01 by cmkwon, Äõ¸®º°·Î ½º·¹µå¸¦ ¸¸µé¾î Ã³¸®ÇÏ´Â ½Ã½ºÅÛ ±¸Ãà - 
+	void ProcessLogMessagesForStmt(const UCHAR *i_szLogString = NULL);				// 2008-12-01 by cmkwon, ì¿¼ë¦¬ë³„ë¡œ ìŠ¤ë ˆë“œë¥¼ ë§Œë“¤ì–´ ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œ êµ¬ì¶• - 
 	void ProcessLogMessages(SQLSMALLINT plm_handle_type, SQLHANDLE &plm_handle, const char *logstring, BOOL ConnInd);
 
 	void Lock() { m_lock.lock(); }

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vector>
 
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-typedef ez_map<void*, BYTE>		ezmapVoidPtr8BYTE;		// 2008-07-24 by cmkwon, ¸Ş¸ğ¸®Ç® Ã¼Å© Ãß°¡(µğ¹ö±× ¸ğµå½Ã¸¸) - 
+typedef ez_map<void*, BYTE>		ezmapVoidPtr8BYTE;		// 2008-07-24 by cmkwon, ë©”ëª¨ë¦¬í’€ ì²´í¬ ì¶”ê°€(ë””ë²„ê·¸ ëª¨ë“œì‹œë§Œ) - 
 
 class CVMem
 {
@@ -19,7 +19,7 @@ public:
 	BOOL AllocVMem(DWORD dwTypeSize, DWORD dwPoolCount);
 	BOOL FreeAllVMem();
 	BOOL FreeVMem(void * pVMem);
-	void SaveCurrentStatus(void);			// 2009-05-04 by cmkwon, ¸Ş¸ğ¸®Ç® »óÅÂÁ¤º¸ ·Î±× ³²±â±â - 
+	void SaveCurrentStatus(void);			// 2009-05-04 by cmkwon, ë©”ëª¨ë¦¬í’€ ìƒíƒœì •ë³´ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 
 	inline void *ObjectNew();
 	inline void ObjectDelete(void *p);
@@ -34,31 +34,31 @@ private:
 	inline BOOL InsertFree(void *p);
 	inline void* PopFree();
 
-	CRITICAL_SECTION	m_csLock;						// Virtual MemoryÀÇ µ¿±âÈ­¸¦ À§ÇÑ Å©¸®Æ¼ÄÃ ¼½¼Ç
-	DWORD				m_dwSizeObjType;				// Virtual Memory¿¡ ÇÒ´çµÇ´Â ÇÏ³ªÀÇ °´Ã¼ »çÀÌÁî ´ÜÀ§
+	CRITICAL_SECTION	m_csLock;						// Virtual Memoryì˜ ë™ê¸°í™”ë¥¼ ìœ„í•œ í¬ë¦¬í‹°ì»¬ ì„¹ì…˜
+	DWORD				m_dwSizeObjType;				// Virtual Memoryì— í• ë‹¹ë˜ëŠ” í•˜ë‚˜ì˜ ê°ì²´ ì‚¬ì´ì¦ˆ ë‹¨ìœ„
 	DWORD				m_dwCntCommitedObjPool;
 	DWORD				m_dwCntCurrentAllocObjPool;		//
 	DWORD				m_dwSizeCommitVMem;
-	DWORD				m_dwTotalCommitedObjCnts;		// 2008-04-11 by cmkwon, ¸Ş¸ğ¸®Ç® ½Ã½ºÅÛ ·Î±× Ãß°¡ - 
+	DWORD				m_dwTotalCommitedObjCnts;		// 2008-04-11 by cmkwon, ë©”ëª¨ë¦¬í’€ ì‹œìŠ¤í…œ ë¡œê·¸ ì¶”ê°€ - 
 
 	vector<void *>		m_vectorVMemPtr;
 	vector<void *>		m_vectorMemoryPointer;
 #if defined(_DEBUG)
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-07-24 by cmkwon, ¸Ş¸ğ¸®Ç® Ã¼Å© Ãß°¡(µğ¹ö±× ¸ğµå½Ã¸¸) - 
-	ezmapVoidPtr8BYTE	m_ezmapUseFlagList;				// 2008-07-24 by cmkwon, ¸Ş¸ğ¸®Ç® Ã¼Å© Ãß°¡(µğ¹ö±× ¸ğµå½Ã¸¸) - 
+	// 2008-07-24 by cmkwon, ë©”ëª¨ë¦¬í’€ ì²´í¬ ì¶”ê°€(ë””ë²„ê·¸ ëª¨ë“œì‹œë§Œ) - 
+	ezmapVoidPtr8BYTE	m_ezmapUseFlagList;				// 2008-07-24 by cmkwon, ë©”ëª¨ë¦¬í’€ ì²´í¬ ì¶”ê°€(ë””ë²„ê·¸ ëª¨ë“œì‹œë§Œ) - 
 #endif
 };
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::CommitVMem
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : void *pAddr
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwSize
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					¿¹¾àµÈ ÁÖ¼Ò¸¦ »ç¿ëÇÏ±â À§ÇØ CommitÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::CommitVMem
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : void *pAddr
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ì˜ˆì•½ëœ ì£¼ì†Œë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ Commití•˜ëŠ” í•¨ìˆ˜
 BOOL CVMem::CommitVMem(void *pAddr, DWORD dwSize)
 {
 	void * pCommit = VirtualAlloc(pAddr, dwSize, MEM_COMMIT, PAGE_READWRITE);
@@ -77,12 +77,12 @@ BOOL CVMem::CommitVMem(void *pAddr, DWORD dwSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::DecommitVMem
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : void *pAddr
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwSize
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					Commit ÁßÀÎ ¸Ş¸ğ¸®¸¦ DecommitÇÏ±â À§ÇÑ ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::DecommitVMem
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : void *pAddr
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					Commit ì¤‘ì¸ ë©”ëª¨ë¦¬ë¥¼ Decommití•˜ê¸° ìœ„í•œ í•¨ìˆ˜
 BOOL CVMem::DecommitVMem(void *pAddr, DWORD dwSize)
 {
 	BOOL bRet = VirtualFree(pAddr, dwSize, MEM_DECOMMIT);
@@ -101,11 +101,11 @@ BOOL CVMem::DecommitVMem(void *pAddr, DWORD dwSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::InsertFree
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD id
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					¸Ş¸ğ¸®°¡ ÇØÁ¦µÇ¸é Stack¿¡ ÇØÁ¦µÈ ¸Ş¸ğ¸®¿¡ ÇØ´çÇÏ´Â id¸¦ Ãß°¡ÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::InsertFree
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : DWORD id
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬ê°€ í•´ì œë˜ë©´ Stackì— í•´ì œëœ ë©”ëª¨ë¦¬ì— í•´ë‹¹í•˜ëŠ” idë¥¼ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
 BOOL CVMem::InsertFree(void *p)
 {
 //	vector<void *>::iterator itr = find(m_vectorMemoryPointer.begin(), m_vectorMemoryPointer.end(), p);
@@ -116,7 +116,7 @@ BOOL CVMem::InsertFree(void *p)
 
 #if defined(_DEBUG)
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-07-24 by cmkwon, ¸Ş¸ğ¸®Ç® Ã¼Å© Ãß°¡(µğ¹ö±× ¸ğµå½Ã¸¸) - 
+	// 2008-07-24 by cmkwon, ë©”ëª¨ë¦¬í’€ ì²´í¬ ì¶”ê°€(ë””ë²„ê·¸ ëª¨ë“œì‹œë§Œ) - 
 	BYTE *pbyUseFlag = m_ezmapUseFlagList.findEZ_ptr(p);
 	if(NULL == pbyUseFlag)
 	{
@@ -140,14 +140,14 @@ BOOL CVMem::InsertFree(void *p)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::PopFree
-// ¹İÈ¯µÇ´Â Çü  : DWORD
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					¸Ş¸ğ¸® ÇÒ´çÀ» À§ÇØ Stack¿¡¼­ id¸¦ ²¨³»¾î ¸®ÅÏÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::PopFree
+// ë°˜í™˜ë˜ëŠ” í˜•  : DWORD
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬ í• ë‹¹ì„ ìœ„í•´ Stackì—ì„œ idë¥¼ êº¼ë‚´ì–´ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
 void * CVMem::PopFree()
 {
 	if(m_vectorMemoryPointer.empty() == true)
-	{	// ºñ¾îÀÖ´Ù. Underflow
+	{	// ë¹„ì–´ìˆë‹¤. Underflow
 
 		if(AllocVMem(m_dwSizeObjType, m_dwCntCommitedObjPool) == FALSE)
 		{
@@ -163,7 +163,7 @@ void * CVMem::PopFree()
 
 #if defined(_DEBUG)
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-07-24 by cmkwon, ¸Ş¸ğ¸®Ç® Ã¼Å© Ãß°¡(µğ¹ö±× ¸ğµå½Ã¸¸) - 
+	// 2008-07-24 by cmkwon, ë©”ëª¨ë¦¬í’€ ì²´í¬ ì¶”ê°€(ë””ë²„ê·¸ ëª¨ë“œì‹œë§Œ) - 
 	BYTE *pbyUseFlag = m_ezmapUseFlagList.findEZ_ptr(p);
 	if(NULL == pbyUseFlag)
 	{
@@ -182,14 +182,14 @@ void * CVMem::PopFree()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::ObjectNew
-// ¹İÈ¯µÇ´Â Çü  : void *
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					¸Ş¸ğ¸® Ç®¿¡¼­ ¸Ş¸ğ¸®¸¦ ÇÏ³ª ÇÒ´çÇÏ¿© ¸®ÅÏÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::ObjectNew
+// ë°˜í™˜ë˜ëŠ” í˜•  : void *
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬ í’€ì—ì„œ ë©”ëª¨ë¦¬ë¥¼ í•˜ë‚˜ í• ë‹¹í•˜ì—¬ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
 void * CVMem::ObjectNew()
 {
 	LockVMem();
-	void* pNew = PopFree();					// ¾µ¼öÀÖ´Â ºí·°À» ÁÖ¼Ò·Î ¾ò´Â´Ù.
+	void* pNew = PopFree();					// ì“¸ìˆ˜ìˆëŠ” ë¸”ëŸ­ì„ ì£¼ì†Œë¡œ ì–»ëŠ”ë‹¤.
 	if(pNew != NULL)
 	{
 		m_dwCntCurrentAllocObjPool++;
@@ -201,11 +201,11 @@ void * CVMem::ObjectNew()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : CVMem::ObjectDelete
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : void *p
-// ÇÔ ¼ö ¼³ ¸í  : inline ÇÔ¼ö
-//					»ç¿ëÇÑ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÏ´Â ÇÔ¼ö(¸Ş¸ğ¸® Ç®¿¡ Ãß°¡µÊ)
+// í•¨ ìˆ˜ ì´ ë¦„  : CVMem::ObjectDelete
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : void *p
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline í•¨ìˆ˜
+//					ì‚¬ìš©í•œ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•˜ëŠ” í•¨ìˆ˜(ë©”ëª¨ë¦¬ í’€ì— ì¶”ê°€ë¨)
 void CVMem::ObjectDelete(void *p)
 {
 	LockVMem();

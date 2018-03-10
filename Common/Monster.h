@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 
 #include <VMemPool.h>
 #include "MapBlock.h"
 
-#define	MON2MON_IMPACT_DISTANCE_GAP							20.0f		// ¸ó½ºÅÍ°£ Ãæµ¹ Ã³¸® °£°İ
-#define MONSTER_MIN_ATTACK_DISTANCE							100.0f		// ¸ó½ºÅÍ°¡ °ø°İ½Ã ÃÖ¼Ò À¯Áö °Å¸®
-#define MONSTER_TARGET_DISTANCE								200.0f		// °ø°İ ¼ºÇâÀÇ ¸ó½ºÅÍ°¡ ÁÖÀ§¿¡¼­ TargetÀ» Àâ´Â °Å¸®
-#define MONSTER_BASIC_ARROUND_MOVABLE_RANGE					500.0f		// ¸ó½ºÅÍ°¡ »ı¼ºÁöÁ¡À¸·Î ºÎÅÍ ÀÌµ¿ °¡´ÉÇÑ ±âÃÊ °Å¸®
-#define MONSTER_ANGLE_PI_5									0.0872f		// 5µµ¸¦ PI·Î º¯È¯ÇÑ°ª
-#define MONSTER_MAX_QUICK_TURN_ANGLE						150			// 150µµ
-#define MONSTER_ATTACKOBJ_SAMERACE_MAX_DISTANCE				300			// Attack Object°¡ µ¿Á·¼º
-#define MONSTER_MAX_PARTY_DISTANCE							100.0f		// ÆÄÆ¼¸¦ »ı¼ºÇÏ±â À§ÇÑ ÃÖ´ë°Å¸®, ÆÄÆ¼°¡ ¼Ò¸êµÇ´Â °Å¸®´Â + 50 = 200.0f
-#define MONSTER_MAX_PARTY_MEMBER_COUNTS						10			// ¸ó½ºÅÍ ÆÄÆ¼ ÃÖ´ë Ä«¿îÆ®
-#define MONSTER_NOT_MOVE_AFTER_CREATED_TERM_TICK			2000		// ¸ó½ºÅÍ°¡ »ı¼ºµÇ°í ¿òÁ÷ÀÌÁö ¾Ê´Â ½Ã°£
-#define MONSTER_EVENT_MON_NOT_MOVE_AFTER_CREATED_TERM_TICK			10000	// ÀÌº¥Æ® ¸ó½ºÅÍ°¡ »ı¼ºµÇ°í ¿òÁ÷ÀÌÁö ¾Ê´Â ½Ã°£
-#define MONSTER_DELETE_AFTER_CREATED_TERM_TICK				10000		// ¸ó½ºÅÍ°¡ »ı¼ºµÇ¾úÁö¸¸ FieldServer·Î ºÎÅÍ ÀÀ´äÀ» ¸ø¹Ş¾ÒÀ»°æ¿ì »èÁ¦ÇÏ´Â ½Ã°£, 2006-07-25 by cmkwon 5000-->10000
-#define MONSTER_MIN_ATTACK_TERM_TICK						100			// ¸ó½ºÅÍ°¡ AttackÀ» À§ÇØ ÃÖ¼ÒÇÑ ÀÌÅÒÀÌ»óÀÌ Áö³ª¾ß ´ÙÀ½ °ø°İÀÌ °¡´ÉÇÔ(ÃÖ¼Ò ShotNum Term)
-#define MONSTER_ATTACKED_INFO_DELETE_TERM_TICK				10000		// ¸ó½ºÅÍ°¡ Attackedlist¿¡¼­ AttackÀÌ ¾øÀ»¶§ Áö¿ì´Â Tick
-#define MONSTER_UPDATE_MOVE_TERM_TICK						200			// ¸ó½ºÅÍÀÇ ÀÌµ¿À» À§ÇÑ ÅÒ
-#define MONSTER_MOVPAT_GROUNDTELEPORT_ANIMATION_COUNT		2000/MONSTER_UPDATE_MOVE_TERM_TICK	// 2ÃÊ ¶¥¼Ó ÀÌµ¿ ¸ó½ºÅÍ°¡ ¶¥À¸·Î µé¾î°¡°í ³ª¿À´Âµ¥ Ä«¿îÆ®
-#define MONSTER_MAP_IMPACK_HEIGHT_GAP						40.0f		// ¸ó½ºÅÍ°¡ ÀÌµ¿Áß ¸Ê°ú Ãæµ¹½Ã ³ôÀÌÂ÷±â ÀÌº¸´Ù Å©¸é MSS_MAP_IMPACT»óÅÂ°¡ µÈ´Ù.
-#define MONSTER_COPTER_MAXTARGET_PINPOINT					PI/6		// 35µµ
-#define MONSTER_COPTER_MAXMOVE_PINPOINT						PI/9		// 20µµ
+#define	MON2MON_IMPACT_DISTANCE_GAP							20.0f		// ëª¬ìŠ¤í„°ê°„ ì¶©ëŒ ì²˜ë¦¬ ê°„ê²©
+#define MONSTER_MIN_ATTACK_DISTANCE							100.0f		// ëª¬ìŠ¤í„°ê°€ ê³µê²©ì‹œ ìµœì†Œ ìœ ì§€ ê±°ë¦¬
+#define MONSTER_TARGET_DISTANCE								200.0f		// ê³µê²© ì„±í–¥ì˜ ëª¬ìŠ¤í„°ê°€ ì£¼ìœ„ì—ì„œ Targetì„ ì¡ëŠ” ê±°ë¦¬
+#define MONSTER_BASIC_ARROUND_MOVABLE_RANGE					500.0f		// ëª¬ìŠ¤í„°ê°€ ìƒì„±ì§€ì ìœ¼ë¡œ ë¶€í„° ì´ë™ ê°€ëŠ¥í•œ ê¸°ì´ˆ ê±°ë¦¬
+#define MONSTER_ANGLE_PI_5									0.0872f		// 5ë„ë¥¼ PIë¡œ ë³€í™˜í•œê°’
+#define MONSTER_MAX_QUICK_TURN_ANGLE						150			// 150ë„
+#define MONSTER_ATTACKOBJ_SAMERACE_MAX_DISTANCE				300			// Attack Objectê°€ ë™ì¡±ì„±
+#define MONSTER_MAX_PARTY_DISTANCE							100.0f		// íŒŒí‹°ë¥¼ ìƒì„±í•˜ê¸° ìœ„í•œ ìµœëŒ€ê±°ë¦¬, íŒŒí‹°ê°€ ì†Œë©¸ë˜ëŠ” ê±°ë¦¬ëŠ” + 50 = 200.0f
+#define MONSTER_MAX_PARTY_MEMBER_COUNTS						10			// ëª¬ìŠ¤í„° íŒŒí‹° ìµœëŒ€ ì¹´ìš´íŠ¸
+#define MONSTER_NOT_MOVE_AFTER_CREATED_TERM_TICK			2000		// ëª¬ìŠ¤í„°ê°€ ìƒì„±ë˜ê³  ì›€ì§ì´ì§€ ì•ŠëŠ” ì‹œê°„
+#define MONSTER_EVENT_MON_NOT_MOVE_AFTER_CREATED_TERM_TICK			10000	// ì´ë²¤íŠ¸ ëª¬ìŠ¤í„°ê°€ ìƒì„±ë˜ê³  ì›€ì§ì´ì§€ ì•ŠëŠ” ì‹œê°„
+#define MONSTER_DELETE_AFTER_CREATED_TERM_TICK				10000		// ëª¬ìŠ¤í„°ê°€ ìƒì„±ë˜ì—ˆì§€ë§Œ FieldServerë¡œ ë¶€í„° ì‘ë‹µì„ ëª»ë°›ì•˜ì„ê²½ìš° ì‚­ì œí•˜ëŠ” ì‹œê°„, 2006-07-25 by cmkwon 5000-->10000
+#define MONSTER_MIN_ATTACK_TERM_TICK						100			// ëª¬ìŠ¤í„°ê°€ Attackì„ ìœ„í•´ ìµœì†Œí•œ ì´í…€ì´ìƒì´ ì§€ë‚˜ì•¼ ë‹¤ìŒ ê³µê²©ì´ ê°€ëŠ¥í•¨(ìµœì†Œ ShotNum Term)
+#define MONSTER_ATTACKED_INFO_DELETE_TERM_TICK				10000		// ëª¬ìŠ¤í„°ê°€ Attackedlistì—ì„œ Attackì´ ì—†ì„ë•Œ ì§€ìš°ëŠ” Tick
+#define MONSTER_UPDATE_MOVE_TERM_TICK						200			// ëª¬ìŠ¤í„°ì˜ ì´ë™ì„ ìœ„í•œ í…€
+#define MONSTER_MOVPAT_GROUNDTELEPORT_ANIMATION_COUNT		2000/MONSTER_UPDATE_MOVE_TERM_TICK	// 2ì´ˆ ë•…ì† ì´ë™ ëª¬ìŠ¤í„°ê°€ ë•…ìœ¼ë¡œ ë“¤ì–´ê°€ê³  ë‚˜ì˜¤ëŠ”ë° ì¹´ìš´íŠ¸
+#define MONSTER_MAP_IMPACK_HEIGHT_GAP						40.0f		// ëª¬ìŠ¤í„°ê°€ ì´ë™ì¤‘ ë§µê³¼ ì¶©ëŒì‹œ ë†’ì´ì°¨ê¸° ì´ë³´ë‹¤ í¬ë©´ MSS_MAP_IMPACTìƒíƒœê°€ ëœë‹¤.
+#define MONSTER_COPTER_MAXTARGET_PINPOINT					PI/6		// 35ë„
+#define MONSTER_COPTER_MAXMOVE_PINPOINT						PI/9		// 20ë„
 
 
 
@@ -43,23 +43,23 @@
 
 typedef enum
 {
-	MS_NULL				= 0,			// Monster°¡ »ç¿ëµÇÁö ¾Ê´Â »óÅÂ
-	CS_NULL				= 0,			// Å¬¶ó¾ğÆ®°¡ »ç¿ëµÇÁö ¾Ê´Â »óÅÂ
-	MS_CREATED			= 1,			// Monster°¡ »ı¼ºµÇ¾î Field Server·Î »ı¼º ÆĞÅ¶À» º¸³½»óÅÂ
-	MS_PLAYING			= 2,			// Monster°¡ ºñÇàÁßÀÎ »óÅÂ
-	CS_GAMESTARTED		= 2,			// Å¬¶óÀÌ¾ğÆ®°¡ Field Server·Î Á¢¼ÓÇÑ »óÅÂ
-	MS_DEAD				= 3,			// Monster°¡ Æø¹ßÇÑ »óÅÂ
-	CS_DEAD				= 3				// Å¬¶óÀÌ¾ğÆ®°¡ Æø¹ßÇÑ »óÅÂ
+	MS_NULL				= 0,			// Monsterê°€ ì‚¬ìš©ë˜ì§€ ì•ŠëŠ” ìƒíƒœ
+	CS_NULL				= 0,			// í´ë¼ì–¸íŠ¸ê°€ ì‚¬ìš©ë˜ì§€ ì•ŠëŠ” ìƒíƒœ
+	MS_CREATED			= 1,			// Monsterê°€ ìƒì„±ë˜ì–´ Field Serverë¡œ ìƒì„± íŒ¨í‚·ì„ ë³´ë‚¸ìƒíƒœ
+	MS_PLAYING			= 2,			// Monsterê°€ ë¹„í–‰ì¤‘ì¸ ìƒíƒœ
+	CS_GAMESTARTED		= 2,			// í´ë¼ì´ì–¸íŠ¸ê°€ Field Serverë¡œ ì ‘ì†í•œ ìƒíƒœ
+	MS_DEAD				= 3,			// Monsterê°€ í­ë°œí•œ ìƒíƒœ
+	CS_DEAD				= 3				// í´ë¼ì´ì–¸íŠ¸ê°€ í­ë°œí•œ ìƒíƒœ
 } UNIT_STATE;
 
 typedef enum
 {
-	MSS_NORMAL					= 0,		// Monster Á¤»óÀûÀ¸·Î ÀÌµ¿ÇÏ´Â »óÅÂ
-	MSS_MAP_IMPACT				= 1,		// ¸Ê, Object¿Í Ãæµ¹ »óÅÂ
-	MSS_RANGE_DISTANCE_IMPACT	= 2,		// ¸ó½ºÅÍ°¡ ºñ °ø°İÁßÀÏ¶§ ÀÌµ¿¿µ¿ªÀ» ¹ş¾î³µ´Ù
-	MSS_OUT_OF_ATTACK_RANGE		= 3,		// Ã³À½ °ø°İ½Ã °Å¸®°¡ ¸Ö¾î ºü¸£°Ô °¡±îÀÌ °¥¶§
-	MSS_QUICK_TURN_GENERAL		= 4,		// ¸ó½ºÅÍ°¡ Á÷¼±ÀÌµ¿ÀÇ QuickTurnÀÌ »ç¿ëÁßÀÌ´Ù,
-	MSS_QUICK_TURN_SKILL		= 5			// ¸ó½ºÅÍ°¡ ÀÚÃ¼ ½ºÅ³ÀÇ QuickTurnÀÌ »ç¿ëÁßÀÌ´Ù,
+	MSS_NORMAL					= 0,		// Monster ì •ìƒì ìœ¼ë¡œ ì´ë™í•˜ëŠ” ìƒíƒœ
+	MSS_MAP_IMPACT				= 1,		// ë§µ, Objectì™€ ì¶©ëŒ ìƒíƒœ
+	MSS_RANGE_DISTANCE_IMPACT	= 2,		// ëª¬ìŠ¤í„°ê°€ ë¹„ ê³µê²©ì¤‘ì¼ë•Œ ì´ë™ì˜ì—­ì„ ë²—ì–´ë‚¬ë‹¤
+	MSS_OUT_OF_ATTACK_RANGE		= 3,		// ì²˜ìŒ ê³µê²©ì‹œ ê±°ë¦¬ê°€ ë©€ì–´ ë¹ ë¥´ê²Œ ê°€ê¹Œì´ ê°ˆë•Œ
+	MSS_QUICK_TURN_GENERAL		= 4,		// ëª¬ìŠ¤í„°ê°€ ì§ì„ ì´ë™ì˜ QuickTurnì´ ì‚¬ìš©ì¤‘ì´ë‹¤,
+	MSS_QUICK_TURN_SKILL		= 5			// ëª¬ìŠ¤í„°ê°€ ìì²´ ìŠ¤í‚¬ì˜ QuickTurnì´ ì‚¬ìš©ì¤‘ì´ë‹¤,
 } Unit_Move_State;
 
 typedef enum
@@ -73,58 +73,58 @@ typedef enum
 	MSD_SPEED_UP				=  1,
 	MSD_SPEED_DOWN				= -1,
 
-	MSD_TARGET					=  0,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target Vector°ú °°´Ù
-	MSD_LEFT_1					=  1,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
+	MSD_TARGET					=  0,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorê³¼ ê°™ë‹¤
+	MSD_LEFT_1					=  1,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
 	MSD_RIGHT_1					= -1,
-	MSD_LEFT_2					=  2,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
+	MSD_LEFT_2					=  2,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
 	MSD_RIGHT_2					= -2,
-	MSD_LEFT_3					=  3,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
+	MSD_LEFT_3					=  3,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
 	MSD_RIGHT_3					= -3,
-	MSD_LEFT_4					=  4,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
+	MSD_LEFT_4					=  4,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
 	MSD_RIGHT_4					= -4,
-	MSD_LEFT_5					=  5,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_5					= -5,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_10					=  10,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_10				= -10,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_15					=  15,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_15				= -15,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_20					=  20,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_20				= -20,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_25					=  25,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_25				= -25,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_30					=  30,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 30µµ ¹æÇâ
-	MSD_RIGHT_30				= -30,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 30µµ ¹æÇâ
-	MSD_LEFT_35					=  35,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_35				= -35,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_40					=  40,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_40				= -40,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_45					=  45,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 45µµ ¹æÇâ
-	MSD_RIGHT_45				= -45,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 45µµ ¹æÇâ
-	MSD_LEFT_50					=  50,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_50				= -50,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_55					=  55,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_55				= -55,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_60					=  60,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 60µµ ¹æÇâ
-	MSD_RIGHT_60				= -60,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 60µµ ¹æÇâ
-	MSD_LEFT_65					=  65,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_65				= -65,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_70					=  70,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_70				= -70,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_75					=  75,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 75µµ ¹æÇâ
-	MSD_RIGHT_75				= -75,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 75µµ ¹æÇâ
-	MSD_LEFT_80					=  80,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_80				= -80,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_85					=  85,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 15µµ ¹æÇâ
-	MSD_RIGHT_85				= -85,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 15µµ ¹æÇâ
-	MSD_LEFT_90					=  90,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ÁÂÃø 90µµ ¹æÇâ
-	MSD_RIGHT_90				= -90,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¿ìÃø 90µµ ¹æÇâ
+	MSD_LEFT_5					=  5,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_5					= -5,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_10					=  10,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_10				= -10,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_15					=  15,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_15				= -15,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_20					=  20,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_20				= -20,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_25					=  25,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_25				= -25,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_30					=  30,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 30ë„ ë°©í–¥
+	MSD_RIGHT_30				= -30,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 30ë„ ë°©í–¥
+	MSD_LEFT_35					=  35,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_35				= -35,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_40					=  40,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_40				= -40,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_45					=  45,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 45ë„ ë°©í–¥
+	MSD_RIGHT_45				= -45,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 45ë„ ë°©í–¥
+	MSD_LEFT_50					=  50,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_50				= -50,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_55					=  55,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_55				= -55,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_60					=  60,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 60ë„ ë°©í–¥
+	MSD_RIGHT_60				= -60,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 60ë„ ë°©í–¥
+	MSD_LEFT_65					=  65,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_65				= -65,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_70					=  70,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_70				= -70,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_75					=  75,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 75ë„ ë°©í–¥
+	MSD_RIGHT_75				= -75,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 75ë„ ë°©í–¥
+	MSD_LEFT_80					=  80,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_80				= -80,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_85					=  85,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 15ë„ ë°©í–¥
+	MSD_RIGHT_85				= -85,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 15ë„ ë°©í–¥
+	MSD_LEFT_90					=  90,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ì¢Œì¸¡ 90ë„ ë°©í–¥
+	MSD_RIGHT_90				= -90,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ìš°ì¸¡ 90ë„ ë°©í–¥
 	MSD_LEFT_100				=  100,
 	MSD_RIGHT_100				= -100,
 	MSD_LEFT_110				=  110,
 	MSD_RIGHT_110				= -110,
 	MSD_LEFT_120				=  120,
 	MSD_RIGHT_120				= -120,
-	MSD_TARGET_180				=  180,					// MonsterÀÇ ÀÌµ¿ ¹æÇâÀÌ Target VectorÀÇ ¹İ´ë ¹æÇâ
+	MSD_TARGET_180				=  180,					// Monsterì˜ ì´ë™ ë°©í–¥ì´ Target Vectorì˜ ë°˜ëŒ€ ë°©í–¥
 
 	MSD_UP_1					=  1,
 	MSD_DOWN_1					= -1,
@@ -208,15 +208,15 @@ struct ActionInfo_Sort_Object: binary_function<ActionInfo*, ActionInfo*, bool>
 {
 	bool operator()(ActionInfo *pAInfo1, ActionInfo *pAInfo2)
 	{
-        return pAInfo1->fSumDamage > pAInfo2->fSumDamage;	// ³»¸² Â÷¼ø Á¤·ÄÀ» À§ÇØ ¹İ´ë·Î ÇÔ
+        return pAInfo1->fSumDamage > pAInfo2->fSumDamage;	// ë‚´ë¦¼ ì°¨ìˆœ ì •ë ¬ì„ ìœ„í•´ ë°˜ëŒ€ë¡œ í•¨
     };
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// Å¬·¡½º ÀÌ¸§  : listActionInfoPtr_UnitIndex_Find_Object
-// Å¬·¡½º ¼³¸í  : vectorActionInfoPtr¿¡¼­ UnitIndex¸¦ Ã£´Â Function ObjectÀÌ´Ù
-//					»ı¼ºÀÚÀÇ ÀÎÀÚ´Â Ã£°íÀÚÇÏ´Â UnitIndex¸¦ ³Ö´Â´Ù.
+// í´ë˜ìŠ¤ ì´ë¦„  : listActionInfoPtr_UnitIndex_Find_Object
+// í´ë˜ìŠ¤ ì„¤ëª…  : vectorActionInfoPtrì—ì„œ UnitIndexë¥¼ ì°¾ëŠ” Function Objectì´ë‹¤
+//					ìƒì„±ìì˜ ì¸ìëŠ” ì°¾ê³ ìí•˜ëŠ” UnitIndexë¥¼ ë„£ëŠ”ë‹¤.
 struct listActionInfoPtr_UnitIndex_Find_Object
 {
 	listActionInfoPtr_UnitIndex_Find_Object(int index): m_nFindIndex(index){};
@@ -250,12 +250,12 @@ public:
 	void SetMonsterIndex(int i_nMonsterIndex);
 
 	//void SetMonsterInfoPtr(MONSTER_INFO * i_pMonsterInfo);
-// 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 	void SetMonsterInfoPtr(MONSTER_INFO * i_pMonsterInfo , const bool a_bReset_ExtendInfo = true );
 	void SetMonsterInfoExtend_AllData ( const MONSTER_BALANCE_DATA *a_pBalanceInfo );
 	void SetMonsterInfoExtend_StatParam ( const FLOAT a_fHPPer = 1.0f , const FLOAT a_fDefensePer = 1.0f , const FLOAT a_fEvasionPer = 1.0f , const FLOAT a_fAtkPer = 1.0f );
 	void SetMonsterInfoExtend_BonusParam ( const float a_fIncreaseExpRatio = 1.0f , const float a_fIncreaseDropItemProbabilityRatio = 1.0f , const float a_fInCreaseDropItemCountRatio = 1.0f );
-// End 2010. 05. 19 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (½ÅÈ£Ã³¸® + ¸ó½ºÅÍ Ã³¸®(¼­¹ö) )
+// End 2010. 05. 19 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì‹ í˜¸ì²˜ë¦¬ + ëª¬ìŠ¤í„° ì²˜ë¦¬(ì„œë²„) )
 
 	BOOL GetMonsterDeadFlag(void);
 	void SetMonsterDeadFlag(BOOL i_bDeadFlag);
@@ -266,16 +266,16 @@ public:
 	BOOL OnDead(vectorActionInfoPtr *o_pmtvecAttackedInfoPtr);
 	ClientIndex_t GetClientIndexForTargetType(void);
 
-	// 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.)
-	// ¸ó½ºÅÍ °æÇèÄ¡ ¸®ÅÏ.
+	// 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.)
+	// ëª¬ìŠ¤í„° ê²½í—˜ì¹˜ ë¦¬í„´.
 	Experience_t rtn_MonsterExperience ( void );
-	// End 2010. 05. 31 by hsLee ÀÎÇÇ´ÏÆ¼ ÇÊµå 2Â÷ ³­ÀÌµµ Á¶Àı. (¿ÀºêÁ§Æ® ¸ó½ºÅÍ ¹ë·±½º Àû¿ë ¹®Á¦ ¼öÁ¤.)
+	// End 2010. 05. 31 by hsLee ì¸í”¼ë‹ˆí‹° í•„ë“œ 2ì°¨ ë‚œì´ë„ ì¡°ì ˆ. (ì˜¤ë¸Œì íŠ¸ ëª¬ìŠ¤í„° ë°¸ëŸ°ìŠ¤ ì ìš© ë¬¸ì œ ìˆ˜ì •.)
 
-	// start 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	// start 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	D3DXVECTOR3	GetNearMultiTarget(D3DXVECTOR3 Target,  int *i_pMultiTargetIndex);
 	D3DXVECTOR3	GetPointMultiTarget(int i_pMultiTargetIndex);
 	BOOL IsMultiTargetMonster();
-	// end 2011-03-21 by hskim, ÀÎÇÇ´ÏÆ¼ 3Â÷ - ¸ó½ºÅÍ ¸ÖÆ¼ Å¸°ÙÆÃ ±â´É Ãß°¡
+	// end 2011-03-21 by hskim, ì¸í”¼ë‹ˆí‹° 3ì°¨ - ëª¬ìŠ¤í„° ë©€í‹° íƒ€ê²ŸíŒ… ê¸°ëŠ¥ ì¶”ê°€
 	
 	// virtual
 	virtual void ResetMonster(void);
@@ -285,15 +285,15 @@ public:
 	mtvectorActionInfoPtr *GetAttackedInfoPtrList(void);
 	void GetAttackedInfoClientIndexList(vectorClientIndex *o_pvectClientIdxList);
 
-	// »óÅÂ °ü·Ã
-	BYTE						m_enMonsterState;				// ¸ó½ºÅÍÀÇ »óÅÂ º¯¼ö(MS_NULL, MS_CREATED, MS_PLAYING, MS_DEAD)
+	// ìƒíƒœ ê´€ë ¨
+	BYTE						m_enMonsterState;				// ëª¬ìŠ¤í„°ì˜ ìƒíƒœ ë³€ìˆ˜(MS_NULL, MS_CREATED, MS_PLAYING, MS_DEAD)
 
-	// °ø°İ °ü·Ã
-	ClientIndex_t				m_nTargetIndex;					// ¸ó½ºÅÍ°¡ °ø°İÁßÀÎ ÀÎµ¦½º
-	mtvectorActionInfoPtr		m_mtvectorAttackedInfoPtr;		// ¸ó½ºÅÍ°¡ °ø°İ ´çÇÑ ActionInfoÀÇ Æ÷ÀÎÅÍ ¸®½ºÆ®
+	// ê³µê²© ê´€ë ¨
+	ClientIndex_t				m_nTargetIndex;					// ëª¬ìŠ¤í„°ê°€ ê³µê²©ì¤‘ì¸ ì¸ë±ìŠ¤
+	mtvectorActionInfoPtr		m_mtvectorAttackedInfoPtr;		// ëª¬ìŠ¤í„°ê°€ ê³µê²© ë‹¹í•œ ActionInfoì˜ í¬ì¸í„° ë¦¬ìŠ¤íŠ¸
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - 
+	// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - 
 	DWORD						m_dwChangedTargetIndexTick;
 	void SetChangedTargetIndexTick(DWORD i_dwTick);
 	DWORD GetChangedTargetIndexTick(void);
@@ -301,14 +301,14 @@ public:
 	inline ClientIndex_t GetTargetIndex(void) { return m_nTargetIndex; }
 	void ResetSumDamageInAttackedInfoList(void);
 
-	BOOL IsValidMonster(BOOL i_bLiveCheck=TRUE);		// 2009-12-11 by cmkwon, µ¥¹ÌÁö ¾î±×·Î·Î Å¸°ÙÀ» º¯°æÇÏ´Â ¸ó½ºÅÍ ±¸Çö - CFieldMonster Å¬·¡½º¿¡ ÀÖ´ø°ÍÀ» ÀÌ°÷À¸·Î ÀÌµ¿
+	BOOL IsValidMonster(BOOL i_bLiveCheck=TRUE);		// 2009-12-11 by cmkwon, ë°ë¯¸ì§€ ì–´ê·¸ë¡œë¡œ íƒ€ê²Ÿì„ ë³€ê²½í•˜ëŠ” ëª¬ìŠ¤í„° êµ¬í˜„ - CFieldMonster í´ë˜ìŠ¤ì— ìˆë˜ê²ƒì„ ì´ê³³ìœ¼ë¡œ ì´ë™
 
-	// »ı¼º °ü·Ã
+	// ìƒì„± ê´€ë ¨
 	BYTE						m_byObjectMonsterType;			// Object Monster Type(0 = No Object Monster, 6 = EVENT_TYPE_OBJECT_MONSTER)
 	
-	BYTE						m_byMonsterTargetType;			// ¸ó½ºÅÍ°¡ Å¸°ÙÀ¸·Î ÀâÀ» ¼ö ÀÖ´Â Å¸ÀÔÀ» °áÁ¤
+	BYTE						m_byMonsterTargetType;			// ëª¬ìŠ¤í„°ê°€ íƒ€ê²Ÿìœ¼ë¡œ ì¡ì„ ìˆ˜ ìˆëŠ” íƒ€ì…ì„ ê²°ì •
 	INT							m_nTargetTypeData;				// 
 	mtvectClientIndex_t			m_mtvectClientIdxForTargetType;	// 
 
-	BOOL						m_bDeadFlag;					// ¸ó½ºÅÍ Æø¹ß ÇÃ·¡±×, 2005-09-05 by cmkwon
+	BOOL						m_bDeadFlag;					// ëª¬ìŠ¤í„° í­ë°œ í”Œë˜ê·¸, 2005-09-05 by cmkwon
 };

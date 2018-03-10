@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class CAtumDBHelper;
 class CODBCStatement;
@@ -49,8 +49,8 @@ public:
 	CWayPointMove *GetWayPointPattern(int iIndex);
 
 	INT GetCompletionAction(int iIndex);
-	INT GetTotalCountPattern();		// ÃÑ ÆĞÅÏ ¼ö
-	INT GetTotalCountData();		// ¸ğµç ÆĞÅÏµéÀÇ ÃÑ µ¥ÀÌÅÍ ¼ö
+	INT GetTotalCountPattern();		// ì´ íŒ¨í„´ ìˆ˜
+	INT GetTotalCountData();		// ëª¨ë“  íŒ¨í„´ë“¤ì˜ ì´ ë°ì´í„° ìˆ˜
 	
 	BOOL IsCollision(int iIndex, int iStep, D3DXVECTOR3 vecPosition);
 	BOOL IsLastStep(int iIndex, int iStep);

@@ -1,8 +1,9 @@
+//Copyright[2002] MasangSoft
 // File: DbgOut.h
 //
 
-#ifndef DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
-#define DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
+#ifndef COMMON_DBGOUT_C_H_
+#define COMMON_DBGOUT_C_H_
 
 static  LPCTSTR    g_dbgOut                = _T("Client DebugOutput 20020805");
 static  LPCTSTR    g_dbgOutwindowClassName = _T("Client DebugOut Window");
@@ -59,15 +60,15 @@ inline void DbgOutW (LPCWSTR p)
 
 inline void DbgOut (LPCTSTR pFormat, ...)
 {
-	// 2015-06-30 Future, stopped parsing of Debug messages when no debug target is found
-	if (!::FindWindow(g_dbgOutwindowClassName, g_dbgOut))
-		return;
+    // 2015-06-30 Future, stopped parsing of Debug messages when no debug target is found
+    if (!::FindWindow(g_dbgOutwindowClassName, g_dbgOut))
+        return;
 
-	va_list args;
-	va_start(args, pFormat);
+    va_list args;
+    va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
-	vsprintf_s(buffer, 1024 * sizeof(_TCHAR), pFormat, args);
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
+    vsprintf_s(buffer, 1024 * sizeof(_TCHAR), pFormat, args);
 
     #ifdef UNICODE
     DbgOutW (buffer);
@@ -97,11 +98,11 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
    if (::GetLastError() == 0) 
         return 0;
    
-	va_list args;
-	va_start(args, pFormat);
+    va_list args;
+    va_start(args, pFormat);
 
-    _TCHAR buffer [1024*sizeof(_TCHAR)];
-	vsprintf_s(buffer, 1024 * sizeof(_TCHAR), pFormat, args);
+    _TCHAR buffer[1024*sizeof(_TCHAR)];
+    vsprintf_s(buffer, 1024 * sizeof(_TCHAR), pFormat, args);
 
     LPVOID pMessage;
     DWORD  result;
@@ -118,7 +119,7 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
     
     DBGOUT (buffer);
     
-    if(result)
+    if (result)
         ::LocalFree(pMessage);
    
     va_end(args);
@@ -134,4 +135,4 @@ inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
 
 
 
-#endif//  DBGOUT_H_D7274660_0C36_11d2_9253_0000C06932AE__INCLUDED_
+#endif // COMMON_DBGOUT_C_H_

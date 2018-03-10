@@ -1,10 +1,10 @@
-#ifndef _XOR_LIB_H_
+ï»¿#ifndef _XOR_LIB_H_
 #define	_XOR_LIB_H_
 ///////////////////////////////////////////////////////////////////////////////
-// 2007-10-23 by cmkwon, Ãß°¡ÇÔ
+// 2007-10-23 by cmkwon, ì¶”ê°€í•¨
 
-#define SIZE_MAX_XOR_DATA_TO_STRING		500			// 2007-10-23 by cmkwon, XOR·Î ÀÎÄÚµù µ¥ÀÌÅÍ¸¦ ½ºÆ®¸µÀ¸·Î º¯È¯ ÇÒ ¼ö ÀÖ´Â ÃÖ´ë ±æÀÌ
-#define SIZE_MAX_XOR_KEY_STRING			1024		// 2007-10-23 by cmkwon, XOR key·Î »ç¿ë °¡´ÉÇÑ ÃÖ´ë ±æÀÌ, NULL ¹®ÀÚ Æ÷ÇÔÇÏÁö ¾ÊÀº ±æÀÌÀÓ
+#define SIZE_MAX_XOR_DATA_TO_STRING		500			// 2007-10-23 by cmkwon, XORë¡œ ì¸ì½”ë”© ë°ì´í„°ë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€í™˜ í•  ìˆ˜ ìˆëŠ” ìµœëŒ€ ê¸¸ì´
+#define SIZE_MAX_XOR_KEY_STRING			1024		// 2007-10-23 by cmkwon, XOR keyë¡œ ì‚¬ìš© ê°€ëŠ¥í•œ ìµœëŒ€ ê¸¸ì´, NULL ë¬¸ì í¬í•¨í•˜ì§€ ì•Šì€ ê¸¸ì´ì„
 
 class XOR
 {
@@ -18,7 +18,7 @@ public:
 	static BOOL XORBinary2String(char *o_szEncodedString, BYTE *i_byBinaryData, int i_nDataSize);
 	static BOOL XORString2Binary(BYTE *o_byBinaryData, char *o_szEncodedString);
 
-	// 2008-04-23 by cmkwon, PreServer ÁÖ¼Ò¸¦ IP¿Í µµ¸ŞÀÎ µÑ´Ù Áö¿ø - 
+	// 2008-04-23 by cmkwon, PreServer ì£¼ì†Œë¥¼ IPì™€ ë„ë©”ì¸ ë‘˜ë‹¤ ì§€ì› - 
 	static BOOL XORDecrypt(char *o_pszOutputString, char *i_pszInputString, char *i_pKeyString);
 
 private:

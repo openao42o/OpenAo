@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 //  Overlapped.cpp : 
 //  
 //  Date	: 2004-03-17 by cmkwon
@@ -10,7 +10,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-// static °ü·Ã
+// static ê´€ë ¨
 //////////////////////////////////////////////////////////////////////////
 const char* COverlapped::pXOR_ENCODE_BYTES	= XOR_ENCODE_BYTES;
 
@@ -20,16 +20,16 @@ const char* COverlapped::pXOR_ENCODE_BYTES	= XOR_ENCODE_BYTES;
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			COverlapped::COverlapped(int Mode, int Type, BOOL Encoding)
-/// \brief		COverlapped »ı¼ºÀÚ
-				// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+/// \brief		COverlapped ìƒì„±ì
+				// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 /// \author		cmkwon
 /// \date		2004-03-17 ~ 2004-03-17
 /// \warning	
 ///
 /// \param		Mode		[in] Read(0) or Write(1) Operation Mode
 /// \param		Type		[in] Static(2) or Dynamic(3) Overlapped Type
-/// \param		Encoding	[in] ÆĞÅ¶ÀÇ ÀÎÄÚµù ÇÃ·¡±×
-/// \return		¾øÀ½
+/// \param		Encoding	[in] íŒ¨í‚·ì˜ ì¸ì½”ë”© í”Œë˜ê·¸
+/// \return		ì—†ìŒ
 ///////////////////////////////////////////////////////////////////////////////
 COverlapped::COverlapped(ENOperationMode i_enOperationMode, ENOverlappedType i_enOverlappedType, bool Encoding,  ENDataType i_enDataType) :
 	m_enOperationMode(i_enOperationMode), m_enOverlappedType(i_enOverlappedType), m_bEncodingFlag(Encoding), m_enDataType(i_enDataType)
@@ -42,11 +42,11 @@ COverlapped::COverlapped(ENOperationMode i_enOperationMode, ENOverlappedType i_e
 // Method
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
-// COverlapped ÆĞÅ¶¿¡ µ¥ÀÌÅ¸¸¦ Ãß°¡ÇÏ´Â ÇÔ¼ö
+// COverlapped íŒ¨í‚·ì— ë°ì´íƒ€ë¥¼ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
 // pData		- Data Pointer
-// nSize		- Ãß°¡ÇÒ µ¥ÀÌÅ¸ Size
-// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - ÀÎÀÚÃß°¡(SSendedOverlappedInfo *o_pSendedOverInfo)
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+// nSize		- ì¶”ê°€í•  ë°ì´íƒ€ Size
+// 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - ì¸ìì¶”ê°€(SSendedOverlappedInfo *o_pSendedOverInfo)
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 BOOL COverlapped::AddData(SSendedOverlappedInfo *o_pSendedOverInfo, const BYTE* pData, int nSize)
 {	
 	if (m_bEncodedFlag || !pData || nSize <= 0 || m_WSABUF.len + nSize > SIZE_MAX_PACKET)
@@ -90,8 +90,8 @@ BOOL COverlapped::AddData(SSendedOverlappedInfo *o_pSendedOverInfo, const BYTE* 
 
 
 //////////////////////////////////////////////////////////////////
-// COverlapped ÆĞÅ¶À» ÃÊ±âÈ­ ÇÏ´Â ÇÔ¼ö
-// ÀÎÀÚ ¾øÀ½
+// COverlapped íŒ¨í‚·ì„ ì´ˆê¸°í™” í•˜ëŠ” í•¨ìˆ˜
+// ì¸ì ì—†ìŒ
 void COverlapped::ResetOverlapped()
 {
 	Internal				= 0;
@@ -107,14 +107,14 @@ void COverlapped::ResetOverlapped()
 	memset(&m_socketaddr_in, 0x00, sizeof(sockaddr_in));
 	memset(lpBuff, 0x00, SIZE_MAX_SOCKET_BUFFER);
 
-	m_bSessionEnd			= FALSE;		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	m_bSessionEnd			= FALSE;		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 	if (EN_OPERATION_MODE_READ == GetOperationMode()) m_WSABUF.len = SIZE_MAX_SOCKET_BUFFER;
 }
 
 
-// Encoding ÀÌ FALSEÀÏ °æ¿ì¸¸ »ç¿ëµÇ´Â ÇÔ¼ö
-// m_bEncodingFlag °¡ FALSEÀÏ¶§ Sequence Number¸¦ ¼³Á¤ÇÑ´Ù.
+// Encoding ì´ FALSEì¼ ê²½ìš°ë§Œ ì‚¬ìš©ë˜ëŠ” í•¨ìˆ˜
+// m_bEncodingFlag ê°€ FALSEì¼ë•Œ Sequence Numberë¥¼ ì„¤ì •í•œë‹¤.
 void COverlapped::SetSequenceNumber(BYTE seq)
 {
 	if (m_bEncodingFlag) return;
@@ -122,24 +122,24 @@ void COverlapped::SetSequenceNumber(BYTE seq)
 }
 
 
-// m_bEncodingFlag °¡ TRUEÀÌ°í m_bEncodedFlag°¡ TRUEÀÏ¶§ ÆĞÅ¶¿¡ ¼³Á¤µÈ Sequence Number
-// m_bEncodingFlag °¡ FALSEÀÏ¶§ ÆĞÅ¶¿¡ ¼³Á¤µÈ Sequence Number
+// m_bEncodingFlag ê°€ TRUEì´ê³  m_bEncodedFlagê°€ TRUEì¼ë•Œ íŒ¨í‚·ì— ì„¤ì •ëœ Sequence Number
+// m_bEncodingFlag ê°€ FALSEì¼ë•Œ íŒ¨í‚·ì— ì„¤ì •ëœ Sequence Number
 BYTE COverlapped::GetSequenceNumber()
 {
 	return *(lpBuff + SIZE_BODY_LENGTH + SIZE_ENCODE_FLAG);
 }
 
 
-// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 void COverlapped::SetSessionEnd(BYTE bSessionEnd)
 {
 	m_bSessionEnd = bSessionEnd;
 }
-// end 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+// end 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
 void COverlapped::EncodePacket(BYTE seq)
 {
-	if (EN_DATA_TYPE_RAW == m_enDataType) return;		// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+	if (EN_DATA_TYPE_RAW == m_enDataType) return;		// 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 	
 	if (m_bEncodedFlag) return;
 
@@ -149,10 +149,10 @@ void COverlapped::EncodePacket(BYTE seq)
 		return;
 	}
 
-	// XOR_N »ı¼º, 4, 8, 12, ... , 124
+	// XOR_N ìƒì„±, 4, 8, 12, ... , 124
 	BYTE XOR_N = (BYTE)(GetTickCount() % 30 + 1) * 4;
 
-	// º¯¼öµé ¼±¾ğ, Á¤ÀÇ
+	// ë³€ìˆ˜ë“¤ ì„ ì–¸, ì •ì˜
 	BYTE checkSum = 0;
 	int nDummyLen = seq%4;
 	int woffset = SIZE_BODY_LENGTH;
@@ -161,21 +161,21 @@ void COverlapped::EncodePacket(BYTE seq)
 	char *pBlock	= (char*)lpBuff;
 	int nLength = m_WSABUF.len - SIZE_PACKET_HEADER;
 
-	// size¸¦ º¹»ç
+	// sizeë¥¼ ë³µì‚¬
 	*(unsigned short*)lpBuff
 		= (unsigned short)(nLength + SIZE_CHECKSUM + nDummyLen);
 
-	// encode flag 1B¸¦ »ı¼ºÇÏ°í º¹»ç
+	// encode flag 1Bë¥¼ ìƒì„±í•˜ê³  ë³µì‚¬
 	BYTE encodeFlag = ENCODE_MASK | (XOR_N_MASK & XOR_N);
 	*(BYTE*)(lpBuff+woffset) = encodeFlag;
 	woffset += SIZE_ENCODE_FLAG;
 
-	// sequence number(1B)¸¦ XORÇÑÈÄ, º¹»ç, checksum °è»ê ½ÃÀÛ
+	// sequence number(1B)ë¥¼ XORí•œí›„, ë³µì‚¬, checksum ê³„ì‚° ì‹œì‘
 	checkSum ^= seq;
 	*(BYTE*)(lpBuff+woffset) = (seq ^ pXOR_ENCODE_BYTES[XOR_N-1]);
 	woffset += SIZE_SEQ_NUM;
 
-	// MSGs¸¦ 4B¾¿ XOR, checksum °è»ê
+	// MSGsë¥¼ 4Bì”© XOR, checksum ê³„ì‚°
 	int nEndValue = (int)(nLength / 4 + 1) * 4;
 	DWORD checkSum_4B = 0;
 	while (roffset < nEndValue)
@@ -188,13 +188,13 @@ void COverlapped::EncodePacket(BYTE seq)
 		xoffset = (xoffset + 4) % SIZE_XOR_ENCODE_BYTES;
 	}
 
-	// 4BÀÇ checkSum_4B¸¦ 1BÀÇ checkSumÀ¸·Î º¯È¯
+	// 4Bì˜ checkSum_4Bë¥¼ 1Bì˜ checkSumìœ¼ë¡œ ë³€í™˜
 	checkSum ^= ( *((char*)&checkSum_4B)
 				^ *((char*)&checkSum_4B+1)
 				^ *((char*)&checkSum_4B+2)
 				^ *((char*)&checkSum_4B+3) );
 
-	// ³²¾ÆÀÖ´Â nLength - nEndValue ¸¸Å­ÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸® -> XOR + checkSum
+	// ë‚¨ì•„ìˆëŠ” nLength - nEndValue ë§Œí¼ì˜ ë°ì´í„°ë¥¼ ì²˜ë¦¬ -> XOR + checkSum
 	for (int i = 0; i < nLength + 4 - nEndValue; i++)
 	{
 		checkSum ^= pBlock[roffset];
@@ -205,10 +205,10 @@ void COverlapped::EncodePacket(BYTE seq)
 		xoffset = (xoffset + 1) % SIZE_XOR_ENCODE_BYTES;
 	}
 
-	// checksumÀ» Ãß°¡
+	// checksumì„ ì¶”ê°€
 	lpBuff[woffset++] =  checkSum ^ pXOR_ENCODE_BYTES[xoffset];
 
-	// dummy data´Â XOR_ENCODE_BYTES¸¦ »ç¿ëÇÔ
+	// dummy dataëŠ” XOR_ENCODE_BYTESë¥¼ ì‚¬ìš©í•¨
 	const char *dummyData = pXOR_ENCODE_BYTES + XOR_N;
 
 	memcpy(lpBuff+woffset, dummyData, nDummyLen);

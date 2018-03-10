@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "VMem.h"
 
 #ifdef _DEBUG
@@ -40,14 +40,14 @@ BOOL CVMem::AllocVMem(DWORD dwTypeSize, DWORD dwPoolCount)
 	const DWORD	dwPAGESIZE = 4096;
 	
 	//////////////////////////////////////////////////////////////////////
-	// ¿äÃ»ÇÑ PoolCount¸¦ Page Å©±â¿¡ ÃÖ´ëÇÑ ¸ÂÃß´Â °è»ê
+	// ìš”ì²­í•œ PoolCountë¥¼ Page í¬ê¸°ì— ìµœëŒ€í•œ ë§ì¶”ëŠ” ê³„ì‚°
 	DWORD dwCalcPoolCnt;
 	if((dwTypeSize * dwPoolCount)%dwPAGESIZE != 0)
 		dwCalcPoolCnt = (((dwTypeSize * dwPoolCount)/dwPAGESIZE + 1) * dwPAGESIZE)/dwTypeSize;
 	else dwCalcPoolCnt = dwPoolCount;
 	
 	//////////////////////////////////////////////////////////////////////
-	// ¸Ş¸ğ¸®Ç® Å©±â¸¦ Page ´ÜÀ§·Î °è»ê
+	// ë©”ëª¨ë¦¬í’€ í¬ê¸°ë¥¼ Page ë‹¨ìœ„ë¡œ ê³„ì‚°
 	DWORD dwCommitVMSize = dwTypeSize * dwCalcPoolCnt;
 	if(dwCommitVMSize%dwPAGESIZE != 0)
 	{	
@@ -85,7 +85,7 @@ BOOL CVMem::AllocVMem(DWORD dwTypeSize, DWORD dwPoolCount)
 	m_dwSizeObjType			= dwTypeSize;
 	m_dwCntCommitedObjPool	= dwCalcPoolCnt;
 	m_dwSizeCommitVMem		= dwCommitVMSize;
-	m_dwTotalCommitedObjCnts	+= dwCalcPoolCnt;		// 2008-04-11 by cmkwon, ¸Ş¸ğ¸®Ç® ½Ã½ºÅÛ ·Î±× Ãß°¡ - 
+	m_dwTotalCommitedObjCnts	+= dwCalcPoolCnt;		// 2008-04-11 by cmkwon, ë©”ëª¨ë¦¬í’€ ì‹œìŠ¤í…œ ë¡œê·¸ ì¶”ê°€ - 
 
 	m_vectorMemoryPointer.reserve(m_dwCntCommitedObjPool * 2);
 	for(int i = 0; i < m_dwCntCommitedObjPool; i++)
@@ -102,7 +102,7 @@ BOOL CVMem::FreeAllVMem(void)
 	LockVMem();	
 
 	///////////////////////////////////////////////////////////////////////////////
-	// 2008-04-11 by cmkwon, ¸Ş¸ğ¸®Ç® ½Ã½ºÅÛ ·Î±× Ãß°¡ - 
+	// 2008-04-11 by cmkwon, ë©”ëª¨ë¦¬í’€ ì‹œìŠ¤í…œ ë¡œê·¸ ì¶”ê°€ - 
 	g_pGlobal->WriteSystemLogEX(TRUE, "[Notify] CVMem::FreeAllVMem_ TypeSize[%5d] TotalCommitedObjCnts(%6d) CurrentObjCnts(%6d)\r\n"
 		, m_dwSizeObjType, m_dwTotalCommitedObjCnts, m_vectorMemoryPointer.size());
 
@@ -152,7 +152,7 @@ BOOL CVMem::FreeVMem(void * pVMem)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-05-04 by cmkwon, ¸Ş¸ğ¸®Ç® »óÅÂÁ¤º¸ ·Î±× ³²±â±â - 
+/// \brief		// 2009-05-04 by cmkwon, ë©”ëª¨ë¦¬í’€ ìƒíƒœì •ë³´ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 /// \author		cmkwon
 /// \date		2009-05-04 ~ 2009-05-04
 /// \warning	

@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #pragma once
 
 // 2015-06-12 Future, Kill Count System Properties

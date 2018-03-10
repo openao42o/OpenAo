@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 // AtumSound.h: interface for the CAtumSound class.
-//
+//Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
-#ifndef ATUMSOUND_H
-#define ATUMSOUND_H
+#ifndef COMMON_ATUMSOUND_H_
+#define COMMON_ATUMSOUND_H_
 
 #include <dsound.h>
 
@@ -41,15 +41,15 @@ public:
 	VOID	SetBackMusic(DWORD dwType);
 	VOID	SetAtumMusicVolume(int nVolume) const;
 
-	// 2007-07-24 by bhsohn ³ª·¹ÀÌ¼Ç mp3Ãß°¡
-	// 2009. 01. 22 by ckPark °¢ ¼¼·Âº° ¿ÀÆÛ·¹ÀÌÅÍ MP3 ºĞ¸®
+	// 2007-07-24 by bhsohn ë‚˜ë ˆì´ì…˜ mp3ì¶”ê°€
+	// 2009. 01. 22 by ckPark ê° ì„¸ë ¥ë³„ ì˜¤í¼ë ˆì´í„° MP3 ë¶„ë¦¬
 	//VOID	PlayNarrationSound(char* pNarration);
 	BOOL	PlayNarrationSound(char* pNarration);
 	void	EndNarrationSound();
 
 	CSound * FindSCSoundWithSoundType(int nType) const;
 	HRESULT	 SetResourceFile(char* szFileName);
-	// WAVEFORMATEX¸¦ Ã£¾Æ¼­ ™VÆÃÇÏ°í , ½ÇÁ¦ µ¥ÀÌÅ¸ÀÇ À§Ä¡¿Í ±æÀÌ¸¦ ¸®ÅÏ
+	// WAVEFORMATEXë¥¼ ì°¾ì•„ì„œ Â™VíŒ…í•˜ê³  , ì‹¤ì œ ë°ì´íƒ€ì˜ ìœ„ì¹˜ì™€ ê¸¸ì´ë¥¼ ë¦¬í„´
 	PBYTE SetWaveFormatEx(BYTE* pbData, DWORD& dwWaveFromLen, WAVEFORMATEX* pwfx );
  	void SetDefaultMusicLoop(bool bFlag) const;
 
@@ -57,7 +57,7 @@ public:
 	void	DelD3DSound(int nType);
 	void	DelSCSoundWithSoundType(int nType);
 
-	// 2013-02-05 by bhsohn Sound ¾ø´Â Àåºñ¿¡¼­ Exception¿À·ù ³ª´Â Çö»ó ¼öÁ¤
+	// 2013-02-05 by bhsohn Sound ì—†ëŠ” ì¥ë¹„ì—ì„œ Exceptionì˜¤ë¥˜ ë‚˜ëŠ” í˜„ìƒ ìˆ˜ì •
 	bool IsSoundDevice() const { return m_bNotDevice; }
 
 public:
@@ -70,10 +70,10 @@ protected:
 	CMusicMP3Ex		*			m_pNarrationMusic;	
 
 	BOOL						m_bPlayNarrationMusic;
-	char 						m_strNarrationMusic[MAX_SOUND_FILE_NAME_SIZE];			// ¹è°æ ¹ÂÁ÷ ÀÌ¸§
+	char 						m_strNarrationMusic[MAX_SOUND_FILE_NAME_SIZE];			// ë°°ê²½ ë®¤ì§ ì´ë¦„
 
-	FLOAT						m_fSetSoundGroundCheckTime;		// Ground ÀÇ ¹è°æ À½Çâ »ı¼º Ã¼Å© Å¸ÀÓ
-	char 						m_strBackMusic[MAX_SOUND_FILE_NAME_SIZE];			// ¹è°æ ¹ÂÁ÷ ÀÌ¸§
+	FLOAT						m_fSetSoundGroundCheckTime;		// Ground ì˜ ë°°ê²½ ìŒí–¥ ìƒì„± ì²´í¬ íƒ€ì„
+	char 						m_strBackMusic[MAX_SOUND_FILE_NAME_SIZE];			// ë°°ê²½ ë®¤ì§ ì´ë¦„
 
 	vectorSoundPtr				m_vectorSoundPtr;
 	CSoundManager				*m_pSoundManager;
@@ -90,6 +90,4 @@ protected:
 	BOOL						m_bNotDevice;
 };
 
-
-
-#endif
+#endif // COMMON_ATUMSOUND_H_

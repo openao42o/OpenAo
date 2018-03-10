@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 #include "resource.h"
 #include "ListBoxEBX.h"
@@ -14,14 +14,14 @@ static char THIS_FILE[] = __FILE__;
 
 //-------------------------------------------------------------------
 //
-// 2007-09-05 by cmkwon, EXE_1¿¡ ·Î±×ÀÎ ¼­¹ö ¼±ÅÃ ÀÎÅÍÆäÀÌ½º ¼öÁ¤ - ÀÎÀÚÃß°¡ WORD i_wCrowdednessImageList=0, WORD i_wListItemBGImageList=0, WORD i_wIconImageList=0
+// 2007-09-05 by cmkwon, EXE_1ì— ë¡œê·¸ì¸ ì„œë²„ ì„ íƒ ì¸í„°í˜ì´ìŠ¤ ìˆ˜ì • - ì¸ìì¶”ê°€ WORD i_wCrowdednessImageList=0, WORD i_wListItemBGImageList=0, WORD i_wIconImageList=0
 CListBoxEBX::CListBoxEBX(WORD i_wCrowdednessImageList/*=0*/, WORD i_wListItemBGImageList/*=0*/, WORD i_wIconImageList/*=0*/)
 {
 	m_pSuper = (CListBox*)this;
-	m_iItemHeight = 25;				// 2007-09-05 by cmkwon, ±âº»°ª
+	m_iItemHeight = 25;				// 2007-09-05 by cmkwon, ê¸°ë³¸ê°’
 
-	m_nItemBGWidth		= 176;		// 2007-09-11 by cmkwon, ±âº»°ª, 
-	m_nItemBGHeight		= 25;		// 2007-09-11 by cmkwon, ±âº»°ª, 
+	m_nItemBGWidth		= 176;		// 2007-09-11 by cmkwon, ê¸°ë³¸ê°’, 
+	m_nItemBGHeight		= 25;		// 2007-09-11 by cmkwon, ê¸°ë³¸ê°’, 
 
 	m_nItemIconPosX		= 3;
 	m_nItemIconPosY		= 8;
@@ -106,19 +106,19 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 
 	HBITMAP hOldbmp ;
 
-	// µ¥ÀÌÅÍ ÁØºñ
+	// ë°ì´í„° ì¤€ë¹„
 	LItem	*pItem		= Item((int)lpDIS->itemID);		// pointer to data item
 
 	COLORREF bg			= pItem->cBg;
 	COLORREF fg			= pItem->cFg;
 	int nDrawIndex		= pItem->nHal;
-	int nNetState		= pItem->nNetworkState;			// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
-	BOOL bViewNetState	= pItem->bViewNetworkState;		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
+	int nNetState		= pItem->nNetworkState;			// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
+	BOOL bViewNetState	= pItem->bViewNetworkState;		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
 
 	if(bg == DEF_COL) bg = ::GetSysColor(COLOR_WINDOW);
 	if(fg == DEF_COL) fg = ::GetSysColor(COLOR_WINDOWTEXT);
 
-	// È­¸é Áö¿ì±â;
+	// í™”ë©´ ì§€ìš°ê¸°;
 	CBrush brush(bg);
 
 	
@@ -128,7 +128,7 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 		state=1;
 	}
 
-	// ÀÌ¹ÌÁö ³Ö±â
+	// ì´ë¯¸ì§€ ë„£ê¸°
 
 
 	if(nDrawIndex != -1)
@@ -164,7 +164,7 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 		}
 	}
 
-	// ±ÛÀÚ Âï±â
+	// ê¸€ì ì°ê¸°
 	CString lpszItem;
 	GetTextString(lpDIS->itemID, lpszItem);
 	if(m_hBitIcon)
@@ -174,16 +174,16 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 	}
 	else
 	{
-		// 2007-10-04 by cmkwon, 2ÇÈ¼¿¸¸Å­ ¶Ù¿î´Ù
+		// 2007-10-04 by cmkwon, 2í”½ì…€ë§Œí¼ ë›°ìš´ë‹¤
 		DrawText(&RealMemDC, lpszItem, CPoint(2, 9), 10, fg,bg);
 	}
 
-	// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - NetworkState¸¦ º¸¿©±â°¡ ¾Æ´Ï¸é È¥Àâµµ¸¦ ÀÌ¹ÌÁö·Î Ç¥½Ã
+	// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - NetworkStateë¥¼ ë³´ì—¬ê¸°ê°€ ì•„ë‹ˆë©´ í˜¼ì¡ë„ë¥¼ ì´ë¯¸ì§€ë¡œ í‘œì‹œ
 	if(FALSE == bViewNetState)
 	{
 		if(m_hBitMap)
 		{
-			// È¥Àâµµ ÀÌ¹ÌÁö³Ö±â
+			// í˜¼ì¡ë„ ì´ë¯¸ì§€ë„£ê¸°
 			if(nDrawIndex != -1)
 			{	
 				hOldbmp = (HBITMAP)MemDC.SelectObject(m_hBitMap);
@@ -206,10 +206,10 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 	}
 	
 
-	// ÃÖÁ¾ »Ñ¸®±â
-	// 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// ìµœì¢… ë¿Œë¦¬ê¸°
+	// 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 	//pDC->BitBlt(lpDIS->rcItem.left, lpDIS->rcItem.top, lpDIS->rcItem.right, lpDIS->rcItem.bottom, &RealMemDC, 0, 0, SRCCOPY);
-//#if defined(SERVICE_TYPE_VIETNAMESE_SERVER_1) || defined(SERVICE_TYPE_ENGLISH_SERVER_1)// ·¯½Ã¾Æ ·±Ã³ ¼öÁ¤
+//#if defined(SERVICE_TYPE_VIETNAMESE_SERVER_1) || defined(SERVICE_TYPE_ENGLISH_SERVER_1)// ëŸ¬ì‹œì•„ ëŸ°ì²˜ ìˆ˜ì •
 	SetColorKey(RGB(255, 255, 255));
 	CBrush br;
 	br.CreateStockObject(NULL_BRUSH);
@@ -227,7 +227,7 @@ void CListBoxEBX::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 //#else
 //	pDC->BitBlt(lpDIS->rcItem.left, lpDIS->rcItem.top, lpDIS->rcItem.right, lpDIS->rcItem.bottom, &RealMemDC, 0, 0, SRCCOPY);
 //#endif
-	// end 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+	// end 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 
 
 
@@ -397,7 +397,7 @@ CListBoxEBX::LItem* CListBoxEBX::Item(int ix)
 	return (LItem *)m_pSuper->GetItemData(i);
 }
 
-// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - ÀÎÀÚÃß°¡(int i_nNetworkState/*=0*/, BOOL i_bViewNetworkState/*=FALSE*/)
+// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¸ìì¶”ê°€(int i_nNetworkState/*=0*/, BOOL i_bViewNetworkState/*=FALSE*/)
 int CListBoxEBX::InsertItem(int nIndex, LPCTSTR lpszItem, int i_nCrowdedness, COLORREF bg, COLORREF fg, int hal, int i_nNetworkState/*=0*/, BOOL i_bViewNetworkState/*=FALSE*/)
 {
 	//int iRet = InsertString(nIndex, lpszItem);
@@ -416,8 +416,8 @@ int CListBoxEBX::InsertItem(int nIndex, LPCTSTR lpszItem, int i_nCrowdedness, CO
 	Cbi->cFg = fg;
 	Cbi->nHal = hal;
 	Cbi->bSelect = false;
-	Cbi->nNetworkState		= i_nNetworkState;			// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - Ãß°¡
-	Cbi->bViewNetworkState	= i_bViewNetworkState;		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â - Ãß°¡
+	Cbi->nNetworkState		= i_nNetworkState;			// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¶”ê°€
+	Cbi->bViewNetworkState	= i_bViewNetworkState;		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° - ì¶”ê°€
 
 	if(SetItemData(nIndex, (DWORD)Cbi) == LB_ERR)
 		return LB_ERR;
@@ -427,7 +427,7 @@ int CListBoxEBX::InsertItem(int nIndex, LPCTSTR lpszItem, int i_nCrowdedness, CO
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CListBoxEBX::GetNetworkStateText(CString *o_pcstr, COLORREF *i_pcolorFont, int i_nNetworkState)
-/// \brief		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
+/// \brief		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
 /// \author		cmkwon
 /// \date		2007-06-22 ~ 2007-06-22
 /// \warning	
@@ -455,7 +455,7 @@ void CListBoxEBX::GetNetworkStateText(CString *o_pcstr, COLORREF *i_pcolorFont, 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			void CListBoxEBX::UpdateNetworkState(int i_nNetworkState)
-/// \brief		// 2007-06-22 by cmkwon, Áß±¹ ³×Æ®¿öÅ© »óÅÂ º¸¿©ÁÖ±â -
+/// \brief		// 2007-06-22 by cmkwon, ì¤‘êµ­ ë„¤íŠ¸ì›Œí¬ ìƒíƒœ ë³´ì—¬ì£¼ê¸° -
 /// \author		cmkwon
 /// \date		2007-06-22 ~ 2007-06-22
 /// \warning	
@@ -584,7 +584,7 @@ bool CListBoxEBX::AlphaBlendU
 
 
 
-// 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+// 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 bool CListBoxEBX::ColorKeyBlt
 (
  HDC dcDest, int x, int y, int cx, int cy,
@@ -665,7 +665,7 @@ bool CListBoxEBX::ColorKeyBlt
 	
 	return true;
 }
-// end 2008-12-17 by ckPark ·¯½Ã¾Æ ·±ÃÄ
+// end 2008-12-17 by ckPark ëŸ¬ì‹œì•„ ëŸ°ì³
 
 
 
@@ -702,7 +702,7 @@ int CListBoxEBX::GetCrowdedness(int nIndex)
 ///////////////////////////////////////////////////////////////////////////////
 /// \class		BOOL CListBoxEBX::GetServerCheck(int nIndex)
 ///
-/// \brief		ÆÄÀÏÀÌ ÇöÀç Á×¾îÀÖ´ÂÁö È®ÀÎÇØÁÖ´Â ÇÔ¼ö.
+/// \brief		íŒŒì¼ì´ í˜„ì¬ ì£½ì–´ìˆëŠ”ì§€ í™•ì¸í•´ì£¼ëŠ” í•¨ìˆ˜.
 /// \author		dgwoo
 /// \version	
 /// \date		7/13/2006 ~ 7/13/2006
@@ -722,7 +722,7 @@ void CListBoxEBX::DrawText(CDC *pDC, CString &str, CPoint pt, int TextSize, DWOR
 	HFONT hFont, hOldFont;
 	
 	INT nHeight    = -MulDiv( TextSize, (INT)GetDeviceCaps(*pDC, LOGPIXELSY), 72 );
-// 2007-02-12 by cmkwon, ¾Æ·¡¿Í °°ÀÌ ¼öÁ¤ÇÔ
+// 2007-02-12 by cmkwon, ì•„ë˜ì™€ ê°™ì´ ìˆ˜ì •í•¨
 //#ifdef _VTC_VIET_SERVER		// 2006-05-15 by cmkwon
 //	hFont = CreateFont(nHeight, 0, 0, 0, FW_NORMAL, 0, 0, 0, VIETNAMESE_CHARSET, OUT_DEFAULT_PRECIS,
 //		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, FIXED_PITCH , "Times New Roman");

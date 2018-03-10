@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 // AtumData.h: interface for the CAtumData class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -15,156 +16,156 @@
 
 struct ATTACK_DATA
 {
-	MSG_FC_BATTLE_ATTACK_OK	AttackData;
-	BOOL					bShootingWeapon;		// weaponÀ» ½î°í ÀÖ´Â »óÅÂÀÌ¸é TRUE
-	float					fCheckAutoMaticTimer;	// Automatic timer
-	BOOL					bZigZagWeapon;			// Áö±×Àç±× ÇüÅÂ¿¡¼­ Áö±×Àç±×·Î ³ª°¡°Ô ÇÏ±â À§ÇÑ º¯¼ö
-	FLOAT					fCheckAttackTime;		// Àç ¹ß»çÇÏ±âÀ§ÇÑ Ã¼Å© ½Ã°£(´õ¹Ì¹ß»ç)
-	BYTE					nAttackCount;			// ¹ß»çµÇ¾î¾ßÇÒ ÃÑ¾Ë¼ö(ShotNum*MultiNum)
-	BYTE					nMultiNumCount;			// MultiNum
-	D3DXVECTOR3				vSidePos;				// ¹«±â ÁÂ¿ì»çÀÌµå ÁÂÇ¥
-	D3DXVECTOR3				vSideBackPos;			// ¹«±â ÁÂ¿ì»çÀÌµå ¹é ÁÂÇ¥(¹«±â ³ª°¡´Â ¹æÇâ Àâ±â À§ÇÔ, A±â¾î´Â WeaponVel°ú ½ÇÁ¦ ¹æÇâÀÌ ´Ù¸¥ °æ¿ì°¡ »ı±è)
-	float					fExplosionRange;		// 2007-06-12 by dgwoo Æø¹ß ¹İ°æ.
-	float					fWarheadSpeed;			// 2007-06-15 by dgwoo °í±Ş¹«±â ÅºµÎ ¼Óµµ
+    MSG_FC_BATTLE_ATTACK_OK    AttackData;
+    BOOL                    bShootingWeapon;        // weaponì„ ì˜ê³  ìˆëŠ” ìƒíƒœì´ë©´ TRUE
+    float                    fCheckAutoMaticTimer;    // Automatic timer
+    BOOL                    bZigZagWeapon;            // ì§€ê·¸ì¬ê·¸ í˜•íƒœì—ì„œ ì§€ê·¸ì¬ê·¸ë¡œ ë‚˜ê°€ê²Œ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    FLOAT                    fCheckAttackTime;        // ì¬ ë°œì‚¬í•˜ê¸°ìœ„í•œ ì²´í¬ ì‹œê°„(ë”ë¯¸ë°œì‚¬)
+    BYTE                    nAttackCount;            // ë°œì‚¬ë˜ì–´ì•¼í•  ì´ì•Œìˆ˜(ShotNum*MultiNum)
+    BYTE                    nMultiNumCount;            // MultiNum
+    D3DXVECTOR3                vSidePos;                // ë¬´ê¸° ì¢Œìš°ì‚¬ì´ë“œ ì¢Œí‘œ
+    D3DXVECTOR3                vSideBackPos;            // ë¬´ê¸° ì¢Œìš°ì‚¬ì´ë“œ ë°± ì¢Œí‘œ(ë¬´ê¸° ë‚˜ê°€ëŠ” ë°©í–¥ ì¡ê¸° ìœ„í•¨, Aê¸°ì–´ëŠ” WeaponVelê³¼ ì‹¤ì œ ë°©í–¥ì´ ë‹¤ë¥¸ ê²½ìš°ê°€ ìƒê¹€)
+    float                    fExplosionRange;        // 2007-06-12 by dgwoo í­ë°œ ë°˜ê²½.
+    float                    fWarheadSpeed;            // 2007-06-15 by dgwoo ê³ ê¸‰ë¬´ê¸° íƒ„ë‘ ì†ë„
 };
 
-// 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö
+// 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„
 struct MULTI_TARGET_DATA
 {
-	INT			PointIndex;							// Ãß°¡µÈ ¸ó½ºÅÍ Å¸°ÙÀÇ ¹øÈ£
-	D3DXMATRIX	TargetMatrix;						// ½ÇÁ¦ ¸ÅÆ®¸¯½º
-};									 
-// end 2011. 03. 08 by jskim ÀÎÇÇ3Â÷ ±¸Çö
+    INT            PointIndex;                            // ì¶”ê°€ëœ ëª¬ìŠ¤í„° íƒ€ê²Ÿì˜ ë²ˆí˜¸
+    D3DXMATRIX    TargetMatrix;                        // ì‹¤ì œ ë§¤íŠ¸ë¦­ìŠ¤
+};                                     
+// end 2011. 03. 08 by jskim ì¸í”¼3ì°¨ êµ¬í˜„
 
 class CAtumData : public CAtumNode  
 {
 public:
-	CAtumData();
-	virtual ~CAtumData();
+    CAtumData();
+    virtual ~CAtumData();
 
-	D3DXVECTOR3			m_vPos;					// ·»´õ¸µ »óÀÇ ÁÂÇ¥
-	D3DXVECTOR3			m_vNextPos;				// ¸ó½ºÅÍ ¹× ÀûÄ³¸¯ÀÇ ½ÇÁ¦ ÁÂÇ¥
-	D3DXVECTOR3			m_vUp;
-	D3DXVECTOR3			m_vVel;
-    D3DXVECTOR3			m_vSideVel;				// ¿·¹æÇâ º¤ÅÍ
-    D3DXVECTOR3			m_vLWPos;				// ¿ŞÂÊ À®ÀÇ À§Ä¡
-    D3DXVECTOR3			m_vLWBackPos;			// ¿ŞÂÊ À®ÀÇ µŞÁÂÇ¥(A±â¾î 1Çü¹«±â)
-    D3DXVECTOR3			m_vRWPos;				// ¿À¸¥ÂÊ À®ÀÇ À§Ä¡
-    D3DXVECTOR3			m_vLWSecondaryPos;		// ¿ŞÂÊ 2Çü À®ÀÇ À§Ä¡
-    D3DXVECTOR3			m_vRWSecondaryPos;		// ¿À¸¥ÂÊ 2Çü À®ÀÇ À§Ä¡
+    D3DXVECTOR3            m_vPos;                    // ë Œë”ë§ ìƒì˜ ì¢Œí‘œ
+    D3DXVECTOR3            m_vNextPos;                // ëª¬ìŠ¤í„° ë° ì ìºë¦­ì˜ ì‹¤ì œ ì¢Œí‘œ
+    D3DXVECTOR3            m_vUp;
+    D3DXVECTOR3            m_vVel;
+    D3DXVECTOR3            m_vSideVel;                // ì˜†ë°©í–¥ ë²¡í„°
+    D3DXVECTOR3            m_vLWPos;                // ì™¼ìª½ ìœ™ì˜ ìœ„ì¹˜
+    D3DXVECTOR3            m_vLWBackPos;            // ì™¼ìª½ ìœ™ì˜ ë’·ì¢Œí‘œ(Aê¸°ì–´ 1í˜•ë¬´ê¸°)
+    D3DXVECTOR3            m_vRWPos;                // ì˜¤ë¥¸ìª½ ìœ™ì˜ ìœ„ì¹˜
+    D3DXVECTOR3            m_vLWSecondaryPos;        // ì™¼ìª½ 2í˜• ìœ™ì˜ ìœ„ì¹˜
+    D3DXVECTOR3            m_vRWSecondaryPos;        // ì˜¤ë¥¸ìª½ 2í˜• ìœ™ì˜ ìœ„ì¹˜
 
-	BOOL				m_bShadowIsRender;		// ±×¸²ÀÚ¸¦ ·»´õ¸µ ÇÒ°ÍÀÎ°¡
-	D3DXVECTOR3			m_vShadowPos1;			// ±×¸²ÀÚ À§Ä¡ (¾ÕºÎºĞ ¿ŞÂÊ)
-	D3DXVECTOR3			m_vShadowPos2;			// ±×¸²ÀÚ À§Ä¡ (¾ÕºÎºĞ ¿À¸¥ÂÊ)
-	D3DXVECTOR3			m_vShadowPos3;			// ±×¸²ÀÚ À§Ä¡ (µŞºÎºĞ ¿À¸¥ÂÊ)
-	D3DXVECTOR3			m_vShadowPos4;			// ±×¸²ÀÚ À§Ä¡ (µŞºÎºĞ ¿ŞÂÊ)
-	D3DXVECTOR3			m_vMoveVel;
-	INT					m_nObjScreenX;			// ½ºÅ©¸°»ó X ÁÂÇ¥
-	INT					m_nObjScreenY;			// ½ºÅ©¸°»ó Y ÁÂÇ¥
-	INT					m_nObjScreenW;			// ½ºÅ©¸°»ó W ÁÂÇ¥
-	FLOAT				m_fDistanceCamera;		// Ä«¸Ş¶ó·ÎºÎÅÍÀÇ °Å¸®
-	FLOAT				m_fObjectSize;
-	CAtumNode	*		m_pMoveChat;
-	CAtumNode	*		m_pIDChat;
-	DWORD				m_dwState;				// -1:initializing, 0:normal, 1:exploding, 2:close
-	FLOAT				m_fCurrentTime;
-	D3DXMATRIX			m_mMatrix;
-//	D3DXMATRIX			m_mMatrixEffect;		
-	BOOL				m_bCheckBlend;
-	BOOL				m_bIsUnderWater;
-	BOOL				m_bAniColl;				// Ãæµ¹ ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
-	FLOAT				m_fAniCollTime;
-	BOOL				m_bShielding;			// ½¯µå ¹ßµ¿ ÁßÀÎ°¡
-	INT					m_bDegree;				// µğÅ×ÀÏ Á¤µµ
-	BOOL				m_bItemDegree;			// µğÅ×ÀÏ Á¤µµ
+    BOOL                m_bShadowIsRender;        // ê·¸ë¦¼ìë¥¼ ë Œë”ë§ í• ê²ƒì¸ê°€
+    D3DXVECTOR3            m_vShadowPos1;            // ê·¸ë¦¼ì ìœ„ì¹˜ (ì•ë¶€ë¶„ ì™¼ìª½)
+    D3DXVECTOR3            m_vShadowPos2;            // ê·¸ë¦¼ì ìœ„ì¹˜ (ì•ë¶€ë¶„ ì˜¤ë¥¸ìª½)
+    D3DXVECTOR3            m_vShadowPos3;            // ê·¸ë¦¼ì ìœ„ì¹˜ (ë’·ë¶€ë¶„ ì˜¤ë¥¸ìª½)
+    D3DXVECTOR3            m_vShadowPos4;            // ê·¸ë¦¼ì ìœ„ì¹˜ (ë’·ë¶€ë¶„ ì™¼ìª½)
+    D3DXVECTOR3            m_vMoveVel;
+    INT                    m_nObjScreenX;            // ìŠ¤í¬ë¦°ìƒ X ì¢Œí‘œ
+    INT                    m_nObjScreenY;            // ìŠ¤í¬ë¦°ìƒ Y ì¢Œí‘œ
+    INT                    m_nObjScreenW;            // ìŠ¤í¬ë¦°ìƒ W ì¢Œí‘œ
+    FLOAT                m_fDistanceCamera;        // ì¹´ë©”ë¼ë¡œë¶€í„°ì˜ ê±°ë¦¬
+    FLOAT                m_fObjectSize;
+    CAtumNode    *        m_pMoveChat;
+    CAtumNode    *        m_pIDChat;
+    DWORD                m_dwState;                // -1:initializing, 0:normal, 1:exploding, 2:close
+    FLOAT                m_fCurrentTime;
+    D3DXMATRIX            m_mMatrix;
+//    D3DXMATRIX            m_mMatrixEffect;        
+    BOOL                m_bCheckBlend;
+    BOOL                m_bIsUnderWater;
+    BOOL                m_bAniColl;                // ì¶©ëŒ ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
+    FLOAT                m_fAniCollTime;
+    BOOL                m_bShielding;            // ì‰´ë“œ ë°œë™ ì¤‘ì¸ê°€
+    INT                    m_bDegree;                // ë””í…Œì¼ ì •ë„
+    BOOL                m_bItemDegree;            // ë””í…Œì¼ ì •ë„
 
-	BYTE				m_bProgressiveRate;
-	// 2003.4.23 by dhkwon, Ä³¸¯ÅÍ ÀÌÆåÆ® Ãß°¡ ³»¿ë
-	CCharacterInfo*		m_pCharacterInfo;
-	// 2010. 03. 18 by jskim ¸ó½ºÅÍº¯½Å Ä«µå
-	//void LoadCharacterEffect(char* strFileName);
-	void LoadCharacterEffect(char* strFileName, int nMonsterTransformer = 0, float nMonsterTransScale = 0.0f);
-	//end 2010. 03. 18 by jskim ¸ó½ºÅÍº¯½Å Ä«µå
-	
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - 1Çü, 2Çü Æ÷Áö¼Ç ¸ÅÆ®¸¯½º ÇÔ¼ö ºĞ¸®
-	//void SetWeaponPosition();
-	void SetPrimaryWeaponPosition();
-	void SetSecondaryWeaponPosition();
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - 1Çü, 2Çü Æ÷Áö¼Ç ¸ÅÆ®¸¯½º ÇÔ¼ö ºĞ¸®
+    BYTE                m_bProgressiveRate;
+    // 2003.4.23 by dhkwon, ìºë¦­í„° ì´í™íŠ¸ ì¶”ê°€ ë‚´ìš©
+    CCharacterInfo*        m_pCharacterInfo;
+    // 2010. 03. 18 by jskim ëª¬ìŠ¤í„°ë³€ì‹  ì¹´ë“œ
+    //void LoadCharacterEffect(char* strFileName);
+    void LoadCharacterEffect(char* strFileName, int nMonsterTransformer = 0, float nMonsterTransScale = 0.0f);
+    //end 2010. 03. 18 by jskim ëª¬ìŠ¤í„°ë³€ì‹  ì¹´ë“œ
+    
+    // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - 1í˜•, 2í˜• í¬ì§€ì…˜ ë§¤íŠ¸ë¦­ìŠ¤ í•¨ìˆ˜ ë¶„ë¦¬
+    //void SetWeaponPosition();
+    void SetPrimaryWeaponPosition();
+    void SetSecondaryWeaponPosition();
+    // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - 1í˜•, 2í˜• í¬ì§€ì…˜ ë§¤íŠ¸ë¦­ìŠ¤ í•¨ìˆ˜ ë¶„ë¦¬
 
-	// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¹«±â »ı¼º
-	void SetPetPosition();
-	// end 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¹«±â »ı¼º
+    // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ë¬´ê¸° ìƒì„±
+    void SetPetPosition();
+    // end 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ë¬´ê¸° ìƒì„±
 
-	// 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ı¼º
-	void SetMarkPosition();
-	//end 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ı¼º
+    // 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
+    void SetMarkPosition();
+    //end 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 
-	// 2011-07-20 by jhahn	ÀÎÇÇ3Â÷ ½Ã³×¸¶ÇÃ·¹ÀÌÁß Å¸Ä³¸¯ÅÍ ¾Èº¸ÀÌ±â
-	void SetHideData();
-	void SetShowData();
-	//end 2011-07-20 by jhahn	ÀÎÇÇ3Â÷ ½Ã³×¸¶ÇÃ·¹ÀÌÁß Å¸Ä³¸¯ÅÍ ¾Èº¸ÀÌ±â
+    // 2011-07-20 by jhahn    ì¸í”¼3ì°¨ ì‹œë„¤ë§ˆí”Œë ˆì´ì¤‘ íƒ€ìºë¦­í„° ì•ˆë³´ì´ê¸°
+    void SetHideData();
+    void SetShowData();
+    //end 2011-07-20 by jhahn    ì¸í”¼3ì°¨ ì‹œë„¤ë§ˆí”Œë ˆì´ì¤‘ íƒ€ìºë¦­í„° ì•ˆë³´ì´ê¸°
 
-//	CAppEffectData *	m_pWeapon1_1;			// 1-1Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pWeapon1_2;			// 1-2Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-//	CAppEffectData *	m_pWeapon2_1;			// 2-1Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pWeapon2_2;			// 2-2Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pEngine;				// ¿£Áø¿¡ ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pRadar;				// ·¹ÀÌ´Ù¿¡ ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-//	CAppEffectData *	m_pArmor;				// ¹æ¾î·ù¿¡ ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pContainer;			// ÄÁÅ×ÀÌ³Ê(¿¬·áÅëµî_)¿¡ ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®) // 2006-06-28 by ispark, ¹«Á¦ÇÑ ¾Ç¼¼»ç¸®
-	CAppEffectData *	m_pAccessories;				// ½Ã°£ Á¦ÇÑ ¾ÆÀÌÅÛ(ITEMKIND_ACCESSORY_TIMELIMIT) // 2006-08-18 by ispark, ½Ã°£ Á¦ÇÑ ¾Ç¼¼»ç¸®
-	CAppEffectData *	m_pWingIn;				// 2006-08-18 by ispark, Æ¯¼ö
+//    CAppEffectData *    m_pWeapon1_1;            // 1-1í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pWeapon1_2;            // 1-2í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+//    CAppEffectData *    m_pWeapon2_1;            // 2-1í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pWeapon2_2;            // 2-2í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pEngine;                // ì—”ì§„ì— ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pRadar;                // ë ˆì´ë‹¤ì— ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+//    CAppEffectData *    m_pArmor;                // ë°©ì–´ë¥˜ì— ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pContainer;            // ì»¨í…Œì´ë„ˆ(ì—°ë£Œí†µë“±_)ì— ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸) // 2006-06-28 by ispark, ë¬´ì œí•œ ì•…ì„¸ì‚¬ë¦¬
+    CAppEffectData *    m_pAccessories;                // ì‹œê°„ ì œí•œ ì•„ì´í…œ(ITEMKIND_ACCESSORY_TIMELIMIT) // 2006-08-18 by ispark, ì‹œê°„ ì œí•œ ì•…ì„¸ì‚¬ë¦¬
+    CAppEffectData *    m_pWingIn;                // 2006-08-18 by ispark, íŠ¹ìˆ˜
 
-// 2006-01-12 by ispark, ¹«±â ¸ğµâ
-	CAppEffectData *	m_pWeapon1_1_1;			// 1-1Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pWeapon1_1_2;			// 1-2Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pWeapon2_1_1;			// 2-1Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
-	CAppEffectData *	m_pWeapon2_1_2;			// 2-2Çü ÀåÂøµÈ ¾ÆÀÌÅÛ(ÀÌÆåÆ®)
+// 2006-01-12 by ispark, ë¬´ê¸° ëª¨ë“ˆ
+    CAppEffectData *    m_pWeapon1_1_1;            // 1-1í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pWeapon1_1_2;            // 1-2í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pWeapon2_1_1;            // 2-1í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
+    CAppEffectData *    m_pWeapon2_1_2;            // 2-2í˜• ì¥ì°©ëœ ì•„ì´í…œ(ì´í™íŠ¸)
 
 
-	// 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
-	CAppEffectData*		m_pRobotAGearWeapon_1;	// ·Îº¿ A±â¾î¿ë ÀåÂø ÀÌÆåÆ®
-	// end 2009. 07. 07 by ckPark ·Îº¿±â¾î ¿äÃ»»çÇ×(·Ñ¸µ, ¼±ÅÃÈ­¸é, ¹«±â, A±â¾îÆ÷´ë)
+    // 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
+    CAppEffectData*        m_pRobotAGearWeapon_1;    // ë¡œë´‡ Aê¸°ì–´ìš© ì¥ì°© ì´í™íŠ¸
+    // end 2009. 07. 07 by ckPark ë¡œë´‡ê¸°ì–´ ìš”ì²­ì‚¬í•­(ë¡¤ë§, ì„ íƒí™”ë©´, ë¬´ê¸°, Aê¸°ì–´í¬ëŒ€)
 
-	CAppEffectData*		m_pPartner;				// 2010-06-08 by dgwoo, Æê½Ã½ºÅÛ Ãß°¡. 
-	CAppEffectData*		m_pPartner1;			// 2010-06-08 by dgwoo, Æê½Ã½ºÅÛ Ãß°¡. 
-	CAppEffectData*		m_pDummyPartner;		// 2010-06-08 by dgwoo, Æê½Ã½ºÅÛ Ãß°¡.(´õ¹Ì) 
-	CAppEffectData*		m_pDummyPartner1;		// 2010-06-08 by dgwoo, Æê½Ã½ºÅÛ Ãß°¡.(´õ¹Ì1) 
+    CAppEffectData*        m_pPartner;                // 2010-06-08 by dgwoo, í«ì‹œìŠ¤í…œ ì¶”ê°€. 
+    CAppEffectData*        m_pPartner1;            // 2010-06-08 by dgwoo, í«ì‹œìŠ¤í…œ ì¶”ê°€. 
+    CAppEffectData*        m_pDummyPartner;        // 2010-06-08 by dgwoo, í«ì‹œìŠ¤í…œ ì¶”ê°€.(ë”ë¯¸) 
+    CAppEffectData*        m_pDummyPartner1;        // 2010-06-08 by dgwoo, í«ì‹œìŠ¤í…œ ì¶”ê°€.(ë”ë¯¸1) 
 
-	ATTACK_DATA			m_PrimaryAttack;
-	ATTACK_DATA			m_SecondaryAttack;
+    ATTACK_DATA            m_PrimaryAttack;
+    ATTACK_DATA            m_SecondaryAttack;
 
-	ATTACK_DATA			m_PetAttack;			// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê °ø°İ
+    ATTACK_DATA            m_PetAttack;            // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ê³µê²©
 
-	// 2003..12.09 
-	D3DXMATRIX			m_mWeaponMatrix;					// A-Gear ¿ë ¹«±â ¸ÅÆ®¸¯½º
-	D3DXVECTOR3			m_vWeaponPos;						// A-Gear ¿ë ¹«±â À§Ä¡(x->m_vSideVel,y->m_vUp,z->m_vVel)
-	D3DXVECTOR3			m_vWeaponVel;						// A-Gear ¿ë ¹«±â ¾Õ¹æÇâ
-	D3DXVECTOR3			m_vWeaponUp;						// A-Gear ¿ë ¹«±â À§¹æÇâ
+    // 2003..12.09 
+    D3DXMATRIX            m_mWeaponMatrix;                    // A-Gear ìš© ë¬´ê¸° ë§¤íŠ¸ë¦­ìŠ¤
+    D3DXVECTOR3            m_vWeaponPos;                        // A-Gear ìš© ë¬´ê¸° ìœ„ì¹˜(x->m_vSideVel,y->m_vUp,z->m_vVel)
+    D3DXVECTOR3            m_vWeaponVel;                        // A-Gear ìš© ë¬´ê¸° ì•ë°©í–¥
+    D3DXVECTOR3            m_vWeaponUp;                        // A-Gear ìš© ë¬´ê¸° ìœ„ë°©í–¥
 
-	D3DXMATRIX			m_pMatWeaponPosition[4];// 2006-01-03 by ispark, ¹«±â Æ÷Áö¼Ç ¸ŞÆ®¸¯½º
-	
-	D3DXMATRIX			m_pMatPetPosition[2]; // 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - Æê ¹«±â »ı¼º
-	D3DXMATRIX			m_pMatMarkPosition; // 2011-03-21 by jhAhn ¸¶Å©½Ã½ºÅÛ ¸¶Å© À§Ä¡ »ı¼º
+    D3DXMATRIX            m_pMatWeaponPosition[4];// 2006-01-03 by ispark, ë¬´ê¸° í¬ì§€ì…˜ ë©”íŠ¸ë¦­ìŠ¤
+    
+    D3DXMATRIX            m_pMatPetPosition[2]; // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - í« ë¬´ê¸° ìƒì„±
+    D3DXMATRIX            m_pMatMarkPosition; // 2011-03-21 by jhAhn ë§ˆí¬ì‹œìŠ¤í…œ ë§ˆí¬ ìœ„ì¹˜ ìƒì„±
 
-	D3DXMATRIX			m_vPetLeftMatrix;					// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ left Æê Matrix
-	D3DXVECTOR3			m_vPetLeftPos;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ left Æê À§Ä¡
-	D3DXVECTOR3			m_vPetLeftVel;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ left Æê ¹æÇâ
-	D3DXVECTOR3			m_vPetLeftUp;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ left Æê ¾÷ ¹éÅÍ
+    D3DXMATRIX            m_vPetLeftMatrix;                    // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ left í« Matrix
+    D3DXVECTOR3            m_vPetLeftPos;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ left í« ìœ„ì¹˜
+    D3DXVECTOR3            m_vPetLeftVel;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ left í« ë°©í–¥
+    D3DXVECTOR3            m_vPetLeftUp;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ left í« ì—… ë°±í„°
 
-	D3DXMATRIX			m_vPetRightMatrix;					// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ Right Æê Matrix
-	D3DXVECTOR3			m_vPetRightPos;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ Right Æê À§Ä¡
-	D3DXVECTOR3			m_vPetRightVel;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ Right Æê ¹æÇâ
-	D3DXVECTOR3			m_vPetRightUp;						// 2010-06-15 by shcho&hslee Æê½Ã½ºÅÛ - A-Gear ½ÃÁî»óÅÂ Right Æê ¾÷ ¹éÅÍ
-	// 1Çü ¹«±âÀÇ ¿¬»ç·ÂÀ» ³ô¿©ÁÖ±â À§ÇÑ ´ÙÀ½ µ¥ÀÌÅ¸, Áö¿ï º¯¼öµé
-//	MSG_FC_BATTLE_ATTACK_RESULT_PRIMARY			m_PrimaryAttackData1;		// ¹ß»ç¿Í °ü·ÃµÈ µ¥ÀÌÅ¸1
-//	MSG_FC_BATTLE_ATTACK_ITEM_RESULT_PRIMARY	m_PrimaryAttackData2;		// ¹ß»ç¿Í °ü·ÃµÈ µ¥ÀÌÅ¸2
+    D3DXMATRIX            m_vPetRightMatrix;                    // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ Right í« Matrix
+    D3DXVECTOR3            m_vPetRightPos;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ Right í« ìœ„ì¹˜
+    D3DXVECTOR3            m_vPetRightVel;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ Right í« ë°©í–¥
+    D3DXVECTOR3            m_vPetRightUp;                        // 2010-06-15 by shcho&hslee í«ì‹œìŠ¤í…œ - A-Gear ì‹œì¦ˆìƒíƒœ Right í« ì—… ë°±í„°
+    // 1í˜• ë¬´ê¸°ì˜ ì—°ì‚¬ë ¥ì„ ë†’ì—¬ì£¼ê¸° ìœ„í•œ ë‹¤ìŒ ë°ì´íƒ€, ì§€ìš¸ ë³€ìˆ˜ë“¤
+//    MSG_FC_BATTLE_ATTACK_RESULT_PRIMARY            m_PrimaryAttackData1;        // ë°œì‚¬ì™€ ê´€ë ¨ëœ ë°ì´íƒ€1
+//    MSG_FC_BATTLE_ATTACK_ITEM_RESULT_PRIMARY    m_PrimaryAttackData2;        // ë°œì‚¬ì™€ ê´€ë ¨ëœ ë°ì´íƒ€2
 
-	// ¾ÕÀ¸·Î Áö¿ï º¯¼öµé
-//	BOOL										m_bIsItemAttack;			// ¾ÆÀÌÅÛ¿¡ ¹ß»çÇß´Â°¡
-//	CAtumData *									m_pPrimaryAttackTarget;		// Å¸°ÙÀÇ Æ÷ÀÎÅÍ
-//	FLOAT										m_fPrimaryAttackTime;		// 1ÇüÀ» Àç ¹ß»çÇÏ±âÀ§ÇÑ Ã¼Å© ½Ã°£(´õ¹Ì¹ß»ç)
+    // ì•ìœ¼ë¡œ ì§€ìš¸ ë³€ìˆ˜ë“¤
+//    BOOL                                        m_bIsItemAttack;            // ì•„ì´í…œì— ë°œì‚¬í–ˆëŠ”ê°€
+//    CAtumData *                                    m_pPrimaryAttackTarget;        // íƒ€ê²Ÿì˜ í¬ì¸í„°
+//    FLOAT                                        m_fPrimaryAttackTime;        // 1í˜•ì„ ì¬ ë°œì‚¬í•˜ê¸°ìœ„í•œ ì²´í¬ ì‹œê°„(ë”ë¯¸ë°œì‚¬)
 };
 
 #endif // !defined(AFX_ATUMDATA_H__263209E9_D038_4DAB_81BC_C6634AC9921E__INCLUDED_)

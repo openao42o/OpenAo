@@ -1,45 +1,46 @@
-#ifndef _BILLING_WIKIGAMES_H_
-#define _BILLING_WIKIGAMES_H_
+ï»¿//Copyright[2002] MasangSoft
+#ifndef COMMON_BILLINGWIKIGAMES_H_
+#define COMMON_BILLINGWIKIGAMES_H_
 
 
-#define WIKIBILL_SIZE_MAX_ACCOUNT_NAME			50		// ÃÖ´ë °èÁ¤¸í
-#define WIKIBILL_SIZE_MAX_CHARACTER_NAME		50		// ÃÖ´ë Ä³¸¯ÅÍ¸í
-#define WIKIBILL_SIZE_MAX_ITEM_NUM				50		// ÃÖ´ë ¾ÆÀÌÅÛ¹øÈ£ ±æÀÌ
-#define WIKIBILL_SIZE_MAX_ITEM_NAME				50		// ÃÖ´ë ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ
+#define WIKIBILL_SIZE_MAX_ACCOUNT_NAME			50		// ìµœëŒ€ ê³„ì •ëª…
+#define WIKIBILL_SIZE_MAX_CHARACTER_NAME		50		// ìµœëŒ€ ìºë¦­í„°ëª…
+#define WIKIBILL_SIZE_MAX_ITEM_NUM				50		// ìµœëŒ€ ì•„ì´í…œë²ˆí˜¸ ê¸¸ì´
+#define WIKIBILL_SIZE_MAX_ITEM_NAME				50		// ìµœëŒ€ ì•„ì´í…œ ì´ë¦„ ê¸¸ì´
 #define WIKIBILL_SIZE_MAX_IPADDRESS				16		// 
 
 //-------------------------------------------------------------------------------
-//--						Error code Á¤ÀÇ
+//--						Error code ì •ì˜
 #define WIKIBILL_ERR_DB_NO_ERROR							0
-#define WIKIBILL_ERR_DB_IS_NOT_ACCOUNTNAME					1			// td_cash_bonus_point Å×ÀÌºí¿¡ °èÁ¤¸íÀÌ ¾øÀ½
-#define WIKIBILL_ERR_DB_NOT_ENOUGH_MONEY					2			// ¼ÒÀ¯ÇÑ Point(CashPoint+BonusPoint)°¡ ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÇ °¡°Ýº¸´Ù ÀÛ´Ù
-#define WIKIBILL_ERR_DB_IS_NOT_GAMEUID						3			// ±¸¸ÅÇÏ·Á´Â °ÔÀÓÀÌ ºô¸µ ¼­¹ö¿¡ µî·ÏµÇ¾î ÀÖÁö ¾ÊÀ½
-#define WIKIBILL_ERR_DB_INVALID_ITEM						4			// ±¸¸ÅÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ À¯È¿ÇÏÁö ¾ÊÀ½ - ti_item_info Å×ÀÌºí¿¡ ¾ø°Å³ª IsDisable ÇÊµå°¡ 0ÀÌ ¾Æ´Ï´Ù
-#define WIKIBILL_ERR_DB_IS_NOT_EQUAL_ITEM_UNIT_PRICE		5			// ±¸¸Å ¾ÆÀÌÅÛÀÇ 1°³´ç °¡°ÝÀÌ ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ°Í°ú ´Ù¸£´Ù
+#define WIKIBILL_ERR_DB_IS_NOT_ACCOUNTNAME					1			// td_cash_bonus_point í…Œì´ë¸”ì— ê³„ì •ëª…ì´ ì—†ìŒ
+#define WIKIBILL_ERR_DB_NOT_ENOUGH_MONEY					2			// ì†Œìœ í•œ Point(CashPoint+BonusPoint)ê°€ êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì˜ ê°€ê²©ë³´ë‹¤ ìž‘ë‹¤
+#define WIKIBILL_ERR_DB_IS_NOT_GAMEUID						3			// êµ¬ë§¤í•˜ë ¤ëŠ” ê²Œìž„ì´ ë¹Œë§ ì„œë²„ì— ë“±ë¡ë˜ì–´ ìžˆì§€ ì•ŠìŒ
+#define WIKIBILL_ERR_DB_INVALID_ITEM						4			// êµ¬ë§¤í•˜ë ¤ëŠ” ì•„ì´í…œì´ ìœ íš¨í•˜ì§€ ì•ŠìŒ - ti_item_info í…Œì´ë¸”ì— ì—†ê±°ë‚˜ IsDisable í•„ë“œê°€ 0ì´ ì•„ë‹ˆë‹¤
+#define WIKIBILL_ERR_DB_IS_NOT_EQUAL_ITEM_UNIT_PRICE		5			// êµ¬ë§¤ ì•„ì´í…œì˜ 1ê°œë‹¹ ê°€ê²©ì´ ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœê²ƒê³¼ ë‹¤ë¥´ë‹¤
 #define WIKIBILL_ERR_INVALID_BUILDING_NPC					6
 #define WIKIBILL_ERR_INVALID_CASH_SHOP_DATA					7
 
-#define WIKIBILL_ERR_DB_CONNECT_FAIL						100			// ºô¸µ DB Server·Î ¿¬°á ½ÇÆÐ
-#define WIKIBILL_ERR_DB_QUERY_ERROR							101			// DB Query ½ÇÆÐ
-#define WIKIBILL_ERR_DB_QUERY_FETCH_ERROR					102			// DB Query ½ÇÆÐ
+#define WIKIBILL_ERR_DB_CONNECT_FAIL						100			// ë¹Œë§ DB Serverë¡œ ì—°ê²° ì‹¤íŒ¨
+#define WIKIBILL_ERR_DB_QUERY_ERROR							101			// DB Query ì‹¤íŒ¨
+#define WIKIBILL_ERR_DB_QUERY_FETCH_ERROR					102			// DB Query ì‹¤íŒ¨
 #define WIKIBILL_ERR_DB_INVALID_BILLING_COMMAND				110			// 
 //-------------------------------------------------------------------------------
 
 
 
 //----------------------------------------------------------------
-//-- Àü¼Ûµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ì „ì†¡ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 struct SWIKIBILL_REQ_DATA
 {
-	int  nCommand;												// ¸í·ÉÁ¾·ù(1:ÀÜ¾×Á¶È¸, 2:¾ÆÀÌÅÛ±¸¸Å)
-	char szAccountName[WIKIBILL_SIZE_MAX_ACCOUNT_NAME];		// ±¸¸ÅÀÚÁ¤º¸(»ç¿ëÀÚ¹øÈ£)
-	char szCharacterName[WIKIBILL_SIZE_MAX_CHARACTER_NAME];	// ±¸¸ÅÀÚÁ¤º¸(°ÔÀÓ³»ÀÇ Ä³¸¯ÅÍ¸í)
-	char szItemNum[WIKIBILL_SIZE_MAX_ITEM_NUM];				// ±¸¸Å ¾ÆÀÌÅÛ ±¸ºÐÀÚ(ºô¸µ ¼­¹ö¿¡ µî·ÏµÈ ¾ÆÀÌÅÛ¸¸ ±¸¸Å°¡´É)
-	char szItemName[WIKIBILL_SIZE_MAX_ITEM_NAME];				// ±¸¸Å ¾ÆÀÌÅÛ ÀÌ¸§
-	int  nBuyItemCount;											// ±¸¸Å ¾ÆÀÌÅÛ Ä«¿îÆ®
-	int  nItemUnitPrice;										// ±¸¸Å ¾ÆÀÌÅÛÀÇ 1°³´ç °¡°Ý
-	char szUserIP[WIKIBILL_SIZE_MAX_IPADDRESS];				// ±¸¸ÅÀÚÁ¤º¸(±¸¸ÅÀÚ IP)	
+	int  nCommand;												// ëª…ë ¹ì¢…ë¥˜(1:ìž”ì•¡ì¡°íšŒ, 2:ì•„ì´í…œêµ¬ë§¤)
+	char szAccountName[WIKIBILL_SIZE_MAX_ACCOUNT_NAME];		// êµ¬ë§¤ìžì •ë³´(ì‚¬ìš©ìžë²ˆí˜¸)
+	char szCharacterName[WIKIBILL_SIZE_MAX_CHARACTER_NAME];	// êµ¬ë§¤ìžì •ë³´(ê²Œìž„ë‚´ì˜ ìºë¦­í„°ëª…)
+	char szItemNum[WIKIBILL_SIZE_MAX_ITEM_NUM];				// êµ¬ë§¤ ì•„ì´í…œ êµ¬ë¶„ìž(ë¹Œë§ ì„œë²„ì— ë“±ë¡ëœ ì•„ì´í…œë§Œ êµ¬ë§¤ê°€ëŠ¥)
+	char szItemName[WIKIBILL_SIZE_MAX_ITEM_NAME];				// êµ¬ë§¤ ì•„ì´í…œ ì´ë¦„
+	int  nBuyItemCount;											// êµ¬ë§¤ ì•„ì´í…œ ì¹´ìš´íŠ¸
+	int  nItemUnitPrice;										// êµ¬ë§¤ ì•„ì´í…œì˜ 1ê°œë‹¹ ê°€ê²©
+	char szUserIP[WIKIBILL_SIZE_MAX_IPADDRESS];				// êµ¬ë§¤ìžì •ë³´(êµ¬ë§¤ìž IP)	
 	int		GiftAccountUID;
 	char	GiftAccountName[WIKIBILL_SIZE_MAX_ACCOUNT_NAME];
 	char	GiftCharacterName[WIKIBILL_SIZE_MAX_CHARACTER_NAME];
@@ -47,15 +48,16 @@ struct SWIKIBILL_REQ_DATA
 
 
 //----------------------------------------------------------------
-//-- ¼ö½Åµ¥ÀÌÅÍ ±¸Á¶Ã¼
+//-- ìˆ˜ì‹ ë°ì´í„° êµ¬ì¡°ì²´
 //----------------------------------------------------------------
 struct SWIKIBILL_RET_DATA
 {
-	int  nRetErrCode;				// Ã³¸®°á°ú (=0: ¼º°ø, <>0: ¿¡·¯), ERR_DB_XXXX
-	int  nCashPoint;				// ½ÇÁ¦·Î °áÁ¦ÇÏ¿© ¼ÒÀ¯ÇÑ Point
-	int  nBonusPoint;				// ÀÌº¥Æ® È¤Àº ´Ù¸¥ »çÀ¯·Î ÀÎÇØ ¼ÒÀ¯ÇÑ Point
+	int  nRetErrCode;				// ì²˜ë¦¬ê²°ê³¼ (=0: ì„±ê³µ, <>0: ì—ëŸ¬), ERR_DB_XXXX
+	int  nCashPoint;				// ì‹¤ì œë¡œ ê²°ì œí•˜ì—¬ ì†Œìœ í•œ Point
+	int  nBonusPoint;				// ì´ë²¤íŠ¸ í˜¹ì€ ë‹¤ë¥¸ ì‚¬ìœ ë¡œ ì¸í•´ ì†Œìœ í•œ Point
 };
 
 
 
 #endif // #ifndef _BILLING_WIKIGAMES_H_
+#endif // COMMON_BILLINGWIKIGAMES_H_

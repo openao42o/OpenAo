@@ -1,13 +1,13 @@
-/*****************************************************************************\
-IExplore.h
-Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
-You may use this code in your applications at no cost, so long as credit
-is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
-\*****************************************************************************/
+Ôªø//*****************************************************************************\
+//IExplore.h
+//Copyright (c) 2002 Matthew Blagden <info@nocturnalnetwork.com>
+//You may use this code in your applications at no cost, so long as credit
+//is given to Matthew Blagden, nocturnalnetwork.com, or The Nocturnal Network.
+//\*****************************************************************************/
 
-// 2009-09-02 by cmkwon, Gameforge4D ∞‘¿” ∞°µÂ µø¿«√¢ WebPage∑Œ √≥∏Æ - 
-#if !defined(_IEXPLORE_H_)
-#define		_IEXPLORE_H_
+// 2009-09-02 by cmkwon, Gameforge4D Í≤åÏûÑ Í∞ÄÎìú ÎèôÏùòÏ∞Ω WebPageÎ°ú Ï≤òÎ¶¨ - 
+#ifndef COMMON_IEXPLORE_H_
+#define COMMON_IEXPLORE_H_
 
 
 #include <olectl.h>
@@ -135,4 +135,4 @@ private:
     Host *m_pHost;
 };
 
-#endif	// 2009-09-02 by cmkwon, Gameforge4D ∞‘¿” ∞°µÂ µø¿«√¢ WebPage∑Œ √≥∏Æ - 
+#endif // COMMON_IEXPLORE_H_

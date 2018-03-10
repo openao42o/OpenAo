@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "SocketHeader.h"
 
@@ -100,17 +100,17 @@ public:
 
 	char							m_ServerGroupName[SIZE_MAX_SERVER_NAME];
 	BOOL							m_bEnableServerGroup;
-	BOOL							m_bForbidViewServer;		// 2007-12-22 by dhjin, ¾Æ·¹³ª ÅëÇÕ - ·±ÃÄ ¸®½ºÆ®¿¡¼­ º¸ÀÌ¸é ¾ÈµÇ´Â ¼­¹ö Ã¼Å©, TRUE = º¸ÀÌÁö ¾Ê´Â´Ù.
+	BOOL							m_bForbidViewServer;		// 2007-12-22 by dhjin, ì•„ë ˆë‚˜ í†µí•© - ëŸ°ì³ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë³´ì´ë©´ ì•ˆë˜ëŠ” ì„œë²„ ì²´í¬, TRUE = ë³´ì´ì§€ ì•ŠëŠ”ë‹¤.
 
 	// statistics
 	UINT							m_AccumulatedGroupUserCounts;
 	UINT							m_MaxGroupUserCounts;
 	UINT							m_LimitGroupUserCounts;
 	//int							m_nMGameServerID;
-	BOOL							m_bLockCreateCharacterForNewAccount;	// 2008-04-29 by cmkwon, ¼­¹ö±º Á¤º¸ DB¿¡ Ãß°¡(½Å±Ô °èÁ¤ Ä³¸¯ÅÍ »ı¼º Á¦ÇÑ ½Ã½ºÅÛÃß°¡) - from FieldServer
+	BOOL							m_bLockCreateCharacterForNewAccount;	// 2008-04-29 by cmkwon, ì„œë²„êµ° ì •ë³´ DBì— ì¶”ê°€(ì‹ ê·œ ê³„ì • ìºë¦­í„° ìƒì„± ì œí•œ ì‹œìŠ¤í…œì¶”ê°€) - from FieldServer
 
 	// server management
 	ServerInfo						m_IMServerInfo;						// IMServer
 	FieldServerInfo					m_FieldServerInfo;					// FieldServer
-	mt_set<string>					m_setLoginedAccount;				// Á¢¼ÓÁßÀÎ account ¸®½ºÆ®
+	mt_set<string>					m_setLoginedAccount;				// ì ‘ì†ì¤‘ì¸ account ë¦¬ìŠ¤íŠ¸
 };

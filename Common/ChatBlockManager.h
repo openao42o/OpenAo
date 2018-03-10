@@ -1,5 +1,5 @@
-// ChatBlockManager.h: interface for the CChatBlockManager class.
-//
+ï»¿// ChatBlockManager.h: interface for the CChatBlockManager class.
+// Copyright[2002] MasangSoft
 //////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_CHATBLOCKMANAGER_H__0D41A9DF_9A0A_4E5F_B5E7_1D53A60C594C__INCLUDED_)
@@ -13,11 +13,11 @@ struct SChatBlockInfo
 {
 	char		szBlockedCharacterName[SIZE_MAX_CHARACTER_NAME];
 	DWORD		dwChatBlockedTick;				
-	DWORD		dwExpireTick;					// timeGetTime()ÇÔ¼ö »ç¿ë
+	DWORD		dwExpireTick;					// timeGetTime()í•¨ìˆ˜ ì‚¬ìš©
 };
 
 typedef mt_map<string, SChatBlockInfo*>			mtmapChatBlockInfoPtr;
-typedef vector<SChatBlockInfo*>					vectChatBlockInfoPtr;		// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - 
+typedef vector<SChatBlockInfo*>					vectChatBlockInfoPtr;		// 2008-12-30 by cmkwon, ì§€ë„ì ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - 
 
 class CChatBlockManager  
 {
@@ -29,7 +29,7 @@ public:
 	void DeleteChatBlockList(char *i_szCharacterName);
 	BOOL IsExistChatBlockList(int *o_pRemainMinute, char *i_szCharacterName);
 	
-	// 2008-12-30 by cmkwon, ÁöµµÀÚ Ã¤ÆÃ Á¦ÇÑ Ä«µå ±¸Çö - CChatBlockManager::CheckChatBlockList()¿¡ ÀÎÀÚ Ãß°¡(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr=NULL)
+	// 2008-12-30 by cmkwon, ì§€ë„ì ì±„íŒ… ì œí•œ ì¹´ë“œ êµ¬í˜„ - CChatBlockManager::CheckChatBlockList()ì— ì¸ì ì¶”ê°€(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr=NULL)
 	void CheckChatBlockList(vectChatBlockInfoPtr *o_pvectReleasedBlockInfoPtr=NULL);
 
 protected:

@@ -1,18 +1,19 @@
+ï»¿//Copyright[2002] MasangSoft
 ///////////////////////////////////////////////////////////////////////////////
 //  GlobalFunc.h : 
 //
 //  Date	: 2008-06-26 by cmkwon
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _GLOBAL_FUNC_H_
-#define _GLOBAL_FUNC_H_
+#ifndef COMMON_GLOBALFUNC_H_
+#define COMMON_GLOBALFUNC_H_
 
 ///////////////////////////////////////////////////////////////////////////////
-// 2008-06-26 by cmkwon, float -> int Çüº¯È¯ ÇÔ¼ö Ãß°¡ - 
+// 2008-06-26 by cmkwon, float -> int í˜•ë³€í™˜ í•¨ìˆ˜ ì¶”ê°€ - 
 
 extern int f2i(float f);
 extern int fastf2i_round(float f);
 extern int fastf2i(float fValue);
 extern int Float2Int( float a );
 
-#endif	// END - _GLOBAL_FUNC_H_
+#endif	// COMMON_GLOBALFUNC_H_

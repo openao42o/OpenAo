@@ -1,3 +1,4 @@
+ï»¿//Copyright[2002] MasangSoft
 #pragma once
 
 #include "mt_stl.h"
@@ -10,254 +11,254 @@
 
 enum EN_NETWORK_STATE
 {
-	EN_NETWORK_STATE_WORST = 0,
-	EN_NETWORK_STATE_BAD = 1,
-	EN_NETWORK_STATE_NORMAL = 2,
-	EN_NETWORK_STATE_GOOD = 3,
-	EN_NETWORK_STATE_BEST = 4				// Network State °¡ °¡Àå ÁÁÀº »óÅÂ
+    EN_NETWORK_STATE_WORST = 0,
+    EN_NETWORK_STATE_BAD = 1,
+    EN_NETWORK_STATE_NORMAL = 2,
+    EN_NETWORK_STATE_GOOD = 3,
+    EN_NETWORK_STATE_BEST = 4                // Network State ê°€ ê°€ì¥ ì¢‹ì€ ìƒíƒœ
 };
 
 enum EN_PACKET_PRIORITY
 {
-	EN_PACKET_PRIORITY_LOWEST = 0,
-	EN_PACKET_PRIORITY_LOW = 1,
-	EN_PACKET_PRIORITY_NORMAL = 2,
-	EN_PACKET_PRIORITY_HIGH = 3,
-	EN_PACKET_PRIORITY_HIGHEST = 4				// °¡Àå ³ôÀº ¿ì¼±¼øÀ§
+    EN_PACKET_PRIORITY_LOWEST = 0,
+    EN_PACKET_PRIORITY_LOW = 1,
+    EN_PACKET_PRIORITY_NORMAL = 2,
+    EN_PACKET_PRIORITY_HIGH = 3,
+    EN_PACKET_PRIORITY_HIGHEST = 4                // ê°€ì¥ ë†’ì€ ìš°ì„ ìˆœìœ„
 };
 
 struct STrafficInfo
 {
-	DWORD	dwBytesSend;
-	DWORD	dwBytesRecv;
-	DWORD	dwCountSendPacket;
-	DWORD	dwCountRecvPacket;
-	DWORD	dwTimeGapSecond;
+    DWORD    dwBytesSend;
+    DWORD    dwBytesRecv;
+    DWORD    dwCountSendPacket;
+    DWORD    dwCountRecvPacket;
+    DWORD    dwTimeGapSecond;
 
-	void Reset(DWORD currentTick)
-	{
-		dwBytesSend = 0;
-		dwBytesRecv = 0;
-		dwCountSendPacket = 0;
-		dwCountRecvPacket = 0;
+    void Reset(DWORD currentTick)
+    {
+        dwBytesSend = 0;
+        dwBytesRecv = 0;
+        dwCountSendPacket = 0;
+        dwCountRecvPacket = 0;
 
-		dwTimeGapSecond = currentTick;
-	}
+        dwTimeGapSecond = currentTick;
+    }
 
-	STrafficInfo& operator+=(STrafficInfo& value)
-	{
-		dwBytesSend += value.dwBytesSend;
-		dwBytesRecv += value.dwBytesRecv;
+    STrafficInfo& operator+=(STrafficInfo& value)
+    {
+        dwBytesSend += value.dwBytesSend;
+        dwBytesRecv += value.dwBytesRecv;
 
-		dwCountSendPacket += value.dwCountSendPacket;
-		dwCountRecvPacket += value.dwCountRecvPacket;
+        dwCountSendPacket += value.dwCountSendPacket;
+        dwCountRecvPacket += value.dwCountRecvPacket;
 
-		return *this;
-	}
+        return *this;
+    }
 };
 
-typedef mt_list<COverlapped*>	mtlistCOverlappedPtr;
+typedef mt_list<COverlapped*>    mtlistCOverlappedPtr;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \class		CIOCPSocket
+/// \class        CIOCPSocket
 ///
-/// \brief		IOCPSocket ¼­¹ö ¼ÒÄÏ ÃÖ»óÀ§ Å¬·¡½º
-/// \author		cmkwon
+/// \brief        IOCPSocket ì„œë²„ ì†Œì¼“ ìµœìƒìœ„ í´ë˜ìŠ¤
+/// \author        cmkwon
 /// \version
-/// \date		2004-03-17 ~ 2004-03-17
+/// \date        2004-03-17 ~ 2004-03-17
 /// \warning
 ///////////////////////////////////////////////////////////////////////////////
 class CIOCPSocket
 {
-	friend class CIOCP;
-	friend class CFieldIOCP;
-	friend class CNPCIOCP;
+    friend class CIOCP;
+    friend class CFieldIOCP;
+    friend class CNPCIOCP;
 
 public:
 
-	template<typename socket_t, T0 t0> ProcessResult CallHandlerT1(MessageType_t msgtype, const char* data, int size, int& offset)
-	{
-		using thisproclist = metaseries256::transform<proclist::get_handlersT1<socket_t, t0>>;
+    template<typename socket_t, T0 t0> ProcessResult CallHandlerT1(MessageType_t msgtype, const char* data, int size, int& offset)
+    {
+        using thisproclist = metaseries256::transform<proclist::get_handlersT1<socket_t, t0>>;
 
-		auto handler = thisproclist::values[msgtype & 0xFF];
+        auto handler = thisproclist::values[msgtype & 0xFF];
 
-		if (handler) return handler(static_cast<socket_t*>(this), data, size, offset);
+        if (handler) return handler(static_cast<socket_t*>(this), data, size, offset);
 
-		return RES_PACKET_NA;
-	}
+        return RES_PACKET_NA;
+    }
 
-	template<typename socket_t> ProcessResult CallHandlerT0(MessageType_t msgtype, const char* data, int size, int& offset)
-	{
-		using thisproclist = metaseries256::transform<proclist::get_handlersT0<socket_t>>;
+    template<typename socket_t> ProcessResult CallHandlerT0(MessageType_t msgtype, const char* data, int size, int& offset)
+    {
+        using thisproclist = metaseries256::transform<proclist::get_handlersT0<socket_t>>;
 
-		auto handler = thisproclist::values[msgtype >> 8];
+        auto handler = thisproclist::values[msgtype >> 8];
 
-		if (handler) return handler(static_cast<socket_t*>(this), msgtype, data, size, offset);
+        if (handler) return handler(static_cast<socket_t*>(this), msgtype, data, size, offset);
 
-		return RES_PACKET_NA;
-	}
-
-
-	CIOCPSocket();
-
-	virtual ~CIOCPSocket();
-
-	///////////////////////////////////////////////////////////////////////////
-	// Property
-	void SetClientArrayIndex(int i_nIndex) { m_nClientArrayIndex = i_nIndex; }
-	int GetClientArrayIndex() const { return m_nClientArrayIndex; }
-	BOOL SetSocket(SOCKET s);
-	void SetRecvOperationFlag(BOOL bFlag) { m_bRecvOperationFlag = bFlag; }
-	const char* GetPeerIP() const { return m_szPeerIP; };		// ¿¬°áµÈ »ó´ë¹æ IP Address¸¦ ¸®ÅÏ
-	int GetPeerPort() const { return m_nPeerPort; };		// ¿¬°áµÈ »ó´ë¹æ Port¸¦ ¸®ÅÏ
-	int GetPeerIP4() const { return inet_addr(m_szPeerIP); }	// 2009-11-04 by cmkwon, ÅÂ±¹ °ÔÀÓ°¡µå Apex·Î º¯°æ - ¿¬°áµÈ »ó´ë¹æ IP Address¸¦ 4¹ÙÀÌÆ®·Î ¸®ÅÏ
-
-	void InitIOCPSocket(int nIdx) { m_nClientArrayIndex = nIdx; }		// IOCPSocket »ı¼º ÈÄ ÇÊÈ÷ È£Ãâ ÇØ¾ßÇÔ
-	bool IsUsing() const { return m_bUsing; }									// CIOCPSocketÀÇ ÀÎ½ºÅÏ½º°¡ »ç¿ë ÁßÀÎÁöÀÇ ¿©ºÎ¸¦ ¸®ÅÏ
-	void SetPeerAddress(char* pIP, int nPort);			// TCP:¿¬°áµÈ »ó´ë¹æ IP¿Í Port¸¦ ¼³Á¤,  UDP:UDP Åë½ÅÀ» ÇÒ ClientÀÇ IP¿Í Port¸¦ ¼³Á¤ÇÑ´Ù.
-	void ClientCheck();
-	void LockTrafficInfo() { EnterCriticalSection(&m_crtlTrafficInfo); }
-	void UnlockTrafficInfo() { LeaveCriticalSection(&m_crtlTrafficInfo); }
-	void OnRecvdAlivePacket();
-	BOOL OpenUDPPort(int nPort, int nRetryCount = 0);
-
-	void SetPeerUDPReady(bool bReadyFlag) { m_bPeerUDPReady = bReadyFlag; }
-	bool GetPeerUDPReady() const { return m_bPeerUDPReady; }
+        return RES_PACKET_NA;
+    }
 
 
-	int Read();												// ¼ÒÄÏÀ¸·ÎºÎÅÍ µ¥ÀÌÅ¸¸¦ ¹Ş±âÀ§ÇØ ¹öÆÛ¸¦ ÁØºñ, m_ovRecvBuf¸¦ °¡Áö°í ³»ºÎ¿¡¼­ Ã³¸®
-	int Write(BOOL bWaitFlag);											// ¼ÒÄÏÀ¸·Î µ¥ÀÌÅ¸¸¦ Àü¼ÛÇÑ´Ù. m_listWriteBuf °¡Áö°í ³»ºÎ¿¡¼­ Ã³¸®
-	void OnWrite(COverlapped *pOverlapped, int nWriteBytes);	// Àü¼ÛÀÌ ¿Ï·áµÈ COverlapped ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ¸¦ ÀÎÀÚ·Î ¹Ş´Â´Ù. TCP¿Í UDP¿¡¼­ ´Ù¸¥ ¹æ½ÄÀ¸·Î Ã³¸®
+    CIOCPSocket();
 
-	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
-	void CheckNetworkState();
+    virtual ~CIOCPSocket();
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Property
+    void SetClientArrayIndex(int i_nIndex) { m_nClientArrayIndex = i_nIndex; }
+    int GetClientArrayIndex() const { return m_nClientArrayIndex; }
+    BOOL SetSocket(SOCKET s);
+    void SetRecvOperationFlag(BOOL bFlag) { m_bRecvOperationFlag = bFlag; }
+    const char* GetPeerIP() const { return m_szPeerIP; };        // ì—°ê²°ëœ ìƒëŒ€ë°© IP Addressë¥¼ ë¦¬í„´
+    int GetPeerPort() const { return m_nPeerPort; };        // ì—°ê²°ëœ ìƒëŒ€ë°© Portë¥¼ ë¦¬í„´
+    int GetPeerIP4() const { return inet_addr(m_szPeerIP); }    // 2009-11-04 by cmkwon, íƒœêµ­ ê²Œì„ê°€ë“œ Apexë¡œ ë³€ê²½ - ì—°ê²°ëœ ìƒëŒ€ë°© IP Addressë¥¼ 4ë°”ì´íŠ¸ë¡œ ë¦¬í„´
+
+    void InitIOCPSocket(int nIdx) { m_nClientArrayIndex = nIdx; }        // IOCPSocket ìƒì„± í›„ í•„íˆ í˜¸ì¶œ í•´ì•¼í•¨
+    bool IsUsing() const { return m_bUsing; }                                    // CIOCPSocketì˜ ì¸ìŠ¤í„´ìŠ¤ê°€ ì‚¬ìš© ì¤‘ì¸ì§€ì˜ ì—¬ë¶€ë¥¼ ë¦¬í„´
+    void SetPeerAddress(char* pIP, int nPort);            // TCP:ì—°ê²°ëœ ìƒëŒ€ë°© IPì™€ Portë¥¼ ì„¤ì •,  UDP:UDP í†µì‹ ì„ í•  Clientì˜ IPì™€ Portë¥¼ ì„¤ì •í•œë‹¤.
+    void ClientCheck();
+    void LockTrafficInfo() { EnterCriticalSection(&m_crtlTrafficInfo); }
+    void UnlockTrafficInfo() { LeaveCriticalSection(&m_crtlTrafficInfo); }
+    void OnRecvdAlivePacket();
+    BOOL OpenUDPPort(int nPort, int nRetryCount = 0);
+
+    void SetPeerUDPReady(bool bReadyFlag) { m_bPeerUDPReady = bReadyFlag; }
+    bool GetPeerUDPReady() const { return m_bPeerUDPReady; }
 
 
-	//int ReWrite(char * pData, int nLength);					// Àü¼ÛÇÑ µ¥ÀÌÅ¸°¡ ¸ğµÎ Àü¼ÛµÇÁö ¾ÊÀº°æ¿ì ³²Àº µ¥ÀÌÅ¸¸¦ ÀçÀü¼ÛÇÑ´Ù. m_listWriteBuf °¡Áö°í ³»ºÎ¿¡¼­ Ã³¸®
-	void Close(int reason = 0, BOOL bDelayCloseFlag = FALSE, DWORD i_dwSleepTime = 0);	// ¼ÒÄÏÀ» ´İ´Â´Ù.
-	BOOL SendAddData(const BYTE* pData, int nSize, EN_PACKET_PRIORITY i_enPacketPriority = EN_PACKET_PRIORITY_HIGHEST, BOOL bRawSend = FALSE, BOOL bSessionEnd = FALSE);	// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡ - // ¼ÒÄÏ¿¡ Àü¼ÛÇÒ µ¥ÀÌÅ¸¸¦ ¼³Á¤ÇÑ´Ù.
-	BOOL SendAddLongData(PBYTE pData, int nSize);				// ¼ÒÄÏ¿¡ Àü¼ÛÇÒ µ¥ÀÌÅ¸¸¦ ¼³Á¤ÇÑ´Ù. (nSize > SIZE_MAX_PACKET)
-	BOOL SendAddMessageType(MessageType_t msgType) { return SendAddData(PBYTE(&msgType), SIZE_FIELD_TYPE_HEADER); }				// Message Type¸¸ Àü¼ÛÇÑ´Ù.
-	BOOL SendAddData(char* pData, int nSize, EN_PACKET_PRIORITY i_enPacketPriority = EN_PACKET_PRIORITY_HIGHEST) { return SendAddData((BYTE*)pData, nSize, i_enPacketPriority); }
-	BOOL SendAddLongData(char* pData, int nSize) { return SendAddLongData(PBYTE(pData), nSize); }	// char* Àü¼Û¿ë, ¼ÒÄÏ¿¡ Àü¼ÛÇÒ µ¥ÀÌÅ¸¸¦ ¼³Á¤ÇÑ´Ù. (nSize > SIZE_MAX_PACKET)
-	BOOL SendAddRawData(BYTE* pData, int nSize, BOOL bSessionEnd = FALSE) { return SendAddData(pData, nSize, EN_PACKET_PRIORITY_HIGHEST, TRUE, bSessionEnd); }	// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - RawData Àü¼Û ±â´É Ãß°¡
+    int Read();                                                // ì†Œì¼“ìœ¼ë¡œë¶€í„° ë°ì´íƒ€ë¥¼ ë°›ê¸°ìœ„í•´ ë²„í¼ë¥¼ ì¤€ë¹„, m_ovRecvBufë¥¼ ê°€ì§€ê³  ë‚´ë¶€ì—ì„œ ì²˜ë¦¬
+    int Write(BOOL bWaitFlag);                                            // ì†Œì¼“ìœ¼ë¡œ ë°ì´íƒ€ë¥¼ ì „ì†¡í•œë‹¤. m_listWriteBuf ê°€ì§€ê³  ë‚´ë¶€ì—ì„œ ì²˜ë¦¬
+    void OnWrite(COverlapped *pOverlapped, int nWriteBytes);    // ì „ì†¡ì´ ì™„ë£Œëœ COverlapped êµ¬ì¡°ì²´ì˜ í¬ì¸í„°ë¥¼ ì¸ìë¡œ ë°›ëŠ”ë‹¤. TCPì™€ UDPì—ì„œ ë‹¤ë¥¸ ë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬
+
+    // 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
+    void CheckNetworkState();
 
 
-	template<template<MessageType_t> typename data_t, MessageType_t msgtype>
-	bool SendAddData(const data_t<msgtype>& packet) { return this->SendAddData(reinterpret_cast<const BYTE*>(&packet), packet.size()); }
+    //int ReWrite(char * pData, int nLength);                    // ì „ì†¡í•œ ë°ì´íƒ€ê°€ ëª¨ë‘ ì „ì†¡ë˜ì§€ ì•Šì€ê²½ìš° ë‚¨ì€ ë°ì´íƒ€ë¥¼ ì¬ì „ì†¡í•œë‹¤. m_listWriteBuf ê°€ì§€ê³  ë‚´ë¶€ì—ì„œ ì²˜ë¦¬
+    void Close(int reason = 0, BOOL bDelayCloseFlag = FALSE, DWORD i_dwSleepTime = 0);    // ì†Œì¼“ì„ ë‹«ëŠ”ë‹¤.
+    BOOL SendAddData(const BYTE* pData, int nSize, EN_PACKET_PRIORITY i_enPacketPriority = EN_PACKET_PRIORITY_HIGHEST, BOOL bRawSend = FALSE, BOOL bSessionEnd = FALSE);    // 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€ - // ì†Œì¼“ì— ì „ì†¡í•  ë°ì´íƒ€ë¥¼ ì„¤ì •í•œë‹¤.
+    BOOL SendAddLongData(PBYTE pData, int nSize);                // ì†Œì¼“ì— ì „ì†¡í•  ë°ì´íƒ€ë¥¼ ì„¤ì •í•œë‹¤. (nSize > SIZE_MAX_PACKET)
+    BOOL SendAddMessageType(MessageType_t msgType) { return SendAddData(PBYTE(&msgType), SIZE_FIELD_TYPE_HEADER); }                // Message Typeë§Œ ì „ì†¡í•œë‹¤.
+    BOOL SendAddData(char* pData, int nSize, EN_PACKET_PRIORITY i_enPacketPriority = EN_PACKET_PRIORITY_HIGHEST) { return SendAddData((BYTE*)pData, nSize, i_enPacketPriority); }
+    BOOL SendAddLongData(char* pData, int nSize) { return SendAddLongData(PBYTE(pData), nSize); }    // char* ì „ì†¡ìš©, ì†Œì¼“ì— ì „ì†¡í•  ë°ì´íƒ€ë¥¼ ì„¤ì •í•œë‹¤. (nSize > SIZE_MAX_PACKET)
+    BOOL SendAddRawData(BYTE* pData, int nSize, BOOL bSessionEnd = FALSE) { return SendAddData(pData, nSize, EN_PACKET_PRIORITY_HIGHEST, TRUE, bSessionEnd); }    // 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - RawData ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€
 
-	////////////////////////////////////////////////////////////////////////////
-	// virtual¸â¹öÇÔ¼ö
-	// Data Receive °ü·Ã
-	void OnReceive(char* pBlock, int length, ENServerType ServerType = ST_NORMAL_SERVER, char* pPeerIP = "", int nPeerPort = 0, SThreadInfo *i_pThreadInfo = NULL);
-	
-	
-	// Return values matter only for TCP connections
-	// true, packets were processed fine, keep socket alive
-	// false, fetal error, close the socket!
-	virtual BOOL OnRecvdPacket(const char* pPacket, int nLength, BYTE nSeq, char* pPeerIP = "", int nPeerPort = 0, SThreadInfo *i_pThreadInfo = NULL) = 0;
 
-	// Á¢¼Ó °ü·Ã
-	virtual void OnConnect();
-	virtual void OnClose(int reason) { }
+    template<template<MessageType_t> typename data_t, MessageType_t msgtype>
+    bool SendAddData(const data_t<msgtype>& packet) { return this->SendAddData(reinterpret_cast<const BYTE*>(&packet), packet.size()); }
 
-	// Error °ü·Ã
-	virtual BOOL OnError(int errCode) { return false; }
-	virtual void SendErrorMessage(MessageType_t msgType, Err_t err, int errParam1 = 0, int errParam2 = 0, const char* errMsg = NULL, BOOL bCloseConnection = FALSE) { }
-	virtual void SendNetworkErrorMessage(int i_nWriteBufCounts, int i_nBadNetworkContinueTime) { }
+    ////////////////////////////////////////////////////////////////////////////
+    // virtualë©¤ë²„í•¨ìˆ˜
+    // Data Receive ê´€ë ¨
+    void OnReceive(char* pBlock, int length, ENServerType ServerType = ST_NORMAL_SERVER, char* pPeerIP = "", int nPeerPort = 0, SThreadInfo *i_pThreadInfo = NULL);
+    
+    
+    // Return values matter only for TCP connections
+    // true, packets were processed fine, keep socket alive
+    // false, fetal error, close the socket!
+    virtual BOOL OnRecvdPacket(const char* pPacket, int nLength, BYTE nSeq, char* pPeerIP = "", int nPeerPort = 0, SThreadInfo *i_pThreadInfo = NULL) = 0;
 
-	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
-	//virtual BOOL PreSendAddData(const BYTE *i_pbyData, int i_nSize, int i_nWriteBufCnts, vectSSendedOverlappedInfo *i_pSendedOverInfoList) { return true; }
-	virtual void OnSendAddData(SSendedOverlappedInfo *i_pSendedOverInfo, int i_nSize, int i_nWriteBufCnts) { }
+    // ì ‘ì† ê´€ë ¨
+    virtual void OnConnect();
+    virtual void OnClose(int reason) { }
 
-	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
-	void AddSendedOverlappedInfo(SSendedOverlappedInfo *i_pSendedOverInfo) { m_vectSendedOverlappedInfoList.push_back(*i_pSendedOverInfo); }
-	void DeleteSendedOverlappedInfo(COverlapped *i_pOverlapped);
+    // Error ê´€ë ¨
+    virtual BOOL OnError(int errCode) { return false; }
+    virtual void SendErrorMessage(MessageType_t msgType, Err_t err, int errParam1 = 0, int errParam2 = 0, const char* errMsg = NULL, BOOL bCloseConnection = FALSE) { }
+    virtual void SendNetworkErrorMessage(int i_nWriteBufCounts, int i_nBadNetworkContinueTime) { }
 
-	static bool IsError(int errCode = 0);						// ¼ÒÄÏ µ¿ÀÛ½Ã ¹ß»ıÇÑ ¿À·ù°¡ ErrorÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏ
+    // 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
+    //virtual BOOL PreSendAddData(const BYTE *i_pbyData, int i_nSize, int i_nWriteBufCnts, vectSSendedOverlappedInfo *i_pSendedOverInfoList) { return true; }
+    virtual void OnSendAddData(SSendedOverlappedInfo *i_pSendedOverInfo, int i_nSize, int i_nWriteBufCnts) { }
+
+    // 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
+    void AddSendedOverlappedInfo(SSendedOverlappedInfo *i_pSendedOverInfo) { m_vectSendedOverlappedInfoList.push_back(*i_pSendedOverInfo); }
+    void DeleteSendedOverlappedInfo(COverlapped *i_pOverlapped);
+
+    static bool IsError(int errCode = 0);                        // ì†Œì¼“ ë™ì‘ì‹œ ë°œìƒí•œ ì˜¤ë¥˜ê°€ Errorì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´
 
 protected:
-	int						m_nClientArrayIndex;				// IOCP¿¡¼­ »ç¿ëÇÏ´Â Client ¹è¿­ ÀÎµ¦½º
-	SOCKET					m_hSocket;							// ¼ÒÄÏÀÇ Handle
-	bool					m_bUsing;							// IOCPSocket °´Ã¼°¡ »ç¿ë ÁßÀÎÁöÀÇ ÇÃ·¡±×
-	bool					m_bFlagDelayClose;					// Å¬¶óÀÌ¾ğÆ®¿¡°Ô Close()¸¦ ½ÇÇàÇÏµµ·Ï ¸Ş¼¼Áö¸¦ º¸³Â´Ù´Â ÇÃ·¡±×·Î ÀÏÁ¤½Ã°£µ¿¾È CloseÇÏÁö ¾ÈÀ¸¸é °­Á¦ Á¾·á
-	DWORD					m_dwCountClientCheck;				// Alive Check¸¦ À§ÇÑ ¸â¹ö º¯¼ö
-	int						m_nCloseReasonCode;					// Á¾·á½Ã Á¾·á ÄÚµå
-	CMTCriticalSection		m_mtCritSecForClose;
+    int                        m_nClientArrayIndex;                // IOCPì—ì„œ ì‚¬ìš©í•˜ëŠ” Client ë°°ì—´ ì¸ë±ìŠ¤
+    SOCKET                    m_hSocket;                            // ì†Œì¼“ì˜ Handle
+    bool                    m_bUsing;                            // IOCPSocket ê°ì²´ê°€ ì‚¬ìš© ì¤‘ì¸ì§€ì˜ í”Œë˜ê·¸
+    bool                    m_bFlagDelayClose;                    // í´ë¼ì´ì–¸íŠ¸ì—ê²Œ Close()ë¥¼ ì‹¤í–‰í•˜ë„ë¡ ë©”ì„¸ì§€ë¥¼ ë³´ëƒˆë‹¤ëŠ” í”Œë˜ê·¸ë¡œ ì¼ì •ì‹œê°„ë™ì•ˆ Closeí•˜ì§€ ì•ˆìœ¼ë©´ ê°•ì œ ì¢…ë£Œ
+    DWORD                    m_dwCountClientCheck;                // Alive Checkë¥¼ ìœ„í•œ ë©¤ë²„ ë³€ìˆ˜
+    int                        m_nCloseReasonCode;                    // ì¢…ë£Œì‹œ ì¢…ë£Œ ì½”ë“œ
+    CMTCriticalSection        m_mtCritSecForClose;
 
-	BOOL					m_bRecvOperationFlag;				// Receive¸¦ À§ÇÑ ¹öÆÛ ÁØºñ°¡ 1¹ø¸¸ ¹ß»ıÇÏµµ·Ï ÇÏ±â À§ÇØ(½ÇÁ¦·Î´Â ÇÊ¿ä°¡ ¾øÁö¸¸ Àß¸øµÈ »ç¿ëÀ» À§ÇØ Ã³¸®
-	COverlapped				m_ovRecvBuf;						// Receive¸¦ À§ÇÑ Overlapped(static) ±¸Á¶Ã¼ º¯¼ö
-	CRecvPacket				m_RecvPacket;						// Received µ¥ÀÌÅ¸¸¦ ÆĞÅ¶´ÜÀ§·Î ³ª´©±â À§ÇÑ º¯¼ö
-	//CRecvHTTPPacket			m_RecvHTTPPacket;				// 2016 DevX	// 2013-03-13 by hskim, À¥ Ä³½Ã »óÁ¡ - Received HTTP µ¥ÀÌÅ¸¸¦ Çì´õ¿Í ¹Ùµğ·Î ³ª´©±â À§ÇÑ º¯¼ö
+    BOOL                    m_bRecvOperationFlag;                // Receiveë¥¼ ìœ„í•œ ë²„í¼ ì¤€ë¹„ê°€ 1ë²ˆë§Œ ë°œìƒí•˜ë„ë¡ í•˜ê¸° ìœ„í•´(ì‹¤ì œë¡œëŠ” í•„ìš”ê°€ ì—†ì§€ë§Œ ì˜ëª»ëœ ì‚¬ìš©ì„ ìœ„í•´ ì²˜ë¦¬
+    COverlapped                m_ovRecvBuf;                        // Receiveë¥¼ ìœ„í•œ Overlapped(static) êµ¬ì¡°ì²´ ë³€ìˆ˜
+    CRecvPacket                m_RecvPacket;                        // Received ë°ì´íƒ€ë¥¼ íŒ¨í‚·ë‹¨ìœ„ë¡œ ë‚˜ëˆ„ê¸° ìœ„í•œ ë³€ìˆ˜
+    //CRecvHTTPPacket            m_RecvHTTPPacket;                // 2016 DevX    // 2013-03-13 by hskim, ì›¹ ìºì‹œ ìƒì  - Received HTTP ë°ì´íƒ€ë¥¼ í—¤ë”ì™€ ë°”ë””ë¡œ ë‚˜ëˆ„ê¸° ìœ„í•œ ë³€ìˆ˜
 
-	int						m_nMaxWriteBufCounts;				// ÃÖ´ë writeBuf counts
-	int						m_nCurrentWriteBufCounts;			// ÇöÀç writeBuf counts
-	int						m_nBeforMaxWriteBufCountsAtCheckTime;	//
-	DWORD					m_dwTickLastCheckTimeNetwork;		// 1ÃÊ¿¡ ÇÑ¹ø Ã¼Å©ÇÒ °ÍÀÓ
-	DWORD					m_dwBadNetworkContinueTime;			// »óÅÂ°¡ ÁÁÁö ¾ÊÀº ³×Æ®¿öÅ© Áö¼Ó ½Ã°£
+    int                        m_nMaxWriteBufCounts;                // ìµœëŒ€ writeBuf counts
+    int                        m_nCurrentWriteBufCounts;            // í˜„ì¬ writeBuf counts
+    int                        m_nBeforMaxWriteBufCountsAtCheckTime;    //
+    DWORD                    m_dwTickLastCheckTimeNetwork;        // 1ì´ˆì— í•œë²ˆ ì²´í¬í•  ê²ƒì„
+    DWORD                    m_dwBadNetworkContinueTime;            // ìƒíƒœê°€ ì¢‹ì§€ ì•Šì€ ë„¤íŠ¸ì›Œí¬ ì§€ì† ì‹œê°„
 
 
-	mtlistCOverlappedPtr	m_mtlistWriteBuf;					// Àü¼ÛÇÏ·Á´Â Overlapped ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ¸¦ ÀúÀåÇÒ list
-	DWORD					m_dwCountOverlappedSending;			// ¼ÒÄÏÀ¸·Î º¸³»Áö°í ÀÖ´Â COverlappedÀÇ Ä«¿îÆ®
+    mtlistCOverlappedPtr    m_mtlistWriteBuf;                    // ì „ì†¡í•˜ë ¤ëŠ” Overlapped êµ¬ì¡°ì²´ì˜ í¬ì¸í„°ë¥¼ ì €ì¥í•  list
+    DWORD                    m_dwCountOverlappedSending;            // ì†Œì¼“ìœ¼ë¡œ ë³´ë‚´ì§€ê³  ìˆëŠ” COverlappedì˜ ì¹´ìš´íŠ¸
 
-	BYTE					m_byHostSequenceNumber;
-	BYTE					m_byPeerSequenceNumber;
-	bool					m_bPeerSequenceNumberInitFlag;		// »ó´ë¹æÀÇ ¹Ş¾Æ¾ßÇÒ Sequence NumberÀÇ ÃÊ±âÈ­ ¿©ºÎ ÇÃ·¡±×
+    BYTE                    m_byHostSequenceNumber;
+    BYTE                    m_byPeerSequenceNumber;
+    bool                    m_bPeerSequenceNumberInitFlag;        // ìƒëŒ€ë°©ì˜ ë°›ì•„ì•¼í•  Sequence Numberì˜ ì´ˆê¸°í™” ì—¬ë¶€ í”Œë˜ê·¸
 
-	bool					m_bUDPFlag;							// ICOPSocketÀÇ TCP¿Í UDPÀÇ ±¸ºĞÀ» À§ÇÑ ÇÃ·¡±×
-	bool					m_bPeerUDPReady;					// UDP·Î »ç¿ë½Ã »ó´ë¹æÀÇ Æ÷Æ®°¡ ÁØºñ µÇ¾îÀÖ´ÂÁöÀÇ ÇÃ·¡±×
-	int						m_nOpenedUDPPort;					// OpenµÈ UDP Port ¹øÈ£
-	int						m_nPeerPort;						// UDP Åë½ÅÀ» À§ÇÑ »ó´ë¹æ Port
-	char					m_szPeerIP[SIZE_MAX_IPADDRESS];		// TCP : ÇöÀç ¿¬°áµÈ ClientÀÇ IP Address,  UDP : Åë½ÅÀ» À§ÇÑ »ó´ë¹æ IP Address
+    bool                    m_bUDPFlag;                            // ICOPSocketì˜ TCPì™€ UDPì˜ êµ¬ë¶„ì„ ìœ„í•œ í”Œë˜ê·¸
+    bool                    m_bPeerUDPReady;                    // UDPë¡œ ì‚¬ìš©ì‹œ ìƒëŒ€ë°©ì˜ í¬íŠ¸ê°€ ì¤€ë¹„ ë˜ì–´ìˆëŠ”ì§€ì˜ í”Œë˜ê·¸
+    int                        m_nOpenedUDPPort;                    // Openëœ UDP Port ë²ˆí˜¸
+    int                        m_nPeerPort;                        // UDP í†µì‹ ì„ ìœ„í•œ ìƒëŒ€ë°© Port
+    char                    m_szPeerIP[SIZE_MAX_IPADDRESS];        // TCP : í˜„ì¬ ì—°ê²°ëœ Clientì˜ IP Address,  UDP : í†µì‹ ì„ ìœ„í•œ ìƒëŒ€ë°© IP Address
 
-	STrafficInfo			m_TrafficInfo;
-	CRITICAL_SECTION		m_crtlTrafficInfo;
+    STrafficInfo            m_TrafficInfo;
+    CRITICAL_SECTION        m_crtlTrafficInfo;
 
-	bool					m_bMustClose;						// 2007-03-12 by cmkwon, Á¾·áµÉ ¼ÒÄÏ ÇÃ·¹±×
+    bool                    m_bMustClose;                        // 2007-03-12 by cmkwon, ì¢…ë£Œë  ì†Œì¼“ í”Œë ˆê·¸
 
-	MessageType_t			m_LastRecvedMsgType;				// 2008-03-06 by cmkwon, IOCPSocket ¿¡ ¸¶Áö¸· ¸Ş½ÃÁö Å¸ÀÔ Ã¼Å© ½Ã½ºÅÛ Ãß°¡ - 
+    MessageType_t            m_LastRecvedMsgType;                // 2008-03-06 by cmkwon, IOCPSocket ì— ë§ˆì§€ë§‰ ë©”ì‹œì§€ íƒ€ì… ì²´í¬ ì‹œìŠ¤í…œ ì¶”ê°€ - 
 
-	vectSSendedOverlappedInfo	m_vectSendedOverlappedInfoList;	// 2008-03-13 by cmkwon, ´ë±Ô¸ğ ÀüÀï½Ã Å¬¶óÀÌ¾ğÆ® ÆÃ±â´Â°Å ¼öÁ¤ - 
+    vectSSendedOverlappedInfo    m_vectSendedOverlappedInfoList;    // 2008-03-13 by cmkwon, ëŒ€ê·œëª¨ ì „ìŸì‹œ í´ë¼ì´ì–¸íŠ¸ íŒ…ê¸°ëŠ”ê±° ìˆ˜ì • - 
 
-	static CIOCP*			ms_pIOCP;							// IOCP ÀÎ½ºÅÏ½º Æ÷ÀÎÅÍ
+    static CIOCP*            ms_pIOCP;                            // IOCP ì¸ìŠ¤í„´ìŠ¤ í¬ì¸í„°
 
 public:
-	ENServerType			m_PeerSocketType;
+    ENServerType            m_PeerSocketType;
 };
 
 using mtvectorIOCPSocket = mt_vector<CIOCPSocket*>;
 
 
-// macro	DECLARE_MESSAGE_AND_CHECK_SIZE
-// brief	CXXXIOCPSocket::Process_XXX() ÇÔ¼ö ³»¿¡¼­ ÃÊ±â¿¡ ¸Ş¼¼Áö ¼±¾ğ ¹× »çÀÌÁî È®ÀÎ ¸ÅÅ©·Î
-// author	kelovon
-// date		2004-04-09
-// warning	CXXXIOCPSocket::Process_XXX() ÇÔ¼ö ³»¿¡¼­¸¸ »ç¿ëÇØ¾ß ÇÔ!
-// 2009-06-12 by cmkwon, ¼öÁ¤ÇÔ - ¿¡·¯ Á¤º¸ Ãß°¡
-#define DECLARE_MESSAGE_AND_CHECK_SIZE(__PPACKET, __NLENGTH, __NBYTESUSED, __MSGTYPE, __MSGSTRUCT, __PMESSAGEVAR)	\
-	INT			__NRECVTYPESIZE	= sizeof(__MSGSTRUCT);					\
-	__MSGSTRUCT	*__PMESSAGEVAR	= nullptr;								\
-	if (__NLENGTH - __NBYTESUSED < __NRECVTYPESIZE)						\
-	{																	\
-		SendErrorMessage(__MSGTYPE, ERR_PROTOCOL_INVALID_FIELD_DATA, __NLENGTH - __NBYTESUSED, __NRECVTYPESIZE);	\
-		return RES_RETURN_FALSE;										\
-	}																	\
-	__PMESSAGEVAR = (__MSGSTRUCT*)(__PPACKET+__NBYTESUSED);				\
-	__NBYTESUSED += __NRECVTYPESIZE;
+// macro    DECLARE_MESSAGE_AND_CHECK_SIZE
+// brief    CXXXIOCPSocket::Process_XXX() í•¨ìˆ˜ ë‚´ì—ì„œ ì´ˆê¸°ì— ë©”ì„¸ì§€ ì„ ì–¸ ë° ì‚¬ì´ì¦ˆ í™•ì¸ ë§¤í¬ë¡œ
+// author    kelovon
+// date        2004-04-09
+// warning    CXXXIOCPSocket::Process_XXX() í•¨ìˆ˜ ë‚´ì—ì„œë§Œ ì‚¬ìš©í•´ì•¼ í•¨!
+// 2009-06-12 by cmkwon, ìˆ˜ì •í•¨ - ì—ëŸ¬ ì •ë³´ ì¶”ê°€
+#define DECLARE_MESSAGE_AND_CHECK_SIZE(__PPACKET, __NLENGTH, __NBYTESUSED, __MSGTYPE, __MSGSTRUCT, __PMESSAGEVAR)    \
+    INT            __NRECVTYPESIZE    = sizeof(__MSGSTRUCT);                    \
+    __MSGSTRUCT    *__PMESSAGEVAR    = nullptr;                                \
+    if (__NLENGTH - __NBYTESUSED < __NRECVTYPESIZE)                        \
+    {                                                                    \
+        SendErrorMessage(__MSGTYPE, ERR_PROTOCOL_INVALID_FIELD_DATA, __NLENGTH - __NBYTESUSED, __NRECVTYPESIZE);    \
+        return RES_RETURN_FALSE;                                        \
+    }                                                                    \
+    __PMESSAGEVAR = (__MSGSTRUCT*)(__PPACKET+__NBYTESUSED);                \
+    __NBYTESUSED += __NRECVTYPESIZE;
 
-// macro	DECLARE_MESSAGE_AND_CHECK_SIZE_SERVER - ¼­¹ö°£ÀÇ ¸Ş½ÃÁö ±³È¯¿¡¼­¸¸ »ç¿ë
-// brief	CXXXIOCPSocket::Process_XXX() ÇÔ¼ö ³»¿¡¼­ ÃÊ±â¿¡ ¸Ş¼¼Áö ¼±¾ğ ¹× »çÀÌÁî È®ÀÎ ¸ÅÅ©·Î
-// author	kelovon
-// date		2004-06-02
-// warning	CXXXIOCPSocket::Process_XXX() ÇÔ¼ö ³»¿¡¼­¸¸ »ç¿ëÇØ¾ß ÇÔ!
-#define DECLARE_MESSAGE_AND_CHECK_SIZE_SERVER(__PPACKET, __NLENGTH, __NBYTESUSED, __MSGTYPE, __MSGSTRUCT, __PMESSAGEVAR)	\
-	INT			__NRECVTYPESIZE	= 0;									\
-	__MSGSTRUCT	*__PMESSAGEVAR	= NULL;									\
-	__NRECVTYPESIZE = sizeof(__MSGSTRUCT);								\
-	if (__NLENGTH - __NBYTESUSED < __NRECVTYPESIZE)						\
-	{																	\
-		SendErrorMessage(__MSGTYPE, ERR_PROTOCOL_INVALID_FIELD_DATA);	\
-		return RES_PACKET_ERROR;										\
-	}																	\
-	__PMESSAGEVAR = (__MSGSTRUCT*)(__PPACKET+__NBYTESUSED);				\
-	__NBYTESUSED += __NRECVTYPESIZE;
+// macro    DECLARE_MESSAGE_AND_CHECK_SIZE_SERVER - ì„œë²„ê°„ì˜ ë©”ì‹œì§€ êµí™˜ì—ì„œë§Œ ì‚¬ìš©
+// brief    CXXXIOCPSocket::Process_XXX() í•¨ìˆ˜ ë‚´ì—ì„œ ì´ˆê¸°ì— ë©”ì„¸ì§€ ì„ ì–¸ ë° ì‚¬ì´ì¦ˆ í™•ì¸ ë§¤í¬ë¡œ
+// author    kelovon
+// date        2004-06-02
+// warning    CXXXIOCPSocket::Process_XXX() í•¨ìˆ˜ ë‚´ì—ì„œë§Œ ì‚¬ìš©í•´ì•¼ í•¨!
+#define DECLARE_MESSAGE_AND_CHECK_SIZE_SERVER(__PPACKET, __NLENGTH, __NBYTESUSED, __MSGTYPE, __MSGSTRUCT, __PMESSAGEVAR)    \
+    INT            __NRECVTYPESIZE    = 0;                                    \
+    __MSGSTRUCT    *__PMESSAGEVAR    = NULL;                                    \
+    __NRECVTYPESIZE = sizeof(__MSGSTRUCT);                                \
+    if (__NLENGTH - __NBYTESUSED < __NRECVTYPESIZE)                        \
+    {                                                                    \
+        SendErrorMessage(__MSGTYPE, ERR_PROTOCOL_INVALID_FIELD_DATA);    \
+        return RES_PACKET_ERROR;                                        \
+    }                                                                    \
+    __PMESSAGEVAR = (__MSGSTRUCT*)(__PPACKET+__NBYTESUSED);                \
+    __NBYTESUSED += __NRECVTYPESIZE;

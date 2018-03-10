@@ -1,4 +1,4 @@
-// MemPool.h: interface for the CMemPool class.
+ï»¿// MemPool.h: interface for the CMemPool class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -14,7 +14,7 @@
 typedef struct SOBJECTMEM
 {
 	DWORD	dwObjTypeSize;					// OBJECT SIZE
-	DWORD	dwObjPoolSize;					// OBJECT¸¦ ÇÒ´çÇÑ SIZE
+	DWORD	dwObjPoolSize;					// OBJECTë¥¼ í• ë‹¹í•œ SIZE
 	SOBJECTMEM()
 	{
 		dwObjTypeSize = 0;
@@ -22,7 +22,7 @@ typedef struct SOBJECTMEM
 	}
 }SObjectMem;
 
-// 2008-03-10 by dgwoo ¸Þ¸ð¸® Ç® ¿ÀÇÁº¤Æ®´Â 12°³±îÁö °¡´ÉÇÏ´Ù.
+// 2008-03-10 by dgwoo ë©”ëª¨ë¦¬ í’€ ì˜¤í”„ë²¡íŠ¸ëŠ” 12ê°œê¹Œì§€ ê°€ëŠ¥í•˜ë‹¤.
 #define		DEFUALT_MEMEORYPOOL_OBJECTSIZE						  12
 
 class CMemPoolClient		

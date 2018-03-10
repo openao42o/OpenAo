@@ -1,4 +1,4 @@
-// VMem.cpp: implementation of the VMem class.
+ï»¿// VMem.cpp: implementation of the VMem class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -22,7 +22,7 @@ VMem_Client::~VMem_Client()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		¸Ş¸ğ¸®Ç® »ı¼º.
+/// \brief		ë©”ëª¨ë¦¬í’€ ìƒì„±.
 /// \author		dgwoo
 /// \date		2008-03-11 ~ 2008-03-11
 /// \warning	
@@ -95,7 +95,7 @@ BOOL VMem_Client::FreeMem(void* i_pMem,DWORD i_size)
 void* VMem_Client::GetMemNew()
 {
 	if(m_ValidCnt < 10)
-	{// ¿©À¯ ¿ë·®ÀÌ ºÎÁ·ÇÏ¸é »õ·Î ¸¸µç´Ù.
+	{// ì—¬ìœ  ìš©ëŸ‰ì´ ë¶€ì¡±í•˜ë©´ ìƒˆë¡œ ë§Œë“ ë‹¤.
 		AllocMem(m_ObjectSize,m_TotalCnt);
 	}
 	void *p = m_vecPtrValid.back();

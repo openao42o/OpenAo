@@ -1,144 +1,145 @@
-///////////////////////////////////////////////////////////////////////////////
-// DebugAssert.h :	debug assert¸¦ À§ÇÑ ¸ÅÅ©·Î Á¤ÀÇ ÆÄÀÏ
-//					Condition compilaion(#defien)¿¡ µû¶ó »ç¿ëÀÌ ´Ş¶óÁø´Ù.
+ï»¿///////////////////////////////////////////////////////////////////////////////
+// DebugAssert.h :    debug assertë¥¼ ìœ„í•œ ë§¤í¬ë¡œ ì •ì˜ íŒŒì¼
+//                    Condition compilaion(#defien)ì— ë”°ë¼ ì‚¬ìš©ì´ ë‹¬ë¼ì§„ë‹¤.
 //
 // Date     : 2004-03-25 by cmkwon
+// //Copyright[2002] MasangSoft
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _DEBUG_ASSERT_H_
-#define _DEBUG_ASSERT_H_
+#ifndef COMMON_DEBUGASSERT_H_
+#define COMMON_DEBUGASSERT_H_
 
 #include <assert.h>
 
 #ifndef _DEBUG
 
-#define ASSERT_ASSERT				__noop
-#define ASSERT_ASSERT				__noop
-#define ASSERT_REQUIRE				__noop
-#define ASSERT_REQUIRE				__noop
-#define ASSERT_ENSURE				__noop
-#define ASSERT_ENSURE				__noop
-#define ASSERT_CHECK				__noop
-#define ASSERT_CHECK				__noop
-#define ASSERT_IMPLIES				__noop
-#define ASSERT_NEVER_GET_HERE		__noop
-#define ASSERT_NOT_IMPLEMENTED_YET	__noop
+#define ASSERT_ASSERT                __noop
+#define ASSERT_ASSERT                __noop
+#define ASSERT_REQUIRE                __noop
+#define ASSERT_REQUIRE                __noop
+#define ASSERT_ENSURE                __noop
+#define ASSERT_ENSURE                __noop
+#define ASSERT_CHECK                __noop
+#define ASSERT_CHECK                __noop
+#define ASSERT_IMPLIES                __noop
+#define ASSERT_NEVER_GET_HERE        __noop
+#define ASSERT_NOT_IMPLEMENTED_YET    __noop
 
 #else // _DEBUG
 
 #define ALL_ASSERTIONS
 ///////////////////////////////////////////////////////////////////////////////
-// #define ALL_ASSERTIONS		: ¸ğµç Assert macro Ã¼Å©ÇÔ
-// #define ASSERTIONS_ASSERT	: ASSERT macro ¸¸ Ã¼Å©ÇÔ
-// #define ASSERTIONS_REQUIRE	: REQUIRE macro ¸¸ Ã¼Å©ÇÔ
-// #define ASSERTIONS_ENSURE	: ENSURE macro ¸¸ Ã¼Å©ÇÔ
-// #define ASSERTIONS_CHECK		: CHECK macro ¸¸ Ã¼Å©ÇÔ
-// #define ASSERTIONS_IMPLIES	: IMPLIES macro ¸¸ Ã¼Å©ÇÔ
+// #define ALL_ASSERTIONS        : ëª¨ë“  Assert macro ì²´í¬í•¨
+// #define ASSERTIONS_ASSERT    : ASSERT macro ë§Œ ì²´í¬í•¨
+// #define ASSERTIONS_REQUIRE    : REQUIRE macro ë§Œ ì²´í¬í•¨
+// #define ASSERTIONS_ENSURE    : ENSURE macro ë§Œ ì²´í¬í•¨
+// #define ASSERTIONS_CHECK        : CHECK macro ë§Œ ì²´í¬í•¨
+// #define ASSERTIONS_IMPLIES    : IMPLIES macro ë§Œ ì²´í¬í•¨
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef enum
 {
-	Assertion_ASSERT,
-	Assertion_REQUIRE,
-	Assertion_ENSURE,
-	Assertion_CHECK,
-	Assertion_IMPLIES,
-	Assertion_NEVER_GET_HERE,
-	Assertion_NOT_IMPLEMENTED_YET
+    Assertion_ASSERT,
+    Assertion_REQUIRE,
+    Assertion_ENSURE,
+    Assertion_CHECK,
+    Assertion_IMPLIES,
+    Assertion_NEVER_GET_HERE,
+    Assertion_NOT_IMPLEMENTED_YET
 } Assertion;
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Assert Ã¢¿¡ º¸¿©Áú ³»¿ëÀ» ¼³Á¤ÇÑ´Ù.
+// Assert ì°½ì— ë³´ì—¬ì§ˆ ë‚´ìš©ì„ ì„¤ì •í•œë‹¤.
 ///////////////////////////////////////////////////////////////////////////////
 #define ASSERT_DEBUG(expr1, expr2)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// ASSERT :	ExpressionÀÌ trueÀÓÀ» È®ÀÎÇÑ´Ù
-//			ASSERTION_ASSERT °¡ defineµÇ¾îÀÖÁö ¾ÊÀ¸¸é input code´Â »èÁ¦ Ã³¸® µÈ´Ù.
+// ASSERT :    Expressionì´ trueì„ì„ í™•ì¸í•œë‹¤
+//            ASSERTION_ASSERT ê°€ defineë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ input codeëŠ” ì‚­ì œ ì²˜ë¦¬ ëœë‹¤.
 //
-//		ex)
+//        ex)
 ///////////////////////////////////////////////////////////////////////////////
 #if defined(ALL_ASSERTIONS) || defined(ASSERTION_ASSERT)
-	#define ASSERT_ASSERT(expr)	if (!(expr)) { ASSERT_DEBUG(Assertion_ASSERT, expr); } else {;}
+    #define ASSERT_ASSERT(expr)    if (!(expr)) { ASSERT_DEBUG(Assertion_ASSERT, expr); } else {;}
 #else
-	#define ASSERT_ASSERT(expr)
+    #define ASSERT_ASSERT(expr)
 #endif // ASSERTION_ASSERT_endif
 
 ///////////////////////////////////////////////////////////////////////////////
-// REQUIRE : FunctionÀÇ input parameterµéÀÇ °ªÀÇ ¹üÀ§¸¦ È®ÀÎÇÑ´Ù.
-//			 ASSERTION_REQUIRE °¡ defineµÇ¾îÀÖÁö ¾ÊÀ¸¸é input code´Â »èÁ¦ Ã³¸® µÈ´Ù.
+// REQUIRE : Functionì˜ input parameterë“¤ì˜ ê°’ì˜ ë²”ìœ„ë¥¼ í™•ì¸í•œë‹¤.
+//             ASSERTION_REQUIRE ê°€ defineë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ input codeëŠ” ì‚­ì œ ì²˜ë¦¬ ëœë‹¤.
 //
-//		ex)
+//        ex)
 ///////////////////////////////////////////////////////////////////////////////
 #if defined(ALL_ASSERTIONS) || defined(ASSERTION_REQUIRE)
-	#define ASSERT_REQUIRE(expr)	if (!(expr)) { ASSERT_DEBUG(Assertion_REQUIRE, expr); } else {;}
+    #define ASSERT_REQUIRE(expr)    if (!(expr)) { ASSERT_DEBUG(Assertion_REQUIRE, expr); } else {;}
 #else
-	#define ASSERT_REQUIRE(expr)
+    #define ASSERT_REQUIRE(expr)
 #endif // ASSERTION_REQUIRE_endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// ENSURE : FunctionÀÇ ¼öÇàÀÌ ³¡³ª°í ³­ µÚ, return valueÀÇ °ªÀÇ ¹üÀ§¿Í
-//			´Ù¸¥ variableµéÀÇ °ªÀÇ ¹üÀ§¸¦ ºñ±³ÇÑ´Ù.
-//			ASSERTION_ENSURE °¡ defineµÇ¾îÀÖÁö ¾ÊÀ¸¸é input code´Â »èÁ¦ Ã³¸® µÈ´Ù.
+// ENSURE : Functionì˜ ìˆ˜í–‰ì´ ëë‚˜ê³  ë‚œ ë’¤, return valueì˜ ê°’ì˜ ë²”ìœ„ì™€
+//            ë‹¤ë¥¸ variableë“¤ì˜ ê°’ì˜ ë²”ìœ„ë¥¼ ë¹„êµí•œë‹¤.
+//            ASSERTION_ENSURE ê°€ defineë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ input codeëŠ” ì‚­ì œ ì²˜ë¦¬ ëœë‹¤.
 //
-//		ex)
+//        ex)
 ///////////////////////////////////////////////////////////////////////////////
 #if defined(ALL_ASSERTIONS) || defined(ASSERTION_ENSURE)
-	#define ASSERT_ENSURE(expr)		if (!(expr)) { ASSERT_DEBUG(Assertion_ENSURE, expr); } else {;}
+    #define ASSERT_ENSURE(expr)        if (!(expr)) { ASSERT_DEBUG(Assertion_ENSURE, expr); } else {;}
 #else
-	#define ASSERT_ENSURE(expr)
+    #define ASSERT_ENSURE(expr)
 #endif // ASSERTION_REQUIRE_endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// CHECK : Conditional compilation(define Á¶°Ç¿¡ µû¶ó)¿¡ ÀÇÇØ
-//			REQUIRE(), ENSURE()ÀÇ input code´Â debuggingÀÌ ³¡³­ µÚ »èÁ¦µÇ´Âµ¥ ¹İÇØ,
-//			CHECK()ÀÇ input code´Â ³²°ÜÁø´Ù. Áï, ´ÙÀ½°ú °°Àº code°¡ °¡´ÉÇÏ´Ù.
-//			ASSERTION_CHECK °¡ defineµÇ¾îÀÖÁö ¾Ê¾Æµµ input code´Â »èÁ¦ Ã³¸® µÇÁö ¾Ê´Â´Ù.
+// CHECK : Conditional compilation(define ì¡°ê±´ì— ë”°ë¼)ì— ì˜í•´
+//            REQUIRE(), ENSURE()ì˜ input codeëŠ” debuggingì´ ëë‚œ ë’¤ ì‚­ì œë˜ëŠ”ë° ë°˜í•´,
+//            CHECK()ì˜ input codeëŠ” ë‚¨ê²¨ì§„ë‹¤. ì¦‰, ë‹¤ìŒê³¼ ê°™ì€ codeê°€ ê°€ëŠ¥í•˜ë‹¤.
+//            ASSERTION_CHECK ê°€ defineë˜ì–´ìˆì§€ ì•Šì•„ë„ input codeëŠ” ì‚­ì œ ì²˜ë¦¬ ë˜ì§€ ì•ŠëŠ”ë‹¤.
 //
-//		ex)	ASSERT_CHECK((pfl = fopen(PARAM_FILE, "r")) != NULL);
+//        ex)    ASSERT_CHECK((pfl = fopen(PARAM_FILE, "r")) != NULL);
 ///////////////////////////////////////////////////////////////////////////////
 #if defined(ALL_ASSERTIONS) || defined(ASSERTION_CHECK)
-	#define ASSERT_CHECK(expr)		if (!(expr)) { ASSERT_DEBUG(Assertion_CHECK, expr); } else {;}
+    #define ASSERT_CHECK(expr)        if (!(expr)) { ASSERT_DEBUG(Assertion_CHECK, expr); } else {;}
 #else
-	#define ASSERT_CHECK(expr)		if (!(expr)) {;} else {;}
+    #define ASSERT_CHECK(expr)        if (!(expr)) {;} else {;}
 #endif // ASSERTION_CHECK_endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// IMPLIES : Ã¹¹øÂ° expressionÀÌ trueÀÎ °æ¿ì¿¡¸¸ µÎ¹øÂ° expressionÀ» Assertion¸¦ Ã¼Å©ÇÑ´Ù.
-//			 ASSERTION_ASSERT °¡ defineµÇ¾îÀÖÁö ¾ÊÀ¸¸é input code´Â »èÁ¦ Ã³¸® µÈ´Ù.
+// IMPLIES : ì²«ë²ˆì§¸ expressionì´ trueì¸ ê²½ìš°ì—ë§Œ ë‘ë²ˆì§¸ expressionì„ Assertionë¥¼ ì²´í¬í•œë‹¤.
+//             ASSERTION_ASSERT ê°€ defineë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ input codeëŠ” ì‚­ì œ ì²˜ë¦¬ ëœë‹¤.
 ///////////////////////////////////////////////////////////////////////////////
 #if defined(ALL_ASSERTIONS) || defined(ASSERTION_IMPLIES)
-	#define ASSERT_IMPLIES(expr1, expr2)											\
-		if ((expr1))																\
-		{																			\
-			if (!(expr2)) { ASSERT_DEBUG(Assertion_IMPLIES, #expr1 "," #expr2); }	\
-		}																			\
-		else {;}
+    #define ASSERT_IMPLIES(expr1, expr2)                                            \
+        if ((expr1))                                                                \
+        {                                                                            \
+            if (!(expr2)) { ASSERT_DEBUG(Assertion_IMPLIES, #expr1 "," #expr2); }    \
+        }                                                                   \
+
 #else
-	#define ASSERT_IMPLIES(expr1, expr2)
+    #define ASSERT_IMPLIES(expr1, expr2)
 #endif // ASSERTION_IMPLIES_endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// NEVER_GET_HERE : Conditional compilation ¿¡ »ó°ü¾øÀÌ »ç¿ë°¡´ÉÇÏ¸ç
-//					Control flow°¡ µµ´ŞÇÒ ¼ö ¾ø´Â °÷¿¡ µÎ¾î Ã¼Å©ÇÑ´Ù.
+// NEVER_GET_HERE : Conditional compilation ì— ìƒê´€ì—†ì´ ì‚¬ìš©ê°€ëŠ¥í•˜ë©°
+//                    Control flowê°€ ë„ë‹¬í•  ìˆ˜ ì—†ëŠ” ê³³ì— ë‘ì–´ ì²´í¬í•œë‹¤.
 //
-//		ex)
+//        ex)
 ///////////////////////////////////////////////////////////////////////////////
-#define ASSERT_NEVER_GET_HERE()	ASSERT_DEBUG(Assertion_NEVER_GET_HERE, "NEVER_GET_HERE");
+#define ASSERT_NEVER_GET_HERE()    ASSERT_DEBUG(Assertion_NEVER_GET_HERE, "NEVER_GET_HERE");
 
 ///////////////////////////////////////////////////////////////////////////////
-// NOT_IMPLEMENTED_YET : ¾ÆÁ÷ ±¸ÇöµÇÁö ¾ÊÀº ÇÔ¼öÀÇ »ç¿ëÀ» ¸·±â À§ÇØ »ç¿ëÇÑ´Ù.
+// NOT_IMPLEMENTED_YET : ì•„ì§ êµ¬í˜„ë˜ì§€ ì•Šì€ í•¨ìˆ˜ì˜ ì‚¬ìš©ì„ ë§‰ê¸° ìœ„í•´ ì‚¬ìš©í•œë‹¤.
 //
-//		ex)
+//        ex)
 ///////////////////////////////////////////////////////////////////////////////
-#define ASSERT_NOT_IMPLEMENTED_YET()	ASSERT_DEBUG(Assertion_NOT_IMPLEMENTED_YET, "NOT_IMPLEMENTED_YET");
+#define ASSERT_NOT_IMPLEMENTED_YET()    ASSERT_DEBUG(Assertion_NOT_IMPLEMENTED_YET, "NOT_IMPLEMENTED_YET");
 
 #endif // _DEBUG
 
-#endif // _DEBUG_ASSERT_H_endif
+#endif // COMMON_DEBUGASSERT_H_

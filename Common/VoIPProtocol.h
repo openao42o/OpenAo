@@ -1,7 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////
+ï»¿///////////////////////////////////////////////////////////////////////////////
 //  VoIPProtocol.h
-//			: Æí´ë°£ À½¼º ÅëÈ­¿¡¼­ ¼­¹ö¿Í Å¬¶óÀÌ¾ğÆ®ÀÌ Åë½ÅÀ» À§ÇÑ ÇÁ·ÎÅäÄİ Çì´õ ÆÄÀÏ
-//			  VoIP Distribute Server, VoIP Call Server, VoIP Client¿¡¼­ »ç¿ëµÊ
+//			: í¸ëŒ€ê°„ ìŒì„± í†µí™”ì—ì„œ ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ì´ í†µì‹ ì„ ìœ„í•œ í”„ë¡œí† ì½œ í—¤ë” íŒŒì¼
+//			  VoIP Distribute Server, VoIP Call Server, VoIP Clientì—ì„œ ì‚¬ìš©ë¨
 //
 //  Date	: 2004-03-16 by cmkwon
 ///////////////////////////////////////////////////////////////////////////////
@@ -17,11 +17,11 @@
 
 #ifndef _ATUM_CLIENT
 
-#define VD_SERVER_PORT					15150	// VoIP Distribute ServerÀÇ Listening Port
-#define VC_SERVER_PORT					15151	// VoIP Call ServerÀÇ Listening Port
+#define VD_SERVER_PORT					15150	// VoIP Distribute Serverì˜ Listening Port
+#define VC_SERVER_PORT					15151	// VoIP Call Serverì˜ Listening Port
 
 ///////////////////////////////////////////////////////////////////////////////
-// MessageType T0 (´ëºĞ·ù)
+// MessageType T0 (ëŒ€ë¶„ë¥˜)
 //	DC : DistributeServer CallServer
 //	SD : SCVoIPClient DistributeServer
 //	SC : SCVoIPClient CallServer
@@ -44,9 +44,9 @@
 	#define T0_SD_ADMIN						0x36	// admin protocol
 	#define T0_SC_ADMIN						0x37	// admin protocol
 
-	#define T0_DC							0x40	// SendErrorMessageµî¿¡ TypeÀ¸·Î »ç¿ëÇÏ±â À§ÇØ
-	#define T0_VD							0x41	// SendErrorMessageµî¿¡ TypeÀ¸·Î »ç¿ëÇÏ±â À§ÇØ
-	#define T0_VC							0x42	// SendErrorMessageµî¿¡ TypeÀ¸·Î »ç¿ëÇÏ±â À§ÇØ
+	#define T0_DC							0x40	// SendErrorMessageë“±ì— Typeìœ¼ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´
+	#define T0_VD							0x41	// SendErrorMessageë“±ì— Typeìœ¼ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´
+	#define T0_VC							0x42	// SendErrorMessageë“±ì— Typeìœ¼ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´
 
 	#define T0_NA							0xD0	// INVALID PROTOCOL, NOT AVAILABLE
 
@@ -60,7 +60,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// MessageType T1 (¼ÒºĞ·ù)
+// MessageType T1 (ì†Œë¶„ë¥˜)
 ///////////////////////////////////////////////////////////////////////////////
 	// T0_DC_CONNECT
 	#define T1_C2D_CONNECT							0x00	// No body
@@ -108,8 +108,8 @@
 	#define T1_S2C_REQUEST_TOKEN					0x00
 	#define T1_C2S_REQUEST_TOKEN_OK					0x01
 	#define T1_C2S_LOST_TOKEN						0x02		// 2005-10-05 by cmkwon
-	#define T1_S2C_CHANGE_TALKING_STATE				0x03		// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ¸»ÇÏ±â »óÅÂ º¯°æ Àü¼Û
-	#define T1_C2S_CHANGE_TALKING_STATE_OK			0x04		// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ¸»ÇÏ±â »óÅÂ º¯°æ Àü¼Û
+	#define T1_S2C_CHANGE_TALKING_STATE				0x03		// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ë§í•˜ê¸° ìƒíƒœ ë³€ê²½ ì „ì†¡
+	#define T1_C2S_CHANGE_TALKING_STATE_OK			0x04		// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ë§í•˜ê¸° ìƒíƒœ ë³€ê²½ ì „ì†¡
 
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -174,8 +174,8 @@
 	#define T_S2C_REQUEST_TOKEN						(MessageType_t)((T0_SC_TOKEN<<8)|T1_S2C_REQUEST_TOKEN)
 	#define T_C2S_REQUEST_TOKEN_OK					(MessageType_t)((T0_SC_TOKEN<<8)|T1_C2S_REQUEST_TOKEN_OK)
 	#define T_C2S_LOST_TOKEN						(MessageType_t)((T0_SC_TOKEN<<8)|T1_C2S_LOST_TOKEN)		// 2005-10-05 by cmkwon
-	#define T_S2C_CHANGE_TALKING_STATE				(MessageType_t)((T0_SC_TOKEN<<8)|T1_S2C_CHANGE_TALKING_STATE)	// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ¸»ÇÏ±â »óÅÂ º¯°æ Àü¼Û
-	#define T_C2S_CHANGE_TALKING_STATE_OK			(MessageType_t)((T0_SC_TOKEN<<8)|T1_C2S_CHANGE_TALKING_STATE_OK)	// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - ¸»ÇÏ±â »óÅÂ º¯°æ Àü¼Û
+	#define T_S2C_CHANGE_TALKING_STATE				(MessageType_t)((T0_SC_TOKEN<<8)|T1_S2C_CHANGE_TALKING_STATE)	// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ë§í•˜ê¸° ìƒíƒœ ë³€ê²½ ì „ì†¡
+	#define T_C2S_CHANGE_TALKING_STATE_OK			(MessageType_t)((T0_SC_TOKEN<<8)|T1_C2S_CHANGE_TALKING_STATE_OK)	// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - ë§í•˜ê¸° ìƒíƒœ ë³€ê²½ ì „ì†¡
 	
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -223,7 +223,7 @@
 	{
 		char			szUserName[SIZE_MAX_USER_NAME];
 		ClientIndex_t	ClientIndex;
-		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, µ¿½Ã ¸»ÇÏ±â °¡´É Ä«¿îÆ®
+		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ì¹´ìš´íŠ¸
 		RoomID_t		CreateRoomID;
 	} MSG_C2D_CREATE_ROOM_NOTIFY;
 
@@ -231,7 +231,7 @@
 	{
 		char			szUserName[SIZE_MAX_USER_NAME];
 		ClientIndex_t	ClientIndex;
-		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, µ¿½Ã ¸»ÇÏ±â °¡´É Ä«¿îÆ®
+		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ì¹´ìš´íŠ¸
 		RoomID_t		CreateRoomID;
 	} MSG_D2C_CREATE_ROOM_NOTIFY_OK;	
 
@@ -258,7 +258,7 @@
 	typedef struct
 	{
 		char			szUserName[SIZE_MAX_USER_NAME];
-		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, µ¿½Ã ¸»ÇÏ±â Ä«¿îÆ®
+		int				nConcurrentTalkingCount;	// 2005-10-04 by cmkwon, ë™ì‹œ ë§í•˜ê¸° ì¹´ìš´íŠ¸
 		RoomID_t		createRoomID;
 	} MSG_S2C_CREATE_ROOM;
 
@@ -282,7 +282,7 @@
 	{
 		char			szUserName[SIZE_MAX_USER_NAME];
 		BYTE			nChannelIndex;
-		BYTE			bIsTalking;			// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+		BYTE			bIsTalking;			// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	} JoinedUserInfo;
 	typedef struct
 	{
@@ -294,7 +294,7 @@
 	{
 		char			szUserName[SIZE_MAX_USER_NAME];
 		BYTE			nChannelIndex;
-		BYTE			bIsTalking;			// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+		BYTE			bIsTalking;			// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	} MSG_C2S_JOIN_USER;
 
 	typedef struct
@@ -323,7 +323,7 @@
 		char			szUserName[SIZE_MAX_USER_NAME];
 	};
 
-	// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+	// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	struct MSG_S2C_CHANGE_TALKING_STATE	
 	{
 		TALKING_STATE_t talkingState;
@@ -331,7 +331,7 @@
 		char			szUserName[SIZE_MAX_USER_NAME];
 	};
 
-	// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+	// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	typedef MSG_S2C_CHANGE_TALKING_STATE MSG_C2S_CHANGE_TALKING_STATE_OK;
 
 
@@ -359,9 +359,9 @@
 	// 2015-05-16 Future, macro redifiniton & Voip not used
 	//typedef struct 
 	//{
-	//	MessageType_t	MsgType;			// ¿¡·¯°¡ ÀÏ¾î³µÀ» ¶§ Ã³¸®ÁßÀÌ¾ú´ø Message Type
+	//	MessageType_t	MsgType;			// ì—ëŸ¬ê°€ ì¼ì–´ë‚¬ì„ ë•Œ ì²˜ë¦¬ì¤‘ì´ì—ˆë˜ Message Type
 	//	Error_t			ErrorCode;			// 2 bytes
-	//	BOOL			CloseConnection;	// Client¿¡¼­ ¿¬°áÀ» ²÷À»Áö¿¡ ´ëÇÑ ¿©ºÎ
+	//	BOOL			CloseConnection;	// Clientì—ì„œ ì—°ê²°ì„ ëŠì„ì§€ì— ëŒ€í•œ ì—¬ë¶€
 	//	INT				ErrParam1;			// general-purpose err parameter 1
 	//	INT				ErrParam2;			// general-purpose err parameter 2
 	//} MSG_ERROR;
@@ -374,7 +374,7 @@
 	typedef struct
 	{
 		char szCharacterName[SIZE_MAX_CHARACTER_NAME];
-		BOOL EnableTalking;			// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+		BOOL EnableTalking;			// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	} MSG_EV_JOIN_USER;
 
 	typedef struct
@@ -392,7 +392,7 @@
 	{
 		char szCharacterName[SIZE_MAX_CHARACTER_NAME];
 		int		nTakingState;	// TALKING_STATE_XXX
-	} MSG_EV_CHANGED_TALKING_STATE;		// 2008-10-15 by cmkwon, ¸»ÇÏ±â ±â´É ¼öÁ¤ - 
+	} MSG_EV_CHANGED_TALKING_STATE;		// 2008-10-15 by cmkwon, ë§í•˜ê¸° ê¸°ëŠ¥ ìˆ˜ì • - 
 	
 	typedef struct
 	{
@@ -409,7 +409,7 @@
 	typedef struct
 	{
 		UINT		nAccountUniqueNumber;
-		int			nConcurrentTalkingCount;		// µ¿½Ã ¸»ÇÏ±â °¡´É Ä«¿îÆ®, 2005-10-04 by cmkwon
+		int			nConcurrentTalkingCount;		// ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ì¹´ìš´íŠ¸, 2005-10-04 by cmkwon
 		char		szCharacterName[SIZE_MAX_CHARACTER_NAME];
 		LONGLONG	llPartyID;
 	} MSG_MT_PARTY_CREATE_ROOM;
@@ -417,7 +417,7 @@
 	typedef struct
 	{
 		UINT		nAccountUniqueNumber;
-		int			nConcurrentTalkingCount;		// µ¿½Ã ¸»ÇÏ±â °¡´É Ä«¿îÆ®, 2005-10-04 by cmkwon
+		int			nConcurrentTalkingCount;		// ë™ì‹œ ë§í•˜ê¸° ê°€ëŠ¥ ì¹´ìš´íŠ¸, 2005-10-04 by cmkwon
 		char		szCharacterName[SIZE_MAX_CHARACTER_NAME];
 		UINT		uiGuildUniqueNumber;
 	} MSG_MT_GUILD_CREATE_ROOM;

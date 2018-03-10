@@ -1,4 +1,4 @@
-// VMemPool.cpp: implementation of the CSaveLastError class.
+ï»¿// VMemPool.cpp: implementation of the CSaveLastError class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -13,7 +13,7 @@ struct SObjectInfo
 };
 
 constexpr DWORD	SIZE_MAX_VIRTUALPOOL_ARRAY = 12;
-constexpr DWORD SIZE_MAX_OBJECTTYPE = 65536;	// ÃÖ´ë Object Buffer Size 65536 Bytes
+constexpr DWORD SIZE_MAX_OBJECTTYPE = 65536;	// ìµœëŒ€ Object Buffer Size 65536 Bytes
 
 //////////////////////////////////////////////////////////////////////
 //	Static Variable
@@ -22,11 +22,11 @@ namespace VMemPool
 {
 	CVMem* vmSearchValidVMem(DWORD dwObjSize);
 
-	SObjectInfo		ms_ArrayObjInfo[SIZE_MAX_VIRTUALPOOL_ARRAY];	// ¸Ş¸ğ¸® Ç®À» »ç¿ëÇÒ Object Á¤º¸ ¹è¿­
-	DWORD			ms_dwCountArrayObjInfo = 0;							// ¸Ş¸ğ¸® Ç®À» »ç¿ëÇÒ Object Á¤º¸ ¹è¿­ Ä«¿îÆ®
-	CVMem			ms_ArrayVMem[SIZE_MAX_VIRTUALPOOL_ARRAY];		// ¸Ş¸ğ¸® Ç® ¹è¿­
-	DWORD			ms_dwSizeArrayVMem = 0;								// »ç¿ëÁßÀÎ ¸Ş¸ğ¸® Ç® ¹è¿­ »çÀÌÁî
-	BOOL			ms_bFlagVMemInit = FALSE;								// ¸Ş¸ğ¸®Ç® ÃÊ±âÈ­ ÇÃ·¡±×
+	SObjectInfo		ms_ArrayObjInfo[SIZE_MAX_VIRTUALPOOL_ARRAY];	// ë©”ëª¨ë¦¬ í’€ì„ ì‚¬ìš©í•  Object ì •ë³´ ë°°ì—´
+	DWORD			ms_dwCountArrayObjInfo = 0;							// ë©”ëª¨ë¦¬ í’€ì„ ì‚¬ìš©í•  Object ì •ë³´ ë°°ì—´ ì¹´ìš´íŠ¸
+	CVMem			ms_ArrayVMem[SIZE_MAX_VIRTUALPOOL_ARRAY];		// ë©”ëª¨ë¦¬ í’€ ë°°ì—´
+	DWORD			ms_dwSizeArrayVMem = 0;								// ì‚¬ìš©ì¤‘ì¸ ë©”ëª¨ë¦¬ í’€ ë°°ì—´ ì‚¬ì´ì¦ˆ
+	BOOL			ms_bFlagVMemInit = FALSE;								// ë©”ëª¨ë¦¬í’€ ì´ˆê¸°í™” í”Œë˜ê·¸
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -40,11 +40,11 @@ bool operator<(SObjectInfo lhObj, SObjectInfo rhObj)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmObjectNew
-// ¹İÈ¯µÇ´Â Çü  : void *
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwObjSize
-// ÇÔ ¼ö ¼³ ¸í  : inline static ÇÔ¼ö
-//					¸Ş¸ğ¸®Ç®¿¡¼­ »çÀÌÁî¿¡ ¸Â´Â ¸Ş¸ğ¸®¸¦ ÇÒ´çÇÏ°í ±× ÁÖ¼Ò¸¦ ¸®ÅÏÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmObjectNew
+// ë°˜í™˜ë˜ëŠ” í˜•  : void *
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwObjSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline static í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬í’€ì—ì„œ ì‚¬ì´ì¦ˆì— ë§ëŠ” ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ê³  ê·¸ ì£¼ì†Œë¥¼ ë¦¬í„´í•œë‹¤.
 void* VMemPool::vmObjectNew(DWORD dwObjSize)
 {
 	auto pVMem = vmSearchValidVMem(dwObjSize);
@@ -61,12 +61,12 @@ void* VMemPool::vmObjectNew(DWORD dwObjSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmObjectDelete
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ÀÎ ÀÚ  : void *p
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwObjSize
-// ÇÔ ¼ö ¼³ ¸í  : inline static ÇÔ¼ö
-//					¸Ş¸ğ¸®Ç®¿¡¼­ ÀÎÀÚ·Î ¹ŞÀº ÁÖ¼Ò¸¦ ÇØÁ¦ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmObjectDelete
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì¸ ì  : void *p
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwObjSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline static í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬í’€ì—ì„œ ì¸ìë¡œ ë°›ì€ ì£¼ì†Œë¥¼ í•´ì œí•œë‹¤.
 void VMemPool::vmObjectDelete(void *p, DWORD dwObjSize)
 {
 	auto pVMem = vmSearchValidVMem(dwObjSize);
@@ -86,11 +86,11 @@ void VMemPool::vmObjectDelete(void *p, DWORD dwObjSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmSearchValidVMem
-// ¹İÈ¯µÇ´Â Çü  : CVMem*
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwObjSize
-// ÇÔ ¼ö ¼³ ¸í  : inline static ÇÔ¼ö
-//					¸Ş¸ğ¸® Ç®¿¡¼­ ObjectTypeSize¿¡ ¸Â´Â CVMemÀÇ °´Ã¼¸¦ Ã£¾Æ¼­ ¸®ÅÏÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmSearchValidVMem
+// ë°˜í™˜ë˜ëŠ” í˜•  : CVMem*
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwObjSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : inline static í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬ í’€ì—ì„œ ObjectTypeSizeì— ë§ëŠ” CVMemì˜ ê°ì²´ë¥¼ ì°¾ì•„ì„œ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
 CVMem* VMemPool::vmSearchValidVMem(DWORD dwObjSize)
 {
 	for (auto i = 0; i < ms_dwSizeArrayVMem; i++)
@@ -113,12 +113,12 @@ CVMem* VMemPool::vmSearchValidVMem(DWORD dwObjSize)
 }
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmPoolAddObject
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwObjTypeSize
-// ÇÔ ¼ö ÀÎ ÀÚ  : DWORD dwObjPoolSize
-// ÇÔ ¼ö ¼³ ¸í  : static ÇÔ¼ö
-//					¸Ş·Î¸® Ç®À» ÇÒ´çÇÏ±â Àü¿¡ ¸Ş¸ğ¸®¸¦ ÇÒ´çÇÒ ObjectÀÇ Å¸ÀÔ°ú »çÀÌÁî¸¦ Ãß°¡ÇÏ´Â ÇÔ¼ö
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmPoolAddObject
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwObjTypeSize
+// í•¨ ìˆ˜ ì¸ ì  : DWORD dwObjPoolSize
+// í•¨ ìˆ˜ ì„¤ ëª…  : static í•¨ìˆ˜
+//					ë©”ë¡œë¦¬ í’€ì„ í• ë‹¹í•˜ê¸° ì „ì— ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•  Objectì˜ íƒ€ì…ê³¼ ì‚¬ì´ì¦ˆë¥¼ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
 BOOL VMemPool::vmPoolAddObject(DWORD dwObjTypeSize, DWORD dwObjPoolSize)
 {
 	if (dwObjTypeSize == 0 || (dwObjTypeSize & 3) != 0 || dwObjTypeSize > SIZE_MAX_OBJECTTYPE || dwObjTypeSize * dwObjPoolSize > 1024 * 1024 * 100)
@@ -162,11 +162,11 @@ BOOL VMemPool::vmPoolAddObject(DWORD dwObjTypeSize, DWORD dwObjPoolSize)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmPoolInit
-// ¹İÈ¯µÇ´Â Çü  : BOOL
-// ÇÔ ¼ö ÀÎ ÀÚ  : void
-// ÇÔ ¼ö ¼³ ¸í  : static ÇÔ¼ö
-//					¸Ş¸ğ¸® Ç®À» À§ÇÑ ¸Ş¸ğ¸®¸¦ ÇÒ´çÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmPoolInit
+// ë°˜í™˜ë˜ëŠ” í˜•  : BOOL
+// í•¨ ìˆ˜ ì¸ ì  : void
+// í•¨ ìˆ˜ ì„¤ ëª…  : static í•¨ìˆ˜
+//					ë©”ëª¨ë¦¬ í’€ì„ ìœ„í•œ ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•œë‹¤.
 BOOL VMemPool::vmPoolInit()
 {
 	if(ms_bFlagVMemInit 
@@ -200,9 +200,9 @@ BOOL VMemPool::vmPoolInit()
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ÇÔ ¼ö ÀÌ ¸§  : VMemPool::vmPoolClean
-// ¹İÈ¯µÇ´Â Çü  : void
-// ÇÔ ¼ö ¼³ ¸í  : ¸Ş¸ğ¸® Ç®ÀÇ ¸Ş·Î¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+// í•¨ ìˆ˜ ì´ ë¦„  : VMemPool::vmPoolClean
+// ë°˜í™˜ë˜ëŠ” í˜•  : void
+// í•¨ ìˆ˜ ì„¤ ëª…  : ë©”ëª¨ë¦¬ í’€ì˜ ë©”ë¡œë¦¬ë¥¼ í•´ì œí•œë‹¤.
 //
 void VMemPool::vmPoolClean()
 {
@@ -225,7 +225,7 @@ void VMemPool::vmPoolClean()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \fn			
-/// \brief		// 2009-05-04 by cmkwon, ¸Ş¸ğ¸®Ç® »óÅÂÁ¤º¸ ·Î±× ³²±â±â - 
+/// \brief		// 2009-05-04 by cmkwon, ë©”ëª¨ë¦¬í’€ ìƒíƒœì •ë³´ ë¡œê·¸ ë‚¨ê¸°ê¸° - 
 /// \author		cmkwon
 /// \date		2009-05-04 ~ 2009-05-04
 /// \warning	

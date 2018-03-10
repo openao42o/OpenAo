@@ -1,3 +1,4 @@
+//Copyright[2002] MasangSoft
 #pragma once
 
 namespace protocol
@@ -1313,8 +1314,8 @@ namespace protocol
 	template<> struct info<T_FC_COLLECTION_INFO> { static constexpr size_t msg_size = sizeof(MSG_FC_COLLECTION_INFO); using struct_t = MSG_FC_COLLECTION_INFO; };
 	template<> struct info<T_FC_COLLECTION_SHAPE_CHANGE> { static constexpr size_t msg_size = sizeof(MSG_FC_COLLECTION_SHAPE_CHANGE); using struct_t = MSG_FC_COLLECTION_SHAPE_CHANGE; };
 	template<> struct info<T_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO> { static constexpr size_t msg_size = sizeof(MSG_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO); using struct_t = MSG_FC_COLLECTION_MONTHLY_AROMOR_EVENT_INFO; };
-	template<> struct info<T_ERROR> { static constexpr size_t msg_size = sizeof(MSG_ERROR); using struct_t = MSG_ERROR; };
-}
+	template<> struct info<T_ERROR> { static constexpr size_t msg_size = sizeof(MSG_ERROR); using struct_t = MSG_ERROR; }; // namespace protocol
+} // namespace protocol
 
 
 constexpr auto T1_FL_LOG_LOGIN = T1<T0::FL_LOG>::FL_LOG_LOGIN;

@@ -1,4 +1,4 @@
-#ifndef __NPC_SCRIPTS_H__
+ï»¿#ifndef __NPC_SCRIPTS_H__
 #define __NPC_SCRIPTS_H__
 
 #include "AtumParam.h"
@@ -17,8 +17,8 @@ struct NPCTalk
 struct NPCScript
 {
 	NPCID_t				NpcID;
-	vector<NPCTalk*>	NpcTalkVector;	// NpcScripts ÆÄÀÏ¿¡¼­ talk, menu ¹øÈ£´Â
-										// ²À ¼ø¼­´ë·Î ÀÔ·ÂµÇ¾î¾ß ÇÔ!
+	vector<NPCTalk*>	NpcTalkVector;	// NpcScripts íŒŒì¼ì—ì„œ talk, menu ë²ˆí˜¸ëŠ”
+										// ê¼­ ìˆœì„œëŒ€ë¡œ ì…ë ¥ë˜ì–´ì•¼ í•¨!
 	~NPCScript();
 	void reset();
 };
