@@ -1,3 +1,4 @@
+Ôªø//Copyright[2002] MasangSoft
 // INFCommunityGuildSearch.cpp: implementation of the CINFCommunityGuildSearch class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -23,40 +24,40 @@
 
 #include "INFImageEx.h"
 #include "INFGroupImage.h"
-#include "INFGroupManager.h"								   // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-#include "INFToolTip.h"			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
+#include "INFGroupManager.h"                                   // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+#include "INFToolTip.h"            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
 #include "Interface.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-// ƒøπ¬¥œ∆º √¢ ø…º«
-#define	COMMUNITY_SEARCHRBK_X				230
-#define	COMMUNITY_SEARCHRBK_Y				0
-#define	COMMUNITY_SEARCHRBK_WIDTH			348
-#define	COMMUNITY_SEARCHRBK_HEIGHT			392
-#define	COMMUNITY_SEARCHRBK_CAPS_HEIGHT	20
+// Ïª§ÎÆ§ÎãàÌã∞ Ï∞Ω ÏòµÏÖò
+#define    COMMUNITY_SEARCHRBK_X                230
+#define    COMMUNITY_SEARCHRBK_Y                0
+#define    COMMUNITY_SEARCHRBK_WIDTH            348
+#define    COMMUNITY_SEARCHRBK_HEIGHT            392
+#define    COMMUNITY_SEARCHRBK_CAPS_HEIGHT    20
 
-// ø©¥‹ º“∞≥
-#define MEMBER_INTRO_EDIT_X						19
-#define MEMBER_INTRO_EDIT_Y						253
-#define MEMBER_INTRO_EDIT_W						300
-#define MEMBER_INTRO_FONT_LINE_HEIGHT			15
-#define MEMBER_INTRO_FONT_MOUSE_HEIGHT			92
-#define	MAX_MEMBER_INTRO_LINE					5
+// Ïó¨Îã® ÏÜåÍ∞ú
+#define MEMBER_INTRO_EDIT_X                        19
+#define MEMBER_INTRO_EDIT_Y                        253
+#define MEMBER_INTRO_EDIT_W                        300
+#define MEMBER_INTRO_FONT_LINE_HEIGHT            15
+#define MEMBER_INTRO_FONT_MOUSE_HEIGHT            92
+#define    MAX_MEMBER_INTRO_LINE                    5
 
 
-// ø©¥‹ ∏ÆΩ∫∆Æ Ω∫≈©∑—
-#define GUILD_LIST_EDIT_X						14
-#define GUILD_LIST_EDIT_Y						52
-#define GUILD_LIST_EDIT_W						312
-#define GUILD_LIST_FONT_LINE_HEIGHT			17
-#define	MAX_GUILD_LIST_LINE					10
+// Ïó¨Îã® Î¶¨Ïä§Ìä∏ Ïä§ÌÅ¨Î°§
+#define GUILD_LIST_EDIT_X                        14
+#define GUILD_LIST_EDIT_Y                        52
+#define GUILD_LIST_EDIT_W                        312
+#define GUILD_LIST_FONT_LINE_HEIGHT            17
+#define    MAX_GUILD_LIST_LINE                    10
 
-// ±ÊµÂ∏Ì
-#define GUILD_NAME_X						146
-#define GUILD_NAME_Y						227
+// Í∏∏ÎìúÎ™Ö
+#define GUILD_NAME_X                        146
+#define GUILD_NAME_Y                        227
 
 
 
@@ -66,1115 +67,1115 @@
 
 CINFCommunityGuildSearch::CINFCommunityGuildSearch(CAtumNode* pParent)
 {
-	m_pParent = pParent;
-	
-	m_bShow = FALSE;
-	m_bMove = FALSE;
+    m_pParent = pParent;
+    
+    m_bShow = FALSE;
+    m_bMove = FALSE;
 
-	m_pFormat = NULL;
-	m_ptCommOpBk.x = m_ptCommOpBk.y = 0;
-	m_ptCommOpMouse.x = m_ptCommOpMouse.y = 0;	
-	
-	m_pRqBtn = NULL;			// ºˆ∂Ù
-	m_pRqCancelBtn = NULL;				// ∞≈¿˝
-	
-	m_pEditGuildIntro = NULL;	
-	
-	m_pScrollGuildIntro = NULL;
-	m_pScrollGuildList = NULL;
+    m_pFormat = NULL;
+    m_ptCommOpBk.x = m_ptCommOpBk.y = 0;
+    m_ptCommOpMouse.x = m_ptCommOpMouse.y = 0;    
+    
+    m_pRqBtn = NULL;            // ÏàòÎùΩ
+    m_pRqCancelBtn = NULL;                // Í±∞Ï†à
+    
+    m_pEditGuildIntro = NULL;    
+    
+    m_pScrollGuildIntro = NULL;
+    m_pScrollGuildList = NULL;
 
-	m_pImgSelect = NULL;
-	m_nSelMemberList = -1;
-	m_vecGuildSearchInfo.clear();	// ¡ˆø¯¿⁄ 
+    m_pImgSelect = NULL;
+    m_nSelMemberList = -1;
+    m_vecGuildSearchInfo.clear();    // ÏßÄÏõêÏûê 
 
-	m_pFontSel = NULL;	
-	memset(&m_myShuttleIntroduceInfo, 0x00, sizeof(MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK));
+    m_pFontSel = NULL;    
+    memset(&m_myShuttleIntroduceInfo, 0x00, sizeof(MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK));
 
-	m_pCloseBtn = NULL;
+    m_pCloseBtn = NULL;
 }
 
 CINFCommunityGuildSearch::~CINFCommunityGuildSearch()
 {
-	util::del(m_pFormat);	
+    util::del(m_pFormat);    
 
-	util::del(m_pRqBtn);			// ºˆ∂Ù
-	util::del(m_pRqCancelBtn );				// ∞≈¿˝
+    util::del(m_pRqBtn);            // ÏàòÎùΩ
+    util::del(m_pRqCancelBtn );                // Í±∞Ï†à
 
-	util::del(m_pEditGuildIntro);
-	
-	util::del(m_pScrollGuildIntro);
-	util::del(m_pScrollGuildList);
+    util::del(m_pEditGuildIntro);
+    
+    util::del(m_pScrollGuildIntro);
+    util::del(m_pScrollGuildList);
 
-	util::del(m_pImgSelect);	
+    util::del(m_pImgSelect);    
 
-	util::del(m_pFontSel);
-	util::del(m_pCloseBtn);
+    util::del(m_pFontSel);
+    util::del(m_pCloseBtn);
 
-	DelGuildSearchVector();	// ¡ˆø¯¿⁄ 	
+    DelGuildSearchVector();    // ÏßÄÏõêÏûê     
 }
 
 void CINFCommunityGuildSearch::DelGuildSearchVector()
 {
-	vector<structGuildSearchInfo*>::iterator it = m_vecGuildSearchInfo.begin();	// ¡ˆø¯¿⁄ ¡§∫∏
-	while(it != m_vecGuildSearchInfo.end())
-	{
-		util::del(*it);
-		it++;
-	}
-	m_vecGuildSearchInfo.clear();
+    vector<structGuildSearchInfo*>::iterator it = m_vecGuildSearchInfo.begin();    // ÏßÄÏõêÏûê Ï†ïÎ≥¥
+    while (it != m_vecGuildSearchInfo.end())
+    {
+        util::del(*it);
+        it++;
+    }
+    m_vecGuildSearchInfo.clear();
 
 }
 
 HRESULT CINFCommunityGuildSearch::InitDeviceObjects()
 {
-	DataHeader	* pDataHeader= NULL;
-	
-	POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
-	
-	// ƒøπ¬¥œ∆º ø…º«πË	
-	m_ptCommOpBk.x = ptBkPos.x + COMMUNITY_SEARCHRBK_X;
-	m_ptCommOpBk.y = (g_pD3dApp->GetBackBufferDesc().Height/2) - COMMUNITY_SEARCHRBK_HEIGHT/2;
-	
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	if(m_pFormat == NULL)
-	{
-		DataHeader* pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("B_sea");	
-		m_pFormat = g_pGameMain->m_GruopImagemanager->GetGroupImage( pDataHeader );
-		m_pFormat->InitDeviceObjects( g_pD3dApp->m_pImageList );
-		m_pFormat->RestoreDeviceObjects();
-	} 
+    DataHeader    * pDataHeader= NULL;
+    
+    POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    
+    // Ïª§ÎÆ§ÎãàÌã∞ ÏòµÏÖòÎ∞∞    
+    m_ptCommOpBk.x = ptBkPos.x + COMMUNITY_SEARCHRBK_X;
+    m_ptCommOpBk.y = (g_pD3dApp->GetBackBufferDesc().Height/2) - COMMUNITY_SEARCHRBK_HEIGHT/2;
+    
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    if (m_pFormat == NULL)
+    {
+        DataHeader* pDataHeader = g_pGameMain->m_GruopImagemanager->FindResource("B_sea");    
+        m_pFormat = g_pGameMain->m_GruopImagemanager->GetGroupImage( pDataHeader );
+        m_pFormat->InitDeviceObjects( g_pD3dApp->m_pImageList );
+        m_pFormat->RestoreDeviceObjects();
+    } 
 #else 
-	{
-		if(NULL == m_pFormat)
-		{
-			m_pFormat = new CINFImageEx;	
-		}		
-		pDataHeader = FindResource("c_sebk");
-		m_pFormat->InitDeviceObjects(pDataHeader);
-	}
+    {
+        if (NULL == m_pFormat)
+        {
+            m_pFormat = new CINFImageEx;    
+        }        
+        pDataHeader = FindResource("c_sebk");
+        m_pFormat->InitDeviceObjects(pDataHeader);
+    }
 #endif
-		
-	{
-		// ºˆ∂Ù
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
-		wsprintf(szUpBtn, "c_jrq3");
-		wsprintf(szDownBtn, "c_jrq1");
-		wsprintf(szSelBtn, "c_jrq0");
-		wsprintf(szDisBtn, "c_jrq2");
-		if(NULL == m_pRqBtn)
-		{
-			m_pRqBtn = new CINFImageBtn;
-		}
-		// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		//m_pRqBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
-		m_pRqBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP62");
-		// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-	}
-	{
-		// ∞≈¿˝
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-		wsprintf(szUpBtn, "cans03");
-		wsprintf(szDownBtn, "cans01");
-		wsprintf(szSelBtn, "cans00");
-		wsprintf(szDisBtn, "cans02");															  
-#else		
-		wsprintf(szUpBtn, "c_jrqc3");
-		wsprintf(szDownBtn, "c_jrqc1");
-		wsprintf(szSelBtn, "c_jrqc0");
-		wsprintf(szDisBtn, "c_jrqc2");
+        
+    {
+        // ÏàòÎùΩ
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+        wsprintf(szUpBtn, "c_jrq3");
+        wsprintf(szDownBtn, "c_jrq1");
+        wsprintf(szSelBtn, "c_jrq0");
+        wsprintf(szDisBtn, "c_jrq2");
+        if (NULL == m_pRqBtn)
+        {
+            m_pRqBtn = new CINFImageBtn;
+        }
+        // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        //m_pRqBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+        m_pRqBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP62");
+        // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+    }
+    {
+        // Í±∞Ï†à
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+        wsprintf(szUpBtn, "cans03");
+        wsprintf(szDownBtn, "cans01");
+        wsprintf(szSelBtn, "cans00");
+        wsprintf(szDisBtn, "cans02");                                                              
+#else        
+        wsprintf(szUpBtn, "c_jrqc3");
+        wsprintf(szDownBtn, "c_jrqc1");
+        wsprintf(szSelBtn, "c_jrqc0");
+        wsprintf(szDisBtn, "c_jrqc2");
 #endif
-		if(NULL == m_pRqCancelBtn)
-		{
-			m_pRqCancelBtn = new CINFImageBtn;
-		}
-		// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		//m_pRqCancelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
-		m_pRqCancelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP81");
-		// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-	}
-		
-	
-	{
-		if(NULL == m_pEditGuildIntro)
-		{
-			m_pEditGuildIntro = new CINFEditBox;
-		}
-		POINT ptPos = {MEMBER_INTRO_EDIT_X, MEMBER_INTRO_EDIT_Y};		
-		m_pEditGuildIntro->InitDeviceObjects(9, ptPos, MEMBER_INTRO_EDIT_W, TRUE, MEMBER_INTRO_FONT_LINE_HEIGHT, 
-										FALSE, MEMBER_INTRO_FONT_MOUSE_HEIGHT);				
-		m_pEditGuildIntro->SetStringMaxBuff(SIZE_MAX_NOTICE);		
-	}	
-	
-	{
-		// ±ÊµÂº“∞≥ ø°µ∆Æ
-		char  szScBall[30];	
-		if(NULL == m_pScrollGuildIntro)
-		{
-			m_pScrollGuildIntro = new CINFArenaScrollBar;
-		}		
-		wsprintf(szScBall,"c_scrlb");		
-		m_pScrollGuildIntro->InitDeviceObjects(MAX_MEMBER_INTRO_LINE, szScBall);
-	}
-	
-	{
-		// ø©¥‹ ∏ÆΩ∫∆Æ 
-		char  szScBall[30];	
-		if(NULL == m_pScrollGuildList)
-		{
-			m_pScrollGuildList = new CINFArenaScrollBar;
-		}		
-		wsprintf(szScBall,"c_scrlb");		
-		m_pScrollGuildList->InitDeviceObjects(MAX_GUILD_LIST_LINE, szScBall);
-	}
-	{			
-		pDataHeader = m_pGameData->Find("c_sesel");	
-		if(NULL == m_pImgSelect)
-		{
-			m_pImgSelect = new CINFImageEx;
-		}
-		m_pImgSelect->InitDeviceObjects( pDataHeader );
-	}
-	if(NULL == m_pFontSel)
-	{
-		m_pFontSel = new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()), 9, D3DFONT_ZENABLE, FALSE,128,32);
-		m_pFontSel->InitDeviceObjects(g_pD3dDev);
-	}	
-	{
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-		wsprintf(szUpBtn, "close");
-		wsprintf(szDownBtn, "close");
-		wsprintf(szSelBtn, "close");
-		wsprintf(szDisBtn, "close");															  
-#else							  
-		wsprintf(szUpBtn, "xclose3");
-		wsprintf(szDownBtn, "xclose1");
-		wsprintf(szSelBtn, "xclose0");
-		wsprintf(szDisBtn, "xclose2");
+        if (NULL == m_pRqCancelBtn)
+        {
+            m_pRqCancelBtn = new CINFImageBtn;
+        }
+        // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        //m_pRqCancelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+        m_pRqCancelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP81");
+        // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+    }
+        
+    
+    {
+        if (NULL == m_pEditGuildIntro)
+        {
+            m_pEditGuildIntro = new CINFEditBox;
+        }
+        POINT ptPos = {MEMBER_INTRO_EDIT_X, MEMBER_INTRO_EDIT_Y};        
+        m_pEditGuildIntro->InitDeviceObjects(9, ptPos, MEMBER_INTRO_EDIT_W, TRUE, MEMBER_INTRO_FONT_LINE_HEIGHT, 
+                                        FALSE, MEMBER_INTRO_FONT_MOUSE_HEIGHT);                
+        m_pEditGuildIntro->SetStringMaxBuff(SIZE_MAX_NOTICE);        
+    }    
+    
+    {
+        // Í∏∏ÎìúÏÜåÍ∞ú ÏóêÎîîÌä∏
+        char  szScBall[30];    
+        if (NULL == m_pScrollGuildIntro)
+        {
+            m_pScrollGuildIntro = new CINFArenaScrollBar;
+        }        
+        wsprintf(szScBall,"c_scrlb");        
+        m_pScrollGuildIntro->InitDeviceObjects(MAX_MEMBER_INTRO_LINE, szScBall);
+    }
+    
+    {
+        // Ïó¨Îã® Î¶¨Ïä§Ìä∏ 
+        char  szScBall[30];    
+        if (NULL == m_pScrollGuildList)
+        {
+            m_pScrollGuildList = new CINFArenaScrollBar;
+        }        
+        wsprintf(szScBall,"c_scrlb");        
+        m_pScrollGuildList->InitDeviceObjects(MAX_GUILD_LIST_LINE, szScBall);
+    }
+    {            
+        pDataHeader = m_pGameData->Find("c_sesel");    
+        if (NULL == m_pImgSelect)
+        {
+            m_pImgSelect = new CINFImageEx;
+        }
+        m_pImgSelect->InitDeviceObjects( pDataHeader );
+    }
+    if (NULL == m_pFontSel)
+    {
+        m_pFontSel = new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()), 9, D3DFONT_ZENABLE, FALSE,128,32);
+        m_pFontSel->InitDeviceObjects(g_pD3dDev);
+    }    
+    {
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+        wsprintf(szUpBtn, "close");
+        wsprintf(szDownBtn, "close");
+        wsprintf(szSelBtn, "close");
+        wsprintf(szDisBtn, "close");                                                              
+#else                              
+        wsprintf(szUpBtn, "xclose3");
+        wsprintf(szDownBtn, "xclose1");
+        wsprintf(szSelBtn, "xclose0");
+        wsprintf(szDisBtn, "xclose2");
 #endif
-		if(NULL == m_pCloseBtn)
-		{
-			m_pCloseBtn = new CINFImageBtn;
-		}
-		m_pCloseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-	}
+        if (NULL == m_pCloseBtn)
+        {
+            m_pCloseBtn = new CINFImageBtn;
+        }
+        m_pCloseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+    }
 
-	
-	return S_OK ;
+    
+    return S_OK ;
 }
 
 HRESULT CINFCommunityGuildSearch::RestoreDeviceObjects()
 {
-	if(m_pFormat )
-	{
-		m_pFormat->RestoreDeviceObjects();
-	}		
-	
-	if(m_pRqBtn)
-	{
-		m_pRqBtn->RestoreDeviceObjects();						
-	}
-	if(m_pRqCancelBtn)
-	{
-		m_pRqCancelBtn->RestoreDeviceObjects();						
-	}
-		
-	if(m_pEditGuildIntro)
-	{
-		m_pEditGuildIntro->RestoreDeviceObjects();		
-	}	
-	if(m_pScrollGuildIntro)
-	{
-		m_pScrollGuildIntro->RestoreDeviceObjects();		
-	}
-	if(m_pScrollGuildList)
-	{
-		m_pScrollGuildList->RestoreDeviceObjects();		
-	}
+    if (m_pFormat )
+    {
+        m_pFormat->RestoreDeviceObjects();
+    }        
+    
+    if (m_pRqBtn)
+    {
+        m_pRqBtn->RestoreDeviceObjects();                        
+    }
+    if (m_pRqCancelBtn)
+    {
+        m_pRqCancelBtn->RestoreDeviceObjects();                        
+    }
+        
+    if (m_pEditGuildIntro)
+    {
+        m_pEditGuildIntro->RestoreDeviceObjects();        
+    }    
+    if (m_pScrollGuildIntro)
+    {
+        m_pScrollGuildIntro->RestoreDeviceObjects();        
+    }
+    if (m_pScrollGuildList)
+    {
+        m_pScrollGuildList->RestoreDeviceObjects();        
+    }
 
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->RestoreDeviceObjects();
-	}
-	
-	if(m_pFontSel)
-	{
-		m_pFontSel->RestoreDeviceObjects();
-	}
-	if(m_pCloseBtn)
-	{	
-		m_pCloseBtn->RestoreDeviceObjects();				
-	}
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->RestoreDeviceObjects();
+    }
+    
+    if (m_pFontSel)
+    {
+        m_pFontSel->RestoreDeviceObjects();
+    }
+    if (m_pCloseBtn)
+    {    
+        m_pCloseBtn->RestoreDeviceObjects();                
+    }
 
-	// UI¿Ø¿˙ ¡ˆ¡§ 
-	UpdateUIPos();	
-	
-	return S_OK ;
+    // UIÏú†Ï†Ä ÏßÄÏ†ï 
+    UpdateUIPos();    
+    
+    return S_OK ;
 }
 
 HRESULT CINFCommunityGuildSearch::DeleteDeviceObjects()
 {
-	if(m_pFormat )
-	{
-		m_pFormat->DeleteDeviceObjects();
-		util::del(m_pFormat );
-	}		
-	if(m_pRqBtn)
-	{		
-		m_pRqBtn->DeleteDeviceObjects();
-		util::del(m_pRqBtn);
-	}
-	if(m_pRqCancelBtn)
-	{		
-		m_pRqCancelBtn->DeleteDeviceObjects();
-		util::del(m_pRqCancelBtn);
-	}	
-	
-	if(m_pEditGuildIntro)
-	{
-		m_pEditGuildIntro->DeleteDeviceObjects();
-		util::del(m_pEditGuildIntro);		
-	}	
-	if(m_pScrollGuildIntro)
-	{
-		m_pScrollGuildIntro->DeleteDeviceObjects();
-		util::del(m_pScrollGuildIntro);		
-	}
-	if(m_pScrollGuildList)
-	{
-		m_pScrollGuildList->DeleteDeviceObjects();
-		util::del(m_pScrollGuildList);		
-	}
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->DeleteDeviceObjects();
-		util::del(m_pImgSelect);
-	}
-	if(m_pFontSel)
-	{
-		m_pFontSel->DeleteDeviceObjects();	
-		util::del(m_pFontSel);
-	}
-	if(m_pCloseBtn)
-	{
-		m_pCloseBtn->DeleteDeviceObjects();	
-		util::del(m_pCloseBtn);
-	}
+    if (m_pFormat )
+    {
+        m_pFormat->DeleteDeviceObjects();
+        util::del(m_pFormat );
+    }        
+    if (m_pRqBtn)
+    {        
+        m_pRqBtn->DeleteDeviceObjects();
+        util::del(m_pRqBtn);
+    }
+    if (m_pRqCancelBtn)
+    {        
+        m_pRqCancelBtn->DeleteDeviceObjects();
+        util::del(m_pRqCancelBtn);
+    }    
+    
+    if (m_pEditGuildIntro)
+    {
+        m_pEditGuildIntro->DeleteDeviceObjects();
+        util::del(m_pEditGuildIntro);        
+    }    
+    if (m_pScrollGuildIntro)
+    {
+        m_pScrollGuildIntro->DeleteDeviceObjects();
+        util::del(m_pScrollGuildIntro);        
+    }
+    if (m_pScrollGuildList)
+    {
+        m_pScrollGuildList->DeleteDeviceObjects();
+        util::del(m_pScrollGuildList);        
+    }
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->DeleteDeviceObjects();
+        util::del(m_pImgSelect);
+    }
+    if (m_pFontSel)
+    {
+        m_pFontSel->DeleteDeviceObjects();    
+        util::del(m_pFontSel);
+    }
+    if (m_pCloseBtn)
+    {
+        m_pCloseBtn->DeleteDeviceObjects();    
+        util::del(m_pCloseBtn);
+    }
 
-	return S_OK ;
+    return S_OK ;
 }
 
 HRESULT CINFCommunityGuildSearch::InvalidateDeviceObjects()
 {
-	if(m_pFormat)
-	{
-		m_pFormat->InvalidateDeviceObjects();
-	}		
-	if(m_pRqBtn)
-	{		
-		m_pRqBtn->InvalidateDeviceObjects();		
-	}
-	if(m_pRqCancelBtn)
-	{		
-		m_pRqCancelBtn->InvalidateDeviceObjects();		
-	}	
-	
-	if(m_pEditGuildIntro)
-	{
-		m_pEditGuildIntro->InvalidateDeviceObjects();
-	}	
-	if(m_pScrollGuildIntro)
-	{
-		m_pScrollGuildIntro->InvalidateDeviceObjects();
-	}
-	if(m_pScrollGuildList)
-	{
-		m_pScrollGuildList->InvalidateDeviceObjects();
-	}
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->InvalidateDeviceObjects();
-	}
-	if(m_pFontSel)
-	{
-		m_pFontSel->InvalidateDeviceObjects();
-	}
-	if(m_pCloseBtn)
-	{
-		m_pCloseBtn->InvalidateDeviceObjects();	
-	}
+    if (m_pFormat)
+    {
+        m_pFormat->InvalidateDeviceObjects();
+    }        
+    if (m_pRqBtn)
+    {        
+        m_pRqBtn->InvalidateDeviceObjects();        
+    }
+    if (m_pRqCancelBtn)
+    {        
+        m_pRqCancelBtn->InvalidateDeviceObjects();        
+    }    
+    
+    if (m_pEditGuildIntro)
+    {
+        m_pEditGuildIntro->InvalidateDeviceObjects();
+    }    
+    if (m_pScrollGuildIntro)
+    {
+        m_pScrollGuildIntro->InvalidateDeviceObjects();
+    }
+    if (m_pScrollGuildList)
+    {
+        m_pScrollGuildList->InvalidateDeviceObjects();
+    }
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->InvalidateDeviceObjects();
+    }
+    if (m_pFontSel)
+    {
+        m_pFontSel->InvalidateDeviceObjects();
+    }
+    if (m_pCloseBtn)
+    {
+        m_pCloseBtn->InvalidateDeviceObjects();    
+    }
 
-	return S_OK ;
+    return S_OK ;
 }
 
 void CINFCommunityGuildSearch::Render()
 {
-	if(!IsShowWindow())
-	{
-		return;
-	}
-	POINT ptBkPos = m_ptCommOpBk;
-	if(m_pFormat)
-	{		
-		m_pFormat->Move(ptBkPos.x, ptBkPos.y);
-		m_pFormat->Render() ;
-	}	
-	m_pRqBtn->Render();					// ºˆ∂Ù
-	m_pRqCancelBtn->Render();					// ∞≈¿˝
+    if (!IsShowWindow())
+    {
+        return;
+    }
+    POINT ptBkPos = m_ptCommOpBk;
+    if (m_pFormat)
+    {        
+        m_pFormat->Move(ptBkPos.x, ptBkPos.y);
+        m_pFormat->Render() ;
+    }    
+    m_pRqBtn->Render();                    // ÏàòÎùΩ
+    m_pRqCancelBtn->Render();                    // Í±∞Ï†à
 
-	m_pScrollGuildIntro->Render();	// ¿⁄±‚º“∞≥ Ω∫≈©∑—
-	m_pEditGuildIntro->Tick();
-	m_pEditGuildIntro->Render(m_pScrollGuildIntro->GetScrollStep(), MAX_MEMBER_INTRO_LINE);	
+    m_pScrollGuildIntro->Render();    // ÏûêÍ∏∞ÏÜåÍ∞ú Ïä§ÌÅ¨Î°§
+    m_pEditGuildIntro->Tick();
+    m_pEditGuildIntro->Render(m_pScrollGuildIntro->GetScrollStep(), MAX_MEMBER_INTRO_LINE);    
 
-	// ¡ˆø¯¿⁄ ∞¸∏Æ
-	{
-		m_pScrollGuildList->Render();		
-		RenderMemberList();
-	}
-// 2012-12-10 by jhjang ±ÊµÂ ∞Àªˆ √¢ ¥›±‚ πˆ∆∞ ¥ŸΩ√ ∂ÁøÚ.
-//#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê		
-//#else		
-	m_pCloseBtn->Render();	
+    // ÏßÄÏõêÏûê Í¥ÄÎ¶¨
+    {
+        m_pScrollGuildList->Render();        
+        RenderMemberList();
+    }
+// 2012-12-10 by jhjang Í∏∏Îìú Í≤ÄÏÉâ Ï∞Ω Îã´Í∏∞ Î≤ÑÌäº Îã§Ïãú ÎùÑÏõÄ.
+//#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω        
+//#else        
+    m_pCloseBtn->Render();    
 //#endif
-// end 2012-12-10 by jhjang ±ÊµÂ ∞Àªˆ √¢ ¥›±‚ πˆ∆∞ ¥ŸΩ√ ∂ÁøÚ.
-	
+// end 2012-12-10 by jhjang Í∏∏Îìú Í≤ÄÏÉâ Ï∞Ω Îã´Í∏∞ Î≤ÑÌäº Îã§Ïãú ÎùÑÏõÄ.
+    
 }
 
 void CINFCommunityGuildSearch::Tick()
 {
-	if(!IsShowWindow())
-	{
-		return;
-	}
+    if (!IsShowWindow())
+    {
+        return;
+    }
 
 }
 
 int CINFCommunityGuildSearch::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	if(!IsShowWindow())
-	{
-		return INF_MSGPROC_NORMAL;
-	}
-	switch(uMsg)
-	{
-	case WM_LBUTTONDOWN:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);				
+    if (!IsShowWindow())
+    {
+        return INF_MSGPROC_NORMAL;
+    }
+    switch (uMsg)
+    {
+    case WM_LBUTTONDOWN:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);                
 
-			{
-				if(TRUE == m_pCloseBtn->OnLButtonDown(pt))
-				{
-					// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-					return  INF_MSGPROC_BREAK;
-				}		
-			}			
+            {
+                if (TRUE == m_pCloseBtn->OnLButtonDown(pt))
+                {
+                    // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                    return  INF_MSGPROC_BREAK;
+                }        
+            }            
 
-			if(IsMouseCaps(pt))
-			{
-				m_ptCommOpMouse.x = pt.x - m_ptCommOpBk.x;
-				m_ptCommOpMouse.y = pt.y - m_ptCommOpBk.y;
-				m_bMove = TRUE;
-				return INF_MSGPROC_BREAK;
-			}						
-			{
-				if(TRUE == m_pRqBtn->OnLButtonDown(pt))
-				{					
-					return  INF_MSGPROC_BREAK;
-				}		
-			}
-			{
-				if(TRUE == m_pRqCancelBtn->OnLButtonDown(pt))
-				{					
-					return  INF_MSGPROC_BREAK;
-				}		
-			}			
-						
-			
-			{
-				BOOL bClick = m_pScrollGuildIntro->IsMouseBallPos(pt);
-				if(bClick)
-				{
-					m_pScrollGuildIntro->SetMouseMoveMode(TRUE);
-					return INF_MSGPROC_BREAK;
-				}
-			}
-			
-			{
-				BOOL bClick = m_pScrollGuildList->IsMouseBallPos(pt);
-				if(bClick)
-				{
-					m_pScrollGuildList->SetMouseMoveMode(TRUE);
-					return INF_MSGPROC_BREAK;
-				}
-			}
+            if (IsMouseCaps(pt))
+            {
+                m_ptCommOpMouse.x = pt.x - m_ptCommOpBk.x;
+                m_ptCommOpMouse.y = pt.y - m_ptCommOpBk.y;
+                m_bMove = TRUE;
+                return INF_MSGPROC_BREAK;
+            }                        
+            {
+                if (TRUE == m_pRqBtn->OnLButtonDown(pt))
+                {                    
+                    return  INF_MSGPROC_BREAK;
+                }        
+            }
+            {
+                if (TRUE == m_pRqCancelBtn->OnLButtonDown(pt))
+                {                    
+                    return  INF_MSGPROC_BREAK;
+                }        
+            }            
+                        
+            
+            {
+                BOOL bClick = m_pScrollGuildIntro->IsMouseBallPos(pt);
+                if (bClick)
+                {
+                    m_pScrollGuildIntro->SetMouseMoveMode(TRUE);
+                    return INF_MSGPROC_BREAK;
+                }
+            }
+            
+            {
+                BOOL bClick = m_pScrollGuildList->IsMouseBallPos(pt);
+                if (bClick)
+                {
+                    m_pScrollGuildList->SetMouseMoveMode(TRUE);
+                    return INF_MSGPROC_BREAK;
+                }
+            }
 
-			if(OnClickMemberList(pt))
-			{
-				return INF_MSGPROC_BREAK;
-			}
+            if (OnClickMemberList(pt))
+            {
+                return INF_MSGPROC_BREAK;
+            }
 
-			if((pt.x >= m_ptCommOpBk.x && (pt.x <= m_ptCommOpBk.x+COMMUNITY_SEARCHRBK_WIDTH))
-				&& (pt.y >= m_ptCommOpBk.y && (pt.y <= m_ptCommOpBk.y+COMMUNITY_SEARCHRBK_HEIGHT)))
-			{
-				// ¿©µµøÏ øµø™¿ßø° ¿÷¥Ÿ.
-				return  INF_MSGPROC_BREAK;
-			}
-			
-		}
-		break;
-	case WM_MOUSEMOVE:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+            if ((pt.x >= m_ptCommOpBk.x && (pt.x <= m_ptCommOpBk.x+COMMUNITY_SEARCHRBK_WIDTH))
+                && (pt.y >= m_ptCommOpBk.y && (pt.y <= m_ptCommOpBk.y+COMMUNITY_SEARCHRBK_HEIGHT)))
+            {
+                // ÏúàÎèÑÏö∞ ÏòÅÏó≠ÏúÑÏóê ÏûàÎã§.
+                return  INF_MSGPROC_BREAK;
+            }
+            
+        }
+        break;
+    case WM_MOUSEMOVE:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			if(m_bMove)
-			{
-				m_ptCommOpBk.x = pt.x - m_ptCommOpMouse.x;
-				m_ptCommOpBk.y = pt.y - m_ptCommOpMouse.y;				
-				// UI¿Ø¿˙ ¡ˆ¡§ 
-				UpdateUIPos();
-				return INF_MSGPROC_BREAK;
-			}			
-			
-			m_pRqBtn->OnMouseMove(pt);				// ºˆ∂Ù
-			m_pRqCancelBtn->OnMouseMove(pt);				// ∞≈¿˝				
-			m_pCloseBtn->OnMouseMove(pt);		
-			
-			{
-				if(m_pScrollGuildIntro->GetMouseMoveMode())
-				{
-					if(FALSE == m_pScrollGuildIntro->IsMouseScrollPos(pt))
-					{
-						m_pScrollGuildIntro->SetMouseMoveMode(FALSE);
-					}
-					else
-					{
-						m_pScrollGuildIntro->SetScrollPos(pt);
-						
-						return INF_MSGPROC_BREAK;
-					}
-				}
-			}
-			
-			{
-				if(m_pScrollGuildList->GetMouseMoveMode())
-				{
-					if(FALSE == m_pScrollGuildList->IsMouseScrollPos(pt))
-					{
-						m_pScrollGuildList->SetMouseMoveMode(FALSE);
-					}
-					else
-					{
-						m_pScrollGuildList->SetScrollPos(pt);
-						
-						return INF_MSGPROC_BREAK;
-					}
-				}
-			}
+            if (m_bMove)
+            {
+                m_ptCommOpBk.x = pt.x - m_ptCommOpMouse.x;
+                m_ptCommOpBk.y = pt.y - m_ptCommOpMouse.y;                
+                // UIÏú†Ï†Ä ÏßÄÏ†ï 
+                UpdateUIPos();
+                return INF_MSGPROC_BREAK;
+            }            
+            
+            m_pRqBtn->OnMouseMove(pt);                // ÏàòÎùΩ
+            m_pRqCancelBtn->OnMouseMove(pt);                // Í±∞Ï†à                
+            m_pCloseBtn->OnMouseMove(pt);        
+            
+            {
+                if (m_pScrollGuildIntro->GetMouseMoveMode())
+                {
+                    if (FALSE == m_pScrollGuildIntro->IsMouseScrollPos(pt))
+                    {
+                        m_pScrollGuildIntro->SetMouseMoveMode(FALSE);
+                    }
+                    else
+                    {
+                        m_pScrollGuildIntro->SetScrollPos(pt);
+                        
+                        return INF_MSGPROC_BREAK;
+                    }
+                }
+            }
+            
+            {
+                if (m_pScrollGuildList->GetMouseMoveMode())
+                {
+                    if (FALSE == m_pScrollGuildList->IsMouseScrollPos(pt))
+                    {
+                        m_pScrollGuildList->SetMouseMoveMode(FALSE);
+                    }
+                    else
+                    {
+                        m_pScrollGuildList->SetScrollPos(pt);
+                        
+                        return INF_MSGPROC_BREAK;
+                    }
+                }
+            }
 
-		}
-		break;
-	case WM_LBUTTONUP:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
-			if(m_bMove)
-			{
-				m_bMove = FALSE;
-				return INF_MSGPROC_BREAK;
-			}									
-						
-			{
-				if(TRUE == m_pRqBtn->OnLButtonUp(pt))
-				{			
-					OnClickGuildRq();
+        }
+        break;
+    case WM_LBUTTONUP:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
+            if (m_bMove)
+            {
+                m_bMove = FALSE;
+                return INF_MSGPROC_BREAK;
+            }                                    
+                        
+            {
+                if (TRUE == m_pRqBtn->OnLButtonUp(pt))
+                {            
+                    OnClickGuildRq();
 
-					// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.					
-					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);											
-					return  INF_MSGPROC_BREAK;				
-				}
-			}
-			{
-				if(TRUE == m_pRqCancelBtn->OnLButtonUp(pt))
-				{			
-					OnClickGuildRqCancel();
-					// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.					
-					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);											
-					return  INF_MSGPROC_BREAK;				
-				}
-			}
-// 2012-12-10 by jhjang ±ÊµÂ ∞Àªˆ √¢ ¥›±‚ πˆ∆∞ ¥ŸΩ√ ∂ÁøÚ.
-//#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-//#else	// 2012-12-10 by jhjang ±ÊµÂ ∞Àªˆ √¢ ¥›±‚ πˆ∆∞ ¥ŸΩ√ ∂ÁøÚ.
-			{
-				if(TRUE == m_pCloseBtn->OnLButtonUp(pt))
-				{					
-					// πˆ∆∞ ≈¨∏Ø 	
-					ShowWindow(FALSE); // º˚±‚±‚
-					return  INF_MSGPROC_BREAK;
-				}
-			}
+                    // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.                    
+                    g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);                                            
+                    return  INF_MSGPROC_BREAK;                
+                }
+            }
+            {
+                if (TRUE == m_pRqCancelBtn->OnLButtonUp(pt))
+                {            
+                    OnClickGuildRqCancel();
+                    // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.                    
+                    g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);                                            
+                    return  INF_MSGPROC_BREAK;                
+                }
+            }
+// 2012-12-10 by jhjang Í∏∏Îìú Í≤ÄÏÉâ Ï∞Ω Îã´Í∏∞ Î≤ÑÌäº Îã§Ïãú ÎùÑÏõÄ.
+//#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+//#else    // 2012-12-10 by jhjang Í∏∏Îìú Í≤ÄÏÉâ Ï∞Ω Îã´Í∏∞ Î≤ÑÌäº Îã§Ïãú ÎùÑÏõÄ.
+            {
+                if (TRUE == m_pCloseBtn->OnLButtonUp(pt))
+                {                    
+                    // Î≤ÑÌäº ÌÅ¥Î¶≠     
+                    ShowWindow(FALSE); // Ïà®Í∏∞Í∏∞
+                    return  INF_MSGPROC_BREAK;
+                }
+            }
 //#endif
-// end 2012-12-10 by jhjang ±ÊµÂ ∞Àªˆ √¢ ¥›±‚ πˆ∆∞ ¥ŸΩ√ ∂ÁøÚ.
+// end 2012-12-10 by jhjang Í∏∏Îìú Í≤ÄÏÉâ Ï∞Ω Îã´Í∏∞ Î≤ÑÌäº Îã§Ïãú ÎùÑÏõÄ.
 
-			
-			
-			{
-				BOOL bClick = m_pScrollGuildIntro->GetMouseMoveMode();
-				if(bClick)
-				{
-					m_pScrollGuildIntro->SetMouseMoveMode(FALSE);
-					return INF_MSGPROC_BREAK;
-				}				
-			}
-			
-			{
-				BOOL bClick = m_pScrollGuildList->GetMouseMoveMode();
-				if(bClick)
-				{
-					m_pScrollGuildList->SetMouseMoveMode(FALSE);
-					return INF_MSGPROC_BREAK;
-				}				
-			}
-		}
-		break;
-	case WM_MOUSEWHEEL:
-		{
-			POINT pt;
-			GetCursorPos(&pt);
-			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
-			CheckMouseReverse(&pt);			
-			BOOL bClick = FALSE;
-						
-			
-			bClick = m_pScrollGuildIntro->IsMouseWhellPos(pt);
-			if(bClick)		
-			{			
-				m_pScrollGuildIntro->OnMouseWheel(wParam, lParam);
+            
+            
+            {
+                BOOL bClick = m_pScrollGuildIntro->GetMouseMoveMode();
+                if (bClick)
+                {
+                    m_pScrollGuildIntro->SetMouseMoveMode(FALSE);
+                    return INF_MSGPROC_BREAK;
+                }                
+            }
+            
+            {
+                BOOL bClick = m_pScrollGuildList->GetMouseMoveMode();
+                if (bClick)
+                {
+                    m_pScrollGuildList->SetMouseMoveMode(FALSE);
+                    return INF_MSGPROC_BREAK;
+                }                
+            }
+        }
+        break;
+    case WM_MOUSEWHEEL:
+        {
+            POINT pt;
+            GetCursorPos(&pt);
+            ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+            CheckMouseReverse(&pt);            
+            BOOL bClick = FALSE;
+                        
+            
+            bClick = m_pScrollGuildIntro->IsMouseWhellPos(pt);
+            if (bClick)        
+            {            
+                m_pScrollGuildIntro->OnMouseWheel(wParam, lParam);
 
-				return INF_MSGPROC_BREAK;
-			}
-			
-			{
-				bClick = m_pScrollGuildList->IsMouseWhellPos(pt);
-				if(bClick)		
-				{			
-					m_pScrollGuildList->OnMouseWheel(wParam, lParam);
-					
-					return INF_MSGPROC_BREAK;
-				}
-				
-			}
-		}
-		break;		
-		// end 2008-04-04 by bhsohn Ep3 ƒøπ¬¥œ∆º √¢
-	}
+                return INF_MSGPROC_BREAK;
+            }
+            
+            {
+                bClick = m_pScrollGuildList->IsMouseWhellPos(pt);
+                if (bClick)        
+                {            
+                    m_pScrollGuildList->OnMouseWheel(wParam, lParam);
+                    
+                    return INF_MSGPROC_BREAK;
+                }
+                
+            }
+        }
+        break;        
+        // end 2008-04-04 by bhsohn Ep3 Ïª§ÎÆ§ÎãàÌã∞ Ï∞Ω
+    }
 
-	return INF_MSGPROC_NORMAL;		
+    return INF_MSGPROC_NORMAL;        
 }
 
 void CINFCommunityGuildSearch::ShowWindow(BOOL bShow)
 {
-	m_bShow = bShow;
+    m_bShow = bShow;
 
-	m_bMove = FALSE;		// ƒ¡∆Æ∑—¿Ã øÚ¡˜¿Œ¥Ÿ.
-	if(bShow)
-	{
-		POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    m_bMove = FALSE;        // Ïª®Ìä∏Î°§Ïù¥ ÏõÄÏßÅÏù∏Îã§.
+    if (bShow)
+    {
+        POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
 
-		// ƒøπ¬¥œ∆º ø…º«πË	
-		m_ptCommOpBk.x = ptBkPos.x + COMMUNITY_SEARCHRBK_X;
-		m_ptCommOpBk.y = (g_pD3dApp->GetBackBufferDesc().Height/2) - COMMUNITY_SEARCHRBK_HEIGHT/2;
-		// UI¿Ø¿˙ ¡ˆ¡§ 
-		UpdateUIPos();		
-		RqGuildSearchIntro();	// ø©¥‹ ∞Àªˆ ø‰√ª
-	}
-	// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-	else
-	{
-		g_pInterface->m_pToolTip->m_bToolTipState = FALSE;
-	}	
-	// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
+        // Ïª§ÎÆ§ÎãàÌã∞ ÏòµÏÖòÎ∞∞    
+        m_ptCommOpBk.x = ptBkPos.x + COMMUNITY_SEARCHRBK_X;
+        m_ptCommOpBk.y = (g_pD3dApp->GetBackBufferDesc().Height/2) - COMMUNITY_SEARCHRBK_HEIGHT/2;
+        // UIÏú†Ï†Ä ÏßÄÏ†ï 
+        UpdateUIPos();        
+        RqGuildSearchIntro();    // Ïó¨Îã® Í≤ÄÏÉâ ÏöîÏ≤≠
+    }
+    // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+    else
+    {
+        g_pInterface->m_pToolTip->m_bToolTipState = FALSE;
+    }    
+    // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
 }
 
 BOOL CINFCommunityGuildSearch::IsShowWindow()
 {
-	return m_bShow;
+    return m_bShow;
 }
 
 BOOL CINFCommunityGuildSearch::IsMouseCaps(POINT ptPos)
 {
-	if((ptPos.x >= m_ptCommOpBk.x && (ptPos.x <= m_ptCommOpBk.x+COMMUNITY_SEARCHRBK_WIDTH))
-		&& (ptPos.y >= m_ptCommOpBk.y && (ptPos.y <= m_ptCommOpBk.y+COMMUNITY_SEARCHRBK_CAPS_HEIGHT)))
-	{
-		return TRUE;
-	}
-	return FALSE;
+    if ((ptPos.x >= m_ptCommOpBk.x && (ptPos.x <= m_ptCommOpBk.x+COMMUNITY_SEARCHRBK_WIDTH))
+        && (ptPos.y >= m_ptCommOpBk.y && (ptPos.y <= m_ptCommOpBk.y+COMMUNITY_SEARCHRBK_CAPS_HEIGHT)))
+    {
+        return TRUE;
+    }
+    return FALSE;
 
 }
 
 void CINFCommunityGuildSearch::UpdateUIPos()
 {
-	POINT ptBkPos = m_ptCommOpBk;
+    POINT ptBkPos = m_ptCommOpBk;
 
-	int nPosX, nPosY;
-	nPosX = nPosY = 0;
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê			
-	{
-		nPosX = ptBkPos.x + 250;
-		nPosY = ptBkPos.y + 365;		
-		m_pRqBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	{
-		nPosX = ptBkPos.x + 295;
-		nPosY = ptBkPos.y + 365;
-		m_pRqCancelBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-		
-	{
-		nPosX = ptBkPos.x + MEMBER_INTRO_EDIT_X;
-		nPosY = ptBkPos.y + MEMBER_INTRO_EDIT_Y;
-		m_pEditGuildIntro->SetPos(nPosX, nPosY);
-	}
+    int nPosX, nPosY;
+    nPosX = nPosY = 0;
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω            
+    {
+        nPosX = ptBkPos.x + 250;
+        nPosY = ptBkPos.y + 365;        
+        m_pRqBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    {
+        nPosX = ptBkPos.x + 295;
+        nPosY = ptBkPos.y + 365;
+        m_pRqCancelBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+        
+    {
+        nPosX = ptBkPos.x + MEMBER_INTRO_EDIT_X;
+        nPosY = ptBkPos.y + MEMBER_INTRO_EDIT_Y;
+        m_pEditGuildIntro->SetPos(nPosX, nPosY);
+    }
 
-	{
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    {
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 330;
-		ptScrollPos.y += 245;
+        ptScrollPos.x += 330;
+        ptScrollPos.y += 245;
 
-		// Ω∫≈©∑— x = ¿ßƒ°¿« -5
-		// Ω∫≈©∑— height = ¿ÃπÃ¡ˆ ±Ê¿Ã¿« - 34
-		m_pScrollGuildIntro->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,85);
-		rcMouseWhell.left		= ptScrollPos.x - 300;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 78;
-		m_pScrollGuildIntro->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 88;
-		m_pScrollGuildIntro->SetMouseBallRect(rcMousePos);
-	}
-	
-	{
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
-		
-		ptScrollPos.x += 330;
-		ptScrollPos.y += 51;
-		
-		// Ω∫≈©∑— x = ¿ßƒ°¿« -5
-		// Ω∫≈©∑— height = ¿ÃπÃ¡ˆ ±Ê¿Ã¿« - 34
-		m_pScrollGuildList->SetPosition(ptScrollPos.x ,ptScrollPos.y,11, 146);
-		rcMouseWhell.left		= ptScrollPos.x - 300;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 137;
-		m_pScrollGuildList->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 147;
-		m_pScrollGuildList->SetMouseBallRect(rcMousePos);
-	}
+        // Ïä§ÌÅ¨Î°§ x = ÏúÑÏπòÏùò -5
+        // Ïä§ÌÅ¨Î°§ height = Ïù¥ÎØ∏ÏßÄ Í∏∏Ïù¥Ïùò - 34
+        m_pScrollGuildIntro->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,85);
+        rcMouseWhell.left        = ptScrollPos.x - 300;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 78;
+        m_pScrollGuildIntro->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 88;
+        m_pScrollGuildIntro->SetMouseBallRect(rcMousePos);
+    }
+    
+    {
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
+        
+        ptScrollPos.x += 330;
+        ptScrollPos.y += 51;
+        
+        // Ïä§ÌÅ¨Î°§ x = ÏúÑÏπòÏùò -5
+        // Ïä§ÌÅ¨Î°§ height = Ïù¥ÎØ∏ÏßÄ Í∏∏Ïù¥Ïùò - 34
+        m_pScrollGuildList->SetPosition(ptScrollPos.x ,ptScrollPos.y,11, 146);
+        rcMouseWhell.left        = ptScrollPos.x - 300;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 137;
+        m_pScrollGuildList->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 147;
+        m_pScrollGuildList->SetMouseBallRect(rcMousePos);
+    }
 
-	{
-		nPosX = ptBkPos.x + 331;
-		nPosY = ptBkPos.y + 3;		
-		m_pCloseBtn->SetBtnPosition(nPosX, nPosY);
-	}	 
-#else	
-	{
-		nPosX = ptBkPos.x + 159;
-		nPosY = ptBkPos.y + 359;		
-		m_pRqBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	{
-		nPosX = ptBkPos.x + 244;
-		nPosY = ptBkPos.y + 359;		
-		m_pRqCancelBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-		
-	{
-		nPosX = ptBkPos.x + MEMBER_INTRO_EDIT_X;
-		nPosY = ptBkPos.y + MEMBER_INTRO_EDIT_Y;		
-		m_pEditGuildIntro->SetPos(nPosX, nPosY);	
-	}
+    {
+        nPosX = ptBkPos.x + 331;
+        nPosY = ptBkPos.y + 3;        
+        m_pCloseBtn->SetBtnPosition(nPosX, nPosY);
+    }     
+#else    
+    {
+        nPosX = ptBkPos.x + 159;
+        nPosY = ptBkPos.y + 359;        
+        m_pRqBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    {
+        nPosX = ptBkPos.x + 244;
+        nPosY = ptBkPos.y + 359;        
+        m_pRqCancelBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+        
+    {
+        nPosX = ptBkPos.x + MEMBER_INTRO_EDIT_X;
+        nPosY = ptBkPos.y + MEMBER_INTRO_EDIT_Y;        
+        m_pEditGuildIntro->SetPos(nPosX, nPosY);    
+    }
 
-	{
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    {
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 328;
-		ptScrollPos.y += 247;
+        ptScrollPos.x += 328;
+        ptScrollPos.y += 247;
 
-		// Ω∫≈©∑— x = ¿ßƒ°¿« -5
-		// Ω∫≈©∑— height = ¿ÃπÃ¡ˆ ±Ê¿Ã¿« - 34
-		m_pScrollGuildIntro->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,68);
-		rcMouseWhell.left		= ptScrollPos.x - 300;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 78;
-		m_pScrollGuildIntro->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 88;
-		m_pScrollGuildIntro->SetMouseBallRect(rcMousePos);
-	}
-	
-	{
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
-		
-		ptScrollPos.x += 328;
-		ptScrollPos.y += 55;
-		
-		// Ω∫≈©∑— x = ¿ßƒ°¿« -5
-		// Ω∫≈©∑— height = ¿ÃπÃ¡ˆ ±Ê¿Ã¿« - 34
-		m_pScrollGuildList->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,127);
-		rcMouseWhell.left		= ptScrollPos.x - 300;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 137;
-		m_pScrollGuildList->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 147;
-		m_pScrollGuildList->SetMouseBallRect(rcMousePos);
-	}
+        // Ïä§ÌÅ¨Î°§ x = ÏúÑÏπòÏùò -5
+        // Ïä§ÌÅ¨Î°§ height = Ïù¥ÎØ∏ÏßÄ Í∏∏Ïù¥Ïùò - 34
+        m_pScrollGuildIntro->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,68);
+        rcMouseWhell.left        = ptScrollPos.x - 300;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 78;
+        m_pScrollGuildIntro->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 88;
+        m_pScrollGuildIntro->SetMouseBallRect(rcMousePos);
+    }
+    
+    {
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
+        
+        ptScrollPos.x += 328;
+        ptScrollPos.y += 55;
+        
+        // Ïä§ÌÅ¨Î°§ x = ÏúÑÏπòÏùò -5
+        // Ïä§ÌÅ¨Î°§ height = Ïù¥ÎØ∏ÏßÄ Í∏∏Ïù¥Ïùò - 34
+        m_pScrollGuildList->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,127);
+        rcMouseWhell.left        = ptScrollPos.x - 300;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 137;
+        m_pScrollGuildList->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 147;
+        m_pScrollGuildList->SetMouseBallRect(rcMousePos);
+    }
 
-	{
-		nPosX = ptBkPos.x + 333;
-		nPosY = ptBkPos.y + 5;		
-		m_pCloseBtn->SetBtnPosition(nPosX, nPosY);
-	}
+    {
+        nPosX = ptBkPos.x + 333;
+        nPosY = ptBkPos.y + 5;        
+        m_pCloseBtn->SetBtnPosition(nPosX, nPosY);
+    }
 #endif
 }
-BOOL CINFCommunityGuildSearch::OnIMEEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, int nMaxLine, CINFEditBox* pEdit, CINFArenaScrollBar*	 pScroll)
+BOOL CINFCommunityGuildSearch::OnIMEEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, int nMaxLine, CINFEditBox* pEdit, CINFArenaScrollBar*     pScroll)
 {
-	int nLienCnt = -1;
-	BOOL bRtn = FALSE;
-	bRtn = pEdit->WndProc(uMsg, wParam, lParam, &nLienCnt, TRUE);
-	if(nLienCnt < 0)
-	{
-		// æ∆π´ √≥∏Æµµ æ»«ﬂ¥Ÿ.
-		return FALSE;
-	}				
-	
-	int nMaxStep = max(nLienCnt, nMaxLine);			
-	
-	// √÷¥Î æ∆¿Ã≈€¿ª ¡§«ÿ¡÷∞Ì
-	pScroll->SetMaxItem(nMaxStep);
-	
-	int nScrollStep = nMaxStep - nMaxLine;
-	if(nScrollStep < 0)
-	{
-		nScrollStep = 0;
-	}
-	
-	// Ω∫≈©∑— ¿ßƒ°¥¬ ∞°¿Â æ∆∑°
-	pScroll->SetScrollStep(nScrollStep);		
-	return bRtn;	
+    int nLienCnt = -1;
+    BOOL bRtn = FALSE;
+    bRtn = pEdit->WndProc(uMsg, wParam, lParam, &nLienCnt, TRUE);
+    if (nLienCnt < 0)
+    {
+        // ÏïÑÎ¨¥ Ï≤òÎ¶¨ÎèÑ ÏïàÌñàÎã§.
+        return FALSE;
+    }                
+    
+    int nMaxStep = max(nLienCnt, nMaxLine);            
+    
+    // ÏµúÎåÄ ÏïÑÏù¥ÌÖúÏùÑ Ï†ïÌï¥Ï£ºÍ≥†
+    pScroll->SetMaxItem(nMaxStep);
+    
+    int nScrollStep = nMaxStep - nMaxLine;
+    if (nScrollStep < 0)
+    {
+        nScrollStep = 0;
+    }
+    
+    // Ïä§ÌÅ¨Î°§ ÏúÑÏπòÎäî Í∞ÄÏû• ÏïÑÎûò
+    pScroll->SetScrollStep(nScrollStep);        
+    return bRtn;    
 }
 
 BOOL CINFCommunityGuildSearch::OnClickMemberList(POINT pt)
 {
-	POINT ptBkPos = m_ptCommOpBk;
-	int nStartX,nStartY;
-	nStartX = ptBkPos.x + GUILD_LIST_EDIT_X;
-	nStartY = 0;
-	if(!((nStartX <= pt.x)
-		&&(pt.x <= nStartX + GUILD_LIST_EDIT_W)))
-	{		
-		return FALSE; 
-	}
-	int nItemCnt = 0;
-	int nSelMemberList = -1;
-	for(nItemCnt = 0;nItemCnt < MAX_GUILD_LIST_LINE; nItemCnt++)
-	{
-		nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nItemCnt*GUILD_LIST_FONT_LINE_HEIGHT);
-		if((nStartY <= pt.y)&&(pt.y <= nStartY + GUILD_LIST_FONT_LINE_HEIGHT))
-		{
-			nSelMemberList= nItemCnt;
-			break;			
-		}
-	}	
-	
-	if(nSelMemberList >= 0)
-	{
-		int nItenLen = (int)m_vecGuildSearchInfo.size();
-		int nSelItem = nSelMemberList+m_pScrollGuildList->GetScrollStep();
-		if(nSelItem < nItenLen)
-		{
-			m_nSelMemberList = nSelItem;
-			// ø°µ∆Æ π⁄Ω∫ ¡ˆ¡§
-			structGuildSearchInfo* pTmp = m_vecGuildSearchInfo[nSelItem];
-			// 2008-10-29 by bhsohn ø°µ∆Æ π⁄Ω∫ «¸≈¬ ∫Ø∞Ê
-			//int nCullLine = m_pEditGuildIntro->SetString(pTmp->chNotice, SIZE_MAX_NOTICE);
-			int nCullLine = m_pEditGuildIntro->SetString(pTmp->chNotice, SIZE_MAX_NOTICE, TRUE);
+    POINT ptBkPos = m_ptCommOpBk;
+    int nStartX,nStartY;
+    nStartX = ptBkPos.x + GUILD_LIST_EDIT_X;
+    nStartY = 0;
+    if (!((nStartX <= pt.x)
+        &&(pt.x <= nStartX + GUILD_LIST_EDIT_W)))
+    {        
+        return FALSE; 
+    }
+    int nItemCnt = 0;
+    int nSelMemberList = -1;
+    for (nItemCnt = 0;nItemCnt < MAX_GUILD_LIST_LINE; nItemCnt++)
+    {
+        nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nItemCnt*GUILD_LIST_FONT_LINE_HEIGHT);
+        if ((nStartY <= pt.y)&&(pt.y <= nStartY + GUILD_LIST_FONT_LINE_HEIGHT))
+        {
+            nSelMemberList= nItemCnt;
+            break;            
+        }
+    }    
+    
+    if (nSelMemberList >= 0)
+    {
+        int nItenLen = (int)m_vecGuildSearchInfo.size();
+        int nSelItem = nSelMemberList+m_pScrollGuildList->GetScrollStep();
+        if (nSelItem < nItenLen)
+        {
+            m_nSelMemberList = nSelItem;
+            // ÏóêÎîîÌä∏ Î∞ïÏä§ ÏßÄÏ†ï
+            structGuildSearchInfo* pTmp = m_vecGuildSearchInfo[nSelItem];
+            // 2008-10-29 by bhsohn ÏóêÎîîÌä∏ Î∞ïÏä§ ÌòïÌÉú Î≥ÄÍ≤Ω
+            //int nCullLine = m_pEditGuildIntro->SetString(pTmp->chNotice, SIZE_MAX_NOTICE);
+            int nCullLine = m_pEditGuildIntro->SetString(pTmp->chNotice, SIZE_MAX_NOTICE, TRUE);
 
-			m_pScrollGuildIntro->SetMaxItem(nCullLine);	// Ω∫≈©∑— ∂Û¿Œºˆ
-			return TRUE; 
-		}
-	}	
-	m_nSelMemberList = -1;
-	return FALSE;
+            m_pScrollGuildIntro->SetMaxItem(nCullLine);    // Ïä§ÌÅ¨Î°§ ÎùºÏù∏Ïàò
+            return TRUE; 
+        }
+    }    
+    m_nSelMemberList = -1;
+    return FALSE;
 }
 
 void CINFCommunityGuildSearch::AddGuildList(UID32_t nGuildUniqueNumber, char *pGuildName, 
-												char *pGuildCommanderCharacterName, ATUM_DATE_TIME	RegsterDateTime,
-												char* pNotice)
+                                                char *pGuildCommanderCharacterName, ATUM_DATE_TIME    RegsterDateTime,
+                                                char* pNotice)
 {
-	structGuildSearchInfo* struInfo = new structGuildSearchInfo;
-	memset(struInfo, 0x00 ,sizeof(structGuildSearchInfo));
-	
-	struInfo->nGuildUniqueNumber = nGuildUniqueNumber;		// ±ÊµÂ æ∆µ⁄
-	strncpy(struInfo->GuildName, pGuildName, SIZE_MAX_GUILD_NAME);	// ±ÊµÂ ¿Ã∏ß
-	strncpy(struInfo->GuildCommanderCharacterName, pGuildCommanderCharacterName, SIZE_MAX_ARENA_FULL_NAME);	// ±ÊµÂ¿Â ¿Ã∏ß
-	struInfo->RegsterDateTime = RegsterDateTime;		// µÓ∑œ ¿œ¡§
-	strncpy(struInfo->chNotice, pNotice, SIZE_MAX_NOTICE);
+    structGuildSearchInfo* struInfo = new structGuildSearchInfo;
+    memset(struInfo, 0x00 ,sizeof(structGuildSearchInfo));
+    
+    struInfo->nGuildUniqueNumber = nGuildUniqueNumber;        // Í∏∏Îìú ÏïÑÎí§
+    strncpy(struInfo->GuildName, pGuildName, SIZE_MAX_GUILD_NAME);    // Í∏∏Îìú Ïù¥Î¶Ñ
+    strncpy(struInfo->GuildCommanderCharacterName, pGuildCommanderCharacterName, SIZE_MAX_ARENA_FULL_NAME);    // Í∏∏ÎìúÏû• Ïù¥Î¶Ñ
+    struInfo->RegsterDateTime = RegsterDateTime;        // Îì±Î°ù ÏùºÏ†ï
+    strncpy(struInfo->chNotice, pNotice, SIZE_MAX_NOTICE);
 
-	m_vecGuildSearchInfo.push_back(struInfo);
+    m_vecGuildSearchInfo.push_back(struInfo);
 
-	if(m_pScrollGuildList)
-	{
-		m_pScrollGuildList->SetMaxItem((int)m_vecGuildSearchInfo.size());
-	}
+    if (m_pScrollGuildList)
+    {
+        m_pScrollGuildList->SetMaxItem((int)m_vecGuildSearchInfo.size());
+    }
 }
 
 
 void CINFCommunityGuildSearch::RenderMemberList()
 {
-	POINT ptBkPos = m_ptCommOpBk;
-	int nStartX,nStartY;
-	int nSelRenderItem = m_nSelMemberList- m_pScrollGuildList->GetScrollStep();
-	nStartX = nStartY = 0;
+    POINT ptBkPos = m_ptCommOpBk;
+    int nStartX,nStartY;
+    int nSelRenderItem = m_nSelMemberList- m_pScrollGuildList->GetScrollStep();
+    nStartX = nStartY = 0;
 
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	// º±≈√«— æ∆¿Ã≈€
-	{
- 		if(nSelRenderItem >= 0 && nSelRenderItem < MAX_GUILD_LIST_LINE )
- 		{
-			nStartX = ptBkPos.x + GUILD_LIST_EDIT_X - 3;
-			nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +( nSelRenderItem * GUILD_LIST_FONT_LINE_HEIGHT ) -1;
-			m_pImgSelect->Move(nStartX, nStartY);
-			m_pImgSelect->Render();
- 		}
- 	}																							  
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    // ÏÑ†ÌÉùÌïú ÏïÑÏù¥ÌÖú
+    {
+         if (nSelRenderItem >= 0 && nSelRenderItem < MAX_GUILD_LIST_LINE )
+         {
+            nStartX = ptBkPos.x + GUILD_LIST_EDIT_X - 3;
+            nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +( nSelRenderItem * GUILD_LIST_FONT_LINE_HEIGHT ) -1;
+            m_pImgSelect->Move(nStartX, nStartY);
+            m_pImgSelect->Render();
+         }
+     }                                                                                              
 #else 
-	// º±≈√«— æ∆¿Ã≈€
-	{
-		if(nSelRenderItem >= 0 && nSelRenderItem < MAX_GUILD_LIST_LINE )
-		{
-			nStartX = ptBkPos.x + GUILD_LIST_EDIT_X - 5;
-			nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nSelRenderItem*GUILD_LIST_FONT_LINE_HEIGHT) -1;
-			m_pImgSelect->Move(nStartX, nStartY);
-			m_pImgSelect->Render();
-		}
-	}
+    // ÏÑ†ÌÉùÌïú ÏïÑÏù¥ÌÖú
+    {
+        if (nSelRenderItem >= 0 && nSelRenderItem < MAX_GUILD_LIST_LINE )
+        {
+            nStartX = ptBkPos.x + GUILD_LIST_EDIT_X - 5;
+            nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nSelRenderItem*GUILD_LIST_FONT_LINE_HEIGHT) -1;
+            m_pImgSelect->Move(nStartX, nStartY);
+            m_pImgSelect->Render();
+        }
+    }
 #endif
 
-	// Ω«¡˙¿˚¿Œ ¡§∫∏
-	
-	vector<structGuildSearchInfo*>::iterator it = m_vecGuildSearchInfo.begin();	// ¡ˆø¯¿⁄ ¡§∫∏
-	int nCnt = 0;
-	for(nCnt = 0;nCnt < m_pScrollGuildList->GetScrollStep();nCnt++)
-	{
-		if(it != m_vecGuildSearchInfo.end())
-		{
-			it++;
-		}
-	}
-	
-	char chBuff[128];
-	memset(chBuff, 0x00, 128);
-	
-	for(nCnt = 0; nCnt < MAX_GUILD_LIST_LINE;nCnt++)
-	{
-		if(it == m_vecGuildSearchInfo.end())
-		{
-			break;
-		}
-		structGuildSearchInfo* stTmp = (*it);
+    // Ïã§ÏßàÏ†ÅÏù∏ Ï†ïÎ≥¥
+    
+    vector<structGuildSearchInfo*>::iterator it = m_vecGuildSearchInfo.begin();    // ÏßÄÏõêÏûê Ï†ïÎ≥¥
+    int nCnt = 0;
+    for (nCnt = 0;nCnt < m_pScrollGuildList->GetScrollStep();nCnt++)
+    {
+        if (it != m_vecGuildSearchInfo.end())
+        {
+            it++;
+        }
+    }
+    
+    char chBuff[128];
+    memset(chBuff, 0x00, 128);
+    
+    for (nCnt = 0; nCnt < MAX_GUILD_LIST_LINE;nCnt++)
+    {
+        if (it == m_vecGuildSearchInfo.end())
+        {
+            break;
+        }
+        structGuildSearchInfo* stTmp = (*it);
 
-		nStartX = ptBkPos.x + GUILD_LIST_EDIT_X;
-		nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nCnt*GUILD_LIST_FONT_LINE_HEIGHT);
+        nStartX = ptBkPos.x + GUILD_LIST_EDIT_X;
+        nStartY = ptBkPos.y + GUILD_LIST_EDIT_Y +(nCnt*GUILD_LIST_FONT_LINE_HEIGHT);
 
-		// ±ÊµÂ∏∂≈©
-		nStartX += 4;
-		CINFImage* pMark = g_pDatabase->GetGuildMark(stTmp->nGuildUniqueNumber);
-		if(pMark)
-		{	
-			pMark->Move( nStartX, nStartY );
-			pMark->Render();
-		}
+        // Í∏∏ÎìúÎßàÌÅ¨
+        nStartX += 4;
+        CINFImage* pMark = g_pDatabase->GetGuildMark(stTmp->nGuildUniqueNumber);
+        if (pMark)
+        {    
+            pMark->Move( nStartX, nStartY );
+            pMark->Render();
+        }
 
 
-		// ±ÊµÂ∏Ì
-		nStartX += 32;
-		strncpy(chBuff, stTmp->GuildName, SIZE_MAX_GUILD_NAME);
-		g_pGameMain->TextReduce(m_pFontSel, 90, chBuff);
-		m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, chBuff);
+        // Í∏∏ÎìúÎ™Ö
+        nStartX += 32;
+        strncpy(chBuff, stTmp->GuildName, SIZE_MAX_GUILD_NAME);
+        g_pGameMain->TextReduce(m_pFontSel, 90, chBuff);
+        m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, chBuff);
 
-		// ±ÊµÂ¿Â
-		nStartX += 98;
-		strncpy(chBuff, stTmp->GuildCommanderCharacterName, SIZE_MAX_ARENA_FULL_NAME);
-		g_pGameMain->TextReduce(m_pFontSel, 80, chBuff);
-		m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, chBuff);
+        // Í∏∏ÎìúÏû•
+        nStartX += 98;
+        strncpy(chBuff, stTmp->GuildCommanderCharacterName, SIZE_MAX_ARENA_FULL_NAME);
+        g_pGameMain->TextReduce(m_pFontSel, 80, chBuff);
+        m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, chBuff);
 
-		// µÓ∑œ¿œ
-		nStartX += 88;
-		string szStrBuf;
-		stTmp->RegsterDateTime.GetLocalString_YYYYMMDD(stTmp->RegsterDateTime.Year, 
-														stTmp->RegsterDateTime.Month, 
-														stTmp->RegsterDateTime.Day, szStrBuf);	
+        // Îì±Î°ùÏùº
+        nStartX += 88;
+        string szStrBuf;
+        stTmp->RegsterDateTime.GetLocalString_YYYYMMDD(stTmp->RegsterDateTime.Year, 
+                                                        stTmp->RegsterDateTime.Month, 
+                                                        stTmp->RegsterDateTime.Day, szStrBuf);    
 
-		m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, (char*)szStrBuf.c_str());
+        m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, (char*)szStrBuf.c_str());
 
-		it++;
-	}
-	
-	
-	if(strlen(m_myShuttleIntroduceInfo.GuildName)>0)
-	{		
-		nStartX = ptBkPos.x + GUILD_NAME_X;
-		nStartY = ptBkPos.y + GUILD_NAME_Y ;
-		m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, m_myShuttleIntroduceInfo.GuildName);
-	}
+        it++;
+    }
+    
+    
+    if (strlen(m_myShuttleIntroduceInfo.GuildName)>0)
+    {        
+        nStartX = ptBkPos.x + GUILD_NAME_X;
+        nStartY = ptBkPos.y + GUILD_NAME_Y ;
+        m_pFontSel->DrawText(nStartX, nStartY, GUI_FONT_COLOR, m_myShuttleIntroduceInfo.GuildName);
+    }
 }
 
 void CINFCommunityGuildSearch::TestDB()
 {
-	int nCnt =0;
-	ATUM_DATE_TIME	RegsterDateTime;
-	char chUser[20];					// ∫∏≥Ω ¿Ø¿˙	
-	memset(chUser, 0x00, 20);	
+    int nCnt =0;
+    ATUM_DATE_TIME    RegsterDateTime;
+    char chUser[20];                    // Î≥¥ÎÇ∏ Ïú†Ï†Ä    
+    memset(chUser, 0x00, 20);    
 
-	RegsterDateTime.Year = 2008;
-	RegsterDateTime.Month = 6;
-	RegsterDateTime.Day = 6;
-	
-	for(nCnt =0;nCnt < 20;nCnt++)
-	{
-		wsprintf(chUser, "User%d", nCnt);
-		//AddGuildList(1, chUser,chUser, RegsterDateTime);
-	}
-	
+    RegsterDateTime.Year = 2008;
+    RegsterDateTime.Month = 6;
+    RegsterDateTime.Day = 6;
+    
+    for (nCnt =0;nCnt < 20;nCnt++)
+    {
+        wsprintf(chUser, "User%d", nCnt);
+        //AddGuildList(1, chUser,chUser, RegsterDateTime);
+    }
+    
 
 }
-//±ÊµÂ ø‰√ª
+//Í∏∏Îìú ÏöîÏ≤≠
 void CINFCommunityGuildSearch::OnClickGuildRq()
-{	
-	if(m_nSelMemberList == -1)
-	{
-		g_pD3dApp->m_pChat->CreateChatChild(STRMSG_C_080611_0202,COLOR_ERROR);//"\\yΩ≈√ª ø©¥‹¿ª º±≈√«œ¡ˆ æ æ“Ω¿¥œ¥Ÿ."
-		return;
-	}
-	else if(m_nSelMemberList >= m_vecGuildSearchInfo.size())
-	{
-		return;
-	}
-	
-	((CINFCommunity*)m_pParent)->OnPopupIntroMe(); // ∆Àæ˜
+{    
+    if (m_nSelMemberList == -1)
+    {
+        g_pD3dApp->m_pChat->CreateChatChild(STRMSG_C_080611_0202,COLOR_ERROR);//"\\yÏã†Ï≤≠ Ïó¨Îã®ÏùÑ ÏÑ†ÌÉùÌïòÏßÄ ÏïäÏïòÏäµÎãàÎã§."
+        return;
+    }
+    else if (m_nSelMemberList >= m_vecGuildSearchInfo.size())
+    {
+        return;
+    }
+    
+    ((CINFCommunity*)m_pParent)->OnPopupIntroMe(); // ÌåùÏóÖ
 }
 
 void CINFCommunityGuildSearch::RqGuildSearchIntro()
-{	
-	DelGuildSearchVector(); // ∫§≈Õ √ ±‚»≠
-	// Lock
-	{
-		vector<MessageType_t> vecUnLockMsg;
-		vecUnLockMsg.clear();
-		vecUnLockMsg.push_back(T_IC_GUILD_SEARCH_INTRODUCTION);		
-		vecUnLockMsg.push_back(T_IC_GUILD_SEARCH_INTRODUCTION_OK_DONE);		
-		// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-		g_pD3dApp->EnterMultiLock(FALSE, T_IC_GUILD_SEARCH_INTRODUCTION, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
-	}
-	// ø©¥‹ ∏ÆΩ∫∆Æ ¡§∫∏ ø‰√ª
-	g_pIMSocket->SendMsg(T_IC_GUILD_SEARCH_INTRODUCTION, NULL, NULL);
+{    
+    DelGuildSearchVector(); // Î≤°ÌÑ∞ Ï¥àÍ∏∞Ìôî
+    // Lock
+    {
+        vector<MessageType_t> vecUnLockMsg;
+        vecUnLockMsg.clear();
+        vecUnLockMsg.push_back(T_IC_GUILD_SEARCH_INTRODUCTION);        
+        vecUnLockMsg.push_back(T_IC_GUILD_SEARCH_INTRODUCTION_OK_DONE);        
+        // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+        g_pD3dApp->EnterMultiLock(FALSE, T_IC_GUILD_SEARCH_INTRODUCTION, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+    }
+    // Ïó¨Îã® Î¶¨Ïä§Ìä∏ Ï†ïÎ≥¥ ÏöîÏ≤≠
+    g_pIMSocket->SendMsg(T_IC_GUILD_SEARCH_INTRODUCTION, NULL, NULL);
 
 }
 
 void CINFCommunityGuildSearch::OnClickGuildRqCancel()
 {
-	((CINFCommunity*)m_pParent)->PopupRqCancelGuild();
+    ((CINFCommunity*)m_pParent)->PopupRqCancelGuild();
 }
 
 BOOL CINFCommunityGuildSearch::GetGuildSearchSelGuidUID(UID32_t *pUID)
 {
-	if(m_nSelMemberList == -1)
-	{
-		return FALSE;
-	}
-	else if(m_nSelMemberList >= (int)m_vecGuildSearchInfo.size())
-	{
-		return FALSE;
-	}
-	structGuildSearchInfo* pInfo = m_vecGuildSearchInfo[m_nSelMemberList];
-	(*pUID) = pInfo->nGuildUniqueNumber;
+    if (m_nSelMemberList == -1)
+    {
+        return FALSE;
+    }
+    else if (m_nSelMemberList >= (int)m_vecGuildSearchInfo.size())
+    {
+        return FALSE;
+    }
+    structGuildSearchInfo* pInfo = m_vecGuildSearchInfo[m_nSelMemberList];
+    (*pUID) = pInfo->nGuildUniqueNumber;
 
-	return TRUE;
+    return TRUE;
 
 }
 
 BOOL CINFCommunityGuildSearch::GetGuildSearchSelGuidName(char* pGuildName)
 {
-	if(m_nSelMemberList == -1)
-	{
-		return FALSE;
-	}
-	else if(m_nSelMemberList >= (int)m_vecGuildSearchInfo.size())
-	{
-		return FALSE;
-	}
-	structGuildSearchInfo* pInfo = m_vecGuildSearchInfo[m_nSelMemberList];
-	strncpy(pGuildName, pInfo->GuildName, SIZE_MAX_GUILD_NAME);
+    if (m_nSelMemberList == -1)
+    {
+        return FALSE;
+    }
+    else if (m_nSelMemberList >= (int)m_vecGuildSearchInfo.size())
+    {
+        return FALSE;
+    }
+    structGuildSearchInfo* pInfo = m_vecGuildSearchInfo[m_nSelMemberList];
+    strncpy(pGuildName, pInfo->GuildName, SIZE_MAX_GUILD_NAME);
 
-	return TRUE;
+    return TRUE;
 
 }
 
 void CINFCommunityGuildSearch::IMSocketGuildSearchIntroDone()
 {
-	// ±ÊµÂ ∞Àªˆ¿˙ø¿∏¶ ¥Ÿ πﬁ¿∏∏È ≥™¿« ¡§∫∏∏¶ ¥ŸΩ√ ø‰√ª«œ≥Æ.
-	const auto& myShuttle = g_pShuttleChild->GetMyShuttleInfo();
-	((CINFCommunity*)m_pParent)->RqMemberInfo(COMMUNITY_MEMINFO_SEARCH, myShuttle.CharacterUniqueNumber);
+    // Í∏∏Îìú Í≤ÄÏÉâÏ†ÄÏò§Î•º Îã§ Î∞õÏúºÎ©¥ ÎÇòÏùò Ï†ïÎ≥¥Î•º Îã§Ïãú ÏöîÏ≤≠ÌïòÎÇü.
+    const auto& myShuttle = g_pShuttleChild->GetMyShuttleInfo();
+    ((CINFCommunity*)m_pParent)->RqMemberInfo(COMMUNITY_MEMINFO_SEARCH, myShuttle.CharacterUniqueNumber);
 }
 
 void CINFCommunityGuildSearch::IMSocketGetSelfIntroductionOK(MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK* pMsg)
 {
-	memcpy(&m_myShuttleIntroduceInfo, pMsg, sizeof(MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK));
-	UpdateBtnState();
+    memcpy(&m_myShuttleIntroduceInfo, pMsg, sizeof(MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK));
+    UpdateBtnState();
 }
 MSG_IC_GUILD_GET_SELF_INTRODUCTION_OK* CINFCommunityGuildSearch::GetMySelfIntro()
 {
-	return &m_myShuttleIntroduceInfo;
+    return &m_myShuttleIntroduceInfo;
 }
 
 void CINFCommunityGuildSearch::UpdateBtnState()
 {
-	if(strlen(m_myShuttleIntroduceInfo.GuildName) > 0)
-	{
-		m_pRqBtn->EnableBtn(FALSE);
-		m_pRqCancelBtn->EnableBtn(TRUE);
-	}
-	else
-	{
-		m_pRqBtn->EnableBtn(TRUE);
-		m_pRqCancelBtn->EnableBtn(FALSE);
-	}
+    if (strlen(m_myShuttleIntroduceInfo.GuildName) > 0)
+    {
+        m_pRqBtn->EnableBtn(FALSE);
+        m_pRqCancelBtn->EnableBtn(TRUE);
+    }
+    else
+    {
+        m_pRqBtn->EnableBtn(TRUE);
+        m_pRqCancelBtn->EnableBtn(FALSE);
+    }
 
 }

@@ -1,3 +1,4 @@
+Ôªø//Copyright[2002] MasangSoft
 // INFCommunityLetter.cpp: implementation of the CINFCommunityLetter class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -24,1265 +25,1265 @@
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-//  ∆Ì¡ˆ ¿–±‚
-#define		LETTER_MODE_POS_X		32
-#define		LETTER_MODE_POS_Y		25
-#define		LETTER_MODE_WIDTH		118
-#define		LETTER_MODE_HEIGHT		25
-#define		MAX_LETTER_READ_NUMBER	7		// √÷¥Î 
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+//  Ìé∏ÏßÄ ÏùΩÍ∏∞
+#define        LETTER_MODE_POS_X        32
+#define        LETTER_MODE_POS_Y        25
+#define        LETTER_MODE_WIDTH        118
+#define        LETTER_MODE_HEIGHT        25
+#define        MAX_LETTER_READ_NUMBER    7        // ÏµúÎåÄ 
 
-#define		LETTER_READ_LIST_BK_X			22		// 
-#define		LETTER_READ_LIST_BK_Y			60		// 
+#define        LETTER_READ_LIST_BK_X            22        // 
+#define        LETTER_READ_LIST_BK_Y            60        // 
 
-#define		LETTER_READ_INFO_BK_X			22		// 
-#define		LETTER_READ_INFO_BK_Y			60		// 
+#define        LETTER_READ_INFO_BK_X            22        // 
+#define        LETTER_READ_INFO_BK_Y            60        // 
 
-#define		LETTER_READ_ITEM_X			53		// 
-#define		LETTER_READ_ITEM_Y			128		// 
-#define		LETTER_READ_ITEM_WIDTH		390		// 
-#define		LETTER_READ_ITEM_HEIGHT		28		// 
+#define        LETTER_READ_ITEM_X            53        // 
+#define        LETTER_READ_ITEM_Y            128        // 
+#define        LETTER_READ_ITEM_WIDTH        390        // 
+#define        LETTER_READ_ITEM_HEIGHT        28        // 
 
-///////////////////////// ∆Ì¡ˆ æ≤±‚ //////////////////////////
-// ∆Ì¡ˆ ø°µ∆Æ π⁄Ω∫
-#define		LETTER_WRITE_USER_EDIT		0
-#define		LETTER_WRITE_TITLE_EDIT		1
-#define		LETTER_WRITE_INFO_EDIT		2
+///////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞ //////////////////////////
+// Ìé∏ÏßÄ ÏóêÎîîÌä∏ Î∞ïÏä§
+#define        LETTER_WRITE_USER_EDIT        0
+#define        LETTER_WRITE_TITLE_EDIT        1
+#define        LETTER_WRITE_INFO_EDIT        2
 
-// ∆Ì¡ˆ∫∏≥ª¥¬ ¿Ø¿˙
-#define LETTER_SEND_USER_EDIT_X						180
-#define LETTER_SEND_USER_EDIT_Y						81
-#define LETTER_SEND_USER_EDIT_W						260
-#define LETTER_SEND_USER_FONT_LINE_HEIGHT			15
+// Ìé∏ÏßÄÎ≥¥ÎÇ¥Îäî Ïú†Ï†Ä
+#define LETTER_SEND_USER_EDIT_X                        180
+#define LETTER_SEND_USER_EDIT_Y                        81
+#define LETTER_SEND_USER_EDIT_W                        260
+#define LETTER_SEND_USER_FONT_LINE_HEIGHT            15
 
-// ∆Ì¡ˆæ≤±‚ ¿Ø¿˙
-#define LETTER_USER_EDIT_X						180
-#define LETTER_USER_EDIT_Y						101
-#define LETTER_USER_EDIT_W						260
-#define LETTER_USER_FONT_LINE_HEIGHT			15
+// Ìé∏ÏßÄÏì∞Í∏∞ Ïú†Ï†Ä
+#define LETTER_USER_EDIT_X                        180
+#define LETTER_USER_EDIT_Y                        101
+#define LETTER_USER_EDIT_W                        260
+#define LETTER_USER_FONT_LINE_HEIGHT            15
 
-// ¡¶∏Ò
-#define LETTER_TITLE_EDIT_X						180
-#define LETTER_TITLE_EDIT_Y						121
-#define LETTER_TITLE_EDIT_W						260
-#define LETTER_TITLE_FONT_LINE_HEIGHT			15
+// Ï†úÎ™©
+#define LETTER_TITLE_EDIT_X                        180
+#define LETTER_TITLE_EDIT_Y                        121
+#define LETTER_TITLE_EDIT_W                        260
+#define LETTER_TITLE_FONT_LINE_HEIGHT            15
 
-// ≥ªøÎ
-#define LETTER_INFO_MAX_SCROLL_LINE				11
-#define LETTER_INFO_EDIT_X						84
-#define LETTER_INFO_EDIT_Y						153
-#define LETTER_INFO_EDIT_W						345
-#define LETTER_INFO_FONT_LINE_HEIGHT			15
-#define LETTER_INFO_FONT_MOUSE_HEIGHT			170
+// ÎÇ¥Ïö©
+#define LETTER_INFO_MAX_SCROLL_LINE                11
+#define LETTER_INFO_EDIT_X                        84
+#define LETTER_INFO_EDIT_Y                        153
+#define LETTER_INFO_EDIT_W                        345
+#define LETTER_INFO_FONT_LINE_HEIGHT            15
+#define LETTER_INFO_FONT_MOUSE_HEIGHT            170
 
-///////////////////////// ∆Ì¡ˆ ¿–±‚ √¢ //////////////////////////
-// ∆Ì¡ˆæ≤±‚ ¿Ø¿˙
-#define LETTER_USER_READ_EDIT_X						180
-#define LETTER_USER_READ_EDIT_Y						81
-#define LETTER_USER_READ_EDIT_W						260
-#define LETTER_USER_READ_FONT_LINE_HEIGHT			15
+///////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞ Ï∞Ω //////////////////////////
+// Ìé∏ÏßÄÏì∞Í∏∞ Ïú†Ï†Ä
+#define LETTER_USER_READ_EDIT_X                        180
+#define LETTER_USER_READ_EDIT_Y                        81
+#define LETTER_USER_READ_EDIT_W                        260
+#define LETTER_USER_READ_FONT_LINE_HEIGHT            15
 
-// ¡¶∏Ò
-#define LETTER_TITLE_READ_EDIT_X						180
-#define LETTER_TITLE_READ_EDIT_Y						101
-#define LETTER_TITLE_READ_EDIT_W						260
-#define LETTER_TITLE_READ_FONT_LINE_HEIGHT			15
+// Ï†úÎ™©
+#define LETTER_TITLE_READ_EDIT_X                        180
+#define LETTER_TITLE_READ_EDIT_Y                        101
+#define LETTER_TITLE_READ_EDIT_W                        260
+#define LETTER_TITLE_READ_FONT_LINE_HEIGHT            15
 
-// ≥ªøÎ
-#define LETTER_INFO_READ_MAX_SCROLL_LINE			11
-#define LETTER_INFO_READ_EDIT_X						84
-#define LETTER_INFO_READ_EDIT_Y						137
-#define LETTER_INFO_READ_EDIT_W						345
-#define LETTER_INFO_READ_FONT_LINE_HEIGHT			15
-#define LETTER_INFO_READ_FONT_MOUSE_HEIGHT			170		 
+// ÎÇ¥Ïö©
+#define LETTER_INFO_READ_MAX_SCROLL_LINE            11
+#define LETTER_INFO_READ_EDIT_X                        84
+#define LETTER_INFO_READ_EDIT_Y                        137
+#define LETTER_INFO_READ_EDIT_W                        345
+#define LETTER_INFO_READ_FONT_LINE_HEIGHT            15
+#define LETTER_INFO_READ_FONT_MOUSE_HEIGHT            170         
 #else 
-#define		LETTER_MODE_POS_X		32
-#define		LETTER_MODE_POS_Y		52
-#define		LETTER_MODE_WIDTH		118
-#define		LETTER_MODE_HEIGHT		25
-#define		MAX_LETTER_READ_NUMBER	8		// √÷¥Î 
+#define        LETTER_MODE_POS_X        32
+#define        LETTER_MODE_POS_Y        52
+#define        LETTER_MODE_WIDTH        118
+#define        LETTER_MODE_HEIGHT        25
+#define        MAX_LETTER_READ_NUMBER    8        // ÏµúÎåÄ 
 
-#define		LETTER_READ_LIST_BK_X			47		// 
-#define		LETTER_READ_LIST_BK_Y			83		// 
+#define        LETTER_READ_LIST_BK_X            47        // 
+#define        LETTER_READ_LIST_BK_Y            83        // 
 
-#define		LETTER_READ_INFO_BK_X			54		// 
-#define		LETTER_READ_INFO_BK_Y			73		// 
+#define        LETTER_READ_INFO_BK_X            54        // 
+#define        LETTER_READ_INFO_BK_Y            73        // 
 
-#define		LETTER_READ_ITEM_X			68		// 
-#define		LETTER_READ_ITEM_Y			149		// 
-#define		LETTER_READ_ITEM_WIDTH		390		// 
-#define		LETTER_READ_ITEM_HEIGHT		27		// 
+#define        LETTER_READ_ITEM_X            68        // 
+#define        LETTER_READ_ITEM_Y            149        // 
+#define        LETTER_READ_ITEM_WIDTH        390        // 
+#define        LETTER_READ_ITEM_HEIGHT        27        // 
 
-///////////////////////// ∆Ì¡ˆ æ≤±‚ //////////////////////////
-// ∆Ì¡ˆ ø°µ∆Æ π⁄Ω∫
-#define		LETTER_WRITE_USER_EDIT		0
-#define		LETTER_WRITE_TITLE_EDIT		1
-#define		LETTER_WRITE_INFO_EDIT		2
+///////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞ //////////////////////////
+// Ìé∏ÏßÄ ÏóêÎîîÌä∏ Î∞ïÏä§
+#define        LETTER_WRITE_USER_EDIT        0
+#define        LETTER_WRITE_TITLE_EDIT        1
+#define        LETTER_WRITE_INFO_EDIT        2
 
-// ∆Ì¡ˆ∫∏≥ª¥¬ ¿Ø¿˙
-#define LETTER_SEND_USER_EDIT_X						176
-#define LETTER_SEND_USER_EDIT_Y						98
-#define LETTER_SEND_USER_EDIT_W						260
-#define LETTER_SEND_USER_FONT_LINE_HEIGHT			15
+// Ìé∏ÏßÄÎ≥¥ÎÇ¥Îäî Ïú†Ï†Ä
+#define LETTER_SEND_USER_EDIT_X                        176
+#define LETTER_SEND_USER_EDIT_Y                        98
+#define LETTER_SEND_USER_EDIT_W                        260
+#define LETTER_SEND_USER_FONT_LINE_HEIGHT            15
 
-// ∆Ì¡ˆæ≤±‚ ¿Ø¿˙
-#define LETTER_USER_EDIT_X						176
-#define LETTER_USER_EDIT_Y						118
-#define LETTER_USER_EDIT_W						260
-#define LETTER_USER_FONT_LINE_HEIGHT			15
+// Ìé∏ÏßÄÏì∞Í∏∞ Ïú†Ï†Ä
+#define LETTER_USER_EDIT_X                        176
+#define LETTER_USER_EDIT_Y                        118
+#define LETTER_USER_EDIT_W                        260
+#define LETTER_USER_FONT_LINE_HEIGHT            15
 
-// ¡¶∏Ò
-#define LETTER_TITLE_EDIT_X						176
-#define LETTER_TITLE_EDIT_Y						138
-#define LETTER_TITLE_EDIT_W						260
-#define LETTER_TITLE_FONT_LINE_HEIGHT			15
+// Ï†úÎ™©
+#define LETTER_TITLE_EDIT_X                        176
+#define LETTER_TITLE_EDIT_Y                        138
+#define LETTER_TITLE_EDIT_W                        260
+#define LETTER_TITLE_FONT_LINE_HEIGHT            15
 
-// ≥ªøÎ
-#define LETTER_INFO_MAX_SCROLL_LINE			11
-#define LETTER_INFO_EDIT_X						89
-#define LETTER_INFO_EDIT_Y						164
-#define LETTER_INFO_EDIT_W						345
-#define LETTER_INFO_FONT_LINE_HEIGHT			15
-#define LETTER_INFO_FONT_MOUSE_HEIGHT			170
+// ÎÇ¥Ïö©
+#define LETTER_INFO_MAX_SCROLL_LINE            11
+#define LETTER_INFO_EDIT_X                        89
+#define LETTER_INFO_EDIT_Y                        164
+#define LETTER_INFO_EDIT_W                        345
+#define LETTER_INFO_FONT_LINE_HEIGHT            15
+#define LETTER_INFO_FONT_MOUSE_HEIGHT            170
 
-///////////////////////// ∆Ì¡ˆ ¿–±‚ √¢ //////////////////////////
-// ∆Ì¡ˆæ≤±‚ ¿Ø¿˙
-#define LETTER_USER_READ_EDIT_X						187
-#define LETTER_USER_READ_EDIT_Y						110
-#define LETTER_USER_READ_EDIT_W						260
-#define LETTER_USER_READ_FONT_LINE_HEIGHT			15
+///////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞ Ï∞Ω //////////////////////////
+// Ìé∏ÏßÄÏì∞Í∏∞ Ïú†Ï†Ä
+#define LETTER_USER_READ_EDIT_X                        187
+#define LETTER_USER_READ_EDIT_Y                        110
+#define LETTER_USER_READ_EDIT_W                        260
+#define LETTER_USER_READ_FONT_LINE_HEIGHT            15
 
-// ¡¶∏Ò
-#define LETTER_TITLE_READ_EDIT_X						187
-#define LETTER_TITLE_READ_EDIT_Y						130
-#define LETTER_TITLE_READ_EDIT_W						260
-#define LETTER_TITLE_READ_FONT_LINE_HEIGHT			15
+// Ï†úÎ™©
+#define LETTER_TITLE_READ_EDIT_X                        187
+#define LETTER_TITLE_READ_EDIT_Y                        130
+#define LETTER_TITLE_READ_EDIT_W                        260
+#define LETTER_TITLE_READ_FONT_LINE_HEIGHT            15
 
-// ≥ªøÎ
-#define LETTER_INFO_READ_MAX_SCROLL_LINE			11
-#define LETTER_INFO_READ_EDIT_X						90
-#define LETTER_INFO_READ_EDIT_Y						156
-#define LETTER_INFO_READ_EDIT_W						345
-#define LETTER_INFO_READ_FONT_LINE_HEIGHT			15
-#define LETTER_INFO_READ_FONT_MOUSE_HEIGHT			170
+// ÎÇ¥Ïö©
+#define LETTER_INFO_READ_MAX_SCROLL_LINE            11
+#define LETTER_INFO_READ_EDIT_X                        90
+#define LETTER_INFO_READ_EDIT_Y                        156
+#define LETTER_INFO_READ_EDIT_W                        345
+#define LETTER_INFO_READ_FONT_LINE_HEIGHT            15
+#define LETTER_INFO_READ_FONT_MOUSE_HEIGHT            170
 #endif
 
 struct Letter_Sort: binary_function<structReadLetterItemInfo, structReadLetterItemInfo, bool>
 {
-	bool operator()(structReadLetterItemInfo pLetterInfo1, structReadLetterItemInfo pLetterInfo2)
-	{
-        if(pLetterInfo1.atimeMail > pLetterInfo2.atimeMail)
-		{
-			return TRUE;
-		}		
-		return FALSE;
+    bool operator()(structReadLetterItemInfo pLetterInfo1, structReadLetterItemInfo pLetterInfo2)
+    {
+        if (pLetterInfo1.atimeMail > pLetterInfo2.atimeMail)
+        {
+            return TRUE;
+        }        
+        return FALSE;
     };
 };
 
 
 CINFCommunityLetter::CINFCommunityLetter(CAtumNode* pParent)
 {
-	m_pParent = pParent;
+    m_pParent = pParent;
 
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	m_pBack = NULL;
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    m_pBack = NULL;
 #endif
-	int  nCnt = 0;
-	for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-	{
-		m_pLetterMode[nCnt] = NULL;
-	}
-	for(nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
-	{
-		m_pLetterRead[nCnt] =NULL;
-	}
-	m_nLetterMode = LETTER_MODE_READ;
-	m_nReadLetterMode = LETTER_READ_MODE_LIST;	
+    int  nCnt = 0;
+    for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+    {
+        m_pLetterMode[nCnt] = NULL;
+    }
+    for (nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
+    {
+        m_pLetterRead[nCnt] =NULL;
+    }
+    m_nLetterMode = LETTER_MODE_READ;
+    m_nReadLetterMode = LETTER_READ_MODE_LIST;    
 
-	m_pReadBtn = NULL ;			// ¿–±‚
-	m_pReadDelBtn = NULL ;		// ªË¡¶
-	m_pImgSelect = NULL;
-	m_pLetterReadListBk = NULL;
-	m_pLetterReadBk = NULL;	// πË∞Ê
+    m_pReadBtn = NULL ;            // ÏùΩÍ∏∞
+    m_pReadDelBtn = NULL ;        // ÏÇ≠Ï†ú
+    m_pImgSelect = NULL;
+    m_pLetterReadListBk = NULL;
+    m_pLetterReadBk = NULL;    // Î∞∞Í≤Ω
 
-	m_pScrollRead = NULL;
-	m_pFontLetter = NULL;
+    m_pScrollRead = NULL;
+    m_pFontLetter = NULL;
 
-	m_pSendBtn = NULL;			// ∫∏≥ª±‚
-	m_pAllSendBtn= NULL;		// ¿¸√º πﬂº€
+    m_pSendBtn = NULL;            // Î≥¥ÎÇ¥Í∏∞
+    m_pAllSendBtn= NULL;        // Ï†ÑÏ≤¥ Î∞úÏÜ°
 
-	m_pEditWriteSendUser = NULL;
-	m_pEditWriteReceiveUser = NULL;
-	m_pEditWriteTitle = NULL;
-	m_pEditWriteInfo = NULL;
-	m_pScrollWrite			= NULL;
+    m_pEditWriteSendUser = NULL;
+    m_pEditWriteReceiveUser = NULL;
+    m_pEditWriteTitle = NULL;
+    m_pEditWriteInfo = NULL;
+    m_pScrollWrite            = NULL;
 
-	m_pEditReadReceiveUser = NULL;		// πﬁ¥¬ ¿Ø¿˙
-	m_pEditReadTitle= NULL;			// ¡¶∏Ò
-	m_pEditReadInfo= NULL;			// ≥ªøÎ
-	m_pScrollReadInfo= NULL;			// Ω∫≈©∑— 
+    m_pEditReadReceiveUser = NULL;        // Î∞õÎäî Ïú†Ï†Ä
+    m_pEditReadTitle= NULL;            // Ï†úÎ™©
+    m_pEditReadInfo= NULL;            // ÎÇ¥Ïö©
+    m_pScrollReadInfo= NULL;            // Ïä§ÌÅ¨Î°§ 
 
-	m_pReadResponseBtn = NULL;			// ¿–±‚ ¥‰¿Â
-	m_pReadListDelBtn= NULL;				// ¿–±‚ ªË¡¶
-	m_pReadBackBtn= NULL;				// ¿–±‚ µ⁄∑Œ
+    m_pReadResponseBtn = NULL;            // ÏùΩÍ∏∞ ÎãµÏû•
+    m_pReadListDelBtn= NULL;                // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    m_pReadBackBtn= NULL;                // ÏùΩÍ∏∞ Îí§Î°ú
 
-	m_nSelReadLetterPos = -1;
-	m_nSelLetterWrite = -1;	
+    m_nSelReadLetterPos = -1;
+    m_nSelLetterWrite = -1;    
 
-	m_uReadLetterUID = 0;
-	m_bAllMail = FALSE;	
+    m_uReadLetterUID = 0;
+    m_bAllMail = FALSE;    
 
-	m_bLetterFirstRq = FALSE;
+    m_bLetterFirstRq = FALSE;
 }
 
 CINFCommunityLetter::~CINFCommunityLetter()
 {
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	util::del(m_pBack);
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    util::del(m_pBack);
 #endif
-	int  nCnt = 0;
-	for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-	{
-		util::del(m_pLetterMode[nCnt]);
-	}
-	for(nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
-	{
-		util::del(m_pLetterRead[nCnt]);		
-	}
-	util::del(m_pReadBtn);	// ¿˚øÎ
-	util::del(m_pReadDelBtn);	
-	util::del(m_pImgSelect);	
-	util::del(m_pLetterReadListBk);	
-	util::del(m_pLetterReadBk);		
-	
-	util::del(m_pSendBtn);			// ∫∏≥ª±‚
-	util::del(m_pAllSendBtn);		// ¿¸√º πﬂº€
-	
-	util::del(m_pScrollRead);
-	util::del(m_pFontLetter);
+    int  nCnt = 0;
+    for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+    {
+        util::del(m_pLetterMode[nCnt]);
+    }
+    for (nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
+    {
+        util::del(m_pLetterRead[nCnt]);        
+    }
+    util::del(m_pReadBtn);    // Ï†ÅÏö©
+    util::del(m_pReadDelBtn);    
+    util::del(m_pImgSelect);    
+    util::del(m_pLetterReadListBk);    
+    util::del(m_pLetterReadBk);        
+    
+    util::del(m_pSendBtn);            // Î≥¥ÎÇ¥Í∏∞
+    util::del(m_pAllSendBtn);        // Ï†ÑÏ≤¥ Î∞úÏÜ°
+    
+    util::del(m_pScrollRead);
+    util::del(m_pFontLetter);
 
-	
-	util::del(m_pEditWriteSendUser);
-	util::del(m_pEditWriteReceiveUser);
-	util::del(m_pEditWriteTitle);
-	util::del(m_pEditWriteInfo);
+    
+    util::del(m_pEditWriteSendUser);
+    util::del(m_pEditWriteReceiveUser);
+    util::del(m_pEditWriteTitle);
+    util::del(m_pEditWriteInfo);
 
-	util::del(m_pScrollWrite);	
-	
-	util::del(m_pEditReadReceiveUser);		// πﬁ¥¬ ¿Ø¿˙
-	util::del(m_pEditReadTitle);			// ¡¶∏Ò
-	util::del(m_pEditReadInfo);			// ≥ªøÎ
-	util::del(m_pScrollReadInfo);			// Ω∫≈©∑— 
+    util::del(m_pScrollWrite);    
+    
+    util::del(m_pEditReadReceiveUser);        // Î∞õÎäî Ïú†Ï†Ä
+    util::del(m_pEditReadTitle);            // Ï†úÎ™©
+    util::del(m_pEditReadInfo);            // ÎÇ¥Ïö©
+    util::del(m_pScrollReadInfo);            // Ïä§ÌÅ¨Î°§ 
 
-	util::del(m_pReadResponseBtn);			// ¿–±‚ ¥‰¿Â
-	util::del(m_pReadListDelBtn);				// ¿–±‚ ªË¡¶
-	util::del(m_pReadBackBtn);				// ¿–±‚ µ⁄∑Œ
+    util::del(m_pReadResponseBtn);            // ÏùΩÍ∏∞ ÎãµÏû•
+    util::del(m_pReadListDelBtn);                // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    util::del(m_pReadBackBtn);                // ÏùΩÍ∏∞ Îí§Î°ú
 }
 
 HRESULT CINFCommunityLetter::InitDeviceObjects()
 {
-	DataHeader *pDataHeader = NULL;
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	{
-		pDataHeader = m_pGameData->Find("commubk4");	
-		if(NULL == m_pBack)
-		{
- 			m_pBack = new CINFImageEx;
- 		}
- 		m_pBack->InitDeviceObjects( pDataHeader );
- 		
- 	}
+    DataHeader *pDataHeader = NULL;
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    {
+        pDataHeader = m_pGameData->Find("commubk4");    
+        if (NULL == m_pBack)
+        {
+             m_pBack = new CINFImageEx;
+         }
+         m_pBack->InitDeviceObjects( pDataHeader );
+         
+     }
 #endif
 
-	{
-		int  nCnt = 0;
-		char chImageBuff[128];
-		for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-		{
-			wsprintf(chImageBuff, "commu4_%d", nCnt+1);
-			pDataHeader = m_pGameData->Find(chImageBuff);	
-			if(NULL == m_pLetterMode[nCnt])
-			{
-				m_pLetterMode[nCnt] = new CINFImageEx;
-			}
-			m_pLetterMode[nCnt]->InitDeviceObjects( pDataHeader );
-		}
-	}
+    {
+        int  nCnt = 0;
+        char chImageBuff[128];
+        for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+        {
+            wsprintf(chImageBuff, "commu4_%d", nCnt+1);
+            pDataHeader = m_pGameData->Find(chImageBuff);    
+            if (NULL == m_pLetterMode[nCnt])
+            {
+                m_pLetterMode[nCnt] = new CINFImageEx;
+            }
+            m_pLetterMode[nCnt]->InitDeviceObjects( pDataHeader );
+        }
+    }
 
-	///////////////////////////// ∆Ì¡ˆ ¿–±‚ /////////////////////////////
-	{			
-		// ¿–¡ˆ æ ¿∫ ∆Ì¡ˆ
-		pDataHeader = m_pGameData->Find("c_lenr");	
-		if(NULL == m_pLetterRead[LETTER_READ_NORES])
-		{
-			m_pLetterRead[LETTER_READ_NORES] = new CINFImageEx;
-		}
-		m_pLetterRead[LETTER_READ_NORES]->InitDeviceObjects( pDataHeader );
+    ///////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞ /////////////////////////////
+    {            
+        // ÏùΩÏßÄ ÏïäÏùÄ Ìé∏ÏßÄ
+        pDataHeader = m_pGameData->Find("c_lenr");    
+        if (NULL == m_pLetterRead[LETTER_READ_NORES])
+        {
+            m_pLetterRead[LETTER_READ_NORES] = new CINFImageEx;
+        }
+        m_pLetterRead[LETTER_READ_NORES]->InitDeviceObjects( pDataHeader );
 
-		// ¿–¿∫ ∆Ì¡ˆ
-		pDataHeader = m_pGameData->Find("c_ler");	
-		if(NULL == m_pLetterRead[LETTER_READ_RES])
-		{
-			m_pLetterRead[LETTER_READ_RES] = new CINFImageEx;
-		}
-		m_pLetterRead[LETTER_READ_RES]->InitDeviceObjects( pDataHeader );
-	}
-	
-	
-	// º±≈√ ¿ÃπÃ¡ˆ
-	{			
-		pDataHeader = m_pGameData->Find("c_lesel");	
-		if(NULL == m_pImgSelect)
-		{
-			m_pImgSelect = new CINFImageEx;
-		}
-		m_pImgSelect->InitDeviceObjects( pDataHeader );
-	}
-	
-	{			
-		pDataHeader = m_pGameData->Find("lr_list");	
-		if(NULL == m_pLetterReadListBk)
-		{
-			m_pLetterReadListBk = new CINFImageEx;
-		}
-		m_pLetterReadListBk->InitDeviceObjects( pDataHeader );
-	}
-	
-	{			
-		pDataHeader = m_pGameData->Find("lr_bk");	
-		if(NULL == m_pLetterReadBk)
-		{
-			m_pLetterReadBk = new CINFImageEx;
-		}
-		m_pLetterReadBk->InitDeviceObjects( pDataHeader );
-	}
-	
+        // ÏùΩÏùÄ Ìé∏ÏßÄ
+        pDataHeader = m_pGameData->Find("c_ler");    
+        if (NULL == m_pLetterRead[LETTER_READ_RES])
+        {
+            m_pLetterRead[LETTER_READ_RES] = new CINFImageEx;
+        }
+        m_pLetterRead[LETTER_READ_RES]->InitDeviceObjects( pDataHeader );
+    }
+    
+    
+    // ÏÑ†ÌÉù Ïù¥ÎØ∏ÏßÄ
+    {            
+        pDataHeader = m_pGameData->Find("c_lesel");    
+        if (NULL == m_pImgSelect)
+        {
+            m_pImgSelect = new CINFImageEx;
+        }
+        m_pImgSelect->InitDeviceObjects( pDataHeader );
+    }
+    
+    {            
+        pDataHeader = m_pGameData->Find("lr_list");    
+        if (NULL == m_pLetterReadListBk)
+        {
+            m_pLetterReadListBk = new CINFImageEx;
+        }
+        m_pLetterReadListBk->InitDeviceObjects( pDataHeader );
+    }
+    
+    {            
+        pDataHeader = m_pGameData->Find("lr_bk");    
+        if (NULL == m_pLetterReadBk)
+        {
+            m_pLetterReadBk = new CINFImageEx;
+        }
+        m_pLetterReadBk->InitDeviceObjects( pDataHeader );
+    }
+    
 
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-		wsprintf(szUpBtn, "c_lebtn3");
-		wsprintf(szDownBtn, "c_lebtn1");
-		wsprintf(szSelBtn, "c_lebtn0");
-		wsprintf(szDisBtn, "c_lebtn2");
-		if(NULL == m_pReadBtn)
-		{
-			m_pReadBtn = new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pReadBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
-			m_pReadBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP65");
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}
-		
-	}
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê			
-		wsprintf(szUpBtn, "cans03");
-		wsprintf(szDownBtn, "cans01");
-		wsprintf(szSelBtn, "cans00");
-		wsprintf(szDisBtn, "cans02");															  
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+        wsprintf(szUpBtn, "c_lebtn3");
+        wsprintf(szDownBtn, "c_lebtn1");
+        wsprintf(szSelBtn, "c_lebtn0");
+        wsprintf(szDisBtn, "c_lebtn2");
+        if (NULL == m_pReadBtn)
+        {
+            m_pReadBtn = new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pReadBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);
+            m_pReadBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP65");
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }
+        
+    }
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω            
+        wsprintf(szUpBtn, "cans03");
+        wsprintf(szDownBtn, "cans01");
+        wsprintf(szSelBtn, "cans00");
+        wsprintf(szDisBtn, "cans02");                                                              
 #else
-		wsprintf(szUpBtn, "lr_del3");
-		wsprintf(szDownBtn, "lr_del1");
-		wsprintf(szSelBtn, "lr_del0");
-		wsprintf(szDisBtn, "lr_del2");
+        wsprintf(szUpBtn, "lr_del3");
+        wsprintf(szDownBtn, "lr_del1");
+        wsprintf(szSelBtn, "lr_del0");
+        wsprintf(szDisBtn, "lr_del2");
 #endif
-		if(NULL == m_pReadDelBtn)
-		{
-			m_pReadDelBtn = new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pReadDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-			m_pReadDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP12");
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}
-	}	
-	
-	{
-		char  szScBall[30];	
-		if(NULL == m_pScrollRead)
-		{
-			m_pScrollRead = new CINFArenaScrollBar;
-		}		
-		wsprintf(szScBall,"c_scrlb");
-		
-		m_pScrollRead->InitDeviceObjects(MAX_LETTER_READ_NUMBER, szScBall);
-	}
-	{
-		if(NULL == m_pFontLetter)
-		{
-			m_pFontLetter = new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()),9, D3DFONT_ZENABLE, FALSE,1024,32);
-		}
-		m_pFontLetter->InitDeviceObjects(g_pD3dDev);
-	}
-	
-	// ¿–±‚ ¥‰¿Â
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-		wsprintf(szUpBtn, "lr_rp3");
-		wsprintf(szDownBtn, "lr_rp1");
-		wsprintf(szSelBtn, "lr_rp0");
-		wsprintf(szDisBtn, "lr_rp2");
-		if(NULL == m_pReadResponseBtn)
-		{
-			m_pReadResponseBtn= new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pReadResponseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);	
-			m_pReadResponseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP54");
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ			
-		}		
-	}
-	// ¿–±‚ ªË¡¶
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê		
-		wsprintf(szUpBtn, "cans03");
-		wsprintf(szDownBtn, "cans01");
-		wsprintf(szSelBtn, "cans00");
-		wsprintf(szDisBtn, "cans02");															  
-#else					   
-		wsprintf(szUpBtn, "lr_del3");
-		wsprintf(szDownBtn, "lr_del1");
-		wsprintf(szSelBtn, "lr_del0");
-		wsprintf(szDisBtn, "lr_del2");
+        if (NULL == m_pReadDelBtn)
+        {
+            m_pReadDelBtn = new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pReadDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+            m_pReadDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP12");
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }
+    }    
+    
+    {
+        char  szScBall[30];    
+        if (NULL == m_pScrollRead)
+        {
+            m_pScrollRead = new CINFArenaScrollBar;
+        }        
+        wsprintf(szScBall,"c_scrlb");
+        
+        m_pScrollRead->InitDeviceObjects(MAX_LETTER_READ_NUMBER, szScBall);
+    }
+    {
+        if (NULL == m_pFontLetter)
+        {
+            m_pFontLetter = new CD3DHanFont(_T(g_pD3dApp->GetFontStyle()),9, D3DFONT_ZENABLE, FALSE,1024,32);
+        }
+        m_pFontLetter->InitDeviceObjects(g_pD3dDev);
+    }
+    
+    // ÏùΩÍ∏∞ ÎãµÏû•
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+        wsprintf(szUpBtn, "lr_rp3");
+        wsprintf(szDownBtn, "lr_rp1");
+        wsprintf(szSelBtn, "lr_rp0");
+        wsprintf(szDisBtn, "lr_rp2");
+        if (NULL == m_pReadResponseBtn)
+        {
+            m_pReadResponseBtn= new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pReadResponseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);    
+            m_pReadResponseBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP54");
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ            
+        }        
+    }
+    // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω        
+        wsprintf(szUpBtn, "cans03");
+        wsprintf(szDownBtn, "cans01");
+        wsprintf(szSelBtn, "cans00");
+        wsprintf(szDisBtn, "cans02");                                                              
+#else                       
+        wsprintf(szUpBtn, "lr_del3");
+        wsprintf(szDownBtn, "lr_del1");
+        wsprintf(szSelBtn, "lr_del0");
+        wsprintf(szDisBtn, "lr_del2");
 #endif
-		if(NULL == m_pReadListDelBtn)
-		{
-			m_pReadListDelBtn= new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pReadListDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-			m_pReadListDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP12");
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}		
-	}
-	// ¿–±‚ µ⁄∑Œ
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê			
-		wsprintf(szUpBtn, "oks03");
-		wsprintf(szDownBtn, "oks01");
-		wsprintf(szSelBtn, "oks00");
-		wsprintf(szDisBtn, "oks02");															  
-#else						   
-		wsprintf(szUpBtn, "lr_ok3");
-		wsprintf(szDownBtn, "lr_ok1");
-		wsprintf(szSelBtn, "lr_ok0");
-		wsprintf(szDisBtn, "lr_ok2");
+        if (NULL == m_pReadListDelBtn)
+        {
+            m_pReadListDelBtn= new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pReadListDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+            m_pReadListDelBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP12");
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }        
+    }
+    // ÏùΩÍ∏∞ Îí§Î°ú
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω            
+        wsprintf(szUpBtn, "oks03");
+        wsprintf(szDownBtn, "oks01");
+        wsprintf(szSelBtn, "oks00");
+        wsprintf(szDisBtn, "oks02");                                                              
+#else                           
+        wsprintf(szUpBtn, "lr_ok3");
+        wsprintf(szDownBtn, "lr_ok1");
+        wsprintf(szSelBtn, "lr_ok0");
+        wsprintf(szDisBtn, "lr_ok2");
 #endif
-		if(NULL == m_pReadBackBtn)
-		{
-			m_pReadBackBtn= new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pReadBackBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-			m_pReadBackBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP40");
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}		
-	}
+        if (NULL == m_pReadBackBtn)
+        {
+            m_pReadBackBtn= new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pReadBackBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+            m_pReadBackBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP40");
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }        
+    }
 
-	///////////////////////////// ∆Ì¡ˆ æ≤±‚ /////////////////////////////	
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-		wsprintf(szUpBtn, "c_sbtn3");
-		wsprintf(szDownBtn, "c_sbtn1");
-		wsprintf(szSelBtn, "c_sbtn0");
-		wsprintf(szDisBtn, "c_sbtn2");
-		if(NULL == m_pSendBtn)
-		{
-			m_pSendBtn = new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-			m_pSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP53");		
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}
-		
-	}
-	
-	{	
-		char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];				
-		wsprintf(szUpBtn, "c_asbtn3");
-		wsprintf(szDownBtn, "c_asbtn1");
-		wsprintf(szSelBtn, "c_asbtn0");
-		wsprintf(szDisBtn, "c_asbtn2");
-		if(NULL == m_pAllSendBtn)
-		{
-			m_pAllSendBtn = new CINFImageBtn;
-			// 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-			//m_pAllSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);		
-			m_pAllSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP55");		
-			// end 2011. 1. 12 by jskim UI ¿ÃπÃ¡ˆ πˆ∆∞ ≈¯∆¡ ±∏«ˆ
-		}
-		
-	}	
-	////////////////////////// ∆Ì¡ˆ ¿–±‚ ////////////////////////////
-	// πﬁ¥¬ ¿Ø¿˙
-	{
-		if(NULL == m_pEditReadReceiveUser)
-		{
-			m_pEditReadReceiveUser = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_USER_READ_EDIT_X, LETTER_USER_READ_EDIT_Y};
-		m_pEditReadReceiveUser->InitDeviceObjects(9, ptPos, LETTER_USER_READ_EDIT_W, TRUE, LETTER_USER_READ_FONT_LINE_HEIGHT);				
-		m_pEditReadReceiveUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
-	}
-	// ¡¶∏Ò
-	{
-		if(NULL == m_pEditReadTitle)
-		{
-			m_pEditReadTitle = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_TITLE_READ_EDIT_X, LETTER_TITLE_READ_EDIT_Y};
-		m_pEditReadTitle->InitDeviceObjects(9, ptPos, LETTER_TITLE_READ_EDIT_W, TRUE, LETTER_TITLE_READ_FONT_LINE_HEIGHT);				
-		m_pEditReadTitle->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
-	}
+    ///////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞ /////////////////////////////    
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+        wsprintf(szUpBtn, "c_sbtn3");
+        wsprintf(szDownBtn, "c_sbtn1");
+        wsprintf(szSelBtn, "c_sbtn0");
+        wsprintf(szDisBtn, "c_sbtn2");
+        if (NULL == m_pSendBtn)
+        {
+            m_pSendBtn = new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+            m_pSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP53");        
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }
+        
+    }
+    
+    {    
+        char szUpBtn[30], szDownBtn[30], szSelBtn[30], szDisBtn[30];                
+        wsprintf(szUpBtn, "c_asbtn3");
+        wsprintf(szDownBtn, "c_asbtn1");
+        wsprintf(szSelBtn, "c_asbtn0");
+        wsprintf(szDisBtn, "c_asbtn2");
+        if (NULL == m_pAllSendBtn)
+        {
+            m_pAllSendBtn = new CINFImageBtn;
+            // 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+            //m_pAllSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn);        
+            m_pAllSendBtn->InitDeviceObjects(szUpBtn, szDownBtn, szSelBtn, szDisBtn,"STRTOOLTIP55");        
+            // end 2011. 1. 12 by jskim UI Ïù¥ÎØ∏ÏßÄ Î≤ÑÌäº Ìà¥ÌåÅ Íµ¨ÌòÑ
+        }
+        
+    }    
+    ////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞ ////////////////////////////
+    // Î∞õÎäî Ïú†Ï†Ä
+    {
+        if (NULL == m_pEditReadReceiveUser)
+        {
+            m_pEditReadReceiveUser = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_USER_READ_EDIT_X, LETTER_USER_READ_EDIT_Y};
+        m_pEditReadReceiveUser->InitDeviceObjects(9, ptPos, LETTER_USER_READ_EDIT_W, TRUE, LETTER_USER_READ_FONT_LINE_HEIGHT);                
+        m_pEditReadReceiveUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
+    }
+    // Ï†úÎ™©
+    {
+        if (NULL == m_pEditReadTitle)
+        {
+            m_pEditReadTitle = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_TITLE_READ_EDIT_X, LETTER_TITLE_READ_EDIT_Y};
+        m_pEditReadTitle->InitDeviceObjects(9, ptPos, LETTER_TITLE_READ_EDIT_W, TRUE, LETTER_TITLE_READ_FONT_LINE_HEIGHT);                
+        m_pEditReadTitle->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
+    }
 
-	// ≥ªøÎ
-	{
-		if(NULL == m_pEditReadInfo)
-		{
-			m_pEditReadInfo = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_INFO_READ_EDIT_X, LETTER_INFO_READ_EDIT_Y};
-		m_pEditReadInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_READ_EDIT_W, TRUE, LETTER_INFO_READ_FONT_LINE_HEIGHT, 
-										FALSE, LETTER_INFO_READ_FONT_MOUSE_HEIGHT);				
-		m_pEditReadInfo->SetStringMaxBuff(	SIZE_MAX_LETTER_CONTENT);
-	}	
+    // ÎÇ¥Ïö©
+    {
+        if (NULL == m_pEditReadInfo)
+        {
+            m_pEditReadInfo = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_INFO_READ_EDIT_X, LETTER_INFO_READ_EDIT_Y};
+        m_pEditReadInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_READ_EDIT_W, TRUE, LETTER_INFO_READ_FONT_LINE_HEIGHT, 
+                                        FALSE, LETTER_INFO_READ_FONT_MOUSE_HEIGHT);                
+        m_pEditReadInfo->SetStringMaxBuff(    SIZE_MAX_LETTER_CONTENT);
+    }    
 
-	// Ω∫≈©∑—
-	{
-		char  szScBall[30];	
-		// ∆˙ ∏ÆΩ∫∆Æ.
-		if(NULL == m_pScrollReadInfo)
-		{
-			m_pScrollReadInfo = new CINFArenaScrollBar;
-		}		
-		wsprintf(szScBall,"c_scrlb");
-		m_pScrollReadInfo->InitDeviceObjects(LETTER_INFO_READ_MAX_SCROLL_LINE, szScBall);
-	}
+    // Ïä§ÌÅ¨Î°§
+    {
+        char  szScBall[30];    
+        // Ìè¥ Î¶¨Ïä§Ìä∏.
+        if (NULL == m_pScrollReadInfo)
+        {
+            m_pScrollReadInfo = new CINFArenaScrollBar;
+        }        
+        wsprintf(szScBall,"c_scrlb");
+        m_pScrollReadInfo->InitDeviceObjects(LETTER_INFO_READ_MAX_SCROLL_LINE, szScBall);
+    }
 
-	////////////////////////// ∆Ì¡ˆ æ≤±‚ ////////////////////////////
-	// ∫∏≥ª¥¬ ¿Ø¿˙
-	{
-		if(NULL == m_pEditWriteSendUser)
-		{
-			m_pEditWriteSendUser = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_SEND_USER_EDIT_X, LETTER_SEND_USER_EDIT_Y};
-		m_pEditWriteSendUser->InitDeviceObjects(9, ptPos, LETTER_SEND_USER_EDIT_W, TRUE, LETTER_SEND_USER_FONT_LINE_HEIGHT);				
-		m_pEditWriteSendUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);		
-	}
-	// πﬁ¥¬ ¿Ø¿˙
-	{
-		if(NULL == m_pEditWriteReceiveUser)
-		{
-			m_pEditWriteReceiveUser = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_USER_EDIT_X, LETTER_USER_EDIT_Y};
-		m_pEditWriteReceiveUser->InitDeviceObjects(9, ptPos, LETTER_USER_EDIT_W, TRUE, LETTER_USER_FONT_LINE_HEIGHT);				
-		m_pEditWriteReceiveUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
-	}
-	// ¡¶∏Ò
-	{
-		if(NULL == m_pEditWriteTitle)
-		{
-			m_pEditWriteTitle = new CINFEditBox;
-		}
-		POINT ptPos = {LETTER_TITLE_EDIT_X, LETTER_TITLE_EDIT_Y};
-		m_pEditWriteTitle->InitDeviceObjects(9, ptPos, LETTER_TITLE_EDIT_W, TRUE, LETTER_TITLE_FONT_LINE_HEIGHT);				
-		m_pEditWriteTitle->SetStringMaxBuff(SIZE_MAX_LETTER_TITLE);
-	}
+    ////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞ ////////////////////////////
+    // Î≥¥ÎÇ¥Îäî Ïú†Ï†Ä
+    {
+        if (NULL == m_pEditWriteSendUser)
+        {
+            m_pEditWriteSendUser = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_SEND_USER_EDIT_X, LETTER_SEND_USER_EDIT_Y};
+        m_pEditWriteSendUser->InitDeviceObjects(9, ptPos, LETTER_SEND_USER_EDIT_W, TRUE, LETTER_SEND_USER_FONT_LINE_HEIGHT);                
+        m_pEditWriteSendUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);        
+    }
+    // Î∞õÎäî Ïú†Ï†Ä
+    {
+        if (NULL == m_pEditWriteReceiveUser)
+        {
+            m_pEditWriteReceiveUser = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_USER_EDIT_X, LETTER_USER_EDIT_Y};
+        m_pEditWriteReceiveUser->InitDeviceObjects(9, ptPos, LETTER_USER_EDIT_W, TRUE, LETTER_USER_FONT_LINE_HEIGHT);                
+        m_pEditWriteReceiveUser->SetStringMaxBuff(SIZE_MAX_ARENA_FULL_NAME);
+    }
+    // Ï†úÎ™©
+    {
+        if (NULL == m_pEditWriteTitle)
+        {
+            m_pEditWriteTitle = new CINFEditBox;
+        }
+        POINT ptPos = {LETTER_TITLE_EDIT_X, LETTER_TITLE_EDIT_Y};
+        m_pEditWriteTitle->InitDeviceObjects(9, ptPos, LETTER_TITLE_EDIT_W, TRUE, LETTER_TITLE_FONT_LINE_HEIGHT);                
+        m_pEditWriteTitle->SetStringMaxBuff(SIZE_MAX_LETTER_TITLE);
+    }
 
-	// ≥ªøÎ
-	{
-		if(NULL == m_pEditWriteInfo)
-		{
-			m_pEditWriteInfo = new CINFCurselEditBox;
-		}
-		POINT ptPos = {LETTER_INFO_EDIT_X, LETTER_INFO_EDIT_Y};
-//		m_pEditWriteInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_EDIT_W, TRUE, LETTER_INFO_FONT_LINE_HEIGHT, 
-//										FALSE, LETTER_INFO_FONT_MOUSE_HEIGHT);				
-		m_pEditWriteInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_EDIT_W, TRUE, LETTER_INFO_FONT_LINE_HEIGHT, 
-										FALSE, LETTER_INFO_FONT_MOUSE_HEIGHT);				
-		m_pEditWriteInfo->SetStringMaxBuff(	SIZE_MAX_LETTER_CONTENT);
-		m_pEditWriteInfo->SetOnePageItemCnt(LETTER_INFO_MAX_SCROLL_LINE);
-	}	
+    // ÎÇ¥Ïö©
+    {
+        if (NULL == m_pEditWriteInfo)
+        {
+            m_pEditWriteInfo = new CINFCurselEditBox;
+        }
+        POINT ptPos = {LETTER_INFO_EDIT_X, LETTER_INFO_EDIT_Y};
+//        m_pEditWriteInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_EDIT_W, TRUE, LETTER_INFO_FONT_LINE_HEIGHT, 
+//                                        FALSE, LETTER_INFO_FONT_MOUSE_HEIGHT);                
+        m_pEditWriteInfo->InitDeviceObjects(9, ptPos, LETTER_INFO_EDIT_W, TRUE, LETTER_INFO_FONT_LINE_HEIGHT, 
+                                        FALSE, LETTER_INFO_FONT_MOUSE_HEIGHT);                
+        m_pEditWriteInfo->SetStringMaxBuff(    SIZE_MAX_LETTER_CONTENT);
+        m_pEditWriteInfo->SetOnePageItemCnt(LETTER_INFO_MAX_SCROLL_LINE);
+    }    
 
-	// Ω∫≈©∑—
-	{
-		char  szScBall[30];	
-		// ∆˙ ∏ÆΩ∫∆Æ.
-		if(NULL == m_pScrollWrite)
-		{
-			m_pScrollWrite = new CINFArenaScrollBar;
-		}		
-		wsprintf(szScBall,"c_scrlb");
-		m_pScrollWrite->InitDeviceObjects(LETTER_INFO_MAX_SCROLL_LINE, szScBall);
-	}
+    // Ïä§ÌÅ¨Î°§
+    {
+        char  szScBall[30];    
+        // Ìè¥ Î¶¨Ïä§Ìä∏.
+        if (NULL == m_pScrollWrite)
+        {
+            m_pScrollWrite = new CINFArenaScrollBar;
+        }        
+        wsprintf(szScBall,"c_scrlb");
+        m_pScrollWrite->InitDeviceObjects(LETTER_INFO_MAX_SCROLL_LINE, szScBall);
+    }
 
-	//TestReadDb();
+    //TestReadDb();
 
-	return S_OK;
+    return S_OK;
 }
 
 HRESULT CINFCommunityLetter::RestoreDeviceObjects()
 {
-	// πË∞Ê 
-	POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    // Î∞∞Í≤Ω 
+    POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
 
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	if(m_pBack)
-	{
-		m_pBack->RestoreDeviceObjects();
-	}
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    if (m_pBack)
+    {
+        m_pBack->RestoreDeviceObjects();
+    }
 #endif
-	int nCnt = 0;
-	int nPosX, nPosY;
-	nPosX = nPosY =0;
-	for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-	{		
-		if(m_pLetterMode[nCnt])
-		{
-			m_pLetterMode[nCnt]->RestoreDeviceObjects();
-		}
-	}
-	for(nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
-	{		
-		if(m_pLetterRead[nCnt])
-		{
-			m_pLetterRead[nCnt]->RestoreDeviceObjects();
-		}
-	}
+    int nCnt = 0;
+    int nPosX, nPosY;
+    nPosX = nPosY =0;
+    for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+    {        
+        if (m_pLetterMode[nCnt])
+        {
+            m_pLetterMode[nCnt]->RestoreDeviceObjects();
+        }
+    }
+    for (nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
+    {        
+        if (m_pLetterRead[nCnt])
+        {
+            m_pLetterRead[nCnt]->RestoreDeviceObjects();
+        }
+    }
 
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->RestoreDeviceObjects();
-	}
-	if(m_pLetterReadListBk)
-	{
-		m_pLetterReadListBk->RestoreDeviceObjects();
-	}
-	if(m_pLetterReadBk)
-	{
-		m_pLetterReadBk->RestoreDeviceObjects();
-	}
-	if(m_pReadBtn)
-	{
-		m_pReadBtn->RestoreDeviceObjects();				
-		nPosX = ptBkPos.x + 308;
-		nPosY = ptBkPos.y + 97;		
-		m_pReadBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pReadDelBtn)
-	{
-		m_pReadDelBtn->RestoreDeviceObjects();		
-		
-		nPosX = ptBkPos.x + 378;
-		nPosY = ptBkPos.y + 97;		
-		m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}	
-	if(m_pAllSendBtn)
-	{
-		m_pAllSendBtn->RestoreDeviceObjects();		
-		
-		nPosX = ptBkPos.x + 282;
-		nPosY = ptBkPos.y + 346;		
-		m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pSendBtn)
-	{
-		m_pSendBtn->RestoreDeviceObjects();				
-		nPosX = ptBkPos.x + 381;
-		nPosY = ptBkPos.y + 346;		
-		m_pSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->RestoreDeviceObjects();
+    }
+    if (m_pLetterReadListBk)
+    {
+        m_pLetterReadListBk->RestoreDeviceObjects();
+    }
+    if (m_pLetterReadBk)
+    {
+        m_pLetterReadBk->RestoreDeviceObjects();
+    }
+    if (m_pReadBtn)
+    {
+        m_pReadBtn->RestoreDeviceObjects();                
+        nPosX = ptBkPos.x + 308;
+        nPosY = ptBkPos.y + 97;        
+        m_pReadBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pReadDelBtn)
+    {
+        m_pReadDelBtn->RestoreDeviceObjects();        
+        
+        nPosX = ptBkPos.x + 378;
+        nPosY = ptBkPos.y + 97;        
+        m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }    
+    if (m_pAllSendBtn)
+    {
+        m_pAllSendBtn->RestoreDeviceObjects();        
+        
+        nPosX = ptBkPos.x + 282;
+        nPosY = ptBkPos.y + 346;        
+        m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pSendBtn)
+    {
+        m_pSendBtn->RestoreDeviceObjects();                
+        nPosX = ptBkPos.x + 381;
+        nPosY = ptBkPos.y + 346;        
+        m_pSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
-	// ¿–±‚ ¥‰¿Â
-	if(m_pReadResponseBtn)
-	{
-		m_pReadResponseBtn->RestoreDeviceObjects();				
-		nPosX = ptBkPos.x + 243;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ ªË¡¶
-	if(m_pReadListDelBtn)
-	{
-		m_pReadListDelBtn->RestoreDeviceObjects();				
-		nPosX = ptBkPos.x + 310;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ µ⁄∑Œ
-	if(m_pReadBackBtn)
-	{
-		m_pReadBackBtn->RestoreDeviceObjects();				
-		nPosX = ptBkPos.x + 377;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    // ÏùΩÍ∏∞ ÎãµÏû•
+    if (m_pReadResponseBtn)
+    {
+        m_pReadResponseBtn->RestoreDeviceObjects();                
+        nPosX = ptBkPos.x + 243;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    if (m_pReadListDelBtn)
+    {
+        m_pReadListDelBtn->RestoreDeviceObjects();                
+        nPosX = ptBkPos.x + 310;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ Îí§Î°ú
+    if (m_pReadBackBtn)
+    {
+        m_pReadBackBtn->RestoreDeviceObjects();                
+        nPosX = ptBkPos.x + 377;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
 
-	{
-		// Ω∫≈©∑—
-		m_pScrollRead->RestoreDeviceObjects();
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    {
+        // Ïä§ÌÅ¨Î°§
+        m_pScrollRead->RestoreDeviceObjects();
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-		ptScrollPos.x += 469;
-		ptScrollPos.y += 175;																	  
-#else					
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 152;
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+        ptScrollPos.x += 469;
+        ptScrollPos.y += 175;                                                                      
+#else                    
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 152;
 #endif
 
-		m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollRead->SetMouseBallRect(rcMousePos);
-	}
-	if(m_pFontLetter)
-	{
-		m_pFontLetter->RestoreDeviceObjects();
-	}
-	/////////////////////////////// ∆Ì¡ˆ ¿–±‚///////////////////////////////////////////
-	if(m_pEditReadReceiveUser)
-	{
-		m_pEditReadReceiveUser->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;		
-		m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadTitle)
-	{
-		m_pEditReadTitle->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;		
-		m_pEditReadTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadInfo)
-	{
-		m_pEditReadInfo->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;		
-		m_pEditReadInfo->SetPos(nPosX, nPosY);
-	}
-	{
-		m_pScrollReadInfo->RestoreDeviceObjects();
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+        m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollRead->SetMouseBallRect(rcMousePos);
+    }
+    if (m_pFontLetter)
+    {
+        m_pFontLetter->RestoreDeviceObjects();
+    }
+    /////////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞///////////////////////////////////////////
+    if (m_pEditReadReceiveUser)
+    {
+        m_pEditReadReceiveUser->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;        
+        m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadTitle)
+    {
+        m_pEditReadTitle->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;        
+        m_pEditReadTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadInfo)
+    {
+        m_pEditReadInfo->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;        
+        m_pEditReadInfo->SetPos(nPosX, nPosY);
+    }
+    {
+        m_pScrollReadInfo->RestoreDeviceObjects();
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 164;
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 164;
 
-		m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
-	}
+        m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
+    }
 
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	if(m_pEditWriteSendUser)
-	{
-		m_pEditWriteSendUser->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;		
-		m_pEditWriteSendUser->SetPos(nPosX, nPosY);
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    if (m_pEditWriteSendUser)
+    {
+        m_pEditWriteSendUser->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;        
+        m_pEditWriteSendUser->SetPos(nPosX, nPosY);
 
-		const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();		
-		m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
-	}
+        const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();        
+        m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
+    }
 
-	if(m_pEditWriteReceiveUser)
-	{
-		m_pEditWriteReceiveUser->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;		
-		m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteTitle)
-	{
-		m_pEditWriteTitle->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;		
-		m_pEditWriteTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteInfo)
-	{
-		m_pEditWriteInfo->RestoreDeviceObjects();
-		nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;		
-		m_pEditWriteInfo->SetPos(nPosX, nPosY);
-	}
-	{
-		m_pScrollWrite->RestoreDeviceObjects();
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    if (m_pEditWriteReceiveUser)
+    {
+        m_pEditWriteReceiveUser->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;        
+        m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteTitle)
+    {
+        m_pEditWriteTitle->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;        
+        m_pEditWriteTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteInfo)
+    {
+        m_pEditWriteInfo->RestoreDeviceObjects();
+        nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;        
+        m_pEditWriteInfo->SetPos(nPosX, nPosY);
+    }
+    {
+        m_pScrollWrite->RestoreDeviceObjects();
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 164;
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 164;
 
-		m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollWrite->SetMouseBallRect(rcMousePos);
-	}
-	
-	return S_OK;
+        m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollWrite->SetMouseBallRect(rcMousePos);
+    }
+    
+    return S_OK;
 }
 
 HRESULT CINFCommunityLetter::InvalidateDeviceObjects()
 {
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	if(m_pBack)
-	{
-		m_pBack->InvalidateDeviceObjects();
-	}
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    if (m_pBack)
+    {
+        m_pBack->InvalidateDeviceObjects();
+    }
 #endif
-	int nCnt = 0;
-	for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-	{		
-		if(m_pLetterMode[nCnt])
-		{
-			m_pLetterMode[nCnt]->InvalidateDeviceObjects();
-		}
-	}
-	for(nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
-	{		
-		if(m_pLetterRead[nCnt])
-		{
-			m_pLetterRead[nCnt]->InvalidateDeviceObjects();
-		}
-	}
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->InvalidateDeviceObjects();
-	}
-	if(m_pLetterReadListBk)
-	{
-		m_pLetterReadListBk->InvalidateDeviceObjects();
-	}
-	if(m_pLetterReadBk)
-	{
-		m_pLetterReadBk->InvalidateDeviceObjects();
-	}
-		
-	if(m_pReadBtn)
-	{		
-		m_pReadBtn->InvalidateDeviceObjects();
-	}
-	if(m_pReadDelBtn)
-	{		
-		m_pReadDelBtn->InvalidateDeviceObjects();
-	}
-	
-	if(m_pSendBtn)
-	{
-		m_pSendBtn->InvalidateDeviceObjects();
-	}	
-		
-	// ¿–±‚ ¥‰¿Â
-	if(m_pReadResponseBtn)
-	{
-		m_pReadResponseBtn->InvalidateDeviceObjects();
-	}
-	// ¿–±‚ ªË¡¶
-	if(m_pReadListDelBtn)
-	{
-		m_pReadListDelBtn->InvalidateDeviceObjects();
-	}
-	// ¿–±‚ µ⁄∑Œ
-	if(m_pReadBackBtn)
-	{
-		m_pReadBackBtn->InvalidateDeviceObjects();
-	}
+    int nCnt = 0;
+    for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+    {        
+        if (m_pLetterMode[nCnt])
+        {
+            m_pLetterMode[nCnt]->InvalidateDeviceObjects();
+        }
+    }
+    for (nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
+    {        
+        if (m_pLetterRead[nCnt])
+        {
+            m_pLetterRead[nCnt]->InvalidateDeviceObjects();
+        }
+    }
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->InvalidateDeviceObjects();
+    }
+    if (m_pLetterReadListBk)
+    {
+        m_pLetterReadListBk->InvalidateDeviceObjects();
+    }
+    if (m_pLetterReadBk)
+    {
+        m_pLetterReadBk->InvalidateDeviceObjects();
+    }
+        
+    if (m_pReadBtn)
+    {        
+        m_pReadBtn->InvalidateDeviceObjects();
+    }
+    if (m_pReadDelBtn)
+    {        
+        m_pReadDelBtn->InvalidateDeviceObjects();
+    }
+    
+    if (m_pSendBtn)
+    {
+        m_pSendBtn->InvalidateDeviceObjects();
+    }    
+        
+    // ÏùΩÍ∏∞ ÎãµÏû•
+    if (m_pReadResponseBtn)
+    {
+        m_pReadResponseBtn->InvalidateDeviceObjects();
+    }
+    // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    if (m_pReadListDelBtn)
+    {
+        m_pReadListDelBtn->InvalidateDeviceObjects();
+    }
+    // ÏùΩÍ∏∞ Îí§Î°ú
+    if (m_pReadBackBtn)
+    {
+        m_pReadBackBtn->InvalidateDeviceObjects();
+    }
 
-	if(m_pAllSendBtn)
-	{
-		m_pAllSendBtn->InvalidateDeviceObjects();		
-	}
+    if (m_pAllSendBtn)
+    {
+        m_pAllSendBtn->InvalidateDeviceObjects();        
+    }
 
-	if(m_pScrollRead)
-	{
-		m_pScrollRead->InvalidateDeviceObjects();
-	}
-	if(m_pFontLetter)
-	{
-		m_pFontLetter->InvalidateDeviceObjects();
-	}
-	/////////////////////////////// ∆Ì¡ˆ ¿–±‚///////////////////////////////////////////
-	if(m_pEditReadReceiveUser)
-	{
-		m_pEditReadReceiveUser->InvalidateDeviceObjects();
-	}
-	if(m_pEditReadTitle)
-	{
-		m_pEditReadTitle->InvalidateDeviceObjects();
-	}
-	if(m_pEditReadInfo)
-	{
-		m_pEditReadInfo->InvalidateDeviceObjects();
-	}
+    if (m_pScrollRead)
+    {
+        m_pScrollRead->InvalidateDeviceObjects();
+    }
+    if (m_pFontLetter)
+    {
+        m_pFontLetter->InvalidateDeviceObjects();
+    }
+    /////////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞///////////////////////////////////////////
+    if (m_pEditReadReceiveUser)
+    {
+        m_pEditReadReceiveUser->InvalidateDeviceObjects();
+    }
+    if (m_pEditReadTitle)
+    {
+        m_pEditReadTitle->InvalidateDeviceObjects();
+    }
+    if (m_pEditReadInfo)
+    {
+        m_pEditReadInfo->InvalidateDeviceObjects();
+    }
 
-	if(m_pScrollReadInfo)
-	{
-		m_pScrollReadInfo->InvalidateDeviceObjects();
-	}
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	if(m_pEditWriteSendUser)
-	{
-		m_pEditWriteSendUser->InvalidateDeviceObjects();
-	}
-	if(m_pEditWriteReceiveUser)
-	{
-		m_pEditWriteReceiveUser->InvalidateDeviceObjects();
-	}
-	if(m_pEditWriteTitle)
-	{
-		m_pEditWriteTitle->InvalidateDeviceObjects();
-	}
-	if(m_pEditWriteInfo)
-	{
-		m_pEditWriteInfo->InvalidateDeviceObjects();
-	}
+    if (m_pScrollReadInfo)
+    {
+        m_pScrollReadInfo->InvalidateDeviceObjects();
+    }
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    if (m_pEditWriteSendUser)
+    {
+        m_pEditWriteSendUser->InvalidateDeviceObjects();
+    }
+    if (m_pEditWriteReceiveUser)
+    {
+        m_pEditWriteReceiveUser->InvalidateDeviceObjects();
+    }
+    if (m_pEditWriteTitle)
+    {
+        m_pEditWriteTitle->InvalidateDeviceObjects();
+    }
+    if (m_pEditWriteInfo)
+    {
+        m_pEditWriteInfo->InvalidateDeviceObjects();
+    }
 
-	if(m_pScrollWrite)
-	{
-		m_pScrollWrite->InvalidateDeviceObjects();
-	}
+    if (m_pScrollWrite)
+    {
+        m_pScrollWrite->InvalidateDeviceObjects();
+    }
 
-	return S_OK;
+    return S_OK;
 }
 
 HRESULT CINFCommunityLetter::DeleteDeviceObjects()
 {
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	if(m_pBack)
-	{
-		m_pBack->DeleteDeviceObjects();
-		util::del(m_pBack);
-	}
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    if (m_pBack)
+    {
+        m_pBack->DeleteDeviceObjects();
+        util::del(m_pBack);
+    }
 #endif
-	int nCnt = 0;
-	for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-	{		
-		if(m_pLetterMode[nCnt])
-		{
-			m_pLetterMode[nCnt]->DeleteDeviceObjects();
-			util::del(m_pLetterMode[nCnt]);
-		}
-	}
-	for(nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
-	{		
-		if(m_pLetterRead[nCnt])
-		{
-			m_pLetterRead[nCnt]->DeleteDeviceObjects();
-			util::del(m_pLetterRead[nCnt]);			
-		}
-	}
-	if(m_pImgSelect)
-	{
-		m_pImgSelect->DeleteDeviceObjects();
-		util::del(m_pImgSelect);
-	}
-	if(m_pLetterReadListBk)
-	{
-		m_pLetterReadListBk->DeleteDeviceObjects();
-		util::del(m_pLetterReadListBk);
-	}
-	if(m_pLetterReadBk)
-	{
-		m_pLetterReadBk->DeleteDeviceObjects();
-		util::del(m_pLetterReadBk);
-	}
-	if(m_pReadBtn)
-	{		
-		m_pReadBtn->DeleteDeviceObjects();
-		util::del(m_pReadBtn);
-	}
-	if(m_pReadDelBtn)
-	{		
-		m_pReadDelBtn->DeleteDeviceObjects();
-		util::del(m_pReadDelBtn);
-	}
-	if(m_pSendBtn)
-	{		
-		m_pSendBtn->DeleteDeviceObjects();
-		util::del(m_pSendBtn);
-	}
+    int nCnt = 0;
+    for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+    {        
+        if (m_pLetterMode[nCnt])
+        {
+            m_pLetterMode[nCnt]->DeleteDeviceObjects();
+            util::del(m_pLetterMode[nCnt]);
+        }
+    }
+    for (nCnt = 0;nCnt < MAX_LETTER_READ;nCnt++)
+    {        
+        if (m_pLetterRead[nCnt])
+        {
+            m_pLetterRead[nCnt]->DeleteDeviceObjects();
+            util::del(m_pLetterRead[nCnt]);            
+        }
+    }
+    if (m_pImgSelect)
+    {
+        m_pImgSelect->DeleteDeviceObjects();
+        util::del(m_pImgSelect);
+    }
+    if (m_pLetterReadListBk)
+    {
+        m_pLetterReadListBk->DeleteDeviceObjects();
+        util::del(m_pLetterReadListBk);
+    }
+    if (m_pLetterReadBk)
+    {
+        m_pLetterReadBk->DeleteDeviceObjects();
+        util::del(m_pLetterReadBk);
+    }
+    if (m_pReadBtn)
+    {        
+        m_pReadBtn->DeleteDeviceObjects();
+        util::del(m_pReadBtn);
+    }
+    if (m_pReadDelBtn)
+    {        
+        m_pReadDelBtn->DeleteDeviceObjects();
+        util::del(m_pReadDelBtn);
+    }
+    if (m_pSendBtn)
+    {        
+        m_pSendBtn->DeleteDeviceObjects();
+        util::del(m_pSendBtn);
+    }
 
-	if(m_pReadResponseBtn)
-	{		
-		m_pReadResponseBtn->DeleteDeviceObjects();
-		util::del(m_pReadResponseBtn);
-	}
+    if (m_pReadResponseBtn)
+    {        
+        m_pReadResponseBtn->DeleteDeviceObjects();
+        util::del(m_pReadResponseBtn);
+    }
 
-	if(m_pReadListDelBtn)
-	{		
-		m_pReadListDelBtn->DeleteDeviceObjects();
-		util::del(m_pReadListDelBtn);
-	}
+    if (m_pReadListDelBtn)
+    {        
+        m_pReadListDelBtn->DeleteDeviceObjects();
+        util::del(m_pReadListDelBtn);
+    }
 
-	if(m_pReadBackBtn)
-	{		
-		m_pReadBackBtn->DeleteDeviceObjects();
-		util::del(m_pReadBackBtn);
-	}
+    if (m_pReadBackBtn)
+    {        
+        m_pReadBackBtn->DeleteDeviceObjects();
+        util::del(m_pReadBackBtn);
+    }
 
-	
-	if(m_pAllSendBtn)
-	{
-		m_pAllSendBtn->DeleteDeviceObjects();
-		util::del(m_pAllSendBtn);		
-	}
-	
-	if(m_pScrollRead)
-	{
-		m_pScrollRead->DeleteDeviceObjects();
-		util::del(m_pScrollRead);
-	}
+    
+    if (m_pAllSendBtn)
+    {
+        m_pAllSendBtn->DeleteDeviceObjects();
+        util::del(m_pAllSendBtn);        
+    }
+    
+    if (m_pScrollRead)
+    {
+        m_pScrollRead->DeleteDeviceObjects();
+        util::del(m_pScrollRead);
+    }
 
-	if(m_pFontLetter)
-	{		
-		m_pFontLetter->DeleteDeviceObjects();
-		util::del(m_pFontLetter);
-	}
-	/////////////////////////////// ∆Ì¡ˆ¿–±‚///////////////////////////////////////////
-	if(m_pEditReadReceiveUser)
-	{
-		m_pEditReadReceiveUser->DeleteDeviceObjects();
-		util::del(m_pEditReadReceiveUser);		
-	}
-	if(m_pEditReadTitle)
-	{
-		m_pEditReadTitle->DeleteDeviceObjects();
-		util::del(m_pEditReadTitle);		
-	}
-	if(m_pEditReadInfo)
-	{
-		m_pEditReadInfo->DeleteDeviceObjects();
-		util::del(m_pEditReadInfo);				
-	}
-	if(m_pScrollReadInfo)
-	{
-		m_pScrollReadInfo->DeleteDeviceObjects();
-		util::del(m_pScrollReadInfo);
-	}
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	if(m_pEditWriteSendUser)
-	{
-		m_pEditWriteSendUser->DeleteDeviceObjects();
-		util::del(m_pEditWriteSendUser);		
-	}
+    if (m_pFontLetter)
+    {        
+        m_pFontLetter->DeleteDeviceObjects();
+        util::del(m_pFontLetter);
+    }
+    /////////////////////////////// Ìé∏ÏßÄÏùΩÍ∏∞///////////////////////////////////////////
+    if (m_pEditReadReceiveUser)
+    {
+        m_pEditReadReceiveUser->DeleteDeviceObjects();
+        util::del(m_pEditReadReceiveUser);        
+    }
+    if (m_pEditReadTitle)
+    {
+        m_pEditReadTitle->DeleteDeviceObjects();
+        util::del(m_pEditReadTitle);        
+    }
+    if (m_pEditReadInfo)
+    {
+        m_pEditReadInfo->DeleteDeviceObjects();
+        util::del(m_pEditReadInfo);                
+    }
+    if (m_pScrollReadInfo)
+    {
+        m_pScrollReadInfo->DeleteDeviceObjects();
+        util::del(m_pScrollReadInfo);
+    }
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    if (m_pEditWriteSendUser)
+    {
+        m_pEditWriteSendUser->DeleteDeviceObjects();
+        util::del(m_pEditWriteSendUser);        
+    }
 
-	if(m_pEditWriteReceiveUser)
-	{
-		m_pEditWriteReceiveUser->DeleteDeviceObjects();
-		util::del(m_pEditWriteReceiveUser);		
-	}
-	if(m_pEditWriteTitle)
-	{
-		m_pEditWriteTitle->DeleteDeviceObjects();
-		util::del(m_pEditWriteTitle);		
-	}
-	if(m_pEditWriteInfo)
-	{
-		m_pEditWriteInfo->DeleteDeviceObjects();
-		util::del(m_pEditWriteInfo);				
-	}
-	if(m_pScrollWrite)
-	{
-		m_pScrollWrite->DeleteDeviceObjects();
-		util::del(m_pScrollWrite);
-	}
-	
-	return S_OK;
+    if (m_pEditWriteReceiveUser)
+    {
+        m_pEditWriteReceiveUser->DeleteDeviceObjects();
+        util::del(m_pEditWriteReceiveUser);        
+    }
+    if (m_pEditWriteTitle)
+    {
+        m_pEditWriteTitle->DeleteDeviceObjects();
+        util::del(m_pEditWriteTitle);        
+    }
+    if (m_pEditWriteInfo)
+    {
+        m_pEditWriteInfo->DeleteDeviceObjects();
+        util::del(m_pEditWriteInfo);                
+    }
+    if (m_pScrollWrite)
+    {
+        m_pScrollWrite->DeleteDeviceObjects();
+        util::del(m_pScrollWrite);
+    }
+    
+    return S_OK;
 }
 
 void CINFCommunityLetter::Tick()
 {
-	switch(m_nLetterMode)
-	{
-	case LETTER_MODE_READ:
-		{			
-		}
-		break;
-	case LETTER_MODE_WRITE:
-		{			
-		}
-		break;		
-	}
+    switch (m_nLetterMode)
+    {
+    case LETTER_MODE_READ:
+        {            
+        }
+        break;
+    case LETTER_MODE_WRITE:
+        {            
+        }
+        break;        
+    }
 
 }
 
 void CINFCommunityLetter::Render(POINT ptPos)
 {
-#ifndef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	m_pBack->Move(ptPos.x, ptPos.y);
-	m_pBack->Render();
+#ifndef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    m_pBack->Move(ptPos.x, ptPos.y);
+    m_pBack->Render();
 #endif
-	// ∆Ì¡ˆ∏µÂ
-	{
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-		m_pLetterMode[m_nLetterMode]->Move(ptPos.x, ptPos.y+LETTER_MODE_POS_Y);
-#else	   
-		m_pLetterMode[m_nLetterMode]->Move(ptPos.x+LETTER_MODE_POS_X, ptPos.y+LETTER_MODE_POS_Y);
+    // Ìé∏ÏßÄÎ™®Îìú
+    {
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+        m_pLetterMode[m_nLetterMode]->Move(ptPos.x, ptPos.y+LETTER_MODE_POS_Y);
+#else       
+        m_pLetterMode[m_nLetterMode]->Move(ptPos.x+LETTER_MODE_POS_X, ptPos.y+LETTER_MODE_POS_Y);
 #endif
-		m_pLetterMode[m_nLetterMode]->Render();
-	}
-	switch(m_nLetterMode)
-	{
-	case LETTER_MODE_READ:
-		{
-			RenderLetterRead(ptPos);			
-		}
-		break;
-	case LETTER_MODE_WRITE:
-		{			
-			RenderLetterWrite(ptPos);
-		}
-		break;		
-	}
+        m_pLetterMode[m_nLetterMode]->Render();
+    }
+    switch (m_nLetterMode)
+    {
+    case LETTER_MODE_READ:
+        {
+            RenderLetterRead(ptPos);            
+        }
+        break;
+    case LETTER_MODE_WRITE:
+        {            
+            RenderLetterWrite(ptPos);
+        }
+        break;        
+    }
 }
 
 void CINFCommunityLetter::RenderLetterRead(POINT ptBkPos)
 {
-	switch(m_nReadLetterMode)
-	{
-	case LETTER_READ_MODE_LIST:
-		{
-			// ∏ÆΩ∫∆Æ πË∞Ê
-			m_pLetterReadListBk->Move(ptBkPos.x+LETTER_READ_LIST_BK_X, ptBkPos.y+LETTER_READ_LIST_BK_Y);
-			m_pLetterReadListBk->Render();
+    switch (m_nReadLetterMode)
+    {
+    case LETTER_READ_MODE_LIST:
+        {
+            // Î¶¨Ïä§Ìä∏ Î∞∞Í≤Ω
+            m_pLetterReadListBk->Move(ptBkPos.x+LETTER_READ_LIST_BK_X, ptBkPos.y+LETTER_READ_LIST_BK_Y);
+            m_pLetterReadListBk->Render();
 
-			// πˆ∆∞
-			m_pReadBtn->Render();	
-			m_pReadDelBtn->Render();
+            // Î≤ÑÌäº
+            m_pReadBtn->Render();    
+            m_pReadDelBtn->Render();
 
-			// Ω∫≈©∑—
-			m_pScrollRead->Render();
+            // Ïä§ÌÅ¨Î°§
+            m_pScrollRead->Render();
 
-			RenderReadLetter(ptBkPos);
-		}
-		break;
-	case LETTER_READ_MODE_INFO:
-		{
-			/////////////////////////////// ∆Ì¡ˆ ///////////////////////////////////////////
-			// ∆Ì¡ˆ ¿–±‚ πË∞Ê
-			m_pLetterReadBk->Move(ptBkPos.x+LETTER_READ_INFO_BK_X, ptBkPos.y+LETTER_READ_INFO_BK_Y);
-			m_pLetterReadBk->Render();
+            RenderReadLetter(ptBkPos);
+        }
+        break;
+    case LETTER_READ_MODE_INFO:
+        {
+            /////////////////////////////// Ìé∏ÏßÄ ///////////////////////////////////////////
+            // Ìé∏ÏßÄ ÏùΩÍ∏∞ Î∞∞Í≤Ω
+            m_pLetterReadBk->Move(ptBkPos.x+LETTER_READ_INFO_BK_X, ptBkPos.y+LETTER_READ_INFO_BK_Y);
+            m_pLetterReadBk->Render();
 
-			// πﬁ¥¬ ªÁ∂˜
-			m_pEditReadReceiveUser->Tick();
-			m_pEditReadReceiveUser->Render();
-			// ¡¶∏Ò
-			m_pEditReadTitle->Tick();
-			m_pEditReadTitle->Render();
-			// ≥ªøÎ
-			m_pEditReadInfo->Tick();
-			m_pEditReadInfo->Render(m_pScrollReadInfo->GetScrollStep(), LETTER_INFO_READ_MAX_SCROLL_LINE);
-			
-			m_pScrollReadInfo->Render();
+            // Î∞õÎäî ÏÇ¨Îûå
+            m_pEditReadReceiveUser->Tick();
+            m_pEditReadReceiveUser->Render();
+            // Ï†úÎ™©
+            m_pEditReadTitle->Tick();
+            m_pEditReadTitle->Render();
+            // ÎÇ¥Ïö©
+            m_pEditReadInfo->Tick();
+            m_pEditReadInfo->Render(m_pScrollReadInfo->GetScrollStep(), LETTER_INFO_READ_MAX_SCROLL_LINE);
+            
+            m_pScrollReadInfo->Render();
 
-			m_pReadResponseBtn->Render();			// ¿–±‚ ¥‰¿Â
-			m_pReadListDelBtn->Render();			// ¿–±‚ ªË¡¶
-			m_pReadBackBtn->Render();				// ¿–±‚ µ⁄∑Œ
-		}
-		break;
-	}	
+            m_pReadResponseBtn->Render();            // ÏùΩÍ∏∞ ÎãµÏû•
+            m_pReadListDelBtn->Render();            // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+            m_pReadBackBtn->Render();                // ÏùΩÍ∏∞ Îí§Î°ú
+        }
+        break;
+    }    
 }
 
 void CINFCommunityLetter::RenderLetterWrite(POINT ptBkPos)
 {
-	m_pSendBtn->Render();			// ∫∏≥ª±‚
-	const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();		
-	// ¡ˆµµ¿⁄ π◊ ∫Œ¡ˆµµ¿⁄ »§¿∫ ∞¸∏Æ¿⁄¥¬ √§∆√ ±›¡ˆø°º≠ ¡¶ø‹µ»¥Ÿ.
-	if(COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_LEADER)
-		||COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_1)
-		||COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_2)
-		|| COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
-	{
-	m_pAllSendBtn->Render();		// ¿¸√º πﬂº€
-	}
+    m_pSendBtn->Render();            // Î≥¥ÎÇ¥Í∏∞
+    const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();        
+    // ÏßÄÎèÑÏûê Î∞è Î∂ÄÏßÄÎèÑÏûê ÌòπÏùÄ Í¥ÄÎ¶¨ÏûêÎäî Ï±ÑÌåÖ Í∏àÏßÄÏóêÏÑú Ï†úÏô∏ÎêúÎã§.
+    if (COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_LEADER)
+        ||COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_1)
+        ||COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_2)
+        || COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
+    {
+    m_pAllSendBtn->Render();        // Ï†ÑÏ≤¥ Î∞úÏÜ°
+    }
 
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	m_pEditWriteSendUser->Tick();
-	m_pEditWriteSendUser->Render();
-	// πﬁ¥¬ ªÁ∂˜
-	m_pEditWriteReceiveUser->Tick();
-	m_pEditWriteReceiveUser->Render();
-	// ¡¶∏Ò
-	m_pEditWriteTitle->Tick();
-	m_pEditWriteTitle->Render();
-	// ≥ªøÎ
-	m_pEditWriteInfo->Tick();
-	m_pEditWriteInfo->Render(m_pScrollWrite->GetScrollStep(), LETTER_INFO_MAX_SCROLL_LINE);
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    m_pEditWriteSendUser->Tick();
+    m_pEditWriteSendUser->Render();
+    // Î∞õÎäî ÏÇ¨Îûå
+    m_pEditWriteReceiveUser->Tick();
+    m_pEditWriteReceiveUser->Render();
+    // Ï†úÎ™©
+    m_pEditWriteTitle->Tick();
+    m_pEditWriteTitle->Render();
+    // ÎÇ¥Ïö©
+    m_pEditWriteInfo->Tick();
+    m_pEditWriteInfo->Render(m_pScrollWrite->GetScrollStep(), LETTER_INFO_MAX_SCROLL_LINE);
 
-	m_pScrollWrite->Render();
+    m_pScrollWrite->Render();
 }
 
 int CINFCommunityLetter::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	switch(m_nLetterMode)
-	{
-	case LETTER_MODE_READ:
-		{
-			if(INF_MSGPROC_BREAK == WndProcLetterRead(uMsg, wParam, lParam))
-			{
-				return INF_MSGPROC_BREAK;
-			}
-		}
-		break;
-	case LETTER_MODE_WRITE:
-		{
-			if(INF_MSGPROC_BREAK == WndProcLetterWrite(uMsg, wParam, lParam))
-			{
-				return INF_MSGPROC_BREAK;
-			}
-		}
-		break;		
-	}
+    switch (m_nLetterMode)
+    {
+    case LETTER_MODE_READ:
+        {
+            if (INF_MSGPROC_BREAK == WndProcLetterRead(uMsg, wParam, lParam))
+            {
+                return INF_MSGPROC_BREAK;
+            }
+        }
+        break;
+    case LETTER_MODE_WRITE:
+        {
+            if (INF_MSGPROC_BREAK == WndProcLetterWrite(uMsg, wParam, lParam))
+            {
+                return INF_MSGPROC_BREAK;
+            }
+        }
+        break;        
+    }
 
-	switch(uMsg)
-	{
-	case WM_LBUTTONDOWN:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
-			if(INF_MSGPROC_BREAK == OnLButtonDown(pt))
-			{
-				return INF_MSGPROC_BREAK;
-			}
-		}
-		break;
-	}
-	
+    switch (uMsg)
+    {
+    case WM_LBUTTONDOWN:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
+            if (INF_MSGPROC_BREAK == OnLButtonDown(pt))
+            {
+                return INF_MSGPROC_BREAK;
+            }
+        }
+        break;
+    }
+    
 
-	return INF_MSGPROC_NORMAL;	
+    return INF_MSGPROC_NORMAL;    
 
 }
 
@@ -1290,1614 +1291,1614 @@ int CINFCommunityLetter::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 int CINFCommunityLetter::OnLButtonDown(POINT pt)
 {
-	// πË∞Ê 
-	POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
-	int nCnt = 0;
+    // Î∞∞Í≤Ω 
+    POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    int nCnt = 0;
 
-	// ≈«≈¨∏Ø 
-	{
-		int nStartTabX = ptBkPos.x + LETTER_MODE_POS_X;
-		int nStartTabY = ptBkPos.y + LETTER_MODE_POS_Y;
-		int	nWidth = LETTER_MODE_WIDTH;
-		int nHeight = LETTER_MODE_HEIGHT;
-		
-		for(nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
-		{
-			nStartTabX = ptBkPos.x + LETTER_MODE_POS_X + (nWidth*nCnt);
-			if((pt.y >= nStartTabY )
-				&&(pt.y <= (nStartTabY + nHeight))
-				&&(pt.x >= nStartTabX)
-				&&(pt.x <= nStartTabX+nWidth))
-				
-			{
-				ChangeLetterMode(nCnt, 0, NULL, FALSE, 0);				
-				return INF_MSGPROC_BREAK;
-			}
-		}
-	}
-	
+    // ÌÉ≠ÌÅ¥Î¶≠ 
+    {
+        int nStartTabX = ptBkPos.x + LETTER_MODE_POS_X;
+        int nStartTabY = ptBkPos.y + LETTER_MODE_POS_Y;
+        int    nWidth = LETTER_MODE_WIDTH;
+        int nHeight = LETTER_MODE_HEIGHT;
+        
+        for (nCnt = 0;nCnt < MAX_LETTER_MODE;nCnt++)
+        {
+            nStartTabX = ptBkPos.x + LETTER_MODE_POS_X + (nWidth*nCnt);
+            if ((pt.y >= nStartTabY )
+                &&(pt.y <= (nStartTabY + nHeight))
+                &&(pt.x >= nStartTabX)
+                &&(pt.x <= nStartTabX+nWidth))
+                
+            {
+                ChangeLetterMode(nCnt, 0, NULL, FALSE, 0);                
+                return INF_MSGPROC_BREAK;
+            }
+        }
+    }
+    
 
-	// πË∞Ê ≥°	
-	if((pt.y >= ptBkPos.y )
-				&&(pt.y <= (ptBkPos.y + 404))
-				&&(pt.x >= ptBkPos.x)
-				&&(pt.x <= (ptBkPos.x+518)))
-	{
-		return INF_MSGPROC_BREAK;
-	}
+    // Î∞∞Í≤Ω ÎÅù    
+    if ((pt.y >= ptBkPos.y )
+                &&(pt.y <= (ptBkPos.y + 404))
+                &&(pt.x >= ptBkPos.x)
+                &&(pt.x <= (ptBkPos.x+518)))
+    {
+        return INF_MSGPROC_BREAK;
+    }
 
 
-	return INF_MSGPROC_NORMAL;
+    return INF_MSGPROC_NORMAL;
 }
 
 void CINFCommunityLetter::ChangeLetterMode(int nLetterMode, int nSubLetterMode, char* pUser, 
-											BOOL bAllMail, UID64_t uReadLetterUID)
+                                            BOOL bAllMail, UID64_t uReadLetterUID)
 {
-	m_nLetterMode = nLetterMode;
-	InitLetterMode();
-	switch(m_nLetterMode)
-	{
-	case LETTER_MODE_READ:
-		{
-			m_nReadLetterMode = nSubLetterMode;
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					RqLetterTitle(FALSE);					
-				}
-				break;			
-			case LETTER_READ_MODE_INFO:
-				{
-					m_uReadLetterUID = uReadLetterUID;	
-					m_bAllMail = bAllMail;
-					RqLetterRead(bAllMail, m_uReadLetterUID);
-				}
-				break;	
-			}
-		}
-		break;
-	case LETTER_MODE_WRITE:
-		{
-			if(pUser)
-			{
-				m_pEditWriteReceiveUser->SetString(pUser, strlen(pUser)+1);
-				m_pEditWriteReceiveUser->BackupTxtString();	// Ω∫∆Æ∏µ¿ª ª™æ˜πﬁ¥¬¥Ÿ.
+    m_nLetterMode = nLetterMode;
+    InitLetterMode();
+    switch (m_nLetterMode)
+    {
+    case LETTER_MODE_READ:
+        {
+            m_nReadLetterMode = nSubLetterMode;
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    RqLetterTitle(FALSE);                    
+                }
+                break;            
+            case LETTER_READ_MODE_INFO:
+                {
+                    m_uReadLetterUID = uReadLetterUID;    
+                    m_bAllMail = bAllMail;
+                    RqLetterRead(bAllMail, m_uReadLetterUID);
+                }
+                break;    
+            }
+        }
+        break;
+    case LETTER_MODE_WRITE:
+        {
+            if (pUser)
+            {
+                m_pEditWriteReceiveUser->SetString(pUser, strlen(pUser)+1);
+                m_pEditWriteReceiveUser->BackupTxtString();    // Ïä§Ìä∏ÎßÅÏùÑ ÎπΩÏóÖÎ∞õÎäîÎã§.
 
-				OnClickWriteEditBox(LETTER_WRITE_USER_EDIT, m_pEditWriteReceiveUser);// ¿Ø¿˙¡§∫∏ ø°µ∆Æ Enable
-			}
-		}
-		break;
-	}	
+                OnClickWriteEditBox(LETTER_WRITE_USER_EDIT, m_pEditWriteReceiveUser);// Ïú†Ï†ÄÏ†ïÎ≥¥ ÏóêÎîîÌä∏ Enable
+            }
+        }
+        break;
+    }    
 }
 
 void CINFCommunityLetter::InitLetterMode()
 {
-	m_pEditWriteReceiveUser->EnableEdit(FALSE, FALSE);		// πﬁ¥¬ ¿Ø¿˙
-	m_pEditWriteTitle->EnableEdit(FALSE, FALSE);			// ¡¶∏Ò
-	m_pEditWriteInfo->EnableEdit(FALSE, FALSE);			// ≥ªøÎ
+    m_pEditWriteReceiveUser->EnableEdit(FALSE, FALSE);        // Î∞õÎäî Ïú†Ï†Ä
+    m_pEditWriteTitle->EnableEdit(FALSE, FALSE);            // Ï†úÎ™©
+    m_pEditWriteInfo->EnableEdit(FALSE, FALSE);            // ÎÇ¥Ïö©
 }
 
 int CINFCommunityLetter::WndProcLetterRead(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	switch(uMsg)
-	{
-	case WM_LBUTTONDOWN:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					if(INF_MSGPROC_BREAK == OnLButtonDown_ReadList(pt))
-					{
-						return INF_MSGPROC_BREAK;
-					}					
-				}
-				break;
-			case LETTER_READ_MODE_INFO:
-				{		
-					{
-						if(TRUE == m_pReadResponseBtn->OnLButtonDown(pt))
-						{
-							// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-							return  INF_MSGPROC_BREAK;
-						}		
-					}
-					{
-						if(TRUE == m_pReadListDelBtn->OnLButtonDown(pt))
-						{
-							// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-							return  INF_MSGPROC_BREAK;
-						}		
-					}
-					{
-						if(TRUE == m_pReadBackBtn->OnLButtonDown(pt))
-						{
-							// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-							return  INF_MSGPROC_BREAK;
-						}		
-					}
-					{
-						// 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-// 						BOOL bClick = m_pScrollWrite->IsMouseBallPos(pt);
-// 						if(bClick)
-// 						{
-// 							m_pScrollWrite->SetMouseMoveMode(TRUE);
-						BOOL bClick = m_pScrollReadInfo->IsMouseBallPos(pt);
-						
-						if(bClick)
-						{
-							m_pScrollReadInfo->SetMouseMoveMode(TRUE);
-						//end 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-							return INF_MSGPROC_BREAK;
-						}
-					}
+    switch (uMsg)
+    {
+    case WM_LBUTTONDOWN:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    if (INF_MSGPROC_BREAK == OnLButtonDown_ReadList(pt))
+                    {
+                        return INF_MSGPROC_BREAK;
+                    }                    
+                }
+                break;
+            case LETTER_READ_MODE_INFO:
+                {        
+                    {
+                        if (TRUE == m_pReadResponseBtn->OnLButtonDown(pt))
+                        {
+                            // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                            return  INF_MSGPROC_BREAK;
+                        }        
+                    }
+                    {
+                        if (TRUE == m_pReadListDelBtn->OnLButtonDown(pt))
+                        {
+                            // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                            return  INF_MSGPROC_BREAK;
+                        }        
+                    }
+                    {
+                        if (TRUE == m_pReadBackBtn->OnLButtonDown(pt))
+                        {
+                            // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                            return  INF_MSGPROC_BREAK;
+                        }        
+                    }
+                    {
+                        // 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+//                         BOOL bClick = m_pScrollWrite->IsMouseBallPos(pt);
+//                         if (bClick)
+//                         {
+//                             m_pScrollWrite->SetMouseMoveMode(TRUE);
+                        BOOL bClick = m_pScrollReadInfo->IsMouseBallPos(pt);
+                        
+                        if (bClick)
+                        {
+                            m_pScrollReadInfo->SetMouseMoveMode(TRUE);
+                        //end 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+                            return INF_MSGPROC_BREAK;
+                        }
+                    }
 
-				}
-				break;
-			}
-			
-		}
-		break;
-	case WM_MOUSEMOVE:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+                }
+                break;
+            }
+            
+        }
+        break;
+    case WM_MOUSEMOVE:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					m_pReadBtn->OnMouseMove(pt);
-					m_pReadDelBtn->OnMouseMove(pt);
-					{
-						if(m_pScrollRead->GetMouseMoveMode())
-						{
-							if(FALSE == m_pScrollRead->IsMouseScrollPos(pt))
-							{
-								m_pScrollRead->SetMouseMoveMode(FALSE);
-							}
-							else
-							{
-								m_pScrollRead->SetScrollPos(pt);
-								return INF_MSGPROC_BREAK;
-							}
-						}
-					}
-				}
-				break;
-			case LETTER_READ_MODE_INFO:
-				{
-					m_pReadResponseBtn->OnMouseMove(pt);
-					m_pReadListDelBtn->OnMouseMove(pt);
-					m_pReadBackBtn->OnMouseMove(pt);
-					{
-						// 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-// 						if(m_pScrollWrite->GetMouseMoveMode())
-// 						{
-// 							if(FALSE == m_pScrollWrite->IsMouseScrollPos(pt))
-// 							{
-// 								m_pScrollWrite->SetMouseMoveMode(FALSE);
-// 							}
-// 							else
-// 							{
-// 								m_pScrollWrite->SetScrollPos(pt);
-// 								return INF_MSGPROC_BREAK;
-// 							}
-// 						}
-						if(m_pScrollReadInfo->GetMouseMoveMode())
-						{
-							if(FALSE == m_pScrollReadInfo->IsMouseScrollPos(pt))
-							{
-								m_pScrollReadInfo->SetMouseMoveMode(FALSE);
-							}
-							else
-							{
-								m_pScrollReadInfo->SetScrollPos(pt);
-								return INF_MSGPROC_BREAK;
-							}
-						}
-						//end 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-					}
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    m_pReadBtn->OnMouseMove(pt);
+                    m_pReadDelBtn->OnMouseMove(pt);
+                    {
+                        if (m_pScrollRead->GetMouseMoveMode())
+                        {
+                            if (FALSE == m_pScrollRead->IsMouseScrollPos(pt))
+                            {
+                                m_pScrollRead->SetMouseMoveMode(FALSE);
+                            }
+                            else
+                            {
+                                m_pScrollRead->SetScrollPos(pt);
+                                return INF_MSGPROC_BREAK;
+                            }
+                        }
+                    }
+                }
+                break;
+            case LETTER_READ_MODE_INFO:
+                {
+                    m_pReadResponseBtn->OnMouseMove(pt);
+                    m_pReadListDelBtn->OnMouseMove(pt);
+                    m_pReadBackBtn->OnMouseMove(pt);
+                    {
+                        // 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+//                         if (m_pScrollWrite->GetMouseMoveMode())
+//                         {
+//                             if (FALSE == m_pScrollWrite->IsMouseScrollPos(pt))
+//                             {
+//                                 m_pScrollWrite->SetMouseMoveMode(FALSE);
+//                             }
+//                             else
+//                             {
+//                                 m_pScrollWrite->SetScrollPos(pt);
+//                                 return INF_MSGPROC_BREAK;
+//                             }
+//                         }
+                        if (m_pScrollReadInfo->GetMouseMoveMode())
+                        {
+                            if (FALSE == m_pScrollReadInfo->IsMouseScrollPos(pt))
+                            {
+                                m_pScrollReadInfo->SetMouseMoveMode(FALSE);
+                            }
+                            else
+                            {
+                                m_pScrollReadInfo->SetScrollPos(pt);
+                                return INF_MSGPROC_BREAK;
+                            }
+                        }
+                        //end 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+                    }
 
-				}
-				break;
-			}
-			
-		}
-		break;
-	case WM_LBUTTONUP:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+                }
+                break;
+            }
+            
+        }
+        break;
+    case WM_LBUTTONUP:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					if(INF_MSGPROC_BREAK == OnLButtonUp_Read(pt))
-					{
-						return INF_MSGPROC_BREAK;
-					}					
-				}
-				break;
-			case LETTER_READ_MODE_INFO:
-				{
-					{
-						if(TRUE == m_pReadResponseBtn->OnLButtonUp(pt))
-						{	
-							char chUser[SIZE_MAX_ARENA_FULL_NAME];
-							memset(chUser, 0x00, SIZE_MAX_ARENA_FULL_NAME);
-							
-							m_pEditReadReceiveUser->GetString(chUser, SIZE_MAX_ARENA_FULL_NAME);
-							ChangeLetterMode(LETTER_MODE_WRITE, 0, chUser, FALSE, 0);
-							
-							
-							g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-							return  INF_MSGPROC_BREAK;
-						}
-					}
-					{
-						if(TRUE == m_pReadListDelBtn->OnLButtonUp(pt))
-						{				
-							RqDelReadLetter(m_bAllMail, m_uReadLetterUID);
-							//ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
-							g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-							return  INF_MSGPROC_BREAK;
-						}
-					}
-					{
-						if(TRUE == m_pReadBackBtn->OnLButtonUp(pt))
-						{				
-							ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
-							g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-							return  INF_MSGPROC_BREAK;
-						}
-					}
-					// Ω∫≈©∑—
-					{
-						// 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-// 						BOOL bClick = m_pScrollWrite->GetMouseMoveMode();
-// 						if(bClick)
-// 						{
-// 							m_pScrollWrite->SetMouseMoveMode(FALSE);
-// 							return INF_MSGPROC_BREAK;
-// 						}
-						BOOL bClick = m_pScrollReadInfo->GetMouseMoveMode();
-						if(bClick)
-						{
-							m_pScrollReadInfo->SetMouseMoveMode(FALSE);
-							return INF_MSGPROC_BREAK;
-						}				
-						//end 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-					}
-				}
-				break;
-			}
-		}
-		break;
-	case WM_MOUSEWHEEL:
-		{
-			POINT pt;
-			GetCursorPos(&pt);
-			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
-			CheckMouseReverse(&pt);
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					BOOL bClick = m_pScrollRead->IsMouseWhellPos(pt);
-					if(bClick)		
-					{			
-						m_pScrollRead->OnMouseWheel(wParam, lParam);	
-						return INF_MSGPROC_BREAK;
-					}
-					
-				}
-				break;
-			case LETTER_READ_MODE_INFO:
-				{
-					// 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-// 					BOOL bClick = m_pScrollWrite->IsMouseWhellPos(pt);
-// 					if(bClick)		
-// 					{			
-// 						m_pScrollWrite->OnMouseWheel(wParam, lParam);	
-// 						return INF_MSGPROC_BREAK;
-// 					}
-					BOOL bClick = m_pScrollReadInfo->IsMouseWhellPos(pt);
-					if(bClick)		
-					{			
-						m_pScrollReadInfo->OnMouseWheel(wParam, lParam);	
-						return INF_MSGPROC_BREAK;
-					}
-					//end 2010. 02. 11 by jskim πﬁ¿∫ ∆Ì¡ˆ ¿–¿ª ∂ß Ω∫≈©∑— æ»µ«¥¬ πˆ±◊ ºˆ¡§
-				}
-				break;
-			}			
-		}
-		break;	
-	case WM_LBUTTONDBLCLK:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    if (INF_MSGPROC_BREAK == OnLButtonUp_Read(pt))
+                    {
+                        return INF_MSGPROC_BREAK;
+                    }                    
+                }
+                break;
+            case LETTER_READ_MODE_INFO:
+                {
+                    {
+                        if (TRUE == m_pReadResponseBtn->OnLButtonUp(pt))
+                        {    
+                            char chUser[SIZE_MAX_ARENA_FULL_NAME];
+                            memset(chUser, 0x00, SIZE_MAX_ARENA_FULL_NAME);
+                            
+                            m_pEditReadReceiveUser->GetString(chUser, SIZE_MAX_ARENA_FULL_NAME);
+                            ChangeLetterMode(LETTER_MODE_WRITE, 0, chUser, FALSE, 0);
+                            
+                            
+                            g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                            return  INF_MSGPROC_BREAK;
+                        }
+                    }
+                    {
+                        if (TRUE == m_pReadListDelBtn->OnLButtonUp(pt))
+                        {                
+                            RqDelReadLetter(m_bAllMail, m_uReadLetterUID);
+                            //ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
+                            g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                            return  INF_MSGPROC_BREAK;
+                        }
+                    }
+                    {
+                        if (TRUE == m_pReadBackBtn->OnLButtonUp(pt))
+                        {                
+                            ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
+                            g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                            return  INF_MSGPROC_BREAK;
+                        }
+                    }
+                    // Ïä§ÌÅ¨Î°§
+                    {
+                        // 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+//                         BOOL bClick = m_pScrollWrite->GetMouseMoveMode();
+//                         if (bClick)
+//                         {
+//                             m_pScrollWrite->SetMouseMoveMode(FALSE);
+//                             return INF_MSGPROC_BREAK;
+//                         }
+                        BOOL bClick = m_pScrollReadInfo->GetMouseMoveMode();
+                        if (bClick)
+                        {
+                            m_pScrollReadInfo->SetMouseMoveMode(FALSE);
+                            return INF_MSGPROC_BREAK;
+                        }                
+                        //end 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+                    }
+                }
+                break;
+            }
+        }
+        break;
+    case WM_MOUSEWHEEL:
+        {
+            POINT pt;
+            GetCursorPos(&pt);
+            ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+            CheckMouseReverse(&pt);
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    BOOL bClick = m_pScrollRead->IsMouseWhellPos(pt);
+                    if (bClick)        
+                    {            
+                        m_pScrollRead->OnMouseWheel(wParam, lParam);    
+                        return INF_MSGPROC_BREAK;
+                    }
+                    
+                }
+                break;
+            case LETTER_READ_MODE_INFO:
+                {
+                    // 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+//                     BOOL bClick = m_pScrollWrite->IsMouseWhellPos(pt);
+//                     if (bClick)        
+//                     {            
+//                         m_pScrollWrite->OnMouseWheel(wParam, lParam);    
+//                         return INF_MSGPROC_BREAK;
+//                     }
+                    BOOL bClick = m_pScrollReadInfo->IsMouseWhellPos(pt);
+                    if (bClick)        
+                    {            
+                        m_pScrollReadInfo->OnMouseWheel(wParam, lParam);    
+                        return INF_MSGPROC_BREAK;
+                    }
+                    //end 2010. 02. 11 by jskim Î∞õÏùÄ Ìé∏ÏßÄ ÏùΩÏùÑ Îïå Ïä§ÌÅ¨Î°§ ÏïàÎêòÎäî Î≤ÑÍ∑∏ ÏàòÏ†ï
+                }
+                break;
+            }            
+        }
+        break;    
+    case WM_LBUTTONDBLCLK:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			switch(m_nReadLetterMode)
-			{
-			case LETTER_READ_MODE_LIST:
-				{
-					int nSelReadLetterPos = GetReadLetterCurselPos(pt);		
-					
-					if(nSelReadLetterPos>=0)
-					{				
-						if(m_nSelReadLetterPos == nSelReadLetterPos)
-						{
-							OnClickReadLetter(nSelReadLetterPos);
-							return INF_MSGPROC_BREAK;
-						}
-					}
-				}
-				break;
-			}
-					
-		}
-		break;
-	}
-	return INF_MSGPROC_NORMAL;	
+            switch (m_nReadLetterMode)
+            {
+            case LETTER_READ_MODE_LIST:
+                {
+                    int nSelReadLetterPos = GetReadLetterCurselPos(pt);        
+                    
+                    if (nSelReadLetterPos>=0)
+                    {                
+                        if (m_nSelReadLetterPos == nSelReadLetterPos)
+                        {
+                            OnClickReadLetter(nSelReadLetterPos);
+                            return INF_MSGPROC_BREAK;
+                        }
+                    }
+                }
+                break;
+            }
+                    
+        }
+        break;
+    }
+    return INF_MSGPROC_NORMAL;    
 }
 
 int CINFCommunityLetter::OnLButtonDown_ReadList(POINT pt)
 {
-	int nCnt = 0;
-	
-	{
-		if(TRUE == m_pReadBtn->OnLButtonDown(pt))
-		{
-			// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-			return  INF_MSGPROC_BREAK;
-		}		
-	}
-	
-	{
-		if(TRUE == m_pReadDelBtn->OnLButtonDown(pt))
-		{
-			// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-			return  INF_MSGPROC_BREAK;
-		}		
-	}
-	{
-		BOOL bClick = m_pScrollRead->IsMouseBallPos(pt);
-		if(bClick)
-		{
-			m_pScrollRead->SetMouseMoveMode(TRUE);
-			return INF_MSGPROC_BREAK;
-		}
-	}	
-	
-	m_nSelReadLetterPos = GetReadLetterCurselPos(pt);
-	return INF_MSGPROC_NORMAL;
+    int nCnt = 0;
+    
+    {
+        if (TRUE == m_pReadBtn->OnLButtonDown(pt))
+        {
+            // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+            return  INF_MSGPROC_BREAK;
+        }        
+    }
+    
+    {
+        if (TRUE == m_pReadDelBtn->OnLButtonDown(pt))
+        {
+            // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+            return  INF_MSGPROC_BREAK;
+        }        
+    }
+    {
+        BOOL bClick = m_pScrollRead->IsMouseBallPos(pt);
+        if (bClick)
+        {
+            m_pScrollRead->SetMouseMoveMode(TRUE);
+            return INF_MSGPROC_BREAK;
+        }
+    }    
+    
+    m_nSelReadLetterPos = GetReadLetterCurselPos(pt);
+    return INF_MSGPROC_NORMAL;
 }
 
 int CINFCommunityLetter::OnLButtonDown_ReadInfo(POINT pt)
 {
-	return INF_MSGPROC_NORMAL;
+    return INF_MSGPROC_NORMAL;
 }
 
 
 int CINFCommunityLetter::OnLButtonUp_Read(POINT pt)
 {
-	{
-		if(TRUE == m_pReadBtn->OnLButtonUp(pt))
-		{				
-			if(m_nSelReadLetterPos >= 0)
-			{
-				OnClickReadLetter(m_nSelReadLetterPos);
-				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-				return  INF_MSGPROC_BREAK;
-			}
-			
-		}
-	}
-	
-	{
-		if(TRUE == m_pReadDelBtn->OnLButtonUp(pt))
-		{	
-			if(m_nSelReadLetterPos >= 0 && m_nSelReadLetterPos < (int)m_vecReadLetter.size())
-			{
-				structReadLetterItemInfo sMsg= m_vecReadLetter[m_nSelReadLetterPos];
-				RqDelReadLetter(sMsg.bAllMail, sMsg.LetterUID);
-				
-				g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-				return  INF_MSGPROC_BREAK;
-			}			
-		}
-	}
-	{
-		BOOL bClick = m_pScrollRead->GetMouseMoveMode();
-		if(bClick)
-		{
-			m_pScrollRead->SetMouseMoveMode(FALSE);
-			return INF_MSGPROC_BREAK;
-		}				
-	}
-	return INF_MSGPROC_NORMAL;	
+    {
+        if (TRUE == m_pReadBtn->OnLButtonUp(pt))
+        {                
+            if (m_nSelReadLetterPos >= 0)
+            {
+                OnClickReadLetter(m_nSelReadLetterPos);
+                g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                return  INF_MSGPROC_BREAK;
+            }
+            
+        }
+    }
+    
+    {
+        if (TRUE == m_pReadDelBtn->OnLButtonUp(pt))
+        {    
+            if (m_nSelReadLetterPos >= 0 && m_nSelReadLetterPos < (int)m_vecReadLetter.size())
+            {
+                structReadLetterItemInfo sMsg= m_vecReadLetter[m_nSelReadLetterPos];
+                RqDelReadLetter(sMsg.bAllMail, sMsg.LetterUID);
+                
+                g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                return  INF_MSGPROC_BREAK;
+            }            
+        }
+    }
+    {
+        BOOL bClick = m_pScrollRead->GetMouseMoveMode();
+        if (bClick)
+        {
+            m_pScrollRead->SetMouseMoveMode(FALSE);
+            return INF_MSGPROC_BREAK;
+        }                
+    }
+    return INF_MSGPROC_NORMAL;    
 }
 
 int CINFCommunityLetter::WndProcLetterWrite(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	switch(uMsg)
-	{
-	case WM_MOUSEMOVE:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+    switch (uMsg)
+    {
+    case WM_MOUSEMOVE:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			// ∫∏≥ª±‚
-			m_pSendBtn->OnMouseMove(pt);
-			m_pAllSendBtn->OnMouseMove(pt);
+            // Î≥¥ÎÇ¥Í∏∞
+            m_pSendBtn->OnMouseMove(pt);
+            m_pAllSendBtn->OnMouseMove(pt);
 
-			if(m_pScrollWrite->GetMouseMoveMode())
-			{
-				if(FALSE == m_pScrollWrite->IsMouseScrollPos(pt))
-				{
-					m_pScrollWrite->SetMouseMoveMode(FALSE);
-				}
-				else
-				{
-					m_pScrollWrite->SetScrollPos(pt);
-					return INF_MSGPROC_BREAK;
-				}
-			}
-		}
-		break;
-	case WM_MOUSEWHEEL:
-		{
-			POINT pt;
-			GetCursorPos(&pt);
-			ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
-			CheckMouseReverse(&pt);
-			BOOL bClick = m_pScrollWrite->IsMouseWhellPos(pt);
-			if(bClick)		
-			{			
-				m_pScrollWrite->OnMouseWheel(wParam, lParam);	
-				return INF_MSGPROC_BREAK;
-			}
-		}
-		break;
-	case WM_LBUTTONUP:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+            if (m_pScrollWrite->GetMouseMoveMode())
+            {
+                if (FALSE == m_pScrollWrite->IsMouseScrollPos(pt))
+                {
+                    m_pScrollWrite->SetMouseMoveMode(FALSE);
+                }
+                else
+                {
+                    m_pScrollWrite->SetScrollPos(pt);
+                    return INF_MSGPROC_BREAK;
+                }
+            }
+        }
+        break;
+    case WM_MOUSEWHEEL:
+        {
+            POINT pt;
+            GetCursorPos(&pt);
+            ScreenToClient(g_pD3dApp->GetHwnd(), &pt);
+            CheckMouseReverse(&pt);
+            BOOL bClick = m_pScrollWrite->IsMouseWhellPos(pt);
+            if (bClick)        
+            {            
+                m_pScrollWrite->OnMouseWheel(wParam, lParam);    
+                return INF_MSGPROC_BREAK;
+            }
+        }
+        break;
+    case WM_LBUTTONUP:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			BOOL bClick = m_pScrollWrite->GetMouseMoveMode();
-			if(bClick)
-			{
-				m_pScrollWrite->SetMouseMoveMode(FALSE);
-				return INF_MSGPROC_BREAK;
-			}
+            BOOL bClick = m_pScrollWrite->GetMouseMoveMode();
+            if (bClick)
+            {
+                m_pScrollWrite->SetMouseMoveMode(FALSE);
+                return INF_MSGPROC_BREAK;
+            }
 
-			{
-				// ∆Ì¡ˆ ∫∏≥ª±‚
-				if(TRUE == m_pSendBtn->OnLButtonUp(pt))
-				{					
-					// ∆Ì¡ˆ ∫∏≥ª±‚ ≈¨∏Ø
-					OnClickLetterSend(FALSE);
-					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-					return  INF_MSGPROC_BREAK;
-				}
-			}
-			
-			{
-				// ∆Ì¡ˆ ∫∏≥ª±‚
-				if(TRUE == m_pAllSendBtn->OnLButtonUp(pt))
-				{					
-					// ∆Ì¡ˆ ∫∏≥ª±‚ ≈¨∏Ø
-					OnClickLetterSend(TRUE);
-					g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);			
-					return  INF_MSGPROC_BREAK;
-				}
-			}
+            {
+                // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞
+                if (TRUE == m_pSendBtn->OnLButtonUp(pt))
+                {                    
+                    // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞ ÌÅ¥Î¶≠
+                    OnClickLetterSend(FALSE);
+                    g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                    return  INF_MSGPROC_BREAK;
+                }
+            }
+            
+            {
+                // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞
+                if (TRUE == m_pAllSendBtn->OnLButtonUp(pt))
+                {                    
+                    // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞ ÌÅ¥Î¶≠
+                    OnClickLetterSend(TRUE);
+                    g_pD3dApp->m_pSound->PlayD3DSound(SOUND_SELECT_BUTTON, D3DXVECTOR3(0,0,0), FALSE);            
+                    return  INF_MSGPROC_BREAK;
+                }
+            }
 
-		}
-		break;
-	case WM_LBUTTONDOWN:
-		{
-			POINT pt;
-			pt.x = LOWORD(lParam);
-			pt.y = HIWORD(lParam);
-			CheckMouseReverse(&pt);
+        }
+        break;
+    case WM_LBUTTONDOWN:
+        {
+            POINT pt;
+            pt.x = LOWORD(lParam);
+            pt.y = HIWORD(lParam);
+            CheckMouseReverse(&pt);
 
-			// πﬁ¥¬ ¿Ø¿˙
-			if(TRUE == m_pEditWriteReceiveUser->OnLButtonDown(pt))
-			{
-				OnClickWriteEditBox(LETTER_WRITE_USER_EDIT, m_pEditWriteReceiveUser);
-				return INF_MSGPROC_BREAK;
-			}
-			// ¡¶∏Ò
-			if(TRUE == m_pEditWriteTitle->OnLButtonDown(pt))
-			{
-				OnClickWriteEditBox(LETTER_WRITE_TITLE_EDIT, m_pEditWriteTitle);
-				return INF_MSGPROC_BREAK;
-			}
-			// ≥ªøÎ
-			if(TRUE == m_pEditWriteInfo->OnLButtonDown(pt))
-			{
-				OnClickWriteEditBox(LETTER_WRITE_INFO_EDIT, NULL);
-				return INF_MSGPROC_BREAK;
-			}
-			{
-				BOOL bClick = m_pScrollWrite->IsMouseBallPos(pt);
-				if(bClick)
-				{
-					m_pScrollWrite->SetMouseMoveMode(TRUE);
-					return INF_MSGPROC_BREAK;
-				}
-			}
-			{
-				//  ∆Ì¡ˆ∫∏≥ª±‚
-				if(TRUE == m_pSendBtn->OnLButtonDown(pt))
-				{
-					// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-					return  INF_MSGPROC_BREAK;
-				}		
-			}
-			
-			{
-				//  ∆Ì¡ˆ∫∏≥ª±‚
-				if(TRUE == m_pAllSendBtn->OnLButtonDown(pt))
-				{
-					// πˆ∆∞¿ßø° ∏∂øÏΩ∫∞° ¿÷¥Ÿ.
-					return  INF_MSGPROC_BREAK;
-				}		
-			}
-		}
-		break;
-	case WM_IME_STARTCOMPOSITION:
-//	case WM_IME_NOTIFY:
-	case WM_IME_COMPOSITION:
-	case WM_INPUTLANGCHANGE:	
-	case WM_IME_ENDCOMPOSITION:
-	case WM_IME_SETCONTEXT:	
-	case WM_CHAR:
-	case WM_KEYDOWN:
-	// 2010. 04. 12 by ckPark ∆Ì¡ˆæ≤±‚ ∞¸∑√ ø°µ∆Æ π⁄Ω∫ ±‚¥… ∞≥º±
-	case WM_KEYUP:
-	// end 2010. 04. 12 by ckPark ∆Ì¡ˆæ≤±‚ ∞¸∑√ ø°µ∆Æ π⁄Ω∫ ±‚¥… ∞≥º±
-		{			
-			switch(m_nSelLetterWrite)
-			{
-			case LETTER_WRITE_USER_EDIT:	// πﬁ¥¬ ¿Ø¿˙
-				{
-					if(m_pEditWriteReceiveUser->WndProc(uMsg, wParam, lParam, NULL, TRUE))
-					{
-						return INF_MSGPROC_BREAK;
-					}
-				}
-				break;	
-			case LETTER_WRITE_TITLE_EDIT:	// ¡¶∏Ò
-				{
-					if(m_pEditWriteTitle->WndProc(uMsg, wParam, lParam, NULL, TRUE))
-					{
-						return INF_MSGPROC_BREAK;
-					}
-				}
-				break;
-			case LETTER_WRITE_INFO_EDIT:	// ≥ªøÎ
-				{
-					int nLienCnt = -1;
-					int nArrowScroll = 0;
-					BOOL bRtn = FALSE;
-					BOOL bStrCat =FALSE;
-					bRtn = m_pEditWriteInfo->WndProc(uMsg, wParam, lParam, m_pScrollWrite->GetScrollStep(), 
-										&nLienCnt, &nArrowScroll, &bStrCat);
-					
-					if(nLienCnt < 0)
-					{
-						// æ∆π´ √≥∏Æµµ æ»«ﬂ¥Ÿ.
-						return INF_MSGPROC_NORMAL;
-					}			
-					int nMaxStep = 0;			
-					int nScrollStep = 0;
-					switch(uMsg)
-					{
-					case WM_KEYDOWN:
-						{
-							switch(wParam)
-							{
-							case VK_LEFT:	// øﬁ¬ ¿∏∑Œ ¿Ãµø
-							case VK_UP:
-							case VK_RIGHT:
-							case VK_DOWN:
-							// 2010. 04. 12 by ckPark ∆Ì¡ˆæ≤±‚ ∞¸∑√ ø°µ∆Æ π⁄Ω∫ ±‚¥… ∞≥º±
-							case VK_BACK:
-							// end 2010. 04. 12 by ckPark ∆Ì¡ˆæ≤±‚ ∞¸∑√ ø°µ∆Æ π⁄Ω∫ ±‚¥… ∞≥º±
-								{
-									// πÊ«‚≈∞∏¶ ¥≠∑Øº≠ Ω∫≈©∑— ¿ßƒ° ∫Ø∞Ê 
-									if(nLienCnt > LETTER_INFO_MAX_SCROLL_LINE 
-										&& nArrowScroll !=0)
-									{
-										nMaxStep = m_pScrollWrite->GetMaxStepCnt();
-										nScrollStep = m_pScrollWrite->GetScrollStep() + nArrowScroll;
-										nScrollStep = max(0, nScrollStep);						
-										nScrollStep = min(nMaxStep, nScrollStep);						
-										m_pScrollWrite->SetScrollStep(nScrollStep);
-									}
-									
-									return INF_MSGPROC_NORMAL;
-								}
-								break;
-							case VK_RETURN:
-								{
-									return INF_MSGPROC_BREAK;
-								}
-								break;
-							}
-						}
-						break;
-					}
-					
-					nMaxStep = max(nLienCnt, LETTER_INFO_MAX_SCROLL_LINE);
-					nScrollStep = nMaxStep - LETTER_INFO_MAX_SCROLL_LINE;
-					if(nScrollStep < 0)
-					{
-						nScrollStep = 0;
-					}						
-					if(m_pEditWriteInfo->IsLastPos())
-					{
-						// ∞°¿Â ∏∂¡ˆ∏∑ ∂Û¿Œ¿Ã≥ƒ?					
-						
-						// √÷¥Î æ∆¿Ã≈€¿ª ¡§«ÿ¡÷∞Ì
-						m_pScrollWrite->SetMaxItem(nMaxStep);					
-						// Ω∫∆Æ∏µ¿ª µ⁄ø° ∫Ÿ¿Ã¥¬ πÊΩƒ¿Ã æ∆¥œ¥Ÿ.
-						// Ω∫≈©∑— ¿ßƒ°¥¬ ∞°¿Â æ∆∑°
-						m_pScrollWrite->SetScrollStep(nScrollStep);								
-					}					
-					else
-					{
-						m_pScrollWrite->SetOnlyMaxItem(nMaxStep);
-						m_pEditWriteInfo->RefreshEndCurselPos();	// ∏∂¡ˆ∏∑¿ßƒ° ∞ªΩ≈
-					}
-					
-					if(bRtn)
-					{
-						return INF_MSGPROC_BREAK;
-					}					
-					
-				}
-				break;
-			}			
-		}
-		break;	
-	}
-	return INF_MSGPROC_NORMAL;	
+            // Î∞õÎäî Ïú†Ï†Ä
+            if (TRUE == m_pEditWriteReceiveUser->OnLButtonDown(pt))
+            {
+                OnClickWriteEditBox(LETTER_WRITE_USER_EDIT, m_pEditWriteReceiveUser);
+                return INF_MSGPROC_BREAK;
+            }
+            // Ï†úÎ™©
+            if (TRUE == m_pEditWriteTitle->OnLButtonDown(pt))
+            {
+                OnClickWriteEditBox(LETTER_WRITE_TITLE_EDIT, m_pEditWriteTitle);
+                return INF_MSGPROC_BREAK;
+            }
+            // ÎÇ¥Ïö©
+            if (TRUE == m_pEditWriteInfo->OnLButtonDown(pt))
+            {
+                OnClickWriteEditBox(LETTER_WRITE_INFO_EDIT, NULL);
+                return INF_MSGPROC_BREAK;
+            }
+            {
+                BOOL bClick = m_pScrollWrite->IsMouseBallPos(pt);
+                if (bClick)
+                {
+                    m_pScrollWrite->SetMouseMoveMode(TRUE);
+                    return INF_MSGPROC_BREAK;
+                }
+            }
+            {
+                //  Ìé∏ÏßÄÎ≥¥ÎÇ¥Í∏∞
+                if (TRUE == m_pSendBtn->OnLButtonDown(pt))
+                {
+                    // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                    return  INF_MSGPROC_BREAK;
+                }        
+            }
+            
+            {
+                //  Ìé∏ÏßÄÎ≥¥ÎÇ¥Í∏∞
+                if (TRUE == m_pAllSendBtn->OnLButtonDown(pt))
+                {
+                    // Î≤ÑÌäºÏúÑÏóê ÎßàÏö∞Ïä§Í∞Ä ÏûàÎã§.
+                    return  INF_MSGPROC_BREAK;
+                }        
+            }
+        }
+        break;
+    case WM_IME_STARTCOMPOSITION:
+//    case WM_IME_NOTIFY:
+    case WM_IME_COMPOSITION:
+    case WM_INPUTLANGCHANGE:    
+    case WM_IME_ENDCOMPOSITION:
+    case WM_IME_SETCONTEXT:    
+    case WM_CHAR:
+    case WM_KEYDOWN:
+    // 2010. 04. 12 by ckPark Ìé∏ÏßÄÏì∞Í∏∞ Í¥ÄÎ†® ÏóêÎîîÌä∏ Î∞ïÏä§ Í∏∞Îä• Í∞úÏÑ†
+    case WM_KEYUP:
+    // end 2010. 04. 12 by ckPark Ìé∏ÏßÄÏì∞Í∏∞ Í¥ÄÎ†® ÏóêÎîîÌä∏ Î∞ïÏä§ Í∏∞Îä• Í∞úÏÑ†
+        {            
+            switch (m_nSelLetterWrite)
+            {
+            case LETTER_WRITE_USER_EDIT:    // Î∞õÎäî Ïú†Ï†Ä
+                {
+                    if (m_pEditWriteReceiveUser->WndProc(uMsg, wParam, lParam, NULL, TRUE))
+                    {
+                        return INF_MSGPROC_BREAK;
+                    }
+                }
+                break;    
+            case LETTER_WRITE_TITLE_EDIT:    // Ï†úÎ™©
+                {
+                    if (m_pEditWriteTitle->WndProc(uMsg, wParam, lParam, NULL, TRUE))
+                    {
+                        return INF_MSGPROC_BREAK;
+                    }
+                }
+                break;
+            case LETTER_WRITE_INFO_EDIT:    // ÎÇ¥Ïö©
+                {
+                    int nLienCnt = -1;
+                    int nArrowScroll = 0;
+                    BOOL bRtn = FALSE;
+                    BOOL bStrCat =FALSE;
+                    bRtn = m_pEditWriteInfo->WndProc(uMsg, wParam, lParam, m_pScrollWrite->GetScrollStep(), 
+                                        &nLienCnt, &nArrowScroll, &bStrCat);
+                    
+                    if (nLienCnt < 0)
+                    {
+                        // ÏïÑÎ¨¥ Ï≤òÎ¶¨ÎèÑ ÏïàÌñàÎã§.
+                        return INF_MSGPROC_NORMAL;
+                    }            
+                    int nMaxStep = 0;            
+                    int nScrollStep = 0;
+                    switch (uMsg)
+                    {
+                    case WM_KEYDOWN:
+                        {
+                            switch (wParam)
+                            {
+                            case VK_LEFT:    // ÏôºÏ™ΩÏúºÎ°ú Ïù¥Îèô
+                            case VK_UP:
+                            case VK_RIGHT:
+                            case VK_DOWN:
+                            // 2010. 04. 12 by ckPark Ìé∏ÏßÄÏì∞Í∏∞ Í¥ÄÎ†® ÏóêÎîîÌä∏ Î∞ïÏä§ Í∏∞Îä• Í∞úÏÑ†
+                            case VK_BACK:
+                            // end 2010. 04. 12 by ckPark Ìé∏ÏßÄÏì∞Í∏∞ Í¥ÄÎ†® ÏóêÎîîÌä∏ Î∞ïÏä§ Í∏∞Îä• Í∞úÏÑ†
+                                {
+                                    // Î∞©Ìñ•ÌÇ§Î•º ÎàåÎü¨ÏÑú Ïä§ÌÅ¨Î°§ ÏúÑÏπò Î≥ÄÍ≤Ω 
+                                    if (nLienCnt > LETTER_INFO_MAX_SCROLL_LINE 
+                                        && nArrowScroll !=0)
+                                    {
+                                        nMaxStep = m_pScrollWrite->GetMaxStepCnt();
+                                        nScrollStep = m_pScrollWrite->GetScrollStep() + nArrowScroll;
+                                        nScrollStep = max(0, nScrollStep);                        
+                                        nScrollStep = min(nMaxStep, nScrollStep);                        
+                                        m_pScrollWrite->SetScrollStep(nScrollStep);
+                                    }
+                                    
+                                    return INF_MSGPROC_NORMAL;
+                                }
+                                break;
+                            case VK_RETURN:
+                                {
+                                    return INF_MSGPROC_BREAK;
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    
+                    nMaxStep = max(nLienCnt, LETTER_INFO_MAX_SCROLL_LINE);
+                    nScrollStep = nMaxStep - LETTER_INFO_MAX_SCROLL_LINE;
+                    if (nScrollStep < 0)
+                    {
+                        nScrollStep = 0;
+                    }                        
+                    if (m_pEditWriteInfo->IsLastPos())
+                    {
+                        // Í∞ÄÏû• ÎßàÏßÄÎßâ ÎùºÏù∏Ïù¥ÎÉê?                    
+                        
+                        // ÏµúÎåÄ ÏïÑÏù¥ÌÖúÏùÑ Ï†ïÌï¥Ï£ºÍ≥†
+                        m_pScrollWrite->SetMaxItem(nMaxStep);                    
+                        // Ïä§Ìä∏ÎßÅÏùÑ Îí§Ïóê Î∂ôÏù¥Îäî Î∞©ÏãùÏù¥ ÏïÑÎãàÎã§.
+                        // Ïä§ÌÅ¨Î°§ ÏúÑÏπòÎäî Í∞ÄÏû• ÏïÑÎûò
+                        m_pScrollWrite->SetScrollStep(nScrollStep);                                
+                    }                    
+                    else
+                    {
+                        m_pScrollWrite->SetOnlyMaxItem(nMaxStep);
+                        m_pEditWriteInfo->RefreshEndCurselPos();    // ÎßàÏßÄÎßâÏúÑÏπò Í∞±Ïã†
+                    }
+                    
+                    if (bRtn)
+                    {
+                        return INF_MSGPROC_BREAK;
+                    }                    
+                    
+                }
+                break;
+            }            
+        }
+        break;    
+    }
+    return INF_MSGPROC_NORMAL;    
 }
 
-void CINFCommunityLetter::OnClickWriteEditBox(int nSelLetterWrite, CINFEditBox*	pSelEdit)
+void CINFCommunityLetter::OnClickWriteEditBox(int nSelLetterWrite, CINFEditBox*    pSelEdit)
 {
-	m_nSelLetterWrite = nSelLetterWrite;
+    m_nSelLetterWrite = nSelLetterWrite;
 
-	if(m_pEditWriteReceiveUser->IsEditMode())
-	{
-		m_pEditWriteReceiveUser->BackupTxtString();
-	}
-	if(m_pEditWriteTitle->IsEditMode())
-	{
-		m_pEditWriteTitle->BackupTxtString();
-	}
-	if(m_pEditWriteInfo->IsEditMode())
-	{
-		m_pEditWriteInfo->BackupTxtString();
-	}
-	m_pEditWriteReceiveUser->EnableEdit(FALSE, FALSE);		// πﬁ¥¬ ¿Ø¿˙
-	m_pEditWriteTitle->EnableEdit(FALSE, FALSE);				// ¡¶∏Ò
-	m_pEditWriteInfo->EnableEdit(FALSE, FALSE);				// ≥ªøÎ
+    if (m_pEditWriteReceiveUser->IsEditMode())
+    {
+        m_pEditWriteReceiveUser->BackupTxtString();
+    }
+    if (m_pEditWriteTitle->IsEditMode())
+    {
+        m_pEditWriteTitle->BackupTxtString();
+    }
+    if (m_pEditWriteInfo->IsEditMode())
+    {
+        m_pEditWriteInfo->BackupTxtString();
+    }
+    m_pEditWriteReceiveUser->EnableEdit(FALSE, FALSE);        // Î∞õÎäî Ïú†Ï†Ä
+    m_pEditWriteTitle->EnableEdit(FALSE, FALSE);                // Ï†úÎ™©
+    m_pEditWriteInfo->EnableEdit(FALSE, FALSE);                // ÎÇ¥Ïö©
 
-	// º±≈√«— ¿Œ≈Õ∆‰¿ÃΩ∫∏∏ ø¬
-	if(pSelEdit)
-	{
-		pSelEdit->EnableEdit(TRUE, TRUE);
-	}
-	else if(LETTER_WRITE_INFO_EDIT == m_nSelLetterWrite)
-	{
-		m_pEditWriteInfo->EnableEdit(TRUE, TRUE);
-	}
+    // ÏÑ†ÌÉùÌïú Ïù∏ÌÑ∞ÌéòÏù¥Ïä§Îßå Ïò®
+    if (pSelEdit)
+    {
+        pSelEdit->EnableEdit(TRUE, TRUE);
+    }
+    else if (LETTER_WRITE_INFO_EDIT == m_nSelLetterWrite)
+    {
+        m_pEditWriteInfo->EnableEdit(TRUE, TRUE);
+    }
 
 }
 
 void CINFCommunityLetter::TestReadDb()
 {
-	structReadLetterItemInfo sMsg;
-	memset(&sMsg, 0x00, sizeof(sMsg));
-	int nCnt = 0;
-	for(nCnt = 0;nCnt< 20;nCnt++)
-	{
-		wsprintf(sMsg.chSendUser, "User%d", nCnt);
-		wsprintf(sMsg.chLetterTitle, "Title%d", nCnt);
-		sMsg.bReadMail = (nCnt%2);		
-		//wsprintf(sMsg.chLetterInfo, "≥Î∑° Ω√¿€«ﬂ¥Ÿ. ≥Î∑°≥°≥µ¥Ÿ.[%d] ",nCnt);
-		sMsg.LetterUID = nCnt;
+    structReadLetterItemInfo sMsg;
+    memset(&sMsg, 0x00, sizeof(sMsg));
+    int nCnt = 0;
+    for (nCnt = 0;nCnt< 20;nCnt++)
+    {
+        wsprintf(sMsg.chSendUser, "User%d", nCnt);
+        wsprintf(sMsg.chLetterTitle, "Title%d", nCnt);
+        sMsg.bReadMail = (nCnt%2);        
+        //wsprintf(sMsg.chLetterInfo, "ÎÖ∏Îûò ÏãúÏûëÌñàÎã§. ÎÖ∏ÎûòÎÅùÎÇ¨Îã§.[%d] ",nCnt);
+        sMsg.LetterUID = nCnt;
 
-		AddReadLetter(FALSE, sMsg.bReadMail, sMsg.LetterUID, sMsg.chSendUser, sMsg.chLetterTitle, sMsg.atimeMail);
-	}
+        AddReadLetter(FALSE, sMsg.bReadMail, sMsg.LetterUID, sMsg.chSendUser, sMsg.chLetterTitle, sMsg.atimeMail);
+    }
 }
 
-void CINFCommunityLetter::AddReadLetter(BOOL bAllMail, BOOL bReadMail, UID64_t   LetterUID, char* pSendUser, char* pLetterTitle, ATUM_DATE_TIME	atimeMail)
+void CINFCommunityLetter::AddReadLetter(BOOL bAllMail, BOOL bReadMail, UID64_t   LetterUID, char* pSendUser, char* pLetterTitle, ATUM_DATE_TIME    atimeMail)
 {
-	structReadLetterItemInfo sMsg;
-	memset(&sMsg, 0x00, sizeof(sMsg));
+    structReadLetterItemInfo sMsg;
+    memset(&sMsg, 0x00, sizeof(sMsg));
 
-	sMsg.LetterUID = LetterUID;	
-	util::strncpy(sMsg.chSendUser, pSendUser, SIZE_MAX_ARENA_FULL_NAME);
-	util::strncpy(sMsg.chLetterTitle, pLetterTitle, SIZE_MAX_ARENA_FULL_NAME);	// ¡¶∏Ò
-	
-	sMsg.atimeMail = atimeMail;
-	sMsg.bReadMail = bReadMail;	
-	sMsg.bAllMail  = bAllMail;
+    sMsg.LetterUID = LetterUID;    
+    util::strncpy(sMsg.chSendUser, pSendUser, SIZE_MAX_ARENA_FULL_NAME);
+    util::strncpy(sMsg.chLetterTitle, pLetterTitle, SIZE_MAX_ARENA_FULL_NAME);    // Ï†úÎ™©
+    
+    sMsg.atimeMail = atimeMail;
+    sMsg.bReadMail = bReadMail;    
+    sMsg.bAllMail  = bAllMail;
 
-	m_vecReadLetter.push_back(sMsg);
-	m_pScrollRead->SetMaxItem((int)m_vecReadLetter.size());
+    m_vecReadLetter.push_back(sMsg);
+    m_pScrollRead->SetMaxItem((int)m_vecReadLetter.size());
 
-	sort(m_vecReadLetter.begin(), m_vecReadLetter.end(), Letter_Sort());	
+    sort(m_vecReadLetter.begin(), m_vecReadLetter.end(), Letter_Sort());    
 }
 void CINFCommunityLetter::RqDelReadLetter(BOOL bAllMail, UID64_t   LetterUID)
 {
-	// ∆Ì¡ˆ ªË¡¶ ø‰√ª
-	MessageType_t msgType = T_FC_CHAT_LETTER_DELETE;
-	vector<MessageType_t> vecUnLockMsg;
-	vecUnLockMsg.clear();	
+    // Ìé∏ÏßÄ ÏÇ≠Ï†ú ÏöîÏ≤≠
+    MessageType_t msgType = T_FC_CHAT_LETTER_DELETE;
+    vector<MessageType_t> vecUnLockMsg;
+    vecUnLockMsg.clear();    
 
-	if(!bAllMail)
-	{		
-		msgType = T_FC_CHAT_LETTER_DELETE;
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_DELETE);		
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_DELETE_OK);				
+    if (!bAllMail)
+    {        
+        msgType = T_FC_CHAT_LETTER_DELETE;
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_DELETE);        
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_DELETE_OK);                
 
-		MSG_FC_CHAT_LETTER_DELETE sMsg;
-		memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_LETTER_DELETE));
-		sMsg.LetterUID = LetterUID;
-		g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));
-	}
-	else
-	{
-		msgType = T_FC_CHAT_ALLLETTER_DELETE;
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_DELETE);		
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_DELETE_OK);		
-		
-		MSG_FC_CHAT_ALLLETTER_DELETE sMsg;
-		memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_ALLLETTER_DELETE));
-		sMsg.LetterUID = LetterUID;
-		g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));
+        MSG_FC_CHAT_LETTER_DELETE sMsg;
+        memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_LETTER_DELETE));
+        sMsg.LetterUID = LetterUID;
+        g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));
+    }
+    else
+    {
+        msgType = T_FC_CHAT_ALLLETTER_DELETE;
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_DELETE);        
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_DELETE_OK);        
+        
+        MSG_FC_CHAT_ALLLETTER_DELETE sMsg;
+        memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_ALLLETTER_DELETE));
+        sMsg.LetterUID = LetterUID;
+        g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));
 
-	}
-	// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-	g_pD3dApp->EnterMultiLock(TRUE, msgType, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
-	
+    }
+    // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+    g_pD3dApp->EnterMultiLock(TRUE, msgType, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+    
 }
 
 void CINFCommunityLetter::DelReadLetter()
 {
-	// Ω«¡¶ ∏ﬁ¿œ¿Ã ªË¡¶µ«æ˙¥Ÿ.ªË¡¶ ø‰√ª«— ∏ﬁ¿œ
-	/*
-	vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
-	while(it != m_vecReadLetter.end())
-	{
-		structReadLetterItemInfo stTmp = (*it);
-		if((stTmp.bAllMail == m_bDelAllMail)
-			&& (stTmp.LetterUID == m_uDelLetterUID))
-		{
-			it = m_vecReadLetter.erase(it);
-			continue;
-		}
-		it++;
-	}
+    // Ïã§Ï†ú Î©îÏùºÏù¥ ÏÇ≠Ï†úÎêòÏóàÎã§.ÏÇ≠Ï†ú ÏöîÏ≤≠Ìïú Î©îÏùº
+    /*
+    vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
+    while (it != m_vecReadLetter.end())
+    {
+        structReadLetterItemInfo stTmp = (*it);
+        if ((stTmp.bAllMail == m_bDelAllMail)
+            && (stTmp.LetterUID == m_uDelLetterUID))
+        {
+            it = m_vecReadLetter.erase(it);
+            continue;
+        }
+        it++;
+    }
 
-	// Ω∫≈©∑— ∏ÆΩ∫∆Æ ∞ªΩ≈
-	m_pScrollRead->SetMaxItem(m_vecReadLetter.size());
-	if(m_nSelReadLetterPos >= m_vecReadLetter.size())
-	{
-		// º±≈√«— æ∆¿Ã≈€ ∞ªΩ≈
-		m_nSelReadLetterPos =-1;
-	}
-	*/
+    // Ïä§ÌÅ¨Î°§ Î¶¨Ïä§Ìä∏ Í∞±Ïã†
+    m_pScrollRead->SetMaxItem(m_vecReadLetter.size());
+    if (m_nSelReadLetterPos >= m_vecReadLetter.size())
+    {
+        // ÏÑ†ÌÉùÌïú ÏïÑÏù¥ÌÖú Í∞±Ïã†
+        m_nSelReadLetterPos =-1;
+    }
+    */
 
 }
 
 void CINFCommunityLetter::RenderReadLetter(POINT ptBkPos)
 {
-	int nCnt = 0;
-	int nLine = 0;
-	int nStartX, nStartY;
-	nStartX = nStartY = 0;
-	int nRenderLine = m_nSelReadLetterPos - m_pScrollRead->GetScrollStep();	// º±≈√«— æ∆¿Ã≈€
-	vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
+    int nCnt = 0;
+    int nLine = 0;
+    int nStartX, nStartY;
+    nStartX = nStartY = 0;
+    int nRenderLine = m_nSelReadLetterPos - m_pScrollRead->GetScrollStep();    // ÏÑ†ÌÉùÌïú ÏïÑÏù¥ÌÖú
+    vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
 
-	for(nCnt=0; nCnt < m_pScrollRead->GetScrollStep();nCnt++)
-	{
-		if(it != m_vecReadLetter.end())
-		{			
-			it++;
-		}
-	}		
-	char chBuff[512];
-	memset(chBuff, 0x00, 512);
+    for (nCnt=0; nCnt < m_pScrollRead->GetScrollStep();nCnt++)
+    {
+        if (it != m_vecReadLetter.end())
+        {            
+            it++;
+        }
+    }        
+    char chBuff[512];
+    memset(chBuff, 0x00, 512);
 
-	while(it != m_vecReadLetter.end())
-	{
-		if(nLine >= MAX_LETTER_READ_NUMBER)
-		{
-			break;
-		}
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-		structReadLetterItemInfo stTmp = (*it);
-		nStartX = ptBkPos.x + LETTER_READ_ITEM_X+ 6;
-		nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine) + 4;
-		m_pLetterRead[stTmp.bReadMail]->Move(nStartX, nStartY);
-		m_pLetterRead[stTmp.bReadMail]->Render();
+    while (it != m_vecReadLetter.end())
+    {
+        if (nLine >= MAX_LETTER_READ_NUMBER)
+        {
+            break;
+        }
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+        structReadLetterItemInfo stTmp = (*it);
+        nStartX = ptBkPos.x + LETTER_READ_ITEM_X+ 6;
+        nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine) + 4;
+        m_pLetterRead[stTmp.bReadMail]->Move(nStartX, nStartY);
+        m_pLetterRead[stTmp.bReadMail]->Render();
 
-		
-		// ∫∏≥ΩªÁ∂˜
-		nStartX = ptBkPos.x + LETTER_READ_ITEM_X;
-		nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine);
-		nStartX += 55;
+        
+        // Î≥¥ÎÇ∏ÏÇ¨Îûå
+        nStartX = ptBkPos.x + LETTER_READ_ITEM_X;
+        nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine);
+        nStartX += 55;
 
-		strncpy(chBuff, stTmp.chSendUser, strlen(stTmp.chSendUser)+1);
-		g_pGameMain->TextReduce(m_pFontLetter, 90, chBuff);
-		m_pFontLetter->DrawText( nStartX, nStartY + 5, 
-										 GUI_FONT_COLOR,
-										 chBuff, 0L );		
-		// ¡¶∏Ò
-		nStartX += 105;
-		strncpy(chBuff, stTmp.chLetterTitle, strlen(stTmp.chLetterTitle)+1);
-		g_pGameMain->TextReduce(m_pFontLetter, 130, chBuff);
-		m_pFontLetter->DrawText( nStartX, nStartY + 5, 
-										 GUI_FONT_COLOR,
-										 chBuff, 0L );		
+        strncpy(chBuff, stTmp.chSendUser, strlen(stTmp.chSendUser)+1);
+        g_pGameMain->TextReduce(m_pFontLetter, 90, chBuff);
+        m_pFontLetter->DrawText( nStartX, nStartY + 5, 
+                                         GUI_FONT_COLOR,
+                                         chBuff, 0L );        
+        // Ï†úÎ™©
+        nStartX += 105;
+        strncpy(chBuff, stTmp.chLetterTitle, strlen(stTmp.chLetterTitle)+1);
+        g_pGameMain->TextReduce(m_pFontLetter, 130, chBuff);
+        m_pFontLetter->DrawText( nStartX, nStartY + 5, 
+                                         GUI_FONT_COLOR,
+                                         chBuff, 0L );        
 
-		// Ω√∞£ 
-		nStartX += 140;
-		string szStrBuf;
-		stTmp.atimeMail.GetLocalString_YYYYMMDD(stTmp.atimeMail.Year, 
-													stTmp.atimeMail.Month, 
-													stTmp.atimeMail.Day, 
-													szStrBuf);	
-		m_pFontLetter->DrawText( nStartX, nStartY + 5, 
-										 GUI_FONT_COLOR,
-										 (char*)szStrBuf.c_str(), 0L );	
+        // ÏãúÍ∞Ñ 
+        nStartX += 140;
+        string szStrBuf;
+        stTmp.atimeMail.GetLocalString_YYYYMMDD(stTmp.atimeMail.Year, 
+                                                    stTmp.atimeMail.Month, 
+                                                    stTmp.atimeMail.Day, 
+                                                    szStrBuf);    
+        m_pFontLetter->DrawText( nStartX, nStartY + 5, 
+                                         GUI_FONT_COLOR,
+                                         (char*)szStrBuf.c_str(), 0L );    
 #else
-		structReadLetterItemInfo stTmp = (*it);
-		nStartX = ptBkPos.x + LETTER_READ_ITEM_X+ 1;
-		nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine) - 2;
-		m_pLetterRead[stTmp.bReadMail]->Move(nStartX, nStartY);
-		m_pLetterRead[stTmp.bReadMail]->Render();
+        structReadLetterItemInfo stTmp = (*it);
+        nStartX = ptBkPos.x + LETTER_READ_ITEM_X+ 1;
+        nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine) - 2;
+        m_pLetterRead[stTmp.bReadMail]->Move(nStartX, nStartY);
+        m_pLetterRead[stTmp.bReadMail]->Render();
 
-		
-		// ∫∏≥ΩªÁ∂˜
-		nStartX = ptBkPos.x + LETTER_READ_ITEM_X;
-		nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine);
-		nStartX += 30;
+        
+        // Î≥¥ÎÇ∏ÏÇ¨Îûå
+        nStartX = ptBkPos.x + LETTER_READ_ITEM_X;
+        nStartY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nLine);
+        nStartX += 30;
 
-		strncpy(chBuff, stTmp.chSendUser, strlen(stTmp.chSendUser)+1);
-		g_pGameMain->TextReduce(m_pFontLetter, 90, chBuff);
-		m_pFontLetter->DrawText( nStartX, nStartY, 
-										 GUI_FONT_COLOR,
-										 chBuff, 0L );		
-		// ¡¶∏Ò
-		nStartX += 105;
-		strncpy(chBuff, stTmp.chLetterTitle, strlen(stTmp.chLetterTitle)+1);
-		g_pGameMain->TextReduce(m_pFontLetter, 130, chBuff);
-		m_pFontLetter->DrawText( nStartX, nStartY, 
-										 GUI_FONT_COLOR,
-										 chBuff, 0L );		
+        strncpy(chBuff, stTmp.chSendUser, strlen(stTmp.chSendUser)+1);
+        g_pGameMain->TextReduce(m_pFontLetter, 90, chBuff);
+        m_pFontLetter->DrawText( nStartX, nStartY, 
+                                         GUI_FONT_COLOR,
+                                         chBuff, 0L );        
+        // Ï†úÎ™©
+        nStartX += 105;
+        strncpy(chBuff, stTmp.chLetterTitle, strlen(stTmp.chLetterTitle)+1);
+        g_pGameMain->TextReduce(m_pFontLetter, 130, chBuff);
+        m_pFontLetter->DrawText( nStartX, nStartY, 
+                                         GUI_FONT_COLOR,
+                                         chBuff, 0L );        
 
-		// Ω√∞£ 
-		nStartX += 150;
-		string szStrBuf;
-		stTmp.atimeMail.GetLocalString_YYYYMMDD(stTmp.atimeMail.Year, 
-													stTmp.atimeMail.Month, 
-													stTmp.atimeMail.Day, 
-													szStrBuf,
-													GetLanguageType());	
-		m_pFontLetter->DrawText( nStartX, nStartY, 
-										 GUI_FONT_COLOR,
-										 (char*)szStrBuf.c_str(), 0L );		
+        // ÏãúÍ∞Ñ 
+        nStartX += 150;
+        string szStrBuf;
+        stTmp.atimeMail.GetLocalString_YYYYMMDD(stTmp.atimeMail.Year, 
+                                                    stTmp.atimeMail.Month, 
+                                                    stTmp.atimeMail.Day, 
+                                                    szStrBuf,
+                                                    GetLanguageType());    
+        m_pFontLetter->DrawText( nStartX, nStartY, 
+                                         GUI_FONT_COLOR,
+                                         (char*)szStrBuf.c_str(), 0L );        
 
-#endif	
+#endif    
 
-		nLine++;
-		it++;
-	}	
-	
-	if(nRenderLine >= 0 && nRenderLine < MAX_LETTER_READ_NUMBER)
-	{
-		int nSelPosX = ptBkPos.x + LETTER_READ_ITEM_X -4 ;		
-		int nSelPosY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nRenderLine)- 4;
-		m_pImgSelect->Move(nSelPosX, nSelPosY);
-		m_pImgSelect->Render();
-	}
+        nLine++;
+        it++;
+    }    
+    
+    if (nRenderLine >= 0 && nRenderLine < MAX_LETTER_READ_NUMBER)
+    {
+        int nSelPosX = ptBkPos.x + LETTER_READ_ITEM_X -4 ;        
+        int nSelPosY = ptBkPos.y + LETTER_READ_ITEM_Y + (LETTER_READ_ITEM_HEIGHT*nRenderLine)- 4;
+        m_pImgSelect->Move(nSelPosX, nSelPosY);
+        m_pImgSelect->Render();
+    }
 }
 
 int CINFCommunityLetter::GetReadLetterCurselPos(POINT pt)
 {
-	POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
 
-	int nLine = 0;
-	int nStartX = (ptBkPos.x + LETTER_MODE_POS_X);
-	int nStartY = (ptBkPos.y + LETTER_READ_ITEM_Y);
-	int nCurSel = -1;
-	if((pt.x >= nStartX)
-		&& (pt.x <= (nStartX + LETTER_READ_ITEM_WIDTH)))
-	{
-		for(nLine =0;nLine <MAX_LETTER_READ_NUMBER;nLine++)
-		{
-			nStartY = (ptBkPos.y + LETTER_READ_ITEM_Y)+(nLine*LETTER_READ_ITEM_HEIGHT);
-			if((pt.y >= nStartY)
-				&& (pt.y <= (nStartY + LETTER_READ_ITEM_HEIGHT)))
-			{
-				nCurSel = nLine;
-			}			
-		}
-	}
-	
-	int nSelCurPos = -1;
-	if(nCurSel>=0)
-	{
-		nSelCurPos = nCurSel+m_pScrollRead->GetScrollStep();
-		if(nSelCurPos >= (int)m_vecReadLetter.size())
-		{
-			nSelCurPos =-1;
-		}
-	}
-	else
-	{
-		nSelCurPos = -1;
-	}
-	return nSelCurPos;
+    int nLine = 0;
+    int nStartX = (ptBkPos.x + LETTER_MODE_POS_X);
+    int nStartY = (ptBkPos.y + LETTER_READ_ITEM_Y);
+    int nCurSel = -1;
+    if ((pt.x >= nStartX)
+        && (pt.x <= (nStartX + LETTER_READ_ITEM_WIDTH)))
+    {
+        for (nLine =0;nLine <MAX_LETTER_READ_NUMBER;nLine++)
+        {
+            nStartY = (ptBkPos.y + LETTER_READ_ITEM_Y)+(nLine*LETTER_READ_ITEM_HEIGHT);
+            if ((pt.y >= nStartY)
+                && (pt.y <= (nStartY + LETTER_READ_ITEM_HEIGHT)))
+            {
+                nCurSel = nLine;
+            }            
+        }
+    }
+    
+    int nSelCurPos = -1;
+    if (nCurSel>=0)
+    {
+        nSelCurPos = nCurSel+m_pScrollRead->GetScrollStep();
+        if (nSelCurPos >= (int)m_vecReadLetter.size())
+        {
+            nSelCurPos =-1;
+        }
+    }
+    else
+    {
+        nSelCurPos = -1;
+    }
+    return nSelCurPos;
 }
 
 void CINFCommunityLetter::OnClickReadLetter(int nSelReadLetterPos)
 {
-	vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
+    vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();
 
-	int nMailIdx = 0;
-	while(it != m_vecReadLetter.end())
-	{
-		structReadLetterItemInfo stTmp = (*it);
+    int nMailIdx = 0;
+    while (it != m_vecReadLetter.end())
+    {
+        structReadLetterItemInfo stTmp = (*it);
 
-		if(nMailIdx == nSelReadLetterPos)
-		{				
-			ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_INFO, NULL, stTmp.bAllMail, stTmp.LetterUID);
-			return;
+        if (nMailIdx == nSelReadLetterPos)
+        {                
+            ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_INFO, NULL, stTmp.bAllMail, stTmp.LetterUID);
+            return;
 
-			break;
-		}
-		nMailIdx ++;
-		it++;		
-	}
+            break;
+        }
+        nMailIdx ++;
+        it++;        
+    }
 }
 
 
 void CINFCommunityLetter::RqLetterTitle(BOOL bLetterFirstRq)
-{	
-	m_bLetterFirstRq = bLetterFirstRq;	// √≥¿Ω¿∏∑Œ ∆Ì¡ˆ ¡§∫∏∏¶ ø‰√ª«ﬂ≥ƒ?
+{    
+    m_bLetterFirstRq = bLetterFirstRq;    // Ï≤òÏùåÏúºÎ°ú Ìé∏ÏßÄ Ï†ïÎ≥¥Î•º ÏöîÏ≤≠ÌñàÎÉê?
 
-	// ¿–¿∫ ∆Ì¡ˆ ∏ÆΩ∫∆Æ∏¶ √ ±‚»≠ «ÿ¡ÿ¥Ÿ.
-	m_nSelReadLetterPos =-1; // º±≈√«◊∏Òæ¯¿Ω
-	m_vecReadLetter.clear();
-	m_pScrollRead->SetMaxItem((int)m_vecReadLetter.size());
-	{
-		vector<MessageType_t> vecUnLockMsg;
-		vecUnLockMsg.clear();
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_REQUEST_TITLE);		
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE);		
-		// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-		g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_LETTER_REQUEST_TITLE, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
-	}
+    // ÏùΩÏùÄ Ìé∏ÏßÄ Î¶¨Ïä§Ìä∏Î•º Ï¥àÍ∏∞Ìôî Ìï¥Ï§ÄÎã§.
+    m_nSelReadLetterPos =-1; // ÏÑ†ÌÉùÌï≠Î™©ÏóÜÏùå
+    m_vecReadLetter.clear();
+    m_pScrollRead->SetMaxItem((int)m_vecReadLetter.size());
+    {
+        vector<MessageType_t> vecUnLockMsg;
+        vecUnLockMsg.clear();
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_REQUEST_TITLE);        
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_REQUEST_TITLE_OK_DONE);        
+        // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+        g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_LETTER_REQUEST_TITLE, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+    }
 
-	g_pFieldWinSocket->SendMsg(T_FC_CHAT_LETTER_REQUEST_TITLE, NULL, NULL);	
+    g_pFieldWinSocket->SendMsg(T_FC_CHAT_LETTER_REQUEST_TITLE, NULL, NULL);    
 }
 
 void CINFCommunityLetter::RqAllLetterTitle()
 {
-	{
-		vector<MessageType_t> vecUnLockMsg;
-		vecUnLockMsg.clear();
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_REQUEST_TITLE);		
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE);		
-		// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-		g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_ALLLETTER_REQUEST_TITLE, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
-	}
-	g_pFieldWinSocket->SendMsg(T_FC_CHAT_ALLLETTER_REQUEST_TITLE, NULL, NULL);	
+    {
+        vector<MessageType_t> vecUnLockMsg;
+        vecUnLockMsg.clear();
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_REQUEST_TITLE);        
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_REQUEST_TITLE_OK_DONE);        
+        // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+        g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_ALLLETTER_REQUEST_TITLE, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+    }
+    g_pFieldWinSocket->SendMsg(T_FC_CHAT_ALLLETTER_REQUEST_TITLE, NULL, NULL);    
 
 }
 void CINFCommunityLetter::RqLetterRead(BOOL bAllMail, UID64_t uReadLetterUID)
 {
-	structReadLetterItemInfo  struItem;
-	memset(&struItem, 0x00, sizeof(structReadLetterItemInfo ));
+    structReadLetterItemInfo  struItem;
+    memset(&struItem, 0x00, sizeof(structReadLetterItemInfo ));
 
-	if(!GetLetterItemInfo(bAllMail, uReadLetterUID, &struItem))
-	{
-		return;
-	}
-	
+    if (!GetLetterItemInfo(bAllMail, uReadLetterUID, &struItem))
+    {
+        return;
+    }
+    
 
-	// º±≈√«— ∆Ì¡ˆ¿« ≥ªøÎ¿ª ø‰√ª«—¥Ÿ.
-	vector<MessageType_t> vecUnLockMsg;
-	vecUnLockMsg.clear();
+    // ÏÑ†ÌÉùÌïú Ìé∏ÏßÄÏùò ÎÇ¥Ïö©ÏùÑ ÏöîÏ≤≠ÌïúÎã§.
+    vector<MessageType_t> vecUnLockMsg;
+    vecUnLockMsg.clear();
 
-	MessageType_t msgType = T_FC_CHAT_LETTER_READ;
-	if(!struItem.bAllMail)
-	{
-		msgType = T_FC_CHAT_LETTER_READ;		
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_READ);		
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_READ_OK);				
+    MessageType_t msgType = T_FC_CHAT_LETTER_READ;
+    if (!struItem.bAllMail)
+    {
+        msgType = T_FC_CHAT_LETTER_READ;        
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_READ);        
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_READ_OK);                
 
-		MSG_FC_CHAT_LETTER_READ sMsg;
-		memset(&sMsg, 0x00, sizeof(sMsg));		
-		sMsg.LetterUID = struItem.LetterUID;
-		sMsg.CheckRead = struItem.bReadMail;				
-		g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));	
+        MSG_FC_CHAT_LETTER_READ sMsg;
+        memset(&sMsg, 0x00, sizeof(sMsg));        
+        sMsg.LetterUID = struItem.LetterUID;
+        sMsg.CheckRead = struItem.bReadMail;                
+        g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));    
 
-		
-	}	
-	else
-	{
-		msgType = T_FC_CHAT_ALLLETTER_READ;		
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_READ);		
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_READ_OK);				
+        
+    }    
+    else
+    {
+        msgType = T_FC_CHAT_ALLLETTER_READ;        
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_READ);        
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_READ_OK);                
 
-		MSG_FC_CHAT_ALLLETTER_READ sMsg;
-		memset(&sMsg, 0x00, sizeof(sMsg));		
-		sMsg.LetterUID = struItem.LetterUID;
-		sMsg.CheckRead = struItem.bReadMail;				
-		g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));	
+        MSG_FC_CHAT_ALLLETTER_READ sMsg;
+        memset(&sMsg, 0x00, sizeof(sMsg));        
+        sMsg.LetterUID = struItem.LetterUID;
+        sMsg.CheckRead = struItem.bReadMail;                
+        g_pFieldWinSocket->SendMsg(msgType, (char*)&sMsg, sizeof(sMsg));    
 
-	}
-	// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-	g_pD3dApp->EnterMultiLock(TRUE, msgType, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);	
+    }
+    // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+    g_pD3dApp->EnterMultiLock(TRUE, msgType, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);    
 }
 
 
 void CINFCommunityLetter::SetLetterInfo(BOOL bAllMail, UID64_t LetterUID, char* Content)
 {
-	structReadLetterItemInfo  struItem;
-	memset(&struItem, 0x00, sizeof(structReadLetterItemInfo ));
+    structReadLetterItemInfo  struItem;
+    memset(&struItem, 0x00, sizeof(structReadLetterItemInfo ));
 
-	if(!GetLetterItemInfo(bAllMail, LetterUID, &struItem))
-	{
-		return;
-	}	
-	m_pEditReadReceiveUser->SetString(struItem.chSendUser, SIZE_MAX_ARENA_FULL_NAME);	// ∫∏≥Ω ¿Ø¿˙	
-	m_pEditReadTitle->SetString(struItem.chLetterTitle, SIZE_MAX_ARENA_FULL_NAME);		// ¡¶∏Ò
-	
-	
-	if(Content)
-	{
-		// 2008-10-13 by bhsohn ∆Ì¡ˆ ¿–±‚ Return æ»µ«¥¬ πÆ¡¶ √≥∏Æ
-		//int nLienCnt = m_pEditReadInfo->SetString(Content, 	SIZE_MAX_LETTER_CONTENT);
-		int nLienCnt = m_pEditReadInfo->SetString(Content, 	SIZE_MAX_LETTER_CONTENT, TRUE);
-		int nMaxStep = max(nLienCnt, LETTER_INFO_READ_MAX_SCROLL_LINE);			
-		
-		// √÷¥Î æ∆¿Ã≈€¿ª ¡§«ÿ¡÷∞Ì
-		m_pScrollReadInfo->SetMaxItem(nMaxStep);
-	}	
+    if (!GetLetterItemInfo(bAllMail, LetterUID, &struItem))
+    {
+        return;
+    }    
+    m_pEditReadReceiveUser->SetString(struItem.chSendUser, SIZE_MAX_ARENA_FULL_NAME);    // Î≥¥ÎÇ∏ Ïú†Ï†Ä    
+    m_pEditReadTitle->SetString(struItem.chLetterTitle, SIZE_MAX_ARENA_FULL_NAME);        // Ï†úÎ™©
+    
+    
+    if (Content)
+    {
+        // 2008-10-13 by bhsohn Ìé∏ÏßÄ ÏùΩÍ∏∞ Return ÏïàÎêòÎäî Î¨∏Ï†ú Ï≤òÎ¶¨
+        //int nLienCnt = m_pEditReadInfo->SetString(Content,     SIZE_MAX_LETTER_CONTENT);
+        int nLienCnt = m_pEditReadInfo->SetString(Content,     SIZE_MAX_LETTER_CONTENT, TRUE);
+        int nMaxStep = max(nLienCnt, LETTER_INFO_READ_MAX_SCROLL_LINE);            
+        
+        // ÏµúÎåÄ ÏïÑÏù¥ÌÖúÏùÑ Ï†ïÌï¥Ï£ºÍ≥†
+        m_pScrollReadInfo->SetMaxItem(nMaxStep);
+    }    
 }
 
 
 BOOL CINFCommunityLetter::GetLetterItemInfo(BOOL bAllMail, UID64_t LetterUID, structReadLetterItemInfo* pItem)
 {
-	vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();		
-	while(it != m_vecReadLetter.end())
-	{
-		structReadLetterItemInfo stTmp = (*it);
-		if((stTmp.bAllMail==bAllMail)
-			&&(stTmp.LetterUID == LetterUID))
-		{			
-			(*pItem) = stTmp;
-			return TRUE;
-		}
-		it++;
-	}
-	return FALSE;
+    vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();        
+    while (it != m_vecReadLetter.end())
+    {
+        structReadLetterItemInfo stTmp = (*it);
+        if ((stTmp.bAllMail==bAllMail)
+            &&(stTmp.LetterUID == LetterUID))
+        {            
+            (*pItem) = stTmp;
+            return TRUE;
+        }
+        it++;
+    }
+    return FALSE;
 
 }
 
 void CINFCommunityLetter::OnClickLetterSend(BOOL bAllMail)
 {
 
-	if(!bAllMail)
-	{		
-		// ∆Ì¡ˆ ∫∏≥ª±‚ ≈¨∏Ø
-		MSG_FC_CHAT_LETTER_SEND sMsg; 
-		memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_LETTER_SEND));
-		
-		sMsg.SendCharacterUID = g_pShuttleChild->GetShuttleInfo()->CharacterUniqueNumber;
-		m_pEditWriteReceiveUser->GetString(sMsg.RecvCharacterName, SIZE_MAX_CHARACTER_NAME-1);		// πﬁ¥¬ ¿Ø¿˙
-		m_pEditWriteTitle->GetString(sMsg.Title, SIZE_MAX_LETTER_TITLE-1);		// ¡¶∏Ò
-		m_pEditWriteInfo->GetString(sMsg.Content, SIZE_MAX_LETTER_CONTENT-1);		// ≥ªøÎ
+    if (!bAllMail)
+    {        
+        // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞ ÌÅ¥Î¶≠
+        MSG_FC_CHAT_LETTER_SEND sMsg; 
+        memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_LETTER_SEND));
+        
+        sMsg.SendCharacterUID = g_pShuttleChild->GetShuttleInfo()->CharacterUniqueNumber;
+        m_pEditWriteReceiveUser->GetString(sMsg.RecvCharacterName, SIZE_MAX_CHARACTER_NAME-1);        // Î∞õÎäî Ïú†Ï†Ä
+        m_pEditWriteTitle->GetString(sMsg.Title, SIZE_MAX_LETTER_TITLE-1);        // Ï†úÎ™©
+        m_pEditWriteInfo->GetString(sMsg.Content, SIZE_MAX_LETTER_CONTENT-1);        // ÎÇ¥Ïö©
 
-		if(strlen(sMsg.Title) <= 0)
-		{
-			char buf[256];
-			wsprintf(buf, STRMSG_C_080513_0201);//"\\y¡¶∏Ò¿ª ¿‘∑¬«œººø‰."
-			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-			return;
-		}
+        if (strlen(sMsg.Title) <= 0)
+        {
+            char buf[256];
+            wsprintf(buf, STRMSG_C_080513_0201);//"\\yÏ†úÎ™©ÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+            return;
+        }
 
-		if(strlen(sMsg.RecvCharacterName) <= 0)
-		{
-			char buf[256];
-			wsprintf(buf, STRMSG_C_080513_0202);//"\\yπﬁ¥¬ ªÁ∂˜¿ª ¿‘∑¬«œººø‰."
-			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-			return;
-		}
-		if(strlen(sMsg.Content) <= 0)
-		{
-			char buf[256];
-			wsprintf(buf, STRMSG_C_080513_0203);//"\\y∫ªπÆ ≥ªøÎ¿ª ¿‘∑¬«œººø‰."
-			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-			return;
-		}
-		
-		vector<MessageType_t> vecUnLockMsg;
-		vecUnLockMsg.clear();
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_SEND);		
-		vecUnLockMsg.push_back(T_FC_CHAT_LETTER_SEND_OK);		
-		// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-		g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_LETTER_SEND, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+        if (strlen(sMsg.RecvCharacterName) <= 0)
+        {
+            char buf[256];
+            wsprintf(buf, STRMSG_C_080513_0202);//"\\yÎ∞õÎäî ÏÇ¨ÎûåÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+            return;
+        }
+        if (strlen(sMsg.Content) <= 0)
+        {
+            char buf[256];
+            wsprintf(buf, STRMSG_C_080513_0203);//"\\yÎ≥∏Î¨∏ ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+            return;
+        }
+        
+        vector<MessageType_t> vecUnLockMsg;
+        vecUnLockMsg.clear();
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_SEND);        
+        vecUnLockMsg.push_back(T_FC_CHAT_LETTER_SEND_OK);        
+        // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+        g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_LETTER_SEND, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
 
-		g_pFieldWinSocket->SendMsg(T_FC_CHAT_LETTER_SEND, (char*)&sMsg, sizeof(sMsg));	
-	}
-	else
-	{		
-		// ∆Ì¡ˆ ∫∏≥ª±‚ ≈¨∏Ø
-		MSG_FC_CHAT_ALLLETTER_SEND sMsg; 
-		memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_ALLLETTER_SEND));
-		
-		sMsg.SendCharacterUID = g_pShuttleChild->GetShuttleInfo()->CharacterUniqueNumber;
-		m_pEditWriteReceiveUser->GetString(sMsg.RecvCharacterName, SIZE_MAX_CHARACTER_NAME-1);		// πﬁ¥¬ ¿Ø¿˙
-		m_pEditWriteTitle->GetString(sMsg.Title, SIZE_MAX_LETTER_TITLE-1);		// ¡¶∏Ò
-		m_pEditWriteInfo->GetString(sMsg.Content, SIZE_MAX_LETTER_CONTENT-1);		// ≥ªøÎ
+        g_pFieldWinSocket->SendMsg(T_FC_CHAT_LETTER_SEND, (char*)&sMsg, sizeof(sMsg));    
+    }
+    else
+    {        
+        // Ìé∏ÏßÄ Î≥¥ÎÇ¥Í∏∞ ÌÅ¥Î¶≠
+        MSG_FC_CHAT_ALLLETTER_SEND sMsg; 
+        memset(&sMsg, 0x00, sizeof(MSG_FC_CHAT_ALLLETTER_SEND));
+        
+        sMsg.SendCharacterUID = g_pShuttleChild->GetShuttleInfo()->CharacterUniqueNumber;
+        m_pEditWriteReceiveUser->GetString(sMsg.RecvCharacterName, SIZE_MAX_CHARACTER_NAME-1);        // Î∞õÎäî Ïú†Ï†Ä
+        m_pEditWriteTitle->GetString(sMsg.Title, SIZE_MAX_LETTER_TITLE-1);        // Ï†úÎ™©
+        m_pEditWriteInfo->GetString(sMsg.Content, SIZE_MAX_LETTER_CONTENT-1);        // ÎÇ¥Ïö©
 
-		if(strlen(sMsg.Title) <= 0)
-		{
-			char buf[256];
-			wsprintf(buf, STRMSG_C_080513_0201);//"\\y¡¶∏Ò¿ª ¿‘∑¬«œººø‰."
-			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-			return;
-		}
+        if (strlen(sMsg.Title) <= 0)
+        {
+            char buf[256];
+            wsprintf(buf, STRMSG_C_080513_0201);//"\\yÏ†úÎ™©ÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+            return;
+        }
 
-//		if(strlen(sMsg.RecvCharacterName) <= 0)
-//		{
-//			char buf[256];
-//			wsprintf(buf, STRMSG_C_080513_0202);//"\\yπﬁ¥¬ ªÁ∂˜¿ª ¿‘∑¬«œººø‰."
-//			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-//			return;
-//		}
-		if(strlen(sMsg.Content) <= 0)
-		{
-			char buf[256];
-			wsprintf(buf, STRMSG_C_080513_0203);//"\\y∫ªπÆ ≥ªøÎ¿ª ¿‘∑¬«œººø‰."
-			g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
-			return;
-		}
+//        if (strlen(sMsg.RecvCharacterName) <= 0)
+//        {
+//            char buf[256];
+//            wsprintf(buf, STRMSG_C_080513_0202);//"\\yÎ∞õÎäî ÏÇ¨ÎûåÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+//            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+//            return;
+//        }
+        if (strlen(sMsg.Content) <= 0)
+        {
+            char buf[256];
+            wsprintf(buf, STRMSG_C_080513_0203);//"\\yÎ≥∏Î¨∏ ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî."
+            g_pD3dApp->m_pChat->CreateChatChild(buf,COLOR_ERROR);
+            return;
+        }
 
-		vector<MessageType_t> vecUnLockMsg;
-		vecUnLockMsg.clear();
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_SEND);		
-		vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_SEND_OK);		
-		// «œ≥™∏∏ ∏≈ƒ™ µ«æÓµµ ∂Ù¿Ã «Æ∏∞¥Ÿ. 
-		g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_ALLLETTER_SEND, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
-		
-		g_pFieldWinSocket->SendMsg(T_FC_CHAT_ALLLETTER_SEND, (char*)&sMsg, sizeof(sMsg));	
-	}
-	char chBlank[16];
-	memset(chBlank, 0x00, 16);
-	
-	m_pEditWriteReceiveUser->SetString(chBlank, 16);		// πﬁ¥¬ ¿Ø¿˙
-	m_pEditWriteReceiveUser->BackupTxtString();
+        vector<MessageType_t> vecUnLockMsg;
+        vecUnLockMsg.clear();
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_SEND);        
+        vecUnLockMsg.push_back(T_FC_CHAT_ALLLETTER_SEND_OK);        
+        // ÌïòÎÇòÎßå Îß§Ïπ≠ ÎêòÏñ¥ÎèÑ ÎùΩÏù¥ ÌíÄÎ¶∞Îã§. 
+        g_pD3dApp->EnterMultiLock(TRUE, T_FC_CHAT_ALLLETTER_SEND, vecUnLockMsg, MULTI_LOCK_ONE_MATCHING);
+        
+        g_pFieldWinSocket->SendMsg(T_FC_CHAT_ALLLETTER_SEND, (char*)&sMsg, sizeof(sMsg));    
+    }
+    char chBlank[16];
+    memset(chBlank, 0x00, 16);
+    
+    m_pEditWriteReceiveUser->SetString(chBlank, 16);        // Î∞õÎäî Ïú†Ï†Ä
+    m_pEditWriteReceiveUser->BackupTxtString();
 
-	m_pEditWriteTitle->SetString(chBlank, 16);		// ¡¶∏Ò
-	m_pEditWriteTitle->BackupTxtString();
+    m_pEditWriteTitle->SetString(chBlank, 16);        // Ï†úÎ™©
+    m_pEditWriteTitle->BackupTxtString();
 
-	m_pEditWriteInfo->SetString(chBlank, 16, 0, TRUE);		// ≥ªøÎ
-	m_pEditWriteInfo->BackupTxtString();
+    m_pEditWriteInfo->SetString(chBlank, 16, 0, TRUE);        // ÎÇ¥Ïö©
+    m_pEditWriteInfo->BackupTxtString();
 }
 
 void CINFCommunityLetter::RefreshLetterInfo()
 {
-	const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();
-	BOOL bShowBtn = FALSE;
-	// ¡ˆµµ¿⁄ π◊ ∫Œ¡ˆµµ¿⁄ »§¿∫ ∞¸∏Æ¿⁄¥¬ πˆ∆∞¿Ã ∫∏¿Œ¥Ÿ.
-	if(COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_LEADER))
-	{
-		bShowBtn = TRUE;
-	}
-	else if(COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_1))
-	{
-		bShowBtn = TRUE;
-	}
-	else if(COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_2))
-	{
-		bShowBtn = TRUE;
-	}
-	else if (COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
-	{
-		bShowBtn = TRUE;
-	}
-	// ¿¸√º ∫∏≥ª±‚ πˆ∆∞ º˚±Ê¡ˆ ø©∫Œ ∆«¥‹
-	m_pAllSendBtn->ShowWindow(bShowBtn);
-	
-	ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
+    const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();
+    BOOL bShowBtn = FALSE;
+    // ÏßÄÎèÑÏûê Î∞è Î∂ÄÏßÄÎèÑÏûê ÌòπÏùÄ Í¥ÄÎ¶¨ÏûêÎäî Î≤ÑÌäºÏù¥ Î≥¥Ïù∏Îã§.
+    if (COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_LEADER))
+    {
+        bShowBtn = TRUE;
+    }
+    else if (COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_1))
+    {
+        bShowBtn = TRUE;
+    }
+    else if (COMPARE_RACE(myShuttleInfo.Race, RACE_INFLUENCE_SUBLEADER_2))
+    {
+        bShowBtn = TRUE;
+    }
+    else if (COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR))
+    {
+        bShowBtn = TRUE;
+    }
+    // Ï†ÑÏ≤¥ Î≥¥ÎÇ¥Í∏∞ Î≤ÑÌäº Ïà®Í∏∏ÏßÄ Ïó¨Î∂Ä ÌåêÎã®
+    m_pAllSendBtn->ShowWindow(bShowBtn);
+    
+    ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
 }
 
 void CINFCommunityLetter::CheckNotReadMail()
 {
-	if(!m_bLetterFirstRq)
-	{
-		// √≥¿Ω ø‰√ª«œ¥¬ ∏ﬁ¿œ¿Ã æ∆¥œ¥Ÿ.
-		return;
-	}
-	char chBuf[256];
-	memset(chBuf, 0x00, 256);
+    if (!m_bLetterFirstRq)
+    {
+        // Ï≤òÏùå ÏöîÏ≤≠ÌïòÎäî Î©îÏùºÏù¥ ÏïÑÎãàÎã§.
+        return;
+    }
+    char chBuf[256];
+    memset(chBuf, 0x00, 256);
 
-	vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();		
-	while(it != m_vecReadLetter.end())
-	{
-		structReadLetterItemInfo stTmp = (*it);
-		if(!stTmp.bReadMail)
-		{
-			wsprintf(chBuf, STRMSG_C_080513_0206, stTmp.chSendUser);
-			g_pD3dApp->m_pChat->CreateChatChild(chBuf,COLOR_SYSTEM);
-		}
-		
-		it++;
-	}
+    vector<structReadLetterItemInfo>::iterator it = m_vecReadLetter.begin();        
+    while (it != m_vecReadLetter.end())
+    {
+        structReadLetterItemInfo stTmp = (*it);
+        if (!stTmp.bReadMail)
+        {
+            wsprintf(chBuf, STRMSG_C_080513_0206, stTmp.chSendUser);
+            g_pD3dApp->m_pChat->CreateChatChild(chBuf,COLOR_SYSTEM);
+        }
+        
+        it++;
+    }
 }
 
 void CINFCommunityLetter::FieldSocketChatLetterDelOk()
 {
-	ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
+    ChangeLetterMode(LETTER_MODE_READ, LETTER_READ_MODE_LIST, NULL, FALSE,0);
 }
 
 void CINFCommunityLetter::UpdateBtnPos()
 {
-	// πË∞Ê 
-	POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
-	
-	int nCnt = 0;
-	int nPosX, nPosY;
-	nPosX = nPosY =0;
-	
-#ifdef C_EPSODE4_UI_CHANGE_JSKIM					        // 2011. 10. 10 by jskim UIΩ√Ω∫≈€ ∫Ø∞Ê
-	if(m_pReadBtn)
-	{		
-		nPosX = ptBkPos.x + 380;
-		nPosY = ptBkPos.y + 66;		
-		m_pReadBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pReadDelBtn)
-	{		
-		nPosX = ptBkPos.x + 429;
-		nPosY = ptBkPos.y + 66;		
-		m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}	
-	if(m_pAllSendBtn)
-	{		
-		nPosX = ptBkPos.x + 360;
-		nPosY = ptBkPos.y + 335;		
-		m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pSendBtn)
-	{		
-		nPosX = ptBkPos.x + 410;
-		nPosY = ptBkPos.y + 335;		
-		m_pSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    // Î∞∞Í≤Ω 
+    POINT ptBkPos = ((CINFCommunity*)m_pParent)->GetCommunityBkPos();
+    
+    int nCnt = 0;
+    int nPosX, nPosY;
+    nPosX = nPosY =0;
+    
+#ifdef C_EPSODE4_UI_CHANGE_JSKIM                            // 2011. 10. 10 by jskim UIÏãúÏä§ÌÖú Î≥ÄÍ≤Ω
+    if (m_pReadBtn)
+    {        
+        nPosX = ptBkPos.x + 380;
+        nPosY = ptBkPos.y + 66;        
+        m_pReadBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pReadDelBtn)
+    {        
+        nPosX = ptBkPos.x + 429;
+        nPosY = ptBkPos.y + 66;        
+        m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }    
+    if (m_pAllSendBtn)
+    {        
+        nPosX = ptBkPos.x + 360;
+        nPosY = ptBkPos.y + 335;        
+        m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pSendBtn)
+    {        
+        nPosX = ptBkPos.x + 410;
+        nPosY = ptBkPos.y + 335;        
+        m_pSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
-	// ¿–±‚ ¥‰¿Â
-	if(m_pReadResponseBtn)
-	{		
-		nPosX = ptBkPos.x + 350;
-		nPosY = ptBkPos.y + 335;		
-		m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ ªË¡¶
-	if(m_pReadListDelBtn)
-	{		
-		nPosX = ptBkPos.x + 399;
-		nPosY = ptBkPos.y + 335;		
-		m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ µ⁄∑Œ
-	if(m_pReadBackBtn)
-	{		
-		nPosX = ptBkPos.x + 446;
-		nPosY = ptBkPos.y + 335;		
-		m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    // ÏùΩÍ∏∞ ÎãµÏû•
+    if (m_pReadResponseBtn)
+    {        
+        nPosX = ptBkPos.x + 350;
+        nPosY = ptBkPos.y + 335;        
+        m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    if (m_pReadListDelBtn)
+    {        
+        nPosX = ptBkPos.x + 399;
+        nPosY = ptBkPos.y + 335;        
+        m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ Îí§Î°ú
+    if (m_pReadBackBtn)
+    {        
+        nPosX = ptBkPos.x + 446;
+        nPosY = ptBkPos.y + 335;        
+        m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
 
-	{
-		// Ω∫≈©∑—		
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    {
+        // Ïä§ÌÅ¨Î°§        
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 468;
-		ptScrollPos.y += 129;
+        ptScrollPos.x += 468;
+        ptScrollPos.y += 129;
 
-		m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollRead->SetMouseBallRect(rcMousePos);
-	}
-	 
-	/////////////////////////////// ∆Ì¡ˆ ¿–±‚///////////////////////////////////////////
-	if(m_pEditReadReceiveUser)
-	{
-		nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;		
-		m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadTitle)
-	{		
-		nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;		
-		m_pEditReadTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadInfo)
-	{		
-		nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;		
-		m_pEditReadInfo->SetPos(nPosX, nPosY);
-	}
-	{		
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+        m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollRead->SetMouseBallRect(rcMousePos);
+    }
+     
+    /////////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞///////////////////////////////////////////
+    if (m_pEditReadReceiveUser)
+    {
+        nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;        
+        m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadTitle)
+    {        
+        nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;        
+        m_pEditReadTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadInfo)
+    {        
+        nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;        
+        m_pEditReadInfo->SetPos(nPosX, nPosY);
+    }
+    {        
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 452;
-		ptScrollPos.y += 128;
+        ptScrollPos.x += 452;
+        ptScrollPos.y += 128;
 
-		m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,163);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
-	}
+        m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,163);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
+    }
 
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	if(m_pEditWriteSendUser)
-	{		
-		nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;		
-		m_pEditWriteSendUser->SetPos(nPosX, nPosY);
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    if (m_pEditWriteSendUser)
+    {        
+        nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;        
+        m_pEditWriteSendUser->SetPos(nPosX, nPosY);
 
-		const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();
-		m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
-	}
+        const auto& myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();
+        m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
+    }
 
-	if(m_pEditWriteReceiveUser)
-	{		
-		nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;		
-		m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteTitle)
-	{		
-		nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;		
-		m_pEditWriteTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteInfo)
-	{		
-		nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;		
-		m_pEditWriteInfo->SetPos(nPosX, nPosY);
-	}
-	{		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    if (m_pEditWriteReceiveUser)
+    {        
+        nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;        
+        m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteTitle)
+    {        
+        nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;        
+        m_pEditWriteTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteInfo)
+    {        
+        nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;        
+        m_pEditWriteInfo->SetPos(nPosX, nPosY);
+    }
+    {        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 455;
-		ptScrollPos.y += 149;
+        ptScrollPos.x += 455;
+        ptScrollPos.y += 149;
 
-		m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,157);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollWrite->SetMouseBallRect(rcMousePos);
-	}
+        m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,157);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollWrite->SetMouseBallRect(rcMousePos);
+    }
 #else
-	if(m_pReadBtn)
-	{		
-		nPosX = ptBkPos.x + 308;
-		nPosY = ptBkPos.y + 97;		
-		m_pReadBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pReadDelBtn)
-	{		
-		nPosX = ptBkPos.x + 378;
-		nPosY = ptBkPos.y + 97;		
-		m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}	
-	if(m_pAllSendBtn)
-	{		
-		nPosX = ptBkPos.x + 282;
-		nPosY = ptBkPos.y + 346;		
-		m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	if(m_pSendBtn)
-	{		
-		nPosX = ptBkPos.x + 381;
-		nPosY = ptBkPos.y + 346;		
-		m_pSendBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    if (m_pReadBtn)
+    {        
+        nPosX = ptBkPos.x + 308;
+        nPosY = ptBkPos.y + 97;        
+        m_pReadBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pReadDelBtn)
+    {        
+        nPosX = ptBkPos.x + 378;
+        nPosY = ptBkPos.y + 97;        
+        m_pReadDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }    
+    if (m_pAllSendBtn)
+    {        
+        nPosX = ptBkPos.x + 282;
+        nPosY = ptBkPos.y + 346;        
+        m_pAllSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    if (m_pSendBtn)
+    {        
+        nPosX = ptBkPos.x + 381;
+        nPosY = ptBkPos.y + 346;        
+        m_pSendBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
-	// ¿–±‚ ¥‰¿Â
-	if(m_pReadResponseBtn)
-	{		
-		nPosX = ptBkPos.x + 243;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ ªË¡¶
-	if(m_pReadListDelBtn)
-	{		
-		nPosX = ptBkPos.x + 310;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);	
-	}
-	// ¿–±‚ µ⁄∑Œ
-	if(m_pReadBackBtn)
-	{		
-		nPosX = ptBkPos.x + 377;
-		nPosY = ptBkPos.y + 88;		
-		m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);	
-	}
+    // ÏùΩÍ∏∞ ÎãµÏû•
+    if (m_pReadResponseBtn)
+    {        
+        nPosX = ptBkPos.x + 243;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadResponseBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ ÏÇ≠Ï†ú
+    if (m_pReadListDelBtn)
+    {        
+        nPosX = ptBkPos.x + 310;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadListDelBtn->SetBtnPosition(nPosX, nPosY);    
+    }
+    // ÏùΩÍ∏∞ Îí§Î°ú
+    if (m_pReadBackBtn)
+    {        
+        nPosX = ptBkPos.x + 377;
+        nPosY = ptBkPos.y + 88;        
+        m_pReadBackBtn->SetBtnPosition(nPosX, nPosY);    
+    }
 
 
-	{
-		// Ω∫≈©∑—		
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    {
+        // Ïä§ÌÅ¨Î°§        
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 152;
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 152;
 
-		m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollRead->SetMouseBallRect(rcMousePos);
-	}
-	
-	/////////////////////////////// ∆Ì¡ˆ ¿–±‚///////////////////////////////////////////
-	if(m_pEditReadReceiveUser)
-	{
-		nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;		
-		m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadTitle)
-	{		
-		nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;		
-		m_pEditReadTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditReadInfo)
-	{		
-		nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;		
-		m_pEditReadInfo->SetPos(nPosX, nPosY);
-	}
-	{		
-		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+        m_pScrollRead->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,170);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollRead->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollRead->SetMouseBallRect(rcMousePos);
+    }
+    
+    /////////////////////////////// Ìé∏ÏßÄ ÏùΩÍ∏∞///////////////////////////////////////////
+    if (m_pEditReadReceiveUser)
+    {
+        nPosX = ptBkPos.x + LETTER_USER_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_READ_EDIT_Y;        
+        m_pEditReadReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadTitle)
+    {        
+        nPosX = ptBkPos.x + LETTER_TITLE_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_READ_EDIT_Y;        
+        m_pEditReadTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditReadInfo)
+    {        
+        nPosX = ptBkPos.x + LETTER_INFO_READ_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_READ_EDIT_Y;        
+        m_pEditReadInfo->SetPos(nPosX, nPosY);
+    }
+    {        
+        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 164;
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 164;
 
-		m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
-	}
+        m_pScrollReadInfo->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollReadInfo->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollReadInfo->SetMouseBallRect(rcMousePos);
+    }
 
-	/////////////////////////////// ∆Ì¡ˆ æ≤±‚///////////////////////////////////////////
-	if(m_pEditWriteSendUser)
-	{		
-		nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;		
-		m_pEditWriteSendUser->SetPos(nPosX, nPosY);
+    /////////////////////////////// Ìé∏ÏßÄ Ïì∞Í∏∞///////////////////////////////////////////
+    if (m_pEditWriteSendUser)
+    {        
+        nPosX = ptBkPos.x + LETTER_SEND_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_SEND_USER_EDIT_Y;        
+        m_pEditWriteSendUser->SetPos(nPosX, nPosY);
 
-		CHARACTER myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();		
-		m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
-	}
+        CHARACTER myShuttleInfo = g_pShuttleChild->GetMyShuttleInfo();        
+        m_pEditWriteSendUser->SetString(myShuttleInfo.CharacterName, strlen(myShuttleInfo.CharacterName)+1);
+    }
 
-	if(m_pEditWriteReceiveUser)
-	{		
-		nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;		
-		m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteTitle)
-	{		
-		nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;		
-		m_pEditWriteTitle->SetPos(nPosX, nPosY);
-	}
-	if(m_pEditWriteInfo)
-	{		
-		nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
-		nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;		
-		m_pEditWriteInfo->SetPos(nPosX, nPosY);
-	}
-	{		
-		RECT rcMouseWhell, rcMousePos;
-		POINT ptScrollPos = ptBkPos;
+    if (m_pEditWriteReceiveUser)
+    {        
+        nPosX = ptBkPos.x + LETTER_USER_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_USER_EDIT_Y;        
+        m_pEditWriteReceiveUser->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteTitle)
+    {        
+        nPosX = ptBkPos.x + LETTER_TITLE_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_TITLE_EDIT_Y;        
+        m_pEditWriteTitle->SetPos(nPosX, nPosY);
+    }
+    if (m_pEditWriteInfo)
+    {        
+        nPosX = ptBkPos.x + LETTER_INFO_EDIT_X;
+        nPosY = ptBkPos.y + LETTER_INFO_EDIT_Y;        
+        m_pEditWriteInfo->SetPos(nPosX, nPosY);
+    }
+    {        
+        RECT rcMouseWhell, rcMousePos;
+        POINT ptScrollPos = ptBkPos;
 
-		ptScrollPos.x += 454;
-		ptScrollPos.y += 164;
+        ptScrollPos.x += 454;
+        ptScrollPos.y += 164;
 
-		m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
-		rcMouseWhell.left		= ptScrollPos.x - 468;
-		rcMouseWhell.top		= ptScrollPos.y - 30;
-		rcMouseWhell.right		= ptScrollPos.x + 30;
-		rcMouseWhell.bottom		= ptScrollPos.y + 230;
-		m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
-		rcMousePos.left			= ptScrollPos.x - 11;
-		rcMousePos.top			= ptScrollPos.y ;
-		rcMousePos.right		= rcMousePos.left + 32;
-		rcMousePos.bottom		= rcMousePos.top + 200;
-		m_pScrollWrite->SetMouseBallRect(rcMousePos);
-	}
+        m_pScrollWrite->SetPosition(ptScrollPos.x ,ptScrollPos.y,11,135);
+        rcMouseWhell.left        = ptScrollPos.x - 468;
+        rcMouseWhell.top        = ptScrollPos.y - 30;
+        rcMouseWhell.right        = ptScrollPos.x + 30;
+        rcMouseWhell.bottom        = ptScrollPos.y + 230;
+        m_pScrollWrite->SetMouseWhellRect(rcMouseWhell);
+        rcMousePos.left            = ptScrollPos.x - 11;
+        rcMousePos.top            = ptScrollPos.y ;
+        rcMousePos.right        = rcMousePos.left + 32;
+        rcMousePos.bottom        = rcMousePos.top + 200;
+        m_pScrollWrite->SetMouseBallRect(rcMousePos);
+    }
 #endif
 }

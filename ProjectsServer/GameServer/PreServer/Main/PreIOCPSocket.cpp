@@ -1431,8 +1431,17 @@ template<> ProcessResult CPreIOCPSocket::HandlerT1<T_FP_CASH_CHANGE_CHARACTERNAM
 
 template<> ProcessResult CPreIOCPSocket::HandlerT1<T_FP_ADMIN_BLOCKACCOUNT>::handler(CPreIOCPSocket* socket, const char* pPacket, int nLength, int &nBytesUsed)
 {
+	//check send by field server
+	CServerGroup *pServerGroup = ms_pPreIOCP->GetServerGroup(socket->m_szConnectedServerGroupName);
+	if (pServerGroup == NULL)
+	{
+		DBGOUT("  Error: No Such Server Group(%s)!", socket->m_szConnectedServerGroupName);
+		return RES_PACKET_ERROR;
+	}
+	CPreIOCPSocket *pPFSocket = (CPreIOCPSocket*)pServerGroup->m_FieldServerInfo.pSocket;
+	if (pPFSocket != socket) return RES_PACKET_ERROR;
+	
 	auto msg = GetMessageData(pPacket, nLength, nBytesUsed);
-
 	if (!msg) return RES_PACKET_ERROR;
 
 	///////////////////////////////////////////////////////////////////////////////
