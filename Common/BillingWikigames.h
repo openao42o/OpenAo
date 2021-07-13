@@ -60,4 +60,3 @@ struct SWIKIBILL_RET_DATA
 
 
 #endif // #ifndef _BILLING_WIKIGAMES_H_
-#endif // COMMON_BILLINGWIKIGAMES_H_

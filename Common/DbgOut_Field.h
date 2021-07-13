@@ -78,7 +78,7 @@ inline void DbgOut (LPCTSTR pFormat, ...)
     #ifdef UNICODE
     DbgOutW (buffer);
     #else
-    DbgOutA (buffer);
+    //DbgOutA (buffer);
     #endif
 
     va_end(args);

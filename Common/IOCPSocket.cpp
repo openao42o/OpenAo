@@ -641,8 +641,7 @@ BOOL CIOCPSocket::OpenUDPPort(int nPort, int nRetryCount)
         }
 
         nRetryCount--;
-    } 
-    while (nRetryCount >= 0) {}
+	} while (nRetryCount >= 0);
 
 
     closesocket(m_hSocket);
