@@ -5,15 +5,15 @@
 #ifndef COMMON_DBGOUT_C_H_
 #define COMMON_DBGOUT_C_H_
 
-static  LPCTSTR    g_dbgOut                = _T("Client DebugOutput 20020805");
-static  LPCTSTR    g_dbgOutwindowClassName = _T("Client DebugOut Window");
+static  LPCTSTR    g_dbgOutA                = _T("Client DebugOutput 20020805");
+static  LPCTSTR    g_dbgOutwindowClassNameA = _T("Client DebugOut Window");
 
 #include "stdio.h"
 
-inline void DbgOutA (LPCSTR p)
+inline void DbgOutAA (LPCSTR p)
 {
     COPYDATASTRUCT cd; 
-    HWND hWnd = ::FindWindow (g_dbgOutwindowClassName, g_dbgOut); 
+    HWND hWnd = ::FindWindow (g_dbgOutwindowClassNameA, g_dbgOutA); 
     if (hWnd)
     {  
         cd.dwData = 0;
@@ -34,10 +34,10 @@ inline void DbgOutA (LPCSTR p)
 
 
 
-inline void DbgOutW (LPCWSTR p)
+inline void DbgOutWA (LPCWSTR p)
 {
     COPYDATASTRUCT cd; 
-    HWND hWnd = ::FindWindow (g_dbgOutwindowClassName, g_dbgOut); 
+    HWND hWnd = ::FindWindow (g_dbgOutwindowClassNameA, g_dbgOutA); 
     if (hWnd)
     {  
         cd.dwData = 0xFEFF;
@@ -58,10 +58,10 @@ inline void DbgOutW (LPCWSTR p)
 
 
 
-inline void DbgOut (LPCTSTR pFormat, ...)
+inline void DbgOutA (LPCTSTR pFormat, ...)
 {
     // 2015-06-30 Future, stopped parsing of Debug messages when no debug target is found
-    if (!::FindWindow(g_dbgOutwindowClassName, g_dbgOut))
+    if (!::FindWindow(g_dbgOutwindowClassNameA, g_dbgOutA))
         return;
 
     va_list args;
@@ -73,7 +73,7 @@ inline void DbgOut (LPCTSTR pFormat, ...)
     #ifdef UNICODE
     DbgOutW (buffer);
     #else
-    DbgOutA (buffer);
+    DbgOutAA (buffer);
     #endif
 
     va_end(args);
@@ -93,7 +93,7 @@ inline void DbgOut (LPCTSTR pFormat, ...)
 #endif
 
 
-inline DWORD DbgOutLastError (LPCTSTR pFormat, ...)
+inline DWORD DbgOutLastErrorA (LPCTSTR pFormat, ...)
 {
    if (::GetLastError() == 0) 
         return 0;

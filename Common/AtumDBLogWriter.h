@@ -134,4 +134,3 @@ public:
 };
 
 #endif // _ATUM_DB_LOG_WRITER_H_
-#endif // COMMON_ATUMDBLOGWRITER_H_
