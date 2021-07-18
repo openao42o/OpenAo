@@ -9847,7 +9847,7 @@ void CAtumApplication::FieldSocketCharacterChangeBodycondition(MSG_FC_CHARACTER_
 			if (g_pShuttleChild->IsObserverMode()
 				&& g_pShuttleChild->m_stObserve.ClientIndex == itEnemy->second->m_infoCharacter.CharacterInfo.ClientIndex)
 			{
-				DbgOut("BodyCondition = %x\n", pMsg->BodyCondition);
+				DbgOutA("BodyCondition = %x\n", pMsg->BodyCondition);
 				if (!COMPARE_BODYCON_BIT(oldBodyCondition, BODYCON_BOOSTER3_MASK) &&
 					COMPARE_BODYCON_BIT(pMsg->BodyCondition, BODYCON_BOOSTER3_MASK) &&
 					!COMPARE_BODYCON_BIT(pMsg->BodyCondition, BODYCON_DEAD_MASK))
@@ -17468,12 +17468,12 @@ VOID CAtumApplication::FieldSocketString128(MSG_FC_STRING_128* pMsg)
 	}
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_DBGOUT)
 	{
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 	}
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_NOTICE)
 	{
 
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 		AddSpeakerGMString(pMsg->String, FALSE);   // 2012-04-18 by jhahn  트리거 시스템 알림 
 	}
 	// 2013-06-26 by bhsohn 아머 컬렉션 추가 개발
@@ -17517,12 +17517,12 @@ VOID CAtumApplication::FieldSocketString256(MSG_FC_STRING_256* pMsg)
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_DBGOUT)
 	{
 
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 	}
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_NOTICE)
 	{
 
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 		AddSpeakerGMString(pMsg->String, FALSE);   // 2012-04-18 by jhahn  트리거 시스템 알림 
 	}
 }
@@ -17549,11 +17549,11 @@ VOID CAtumApplication::FieldSocketString512(MSG_FC_STRING_512* pMsg)
 	}
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_DBGOUT)
 	{
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 	}
 	else if (pMsg->PrintType == STR128_PRINT_TYPE_NOTICE)
 	{
-		DbgOut("%s\n", pMsg->String);
+		DbgOutA("%s\n", pMsg->String);
 		AddSpeakerGMString(pMsg->String, FALSE);   // 2012-04-18 by jhahn  트리거 시스템 알림 
 	}
 
@@ -18498,7 +18498,7 @@ VOID	CAtumApplication::FieldSocketMonsterHPTalk(MSG_FC_MONSTER_HPTALK* pMsg)
 				g_pGameMain->m_pUnitNameInfo->MonsterChatCreateInfo(strlen(szStr), szStr, pMsg->MonsterIndex);
 				break;
 			default:
-				::DbgOut("UnDefined MSG_FC_MONSTER_HPTALK::HPTalkImportance\n");
+				DbgOutA("UnDefined MSG_FC_MONSTER_HPTALK::HPTalkImportance\n");
 				break;
 			}
 		}
@@ -23805,7 +23805,7 @@ VOID CAtumApplication::FieldSocketWarNotifyInfluenceMonsterDead(MSG_FC_WAR_NOTIF
 	ZERO_MEMORY(buff);
 	if (pMonsterInfo == NULL)
 	{
-		DbgOut("Monster Info Error : %d\n", pMsg->MonsterUnitkind);
+		DbgOutA("Monster Info Error : %d\n", pMsg->MonsterUnitkind);
 		return;
 	}
 	if (IS_SAME_CHARACTER_MONSTER_INFLUENCE(g_pShuttleChild->m_myShuttleInfo.InfluenceType,
@@ -26413,7 +26413,7 @@ VOID CAtumApplication::FieldSocketCharacterObserverEndOK(MSG_FC_CHARACTER_OBSERV
 ///////////////////////////////////////////////////////////////////////////////
 VOID CAtumApplication::FieldSocketCharacterObserverRegOK(MSG_FC_CHARACTER_OBSERVER_REG* pMsg)
 {
-	DbgOut("FieldSocketCharacterObserverRegOK\n");
+	DbgOutA("FieldSocketCharacterObserverRegOK\n");
 	g_pShuttleChild->m_ObserveQuick[pMsg->nRegNum] = pMsg->ClientIndex;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -33309,7 +33309,7 @@ BOOL CAtumApplication::HS_Init()
 			// 		1.     사용 : [Alt + Tab]을 허용			
 			// 		2.     사용 안함 : [Alt + Tab]을 금지
 			dwOption |= AHNHS_ALLOW_SWITCH_WINDOW;
-			DbgOut("AHNHS_ALLOW_SWITCH_WINDOW \r\n");
+			DbgOutA("AHNHS_ALLOW_SWITCH_WINDOW \r\n");
 		}
 		else
 		{// 창모드.
@@ -33325,7 +33325,7 @@ BOOL CAtumApplication::HS_Init()
 								 HACKSHIELD_LICENCE_CODE,		// 라이센스 키
 								 dwOption, 						// 옵션 플래그
 								 AHNHS_SPEEDHACK_SENSING_RATIO_NORMAL);
-		DbgOut("%s GameCode = %d Li = %s, option = 0x%X return =%d\r\n",
+		DbgOutA("%s GameCode = %d Li = %s, option = 0x%X return =%d\r\n",
 			   szFullFilePath, HACKSHIELD_GAME_CODE, HACKSHIELD_LICENCE_CODE, dwOption, nRet);
 		// ④ _AhnHS_Initialize 함수의 리턴 값을 검사하여 에러 처리합니다.
 		if (nRet != HS_ERR_OK)
@@ -33709,7 +33709,7 @@ void CAtumApplication::HS_SendHackShieldErrorMsg(long lHackClientCode, char * pM
 
 	m_pFieldWinSocket->SendMsg(T_FC_MOVE_HACKSHIELD_HACKING_CLIENT, (char*)&sMsg, sizeof(sMsg));
 
-	DbgOut("Error HackShield Hacking Client (%s[%x])(%s)\n", GetErrorString(lHackClientCode), lHackClientCode, sMsg.szErrString);
+	DbgOutA("Error HackShield Hacking Client (%s[%x])(%s)\n", GetErrorString(lHackClientCode), lHackClientCode, sMsg.szErrString);
 }
 
 
@@ -36785,7 +36785,7 @@ void CAtumApplication::EnterMultiLock(BOOL bFiledServer, MessageType_t nLockMsg,
 		// 현재 락이 걸려있는 상태이므로 치명적이다.
 		char chLock[1024];
 		wsprintf(chLock, "Pre[%s] Lock[%s]", GetProtocolTypeString(m_vecLockProtocol.nLockMsg), GetProtocolTypeString(nLockMsg));
-		DbgOut(chLock);
+		DbgOutA(chLock);
 		g_pD3dApp->NetworkErrorMsgBox(STRMSG_C_071221_0201);
 		return;
 	}

@@ -327,7 +327,7 @@ void CWeaponItemInfo::TickNormalWeapon(float fElapsedTime, BOOL bUse)
 				(COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR)))
 			{
 				// 리어택 타임 체크
-				DbgOut("[%.2f] [%.2f] \n", m_fReattackCheckTime, fReattackTime);
+				DbgOutA("[%.2f] [%.2f] \n", m_fReattackCheckTime, fReattackTime);
 			}
 			// end 2008-04-01 by bhsohn 관리자 스크린샷 모드에서 는 무기 리어택타임 DBG에 찍게 수정
 		}
@@ -545,7 +545,7 @@ void CWeaponItemInfo::TickPetWeapon(float fElapsedTime, BOOL bUse)
 				(COMPARE_RACE(myShuttleInfo.Race, RACE_OPERATION | RACE_GAMEMASTER | RACE_MONITOR)))
  			{
  			// 리어택 타임 체크
-	 			DbgOut("[%.2f] [%.2f] \n", m_fReattackCheckTime, fReattackTime);
+	 			DbgOutA("[%.2f] [%.2f] \n", m_fReattackCheckTime, fReattackTime);
  			}
  			// end 2008-04-01 by bhsohn 관리자 스크린샷 모드에서 는 무기 리어택타임 DBG에 찍게 수정
  		}

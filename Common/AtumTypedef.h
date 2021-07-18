@@ -99,4 +99,3 @@ typedef vector<BURNING_MAP_INFO*>                CVectorBurningData;
 typedef vector<BURNING_MAP_INFO*>::iterator        CVectorBurningDataItr;
 
 #endif // _ATUM_TYPEDEF_H__32E91AE4_C7F3_424D_B983_17488DDA215B__INCLUDED_endif
-#endif // COMMON_ATUMTYPEDEF_H_

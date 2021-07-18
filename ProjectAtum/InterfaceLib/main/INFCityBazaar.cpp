@@ -4219,11 +4219,11 @@ void CINFCityBazaarOpen::Recv_SellBuyItemOK(MSG_FC_BAZAAR_SELL_BUY_ITEM_OK* pMsg
 		CMapEnemyIterator itEnemy = g_pScene->m_mapEnemyList.begin();
 		while(itEnemy != g_pScene->m_mapEnemyList.end())
 		{
-			DbgOut("상대편 넘버 정보 (%d)\n", itEnemy->second->m_infoCharacter.CharacterInfo.ClientIndex);
+			DbgOutA("상대편 넘버 정보 (%d)\n", itEnemy->second->m_infoCharacter.CharacterInfo.ClientIndex);
 			itEnemy++;
 		}
 
-		DbgOut("상대편 넘버 없음 (%d)\n", pMsg->clientIndex0);
+		DbgOutA("상대편 넘버 없음 (%d)\n", pMsg->clientIndex0);
 	}
 }
 

@@ -209,7 +209,7 @@ HRESULT CD3DApplication::Create( HINSTANCE hInstance )
 		if( FAILED( hr = BuildDeviceList() ) )
 		{
 			SAFE_RELEASE( m_pD3D );
-			DbgOut("BuildDeviceList failed!");
+			DbgOutA("BuildDeviceList failed!");
 			return DisplayErrorMsg( hr, MSGERR_APPMUSTEXIT );
 		}
 
@@ -293,7 +293,7 @@ HRESULT CD3DApplication::Create( HINSTANCE hInstance )
 		if( FAILED( hr = OneTimeSceneInit() ) )
 		{
 			SAFE_RELEASE( m_pD3D );
-			DbgOut("OneTimeSceneInit failed!");
+			DbgOutA("OneTimeSceneInit failed!");
 			return DisplayErrorMsg( hr, MSGERR_APPMUSTEXIT );
 		}
 
@@ -301,7 +301,7 @@ HRESULT CD3DApplication::Create( HINSTANCE hInstance )
 		if( FAILED( hr = Initialize3DEnvironment() ) )
 		{
 			SAFE_RELEASE( m_pD3D );
-			DbgOut("Initialize3DEnvironment failed!");
+			DbgOutA("Initialize3DEnvironment failed!");
 			return DisplayErrorMsg( hr, MSGERR_APPMUSTEXIT );
 		}
 

@@ -1107,7 +1107,7 @@ void CINFEnemyItemInfo::RenderAttachItem(int nPosX, int nPosY)
 			
 			if (NULL == pcEquipPos)
 			{
-				DbgOut("Position = %d", ptItem->Position);
+				DbgOutA("Position = %d", ptItem->Position);
 				iter++;
 				continue;
 			}

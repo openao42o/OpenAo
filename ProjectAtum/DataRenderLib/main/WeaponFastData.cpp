@@ -303,7 +303,7 @@ CWeaponFastData::CWeaponFastData( CAtumData* pAttack, ITEM* pWeaponITEM, ATTACK_
 		//end 2009. 11. 23 by jskim 리소스 로딩 구조 변경
 		pEffect = (CAppEffectData*)g_pD3dApp->m_pEffectList->AddChild(pEffect);
 
-		::DbgOut( "Effect Error : RC_EFF_ROBOTAMOR_FIRE_EFFECT		1100084\n" );
+		DbgOutA( "Effect Error : RC_EFF_ROBOTAMOR_FIRE_EFFECT		1100084\n" );
 
 		if(m_bFireType==0)
 			pEffect->m_nFirePos = CAppEffectData::LEFT;
