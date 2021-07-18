@@ -400,7 +400,7 @@ HRESULT CINFArenaCreate::RestoreDeviceObjects()
 HRESULT CINFArenaCreate::DeleteDeviceObjects()
 {
 	int i;
-	DbgOut("Arena Create DeleteDeviceObjects()\n");
+	DbgOutA("Arena Create DeleteDeviceObjects()\n");
 	for(i = 0; i < BUTTON_STATE_NUMBER; i++)
 	{
 		m_pImgCreateB[i]->DeleteDeviceObjects();

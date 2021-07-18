@@ -6,6 +6,7 @@
 
 #include <WINDOWS.H>
 #include <TIME.H>
+#include <string>
 
 //#include <string>
 //

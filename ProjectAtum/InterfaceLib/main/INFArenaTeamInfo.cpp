@@ -1655,7 +1655,7 @@ VOID CINFArenaTeamInfo::AppCancel(BOOL bButton)
 
 	}else
 	{
-		DbgOut("T_FC_ARENA_REAVE_TEAM (not Team Number)\n");
+		DbgOutA("T_FC_ARENA_REAVE_TEAM (not Team Number)\n");
 	}
 }
 

@@ -4919,7 +4919,7 @@ float CINFWindow::CheckHellMapLiveTime(int nType, int nLiveTime, CINFMessageBox*
 			strncpy(chTimer, STRMSG_C_130412_0001, 256); // "\\r%d 초 후 사라집니다.\\w"			
 			pMsgBox->SetTimeMessage1(chTimer) ;			
 
-			DbgOut("nType[%d] fRtnLiveTime[%.2f] \n", nType, fRtnLiveTime);
+			DbgOutA("nType[%d] fRtnLiveTime[%.2f] \n", nType, fRtnLiveTime);
 		}
 		break;
 	}

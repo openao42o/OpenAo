@@ -17008,7 +17008,7 @@ BOOL CShuttleChild::ChangeObserveUser(int nKey)
         g_pFieldWinSocket->SendMsg( T_FC_CHARACTER_OBSERVER_START, (char*)&sMsg, sizeof(sMsg) );
         return TRUE;
     }
-    DbgOut("Observe Quick[%d].ClientIndex = %d\n",nKey,m_ObserveQuick[nKey]);
+    DbgOutA("Observe Quick[%d].ClientIndex = %d\n",nKey,m_ObserveQuick[nKey]);
     return FALSE;
 }
 
@@ -19774,7 +19774,7 @@ void CShuttleChild::ActiveKeyDownADouble()
             && m_nBooster != BOOSTER_TYPE_MAX // 부스터 사용시에는 롤링을 저장하지 않는다.
             && !m_bRollUsed) // 롤링중일때 선입력 받는것을 막는다
         {
-            DbgOut("CShuttleChild::WndProc() : m_bKeyDownADouble = TRUE\n");
+            DbgOutA("CShuttleChild::WndProc() : m_bKeyDownADouble = TRUE\n");
             m_bKeyDownADouble = TRUE;
             m_bKeyDownDDouble = FALSE;
         }
@@ -19796,7 +19796,7 @@ void CShuttleChild::ActiveKeyDownDDouble()
             && m_nBooster != BOOSTER_TYPE_MAX // 부스터 사용시에는 롤링을 저장하지 않는다.
             && !m_bRollUsed) // 롤링중일때 선입력 받는것을 막는다
         {
-            DbgOut("CShuttleChild::WndProc() : m_bKeyDownDDouble = TRUE\n");
+            DbgOutA("CShuttleChild::WndProc() : m_bKeyDownDDouble = TRUE\n");
             m_bKeyDownDDouble = TRUE;
             m_bKeyDownADouble = FALSE;
         }
