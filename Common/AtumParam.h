@@ -4,6 +4,7 @@
 #include <cmath>
 #include <array>
 #include <vector>
+#include <functional>
 
 #include <d3dx9math.h>
 
@@ -3073,7 +3074,7 @@ struct ENCHANT
 };
 
 // 2013-01-15 by bckim, 인챈트아이템 시퀀스넘버 추가
-struct ENCHANT_ITEM_SORT_BY_SEQUENCE_NUMBER : binary_function<ENCHANT, ENCHANT, bool>
+struct ENCHANT_ITEM_SORT_BY_SEQUENCE_NUMBER : std::binary_function<ENCHANT, ENCHANT, bool>
 {
     bool operator()(ENCHANT Param1, ENCHANT Param2)
     {
@@ -3093,7 +3094,7 @@ struct ENCHANT_INFO
 };
 
 // 2013-07-01 by bckim, 10인챈트 미만 하이퍼카드처리, 로그추가, 운영툴 보완
-struct SUB_ENCHANT_INFO_SORT_BY_SEQUENCE_NUMBER : binary_function<SUB_ENCHANT_INFO, SUB_ENCHANT_INFO, bool>
+struct SUB_ENCHANT_INFO_SORT_BY_SEQUENCE_NUMBER : std::binary_function<SUB_ENCHANT_INFO, SUB_ENCHANT_INFO, bool>
 {
     bool operator()(SUB_ENCHANT_INFO Param1, SUB_ENCHANT_INFO Param2)
     {
@@ -6278,7 +6279,7 @@ struct SPET_KIT_SLOT_ITEM_LEVEL
     int    ItemNum;            // 아이템 번호
 };
 
-struct SSort_KIT_SLOT_ITEM_LEVEL_BY_LEVEL : binary_function<int, int, bool>
+struct SSort_KIT_SLOT_ITEM_LEVEL_BY_LEVEL : std::binary_function<int, int, bool>
 {
     bool operator()(SPET_KIT_SLOT_ITEM_LEVEL param1, SPET_KIT_SLOT_ITEM_LEVEL param2)
     {
@@ -6538,7 +6539,7 @@ struct SWAY_POINT_MOVE
 using vectorWayPoint = vector<SWAY_POINT>;
 using vectorWayPointMove = vector<SWAY_POINT_MOVE>;
 
-struct SSORT_WAY_POINT_BY_SEQUENCE_NUMBER : binary_function<SWAY_POINT, SWAY_POINT, bool>
+struct SSORT_WAY_POINT_BY_SEQUENCE_NUMBER : std::binary_function<SWAY_POINT, SWAY_POINT, bool>
 {
     bool operator()(SWAY_POINT Param1, SWAY_POINT Param2)
     {
@@ -6909,7 +6910,7 @@ struct STRIGGER_ATTACK_USER_DAMAGE
     float        fDamage;
 };
 
-struct SSORT_TRIGGER_ATTACK_USER_DAMAGE_BY__DAMAGE : binary_function<STRIGGER_ATTACK_USER_DAMAGE, STRIGGER_ATTACK_USER_DAMAGE, bool>
+struct SSORT_TRIGGER_ATTACK_USER_DAMAGE_BY__DAMAGE : std::binary_function<STRIGGER_ATTACK_USER_DAMAGE, STRIGGER_ATTACK_USER_DAMAGE, bool>
 {
     bool operator()(STRIGGER_ATTACK_USER_DAMAGE Param1, STRIGGER_ATTACK_USER_DAMAGE Param2)
     {

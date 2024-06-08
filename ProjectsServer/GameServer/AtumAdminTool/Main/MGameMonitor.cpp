@@ -45,7 +45,7 @@ BOOL CMGameMonitor::InitMGameMonitor()
 		return FALSE;
 	}
 
-	DbgOut("[Noti] InitMGameMonitor\r\n");	
+	//DbgOut("[Noti] InitMGameMonitor\r\n");	
 	return TRUE;
 }
 void CMGameMonitor::ResetMGameMonitor(void)
@@ -93,7 +93,7 @@ BOOL CMGameMonitor::OnWS_Accept(WPARAM wParam, LPARAM lParam)
 
 	ATUM_DATE_TIME	tmATime { true };
 	char			tmStrBuf[SIZE_MAX_ATUM_DATE_TIME_STRING];
-	DbgOut("[Noti] Accepted, %s\r\n", tmATime.GetDateTimeString(tmStrBuf, SIZE_MAX_ATUM_DATE_TIME_STRING));
+	//DbgOut("[Noti] Accepted, %s\r\n", tmATime.GetDateTimeString(tmStrBuf, SIZE_MAX_ATUM_DATE_TIME_STRING));
 	return TRUE;
 }
 

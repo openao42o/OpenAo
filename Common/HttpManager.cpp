@@ -233,7 +233,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
     {
         TCHAR szError[1024];
         ex.GetErrorMessage(szError, 1024);
-        DbgOut("Unable to create file(%s): %s\r\n", m_szLocalFileName, szError);
+        //DbgOut("Unable to create file(%s): %s\r\n", m_szLocalFileName, szError);
 
         ::InternetCloseHandle(hHttpFile);
         hHttpFile            = NULL;
@@ -252,7 +252,7 @@ Err_t CHttpManager::_DownLoadFileByHttp(void)
     {
         if ( FALSE == ::InternetReadFile(hHttpFile, buffer, _DOWN_BUFFER_SIZE, &dwRead) )
         {
-            DbgOut("InternetReadFile ERROR: %d, TotalRead(%d)\n", GetLastError(), dwTotalRead);
+            //DbgOut("InternetReadFile ERROR: %d, TotalRead(%d)\n", GetLastError(), dwTotalRead);
 
             fileObject.Close();
             ::DeleteFile(m_szLocalFileName);

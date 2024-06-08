@@ -1724,7 +1724,7 @@ int CAtumDBHelper::LoadMysteryItemDropInfo(mtmapINT2MYSTERY_ITEM_DROP* o_pmmapMy
                    , pItemInfo, retMysteryDrop.MysteryItemDropNum, retMysteryDrop.ReqMinLevel, retMysteryDrop.ReqMaxLevel
                    , retMysteryDrop.DropItemNum, retMysteryDrop.MinCount, retMysteryDrop.MaxCount);
             g_pGlobal->WriteSystemLog(szSystemLog); // 2009-04-15 by cmkwon, 시스템 로그 수정 - 
-            DbgOut(szSystemLog);
+            //DbgOut(szSystemLog);
             continue;
         }
         retMysteryDrop.Starttime = StartDTime; // 2008-11-04 by dhjin, 럭키머신
@@ -1805,7 +1805,7 @@ int CAtumDBHelper::LoadMysteryItemDropInfoByOmi(mmapINT2MYSTERY_ITEM_DROP* o_pmm
             sprintf(szSystemLog, "CAtumDBHelper::LoadMysteryItemDropInfoByOmi_ error !!, MysteryItemDropNum(%8d) ReqLevel(%3d~%3d) DropItemNum(%8d) DropCount(%4d~%4d)\r\n"
                    , retMysteryDrop.MysteryItemDropNum, retMysteryDrop.ReqMinLevel, retMysteryDrop.ReqMaxLevel
                    , retMysteryDrop.DropItemNum, retMysteryDrop.MinCount, retMysteryDrop.MaxCount);
-            DbgOut(szSystemLog);
+            //DbgOut(szSystemLog);
             continue;
         }
         o_pmmapMysteryItemDropList->insert(pair<INT, MYSTERY_ITEM_DROP>(retMysteryDrop.MysteryItemDropNum, retMysteryDrop));
