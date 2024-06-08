@@ -288,20 +288,20 @@ void CODBCStatement::ProcessLogMessages(SQLSMALLINT plm_handle_type,
 												sizeof(plm_SS_Srvname), &plm_cbSS_Srvname);
 			}
 
-			//DbgOut("	szSqlState    = %s\n",plm_szSqlState);
-			//DbgOut("	pfNativeError = %d\n",plm_pfNativeError);
-			//DbgOut("	szErrorMsg    = %s\n",plm_szErrorMsg);
-			//DbgOut("	pcbErrorMsg   = %d\n\n",plm_pcbErrorMsg);
+			DBGOUT("	szSqlState    = %s\n",plm_szSqlState);
+			DBGOUT("	pfNativeError = %d\n",plm_pfNativeError);
+			DBGOUT("	szErrorMsg    = %s\n",plm_szErrorMsg);
+			DBGOUT("	pcbErrorMsg   = %d\n\n",plm_pcbErrorMsg);
 
-			//if (ConnInd)
-			//{
-			//	DbgOut("	ODBCRowNumber = %d\n", plm_Rownumber);
-			//	DbgOut("	SSrvrLine     = %d\n", plm_Rownumber);
-			//	DbgOut("	SSrvrMsgState = %d\n",plm_SS_MsgState);
-			//	DbgOut("	SSrvrSeverity = %d\n",plm_SS_Severity);
-			//	DbgOut("	SSrvrProcname = %s\n",plm_SS_Procname);
-			//	DbgOut("	SSrvrSrvname  = %s\n\n",plm_SS_Srvname);
-			//}
+			if (ConnInd)
+			{
+				DBGOUT("	ODBCRowNumber = %d\n", plm_Rownumber);
+				DBGOUT("	SSrvrLine     = %d\n", plm_Rownumber);
+				DBGOUT("	SSrvrMsgState = %d\n",plm_SS_MsgState);
+				DBGOUT("	SSrvrSeverity = %d\n",plm_SS_Severity);
+				DBGOUT("	SSrvrProcname = %s\n",plm_SS_Procname);
+				DBGOUT("	SSrvrSrvname  = %s\n\n",plm_SS_Srvname);
+			}
 		}
 		plm_cRecNmbr++; //Increment to next diagnostic record.
 	} // End while.
