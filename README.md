@@ -22,8 +22,8 @@ Last but not least, removing "useless" funcionality is another key point of this
 project, even though it's harder than it sounds. For example, after removing
 server IDs, some stuff (arena has not been tested at all yet) does not work correctly.
 
-# buld settings:
-
+# Build settings:
+Visual Studio 2022 Project
 DevX ou DevX_arena
 
 # Compile Order:
