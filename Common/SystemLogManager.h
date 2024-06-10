@@ -1,4 +1,5 @@
 #pragma once
+#include "StdAfx.h"
 
 class CSystemLogManager
 {

@@ -27,25 +27,26 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DevX|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -73,9 +74,10 @@
     <OutDir>$(SolutionDir)../../BuildResult/Server/Release/</OutDir>
     <IntDir>$(SolutionDir)..\..\Intermediate\$(ProjectName)\$(Configuration)_$(Platform)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common;$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)..\..\ProjectAtum\DX9cLink\Include;$(SolutionDir)..\..\Common</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)..\Lib;$(SolutionDir)..\..\ProjectAtum\DX9cLink\Lib</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX_Arena|Win32'">
     <OutDir>$(SolutionDir)../../BuildResult/Server/Release/</OutDir>

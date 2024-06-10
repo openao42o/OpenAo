@@ -179,7 +179,7 @@ BOOL CSystemLogManager::WriteSystemLog(char* log, BOOL bTimeFlag)
 		|| (m_bChangingFlagFile == FALSE && m_hFile == INVALID_HANDLE_VALUE)
 		|| (m_bChangingFlagFile == FALSE && m_hFile == 0))
 	{	// error, file not opened
-		DbgOut("\r\nCSystemLogManager::WriteSystemLog error, m_hFile[0x%X] StringSize[%d]\n", m_hFile, strlen(log));
+		DBGOUT("\r\nCSystemLogManager::WriteSystemLog error, m_hFile[0x%X] StringSize[%d]\n", m_hFile, strlen(log));
 		return FALSE;
 	}
 

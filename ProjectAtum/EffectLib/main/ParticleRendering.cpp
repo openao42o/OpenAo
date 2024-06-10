@@ -605,7 +605,14 @@ bool SpriteRenderInfo::matches(CParticleSystem* system) const
 
 
 TraceRenderInfo::TraceRenderInfo(CTraceAni* trace)
-	: TraceRenderInfo{ trace->EnableAlphaBlend(), trace->m_bZWriteEnable, trace->m_bZbufferEnable, trace->m_dwSrcBlend, trace->m_dwDestBlend, trace->m_nTextureRenderState }
+	: TraceRenderInfo { 
+		static_cast<bool>(trace->EnableAlphaBlend()),
+		static_cast<bool>(trace->m_bZWriteEnable),
+		static_cast<bool>(trace->m_bZbufferEnable),
+		trace->m_dwSrcBlend, 
+		trace->m_dwDestBlend, 
+		trace->m_nTextureRenderState 
+	}
 {
 	add(trace);
 }

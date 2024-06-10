@@ -74,108 +74,108 @@
     <SccProjectName />
     <SccLocalPath />
     <ProjectGuid>{B8E44C67-31E2-44F2-B03B-902454B576AD}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Wikigames_Eng|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_EternalSkies|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACE|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DevX|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies_XP|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE_XP|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_EternalSkies|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACE|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Wikigames_Eng_XP|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_Intecom_Viet|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='D_DreamACEVN|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_Intecom_Viet|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_DreamACEVN|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='R_WinnerOnline_SGP|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

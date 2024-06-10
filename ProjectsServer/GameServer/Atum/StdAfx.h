@@ -35,7 +35,7 @@
 #include <fstream>
 #include <functional>
 
-#include "dbgout_c.h"
+#include "DbgOut_Field.h"
 #include "mt_stl.h"
 
 #include "DefineGlobal.h"
